@@ -27,14 +27,15 @@ public class BridgeGame {
         return record;
     }
 
-    private int getStateCode(int position, String choice) throws IllegalArgumentException {
+    private int getStateCode(int position, String choice) {
         String state = bridge.get(position) + choice;
+        int code = 0;
         for (StateCode stateCode : StateCode.values()) {
             if (state.equals(stateCode.getState())) {
-                return stateCode.getCode();
+                code = stateCode.getCode();
             }
         }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 상태 - U 또는 D만 입력되어야함");
+        return code;
     }
 
     public boolean checkComplete() {
