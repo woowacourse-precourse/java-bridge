@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.Env;
+import bridge.Lang;
 import bridge.util.Console;
 
 import java.util.List;
@@ -31,6 +32,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<List<String>> maps, boolean isPass, int tries) {
+        Console.printLine(Lang.get(Lang.GAME_RESULT));
+
+        this.printMap(maps);
+        Console.printLine("");
+
+        Console.printLine(Lang.format(Lang.IS_GAME_PASS, this.getGameStatusText(isPass)));
+        Console.printLine(Lang.format(Lang.TOTAL_ATTEMPT, tries));
+    }
+
+    private String getGameStatusText(boolean isPass) {
+        if (isPass) {
+            return Lang.get(Lang.GAME_IS_PASS);
+        }
+
+        return Lang.get(Lang.GAME_IS_FAIL);
     }
 }
