@@ -10,4 +10,12 @@ public class BridgeMaker {
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
+
+    public List<String> makeBridge(int size) {
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            bridge.add(GeneratorToBridge(bridgeNumberGenerator.generate()));
+        }
+        return bridge;
+    }
 }
