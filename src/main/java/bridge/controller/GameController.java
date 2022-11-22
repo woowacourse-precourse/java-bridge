@@ -23,6 +23,30 @@ public class GameController {
         this.result = result;
     }
 
+    public void playGame() {
+        setEternalThing();
+
+        do {
+            round();
+            countTry++;
+            successResult();
+            failedAndEndGame();
+            bridgeGame.reset();
+        } while (retry);
+    }
+
+    private void round() {
+        do {
+            bridgeGame.move(InputView.readMoving());
+            result.updateBridge(bridge, bridgeGame.getMoves());
+            OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
+        } while ((!isFailed()) && (bridgeGame.getMoves().size() < bridgeSize));
+    }
+
+    private boolean isFailed() {
+        return result.findFail(bridge, bridgeGame.getMoves());
+    }
+
     private void setBridge(BridgeController bridgeController) {
         this.bridge = bridgeController.bridge();
     }
