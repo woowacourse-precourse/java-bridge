@@ -14,9 +14,10 @@ public class BridgeGameInput {
     BridgeGameService bridgeGameService = new BridgeGameService();
 
     public int getBridgeSize() {
-        int bridgeSize=inputView.readBridgeSize();
-        bridgeGameService.isValidBridgeRange(bridgeSize);
-        return bridgeSize;
+        String bridgeSize=inputView.readBridgeSize();
+        bridgeGameService.isNumericInput(bridgeSize);
+        bridgeGameService.isValidBridgeRange(Integer.parseInt(bridgeSize));
+        return Integer.parseInt(bridgeSize);
     }
 
     public String getMoving() {
