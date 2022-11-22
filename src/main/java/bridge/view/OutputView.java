@@ -36,9 +36,9 @@ public class OutputView {
 
 
     private String createInfo(List<String> target, StringBuilder sb) {
-        sb.append('[').append(' ');
-        for(String block : target) {
-            sb.append(block).append(' ');
+        sb.append('[').append(' ').append(target.get(0)).append(' ');
+        for(int i = 1; i < target.size(); i++) {
+            sb.append('|').append(' ').append(target.get(i)).append(' ');
         }
         sb.append(']');
         return sb.toString();

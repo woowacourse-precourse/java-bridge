@@ -58,12 +58,14 @@ public class Application {
 
     }
 
-    private static void goToNextSpace(Route route) {
+    private static boolean goToNextSpace(Route route) {
         output.printMoveSpaceInputRequestMessage();
         String moveNext = input.readMoving();
 
-        game.move(route, moveNext, bridge);
+        Route nextRoute = game.move(route, moveNext, bridge);
+        boolean success = nextRoute.moveSuccess();
         output.printMap(route);
+        return success;
     }
 
     private static void createBridge() {

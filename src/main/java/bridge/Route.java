@@ -11,7 +11,7 @@ public class Route {
     public Route() {}
 
     public void goToNextBlock(String nextRoute, List<String> bridge) {
-        String result = compareRoute(nextRoute, bridge.get(size));
+        result = compareRoute(nextRoute, bridge.get(size));
         pointNextRoute(nextRoute, result);
         size++;
     }
@@ -39,6 +39,21 @@ public class Route {
 
     public List<String> getDown() {
         return this.down;
+    }
+
+    public boolean gameSuccess(int bridgeSize) {
+        if(this.size == bridgeSize && moveSuccess()) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean moveSuccess() {
+        if(result.equals("X")) {
+            return false;
+        }
+        return true;
     }
 
     public String toString() {
