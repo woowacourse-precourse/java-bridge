@@ -105,4 +105,10 @@ public class BridgeProgram {
 		downBridge.add("   ");
 		stack++;
 	}
+
+	public void downPattern() {
+		upBridge.add("   ");
+		downBridge.add(" O ");
+		stack++;
+	}
 }
