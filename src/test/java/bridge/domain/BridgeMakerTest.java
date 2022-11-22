@@ -3,6 +3,8 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.utils.BridgeNumberGenerator;
+import bridge.utils.BridgeRandomNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
