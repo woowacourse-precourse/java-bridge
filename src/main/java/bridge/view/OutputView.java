@@ -37,8 +37,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder("[ ");
 
         for (int i = 0; i < selections.size(); i++) {
-            sb.append(getMarkCommand(bridge.get(i), selections.get(i), position));
-            sb.append(" | ");
+            sb.append(getMarkCommand(bridge.get(i), selections.get(i), position)).append(" | ");
         }
 
         return sb.replace(sb.length() - 2, sb.length() - 1, "]").toString();
