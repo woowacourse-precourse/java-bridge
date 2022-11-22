@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.dto.MovingResultDto;
 import java.util.ArrayList;
