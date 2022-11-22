@@ -27,4 +27,14 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateGameCommand(String gameCommand) {
+        if (!isOneCharacter(gameCommand)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!isValidGameCommand(gameCommand)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
