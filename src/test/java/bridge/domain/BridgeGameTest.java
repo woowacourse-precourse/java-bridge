@@ -1,8 +1,11 @@
 package bridge.domain;
 
-
 import bridge.Validator;
-import org.assertj.core.api.Assertions;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +19,7 @@ class BridgeGameTest {
         String bridgeSize = "14";
         int size = Integer.parseInt(bridgeSize);
 
-        Assertions.assertThat((size > 2 && size < 21)).isTrue();
+        assertThat((size > 2 && size < 21)).isTrue();
     }
 
     @DisplayName("다리 길이가 3보다 작으면 예외가 발생한다.")
@@ -24,7 +27,7 @@ class BridgeGameTest {
     void bridgeSizeLessThanThree() {
         String bridgeSize = "2";
 
-        Assertions.assertThatThrownBy(() -> Validator.validateInputBridgeSizeRange(bridgeSize))
+        assertThatThrownBy(() -> Validator.validateInputBridgeSizeRange(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +35,7 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"R", "Q", "R"})
     void oneFailureAndSuccessTryCount(String command) {
-        Assertions.assertThatCode(()-> Validator.validateRetryGameCommand(command))
+        assertThatCode(()-> Validator.validateRetryGameCommand(command))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +43,7 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"5", "z", "H"})
     void retryGameCommandInputNotCorrect(String command) {
-        Assertions.assertThatThrownBy(() -> Validator.validateRetryGameCommand(command))
+        assertThatThrownBy(() -> Validator.validateRetryGameCommand(command))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
