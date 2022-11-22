@@ -27,7 +27,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = Console.readLine();
+        return validateMoving(moving);
     }
 
     /**
@@ -45,5 +46,12 @@ public class InputView {
             return readBridgeSize();
         }
         return length;
+    }
+    public String validateMoving(String moving){
+        if (!moving.equals('U') && !moving.equals('D')) {
+            System.out.println(MOVING_LIMIT.getMessage());
+            return readMoving();
+        }
+        return moving;
     }
 }
