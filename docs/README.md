@@ -45,3 +45,4 @@
 - 에러 처리
 1. 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
 2. `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같이 유형을 명확히 명시할 것
+> 추가 에러 핸들링: BridgeRandomNumberGenerator 클래스에서 사용하는 유틸 메서드 자체 오류인 경우(0, 1 이외 숫자 반환) 에러 핸들링
