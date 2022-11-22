@@ -33,7 +33,7 @@ public class BridgeGame {
         while (isSuccessGame()) {
             move();
         }
-        if (isExit) {
+        if (!isExit) {
             exit();
         }
     }
@@ -93,6 +93,7 @@ public class BridgeGame {
 
     public void exit() {
         isExit = true;
+        outputView.printLastMap(bridge, position - 1, isSuccess);
         outputView.printResult(isSuccess, tryCnt);
     }
 }

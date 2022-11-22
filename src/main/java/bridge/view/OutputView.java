@@ -26,8 +26,18 @@ public class OutputView {
         if (!isPass) {
             passUnCorrect(upBridge, downBridge, bridge.get(position));
         }
-        System.out.println(upBridge);
-        System.out.println(downBridge);
+        printBridge(upBridge);
+        printBridge(downBridge);
+    }
+
+    public void printLastMap(List<String> bridge, int position, boolean isSuccess) {
+        System.out.println("최종 게임 결과");
+        printMap(bridge, position, isSuccess);
+    }
+
+    private void printBridge(List<String> bridge) {
+        String output = "[" + String.join("|", bridge) + "]";
+        System.out.println(output);
     }
 
     private void passCorrect(List<String> up, List<String> down, String s) {
