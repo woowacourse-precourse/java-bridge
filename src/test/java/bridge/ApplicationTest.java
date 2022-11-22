@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -88,9 +89,26 @@ class ApplicationTest extends NsTest {
         });
     }
     @Test
+    @DisplayName("이동할 칸의 입력을 받을 때 정해진 입력이 주어지지 않은 경우")
     void 예외_테스트2() {
         assertSimpleTest(() -> {
             runException("3", "O");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    @DisplayName("20 이상의 값을 다리 길이로 입력하였을 때")
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("25", "O");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    @DisplayName("3 이상의 값을 다리 길이로 입력하였을 때")
+    void 예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("2", "O");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
