@@ -46,7 +46,7 @@ public class BridgeGame {
     }
 
 
-    // Getters --------------------------------------------------------
+    // Getters and Setters
 
     public List<String> getBridge() {
         return bridge;
@@ -60,23 +60,11 @@ public class BridgeGame {
         return gameCount;
     }
 
-    public void setGameCount(int gameCount) {
-        this.gameCount = gameCount;
-    }
-
     public int getCurrentPosition() {
         return currentPosition;
     }
 
-    public void setCurrentPosition(int currentPosition) {
-        this.currentPosition = currentPosition;
-    }
-
     public boolean getGameResult() {
         return gameResult;
-    }
-
-    public void setGameResult(boolean gameResult) {
-        this.gameResult = gameResult;
     }
 }
