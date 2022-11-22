@@ -12,10 +12,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int bridgeSize = Integer.parseInt(readLine());
-        if ((bridgeSize < 3) || (bridgeSize > 20))
+        try{
+            int bridgeSize = Integer.parseInt(readLine());
+            if ((bridgeSize < 3) || (bridgeSize > 20))
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            return bridgeSize;
+        } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        return bridgeSize;
+        }
     }
 
     /**
