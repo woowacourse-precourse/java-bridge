@@ -4,6 +4,7 @@
 ### 2. 다리 생성
 * 건널 수 있는 칸 0과 1 중 무작위 값으로 설정
   * 0 : 아래 칸(D), 1 : 위 칸(U)
+* 정답지(?) 따로 list로 구현해둬야 함 -> BridgeMaker
 ### 3. 사용자로부터 이동할 칸(D 또는 U) 입력받기
 * 이동할 칸을 건널 수 있으면 다리에 O, 없으면 X를 표시
 * 예외처리 : U와 D 이외의 값을 입력한 경우
@@ -28,5 +29,15 @@
 * move, retry(R 누른 경우)
 ## 4) BridgeMaker
 * 다리 만들기
+* 랜덤값으로 각 다리에 건널 수 있는 곳 표시해둠 (정답지)
 ## 5) BridgeRandomNumberGenerator
 * 건널 수 있는 칸 무작위 설정
+---
+### 작동 방법
+1. InputView 객체 생성 후 메서드를 통해 다리길이 입력 받기
+* InputView inputView = new InputView();
+* int size = inputView.readBridgeSize();
+2. BridgeMaker 객체(BridgeNumberGenerator 객체를 매개변수로 함) 생성 후 다리길이를 매개변수로 넣어주어 정답지 리스트 만들기
+* BridgeNumberGenerator bridgeNumberGenerator = new BridgeNumberGenerator();
+* BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+* bridgeMaker.
