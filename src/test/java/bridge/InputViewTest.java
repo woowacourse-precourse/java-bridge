@@ -20,7 +20,7 @@ public class InputViewTest extends NsTest {
 
     @DisplayName("입력 받은 다리 길이가 정수가 아닐 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"K", " k ", "1K", "K1"})
+    @ValueSource(strings = {"","K", " k ", "1K", "K1"})
     void createBridgeSizeIsChar(String command) {
         assertThatThrownBy(() -> inputView.validateIsNumeric(command))
                 .isInstanceOf(IllegalArgumentException.class);
