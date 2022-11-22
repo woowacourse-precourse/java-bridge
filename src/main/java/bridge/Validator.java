@@ -16,9 +16,8 @@ public class Validator {
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
-        } finally {
-            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE.getMessage());
         }
+        throw new IllegalArgumentException(INVALID_BRIDGE_SIZE.getMessage());
     }
 
     public static String validateMoving(String moving) {
