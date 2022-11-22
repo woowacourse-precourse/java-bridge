@@ -3,6 +3,8 @@ package domain.player;
 import domain.bridge.UserBridge;
 import view.InputView;
 
+import static constant.ApplicationMessage.ASK_RETRY;
+
 public class Player {
   private UserBridge userBridge;
 
@@ -26,7 +28,7 @@ public class Player {
     InputView inputView = new InputView();
     String res;
 
-    System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    System.out.println(ASK_RETRY);
     try {
       res = inputView.readGameCommand();
     } catch (IllegalArgumentException e) {

@@ -3,6 +3,9 @@ package domain.bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constant.ApplicationMessage.DOWN;
+import static constant.ApplicationMessage.UP;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -29,10 +32,10 @@ public class BridgeMaker {
   private void addBridgeValue(List<String> bridge) {
     int value = bridgeNumberGenerator.generate();
     if (value == 0) {
-      bridge.add("D");
+      bridge.add(DOWN);
     }
     if (value == 1) {
-      bridge.add("U");
+      bridge.add(UP);
     }
   }
 }

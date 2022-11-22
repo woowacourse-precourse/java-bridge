@@ -3,6 +3,8 @@ package domain.bridge;
 import view.InputView;
 import java.util.List;
 
+import static constant.ApplicationMessage.PUT_BRIDGE_SIZE;
+
 public class AnswerBridge implements Bridge {
   private List<String> bridge;
 
@@ -15,8 +17,7 @@ public class AnswerBridge implements Bridge {
     InputView inputView = new InputView();
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
-    System.out.println("다리의 길이를 입력해주세요.");
+    System.out.println(PUT_BRIDGE_SIZE);
     try {
       bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
     } catch (IllegalArgumentException e) {

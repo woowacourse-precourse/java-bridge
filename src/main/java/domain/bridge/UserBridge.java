@@ -6,6 +6,8 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constant.ApplicationMessage.PUT_MOVE;
+
 public class UserBridge implements Bridge {
   private List<String> user_bridge;
   boolean is_answer;
@@ -18,7 +20,7 @@ public class UserBridge implements Bridge {
   public void setBridge() {
     InputView inputView = new InputView();
 
-    System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    System.out.println(PUT_MOVE);
     try {
       addUserBridge(inputView.readMoving());
     } catch (IllegalArgumentException e) {

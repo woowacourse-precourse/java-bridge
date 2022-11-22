@@ -2,6 +2,8 @@ package domain.bridge;
 
 import domain.player.Player;
 
+import static constant.ApplicationMessage.RETRY;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -30,7 +32,7 @@ public class BridgeGame {
   public boolean retry(Player player) {
     String pick = player.wantRetry();
 
-    if (pick.equals("R"))
+    if (pick.equals(RETRY))
       return true;
     return false;
   }

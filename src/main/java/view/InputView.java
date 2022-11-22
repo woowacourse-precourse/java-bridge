@@ -1,7 +1,7 @@
 package view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static constant.Message.*;
+import static constant.ErrorMessage.*;
 import static exception.InputException.*;
 
 /**
