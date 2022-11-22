@@ -55,4 +55,21 @@ public class BridgeGameController {
             }
         }
     }
+
+    private static boolean retry() {
+        String command = getGameCommand();
+        return game.retry(command);
+    }
+
+    private static String getGameCommand() {
+        outputView.printMessage(Message.GAME_COMMAND);
+        while (true) {
+            try {
+                String command = inputView.readGameCommand();
+                return command;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 }
