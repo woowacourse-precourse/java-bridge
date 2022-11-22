@@ -21,4 +21,11 @@ public class OutputView {
     private OutputView() {
 
     }
+
+    /**
+     * 게임 시작 메시지를 출력하는 메소드
+     */
+    public static void printGameStartMessage() {
+        System.out.println(GAME_START_MESSAGE);
+    }
 }
