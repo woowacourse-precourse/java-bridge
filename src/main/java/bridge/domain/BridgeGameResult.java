@@ -6,7 +6,7 @@ public class BridgeGameResult {
     private static final String SUCCESS = "성공";
 
     private int tryCount;
-    private String result = FAIL;
+    private String result;
     private BridgeMoveState moveState = new BridgeMoveState();
 
     public int increaseTryCount() {
