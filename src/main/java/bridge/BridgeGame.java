@@ -1,23 +1,66 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.ArrayList;
+import java.util.List;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+import static bridge.Constants.MapMark.*;
+import static bridge.Constants.MoveMark.*;
+
+public class BridgeGame {
+    private boolean isCorrect;
+    private final List<List<String>> bridgeMap;
+
+    public BridgeGame() {
+        bridgeMap = new ArrayList<>();
+        newBridgePattern();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public List<List<String>> move(int bridgeNum, String moving, List<String> correctBridge) {
+        String correctAnswer = correctBridge.get(bridgeNum);
+        isCorrect = moving.equals(correctAnswer);
+
+        if (isCorrect)
+            mapIfCorrect(moving);
+        if (!isCorrect)
+            mapIfWrong(moving);
+        return this.bridgeMap;
+    }
+
     public void retry() {
+        newBridgePattern();
+    }
+
+    public boolean isCorrectMove() {
+        return isCorrect;
+    }
+
+    private void mapIfCorrect(String moving) {
+        if (moving.equals(UP.mark())) {
+            addMap(CORRECT.mark(), NOTHING.mark());
+        }
+        if (moving.equals(DOWN.mark())) {
+            addMap(NOTHING.mark(), CORRECT.mark());
+        }
+    }
+
+    private void mapIfWrong(String moving) {
+        if (moving.equals(UP.mark())) {
+            addMap(WRONG.mark(), NOTHING.mark());
+        }
+        if (moving.equals(DOWN.mark())) {
+            addMap(NOTHING.mark(), WRONG.mark());
+        }
+    }
+
+    private void newBridgePattern() {
+        this.bridgeMap.clear();
+        for (int i = 0; i < 2; i++) {
+            this.bridgeMap.add(new ArrayList<>());
+        }
+    }
+
+    private void addMap(String mapUp, String mapDown) {
+        this.bridgeMap.get(0).add(mapUp);
+        this.bridgeMap.get(1).add(mapDown);
     }
 }
