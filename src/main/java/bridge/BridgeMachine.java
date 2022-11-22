@@ -6,6 +6,15 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private boolean checkReplay(BridgeGame bridgeGame, Bridge bridge, String replay) {
+        if (replay.equals(UserCommand.REPLAY.getCommand())) {
+            bridgeGame.retry(bridge);
+            totalTry++;
+            index = 0;
+            return true;
+        }
+        return false;
+    }
 
     private String getReplayCommand() {
         while (true) {
