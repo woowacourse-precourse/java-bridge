@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.Direction;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -8,8 +9,6 @@ public class BridgeGameController {
 
     private static final Integer MIN_BRIDGE_SIZE = 3;
     private static final Integer MAX_BRIDGE_SIZE = 20;
-    private static final String UP_MOVE_COMMAND = "U";
-    private static final String DOWN_MOVE_COMMAND = "D";
     private static final String RETRY_GAME_COMMAND = "R";
     private static final String QUIT_GAME_COMMAND = "Q";
 
@@ -96,7 +95,7 @@ public class BridgeGameController {
     }
 
     private void validateMovingCommand(String command) {
-        if (!command.equals(UP_MOVE_COMMAND) && !command.equals(DOWN_MOVE_COMMAND)) {
+        if (!command.equals(Direction.UP.getMoveOutput()) && !command.equals(Direction.DOWN.getMoveOutput())) {
             throw new IllegalArgumentException("[ERROR] 건널 칸은 U 또는 D 문자여야 합니다.");
         }
     }

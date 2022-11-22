@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bridge.domain.BridgeStatus;
+import bridge.domain.Direction;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -43,8 +44,8 @@ public class OutputView {
         List<String> upRow = new ArrayList<>();
         List<String> downRow = new ArrayList<>();
         for (int i = 0; i < path.size(); i++) {
-            upRow.add(printRow(path.get(i), "U"));
-            downRow.add(printRow(path.get(i), "D"));
+            upRow.add(printRow(path.get(i), Direction.UP.getMoveOutput()));
+            downRow.add(printRow(path.get(i), Direction.DOWN.getMoveOutput()));
         } 
         System.out.println(FRONT_BRACKET + String.join(PATH_DELIMITER, upRow) + BACK_BRACKET);
         System.out.println(FRONT_BRACKET + String.join(PATH_DELIMITER, downRow) + BACK_BRACKET);

@@ -11,6 +11,7 @@ public class Bridge {
     public Bridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println("Bridge.Bridge(): " + this.bridge); // DEBUG
     }
 
     // TODO: get 고려
