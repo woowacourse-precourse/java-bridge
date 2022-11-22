@@ -28,13 +28,11 @@ public class BridgeGame {
      */
     public void move(String direction, boolean movable) {
         user.addPathOfBridge(direction, movable);
-        isSuccess();
+        this.success = isSuccess();
     }
 
-    private void isSuccess() {
-        if (bridge.size() == user.getRound()) {
-            success = true;
-        }
+    private boolean isSuccess() {
+        return bridge.size() == user.getRound();
     }
 
     public boolean isMovable(String direction){
