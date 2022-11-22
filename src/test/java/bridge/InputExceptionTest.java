@@ -51,6 +51,16 @@ public class InputExceptionTest extends NsTest {
         });
     }
 
+    @DisplayName("플레이어의 이동이 U,D가 아닌 입력 테스트")
+    @ValueSource(strings = {"q", "u", "@", "8"})
+    @ParameterizedTest
+    void createInvalidUserMove(String input) {
+        assertSimpleTest(() -> {
+            runException("3", input);
+            assertThat(output()).contains(InputException.INVALID_PLAYER_MOVE.getExceptionMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
