@@ -29,6 +29,7 @@ public class InputView {
         try {
             String input = readInput(BRIDGE_SIZE_MESSAGE);
             BridgeSizeValidator.validate(input);
+            System.out.println();
 
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
