@@ -12,7 +12,7 @@ public class CheckException {
     private static final String NOTNUMBER_ERRORMESSAGE = "[ERROR] 숫자만 입력해주세요.";
     private static final String INVALIDMOVING_ERRORMESSAGE = "[ERROR] U와 D 중에서 하나를 입력해주세요.";
     private static final String GAMERESTART = "R";
-    private static final String GAMEQUIT = "D";
+    private static final String GAMEQUIT = "Q";
     private static final String INVALIDCOMMAND_ERRORMESSAGE = "[ERROR] R과 Q중에서 하나를 입력해주세요.";
 
     public static void bridgeSizeException(String size) {
