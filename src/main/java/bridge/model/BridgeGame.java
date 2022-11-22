@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.error.BridgeError;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,8 +32,15 @@ public class BridgeGame {
      */
     public void move(Direction direction) {
         int nextIdx = history.size();
+        validateMove(nextIdx);
         boolean roundResult = direction.equals(bridge.get(nextIdx));
         history.add(new Round(direction, roundResult));
+    }
+
+    private void validateMove(int nextIdx) {
+        if(nextIdx >= bridge.size()){
+            throw new IllegalStateException(BridgeError.END_OF_BRIDGE.getMessage());
+        }
     }
 
     /**
