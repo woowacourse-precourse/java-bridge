@@ -3,6 +3,7 @@ package input;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.Application;
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 class ExceptionTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-
     @Test
     void 다리길이_문자입력_예외_테스트() {
         assertSimpleTest(() -> {

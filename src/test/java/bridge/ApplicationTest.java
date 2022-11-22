@@ -17,6 +17,7 @@ class ApplicationTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
+        assertThat(bridge).size().isEqualTo(3);
     }
 
     @Test
