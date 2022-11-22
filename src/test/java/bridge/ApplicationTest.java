@@ -7,7 +7,11 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -43,6 +47,16 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("예외 메시지가 잘나오는 지 확인")
+    @ValueSource(strings = {"-99999999999999999","-1", "0", "2", "21","99999999999999999999"})
+    @ParameterizedTest()
+    void 범위_예외_메시지_테스트(String textValue) {
+        assertSimpleTest(() -> {
+            runException(textValue);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

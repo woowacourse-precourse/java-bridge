@@ -3,6 +3,10 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputValidation inputValidation = new InputValidation();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        BridgeGameUi bridgeGameUi = new BridgeGameUi(inputView, inputValidation, outputView);
+        bridgeGameUi.run();
     }
 }
