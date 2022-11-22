@@ -54,7 +54,7 @@ public class BridgeGame {
      */
     public boolean move(int now) {
         outputView.printRequestMoving();
-        if (canMove(inputView.readMoving(),bridge.get(now))) {
+        if (canMove(inputView.readMoving(), bridge.get(now))) {
             status.addSuccess(bridge.get(now));
             outputView.printMap(status);
             return true;

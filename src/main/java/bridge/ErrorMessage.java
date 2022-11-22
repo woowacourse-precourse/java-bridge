@@ -8,7 +8,7 @@ public enum ErrorMessage {
     String message;
 
     ErrorMessage(String message) {
-        this.message =  "[ERROR] " + message;
+        this.message = "[ERROR] " + message;
     }
 
     public String getMessage() {

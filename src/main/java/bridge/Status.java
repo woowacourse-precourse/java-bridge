@@ -44,7 +44,7 @@ public class Status {
     }
 
     public String result() {
-        if(up.toString().contains("X") || down.toString().contains("X")){
+        if (up.toString().contains("X") || down.toString().contains("X")) {
             return "실패";
         }
         return "성공";
