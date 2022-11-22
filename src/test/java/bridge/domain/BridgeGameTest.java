@@ -12,11 +12,10 @@ class BridgeGameTest {
     private BridgeGame bridgeGame;
 
     @BeforeEach
-    void beforeEach(){
-        List<String> list = List.of("U","U","D");
+    void beforeEach() {
+        List<String> list = List.of("U", "U", "D");
         bridgeGame = new BridgeGame(list);
     }
-
 
     @DisplayName("생성자를 통해 만든 Bridge가 잘 반환되는지 테스트")
     @Test
