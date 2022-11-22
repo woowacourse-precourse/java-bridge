@@ -52,7 +52,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 입력_오류_후_게임재개_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("a", "4", "U", "D", "u", "U","D");
+            run("a", "4", "U", "d","D", "D","r","R","U","D","U","D");
             assertThat(output()).contains(ERROR_MESSAGE);
         }, 1, 0, 1, 0);
             assertThat(output()).contains(
@@ -60,7 +60,7 @@ class ApplicationTest extends NsTest {
                 "[ O |   | O |   ]",
                 "[   | O |   | O ]",
                 "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                "총 시도한 횟수: 2"
         );
     }
 
