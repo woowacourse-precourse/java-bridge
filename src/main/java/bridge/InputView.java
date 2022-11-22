@@ -22,4 +22,9 @@ public class InputView {
         }
         return size;
     }
+    public String readMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String move = Console.readLine();
+        return move;
+    }
 }
