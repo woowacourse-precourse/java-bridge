@@ -41,6 +41,7 @@ public class InputView {
             return command;
         }
 
+        System.out.println("[ERROR] R 또는 Q 를 입력해주세요");
         throw new IllegalArgumentException();
     }
 }
