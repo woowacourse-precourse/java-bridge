@@ -33,5 +33,14 @@ public class BridgeGameController {
         playGame(bridge);
     }
 
+    // 한 게임을 진행하는 기능
+    private void playGame(List<String> bridge) {
+        do {
+            bridgeGame.increaseGameAttemptCount();
+            bridgeGame.retry();
+            playRound(bridge);
+        } while (isRetry(bridge, userInput));
+        outputView.printResult(bridgeGame, userInput, bridge);
+    }
 
 }
