@@ -56,7 +56,7 @@ public class OutputView {
         initMap();
         makeMap(bridge, moveState.getState());
         System.out.println(BRIDGE_START + upMap + BRIDGE_END);
-        System.out.println(BRIDGE_START + downMap + BRIDGE_END);
+        System.out.println(BRIDGE_START + downMap + BRIDGE_END + separateLine());
     }
 
     private void initMap() {
