@@ -78,48 +78,7 @@ public class BridgeGame {
 
     @Override
     public String toString() {
-        String str = "";
-        for (BridgeStatus bridgeStatus : BridgeStatus.values()) {
-            str += "[ ";
-            str = mapToString(str, bridgeStatus);
-            str += "]\n";
-        }
-        return str;
-    }
-
-    private String mapToString(String str, BridgeStatus bridgeStatus) {
-        for (int idx = 0; idx < bridgeDto.getCurrentStage(); idx++) {
-            str = addOorSpace(str, bridgeStatus, idx);
-            str = checkLast(str, idx);
-        }
-        if (isFail) {
-            str = addXorSpace(str, bridgeStatus);
-        }
-        return str;
-    }
-
-    private String addXorSpace(String str, BridgeStatus bridgeStatus) {
-        if (!bridgeDto.getCurrentBridge().equals(bridgeStatus.getName())) {
-            str += "X ";
-            return str;
-        }
-        str += "  ";
-        return str;
-    }
-
-    private String checkLast(String str, int idx) {
-        if (idx != bridgeDto.getCurrentStage() - 1 || isFail) {
-            str += "| ";
-        }
-        return str;
-    }
-
-    private String addOorSpace(String str, BridgeStatus bridgeStatus, int idx) {
-        if (bridgeDto.getBridge().get(idx).equals(bridgeStatus.getName())) {
-            str += "O ";
-            return str;
-        }
-        str += "  ";
-        return str;
+        BridgeStringGenerator bridgeStringGenerator = new BridgeStringGenerator(bridgeDto, isFail);
+        return bridgeStringGenerator.toString();
     }
 }
