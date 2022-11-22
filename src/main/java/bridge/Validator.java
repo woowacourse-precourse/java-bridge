@@ -19,6 +19,12 @@ public class Validator {
         }
     }
 
+    public static void validateGameCommand(String input) throws IllegalArgumentException {
+        if (!input.equalsIgnoreCase(Constant.QUIT) && !input.equalsIgnoreCase(Constant.RETRY)) {
+            throw new IllegalArgumentException(Constant.GAME_COMMAND_ERROR);
+        }
+    }
+
     public static Integer isNumber(String input) {
         try {
             return Integer.valueOf(input);

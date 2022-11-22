@@ -29,6 +29,15 @@ public class InputView {
     }
 
     public String readGameCommand() {
+        try {
+            System.out.println(Constant.READ_GAME_COMMAND);
+            String input = Console.readLine();
+            Validator.validateGameCommand(input);
+            return input;
+        } catch (IllegalArgumentException movingError) {
+            System.out.println(movingError.getMessage());
+            readMoving();
+        }
         return null;
     }
 }
