@@ -3,7 +3,6 @@ package controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import java.util.List;
 import model.Bridge;
 import model.BridgeGame;
 import view.InputView;
