@@ -30,7 +30,7 @@ public class OutputView {
 
     private static void printMapByLine(List<String> choice, List<String> bridge, String direction) {
         List<String> line = new ArrayList<String>();
-        for (int i = 0; i < choice.size(); i++){
+        for (int i = 0; i < choice.size(); i++) {
             line.add(findFactor(choice.get(i), bridge.get(i), direction));
         }
         System.out.print(BRIDGE_START);
@@ -38,7 +38,7 @@ public class OutputView {
         System.out.println(BRIDGE_END);
     }
 
-    private static String findFactor(String movement, String answer, String direction){
+    private static String findFactor(String movement, String answer, String direction) {
         if (!movement.equals(direction)) {
             return SPACE;
         }
@@ -53,7 +53,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(String result ,int totalTry) {
+    public static void printResult(String result, int totalTry) {
         System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + totalTry);
     }

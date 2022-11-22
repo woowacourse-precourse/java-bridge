@@ -35,7 +35,7 @@ public class InputView {
         //TODO: 클래스 추가 관련해서 요구사항을 꼼꼼히 읽어볼 필요가 있다.
     }
 
-    private void validateNumber(String command){
+    private void validateNumber(String command) {
         try {
             Integer.parseInt(command);
         } catch (NumberFormatException e) {
@@ -43,7 +43,7 @@ public class InputView {
         }
     }
 
-    private void validateRange(int size){
+    private void validateRange(int size) {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }

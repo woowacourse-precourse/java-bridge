@@ -26,6 +26,7 @@ public class BridgeGame {
     public void move() {
         InputController.checkMove(player);
     }
+
     public void play() {
         do {
             move();
@@ -54,9 +55,6 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * 내가 만든 함수들
-     */
     public void complete() {
         player.complete();
     }
