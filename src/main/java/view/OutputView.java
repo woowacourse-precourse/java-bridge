@@ -25,17 +25,8 @@ public class OutputView {
     ) {
         StringBuilder upStringBuilder = new StringBuilder().append(start);
         StringBuilder downStringBuilder = new StringBuilder().append(start);
-        List<String> up = bridge.getUp();
-        List<String> down = bridge.getDown();
         for(int i=0; i < position ; i++){
-            if(i == position-1) {
-                upStringBuilder.append(up.get(i)).append(end);
-                downStringBuilder.append(down.get(i)).append(end);
-                continue;
-            }
-            upStringBuilder.append(up.get(i)).append(divider);
-            downStringBuilder.append(down.get(i)).append(divider);
-
+            buildMap(bridge.getUp(), bridge.getDown(), position, i , upStringBuilder, downStringBuilder);
         }
         System.out.println(upStringBuilder.toString());
         System.out.println(downStringBuilder.toString());
@@ -60,21 +51,27 @@ public class OutputView {
     public void printMapWhenFail(Bridge bridge, int position){
         StringBuilder upStringBuilder = new StringBuilder().append(start);
         StringBuilder downStringBuilder = new StringBuilder().append(start);
-        List<String> up = bridge.getUp();
-        List<String> down = bridge.getDown();
-        for(int i=0; i <= position ; i++){
-            if( up.get(i) == "X") up.add(i, " ");
-            if( down.get(i) == "X") up.add(i , " ");
-            if(i == position ) {
-                upStringBuilder.append(up.get(i)).append(end);
-                downStringBuilder.append(down.get(i)).append(end);
-            }
-            if(i < position){
-                upStringBuilder.append(up.get(i)).append(divider);
-                downStringBuilder.append(down.get(i)).append(divider);
-            }
+        for(int i = 0 ; i < position ; i++){
+            replaceX(bridge.getUp(), bridge.getDown(), i);
+            buildMap(bridge.getUp(), bridge.getDown(), position, i, upStringBuilder, downStringBuilder);
         }
         System.out.println(upStringBuilder.toString());
         System.out.println(downStringBuilder.toString());
+    }
+
+    public void buildMap(List<String> up , List<String> down, int position, int i, StringBuilder upStringBuilder, StringBuilder downStringBuilder){
+        if(i == position-1 ) {
+            upStringBuilder.append(up.get(i)).append(end);
+            downStringBuilder.append(down.get(i)).append(end);
+        }
+        if(i < position){
+            upStringBuilder.append(up.get(i)).append(divider);
+            downStringBuilder.append(down.get(i)).append(divider);
+        }
+    }
+
+    public void replaceX(List<String> up, List<String> down, int i){
+        if( up.get(i) == "X") up.add(i, " ");
+        if( down.get(i) == "X") up.add(i , " ");
     }
 }
