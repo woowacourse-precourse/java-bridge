@@ -23,6 +23,20 @@ public class BridgeGame {
     }
 
     /**
+     * 다리 건너기 게임을 실행하는 메서드
+     */
+    public void run() {
+        outputView.printGameStart();
+        int bridgeSize = inputView.readBridgeSize();
+
+        newBridge = createBridge(bridgeSize);
+        List<String> playerInput = new ArrayList<>();
+
+        trial(playerInput);
+
+    }
+
+    /**
      * 한 번 이동할 때마다 실행되는 전체 메서드
      *
      * @param playerInput
@@ -30,7 +44,7 @@ public class BridgeGame {
     private void trial(List<String> playerInput) {
         int score = 0;
         for (int i = 0; i < newBridge.size(); i++) {
-            playerInput = move(playerInput);
+            playerInput = updatePlayerInput(playerInput, move());
             score = calculateScore(playerInput);
             if (score == newBridge.size()) {
                 outputView.printResult("성공", gameTrialCount);
