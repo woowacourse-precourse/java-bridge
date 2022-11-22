@@ -13,7 +13,7 @@ public class BridgeGame {
         move(createBridge());
     }
 
-    public List<String> createBridge() {
+    private List<String> createBridge() {
         int bridgeSize = new BridgeSize().get();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(bridgeSize);
@@ -24,7 +24,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<String> bridge) {
+    private void move(List<String> bridge) {
         Map<String, String> gameResult = new HashMap<>();
         initializeGameResult(gameResult);
         for (int space = 0; space < bridge.size(); space++) {
@@ -35,20 +35,20 @@ public class BridgeGame {
         }
     }
 
-    public String compareMoving(String eachBridgeSpace) {
+    private String compareMoving(String eachBridgeSpace) {
         String moving = new Moving().get();
         if (eachBridgeSpace.equals(moving))
             return "O";
         return "X";
     }
 
-    public Map<String, String> initializeGameResult(Map<String, String> gameResult) {
+    private Map<String, String> initializeGameResult(Map<String, String> gameResult) {
         gameResult.put("U", "");
         gameResult.put("D", "");
         return gameResult;
     }
 
-    public Map<String, String> addGameResult(Map<String, String> gameResult, String direction, String result) {
+    private Map<String, String> addGameResult(Map<String, String> gameResult, String direction, String result) {
         if (isUp(direction, result)) {
             gameResult.put("U", gameResult.get("U") + result);
             gameResult.put("D", gameResult.get("D") + " ");
@@ -59,7 +59,7 @@ public class BridgeGame {
         return gameResult;
     }
 
-    public boolean isUp(String direction, String result) {
+    private boolean isUp(String direction, String result) {
         if (direction.equals("U") && result.equals("O"))
             return true;
         if (direction.equals("D") && result.equals("X"))
@@ -67,7 +67,7 @@ public class BridgeGame {
         return false;
     }
 
-    public void createPrintMap(Map<String, String> gameResult) {
+    private void createPrintMap(Map<String, String> gameResult) {
         MoveResult moveResult = new MoveResult(gameResult);
         moveResult.printMap();
     }
