@@ -40,21 +40,10 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for(int i = 0; i < userMoving.size() - 1; i++){
-            if(userMoving.get(i).equals(command)){
-                sb.append(" O |");
-                continue;
-            }
-            sb.append("   |");
+            sb.append(compareMove(userMoving.get(i), command));
         }
-        if(userMoving.get(userMoving.size() - 1).equals(command)){
-            if(iscorrect){
-                sb.append(" O ]");
-                return sb.toString();
-            }
-            sb.append(" X ]");
-            return sb.toString();
-        }
-        sb.append("   ]");
+        sb.append(compareLastMove(userMoving.get(userMoving.size() - 1), command, iscorrect));
+
         return sb.toString();
     }
 
@@ -63,5 +52,22 @@ public class OutputView {
             return "성공";
         }
         return "실패";
+    }
+
+    public String compareMove(String userMove, String correctMove){
+        if(userMove.equals(correctMove)){
+            return " O |";
+        }
+        return "   |";
+    }
+
+    public String compareLastMove(String userMove, String correctMove, boolean iscorrect){
+        if(userMove.equals(correctMove)){
+            if(iscorrect){
+                return " O ]";
+            }
+            return " X ]";
+        }
+        return "   ]";
     }
 }
