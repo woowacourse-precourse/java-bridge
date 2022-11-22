@@ -18,7 +18,9 @@ public class GameController {
 
     public void play(){
         startGame();
-        Answer answer = playAllCycle();
+        Restart restartInput = Restart.NULL;
+        Answer answerInput = Answer.NONE;
+        Answer answer = playAllCycle(restartInput, answerInput);
         EndGame(answer);
     }
 
@@ -36,9 +38,13 @@ public class GameController {
             int size = bridgeMaker.getSizeInteger(input);
             bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            bridgeMaker(inputView);
+            arrangeErrorMakingBridge(inputView, e);
         }
+    }
+
+    private void arrangeErrorMakingBridge(InputView inputView, IllegalArgumentException e){
+        System.out.println(e.getMessage());
+        bridgeMaker(inputView);
     }
     
     private Answer playOneCycle(){
@@ -59,9 +65,7 @@ public class GameController {
         }
     }
 
-    private Answer playAllCycle(){
-        Restart restart = Restart.NULL;
-        Answer answer = Answer.NONE;
+    private Answer playAllCycle(Restart restart, Answer answer){
         while (restart != Restart.FALSE) {
             answer = playOneCycle();
             restart = checkRestart(answer);
