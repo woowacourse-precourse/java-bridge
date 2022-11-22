@@ -2,8 +2,8 @@ package bridge.domain;
 
 public class MovingResult {
 
-    private String moving;
-    private String result;
+    private final String moving;
+    private final String result;
 
     public MovingResult(String moving, String result) {
         this.moving = moving;

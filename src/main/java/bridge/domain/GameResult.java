@@ -2,8 +2,8 @@ package bridge.domain;
 
 public class GameResult {
 
-    public String result;
-    public int totalTry;
+    public final String result;
+    public final int totalTry;
 
     public GameResult(String result, int totalTry) {
         this.result = result;
