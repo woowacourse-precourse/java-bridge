@@ -1,5 +1,7 @@
 package bridge;
 
+import org.mockito.internal.matchers.Not;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,14 +9,6 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String ERROR_START_WITH = "[ERROR] ";
-    private static final String START_GAME = "다리 건너기 게임을 시작합니다.";
-    private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String REQUEST_UP_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String REQUEST_RETRY_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String FINAL_RESULT = "최종 게임 결과";
-    private static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
-    private static final String TRIES = "총 시도한 횟수: ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
 
@@ -98,29 +92,29 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(List<String> crossedBridge, boolean isSuccess, int tries) {
-        System.out.println(FINAL_RESULT);
+        System.out.println(Notice.FINAL_RESULT.getMessage());
         printMapWithNew(crossedBridge.subList(0, crossedBridge.size() - 1), isSuccess, crossedBridge.get(crossedBridge.size() - 1));
-        System.out.println(SUCCESS_OR_NOT + isSuccessToString(isSuccess));
-        System.out.println(TRIES + tries);
+        System.out.println(Notice.SUCCESS_OR_NOT.getMessage() + isSuccessToString(isSuccess));
+        System.out.println(Notice.TRIES.getMessage() + tries);
     }
 
     public static void printError(String errorMessage) {
-        System.out.println(ERROR_START_WITH + errorMessage);
+        System.out.println(Notice.ERROR_START_WITH.getMessage() + errorMessage);
     }
 
     public static void printStartGame() {
-        System.out.println(START_GAME);
+        System.out.println(Notice.START_GAME.getMessage());
     }
 
     public static void printRequestBridgeSize() {
-        System.out.println(REQUEST_BRIDGE_SIZE);
+        System.out.println(Notice.REQUEST_BRIDGE_SIZE.getMessage());
     }
 
     public static void printRequestUpOrDown() {
-        System.out.println(REQUEST_UP_DOWN);
+        System.out.println(Notice.REQUEST_UP_DOWN.getMessage());
     }
 
     public static void printRequestRetryOrQuit() {
-        System.out.println(REQUEST_RETRY_QUIT);
+        System.out.println(Notice.REQUEST_RETRY_QUIT.getMessage());
     }
 }
