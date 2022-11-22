@@ -23,8 +23,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int bridgeNumber = bridgeNumberGenerator.generate();
-            bridge.add(Direction.fromBridgeNumber(bridgeNumber).getSymbol());
+            int number = bridgeNumberGenerator.generate();
+            bridge.add(Direction.fromBridgeNumber(number).getSymbol());
         }
 
         return bridge;
