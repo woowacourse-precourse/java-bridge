@@ -26,26 +26,9 @@ public class GameStart {
     }
 
     public void run() {
-        createBridge();
+        inputBridge();
         boolean isSuccess = play();
         outputView.printResult(bridge, countOfMove, isSuccess, countOfPlay);
-    }
-
-    private void createBridge() {
-        do {
-            outputView.printInputSizeMessage();
-            bridgeSize = inputView.readBridgeSize();
-        } while (bridgeSize == 0);
-        bridge = bridgeMaker.makeBridge(bridgeSize);
-    }
-
-    private String inputMove() {
-        String moveBlock = "";
-        do {
-            outputView.printInputMoveMessage();
-            moveBlock = inputView.readMoving();
-        } while (moveBlock.equals(""));
-        return moveBlock;
     }
 
     private boolean play() {
@@ -67,6 +50,23 @@ public class GameStart {
             }
         } while (!isSuccess && isRestart);
         return isSuccess;
+    }
+
+    private void inputBridge() {
+        do {
+            outputView.printInputSizeMessage();
+            bridgeSize = inputView.readBridgeSize();
+        } while (bridgeSize == 0);
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private String inputMove() {
+        String moveBlock = "";
+        do {
+            outputView.printInputMoveMessage();
+            moveBlock = inputView.readMoving();
+        } while (moveBlock.equals(""));
+        return moveBlock;
     }
 
     private boolean inputRestart() {
