@@ -17,8 +17,13 @@ public class BridgeGame{
         player = new Player();
     }
 
-    private String constructBridge(){
+    public String constructBridge(){
         BridgeViewConstructor bridgeViewConstructor = new BridgeViewConstructor();
         return bridgeViewConstructor.constructBridge(player.getBridges(), bridge.getBridges());
+    }
+
+    public String move(String newBridge){
+        player.addNewBridgeInput(newBridge);
+        return constructBridge();
     }
 }
