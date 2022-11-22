@@ -1,7 +1,6 @@
 package bridge;
 
-import static bridge.BridgeGame.downstairsBridge;
-import static bridge.BridgeGame.upstairsBridge;
+import static bridge.BridgeGame.*;
 
 import java.util.List;
 import views.InputView;
@@ -27,6 +26,7 @@ public class GameController {
         gameCount = getAnswerProcess(gameCount, outputView, inputView, size, bridge, bridgeGame, gameQuit);
 
         outputView.printResult(upstairsBridge, downstairsBridge, gameCount, bridgeGame);
+        movementClear(upstairsBridge, downstairsBridge);
     }
     private static OutputView gameStart() {
         OutputView outputView = new OutputView();
@@ -78,5 +78,11 @@ public class GameController {
         if (BridgeGame.retry(command)) {
             BridgeGame.returnToPreviousStatus(upstairsBridge, downstairsBridge);
         }
+    }
+
+    private static void movementClear(List<String> upstairsBridge, List<String> downstairsBridge) {
+        upstairsBridge.clear();
+        downstairsBridge.clear();
+        triedAnswers.clear();
     }
 }

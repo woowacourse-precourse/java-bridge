@@ -15,6 +15,13 @@ public class BridgeGame {
     static List<String> downstairsBridge = new ArrayList<>();
     static List<String> triedAnswers = new ArrayList<>();
 
+    public List<String> upstairsBridge () {
+        return upstairsBridge;
+    }
+    public List<String> downstairsBridge () {
+        return downstairsBridge;
+    }
+
     public void getUpstairsBridge (String direction, List<String> bridge, int numberOfTrying) {
         int eachBridge = numberOfTrying - 1;
         if (Objects.equals(direction, DOWN)) {
