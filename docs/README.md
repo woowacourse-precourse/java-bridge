@@ -36,8 +36,13 @@
 - [ ] **에러 메시지**
 
 ### 로직
-- [ ] **게임 시작/재시작/종료** (`BridgeGame - retry`)
-- [ ] **다리의 길이만큼 0과 1을 이용하여 무작위 값 생성** (`BridgeMaker`)
-- [ ] **사용자가 선택한 칸 이동 가능 여부 판단 및 이동** (`BridgeGame - move`)
-- [ ] **게임 시도 횟수 카운트**
-- [ ] **에러 핸들링 후 재입력**
+- [x] **게임 시작/재시작/종료** (`BridgeGameController`)
+- [x] **다리의 길이만큼 0과 1을 이용하여 무작위 값 생성** (`BridgeMaker`)
+- [x] 사용자가 입력한 **칸 이동 가능 여부 판단 및 이동** (`BridgeGame`)
+  - [x] 이동 가능 여부 판단 (`BridgeGame-determineMove`)
+  - [x] 칸 이동 (`BridgeGame-move`)
+  - [ ] 칸 기록 (`BridgePath`)
+- [x] 사용자가 입력한 **재시도 여부 판단 및 재시도** (`BridgeGame`)
+  - [x] 재시도 여부 판단 (`BridgeGame-determineRetry`)
+  - [x] 재시도 (시도 횟수 카운트) (`BridgeGame-retry`)
+- [x] **에러 핸들링 후 재입력** (`BridgeGameController`)
