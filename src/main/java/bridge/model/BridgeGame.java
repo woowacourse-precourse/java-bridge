@@ -1,8 +1,7 @@
-package bridge.controller;
+package bridge.model;
 
-import bridge.BridgeMaker;
-import bridge.model.LowerBridge;
-import bridge.model.UpperBridge;
+import bridge.controller.BridgeGameManager;
+import bridge.controller.InputRetryOrNot;
 import bridge.view.InputView;
 
 import java.util.ArrayList;

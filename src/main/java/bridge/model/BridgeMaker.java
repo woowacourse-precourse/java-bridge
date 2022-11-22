@@ -1,5 +1,6 @@
-package bridge;
+package bridge.model;
 
+import bridge.BridgeNumberGenerator;
 import bridge.controller.InputUpOrDown;
 
 import java.util.ArrayList;

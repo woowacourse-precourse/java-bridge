@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.*;
+import bridge.model.BridgeGame;
 import bridge.model.LowerBridge;
 import bridge.model.UpperBridge;
 import bridge.view.InputView;
