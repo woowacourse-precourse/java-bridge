@@ -18,4 +18,11 @@ public class BridgeMaker {
         }
         return bridge;
     }
+
+    public String GeneratorToBridge(int number){
+        if(number == 1){
+            return "U";
+        }
+        return "D";
+    }
 }
