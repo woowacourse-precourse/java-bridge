@@ -1,11 +1,16 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     InputView input = new InputView();
     OutputView output = new OutputView();
+    public BridgeNumberGenerator bridgeNumberGenerator; // 이렇게 인터페이스 선언하고
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator); // 이렇게 인자로 인터페이스 넣어서 생성하는게 맞는건가?
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -25,9 +30,12 @@ public class BridgeGame {
 
     public void gameStart() {
         output.printGameStart();
-        input.readBridgeSize();
     }
     public void playGame(){
+        gameStart();
+        int sizeOfBridge = input.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(sizeOfBridge);
+        System.out.println(bridge);
 
     }
 }
