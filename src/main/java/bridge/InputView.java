@@ -1,5 +1,7 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,21 +10,49 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public static int readBridgeSize() throws IllegalArgumentException {
+        String userInputSize = readLine();
+        int inputsize = 0;
+        try {
+            inputsize = Integer.parseInt(userInputSize);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 정수가 아닌 값 입력");
+        }
+        System.out.println("inputsize = " + inputsize);
+        if(inputsize < 3 || inputsize > 20) {
+            throw new IllegalArgumentException("[ERROR] 숫자 범위가 잘못되었습니다.");
+        }
+        return inputsize;
     }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() throws IllegalArgumentException{
+        String userInputMove = readLine();
+        char inputMove = userInputMove.charAt(0);
+        System.out.println(inputMove);
+        if(userInputMove.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] U 나 D를 입력해주세요.");
+        }
+        if(inputMove != 'U' && inputMove != 'D') {
+            throw new IllegalArgumentException("[ERROR] U 나 D를 입력해주세요.");
+        }
+        return userInputMove;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() throws IllegalArgumentException{
+        String userRestart = readLine();
+        char inputRestart = userRestart.charAt(0);
+        System.out.println(inputRestart);
+        if(userRestart.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] R 나 Q를 입력해주세요.");
+        }
+        if(inputRestart != 'R' && inputRestart != 'Q') {
+            throw new IllegalArgumentException("[ERROR] R 나 Q를 입력해주세요.");
+        }
+        return userRestart;
     }
 }
