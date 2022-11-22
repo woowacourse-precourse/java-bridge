@@ -1,5 +1,6 @@
-package bridge;
+package bridge.game;
 
+import bridge.BridgeNumberGenerator;
 import bridge.commom.constant.GameState;
 import bridge.controller.BridgeController;
 

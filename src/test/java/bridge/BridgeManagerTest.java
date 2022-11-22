@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeManagerTest {
+
     private static final String exceptionMessage = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static BridgeManager sut;
 

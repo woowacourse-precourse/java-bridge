@@ -2,6 +2,8 @@ package bridge.commom.constant;
 
 public class GameMessage {
 
+    private GameMessage() {}
+
     public static class Exception {
 
         public static final String NO_ALTER_KEY = "대응되는 키가 존재하지 않습니다.";
