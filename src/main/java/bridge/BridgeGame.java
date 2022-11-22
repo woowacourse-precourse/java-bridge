@@ -10,9 +10,9 @@ import bridge.Vaildator.VaildatorUpDown;
  */
 public class BridgeGame {
 
-    private static StringBuilder mapUp = new StringBuilder("[  ]");
-    private static StringBuilder mapDown = new StringBuilder("[  ]");
-    private static final String CONTOUR = " | ";
+    private static StringBuilder mapUp = new StringBuilder(Constant.EMPTY_BLOCK);
+    private static StringBuilder mapDown = new StringBuilder(Constant.EMPTY_BLOCK);
+
     public static String str;
     private static String ox;
 
@@ -34,13 +34,13 @@ public class BridgeGame {
     }
 
     private String compare(String bridgeAnswer, String upDownUserInput) {
-        if(bridgeAnswer.equals(upDownUserInput)){
-            return "O";
+        if (bridgeAnswer.equals(upDownUserInput)) {
+            return Constant.RIGHT;
         }
-        return "X";
+        return Constant.WRONG;
     }
 
-    public String getOX(){
+    public String getOX() {
         return ox;
     }
 
@@ -50,29 +50,29 @@ public class BridgeGame {
 
 
     private void makeAddWord(int order) {
-        this.addOxContour = CONTOUR + ox;
-        this.emptyContour = CONTOUR + " ";
+        this.addOxContour = Constant.CONTOUR + ox;
+        this.emptyContour = Constant.CONTOUR + Constant.EMPTY;
 
-        if (order == 0) {
+        if (order == Constant.ZERO) {
             this.addOxContour = ox;
-            this.emptyContour = " ";
+            this.emptyContour = Constant.EMPTY;
         }
     }
 
     private StringBuilder makeMap(String upDownUserInput) {
-        if (upDownUserInput.equals("U")) {
-            mapUp.insert(mapUp.length() - 2, addOxContour);
-            mapDown.insert(mapDown.length() - 2, emptyContour);
-            return new StringBuilder().append(mapUp).append("\n").append(mapDown).append("\n");
+        if (upDownUserInput.equals(Constant.UP)) {
+            mapUp.insert(mapUp.length() - Constant.TWO, addOxContour);
+            mapDown.insert(mapDown.length() - Constant.TWO, emptyContour);
+            return new StringBuilder().append(mapUp).append(Constant.NEXT).append(mapDown).append(Constant.NEXT);
         }
-        mapUp.insert(mapUp.length() - 2, emptyContour);
-        mapDown.insert(mapDown.length() - 2, addOxContour);
-        return new StringBuilder().append(mapUp).append("\n").append(mapDown).append("\n");
+        mapUp.insert(mapUp.length() - Constant.TWO, emptyContour);
+        mapDown.insert(mapDown.length() - Constant.TWO, addOxContour);
+        return new StringBuilder().append(mapUp).append(Constant.NEXT).append(mapDown).append(Constant.NEXT);
     }
 
     public void resetMap() {
-        mapUp = new StringBuilder("[  ]");
-        mapDown = new StringBuilder("[  ]");
+        mapUp = new StringBuilder(Constant.EMPTY_BLOCK);
+        mapDown = new StringBuilder(Constant.EMPTY_BLOCK);
     }
 
 
@@ -82,11 +82,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String successFail) {
-        if (successFail.equals("성공")) {
+        if (successFail.equals(Constant.SUCCESS)) {
             return false;
         }
         BridgeInputControl.setRetryQuit();
-        if (VaildatorRetryQuit.userInputRetryQuit.equals("Q")) {
+        if (VaildatorRetryQuit.userInputRetryQuit.equals(Constant.QUIT)) {
             return false;
         }
         return true;

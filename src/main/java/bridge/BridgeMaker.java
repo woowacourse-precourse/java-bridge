@@ -37,7 +37,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
-        for (int i = 0 ; i < size ; i++){
+        for (int i = Constant.ZERO ; i < size ; i++){
             int randomNumber = bridgeNumberGenerator.generate();
             UpDown origin = selectUpDownFromOrigin(randomNumber);
             bridge.add(origin.getUpDown());
@@ -46,7 +46,7 @@ public class BridgeMaker {
     }
 
     private UpDown selectUpDownFromOrigin(int randomNumber) {
-        if (randomNumber == 1) {
+        if (randomNumber == Constant.ONE) {
             return UpDown.UP;
         }
         return UpDown.DOWN;

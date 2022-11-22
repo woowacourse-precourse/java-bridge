@@ -1,6 +1,9 @@
 package bridge.Vaildator;
 
+import bridge.Constant;
+
 public class VaildatorRetryQuit {
+
 
     public static String userInputRetryQuit;
     public VaildatorRetryQuit(String userInputRetryQuit) {
@@ -14,8 +17,8 @@ public class VaildatorRetryQuit {
     }
 
     private void vaildateRQ() {
-        if (!(userInputRetryQuit.equals("R")|| userInputRetryQuit.equals("Q"))) {
-            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
+        if (!(userInputRetryQuit.equals(Constant.RETRY)|| userInputRetryQuit.equals(Constant.QUIT))) {
+            throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_WRONG_RETRY_SELECT);
         }
 
     }

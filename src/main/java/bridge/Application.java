@@ -43,18 +43,18 @@ public class Application {
     }
 
     private static String mainGame(List<String> bridgeList) {
-        for (int order = 0; order < bridgeList.size(); order++) {
+        for (int order = Constant.ZERO; order < bridgeList.size(); order++) {
             StringBuilder map = bridgeGame.move(bridgeList.get(order), order);
             outputView.printMap(map.toString()); // 이거 수정해야함
             if (judgementFail()) {
-                return "실패";
+                return Constant.FAIL;
             }
         }
-        return "성공";
+        return Constant.SUCCESS;
     }
 
     private static boolean judgementFail() {
-        if (bridgeGame.getOX().equals("X")) {
+        if (bridgeGame.getOX().equals(Constant.WRONG)) {
             return true;
         }
         return false;

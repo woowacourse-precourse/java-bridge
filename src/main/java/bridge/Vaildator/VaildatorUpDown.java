@@ -1,5 +1,7 @@
 package bridge.Vaildator;
 
+import bridge.Constant;
+
 public class VaildatorUpDown {
 
     public static String userInputUpDown;
@@ -14,8 +16,8 @@ public class VaildatorUpDown {
     }
 
     private void vaildateUD() {
-        if (!(userInputUpDown.equals("U")|| userInputUpDown.equals("D"))) {
-            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+        if (!(userInputUpDown.equals(Constant.UP)|| userInputUpDown.equals(Constant.DOWN))) {
+            throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_WRONG_UP_DOWN_SELECT);
         }
 
     }

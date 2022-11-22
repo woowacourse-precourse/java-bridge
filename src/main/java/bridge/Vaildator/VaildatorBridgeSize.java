@@ -1,11 +1,17 @@
 package bridge.Vaildator;
 
+import bridge.Constant;
+
 public class VaildatorBridgeSize {
+
+
 
     private static String userInputBridgeString;
     public static int userInputBridgeSize;
 
-    public VaildatorBridgeSize(String userInputBridgeString){
+
+
+    public VaildatorBridgeSize(String userInputBridgeString) {
         this.userInputBridgeString = userInputBridgeString;
 
         validate();
@@ -15,9 +21,10 @@ public class VaildatorBridgeSize {
         integerValidate();
         rangeValidate();
     }
+
     private void integerValidate() {
-        if (!userInputBridgeString.matches("[+-]?\\d*(\\.\\d+)?")) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        if (!userInputBridgeString.matches(Constant.REGEX)) {
+            throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_BRIDGE_SIZE_STRING);
         }
 
     }
@@ -25,13 +32,11 @@ public class VaildatorBridgeSize {
     private void rangeValidate() {
         userInputBridgeSize = Integer.parseInt(userInputBridgeString);
 
-        if (! (userInputBridgeSize >=3 && userInputBridgeSize<=20 )) {
-            throw new IllegalArgumentException("[ERROR] 3~20사이의 값을 입력해주세요.");
+        if (!(userInputBridgeSize >= Constant.MIN && userInputBridgeSize <= Constant.MAX)) {
+            throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_BRIDGE_SIZE_WRONG_RANGE);
         }
 
     }
-
-
 
 
 }
