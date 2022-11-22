@@ -46,7 +46,7 @@ public class InputView {
         return new GameRequest(gameRequest);
     }
 
-    public static String readLine() {
+    private static String readLine() {
         return Console.readLine();
     }
 }
