@@ -11,7 +11,7 @@ public class OutputView {
     private static final String START_BRIDGE = "[ ";
     private static final String END_BRIDGE = " ]";
     private static final String BRIDGE_DIVISION = " | ";
-    private static final String ERROR_MESSAGE = "[ERROR}";
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     /**
      *
@@ -40,7 +40,7 @@ public class OutputView {
         }
     }
 
-    public void errorMessageUpOrDown() {
-        System.out.println(ERROR_MESSAGE + " U와 D만 선택이 가능합니다. ");
+    public static String getErrorMessageUpOrDown() {
+        return ERROR_MESSAGE + " 다리는 U와 D만 움직여야 합니다.";
     }
 }
