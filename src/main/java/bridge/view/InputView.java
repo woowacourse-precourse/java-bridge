@@ -4,7 +4,7 @@ import bridge.controller.request.BridgeSizeRequest;
 import bridge.controller.request.GameRequest;
 import bridge.controller.request.MoveRequest;
 import bridge.view.utils.OutputUtils;
-import bridge.view.utils.UserInputUtils;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -24,7 +24,7 @@ public class InputView {
      */
     public static BridgeSizeRequest readBridgeSize() {
         OutputUtils.outputLine(READ_SIZE_MESSAGE);
-        String size = UserInputUtils.readLine();
+        String size = readLine();
         return new BridgeSizeRequest(size);
     }
 
@@ -33,7 +33,7 @@ public class InputView {
      */
     public static MoveRequest readMoving() {
         OutputUtils.outputLine(READ_MOVE_MESSAGE);
-        String move = UserInputUtils.readLine();
+        String move = readLine();
         return new MoveRequest(move);
     }
 
@@ -42,7 +42,11 @@ public class InputView {
      */
     public static GameRequest readGameCommand() {
         OutputUtils.outputLine(READ_COMMAND_MESSAGE);
-        String gameRequest = UserInputUtils.readLine();
+        String gameRequest = readLine();
         return new GameRequest(gameRequest);
+    }
+
+    public static String readLine() {
+        return Console.readLine();
     }
 }
