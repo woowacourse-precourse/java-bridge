@@ -38,6 +38,12 @@ public class OutputViewTest extends NsTest {
         output.printMap(testMove, testBridge);
 
     }
+
+    @Test
+    void TestPrintResult(){
+        testPrintMap2();
+        output.printResult("성공", 3);
+    }
     @Override
     protected void runMain() {
 
