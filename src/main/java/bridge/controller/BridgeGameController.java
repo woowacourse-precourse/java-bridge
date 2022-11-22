@@ -4,10 +4,11 @@ import bridge.model.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import static bridge.controller.Task.retryTask;
+
 public class BridgeGameController {
 
     BridgeGame bridgeGame;
-
     InputView iv;
     OutputView ov;
 
@@ -43,17 +44,6 @@ public class BridgeGameController {
         } while (bridgeGame.isEndOfBridge());
     }
 
-    private void validateReadMoving() {
-        while (true) {
-            try {
-                bridgeGame.move(iv.readMoving());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     private boolean quit() {
         if (bridgeGame.isDiscord()) {
             retryTask(() -> {
@@ -71,18 +61,4 @@ public class BridgeGameController {
         ov.printResult(bridgeGame.getMap(), bridgeGame.getResultOfGame(), bridgeGame.getGameCount());
     }
 
-    private static void retryTask(Task task) {
-        while (true) {
-            try {
-                task.run();
-                return;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    interface Task {
-        void run();
-    }
 }
