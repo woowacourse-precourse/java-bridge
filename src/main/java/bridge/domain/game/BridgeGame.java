@@ -31,16 +31,16 @@ public class BridgeGame {
         pedestrian.returnToStartPoint();
     }
 
-    public Round createRound() {
-        return new Round(this.round);
-    }
-
     private void increaseRound() {
         validateRound(this.round);
         this.round++;
     }
 
-    public boolean isSuccess(Pedestrian pedestrian) {
+    public Round createRound() {
+        return new Round(this.round);
+    }
+
+    public boolean isEndLocation(Pedestrian pedestrian) {
         return referee.isEnd(pedestrian.findLocation());
     }
 
