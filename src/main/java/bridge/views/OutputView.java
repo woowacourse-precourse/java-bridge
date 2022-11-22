@@ -57,7 +57,6 @@ public class OutputView {
      * 안내 메시지를 출력한다.
      */
     public void printRetryInputMessage() {
-        System.out.println();
         System.out.println(InputMessage.RETRY_INPUT_MESSAGE.getMessage());
     }
 
