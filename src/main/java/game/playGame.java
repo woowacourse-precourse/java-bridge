@@ -1,7 +1,7 @@
 package game;
 
 import bridge.bridgeDomain.operator.BridgeException;
-import bridge.bridgeDomain.operator.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.bridgeDomain.data.Bridge;
 import bridge.bridgeDomain.operator.BridgeGameResult;
@@ -18,7 +18,7 @@ public class playGame {
     BridgeGame bridgeGame = new BridgeGame();
     BridgeException bridgeException = new BridgeException();
 
-    void play() {
+    public void play() {
         output.printStart();
         output.printInputBridgeSize();
 
