@@ -10,8 +10,21 @@ import static bridge.Constant.*;
 public class InputView {
 
     public String readBridgeSize() {
-        System.out.println(INPUT_BRIDGE_LENGTH);
-        return Console.readLine();
+        try {
+            System.out.println(INPUT_BRIDGE_LENGTH);
+            String bridgeSize = Console.readLine();
+            validateRange(bridgeSize);
+            return bridgeSize;
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(INPUT_BRIDGE_SIZE_ERROR);
+        }
+    }
+
+    private void validateRange(String bridgeSize) {
+        int bridgeLength = Integer.parseInt(bridgeSize);
+        if(bridgeLength < 3 || bridgeLength > 20){
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -19,14 +32,28 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(CHOOSE_MOVE);
+        String moving = Console.readLine();
+        validateUorD(moving);
         return Console.readLine();
     }
 
+    private void validateUorD(String moving){
+        if(!moving.equals("U") && !moving.equals("D")){
+            throw new IllegalArgumentException(INPUT_MOVE_ERROR);
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         System.out.println(RETRY_OR_QUIT);
+        String command = Console.readLine();
+        validateRestart(command);
         return Console.readLine();
+    }
+    private void validateRestart(String command){
+        if(!command.equals("R") && !command.equals("Q")){
+            throw new IllegalArgumentException(INPUT_RESTART_ERROR);
+        }
     }
 }
