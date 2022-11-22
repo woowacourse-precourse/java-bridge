@@ -33,10 +33,6 @@ public enum ControlKey {
     return key;
   }
 
-  public String getKeyInKorean() {
-    return keyInKorean;
-  }
-
   public String getPair() {
     return getPair.get();
   }
