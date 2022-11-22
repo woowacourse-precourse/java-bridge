@@ -1,8 +1,7 @@
 package bridge.view;
 
 import bridge.model.Bridge;
-
-import java.util.List;
+import bridge.model.BridgeGame;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -29,13 +28,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(final Bridge bridge, final List<String> userAnswerSheet) {
+    public void printMap(final Bridge bridge, final BridgeGame bridgeGame) {
         System.out.print(ROW_START_BRACKET);
-        printRow(bridge, userAnswerSheet, UP_ROW);
+        printRow(bridge, bridgeGame, UP_ROW);
         System.out.println(ROW_END_BRACKET);
 
         System.out.print(ROW_START_BRACKET);
-        printRow(bridge, userAnswerSheet, DOWN_ROW);
+        printRow(bridge, bridgeGame, DOWN_ROW);
         System.out.println(ROW_END_BRACKET);
     }
 
@@ -58,14 +57,14 @@ public class OutputView {
         System.out.println(PRINT_FINAL_GAME_RESULT);
     }
 
-    private void printRow(final Bridge bridge, final List<String> userAnswerSheet, final String thisRow) {
-        for (int i = INDEX_ZERO; i < userAnswerSheet.size(); ++i) {
+    private void printRow(final Bridge bridge, final BridgeGame bridgeGame, final String thisRow) {
+        for (int i = INDEX_ZERO; i < bridgeGame.getUserAnswerSheetSize(); ++i) {
             printRowDelimiter(i);
-            if (!userAnswerSheet.get(i).equals(thisRow)) {
+            if (!bridgeGame.getUserAnswerByIndex(i).equals(thisRow)) {
                 System.out.print(ANSWER_WHITE_SPACE);
                 continue;
             }
-            System.out.print(printElementResult(bridge, userAnswerSheet.get(i), i));
+            System.out.print(printElementResult(bridge, bridgeGame.getUserAnswerByIndex(i), i));
         }
     }
 
