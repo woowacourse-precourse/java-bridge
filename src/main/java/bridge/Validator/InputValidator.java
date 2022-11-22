@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Validator;
 
 public class InputValidator {
     public static void validateNumeric(String input) {
