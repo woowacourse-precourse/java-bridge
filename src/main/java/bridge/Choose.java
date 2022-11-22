@@ -3,6 +3,8 @@ package bridge;
 public enum Choose {
     UP("U"),
     DOWN("D"),
+    RESTART("R"),
+    EXIT("Q"),
     
     private final String value;
 
