@@ -43,7 +43,7 @@ class MoveDtoTest {
             player.move(bridge, BridgeTile.DOWN);
             player.move(bridge, BridgeTile.UP);
 
-            PrintMapDto printMapDto = new PrintMapDto(bridge, player);
+            PrintMapDto printMapDto = new PrintMapDto(player);
             moveDto = new MoveDto(GameStatus.GAME_PLAY, printMapDto);
         }
     }

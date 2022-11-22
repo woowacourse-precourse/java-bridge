@@ -6,9 +6,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.player.PlayerState;
 import bridge.exception.domain.WrongGeneratorException;
 import bridge.helper.common.CommonBridgeField;
 import bridge.helper.stub.StubBridgeNumberGenerator;
+import bridge.helper.stub.StubPlayerState;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -71,7 +73,7 @@ class BridgeTest {
     class DescribeCalculatePlayerMovingMethodTest extends CommonBridgeField {
 
         @Nested
-        @DisplayName("만약 플레이어가 이동할 다리 방향과 플레이어의 현재 위치가 주어지면")
+        @DisplayName("만약 플레이어가 이동할 다리 방향과 플레이어의 상태 정보가 주어지면")
         class ContextWithBridgeTileAndPlayerPositionTest {
 
             @ParameterizedTest
@@ -84,7 +86,8 @@ class BridgeTest {
             )
             @DisplayName("건널 수 있는지 여부를 반환한다")
             void it_returns_movable(BridgeTile playerStep, boolean expected) {
-                boolean actual = bridge.calculatePlayerMoving(playerStep, 0);
+                PlayerState playerState = new StubPlayerState(1);
+                boolean actual = bridge.calculatePlayerMoving(playerStep, playerState);
 
                 assertThat(actual).isSameAs(expected);
             }
@@ -92,8 +95,8 @@ class BridgeTest {
     }
 
     @Nested
-    @DisplayName("calculatePassingBridge 메소드는")
-    class DescribeCalculatePassingBridgeMethodTest extends CommonBridgeField {
+    @DisplayName("isEndOfBridge 메소드는")
+    class DescribeIsEndOfBridgeMethodTest extends CommonBridgeField {
 
         @Nested
         @DisplayName("만약 플레이어의 현재 위치와 플레이어의 이동 경로가 주어지면")
@@ -102,15 +105,15 @@ class BridgeTest {
             @ParameterizedTest
             @CsvSource(
                     value = {
-                        "0:false",
                         "1:false",
-                        "2:true"
+                        "2:false",
+                        "3:true"
                     },
                     delimiter = ':'
             )
             @DisplayName("플레이어의 현재 위치가 다리의 끝인지 여부를 반환한다")
             void it_returns_bridge_end(int position, boolean expected) {
-                boolean actual = bridge.calculatePassingBridge(position, BridgeTile.DOWN);
+                boolean actual = bridge.isEndOfBridge(position);
 
                 assertThat(actual).isSameAs(expected);
             }

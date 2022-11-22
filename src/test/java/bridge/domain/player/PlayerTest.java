@@ -91,8 +91,8 @@ class PlayerTest {
                     String expectedUpHistory, String expectedDownHistory) {
                 playerSteps.forEach(step -> player.move(bridge, step));
 
-                String upHistory = player.getPlayerTargetTileHistory(bridge, BridgeTile.UP);
-                String downHistory = player.getPlayerTargetTileHistory(bridge, BridgeTile.DOWN);
+                String upHistory = player.getPlayerTargetTileHistory(BridgeTile.UP);
+                String downHistory = player.getPlayerTargetTileHistory(BridgeTile.DOWN);
 
                 assertThat(upHistory).isEqualTo(expectedUpHistory);
                 assertThat(downHistory).isEqualTo(expectedDownHistory);
@@ -101,8 +101,8 @@ class PlayerTest {
     }
 
     @Nested
-    @DisplayName("success 메소드는")
-    class DescribeSuccessMethodTest extends CommonBeforeEach {
+    @DisplayName("isSuccessful 메소드는")
+    class DescribeIsSuccessfulMethodTest extends CommonBeforeEach {
 
         @Nested
         @DisplayName("만약 Bridge가 주어지면")

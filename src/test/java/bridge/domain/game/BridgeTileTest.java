@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.exception.domain.WrongGeneratorException;
-import bridge.helper.common.CommonBridgeField;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -72,32 +71,6 @@ class BridgeTileTest {
             void it_throws_exception(int invalidValue) {
                 assertThatThrownBy(() -> BridgeTile.mapToCommand(invalidValue))
                         .isInstanceOf(WrongGeneratorException.class);
-            }
-        }
-    }
-
-    @Nested
-    @DisplayName("getBridgeTileLog 메소드는")
-    class DescribeGetBridgeTileLogMethodTest extends CommonBridgeField {
-
-        @Nested
-        @DisplayName("만약 bridge, targetTile, position이 주어지면")
-        class ContextWithBridgeAndPositionAndTargetTileTest {
-
-            @ParameterizedTest
-            @CsvSource(
-                    value = {
-                        "DOWN:UP:' '",
-                        "DOWN:DOWN:O",
-                        "UP:UP:X"
-                    },
-                    delimiter = ':'
-            )
-            @DisplayName("그에 맞는 플레이어 이동 결과 로그를 반환한다")
-            void it_returns_history_log(BridgeTile playerStep, BridgeTile targetTile, String expected) {
-                String actual = playerStep.getBridgeTileLog(bridge, targetTile, 0);
-
-                assertThat(actual).contains(expected);
             }
         }
     }

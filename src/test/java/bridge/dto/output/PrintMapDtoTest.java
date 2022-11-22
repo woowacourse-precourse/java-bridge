@@ -58,7 +58,7 @@ class PrintMapDtoTest {
             player.move(bridge, BridgeTile.DOWN);
             player.move(bridge, BridgeTile.UP);
 
-            printMapDto = new PrintMapDto(bridge, player);
+            printMapDto = new PrintMapDto(player);
         }
     }
 }
