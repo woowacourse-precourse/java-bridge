@@ -28,4 +28,17 @@
    - printGetLength: 다리 길이 입력 문구 출력
    - printGetMove: 이동칸 선택 입력 문구 출력
    - printGetCommand: 재시도 입력 문구 출력
-8. Tests
+8. BridgeTest: 유저 입력과 관련된 bridge test
+   - bridge length가 3~20 범위 밖
+   - bridge length 입력이 noninteger (문자)
+   - bridge length 입력이 noninteger (소수)
+9. BridgeMakerTest: bridge maker 클래스와 관련된 test
+   - 0,1 외의 값으로 bridge를 빌드하려는 경우
+10. MoveTest
+   - 기본적으로 u와 d가 정상적으로 작동하는지 (분리)
+   - 숫자를 넣을 경우
+   - 옵션을 포함한 string을 입력할 경우 
+11. GameTest
+   - 재시도
+   - R/Q 이외의 값으로 재시도
+12. Constants -> ErrorMessage, ViewMessage
