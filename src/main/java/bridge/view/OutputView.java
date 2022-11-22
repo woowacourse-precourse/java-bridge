@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
+import utils.UpDown;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,6 @@ public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAILURE = "실패";
     private static final String TRY_COUNT = "총 시도한 횟수: ";
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String CROSSABLE_SIGN = "O";
     private static final String UNABLE_TO_CROSS_SIGN = "X";
     private static final String BLANK = " ";
@@ -33,8 +32,8 @@ public class OutputView {
     public static void printMap(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
         Player player = bridgeGame.getPlayer();
-        List<String> upperLine = drawLine(bridge, player, UP);
-        List<String> lowerLine = drawLine(bridge, player, DOWN);
+        List<String> upperLine = drawLine(bridge, player, UpDown.UP.getCommand());
+        List<String> lowerLine = drawLine(bridge, player, UpDown.DOWN.getCommand());
         printOneLine(upperLine);
         printOneLine(lowerLine);
         System.out.println();

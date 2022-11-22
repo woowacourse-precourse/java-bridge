@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
+import utils.UpDown;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -11,8 +12,6 @@ public class BridgeGame {
 
     private static final String QUIT = "Q";
     private static final String RETRY = "R";
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String INVALID_MOVE_COMMAND_ERROR = "U 또는 D를 입력해주세요.";
     private static final String INVALID_GAME_COMMAND_ERROR = "R 또는 Q를 입력해주세요.";
 
@@ -57,7 +56,7 @@ public class BridgeGame {
     }
 
     private void validateMoveCommand(String moveCommand) {
-        if (moveCommand.equals(UP) || moveCommand.equals(DOWN)) {
+        if (moveCommand.equals(UpDown.UP.getCommand()) || moveCommand.equals(UpDown.DOWN.getCommand())) {
             return;
         }
         throw new IllegalArgumentException(INVALID_MOVE_COMMAND_ERROR);

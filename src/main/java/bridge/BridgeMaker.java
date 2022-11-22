@@ -1,5 +1,6 @@
 package bridge;
 
+import utils.UpDown;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +9,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final int ZERO = 0;
     private static final int SIZE_LOWER_LIMIT = 3;
     private static final int SIZE_UPPER_LIMIT = 20;
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private static final String INVALID_SIZE_ERROR = "3에서 20사이의 수를 입력해주세요.";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -31,10 +29,10 @@ public class BridgeMaker {
     }
 
     private String upOrDown(int randomNumber) {
-        if (randomNumber == ZERO) {
-            return DOWN;
+        if (randomNumber == UpDown.DOWN.getNumber()) {
+            return UpDown.DOWN.getCommand();
         }
-        return UP;
+        return UpDown.UP.getCommand();
     }
 
     private void validateSize(int size) {
