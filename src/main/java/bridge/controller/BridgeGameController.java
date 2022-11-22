@@ -28,5 +28,6 @@ public class BridgeGameController {
     public static void executeBridgeGame() {
         //정보를 가진 다리를 생성하기
         bridgeUpDown = BridgeGame.generateUpDownInformation(bridgeLengthInt);
+        //다리의 현재 상태 정보를 저장할 정보가 필요
     }
 }
