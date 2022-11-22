@@ -44,7 +44,7 @@ public class BridgeGame {
             try {
                 size = inputView.readBridgeSize();
                 break;
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
@@ -57,14 +57,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private boolean move() {
-        InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         initResults();
 
         System.out.println(bridge);
 
         for (int i = 0; i < bridge.size(); i++) {
-            String userUpDownInput = inputView.readMoving();
+            String userUpDownInput = inputMove();
 
             upResult.add(i, " ");
             downResult.add(i, " ");
@@ -89,8 +88,22 @@ public class BridgeGame {
             }
             outputView.printMap(upResult, downResult);
         }
-
         return successOrFail(result);
+    }
+
+    private String inputMove() {
+        InputView inputView = new InputView();
+        String userUpDownInput = "";
+
+        while (true) {
+            try {
+                userUpDownInput = inputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return userUpDownInput;
     }
 
     private boolean successOrFail(List<String> result) {
