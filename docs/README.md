@@ -130,7 +130,7 @@
 - printResult() : 게임을 종료하거나 게임을 완수하지 못했을때 결과를 출력해주는 메서드
 - appendDirection() : 유저가 입력한 U,D에 appendUpView를 수행할지 appendDownView를 수행할지 결정해주는 메서드
 - appendUpView(), appendDownView : 유저의 요소값과 컴퓨터의 요소값이 같으면 "O" 다르면 "X" 를 출력해주는 메서드
-- checkDownAnswer : 유저가 입력한 값과 컴퓨터의 요소값이 "U"로 동일한지 check 해주는 메서드
-- checkUpAnswer : 유저가 입력한 값과 컴퓨터의 요소값이 "D"로 동일한지 check 해주는 메서드
-- printResult : 게임을 성공했을 때 게임 성공 여부와 총 시도 횟수를 출력해주는 메서드
-- getGameStatus : 게임 성공 여부에 따라 성공 혹은 실패를 반환해주는 메서드
+- checkDownAnswer() : 유저가 입력한 값과 컴퓨터의 요소값이 "U"로 동일한지 check 해주는 메서드
+- checkUpAnswer() : 유저가 입력한 값과 컴퓨터의 요소값이 "D"로 동일한지 check 해주는 메서드
+- printFinalResult() : 게임을 성공했을 때 게임 성공 여부와 총 시도 횟수를 출력해주는 메서드
+- getGameStatus() : 게임 성공 여부에 따라 성공 혹은 실패를 반환해주는 메서드
