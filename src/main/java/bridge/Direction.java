@@ -38,7 +38,7 @@ public enum Direction {
         return this.number == number;
     }
 
-    public String getShape() {
+    private String getShape() {
         return shape;
     }
 }

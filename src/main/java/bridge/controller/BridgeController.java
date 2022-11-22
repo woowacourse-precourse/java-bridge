@@ -45,8 +45,7 @@ public class BridgeController {
 
     private void processGame() {
         for (int round = 0; round < game.getStages(); round++) {
-            String direction = inputView.readMoving();
-            outputView.printMap(direction, game.move(round, direction));
+            outputView.printMap(game.move(round, inputView.readMoving()));
 
             if (game.isOver()) {
                 break;

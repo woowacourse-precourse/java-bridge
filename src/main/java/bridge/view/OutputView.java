@@ -11,7 +11,7 @@ import static bridge.Constants.ROUND_RESULT_IS_SUCCESS;
 import static bridge.Constants.ROUND_RESULT_NUMBER_OF_ATTEMPTS;
 
 import bridge.Direction;
-import bridge.domain.PlayResult;
+import bridge.GameResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -42,29 +42,35 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(final String direction, final PlayResult playResult) {
-        updateBridges(direction, playResult);
+    public void printMap(final GameResult gameResult) {
+        updateBridges(gameResult);
         printBridges();
     }
 
-    private void updateBridges(final String shape, final PlayResult playResult) {
+    private void updateBridges(final GameResult gameResult) {
         bridges.keySet()
-            .stream()
-            .filter(direction -> !direction.matchShape(shape))
-            .forEach(direction -> updateBridge(direction, OUTPUT_NONE));
-        updateBridge(Direction.of(shape), convertResultMessage(playResult));
+            .forEach(direction -> updateBridge(direction, gameResult));
     }
 
-    private void updateBridge(final Direction direction, final String result) {
+    private void updateBridge(final Direction direction, final GameResult gameResult) {
         bridges.computeIfAbsent(direction, bridge -> new ArrayList<>())
-            .add(result);
+            .add(getResultMessage(direction, gameResult));
     }
 
-    private String convertResultMessage(final PlayResult PlayResult) {
-        if (PlayResult.isPass()) {
+    private String getResultMessage(final Direction direction,
+        final GameResult gameResult) {
+
+        if (direction.matchShape(gameResult.getDirection())) {
+            return convertResultMessage(gameResult);
+        }
+        return OUTPUT_NONE;
+    }
+
+    private String convertResultMessage(final GameResult gameResult) {
+        if (gameResult.isPass()) {
             return OUTPUT_PASS;
         }
-        if (PlayResult.isFail()) {
+        if (gameResult.isFail()) {
             return OUTPUT_FAIL;
         }
         return OUTPUT_NONE;
