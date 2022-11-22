@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.controller;
 
 import static bridge.exception.Error.*;
 import static bridge.exception.Validator.validGameCommand;
@@ -6,8 +6,9 @@ import static bridge.view.OutputView.*;
 import static bridge.view.InputView.*;
 
 import bridge.domain.GameCommand;
+import bridge.service.BridgeGame;
 
-public class BridgeGameService {
+public class BridgeGameController {
 
     private BridgeGame bridgeGame;
 

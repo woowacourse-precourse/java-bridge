@@ -1,13 +1,13 @@
 package bridge;
 
-import bridge.service.BridgeGameService;
+import bridge.controller.BridgeGameController;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGameService bridgeGameService = new BridgeGameService();
+        BridgeGameController bridgeGameController = new BridgeGameController();
         try {
-            bridgeGameService.execute();
+            bridgeGameController.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
