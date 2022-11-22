@@ -20,4 +20,18 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public String toStringWithPath(String[] compareOnePath) {
+        StringBuilder formatMessage = new StringBuilder();
+        formatMessage.append("[");
+        for (int i = 0; i < compareOnePath.length; i++) {
+            formatMessage.append(" " + compareOnePath[i] + " ");
+            if (i < compareOnePath.length - 1) {
+                formatMessage.append("|");
+            }
+        }
+        formatMessage.append("]");
+
+        return new String(formatMessage);
+    }
 }
