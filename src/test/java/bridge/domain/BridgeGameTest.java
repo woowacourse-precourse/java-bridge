@@ -84,10 +84,7 @@ class BridgeGameTest {
 
         bridgeGame.move("U");
         assertThat(bridgeGame.getPosition()).isEqualTo(0);
-        bridgeGame.move("U");
-        assertThat(bridgeGame.getPosition()).isEqualTo(1);
-
-        assertThat(bridgeGame.toString()).isEqualTo("[ O | O ]\n[   |   ]");
+        assertThat(bridgeGame.toString()).isEqualTo("[ O ]\n[   ]");
     }
 
     @DisplayName("다리의 끝까지 도달한다.")

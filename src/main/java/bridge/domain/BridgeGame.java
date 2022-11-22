@@ -17,8 +17,8 @@ public class BridgeGame {
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        result = new Result(bridge.size());
-        position = new Position(bridge.size());
+        result = new Result(bridge.getSize());
+        position = new Position(bridge.getSize());
         turn = new Turn();
     }
 

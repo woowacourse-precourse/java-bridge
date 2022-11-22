@@ -9,17 +9,18 @@ public class Bridge {
     private final List<Key> boxes; // 여러 개의 박스가 하나의 Bridge를 이루고 있음
 
     public Bridge(List<String> stringBridge) {
-        this.boxes = new ArrayList<>();
-        mapBridge(stringBridge);
+        this.boxes = mapBridge(stringBridge);
     }
 
-    private void mapBridge(List<String> stringBridge) {
+    private List<Key> mapBridge(List<String> stringBridge) {
+        List<Key> result = new ArrayList<>();
         for (String string : stringBridge) {
-            this.boxes.add(Key.valueOf(string));
+            result.add(Key.valueOf(string));
         }
+        return result;
     }
 
-    public int size() {
+    public int getSize() {
         return boxes.size();
     }
 
