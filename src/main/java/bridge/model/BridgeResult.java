@@ -13,6 +13,13 @@ public class BridgeResult {
         this.bridge = bridge;
     }
 
+    public ResultFlag move(String moveCommand) {
+        saveResult(moveCommand);
+        ResultFlag resultFlag = isCrossing(moveCommand);
+        crossingCount++;
+        return resultFlag;
+    }
+
     private void saveResult(String moveCommand) {
         if (moveCommand.equals("U")) {
             upperLine.add(isCrossing(moveCommand));
@@ -30,5 +37,25 @@ public class BridgeResult {
             return ResultFlag.SUCCESS;
         }
         return ResultFlag.FAIL;
+    }
+
+    public String getUpperLine() {
+        return drawResult(upperLine);
+    }
+
+    public String getLowerLine() {
+        return drawResult(lowerLine);
+    }
+
+    private String drawResult(List<ResultFlag> shape) {
+        String bracket = "[ ";
+        for (int index = 0; index < shape.size(); index++) {
+            if (index != 0) {
+                bracket += " | ";
+            }
+            bracket += shape.get(index).getShape();
+        }
+        bracket += " ]";
+        return bracket;
     }
 }
