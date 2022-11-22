@@ -1,12 +1,15 @@
 package bridge;
 
+import bridge.Enum.InputCase;
+import bridge.Enum.BridgeCase;
+
 import java.util.List;
 
 public class BridgeDTO {
     private int length;
     private int count;
     private final List<String> bridge;
-    private final BridgeCase [] upCase;
+    private final BridgeCase[] upCase;
     private final BridgeCase [] downCase;
 
     public BridgeDTO(List<String> bridge) {

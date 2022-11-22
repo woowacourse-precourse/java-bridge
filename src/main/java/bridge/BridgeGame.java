@@ -1,6 +1,8 @@
 package bridge;
 
 
+import bridge.Enum.InputCase;
+
 import java.util.List;
 
 public class BridgeGame {

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Enum;
 
 public enum ErrorCase {
     ERROR("[ERROR]"),

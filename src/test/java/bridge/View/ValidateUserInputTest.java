@@ -1,6 +1,8 @@
-package bridge;
+package bridge.View;
 
 import static org.assertj.core.api.Assertions.*;
+
+import bridge.Model.ValidateUserInput;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

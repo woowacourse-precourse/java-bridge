@@ -1,5 +1,6 @@
-package bridge;
+package bridge.Model;
 
+import bridge.View.OutputView;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.InputMismatchException;
 

@@ -1,5 +1,9 @@
-package bridge;
+package bridge.View;
 
+
+import bridge.BridgeDTO;
+import bridge.Enum.BridgeCase;
+import bridge.Enum.MessageCase;
 
 public class OutputView {
 

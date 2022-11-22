@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.Model.InputView;
+import bridge.View.OutputView;
+
 public class TotalViewController {
     private final OutputView outputView;
     private final InputView inputView;

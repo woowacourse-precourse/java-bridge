@@ -1,4 +1,7 @@
-package bridge;
+package bridge.Model;
+
+import bridge.Enum.ErrorCase;
+import bridge.Enum.InputCase;
 
 import java.util.InputMismatchException;
 
