@@ -84,8 +84,8 @@ public class BridgeGameController {
     }
 
     private boolean isRetry(final String inputGameCommand) {
-        InputValidator.validateGameCommand(inputGameCommand);
-        return inputGameCommand.equals(RETRY);
+        return InputValidator.validateGameCommand(inputGameCommand)
+                .equals(RETRY);
     }
 
     private String requestBridgeSize() {
