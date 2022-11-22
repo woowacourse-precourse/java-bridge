@@ -30,7 +30,7 @@ class BridgeMakerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, 0, 2, 21, 30 })
+    @ValueSource(ints = {-1, 0, 2, 21, 30})
     void makeBridge_비정상범위_다리의길이(int bridgeSize) {
         assertThatThrownBy(() -> bridgeMaker.makeBridge(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);

@@ -23,8 +23,8 @@ class BridgeGameTest {
 
     @ParameterizedTest
     @MethodSource("정상_입력_생성")
-    void move_정상_입력_반환값_테스트(List<String> moveCommands, List<Map<ChoiceOrResult, String>> expected) {
-        List<EnumMap<ChoiceOrResult, String>> actual = null;
+    void move_정상_입력_반환값_테스트(List<String> moveCommands, EnumMap<BridgeLine, List<String>> expected) {
+        EnumMap<BridgeLine, List<String>> actual = null;
         for (String moveCommand : moveCommands) {
             actual = bridgeGame.move(moveCommand);
         }
@@ -43,20 +43,33 @@ class BridgeGameTest {
     }
 
     private static Stream<Arguments> 정상_입력_생성() {
-        return Stream.of(Arguments.of(List.of("U", "U", "U", "U"),
-                        List.of(Map.of(ChoiceOrResult.CHOICE, "U", ChoiceOrResult.RESULT, "O"),
-                                Map.of(ChoiceOrResult.CHOICE, "U", ChoiceOrResult.RESULT, "O"),
-                                Map.of(ChoiceOrResult.CHOICE, "U", ChoiceOrResult.RESULT, "O"),
-                                Map.of(ChoiceOrResult.CHOICE, "U", ChoiceOrResult.RESULT, "X"))),
-                Arguments.of(List.of("U", "U", "U", "D"),
-                        List.of(Map.of(ChoiceOrResult.CHOICE, "U", ChoiceOrResult.RESULT, "O"),
-                                Map.of(ChoiceOrResult.CHOICE, "U", ChoiceOrResult.RESULT, "O"),
-                                Map.of(ChoiceOrResult.CHOICE, "U", ChoiceOrResult.RESULT, "O"),
-                                Map.of(ChoiceOrResult.CHOICE, "D", ChoiceOrResult.RESULT, "O"))));
+        return Stream.of(
+                Arguments.of(
+                        List.of("U", "U", "U", "U"),
+                        new EnumMap<>(
+                                Map.of(
+                                        BridgeLine.UPPER, List.of("O", "O", "O", "X"),
+                                        BridgeLine.LOWER, List.of(" ", " ", " ", " ")
+                                )
+                        )
+                ),
+                Arguments.of(
+                        List.of("U", "D"),
+                        new EnumMap<>(
+                                Map.of(
+                                        BridgeLine.UPPER, List.of("O", " "),
+                                        BridgeLine.LOWER, List.of(" ", "X")
+                                )
+                        )
+                )
+        );
     }
 
     private static Stream<List<String>> 비정상상태_입력_생성() {
-        return Stream.of(List.of("U", "U", "U", "U", "U"), List.of("U", "U", "U", "D", "D"));
+        return Stream.of(
+                List.of("U", "D", "D"),
+                List.of("U", "U", "U", "D", "U")
+        );
     }
 
     @ParameterizedTest
