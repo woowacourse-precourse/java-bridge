@@ -12,6 +12,8 @@
 
 ---
 
+### BridgeRandomNumberGenerator
+- generate() : 컴퓨터가 0과 1사이의 수를 랜덤하게 뽑아주는 함수
 
 ### 패키지 별 기능 구현 목록
 
@@ -106,11 +108,6 @@
 
 
 
-## util
-
-
-### BridgeRandomNumberGenerator
-- generate() : 컴퓨터가 0과 1사이의 수를 랜덤하게 뽑아주는 함수 
 
 
 ## view
