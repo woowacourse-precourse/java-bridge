@@ -6,6 +6,6 @@ public class Application {
         OutputView outputView = new OutputView();
 
         outputView.printGameStart();
-        outputView.printInputBridgeLength();
+        outputView.printInputBridgeSize();
     }
 }

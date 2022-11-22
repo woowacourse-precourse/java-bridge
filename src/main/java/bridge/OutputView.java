@@ -11,9 +11,8 @@ public class OutputView {
         System.out.print(ENTER);
     }
 
-    public void printInputBridgeLength() {
-        System.out.println(INPUT_BRIDGE_LENGTH);
-        System.out.print(ENTER);
+    public void printInputBridgeSize() {
+        System.out.println(INPUT_BRIDGE_SIZE);
     }
 
     /**
