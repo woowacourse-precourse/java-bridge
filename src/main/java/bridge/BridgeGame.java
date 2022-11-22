@@ -11,6 +11,10 @@ public class BridgeGame {
         UP, DOWN
     }
 
+    enum Result {
+        USER_LOSE, USER_WIN, NOTHING_HAPPENED
+    }
+
     List<String> map;
     int rowIndex, columnIndex;
 
@@ -20,13 +24,15 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    public void play(Direction direction) {
-        while (checkIfUserWin()) {
-            move(direction);
-            if (checkIfGameIsOver()) {
-                retry();
-            }
+    public Result play(Direction direction) {
+        move(direction);
+        if (checkIfUserLose()) {
+            return Result.USER_LOSE;
         }
+        if (checkIfUserWin()) {
+            return Result.USER_WIN;
+        }
+        return Result.NOTHING_HAPPENED;
     }
 
     public void move(Direction direction) {
@@ -51,7 +57,7 @@ public class BridgeGame {
         columnIndex += 1;
     }
 
-    public boolean checkIfGameIsOver() {
+    public boolean checkIfUserLose() {
         String whichDirectionIsSafe = map.get(columnIndex);
         if (whichDirectionIsSafe.equals("U") && rowIndex == 1) {
             return true;
@@ -75,7 +81,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        rowIndex=0;
-        columnIndex=0;
+        rowIndex = 0;
+        columnIndex = 0;
     }
 }
