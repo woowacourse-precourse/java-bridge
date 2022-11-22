@@ -67,9 +67,9 @@ public class OutputView extends DefaultView{
     }
 
 
-    private void modifyPathMessageParts(Direction direction, boolean isGameOver, int pathLength, Map<Direction, List<String>> messageParts, int index) {
+    private void modifyPathMessageParts(Direction direction, boolean isAlive, int pathLength, Map<Direction, List<String>> messageParts, int index) {
         if (pathLength - 1 == index) {
-            if (isGameOver) {
+            if (!isAlive) {
                 messageParts.get(direction).set(index, MSG_WRONG_DIRECTION);
                 return;
             }
