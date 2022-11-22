@@ -80,7 +80,7 @@ public class BridgeGame {
      * @param retry
      */
     public boolean retry(String retry) {
-        if (retry.equals(RETRY_R)) {
+        if (retry.equals(RETRY_R.getCommand())) {
             this.tryCount++;
             initBridge();
             return true;

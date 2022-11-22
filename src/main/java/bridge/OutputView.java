@@ -77,4 +77,8 @@ public class OutputView {
         }
         System.out.println(TRY_COUNT.getMessage() + bridgeGame.getTryCount());
     }
+
+    public void printException(String message) {
+        System.out.println(message);
+    }
 }

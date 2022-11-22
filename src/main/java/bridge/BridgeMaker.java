@@ -24,15 +24,18 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int random = bridgeNumberGenerator.generate();
-            if (random == 0) {
-                bridge.add(MOVE_D.getCommand());
-                continue;
-            }
-            if (random == 1) {
-                bridge.add(MOVE_U.getCommand());
-            }
+            checkRandom(bridge);
         }
         return bridge;
+    }
+
+    private void checkRandom(List<String> bridge) {
+        int random = bridgeNumberGenerator.generate();
+        if (random == 0) {
+            bridge.add(MOVE_D.getCommand());
+        }
+        if (random == 1) {
+            bridge.add(MOVE_U.getCommand());
+        }
     }
 }

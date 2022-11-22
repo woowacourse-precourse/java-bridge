@@ -9,17 +9,25 @@ public class ValidateBridge {
     private static final int MAX_SIZE = 20;
 
     static int validateBridgeSize(String beforeValidateSize) {
-        int size = 0;
-        try {
-            size = Integer.parseInt(beforeValidateSize);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BRIDGE_SIZE_NOT_INTEGER.getMessage());
-        }
+        int size = validateBridgeInteger(beforeValidateSize);
+        size = validateBridgeSizeInRange(size);
+        return size;
+    }
 
+    private static int validateBridgeSizeInRange(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
             throw new IllegalArgumentException(BRIDGE_SIZE_OUT_OF_RANGE.getMessage());
         }
         return size;
+    }
+
+    static int validateBridgeInteger(String beforeValidateSize) {
+        try {
+            int size = Integer.parseInt(beforeValidateSize);
+            return size;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_NOT_INTEGER.getMessage());
+        }
     }
 
     static String validateMovement(String beforeMovement) {
