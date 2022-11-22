@@ -1,10 +1,12 @@
 package bridge.infra;
 
 import bridge.BridgeMaker;
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameService;
 import bridge.domain.command.BridgeMoveCommand;
 import bridge.domain.command.CreateBridgeGameCommand;
 import bridge.domain.command.ReTryCommand;
+import bridge.domain.dto.MovingResult;
 import bridge.infra.dto.InputBridgeSize;
 import java.util.List;
 
@@ -24,9 +26,44 @@ public class GameController {
   }
 
 
-  public void initGame() {
+  private BridgeGame initGame() {
     CreateBridgeGameCommand bridgeCommand = getCreateGameCommand();
+    return bridgeGameService.createGame(bridgeCommand);
+  }
 
+  private MovingResult moving(BridgeGame game) {
+    BridgeMoveCommand moveCommand = getMoveCommand(game);
+    MovingResult result = bridgeGameService.moving(moveCommand);
+    outputView.printMap(result.getBridgeGame().getGameState());
+    return result;
+  }
+
+  public void run() {
+    BridgeGame bridgeGame = initGame();
+    MovingResult result = moving(bridgeGame);
+    while (!result.isClear()) {
+      if (isGameEnd(result)) {
+        break;
+      }
+      result = moving(bridgeGame);
+    }
+    outputView.printResult(result.getBridgeGame().getGameState(), result.isClear());
+  }
+
+  private boolean isGameEnd(MovingResult result) {
+    if (result.isMoveSuccess()) {
+      return false;
+    }
+    if (isRetry()) {
+      bridgeGameService.retry(result.getBridgeGame());
+      return false;
+    }
+    return true;
+  }
+
+  private boolean isRetry() {
+    ReTryCommand reTryCommand = getReTryCommand();
+    return reTryCommand.isReTry();
   }
 
   private CreateBridgeGameCommand getCreateGameCommand() {
@@ -40,12 +77,12 @@ public class GameController {
     }
   }
 
-  private BridgeMoveCommand getMoveCommand() {
+  private BridgeMoveCommand getMoveCommand(BridgeGame game) {
     try {
-      return new BridgeMoveCommand(inputView.readMoving());
+      return new BridgeMoveCommand(inputView.readMoving(), game);
     } catch (IllegalArgumentException e) {
       System.out.println("[ERROR] " + e.getMessage());
-      return getMoveCommand();
+      return getMoveCommand(game);
     }
   }
 
