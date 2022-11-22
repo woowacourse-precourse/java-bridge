@@ -15,17 +15,18 @@ public class Application {
     }
     public static void main(String[] args) {
         try{
-        iv = new InputView();
-        BridgeGame bg = new BridgeGame(iv.readBridgeSize());
-        int flag = 0;
-        while(true){
-            int c = choose(bg);
-            if(c == 0) {flag = 1; break;}
-            else if(c == 2){flag = 0; break;}
-        }
-        //최종 결과 출력
-        OutputView ov = new OutputView(bg.curidx,bg.curbridge,bg.curmov);
-        ov.printResult(flag,cnt);
+            cnt = 1;
+            iv = new InputView();
+            BridgeGame bg = new BridgeGame(iv.readBridgeSize());
+            int flag = 0;
+            while(true){
+                int c = choose(bg);
+                if(c == 0) {flag = 1; break;}
+                else if(c == 2){flag = 0; break;}
+            }
+            //최종 결과 출력
+            OutputView ov = new OutputView(bg.curidx,bg.curbridge,bg.curmov);
+            ov.printResult(flag,cnt);
         } catch(Exception e) {System.out.println("[ERROR]");}
     }
 }

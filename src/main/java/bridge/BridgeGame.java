@@ -41,6 +41,7 @@ public class BridgeGame {
      */
     public void retry() {
         curidx = 0;
+        curmov.clear();
     }
     public int isFinish(int idx,String pos){
         OutputView ov = new OutputView(idx,curbridge,curmov);
