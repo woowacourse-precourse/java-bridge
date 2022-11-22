@@ -10,7 +10,7 @@ public class Bridge {
     private List<String> answer;
     private List<Boolean> correct;
 
-    Bridge(List<String> answer) {
+    public Bridge(List<String> answer) {
         this.answer = answer;
         correct = new ArrayList<>();
     }
