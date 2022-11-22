@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.code.BridgeMap;
 import bridge.code.GameStatus;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
@@ -39,14 +40,8 @@ public class GameController {
     }
 
     public void end(int gameStatus) {
-        outputView.printResult(game.getResult(), successOrFailString(gameStatus == GameStatus.SUCCESS));
-    }
-
-    private String successOrFailString(boolean isSuccess){
-        if (isSuccess) {
-            return "성공";
-        }
-        return "실패";
+        outputView.printResult(game.getResult(),
+            BridgeMap.FOR_TOTAL.getString(gameStatus == GameStatus.SUCCESS));
     }
 
 }

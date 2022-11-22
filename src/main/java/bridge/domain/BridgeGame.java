@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.code.BridgeMap;
 import bridge.code.GameStatus;
 import java.util.HashMap;
 import java.util.List;
@@ -46,10 +47,7 @@ public class BridgeGame {
     }
 
     private void updateResult(String input, boolean isMoveSuccess) {
-        HashMap<Boolean,String> map=new HashMap<>();
-        map.put(true,"O");
-        map.put(false,"X");
-        result.updateResultMap(input, map.get(isMoveSuccess));
+        result.updateResultMap(input, BridgeMap.FOR_MOVE.getString(isMoveSuccess));
         if (bridge.size()==result.getIndex()) {
             setGameStatus(GameStatus.SUCCESS);
         }
