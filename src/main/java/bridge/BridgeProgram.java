@@ -55,7 +55,7 @@ public class BridgeProgram {
 	}
 
 	public boolean checkRetry() {
-		if (upBridge.contains(" X ") || downBridge.contains(" X ")) {
+		if (upBridge.contains(Constants.ALPHABET_X) || downBridge.contains(Constants.ALPHABET_X)) {
 			String userRetry = checkRetryInput();
 			if (!bridgeGame.retry(userRetry)) {
 				return false;
@@ -75,7 +75,7 @@ public class BridgeProgram {
 		if (stack == bridge.getBridgeSize()) {
 			outputView.win(count);
 		}
-		if (upBridge.contains(" X ") || downBridge.contains(" X ")) {
+		if (upBridge.contains(Constants.ALPHABET_X) || downBridge.contains(Constants.ALPHABET_X)) {
 			outputView.Fail(count);
 		}
 	}
@@ -101,34 +101,34 @@ public class BridgeProgram {
 	}
 
 	public void upPattern() {
-		upBridge.add(" O ");
-		downBridge.add("   ");
+		upBridge.add(Constants.ALPHABET_O);
+		downBridge.add(Constants.BLANK);
 		stack++;
 	}
 
 	public void downPattern() {
-		upBridge.add("   ");
-		downBridge.add(" O ");
+		upBridge.add(Constants.BLANK);
+		downBridge.add(Constants.ALPHABET_O);
 		stack++;
 	}
 
 	public void upMoving(int i) {
-		if (bridge.getBridge().get(i).equals("U")) {
+		if (bridge.getBridge().get(i).equals(Constants.ALPHABET_U)) {
 			upPattern();
 		}
-		if (bridge.getBridge().get(i).equals("D")) {
-			upBridge.add(" X ");
-			downBridge.add("   ");
+		if (bridge.getBridge().get(i).equals(Constants.ALPHABET_D)) {
+			upBridge.add(Constants.ALPHABET_X);
+			downBridge.add(Constants.BLANK);
 		}
 	}
 
 	public void downMoving(int i) {
-		if (bridge.getBridge().get(i).equals("D")) {
+		if (bridge.getBridge().get(i).equals(Constants.ALPHABET_D)) {
 			downPattern();
 		}
-		if (bridge.getBridge().get(i).equals("U")) {
-			upBridge.add("   ");
-			downBridge.add(" X ");
+		if (bridge.getBridge().get(i).equals(Constants.ALPHABET_U)) {
+			upBridge.add(Constants.BLANK);
+			downBridge.add(Constants.ALPHABET_X);
 		}
 	}
 }
