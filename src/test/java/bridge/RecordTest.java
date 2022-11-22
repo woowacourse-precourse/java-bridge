@@ -53,4 +53,14 @@ public class RecordTest {
         assertThat(upBridgeResult).contains(" X ");
         assertThat(downBridgeResult).contains("   ");
     }
+
+    @DisplayName("맵 출력 테스트")
+    @Test
+    void checkGetRecordedMap() {
+        record.write("U", true);
+        record.write("D", true);
+        record.write("U", true);
+
+        assertThat(record.getRecordedMap()).containsExactly(" O |   | O ", "   | O |   ");
+    }
 }
