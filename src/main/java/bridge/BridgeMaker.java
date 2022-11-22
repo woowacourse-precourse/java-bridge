@@ -20,4 +20,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+    public static int getBridgeSize() {
+        InputView inputView = new InputView();
+        return inputView.readBridgeSize();
+    }
 }
