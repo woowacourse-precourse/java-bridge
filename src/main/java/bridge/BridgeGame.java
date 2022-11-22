@@ -10,9 +10,7 @@ public class BridgeGame {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMapGenerator bridgeMapGenerator = new BridgeMapGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
     public void playGame(List<String> bridge) {
         while (restart == null || !restart.equals("Q")) {
