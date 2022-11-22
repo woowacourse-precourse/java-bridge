@@ -59,4 +59,11 @@ public class BridgeGame {
     public String getCurrentIsCorrect() {
         return playerBridgeState.get(playerBridgeState.size()-1).get(1);
     }
+
+    public boolean checkCanMove(){
+        if(playerBridgeState.get(playerBridgeState.size()-1).get(1).equals("O") && playerBridgePosition < (bridge.getPositions().size())){
+            return true;
+        }
+        return false;
+    }
 }
