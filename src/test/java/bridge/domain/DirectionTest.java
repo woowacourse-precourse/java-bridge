@@ -14,4 +14,11 @@ class DirectionTest {
         String result = Direction.directionNumberToDirection(directionNumber);
         assertThat(result).isEqualTo(direction);
     }
+
+    @DisplayName("UP에 해당하는 값인 U인지 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"U,true", "D,false"})
+    public void checkDirectionIsUp(String direction, boolean expected) {
+        assertThat(Direction.isUp(direction)).isEqualTo(expected);
+    }
 }
