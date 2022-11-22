@@ -28,10 +28,12 @@ public class Application {
     }
 
     public static boolean gameMove(BridgeGame game) {
+        OutputView output = new OutputView();
         int length=game.bridgeLength;
         Boolean isSuccess;
         for (int loop = 0; loop < length; loop++) {
             isSuccess = game.move(new InputView().readMoving(), loop);
+            output.printMap(game.howFar, game.bridgeRoute, game.myRoute);
             if (!isSuccess) return false;
         }
         return true;

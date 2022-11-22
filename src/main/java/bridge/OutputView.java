@@ -48,7 +48,7 @@ public class OutputView {
 
     public void printUpperBridge(int step, List<String> answer, List<String> submitted) {
         System.out.print(Brackets.START.getSymbol());
-        for (int loop = 0; loop < step + 1; loop++) {
+        for (int loop = 0; loop < step; loop++) {
             String loopAnswer = answer.get(loop);
             String loopSubmitted = submitted.get(loop);
             isMiddle(loop);
@@ -61,7 +61,7 @@ public class OutputView {
 
     public void printLowerBridge(int step, List<String> answer, List<String> submitted) {
         System.out.print(Brackets.START.getSymbol());
-        for (int loop = 0; loop < step + 1; loop++) {
+        for (int loop = 0; loop < step ; loop++) {
             String loopAnswer = answer.get(loop);
             String loopSubmitted = submitted.get(loop);
             isMiddle(loop);
