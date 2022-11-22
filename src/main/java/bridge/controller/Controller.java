@@ -17,5 +17,6 @@ public class Controller {
 //
 //		bridgeGame.play(bridgeMaker);
 //		OutputView.withContentOf(ResultRendering.renderFinalResult(bridgeGame.getGameResult()), true, false).ConsoleMessage();
+		System.out.println("test");
 	}
 }
