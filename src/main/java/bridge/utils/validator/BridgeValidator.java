@@ -1,9 +1,9 @@
 package bridge.utils.validator;
 
-import static bridge.utils.constants.BridgeConstants.BRIDGE_SIZE_MIN_INCLUSIVE;
 import static bridge.utils.constants.BridgeConstants.BRIDGE_SIZE_MAX_INCLUSIVE;
-import static bridge.utils.constants.ErrorConstants.OUT_RANGE_BRIDGE_SIZE;
+import static bridge.utils.constants.BridgeConstants.BRIDGE_SIZE_MIN_INCLUSIVE;
 import static bridge.utils.constants.ErrorConstants.NOT_NUMBER_BRIDGE_SIZE;
+import static bridge.utils.constants.ErrorConstants.OUT_RANGE_BRIDGE_SIZE;
 
 public class BridgeValidator {
 
@@ -19,7 +19,7 @@ public class BridgeValidator {
         try {
             return Integer.parseInt(bridgeSize);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_BRIDGE_SIZE);
+            throw new IllegalArgumentException(NOT_NUMBER_BRIDGE_SIZE, e);
         }
     }
 }
