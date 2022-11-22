@@ -21,17 +21,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame, List<String> bridge) {
-        moveCount = bridgeGame.moveCount;
+        moveCount = bridgeGame.moveCount - 1;
         isCorrect = bridgeGame.isCorrect;
 
-        System.out.print("[ ");
         printMoving(bridge, "U");
         printMoving(bridge, "D");
         System.out.println();
     }
 
     private void printMoving(List<String> bridge, String upDown) {
-        for (int i = 0; i < moveCount - 1; i++) {
+        System.out.print("[ ");
+        for (int i = 0; i < moveCount; i++) {
             System.out.printf(isUpOrDown(bridge.get(i), upDown) + " | ");
         }
         if (isCorrect) {
@@ -39,10 +39,10 @@ public class OutputView {
             return;
         }
         if (bridge.get(moveCount).equals(upDown)) {
-            System.out.print("X ]\n");
+            System.out.print("  ]\n");
             return;
         }
-        System.out.print(" ]\n");
+        System.out.print("X ]\n");
     }
 
     private String isUpOrDown(String moving, String upDown) {
@@ -60,7 +60,6 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame, List<String> bridge, int tryCount) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame, bridge);
-        System.out.println();
         printSuccess();
         System.out.println("총 시도한 횟수: " + tryCount);
     }
