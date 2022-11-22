@@ -3,40 +3,75 @@ package bridge;
 import java.util.List;
 
 public class Application {
+    private static BridgeGame bridgeGame;
+    private static InputView inputView;
+    private static OutputView outputView;
+    private static BridgeMaker bridgeMaker;
+
     public static void main(String[] args) {
-        BridgeMaker bridgeMaker =
-                new BridgeMaker(new BridgeRandomNumberGenerator());
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        Player player = new Player();
-        outputView.printStart();
-        outputView.printBridgeSizeInput();
-        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        BridgeGame bridgeGame = new BridgeGame(bridge.size());
-        boolean isRun = true;
-        while (isRun) {
-            outputView.printMoveInput();
-            String moving = inputView.readMoving();
-            Boolean moveResult = bridgeGame.move(bridge, moving);
-            outputView.printMap(bridgeGame.getPlayerPos(), bridge, moveResult);
-            if (!moveResult) {
-                outputView.printCommandInput();
-                String command = inputView.readGameCommand();
-                if ("R".equals(command)) {
-                    bridgeGame.retry();
-                }
-                if ("Q".equals(command)) {
-                    isRun = false;
-                }
+        init();
+        while (bridgeGame.isRun()) {
+            Boolean success = move();
+            if (!success) {
+                command();
             }
-            if (bridgeGame.isClear()) {
-                isRun = false;
-            }
+            isClear();
         }
-        outputView.printResult(bridgeGame.getPlayerPos(), bridge, bridgeGame.isClear(), bridgeGame.getTotalTry());
+        outputView.printResult(bridgeGame.getMoveRecord(),
+                bridgeGame.getTotalTry(), bridgeGame.isClear());
     }
 
     private static void init() {
+        inputView = new InputView();
+        outputView = new OutputView();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = makeBridge();
+        bridgeGame = new BridgeGame(bridge);
+        bridgeGame.init();
+    }
 
+    private static List<String> makeBridge() {
+        outputView.printStart();
+        while (true) {
+            try {
+                outputView.printBridgeSizeInput();
+                List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+                return bridge;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printError("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    private static Boolean move() {
+        while (true) {
+            try {
+                outputView.printMoveInput();
+                Boolean success = bridgeGame.move(inputView.readMoving());
+                outputView.printMap(bridgeGame.getMoveRecord());
+                return success;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printError("움직임은 U, D만 입력할 수 있습니다.");
+            }
+        }
+    }
+
+    private static void command() {
+        while (true) {
+            try {
+                outputView.printCommandInput();
+                String command = inputView.readGameCommand();
+                bridgeGame.command(command);
+                return;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printError("커맨드는 R, Q만 입력할 수 있습니다.");
+            }
+        }
+    }
+
+    private static void isClear() {
+        if (bridgeGame.isClear()) {
+            bridgeGame.exit();
+        }
     }
 }

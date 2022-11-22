@@ -14,12 +14,16 @@ public class InputView {
      */
     public Integer readBridgeSize() {
         String size = null;
-        try {
-            size = readLine();
-        } catch (NoSuchElementException noSuchElementException) {
-            throw new IllegalArgumentException();
+        while (size == null) {
+            try {
+                size = readLine();
+                validateBridgeSize(size);
+            } catch (NoSuchElementException noSuchElementException) {throw new IllegalArgumentException();
+                
+            } catch (IllegalArgumentException argumentException) {
+
+            }
         }
-        validateBridgeSize(size);
         return Integer.parseInt(size);
     }
 
@@ -42,12 +46,14 @@ public class InputView {
      */
     public String readMoving() {
         String moving = null;
-        try {
-            moving = readLine();
-        } catch (NoSuchElementException noSuchElementException) {
-            throw new IllegalArgumentException();
+        while (moving == null) {
+            try {
+                moving = readLine();
+            } catch (NoSuchElementException noSuchElementException) {
+                throw new IllegalArgumentException();
+            }
+            validateMoving(moving);
         }
-        validateMoving(moving);
         return moving;
     }
 

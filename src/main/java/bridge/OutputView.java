@@ -12,7 +12,7 @@ public class OutputView {
     private final String movingInputText = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String commandInputText =
             "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private final String resultText = "최종 게임 결과";
+    private final String resultText = "\n최종 게임 결과";
     private final String isClearText = "\n게임 성공 여부: ";
     private final String totalTryText = "총 시도한 횟수: ";
     private final String errorText = "[ERROR] ";
@@ -55,44 +55,10 @@ public class OutputView {
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     * TODO: MoveRecord 클래스로 움직임 관리해야겠다.
      */
-    public void printMap(Integer playerPos, List<String> bridge, boolean survive) {
-        List<String> up = new ArrayList<>();
-        List<String> down = new ArrayList<>();
-        for (int i = 0; i < playerPos ; i++) {
-            if (bridge.get(i).equals("U")) {
-                up.add("O");
-                down.add(" ");
-            }
-            if (bridge.get(i).equals("D")) {
-                up.add(" ");
-                down.add("O");
-            }
-        }
-        if (survive) {
-            if (bridge.get(playerPos).equals("U")) {
-                up.add("O");
-                down.add(" ");
-            }
-            if (bridge.get(playerPos).equals("D")) {
-                up.add(" ");
-                down.add("O");
-            }
-        }
-        if (!survive) {
-            if (bridge.get(playerPos).equals("U")) {
-                up.add("X");
-                down.add(" ");
-            }
-            if (bridge.get(playerPos).equals("D")) {
-                up.add(" ");
-                down.add("X");
-            }
-        }
-        String upMap = "[ " + String.join(" | ", up) + " ]";
-        String downMap = "[ " + String.join(" | ", down) + " ]";
-        System.out.println(upMap + "\n" + downMap);
+    public void printMap(MoveRecord moveRecord) {
+        List<String> results = moveRecord.toResultString();
+        System.out.println(results.get(0) + "\n" + results.get(1));
     }
 
     /**
@@ -100,12 +66,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Integer lastPos, List<String> bridge, boolean isClear, Integer totalTry) {
+    public void printResult(MoveRecord moveRecord, Integer totalTry, boolean isClear) {
         System.out.println(resultText);
-        printMap(lastPos, bridge, isClear);
+        printMap(moveRecord);
         if (isClear) {
             System.out.println(isClearText + "성공");
-            System.out.println(totalTry + totalTry.toString());
+            System.out.println(totalTryText + totalTry.toString());
+        }
+        if (!isClear) {
+            System.out.println(isClearText + "실패");
+            System.out.println(totalTryText + totalTry.toString());
         }
     }
 }
