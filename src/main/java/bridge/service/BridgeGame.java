@@ -2,8 +2,8 @@ package bridge.service;
 
 import java.util.List;
 
+import bridge.BridgeMaker;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
 import bridge.repository.UserBridgeRepository;
 import bridge.util.GameConst;
 

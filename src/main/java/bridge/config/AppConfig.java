@@ -1,10 +1,10 @@
 package bridge.config;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.controller.GameController;
 import bridge.controller.InputController;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.repository.UserBridgeRepository;
 import bridge.service.BridgeGame;
 import bridge.service.InputValidService;
