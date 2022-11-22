@@ -16,7 +16,6 @@ public class Progress {
         while (true) {
             try {
                 bridgeGame = new BridgeGame(inputView.readBridgeSize());
-                System.out.println(" ");
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(outputView.errorMessage(e.getMessage()));

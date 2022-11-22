@@ -1,7 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class Validation {
     public int validationNumber(int bridgeSize) {
         if (bridgeSize >= 3 && bridgeSize <= 20) {

@@ -14,7 +14,11 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
 
-        return validation.validationNumber(readInteger());
+        int bridgeSize = validation.validationNumber(readInteger());
+
+        System.out.println("");
+
+        return bridgeSize;
     }
 
 
