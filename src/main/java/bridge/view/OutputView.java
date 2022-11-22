@@ -4,6 +4,8 @@ import bridge.model.MapFormat;
 import bridge.model.PlayerMap;
 import bridge.model.TotalResult;
 
+import java.util.Map;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -11,10 +13,12 @@ public class OutputView {
 
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String TOTAL_RESULT_HEADER_MESSAGE = "최종 게임 결과";
-
     private static final String WIN_OR_LOSE_MESSAGE = "게임 성공 여부: ";
-    private static final String WIN = "성공";
-    private static final String LOSE = "실패";
+
+    private static final Map<Boolean, String> winOrLose = Map.of(
+            true, "성공",
+            false, "실패"
+    );
 
     private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
 
@@ -48,19 +52,15 @@ public class OutputView {
     public void printResult(TotalResult totalResult) {
         System.out.println(TOTAL_RESULT_HEADER_MESSAGE);
         printMap(totalResult.getPlayerMap());
-        printWinOrLose(totalResult);
-        printTotalTryCnt(totalResult);
+        printWinOrLose(totalResult.winGame());
+        printTotalTryCnt(totalResult.getTryCnt());
     }
 
-    private void printWinOrLose(TotalResult totalResult) {
-        if (totalResult.winGame()) {
-            System.out.println(WIN_OR_LOSE_MESSAGE + WIN);
-            return;
-        }
-        System.out.println(WIN_OR_LOSE_MESSAGE + LOSE);
+    private void printWinOrLose(boolean winGame) {
+        System.out.println(WIN_OR_LOSE_MESSAGE + winOrLose.get(winGame));
     }
 
-    private void printTotalTryCnt(TotalResult totalResult) {
-        System.out.println(TOTAL_TRY_COUNT_MESSAGE + totalResult.getTryCnt());
+    private void printTotalTryCnt(int tryCnt) {
+        System.out.println(TOTAL_TRY_COUNT_MESSAGE + tryCnt);
     }
 }
