@@ -39,7 +39,8 @@ public class BridgeGame {
 
     /**
      * 다리의 index번째 칸의 문자를 O/X/공백으로 출력
-     * @param index 다리의 몇 번째를 출력할지
+     *
+     * @param index    다리의 몇 번째를 출력할지
      * @param expected 보고싶은 다리 방향 (U: 위, D: 아래)
      * @return 보고싶은 다리의 방향이 아니라면 공백, 맞다면 정답 여부에 따라 O 또는 X출력
      */
@@ -55,6 +56,7 @@ public class BridgeGame {
 
     /**
      * 현재까지 전부 건널 수 있는 다리만 건넜는지 여부 리턴
+     *
      * @return 이동가능한 칸만 건너왔다면 true, 아니면 false 리턴
      */
     public boolean isCorrectChoice() {
@@ -63,6 +65,7 @@ public class BridgeGame {
 
     /**
      * 다리를 끝까지 건넜는지 여부 리턴
+     *
      * @return 다리를 끝까지 건넌 상태면 true, 아니면 false 리턴
      */
     public boolean isSuccess() {
