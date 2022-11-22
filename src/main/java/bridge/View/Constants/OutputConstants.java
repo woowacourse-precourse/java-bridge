@@ -11,6 +11,6 @@ public class OutputConstants {
     public static final String GAME_RESULT = "최종 게임 결과";
     public static final String TOTAL_OF_ATTEMPT = "총 시도한 횟수: ";
     public static final String START_OF_BRIDGE = "[";
-    public static final String END_OF_BRIDGE = "[";
+    public static final String END_OF_BRIDGE = "]";
     public static final String BETWEEN_BRIDGES = " | ";
 }
