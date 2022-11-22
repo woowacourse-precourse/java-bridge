@@ -1,8 +1,8 @@
 package bridge.domain.bridge;
 
 public class BridgeSize {
-    private static final String CHAR_ERROR_MESSAGE = "[ERROR] 숫자만 입력해주세요.";
-    private static final String ERROR_BRIDGE_SIZE_RANGE = "[ERROR] 3~20 사이의 자연수만 입력해주세요";
+    public static final String CHAR_ERROR_MESSAGE = "[ERROR] 숫자만 입력해주세요.";
+    public static final String ERROR_BRIDGE_SIZE_RANGE = "[ERROR] 3~20 사이의 자연수만 입력해주세요";
 
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
