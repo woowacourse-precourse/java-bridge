@@ -24,7 +24,7 @@ public class OutputView {
         printOneMap(downs);
     }
 
-    public static void printOneMap(List<String> upDown) {
+    public void printOneMap(List<String> upDown) {
         System.out.print("[ ");
         for (int i = 0; i < upDown.size() - 1; i++) {
             System.out.print(upDown.get(i) + " | ");
