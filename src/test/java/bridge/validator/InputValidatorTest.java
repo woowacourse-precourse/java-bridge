@@ -26,4 +26,13 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(OUT_OF_RANGE.getMessage());
     }
+
+    @DisplayName("이동 방향을 입력받을 때 U 또는 D가 아니면 예외 처리")
+    @ValueSource(strings = {"w", "112", "UP", "d"})
+    @ParameterizedTest
+    void inputInvalidDirection(String direction) {
+        assertThatThrownBy(() -> validateDirection(direction))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_DIRECTION.getMessage());
+    }
 }
