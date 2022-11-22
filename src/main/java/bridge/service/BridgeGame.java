@@ -20,6 +20,7 @@ public class BridgeGame {
     private RoundResult roundResult;
     private String command;
     private int round = 0;
+    private int trial = 1;
 
     public BridgeGame() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -69,6 +70,7 @@ public class BridgeGame {
         if (InputView.readGameCommand()
                 .equals(Constants.RETRY_COMMAND)) {
 
+            trial++;
             return move();
         }
 
