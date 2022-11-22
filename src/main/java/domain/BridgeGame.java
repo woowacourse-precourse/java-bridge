@@ -3,12 +3,10 @@ package domain;
 import java.util.List;
 
 import bridge.BridgeRandomNumberGenerator;
-import service.InputView;
-import service.OutputView;
+import service.ViewController;
 
 public class BridgeGame {
-	InputView in = new InputView();
-	OutputView out = new OutputView();
+	private ViewController view = new ViewController();
 	private final List<String> bridge;
 
 	private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -23,23 +21,18 @@ public class BridgeGame {
 	}
 
 	public List<String> start() {
-		out.printGameMessage("START");
-		out.printGameMessage("BRIDGE_SIZE");
-		int size = in.readBridgeSize();
-
+		int size = view.startView();
 		return bridgeMaker.makeBridge(size);
 	}
 
 	public void move(List<String> bridge) {
 		gameCount++;
-
 		for (String rightCondition : bridge) {
 			if (!failCheck(rightCondition)) {
 				return;
 			}
 		}
-
-		ending(true);
+		gameResult(true);
 	}
 
 	public boolean failCheck(String rightCondition) {
@@ -47,31 +40,25 @@ public class BridgeGame {
 			retry();
 			return false;
 		}
-
 		return true;
 	}
 
 	public void retry() {
-		out.printGameMessage("COMMAND");
-		String command = in.readGameCommand();
-
+		String command = view.retryView();
 		if(command.equals("R")) {
 			mapMaker = new MapMaker();
 			move(bridge);
 			return;
 		}
-
-		ending(false);
+		gameResult(false);
 	}
 
-	public void ending(boolean gameResult) {
+	public void gameResult(boolean gameResult) {
 		String result = "성공";
-
 		if (!gameResult) {
 			result = "실패";
 		}
-
-		out.printResult(mapMaker.toString(), result, gameCount);
+		view.resultView(mapMaker, result, gameCount);
 		return;
 	}
 
