@@ -35,4 +35,8 @@ public class BridgeController {
     public boolean continueRound() {
         return bridgeGame.getGameResult() && (bridgeGame.getCurrentPosition() < bridgeGame.getBridge().size());
     }
+
+    public boolean continueGame() {
+        return !bridgeGame.getGameResult() && inputView.readGameCommand().equals("R");
+    }
 }
