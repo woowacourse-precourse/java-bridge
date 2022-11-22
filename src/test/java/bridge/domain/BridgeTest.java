@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeTest {
     private Bridge bridge;
-    List<String> testBridge;
+    private List<String> testBridge;
 
     @BeforeEach
     void initTest() {
