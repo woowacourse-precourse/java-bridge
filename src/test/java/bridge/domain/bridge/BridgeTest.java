@@ -9,19 +9,20 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BridgeTest {
 
-    BridgeNumberGenerator bridgeNumberGenerator;
+//    BridgeNumberGenerator bridgeNumberGenerator;
 
-    @BeforeAll
-    void init() {
-        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    }
+//    @BeforeAll
+//    void init() {
+//        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+//    }
 
     @DisplayName("다리 생성")
     @Test
     void createBridge() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         int size = 3;
         List<String> bridgeInformation = bridgeMaker.makeBridge(size);

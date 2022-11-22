@@ -13,19 +13,20 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BridgeMakerTest {
 
-    BridgeNumberGenerator bridgeNumberGenerator;
-
-    @BeforeAll
-    void init() {
-        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    }
+//    BridgeNumberGenerator bridgeNumberGenerator;
+//
+//    @BeforeAll
+//    void init() {
+//        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+//    }
 
     @DisplayName("다리 생성 테스트 성공")
     @Test
     void makeBridgeSuccess() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         String size = "3";
 
@@ -41,6 +42,7 @@ class BridgeMakerTest {
     @ValueSource(strings = {"가나다", "a", "dbfbe"})
     @ParameterizedTest
     void makeBridgeInputByString(String size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
@@ -52,6 +54,7 @@ class BridgeMakerTest {
     @ValueSource(strings = {"1", "2", "21"})
     @ParameterizedTest
     void makeBridgeInputByOutOfBridgeLengthNumber(String size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
