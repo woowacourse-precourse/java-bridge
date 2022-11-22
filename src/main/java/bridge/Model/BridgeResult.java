@@ -40,7 +40,7 @@ public class BridgeResult {
 
     @Override
     public String toString(){
-        return bridgeToString(UPPER_BRIDGE) + "\n" + bridgeToString(LOWER_BRIDGE);
+        return bridgeToString(UPPER_BRIDGE) + "\n" + bridgeToString(LOWER_BRIDGE) + "\n";
     }
 
     private String bridgeToString(String bridgePosition){
@@ -50,7 +50,7 @@ public class BridgeResult {
             sb.append(" | ");
         }
         sb.setLength(sb.length() - " | ".length());
-        sb.append(" ]\n");
+        sb.append(" ]");
         return sb.toString();
     }
 }
