@@ -2,7 +2,6 @@ package bridge.controller.request;
 
 import bridge.domain.bridge.Bridge;
 import bridge.handler.InputHandler;
-import bridge.service.dto.MoveDto;
 import bridge.view.OutputView;
 
 public class MoveByBlockRequest {
@@ -27,9 +26,5 @@ public class MoveByBlockRequest {
 
     public Bridge getBridge() {
         return bridge;
-    }
-
-    public MoveDto toServiceDto() {
-        return new MoveDto(inputHandler, outputView, bridge);
     }
 }
