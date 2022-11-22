@@ -18,6 +18,7 @@ public class Run {
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
         play(bridgeGame);
+        new OutputView().printResult(bridgeGame, attempts);
     }
 
     private void play(BridgeGame bridgeGame) {
@@ -32,8 +33,6 @@ public class Run {
                 play(bridgeGame);
             }
         }
-
-        new OutputView().printResult(bridgeGame, attempts);
     }
 
     private void playOneSet(BridgeGame bridgeGame) {
