@@ -8,8 +8,6 @@ import bridge.views.InputView;
 import bridge.views.OutputView;
 
 public class BridgeGameController {
-    public static final String RETRY = "R";
-
     private final BridgeGame bridgeGameService = new BridgeGame();
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
@@ -89,6 +87,6 @@ public class BridgeGameController {
 
     private boolean isRetry(final String inputGameCommand) {
         return InputValidator.validateGameCommand(inputGameCommand)
-                .equals(RETRY);
+                .equals(InputValidator.RETRY);
     }
 }
