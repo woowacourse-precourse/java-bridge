@@ -18,14 +18,14 @@ public class ValidateInputTest {
 
     @DisplayName("다리 길이 유효성 검사 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"2", "1", "30", "K"})
+    @CsvSource(value = {"2", "1", "21", "K"})
     void validateInputBridgeSizeFailTest(String bridgeSize) {
         assertThatThrownBy(() -> validateInput.validateInputBridgeSize(bridgeSize)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("다리 이동 방향 유효성 검사 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"2", "1", "30", "K", "T"})
+    @CsvSource(value = {"2", "1", "21", "K", "T"})
     void validateInputBridgeSideTest(String bridgeSide) {
         assertThatThrownBy(() -> validateInput.validateInputBridgeSide(bridgeSide)).isInstanceOf(IllegalArgumentException.class);
     }
