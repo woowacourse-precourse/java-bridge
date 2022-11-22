@@ -5,27 +5,30 @@ import java.util.List;
 
 public class User {
 
-    private int countInputMoveDirection;
+    private final static int START_MOVE_COUNT = 0;
+    private final static int START_TRY_COUNT = 1;
+
+    private int countMove;
     private int trialCount;
     private final List<String> moveDirectionSelection;
 
     public User() {
-        countInputMoveDirection = 0;
-        trialCount = 1;
+        countMove = START_MOVE_COUNT;
+        trialCount = START_TRY_COUNT;
         moveDirectionSelection = new ArrayList<>();
     }
 
     public void inputMoveDirection(String moveDirection) {
         moveDirectionSelection.add(moveDirection);
-        countInputMoveDirection++;
+        countMove++;
     }
 
     public int getCountInputMoveDirection() {
-        return countInputMoveDirection;
+        return countMove;
     }
 
     public String getMoveDirection() {
-        return moveDirectionSelection.get(countInputMoveDirection - 1);
+        return moveDirectionSelection.get(countMove - 1);
     }
 
     public int getMoveDirectionNumber() {
@@ -33,7 +36,7 @@ public class User {
     }
 
     public void retry() {
-        countInputMoveDirection = 0;
+        countMove = START_MOVE_COUNT;
         moveDirectionSelection.clear();
         trialCount++;
     }
