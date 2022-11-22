@@ -43,10 +43,10 @@ public class BridgeController {
 
     private static boolean inputMoving(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         if (bridgeGame.move(inputView.readMoving())) {
-            System.out.println(outputView.printMap(bridgeGame.currentBridge()));
+            outputView.printMap(bridgeGame.currentBridge());
             return true;
         }
-        System.out.println(outputView.printMap(bridgeGame.currentBridge()));
+        outputView.printMap(bridgeGame.currentBridge());
         return false;
     }
 }

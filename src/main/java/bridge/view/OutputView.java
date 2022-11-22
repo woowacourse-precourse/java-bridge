@@ -30,10 +30,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printMap(List<BridgeEnum> bridgeLocations) {
-        return new StringJoiner("\n")
+    public void printMap(List<BridgeEnum> bridgeLocations) {
+        String printMap = new StringJoiner("\n")
                 .add(createBridgeMap(bridgeLocations, LOCATION_UP_SELECT))
                 .add(createBridgeMap(bridgeLocations, LOCATION_DOWN_SELECT)).toString();
+        System.out.println(printMap);
     }
 
     private String createBridgeMap(List<BridgeEnum> bridgeLocations, String location) {
@@ -49,20 +50,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<BridgeEnum> bridgeLocations,boolean gameEndCheck,int count) {
-        System.out.println(GAME_FINAL_RESULT);
+    public void printResult(List<BridgeEnum> bridgeLocations, boolean gameEndCheck, int count) {
+        printGameFinalResult();
+        printMap(bridgeLocations);
         StringJoiner resultJoiner = new StringJoiner("\n");
-        resultJoiner.add(printMap(bridgeLocations));
         resultJoiner.add(printSuccessCheck(gameEndCheck));
         resultJoiner.add(printGameTotalTry(count));
         System.out.println(resultJoiner);
+    }
+
+    public void printGameFinalResult() {
+        System.out.println(GAME_FINAL_RESULT);
     }
 
     public String printSuccessCheck(boolean gameEndCheck) {
         if (gameEndCheck) {
             return String.format(GAME_SUCCESS_CHECK, GAME_SUCCESS);
         }
-        return String.format(GAME_SUCCESS_CHECK,GAME_FAIL);
+        return String.format(GAME_SUCCESS_CHECK, GAME_FAIL);
     }
 
     public String printGameTotalTry(int count) {
