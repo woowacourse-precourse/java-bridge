@@ -23,20 +23,24 @@ public class BridgeController {
         while (true) {
             boolean isCorrect = false;
             for (int count = 0; count < bridge.size(); count++) {
-                String moveCommand = InputView.readMoving();
-                isCorrect = moveCommand.equals(bridge.get(count));
-                bridgeGame.move(moveCommand, isCorrect);
-                OutputView.printMap(bridgeGame.getFirstRoad(), bridgeGame.getSecondRoad());
-                if (!isCorrect) {
-                    String retryCommand = InputView.readGameCommand();
-                    if (isQuit(retryCommand)) return false;
-                    bridgeGame.retry();
-                    break;
-                }
+                isCorrect = moveAndPrint(bridge, count);
+                if (isCorrect) continue;
+                if (isQuit(InputView.readGameCommand())) return false;
+                bridgeGame.retry();
+                break;
             }
             if (!isCorrect) continue;
             return true;
         }
+    }
+
+    private boolean moveAndPrint(List<String> bridge, int count) {
+        boolean isCorrect;
+        String moveCommand = InputView.readMoving();
+        isCorrect = moveCommand.equals(bridge.get(count));
+        bridgeGame.move(moveCommand, isCorrect);
+        OutputView.printMap(bridgeGame.getFirstRoad(), bridgeGame.getSecondRoad());
+        return isCorrect;
     }
 
     private static boolean isQuit(String retryCommand) {
