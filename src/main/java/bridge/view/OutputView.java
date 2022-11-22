@@ -53,5 +53,10 @@ public class OutputView {
         printResultMap();
     }
 
+    public void printResultMap() {
+        System.out.println(START + upView + END);
+        System.out.println(START + downView + END);
+    }
+
 
 }
