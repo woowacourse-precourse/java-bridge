@@ -46,4 +46,33 @@ public class BridgeGameManager {
             }
         }
     }
+
+    private BridgeGameState checkBridgeGameState(BridgeGameState bridgeGameState) {
+        if (bridgeGameState.isSuccess()) {
+            return SUCCESS;
+        }
+        if (bridgeGameState.isFail()) {
+            return checkGameEndType();
+        }
+        return bridgeGameState;
+    }
+
+    private BridgeGameState checkGameEndType() {
+        BridgeGameEndType gameEndType = getGameEndCommand();
+        if (gameEndType.isEnd()) {
+            return FAIL;
+        }
+        bridgeGame.retry();
+        return START;
+    }
+
+    private BridgeGameEndType getGameEndCommand() {
+        while (true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e.getMessage());
+            }
+        }
+    }
 }
