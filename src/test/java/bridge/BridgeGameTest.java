@@ -33,4 +33,14 @@ public class BridgeGameTest {
         assertTrue(moveResult.isGameOver());
     }
 
+    @DisplayName("플레이어 이동 성공")
+    @Test
+    void 플레이어_이동_성공() {
+        String position = "U";
+
+        MoveResult moveResult = bridgeGame.move(playerId, bridge, position);
+
+        assertFalse(moveResult.isGameOver());
+    }
+
 }
