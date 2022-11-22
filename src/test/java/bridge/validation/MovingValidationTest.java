@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,6 +44,24 @@ class MovingValidationTest {
     void isUpperCaseUDTest(String moving) {
         // when, then
         assertThatThrownBy(() -> validation.isUpperCaseUD(moving))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("총 유효성 테스트 : 입력이 올바른 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void correctTest(String moving) {
+        // when, then
+        assertThatNoException().isThrownBy(() -> validation.totalValidate(moving));
+    }
+
+    @DisplayName("총 유효성 테스트 : 입력이 틀린 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "유", "디", "UD", "DU", "n", "!"})
+    void inCorrectTest(String moving) {
+        // when, then
+        assertThatThrownBy(() -> validation.totalValidate(moving))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
