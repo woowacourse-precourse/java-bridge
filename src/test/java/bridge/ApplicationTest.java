@@ -40,7 +40,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트2_실패후_재시작() {
+    void 기능_테스트_실패후_재시작() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "R", "U", "D", "U");
             assertThat(output()).contains(
@@ -58,7 +58,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트2_실패후_종료() {
+    void 기능_테스트_실패후_종료() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "Q");
             assertThat(output()).contains(
