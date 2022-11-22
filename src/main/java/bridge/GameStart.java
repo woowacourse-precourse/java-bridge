@@ -20,4 +20,13 @@ public class GameStart {
         StartMoving();
     }
 
+    private void StartMoving() {
+
+        String moving = inputView.readMoving();
+        bridgeGame.move(moving);
+        List<String> P1 = bridgeGame.getProgress1();
+        List<String> P2 = bridgeGame.getProgress2();
+        outputView.printMap(P1, P2);
+        CheckOutput(P1,P2);
+    }
 }
