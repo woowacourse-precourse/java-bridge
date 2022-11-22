@@ -62,18 +62,6 @@ public class InputView {
         return size;
     }
 
-    public String getCommand() {
-        String command = "";
-        while (command.equals("")) {
-            try {
-                command = readGameCommand();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return command;
-    }
-
     public String getMoving() {
         String move = "";
         while (move.equals("")) {
@@ -84,6 +72,18 @@ public class InputView {
             }
         }
         return move;
+    }
+
+    public String getCommand() {
+        String command = "";
+        while (command.equals("")) {
+            try {
+                command = readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return command;
     }
 
     private void validateSize(String sizeName) {
