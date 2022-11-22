@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.model.UserDTO;
 import bridge.view.InputConsole;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -10,11 +11,10 @@ public class GameLogic {
     private BridgeGame bridgeGame;
     private String inputMove;
     private String inputRetry;
-    private Integer[] userData = new Integer[2];
+    private UserDTO userDTO = new UserDTO();
     GameLogic(){
         bridgeGame = new BridgeGame();
         inputView =new InputView(new InputConsole());
-
     }
     public void start(){
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -75,9 +75,8 @@ public class GameLogic {
         }
     }
     private void showResult(){
-        userData[0] = bridgeGame.getUser().getCount();
-        userData[1] = bridgeGame.getUser().getPosition();
-        outputView.printResult(bridgeGame.getUser().getResult(),userData,this.inputMove);
+        userDTO.setUserDTO(bridgeGame.getUser());
+        outputView.printResult(userDTO,this.inputMove);
     }
     private void changeLine(){
         System.out.println();

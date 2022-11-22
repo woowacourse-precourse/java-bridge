@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.User;
+import bridge.model.UserDTO;
 import bridge.view.Input;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -51,21 +53,6 @@ public class ViewTest extends ApplicationTest {
         assertThat(output()).contains(
                 "[ O | X ]",
                 "[   |   ]"
-        );
-    }
-    @Test
-    void printResultTest(){
-        List<String> bridgeList = newArrayList("U","D","U","U");
-        OutputView outputView = new OutputView(bridgeList);
-        Integer[] userData = new Integer[2];
-        userData[0] = 3;
-        userData[1] = 3;
-        outputView.printResult(true,userData,"U");
-        assertThat(output()).contains(
-                "[ O |   | O | O ]",
-                "[   | O |   |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 3"
         );
     }
     static class TestInput implements Input {
