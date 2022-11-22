@@ -56,7 +56,7 @@ public class ControllerTest {
         bridgeGameController.run();
         assertThat(out.toString().trim()).contains(
                 "[ERROR] 숫자 타입을 입력해주세요.",
-                "[ERROR] 'R', 'Q' 이 외 문자는 입력할 수 없습니다.",
+                "[ERROR] 'U', 'D' 이 외 문자는 입력할 수 없습니다.",
                 "[ERROR] 'R', 'Q' 이 외 문자는 입력할 수 없습니다.");
     }
 }
