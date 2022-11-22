@@ -24,7 +24,7 @@ public class OutputView {
     public static void printResult(int gamePlayCount, String result, String connectedBridge) {
         System.out.println(Message.FINAL_RESULT.getMessage());
         System.out.println(connectedBridge);
-        System.out.print(Message.GAME_RESULT.getMessage() + result);
+        System.out.println(Message.GAME_RESULT.getMessage() + result);
         System.out.printf(Message.TOTAL_TRY.getMessage(), gamePlayCount);
     }
 
