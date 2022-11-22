@@ -1,5 +1,6 @@
 package bridge.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -8,6 +9,10 @@ public class Bridge {
 
     public Bridge(final List<String> bridge) {
         this.bridge = bridge;
+    }
+
+    public Bridge() {
+        this(new ArrayList<>());
     }
 
     public void saveCrossedBridge(final String crossed) {
