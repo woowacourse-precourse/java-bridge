@@ -13,11 +13,7 @@ public class BridgeSize {
     }
 
     private int toInteger(String bridgeSize) {
-        try {
-            return Integer.parseInt(bridgeSize);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이에 유효한 숫자가 들어가야 합니다.");
-        }
+        return Integer.parseInt(bridgeSize);
     }
 
     private void validateRange() {

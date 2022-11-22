@@ -55,10 +55,15 @@ public class GameController {
 
     private void storeBridge() {
         String bridgeSizeInput = inputView.readBridgeSize();
-        BridgeSize bridgeSize = new BridgeSize(bridgeSizeInput);
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
+        try{
+            BridgeSize bridgeSize = new BridgeSize(bridgeSizeInput);
+            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+            bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
+        } catch (Exception e){
+            System.out.println("[ERROR] 다리 길이에 유효한 숫자가 들어가야 합니다.");
+            storeBridge();
+        }
     }
 
     private boolean askUserRestart() {
