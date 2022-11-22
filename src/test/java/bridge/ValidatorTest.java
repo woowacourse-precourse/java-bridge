@@ -2,6 +2,7 @@ package bridge;
 
 import static bridge.Validator.validateIsDigit;
 import static bridge.Validator.validateIsMovingValue;
+import static bridge.Validator.validateIsRetryValue;
 import static bridge.Validator.validateSizeRange;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -55,5 +56,13 @@ class ValidatorTest {
     @ValueSource(strings = {"U", "D"})
     void validateIsMovingValuePassTest(String value) {
         assertThatCode(() -> validateIsMovingValue(value)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("재시작 입력값이 Q, D 중 하나가 아닐 때 예외테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"q", "d", "재시작"})
+    void validateIsRetryValueExceptionTest(String value) {
+        assertThatThrownBy(() -> validateIsRetryValue(value))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
