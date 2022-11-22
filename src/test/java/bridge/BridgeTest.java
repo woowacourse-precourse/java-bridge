@@ -1,11 +1,16 @@
 package bridge;
 
 
+import bridge.domain.Bridge;
+import bridge.domain.generator.Step;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeTest extends NsTest {
 
@@ -41,9 +46,23 @@ public class BridgeTest extends NsTest {
         }, 1, 0, 0, 0, 1);
     }
 
+    @Test
+    void 다리생성_숫자_예외테스트(){
+        assertThatThrownBy(()-> Step.findByNum(2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("0 또는 1");
+    }
+
+    @Test
+    void 다리생성_숫자로_값_받아오기(){
+        assertThat(Step.findByNum(0).getStepTxt()).isEqualTo("D");
+        assertThat(Step.findByNum(1).getStepTxt()).isEqualTo("U");
+
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
-
     }
+
 }

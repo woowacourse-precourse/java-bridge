@@ -43,5 +43,4 @@ public class ValidatorTest {
                 .hasMessageContaining(ERROR_MESSAGE, "시작은 R, 종료는 Q");
     }
 
-
 }
