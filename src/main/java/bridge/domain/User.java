@@ -10,15 +10,15 @@ public class User {
 
     public User() {
         this.isSuccess = false;
-        this.totalTry = 0;
+        this.totalTry = 1;
         this.select = new ArrayList<>();
     }
 
-    public boolean isSuccess() {
+    public boolean getIsSuccess() {
         return isSuccess;
     }
 
-    public void setSuccess(boolean success) {
+    public void setIsSuccess(boolean success) {
         isSuccess = success;
     }
 

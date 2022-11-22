@@ -1,4 +1,4 @@
-package bridge.validater;
+package bridge.util;
 
 public class InputValidater {
     public static boolean isNumber(String beforeChangeNum) {

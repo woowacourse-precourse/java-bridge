@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.validater.InputValidater;
+import bridge.util.InputValidater;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

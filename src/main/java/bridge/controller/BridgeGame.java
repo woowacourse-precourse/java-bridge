@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.User;
-import bridge.validater.BridgeValidater;
+import bridge.util.BridgeCalculator;
 import bridge.view.InputView;
 import bridge.constant.MessageOutput;
 import bridge.view.OutputView;
@@ -41,14 +41,14 @@ public class BridgeGame {
         boolean aRound = true;
         while(aRound) {
             inOrderAcross();
+            if(user.getIsSuccess()) break;
             aRound = retry();
-            if(user.isSuccess()) break;
             restartAcross();
         }
     }
 
     public void showResult() {
-        OutputView.printResult();
+        OutputView.printResult(bridge, user);
     }
 
 
@@ -57,7 +57,7 @@ public class BridgeGame {
         for(int i=0 ; i<bridge.getSize() ; i++) {
             movingResult = move(i);
             if(!movingResult) break;
-            if(movingResult && (i == bridge.getSize()-1)) user.setSuccess(true);
+            if(movingResult && (i == bridge.getSize()-1)) user.setIsSuccess(true);
         }
         // 성공로직
     }
@@ -71,7 +71,7 @@ public class BridgeGame {
         OutputView.printLine(MessageOutput.INQUIRE_MOVE_BLOCK);
         String input = InputView.readMoving();
         user.addSelect(input);
-        boolean isSuccess = BridgeValidater.compareInputAndResult(input, bridge.getIndexResult(index));
+        boolean isSuccess = BridgeCalculator.compareInputAndResult(input, bridge.getIndexResult(index));
         OutputView.printMap(bridge, user);
         return isSuccess;
     }
@@ -88,7 +88,7 @@ public class BridgeGame {
     public boolean retry() {
         OutputView.printLine(MessageOutput.INQUIRE_REGAIN_GAME);
         String decision = InputView.readGameCommand();
-        boolean isRetry = BridgeValidater.whetherRetryOrQuit(decision);
+        boolean isRetry = BridgeCalculator.whetherRetryOrQuit(decision);
         return isRetry;
     }
 }
