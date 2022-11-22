@@ -13,5 +13,6 @@ public enum BridgeGameInfo {
     BridgeGameInfo(String message) {
         this.message = message;
     }
+
 }
 

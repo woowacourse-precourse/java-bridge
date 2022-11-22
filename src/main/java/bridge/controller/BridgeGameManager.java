@@ -8,6 +8,7 @@ import bridge.view.OutputView;
 
 public class BridgeGameManager {
     public void run() {
+
         BridgeGame bridgeGame = makeGame();
 
         setGame(bridgeGame);
@@ -21,6 +22,7 @@ public class BridgeGameManager {
         inputMovingAndPrintMap(targetBridge, bridgeGame);
 
         printResult(targetBridge, bridgeGame);
+
     }
 
     private void judgeRetry(BridgeGame bridgeGame, int step, String retryAnswer) {
