@@ -17,6 +17,7 @@ class OutputViewTest {
 
     @BeforeEach
     public void setUp() {
+        OutputView.reset();
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
@@ -82,14 +83,15 @@ class OutputViewTest {
         boolean isPass = true;
         int start = 0;
 
-        String expectedMessage = "[ O ]\n[   ]";
+        String expectedMessage = "[ O ]\n[   ]\n\n";
 
 
         // when
         OutputView.printMap(player, isPass, start);
 
         // then
-        assertEquals(expectedMessage, outputStreamCaptor.toString().trim());
+        assertEquals(expectedMessage, outputStreamCaptor.toString());
+        player.removePositions();
     }
 
     @Test
