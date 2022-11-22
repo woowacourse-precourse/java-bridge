@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class OutputView {
-    private static String targetOfFirstLine = "U";
-    private static String targetOfSecondLine = "D";
+    private static String directionOfFirstLine = "U";
+    private static String directionOfSecondLine = "D";
+
     public void printMap(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
         printFirstLine(bridge, playerLocation, isMovingAvailable);
         printSecondLine(bridge, playerLocation, isMovingAvailable);
@@ -13,25 +14,25 @@ public class OutputView {
 
     public void printFirstLine(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
         printStartPart();
-        printMiddlePart(bridge, playerLocation, targetOfFirstLine);
-        printEndPart( bridge.get(playerLocation+1), isMovingAvailable, targetOfFirstLine);
+        printMiddlePart(bridge, playerLocation, directionOfFirstLine);
+        printEndPart(bridge.get(playerLocation+1), isMovingAvailable, directionOfFirstLine);
     }
 
     public void printSecondLine(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
         printStartPart();
-        printMiddlePart(bridge, playerLocation, targetOfSecondLine);
-        printEndPart( bridge.get(playerLocation+1), isMovingAvailable, targetOfSecondLine);
+        printMiddlePart(bridge, playerLocation, directionOfSecondLine);
+        printEndPart(bridge.get(playerLocation+1), isMovingAvailable, directionOfSecondLine);
     }
 
     private void printStartPart() {
         System.out.print("[ ");
     }
 
-    private void printMiddlePart(List<String> bridge, int playerLocation, String target) {
+    private void printMiddlePart(List<String> bridge, int playerLocation, String directionOfLine) {
         Stream<String> bridgeStream = bridge.stream()
                                             .limit(playerLocation + 1)
                                             .map(str -> {
-                                                if (str == target) {
+                                                if (str == directionOfLine) {
                                                     return "O";
                                                 }
                                                 return " ";
@@ -39,20 +40,30 @@ public class OutputView {
         bridgeStream.forEach(str -> System.out.print(str + " | "));
     }
 
-    private void printEndPart(String bridgeNextLocation, boolean isMovingAvailable, String direction) {
+    private void printEndPart(String bridgeNextLocation, boolean isMovingAvailable, String directionOfLine) {
+       printEndPartUnderMobility(bridgeNextLocation, isMovingAvailable, directionOfLine);
+       printEndPartUnderImmobility(bridgeNextLocation, isMovingAvailable, directionOfLine);
+    }
+
+    private void printEndPartUnderMobility(String bridgeNextLocation,
+                                                  boolean isMovingAvailable, String directionOfLine) {
         if (isMovingAvailable) {
-            if (direction.equals(bridgeNextLocation)) {
+            if (directionOfLine.equals(bridgeNextLocation)) {
                 System.out.println("O ]");
             }
-            if (!direction.equals(bridgeNextLocation)) {
+            if (!directionOfLine.equals(bridgeNextLocation)) {
                 System.out.println(("  ]"));
             }
         }
+    }
+
+    private void printEndPartUnderImmobility(String bridgeNextLocation,
+                                           boolean isMovingAvailable, String directionOfLine) {
         if (!isMovingAvailable) {
-            if (direction.equals(bridgeNextLocation)) {
+            if (directionOfLine.equals(bridgeNextLocation)) {
                 System.out.println("  ]");
             }
-            if (!direction.equals(bridgeNextLocation)) {
+            if (!directionOfLine.equals(bridgeNextLocation)) {
                 System.out.println(("X ]"));
             }
         }
@@ -61,7 +72,7 @@ public class OutputView {
     public void printResult(List<String> bridge, int playerLocation, boolean isMovingAvailable) {
         System.out.println("\n최종 게임 결과");
         if (playerLocation == bridge.size()-1) {
-            printMap(bridge, playerLocation-1, isMovingAvailable);
+            printMap(bridge, playerLocation - 1, isMovingAvailable);
             System.out.println("게임 성공 여부: 성공");;
         }
         if (playerLocation < bridge.size()-1) {
