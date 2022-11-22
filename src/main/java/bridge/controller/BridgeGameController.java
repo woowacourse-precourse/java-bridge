@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,7 +11,7 @@ public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
-    private List<String> resultBridge;
+    private List<String> correctBridge;
 
     public BridgeGameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
@@ -20,14 +21,19 @@ public class BridgeGameController {
 
     public void run() {
         try {
-            start();
+            startBrideGame();
+            System.out.println(correctBridge);
         } catch (IllegalArgumentException illegalArgumentException) {
 
         }
     }
 
-    private void start() {
+    private void startBrideGame() {
         outputView.printStartMessage();
-        resultBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        correctBridge = makeBridge();
+    }
+
+    private List<String> makeBridge() {
+        return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 }
