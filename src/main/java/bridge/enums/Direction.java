@@ -31,4 +31,8 @@ public enum Direction {
 
         return null;
     }
+
+    public static int getNumOfDirections() {
+        return Direction.values().length;
+    }
 }
