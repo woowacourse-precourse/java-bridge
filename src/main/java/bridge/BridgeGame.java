@@ -28,11 +28,10 @@ public class BridgeGame {
     }
 
     private void crossBridge(List<String> bridge) {
-        String playerMoving;
         boolean match = true;
         int inputCount = 0;
         while (match && inputCount < bridge.size()) {
-            playerMoving = inputView.readMoving();
+            String playerMoving = inputView.readMoving();
             bridgeMapGenerator.generateBridgeMap(playerMoving, bridge.get(inputCount));
             outputView.printBridgeMap(bridgeMapGenerator.getBridgeMap());
             match = checkMissMatching(playerMoving, bridge.get(inputCount));
@@ -56,12 +55,12 @@ public class BridgeGame {
         return true;
     }
 
-    private void move() {
-        placeNumber++;
-    }
-
     private void returnToStartPoint() {
         placeNumber = 0;
+    }
+
+    private void move() {
+        placeNumber++;
     }
 
     private void retry(int bridgeSize) {
