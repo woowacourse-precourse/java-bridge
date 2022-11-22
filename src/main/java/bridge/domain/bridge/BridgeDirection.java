@@ -1,5 +1,7 @@
 package bridge.domain.bridge;
 
+import bridge.common.ErrorCode;
+
 import java.util.Arrays;
 
 public enum BridgeDirection {
@@ -18,14 +20,14 @@ public enum BridgeDirection {
         return Arrays.stream(values())
                 .filter(dir -> dir.initial.equals(initial))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(ErrorCode.INVALID_BRIDGE_DIRECTION.getMessage()));
     }
 
     public static BridgeDirection of(int type) {
         return Arrays.stream(values())
                 .filter(dir -> dir.type == type)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(ErrorCode.INVALID_BRIDGE_DIRECTION.getMessage()));
     }
 
     public String getInitial() {
