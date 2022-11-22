@@ -11,11 +11,10 @@ import static bridge.constant.Score.PASS;
 public class Referee {
 
     private final List<String> bridge;
-    private final int currentRoundNumber;
+    private int currentRoundNumber;
 
-    public Referee(Bridge bridge, int currentRoundNumber) {
+    public Referee(Bridge bridge) {
         this.bridge = bridge.getBridge();
-        this.currentRoundNumber = currentRoundNumber;
     }
 
     public Score judgeMove(String moveDirection) {
@@ -46,5 +45,17 @@ public class Referee {
     public Boolean isGameRestart(String input) {
         GameOption gameOption = GameOption.getGameOptionByMessage(input);
         return gameOption == GameOption.RESTART;
+    }
+
+    public void addCurrentRoundNumber() {
+        currentRoundNumber +=1 ;
+    }
+
+    public void resetCurrentRoundNumber() {
+        currentRoundNumber = 0;
+    }
+
+    public int getCurrentRoundNumber() {
+        return currentRoundNumber;
     }
 }

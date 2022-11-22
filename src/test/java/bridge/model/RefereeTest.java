@@ -22,9 +22,12 @@ class RefereeTest {
     @BeforeEach
     void setUp() {
         bridge = new Bridge(List.of("U", "D", "U"));
-        recordFirst = new Referee(bridge, 1);
-        recordSecond = new Referee(bridge, 2);
-        recordFinal = new Referee(bridge, 3);
+        recordFirst = new Referee(bridge);
+        recordFirst.addCurrentRoundNumber();
+
+        recordSecond = new Referee(bridge);
+        recordFirst.addCurrentRoundNumber();
+        recordFirst.addCurrentRoundNumber();
     }
 
     @AfterEach
