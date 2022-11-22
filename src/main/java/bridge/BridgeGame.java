@@ -8,17 +8,61 @@ package bridge;
  * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+    List<String> upResult = new ArrayList<>();
+    List<String> downResult = new ArrayList<>();
+
+    public void run() {
+        int size = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        move(bridge);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+
+    public void move(List<String> bridge) {
+        System.out.println(bridge);
+
+        for (int i = 0; i < bridge.size(); i++) {
+            String userUpDownInput = inputView.readMoving();
+
+            upResult.add(i, " ");
+            downResult.add(i, " ");
+
+            if (userUpDownInput.equals("U")) {
+                if (bridge.get(i).equals("U")) {
+                    upResult.set(i, "O");
+                } else {
+                    upResult.set(i, "X");
+                }
+            }
+
+            if (userUpDownInput.equals("D")) {
+                if (bridge.get(i).equals("D")) {
+                    downResult.set(i, "O");
+                } else {
+                    downResult.set(i, "X");
+                }
+            }
+
+            outputView.printMap(upResult, downResult);
+        }
     }
 
     /**

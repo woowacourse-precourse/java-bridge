@@ -7,6 +7,8 @@ package bridge;
  * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -17,7 +19,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> upResult, List<String> downResult) {
+        System.out.print("[ " + upResult.get(0));
+        for (int i = 1; i < upResult.size(); i++)
+            System.out.print(" | " + upResult.get(i));
+        System.out.println(" ]");
+
+        System.out.print("[ " + downResult.get(0));
+        for (int i = 1; i < downResult.size(); i++)
+            System.out.print(" | " + downResult.get(i));
+        System.out.println(" ]");
     }
 
     /**
