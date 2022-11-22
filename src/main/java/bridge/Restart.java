@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.validation.Validation;
-
 public class Restart {
     private final String result;
 

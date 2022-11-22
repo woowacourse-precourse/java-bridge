@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.type.MovingType;
-import bridge.validation.Validation;
 
 public class Moving {
     private final String result;

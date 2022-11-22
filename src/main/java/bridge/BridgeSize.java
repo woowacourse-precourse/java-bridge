@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.validation.Validation;
-
 public class BridgeSize {
     private int size;
 
