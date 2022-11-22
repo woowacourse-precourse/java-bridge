@@ -62,4 +62,9 @@ public class BridgeGame {
     private void initMap() {
         mapMaker.initBridge();
     }
+
+    public String getResult() {
+        return InGameMessage.SUCCESS_OR_FAILURE.getMessage()+ InGameMessage.findMessageBySuccessOrNot(crossed)
+                + "\n" + InGameMessage.TRY_COUNT.getMessage() + gameCount;
+    }
 }
