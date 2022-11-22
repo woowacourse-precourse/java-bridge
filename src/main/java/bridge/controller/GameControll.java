@@ -38,21 +38,12 @@ public class GameControll {
 
     }
 
+    private void viewBridgeSize(){
+        inputBridgeSize();
+    }
     private void inputBridgeSize() {
-        outputView.printRequestBridgeSize();
         size = inputView.readBridgeSize();
         makeBridge();
-    }
-
-    private void viewBridgeSize(){
-        while(true){
-            try{
-                inputBridgeSize();
-                break;
-            }catch(IllegalArgumentException exception){
-                outputView.printErrorMessage(exception.getMessage());
-            }
-        }
     }
 
     private void makeBridge() {
@@ -71,15 +62,7 @@ public class GameControll {
     }
 
     private void viewMove() {
-        while(true){
-            try{
-                outputView.printRequestMove();
-                move = inputView.readMoving();
-                break;
-            }catch(IllegalArgumentException exception){
-                outputView.printErrorMessage(exception.getMessage());
-            }
-        }
+        move = inputView.readMoving();
     }
 
     private void checkMoveBridge() {
@@ -116,15 +99,7 @@ public class GameControll {
     }
 
     private void viewRetry() {
-        while(true){
-            try {
-                outputView.printRequestRetry();
-                retryOrQuit = inputView.readGameCommand();
-                break;
-            }catch(IllegalArgumentException exception){
-                outputView.printErrorMessage(exception.getMessage());
-            }
-        }
+        retryOrQuit = inputView.readGameCommand();
     }
 
     private void checkRetry() {
