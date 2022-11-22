@@ -23,7 +23,9 @@ public class BridgeGame {
             String movingCommand=Input.readMoving();
             System.out.println(movingCommand);
             OutputView Output = new OutputView();
-            Output.printMap(gameStepCount,movingCommand,Bridge);
+            if(!Output.printMap(gameStepCount,movingCommand,Bridge)){
+                break;
+            }
             gameStepCount++;
         }
     }

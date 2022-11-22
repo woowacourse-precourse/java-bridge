@@ -9,4 +9,7 @@ public final class Constants {
     public static final String ERROR_RANGE_INFO = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static final String ERROR_COMMAND_INFO = "[ERROR] U 또는 D만 입력하세요.";
 
+    public static final String BLANK_MARK = "   ";
+    public static final String CIRCLE_MARK = " O ";
+    public static final String CROSS_MARK = " X ";
 }

@@ -15,18 +15,18 @@ public class OutputView {
     static List<String> upBridgeMap = new ArrayList<>();
     static List<String> downBridgeMap = new ArrayList<>();
 
-    public void printMap(int count,String command, List<String> Bridge) {
-        if (command.equals("U")) {
-            upBridgeMap.add(" O ");
-            downBridgeMap.add("   ");
-        }
-        if (command.equals("D")) {
-            upBridgeMap.add("   ");
-            downBridgeMap.add(" O ");
-
+    public boolean printMap(int count,String command,List<String> Bridge) {
+        String mark=checkMap(command,count,Bridge);
+        if (mark.equals(Constants.CROSS_MARK)){
+            printOX(mark,command);
             System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
-            System.out.println("[" + String.join("|", downBridgeMap) + "]\n");
-        }
+            System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
+            return false;
+        };
+        printOX(mark,command);
+        System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
+        System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
+        return true;
     }
 
     /**
@@ -35,5 +35,24 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public String checkMap(String command,int count,List<String>Bridge){
+        int index = 0;
+        // 1차원 배열에서 2의 배수씩 다음 칸으로 넘어가고, U는 0으로, D는 1로 표기하여 계산함
+        if (command.equals("U")){index =  (count*2)+0;}
+        if (command.equals("D")){index = (count*2)+1;}
+        if (Bridge.get(index).equals("1")){return Constants.CIRCLE_MARK;}
+        return Constants.CROSS_MARK;
+    }
+    public void printOX(String mark,String command){
+        if (command.equals("U")) {
+            upBridgeMap.add(mark);
+            downBridgeMap.add(Constants.BLANK_MARK);
+        }
+        if (command.equals("D")) {
+            upBridgeMap.add(Constants.BLANK_MARK);
+            downBridgeMap.add(mark);
+        }
     }
 }
