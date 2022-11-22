@@ -6,7 +6,7 @@ import static bridge.domain.Constants.*;
 
 public class BridgeGame {
 
-    private List<String> bridge;
+    private final List<String> bridge;
     private BridgeState bridgeState;
     private BridgeGameState bridgeGameState;
 
