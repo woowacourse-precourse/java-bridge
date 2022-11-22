@@ -17,16 +17,16 @@ public enum Move {
 
     public static Move of(String command) {
         return Arrays.stream(values())
-                .filter(direction -> direction.command.equals(command))
+                .filter(move -> move.command.equals(command))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidMoving()));
     }
 
     public static String getCommandByBridgeNumber(int bridgeNumber) {
         return Arrays.stream(values())
-                .filter(direction -> direction.bridgeNumber == bridgeNumber)
+                .filter(move -> move.bridgeNumber == bridgeNumber)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new)
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidMoving()))
                 .command;
     }
 }
