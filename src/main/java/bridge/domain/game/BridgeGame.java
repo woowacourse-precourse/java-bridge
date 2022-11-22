@@ -37,13 +37,9 @@ public class BridgeGame {
 
     @Override
     public String toString() {
-        return String.format("현재 위치 : %s, 재시도 횟수 : %d",
+        return String.format("현재 위치 : %d, 재시도 횟수 : %d",
                 this.position,
                 this.retryCount);
-    }
-
-    public int getPosition() {
-        return position;
     }
 
     public int getRetryCount() {

@@ -22,19 +22,7 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame(bridge);
     }
 
-    @DisplayName("다리를 건널 수 있다면 현재 위치가 1 증가한다.")
-    @Test
-    void increasePosition() {
-        int curPosition = bridgeGame.getPosition();
-        Square square = new Square(MoveType.UP);
-
-        SquareResult move = bridgeGame.move(square);
-
-        assertThat(move.getMoveResult()).isEqualTo(MoveResult.SUCCESS);
-        assertThat(bridgeGame.getPosition()).isEqualTo(curPosition + 1);
-    }
-
-    @DisplayName("현재 위치가 다리의 길이와 같다면 참을 반환한다.")
+    @DisplayName("이동시 현재 위치가 1씩 증가하다가 다리의 길이와 같아진다면 성공을 반환한다.")
     @Test
     void success() {
         SquareResult moveUp = bridgeGame.move(new Square(MoveType.UP));
@@ -57,7 +45,7 @@ class BridgeGameTest {
         bridgeGame.retry();
 
         assertThat(move.getMoveResult()).isEqualTo(MoveResult.FAIL);
-        assertThat(bridgeGame.getPosition()).isEqualTo(0);
+        assertThat(bridgeGame.toString()).contains("0");
     }
 
     @DisplayName("재시작하는 경우 재시작 횟수가 1 증가한다.")
