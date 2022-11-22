@@ -64,6 +64,10 @@ public class BridgeGame {
         return map;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     private void validateSize(int size) {
         if (size < BridgeConstant.MIN_LENGTH || BridgeConstant.MAX_LENGTH < size) {
             throw new IllegalArgumentException(ExceptionConstant.INCORRECT_LENGTH.getMessage());
