@@ -34,6 +34,21 @@ public class BridgeGame {
         return bridge.compare(command, columnPosition - 1);
     }
 
+    private void validateMove(String moveCommand) {
+        if (moveCommand.equals(BridgePosition.UP.getPositionFormOfAlphabet()) ||
+                moveCommand.equals(BridgePosition.DOWN.getPositionFormOfAlphabet())) {
+            return;
+        }
+        throw new IllegalMoveCommandException();
+    }
+
+    public GameResult resultOfMove(boolean isMatch) {
+        if (isMatch) {
+            return bridge.getMatchedPathResult(columnPosition);
+        }
+        return bridge.getUnMatchedPathResult(columnPosition);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -56,21 +71,6 @@ public class BridgeGame {
             return;
         }
         throw new IllegalRetryCommandException();
-    }
-
-    private void validateMove(String moveCommand) {
-        if (moveCommand.equals(BridgePosition.UP.getPositionFormOfAlphabet()) ||
-                moveCommand.equals(BridgePosition.DOWN.getPositionFormOfAlphabet())) {
-            return;
-        }
-        throw new IllegalMoveCommandException();
-    }
-
-    public GameResult resultOfMove(boolean isMatch) {
-        if (isMatch) {
-            return bridge.getMatchedPathResult(columnPosition);
-        }
-        return bridge.getUnMatchedPathResult(columnPosition);
     }
 
     public int getGameCount() {
