@@ -1,9 +1,23 @@
 package bridge.domain;
 
+import bridge.BridgeRandomNumberGenerator;
+import bridge.code.GameStatus;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private final List<String> bridge;
+    private final GameResult result;
+    private int gameStatus;
+
+    public BridgeGame(int size) {
+        this.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+        this.result = new GameResult();
+        this.gameStatus= GameStatus.PLAY;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
