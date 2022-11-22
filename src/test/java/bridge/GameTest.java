@@ -8,8 +8,6 @@ import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
 import bridge.service.BridgeGame;
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,8 +35,6 @@ public class GameTest extends NsTest {
 		assertThat(gameStatus1).isEqualTo(GameStatus.PASS);
 		assertThat(gameStatus2).isEqualTo(GameStatus.CLEAR);
 	}
-
-
 	@Test
 	@DisplayName("게임 종료(실패) 테스트")
 	void 게임_종료_테스트() {

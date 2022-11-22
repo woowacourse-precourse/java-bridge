@@ -6,8 +6,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
