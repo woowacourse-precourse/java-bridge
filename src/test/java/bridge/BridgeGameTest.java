@@ -2,10 +2,7 @@ package bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
@@ -28,5 +25,14 @@ class BridgeGameTest {
         bridgeGame.retry();
 
         assertTrue(bridgeGame.result.equals(List.of()));
+    }
+
+    @DisplayName("Bridge Game 재시작 시 실행 횟수 1회 추가 확인")
+    @Test
+    void testMatchNum() {
+        bridgeGame.result = List.of("U","D");
+        bridgeGame.retry();
+
+        assertTrue(bridgeGame.matchNum==2);
     }
 }
