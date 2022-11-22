@@ -14,7 +14,7 @@ public class OutputView {
 
     public void printMap(BridgeGame bridgeGame) {
         System.out.println(START_SUFFIX + getTopResult(bridgeGame) + END_SUFFIX);
-        System.out.println(START_SUFFIX + getBottomResult(bridgeGame) + END_SUFFIX);
+        System.out.println(START_SUFFIX + getBottomResult(bridgeGame) + END_SUFFIX + System.lineSeparator());
     }
 
     public void printResult(BridgeGame bridgeGame) {
