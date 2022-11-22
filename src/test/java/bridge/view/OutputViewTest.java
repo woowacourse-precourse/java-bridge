@@ -74,7 +74,7 @@ public class OutputViewTest {
                     "[ O |   | O | O | O |   ]",
                     "[   | O |   |   |   | O ]",
                     "게임 성공 여부: 성공",
-                    "총 시도한 횟수: 1");
+                    "총 시도한 횟수: 3");
         }
 
         @DisplayName("중도 포기라면, 실패로 표기해야한다.")
