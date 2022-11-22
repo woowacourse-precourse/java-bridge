@@ -39,4 +39,8 @@ public enum DrawType implements DrawSupporter {
         this.symbol = symbol;
         this.isPass = isPass;
     }
+
+    public String getSymbol() {
+        return symbol;
+    }
 }
