@@ -59,8 +59,8 @@ public class BridgeGame {
         return tryCount;
     }
 
-    public List<String> getBridge() {
-        return bridge;
+    public String getBridgeCell(int i) {
+        return bridge.get(i);
     }
 
     public int getPosition() {

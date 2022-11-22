@@ -52,11 +52,11 @@ public class OutputView {
     }
 
     private String getCell(Line flag, int index, BridgeGame game) {
-        if (index < game.getIndex() && isSameLine(flag, game.getBridge().get(index))) {
+        if (index < game.getIndex() && isSameLine(flag, game.getBridgeCell(index))) {
             return CORRECT_CELL;
         }
         if (index == game.getIndex() && isSameLine(flag, game.getLastCommand())) {
-            if (game.getLastCommand().equals(game.getBridge().get(index))) {
+            if (game.getLastCommand().equals(game.getBridgeCell(index))) {
                 return CORRECT_CELL;
             }
             return INCORRECT_CELL;
