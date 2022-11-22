@@ -16,6 +16,8 @@ public class BridgeGame {
     private final InputView inputView;
     private List<String> newBridge;
     private int gameTrialCount = 1;
+    private DrawMap drawMap;
+    private String currentMap;
 
     public BridgeGame(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
@@ -45,9 +47,12 @@ public class BridgeGame {
         int score = 0;
         for (int i = 0; i < newBridge.size(); i++) {
             playerInput = updatePlayerInput(playerInput, move());
+            drawMap = new DrawMap(newBridge, playerInput);
+            currentMap = drawMap.returnMapToPrint();
+            outputView.printMap(currentMap);
             score = calculateScore(playerInput);
             if (score == newBridge.size()) {
-                outputView.printResult("성공", gameTrialCount);
+                outputView.printResult(currentMap, "성공", gameTrialCount);
                 return;
             }
             if (score != playerInput.size()) {
@@ -87,7 +92,7 @@ public class BridgeGame {
         outputView.printRestart();
         String newCommand = inputView.readGameCommand();
         if (Objects.equals(newCommand, "Q")) {
-            outputView.printResult("실패", gameTrialCount);
+            outputView.printResult(currentMap,"실패", gameTrialCount);
             return;
         }
         gameTrialCount += 1;
