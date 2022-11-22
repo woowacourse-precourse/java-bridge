@@ -41,14 +41,12 @@ public class Exception {
         }
         int size = Integer.parseInt(userInput);
         if (size < MIN_LENGTH || size > MAX_LENGTH)
-            //return userInput;
          throw new IllegalArgumentException("[ERROR]" + ErrorMessage.AMOUNT_BOUNDS.getError());
     }
 
 
-    public static String checkMove(String userInput) throws IllegalArgumentException {
-        if (userInput.equals(UP) || userInput.equals(DOWN))
-            return userInput;
+    public static void checkMove(String userInput) throws IllegalArgumentException {
+        if (!userInput.equals(UP) && !userInput.equals(DOWN))
         throw new IllegalArgumentException("[ERROR]" + ErrorMessage.WRONG_INPUT.error);
     }
 

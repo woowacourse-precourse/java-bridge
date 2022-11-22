@@ -14,16 +14,19 @@ public class Validator {
             Exception.checkString(bridgeLength);
             return Integer.parseInt(bridgeLength);
         } catch (IllegalArgumentException e) {
-            //e.getStackTrace();
             logger.warning(getErrorSupplier(e));
             return InputView.readBridgeSize();
         }
     }
-        //return
-
 
     public static String validateMove(String userInput) {
-        return Exception.checkMove(userInput);
+        try {
+            Exception.checkMove(userInput);
+            return userInput;
+        } catch (IllegalArgumentException e) {
+            logger.warning(getErrorSupplier(e));
+            return InputView.readMoving();
+        }
     }
 
     public static String validateRestartOrQuit(String userInput) {
