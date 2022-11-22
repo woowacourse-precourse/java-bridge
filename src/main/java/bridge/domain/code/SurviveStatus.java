@@ -30,6 +30,6 @@ public enum SurviveStatus {
     }
 
     public boolean isDie() {
-        return surviveStatusValue;
+        return this.equals(DIE);
     }
 }
