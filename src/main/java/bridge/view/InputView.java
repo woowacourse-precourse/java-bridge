@@ -10,6 +10,12 @@ public class InputView {
         out(InputMessage.START_GAME);
         blank();
         out(InputMessage.INPUT_BRIDGE_SIZE);
+        int inputNum = validate();
+        blank();
+        return inputNum;
+    }
+
+    private int validate() {
         int inputNum = 0;
         while (true) {
             String input = Console.readLine();
@@ -20,7 +26,6 @@ public class InputView {
                 out(ExceptionMessage.NOT_INTEGER);
             }
         }
-        blank();
         return inputNum;
     }
 
