@@ -16,9 +16,11 @@ class GameRecordTest {
 		gameRecord.recordSuccess(UP);
 		gameRecord.recordSuccess(DOWN);
 		gameRecord.recordFail(UP);
-		String expected = "[ O |   | X ]" + "\n" + "[   | O |   ]";
+		String expectedUp = "[O,  , X]";
+		String expectedDown = "[ , O,  ]";
 		//then
-		assertThat(gameRecord.toString()).isEqualTo(expected);
+		assertThat(gameRecord.getUpLog().toString()).isEqualTo(expectedUp);
+		assertThat(gameRecord.getDownLog().toString()).isEqualTo(expectedDown);
 	}
 
 	@Test
@@ -29,9 +31,9 @@ class GameRecordTest {
 		gameRecord.recordSuccess(UP);
 		//when
 		gameRecord.retry();
-		String nextRecord = gameRecord.toString();
+		String nextRecord = gameRecord.getUpLog().toString();
 		//then
-		assertThat(nextRecord).isEqualTo("[  ]"+"\n"+"[  ]");
+		assertThat(nextRecord).isEqualTo("[]");
 	}
 
 	@Test

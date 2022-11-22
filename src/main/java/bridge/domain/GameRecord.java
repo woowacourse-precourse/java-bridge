@@ -58,15 +58,11 @@ public class GameRecord {
 		return tryAttempts;
 	}
 
-	@Override
-	public String toString() {
-		return logToString(upLog) + "\n" + logToString(downLog);
+	public List<String> getUpLog() {
+		return upLog;
 	}
 
-	private String logToString(List<String> log) {
-		String PREFIX = "[ ";
-		String DELIMITER = " | ";
-		String SUFFIX = " ]";
-		return PREFIX + String.join(DELIMITER, log) + SUFFIX;
+	public List<String> getDownLog() {
+		return downLog;
 	}
 }
