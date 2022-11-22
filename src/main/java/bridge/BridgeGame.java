@@ -52,9 +52,6 @@ public class BridgeGame {
         if(Objects.equals(command, QUIT)) {
             return false;
         }
-        if (Objects.equals(command, RESTART)) {
-            return true;
-        }
         return true;
     }
 

@@ -3,17 +3,12 @@ package bridge;
 import static bridge.BridgeGame.*;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 import static utils.Constant.*;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeGameTest {
     @DisplayName("다리 길이가 3이고 정답만 입력했을 때 다리 이동 테스트")
