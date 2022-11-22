@@ -89,6 +89,14 @@ class ApplicationTest extends NsTest {
 		}, 1, 0, 1);
 	}
 
+	@Test
+	void 시도_횟수_검사() {
+		assertRandomNumberInRangeTest(() -> {
+			run("3", "U", "D", "D", "R", "U", "D", "U");
+			assertThat(output()).contains("총 시도한 횟수: 2");
+		}, 1, 0, 1);
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
