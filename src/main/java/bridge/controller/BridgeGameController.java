@@ -6,7 +6,6 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BridgeGameController {
