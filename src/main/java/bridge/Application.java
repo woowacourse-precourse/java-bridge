@@ -21,4 +21,18 @@ public class Application {
 
         bridgeNumberList = makeBridge.makeBridge(bridgeSize);
     }
+
+    public static boolean gameRun() {
+        for (int i = 0; i < bridgeNumberList.size(); i++) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String moveUpOrDown = userInput.readMoving();
+            boolean state = Game.move(bridgeNumberList.get(i), moveUpOrDown);
+            display.printMap(Game.getBridgeLineOne(), Game.getBridgeLineTwo());
+            if (state == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
