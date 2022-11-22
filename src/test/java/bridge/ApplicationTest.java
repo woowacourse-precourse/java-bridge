@@ -40,9 +40,54 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트_에러포함() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "U", "E", "Q");
+            assertThat(output()).contains(
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[ERROR] 재시작 여부는 R 또는 Q로만 동작합니다.",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "최종 게임 결과",
+                    "[ O |   | X ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | X ]");
+            int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 0);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void inputLenCheck_테스트(){
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void inputStringUpAndDownCheck_테스트(){
+        assertSimpleTest(() -> {
+            runException("E");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void inputRetryCheck_테스트(){
+        assertSimpleTest(() -> {
+            runException("E");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
