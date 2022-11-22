@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -15,7 +16,8 @@ public class InputView {
         System.out.println("\n다리의 길이를 입력해주세요.");
         try{
             return sc.nextInt();
-        }catch (NumberFormatException e){
+        }catch (NumberFormatException | InputMismatchException e){
+            sc.nextLine();
             throw new IllegalArgumentException();
         }
     }
