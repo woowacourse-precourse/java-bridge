@@ -1,9 +1,17 @@
 package bridge;
 
+import java.util.Objects;
+
 public class Validator {
 
   public static void validateBridge(String input) {
     sizeBetween(input);
+  }
+
+  public static void validateDirection(String input) {
+    if (!Objects.equals(input, "U") && !Objects.equals(input, "D")) {
+      throw new IllegalArgumentException("[ERROR] 방향은 U, D로만 입력 가능합니다.");
+    }
   }
 
   public static void sizeBetween(String input) {

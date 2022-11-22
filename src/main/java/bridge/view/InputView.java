@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.Validator.*;
@@ -21,6 +22,15 @@ public class InputView {
             System.out.println("[ERROR] 다리 길이는 자연수만 입력 가능합니다.");
         }
         return 0;
+    }
+
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public Direction readMoving() {
+        String input = Console.readLine();
+        validateDirection(input);
+        return Direction.findByValue(input);
     }
 
 }
