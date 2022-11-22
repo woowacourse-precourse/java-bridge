@@ -7,7 +7,6 @@ public class BridgeMoveInputValidator {
     public static void validate(String input) throws IllegalArgumentException {
         sizeCheck(input);
         typeCheck(input);
-        rangeCheck(input);
     }
 
     public static void sizeCheck(String input) {
@@ -22,9 +21,4 @@ public class BridgeMoveInputValidator {
         }
     }
 
-    public static void rangeCheck(String input) {
-        if (input.length() > 1) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "입력값이 1자리가 아닙니다.");
-        }
-    }
 }
