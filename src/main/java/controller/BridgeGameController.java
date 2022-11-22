@@ -3,11 +3,12 @@ package controller;
 import static model.BridgeGameConstants.MOVING_SUCCESS;
 import static model.BridgeGameConstants.MOVING_SUCCESS_GAME_END;
 
-import static view.InputViewConstants.GAME_COMMAND_RESTART;
+import static view.InputViewConstants.GAME_COMMAND_QUIT;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+
 import model.BridgeGame;
 
 import view.InputView;
@@ -27,25 +28,32 @@ public class BridgeGameController {
 	}
 
 	public void gameProgress() {
-		int gameRound = 1;
 		while (true) {
 			int movingResult = playerMoving();
 			if (movingResult == MOVING_SUCCESS) {
 				continue;
 			}
-			if (movingResult == MOVING_SUCCESS_GAME_END) {
-				printGameResult(movingResult, gameRound);
+			if (gameEnd(movingResult)) {
+				printGameResult(movingResult, bridgeGame.getGameRoundCount());
 				break;
 			}
-			if (readGameCommand().equals(GAME_COMMAND_RESTART)) {
-				outputView.clearGameStateMap(); // -> 이 호출을 outputView가 하게 하면?
-				bridgeGame.retry(); // -> 이 호출을 bridgeGame이 하
-				gameRound += 1;
-				continue;
-			}
-			printGameResult(movingResult, gameRound);
-			break;
+			gameReset();
 		}
+	}
+
+	private boolean gameEnd(int movingResult) {
+		if (movingResult == MOVING_SUCCESS_GAME_END) {
+			return true;
+		}
+		if (readGameCommand().equals(GAME_COMMAND_QUIT)) {
+			return true;
+		}
+		return false;
+	}
+
+	private void gameReset() {
+		outputView.clearGameStateMap(); // -> 이 호출을 outputView가 하게 하면?
+		bridgeGame.retry(); // -> 이 호출을 bridgeGame이 하
 	}
 
 	private void gameStart() {
