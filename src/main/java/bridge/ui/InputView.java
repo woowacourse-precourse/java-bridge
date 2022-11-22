@@ -11,13 +11,35 @@ public class InputView {
 
     public int readBridgeSize() {
         try {
-            System.out.println(INPUT_BRIDGE_SIZE);
-            int bridgeSize = Integer.parseInt(Console.readLine());
-            System.out.println();
+            int bridgeSize = getBridgeSizeAfterAnnounce();
+            validateSize(bridgeSize);
             return bridgeSize;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+    }
+
+    private int getBridgeSizeAfterAnnounce() {
+        System.out.println(INPUT_BRIDGE_SIZE);
+        int bridgeSize = readBridgeSizeInputAfterParse();
+        System.out.println("");
+        return bridgeSize;
+    }
+
+    private int readBridgeSizeInputAfterParse() {
+        try {
+            return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_NUMBER.getValue());
         }
+    }
+
+    private void validateSize(int size) {
+        if (3 <= size && size <= 20) {
+            return;
+        }
+        throw new IllegalArgumentException(ErrorMessage.WRONG_BRIDGE_SIZE.getValue());
     }
 
     public String readMoving() {
