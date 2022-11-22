@@ -18,6 +18,26 @@ public enum Direction {
         this.directionNumber = directionNumber;
     }
 
+    public static String getGuide() {
+        StringBuilder guide = new StringBuilder();
+        int totalDirectionCount = Direction.values().length;
+
+        guide.append("(");
+        makeGuide(guide, totalDirectionCount);
+        guide.append(")");
+        return guide.toString();
+    }
+    private static void makeGuide(StringBuilder guide, int totalDirectionCount) {
+        int count = 0;
+        for (Direction directions : Direction.values()) {
+            count++;
+            guide.append(directions.description).append(": ").append(directions.shortcut);
+            if (count != totalDirectionCount) {
+                guide.append(", ");
+            }
+        }
+    }
+
     public static Direction find(String direction) {
         return Arrays.stream(Direction.values())
                 .filter(element -> element.shortcut.equals(direction))
@@ -30,4 +50,23 @@ public enum Direction {
                 .collect(Collectors.toList());
     }
 
+    public static boolean contains(String input) {
+        return Arrays.stream(Direction.values())
+                .map(element -> element.shortcut)
+                .anyMatch(direction -> direction.equals(input));
+    }
+
+    public static String findDirection(int number) {
+        return Arrays.stream(Direction.values())
+                .filter(element -> element.directionNumber == number)
+                .findFirst().get().shortcut;
+    }
+
+    public boolean isUp() {
+        return this.equals(UP);
+    }
+    public boolean isDown() {
+        return this.equals(DOWN);
+
+    }
 }

@@ -11,4 +11,11 @@ public enum GameProgressState {
         this.description = description;
     }
 
+    public boolean isRunning() {
+        return this == RUNNING;
+    }
+    public boolean isGameCleared() {
+        return this == GAME_CLEAR;
+    }
+
 }

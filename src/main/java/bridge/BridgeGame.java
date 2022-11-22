@@ -63,4 +63,27 @@ public class BridgeGame {
         progressState = GameProgressState.STOP;
     }
 
+    public boolean canMoving() {
+        return stageState.isPassed() && !bridge.isLastStage(stage);
+    }
+    public boolean isCleared() {
+        return progressState.isGameCleared();
+    }
+    public boolean isRunning() {
+        return progressState.isRunning();
+    }
+    public int getTotalTryCount() {
+        return tryCount;
+    }
+    public int getStage() {
+        return stage;
+    }
+    public Bridge getBridge() {
+        return bridge;
+    }
+    public boolean isCurrentStageDirectionMatched() {
+        return stageState.isPassed();
+    }
+
+
 }
