@@ -35,6 +35,7 @@ public class Controller {
             checkCorrectChoice();
             checkApproachLast();
         }
+        finishGame();
     }
 
     private void move() {
@@ -78,5 +79,13 @@ public class Controller {
         if (playing && isApproachLast) {
             playing = false;
         }
+    }
+
+    private void finishGame() {
+        System.out.println(Message.GAME_RESULT_MESSAGE);
+        outputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
+
+        boolean isSuccess = isCorrectChoice() && bridgeGame.isApproachLast(bridge.getAnswersSize(), player.getChoicesSize());
+        outputView.printResult(isSuccess, player.getTryCount());
     }
 }
