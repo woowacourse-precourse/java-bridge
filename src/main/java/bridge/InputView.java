@@ -11,7 +11,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String number = readLine();
         return checkBridgeSizeRange(isNumber(checkEmptyInput(number)));
     }
@@ -19,7 +19,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String space = readLine();
         return checkSpaceToMove(checkEmptyInput(space));
     }
@@ -27,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         String space = readLine();
         return checkGameRetry(checkEmptyInput(space));
     }

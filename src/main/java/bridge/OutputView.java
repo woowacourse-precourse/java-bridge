@@ -8,24 +8,21 @@ import static bridge.PrintMessage.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static String upBridge;
-    private static String downBridge;
-
-    public void printGameStartMessage() {
+    public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
         System.out.print(ENTER);
     }
 
-    public void printInputBridgeSizeMessage() {
+    public static void printInputBridgeSizeMessage() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
-    public void printChooseSpaceToMoveMessage() {
+    public static void printChooseSpaceToMoveMessage() {
         System.out.print(ENTER);
         System.out.println(CHOOSE_SPACE_TO_MOVE_MESSAGE);
     }
 
-    public void printChooseRetryGameMessage() {
+    public static void printChooseRetryGameMessage() {
         System.out.print(ENTER);
         System.out.println(CHOOSE_RETRY_GAME_MESSAGE);
     }
@@ -35,7 +32,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridges) {
+    public static void printMap(List<String> bridges) {
         System.out.println(bridges.get(0));
         System.out.println(bridges.get(1));
     }
@@ -46,6 +43,6 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult() {
     }
 }
