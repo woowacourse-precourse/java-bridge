@@ -16,7 +16,7 @@ public class BridgeGameTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        assertThat(bridgeGame.move("U")).isTrue();
+        assertThat(bridgeGame.isMovable("U")).isTrue();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class BridgeGameTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        assertThat(bridgeGame.move("D")).isFalse();
+        assertThat(bridgeGame.isMovable("D")).isFalse();
     }
 
     @Test
