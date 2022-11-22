@@ -26,7 +26,8 @@ public class BridgeGame {
     }
 
     public void play() {
-        System.out.println("게임 시작");
+        outputView.printStart();
+        outputView.printBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         while (!gameEndChecker.getEnd()) {
@@ -52,13 +53,13 @@ public class BridgeGame {
     }
 
     public String move(Bridge bridge, int index) {
-        System.out.println("이동 입력");
+        outputView.printMoving();
         String moving = inputView.readMoving();
         return moving;
     }
 
     public void retry() {
-        System.out.println("게임 재시작 유무");
+        outputView.printRetry();
         String answer = inputView.readGameCommand();
         quit(answer);
     }
