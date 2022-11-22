@@ -28,7 +28,6 @@ public class Bridge {
         if (columnPosition == bridgeFrame.size()) {
             return GameResult.of(result, ViewStatus.WIN);
         }
-
         return GameResult.of(result, ViewStatus.DETERMINE_MOVE);
     }
 

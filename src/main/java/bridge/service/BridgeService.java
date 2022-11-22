@@ -14,6 +14,7 @@ public class BridgeService {
     public ViewStatus makeBridge(Integer size) {
         BridgeMaker bridgeMaker =
                 new BridgeMaker(new BridgeRandomNumberGenerator());
+
         Bridge bridge = Bridge.from(bridgeMaker.makeBridge(size));
         bridgeGame = BridgeGame.from(bridge);
 
@@ -21,9 +22,7 @@ public class BridgeService {
     }
 
     public GameResult move(String moveCommand) {
-        //move
         boolean isMatch = bridgeGame.move(moveCommand);
-        //result
         return bridgeGame.resultOfMove(isMatch);
     }
 

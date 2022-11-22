@@ -47,7 +47,6 @@ public class BridgeGame {
             gameCount++;
             return ViewStatus.DETERMINE_MOVE;
         }
-
         return ViewStatus.LOSE;
     }
 
@@ -56,7 +55,6 @@ public class BridgeGame {
                 retryCommand.equals(QUIT)) {
             return;
         }
-
         throw new IllegalRetryCommandException();
     }
 
@@ -65,7 +63,6 @@ public class BridgeGame {
                 moveCommand.equals(BridgePosition.DOWN.getPositionFormOfAlphabet())) {
             return;
         }
-
         throw new IllegalMoveCommandException();
     }
 
