@@ -37,4 +37,40 @@ public class OutputViewTest {
                         "[   | O | X ]"
                 );
     }
+
+    @DisplayName("게임 성공 시 성공 결과를 출력한다.")
+    @Test
+    void When_UserClearGame_Expect_SuccessResultDisplay() {
+        List<List<ChoiceResult>> gameLog = List.of(
+                List.of(ChoiceResult.CORRECT, ChoiceResult.NOT_CHOSEN, ChoiceResult.CORRECT),
+                List.of(ChoiceResult.NOT_CHOSEN, ChoiceResult.CORRECT, ChoiceResult.NOT_CHOSEN)
+        );
+        outputView.printResult(gameLog, true, 3);
+        assertThat(out.toString())
+                .contains(
+                        "최종 게임 결과",
+                        "[ O |   | O ]",
+                        "[   | O |   ]",
+                        "게임 성공 여부: 성공",
+                        "총 시도한 횟수: 3"
+                );
+    }
+
+    @DisplayName("게임 실패 시 실패 결과를 출력한다.")
+    @Test
+    void When_UserDidNotClearGame_Expect_FailResultDisplay() {
+        List<List<ChoiceResult>> gameLog = List.of(
+                List.of(ChoiceResult.CORRECT, ChoiceResult.NOT_CHOSEN, ChoiceResult.NOT_CHOSEN),
+                List.of(ChoiceResult.NOT_CHOSEN, ChoiceResult.CORRECT, ChoiceResult.WRONG)
+        );
+        outputView.printResult(gameLog, false, 5);
+        assertThat(out.toString())
+                .contains(
+                        "최종 게임 결과",
+                        "[ O |   |   ]",
+                        "[   | O | X ]",
+                        "게임 성공 여부: 실패",
+                        "총 시도한 횟수: 5"
+                );
+    }
 }
