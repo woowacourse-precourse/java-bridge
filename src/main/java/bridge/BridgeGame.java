@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,5 +45,9 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public void resetCrossed(Bridge bridge) {
+        bridge.setCrossed(Arrays.asList());
     }
 }
