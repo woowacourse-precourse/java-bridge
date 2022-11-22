@@ -2,7 +2,6 @@ package bridge.ui.output;
 
 import bridge.Commands;
 import bridge.domain.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
