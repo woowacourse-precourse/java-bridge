@@ -51,6 +51,8 @@
 
 ### Bridge
 - [x] 특정 index에 존재하는 방향이 입력 방향과 같은지 확인하는 기능
+  - ![Generic badge](https://img.shields.io/badge/test-passed-blue.svg)
+
 - [x] 다리의 크기를 반환하는 기능 
 
 
