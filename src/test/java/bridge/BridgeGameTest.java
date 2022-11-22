@@ -16,20 +16,20 @@ class BridgeGameTest {
 
     List<String> bridge;
 
-    BridgeGame bridgeGame;
-
-    @BeforeEach
-    void setBridgeGame() {
-        bridgeGame = new BridgeGame();
-        bridge = bridgeGame.makeBridge(3);
-    }
+    BridgeGame bridgeGame = new BridgeGame();
 
     @Nested
     class makeBridgeTest {
+        @BeforeEach
+        void setUp() {
+            bridge = bridgeGame.makeBridge(3);
+        }
+
         @DisplayName("다리길이 입력시 생성된 다리 사이즈 확인")
         @Test
         void bridgeSizeTest() {
             int checkSize = 3;
+
             Assertions.assertThat(bridge.size()).isEqualTo(checkSize);
         }
 
@@ -41,4 +41,22 @@ class BridgeGameTest {
             assertThat(bridge.contains(element)).isEqualTo(expected);
         }
     }
+
+    @Nested
+    class moveTest {
+        @BeforeEach
+        void setUp() {
+            bridge = List.of("U", "D", "U", "D");
+        }
+
+        String userMove = "U";
+        int location = 0;
+
+        @DisplayName("example4의 numbers 포함 숫자 확인2")
+        @Test
+        void moveResultTest() {
+            assertThat(bridgeGame.move(userMove, location, bridge)).isTrue();
+        }
+    }
+
 }
