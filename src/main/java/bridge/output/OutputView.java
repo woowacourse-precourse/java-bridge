@@ -127,8 +127,7 @@ public class OutputView {
         } else if (viewModel.getSelectedBridge().equals("DOWN")) {
             return downViewBuilder;
         }
-        //지워도 될거 같지만 일단 남겨둠.
-        throw new IllegalArgumentException("UP or DOWN 만 가능합니다.");
+        throw new IllegalArgumentException("[ERROR]UP or DOWN 만 가능합니다.");
     }
 
     //printMap
