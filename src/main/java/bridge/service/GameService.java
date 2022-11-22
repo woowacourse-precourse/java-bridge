@@ -28,27 +28,24 @@ public class GameService {
         return bridgeGame.move(userSquare);
     }
 
-    public void isEndOfBridgeExit() {
-        if (bridgeGame.isGameFinalSuccess()) {
-            bridgeGame.exitGame();
-        }
+    public boolean isFinalSuccess() {
+        return bridgeGame.isFinalSuccess() && bridgeResult.isSuccess();
+
     }
 
-    public void restartOrExitGame(String input) {
+    public boolean canContinueRound() {
+        return !bridgeGame.isFinalSuccess() && bridgeResult.isSuccess();
+    }
+
+    public boolean isRestart(String input) {
         Command command = new Command(input);
-
         if (command.isExitCommand()) {
-            bridgeGame.exitGame();
+            return false;
         }
 
-        if (command.isRetryCommand()) {
-            bridgeGame.retry();
-            bridgeResult = new BridgeResult();
-        }
-    }
-
-    public boolean inProgress() {
-        return bridgeGame.isGameInProgress();
+        bridgeGame.retry();
+        bridgeResult = new BridgeResult();
+        return true;
     }
 
     public GameResultDto getFinalGameResult() {

@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class BridgeResult {
 
+    private static final int LAST_RESULT_INDEX = 2;
+
     private final List<SquareResult> bridgeResult;
 
     public BridgeResult() {
@@ -33,9 +35,15 @@ public class BridgeResult {
                                 Collectors.toList())));
     }
 
+    public boolean isSuccess() {
+        return bridgeResult
+                .get(bridgeResult.size() - LAST_RESULT_INDEX)
+                .isMoveSuccess();
+    }
+
     public String getMoveSuccessResult() {
         return bridgeResult
-                .get(bridgeResult.size() - 2)
+                .get(bridgeResult.size() - LAST_RESULT_INDEX)
                 .getMoveResult()
                 .value();
     }

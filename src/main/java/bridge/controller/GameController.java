@@ -33,24 +33,26 @@ public class GameController {
 
     protected void playGame() {
         do {
-            SquareResult squareResult = getUpToNowMoveResult();
+            SquareResult squareResult = moveBridge();
             BridgeResultDto bridgeResultDto = gameService.getFormattedEachMoveResult(squareResult);
             outputView.printMap(bridgeResultDto);
-            gameService.isEndOfBridgeExit();
-            isFailRestartOrExit(squareResult);
-        } while (gameService.inProgress());
+        } while (canContinue());
     }
 
-    private SquareResult getUpToNowMoveResult() {
+    private SquareResult moveBridge() {
         String move = inputView.readMoving();
         return gameService.moveBridge(move);
     }
 
-    private void isFailRestartOrExit(SquareResult squareResult) {
-        if (squareResult.isMoveFail()) {
-            String command = inputView.readGameCommand();
-            gameService.restartOrExitGame(command);
+    private boolean canContinue() {
+        if (gameService.canContinueRound()) {
+            return true;
         }
+
+        if (gameService.isFinalSuccess()) {
+            return false;
+        }
+        return gameService.isRestart(inputView.readGameCommand());
     }
 
     protected void printFinalResult() {

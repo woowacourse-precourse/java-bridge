@@ -38,8 +38,7 @@ class BridgeGameTest {
         bridgeGame.move(new Square(MoveType.UP));
         bridgeGame.move(new Square(MoveType.DOWN));
 
-        boolean gameSuccess = bridgeGame.isGameFinalSuccess();
-
+        boolean gameSuccess = bridgeGame.isFinalSuccess();
         assertThat(gameSuccess).isTrue();
     }
 

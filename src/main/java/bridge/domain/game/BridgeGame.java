@@ -7,13 +7,11 @@ import bridge.domain.move.MoveResult;
 
 public class BridgeGame {
 
-    private GameStatus gameStatus = GameStatus.PROGRESS;
+    private final Bridge bridge;
 
     private int position;
 
     private int retryCount;
-
-    private final Bridge bridge;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -33,16 +31,8 @@ public class BridgeGame {
         retryCount++;
     }
 
-    public boolean isGameFinalSuccess() {
+    public boolean isFinalSuccess() {
         return bridge.isEndOfBridge(position);
-    }
-
-    public boolean isGameInProgress() {
-        return gameStatus.equals(GameStatus.PROGRESS);
-    }
-
-    public void exitGame() {
-        gameStatus = GameStatus.EXIT;
     }
 
     public int getPosition() {
@@ -55,8 +45,7 @@ public class BridgeGame {
 
     @Override
     public String toString() {
-        return String.format("상태 : %s, 현재 위치 : %s, 재시도 횟수 : %d",
-                this.gameStatus.name(),
+        return String.format("현재 위치 : %s, 재시도 횟수 : %d",
                 this.position,
                 this.retryCount);
     }
