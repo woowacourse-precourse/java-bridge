@@ -2,8 +2,6 @@ package bridge.domain.validation;
 
 public class BridgeSize {
 
-    private static final String NOT_VALID_RANGE_OF_BRIDGE_SIZE = "다리의 길이는 3 이상 20 이하여야 합니다.";
-
     private final int bridgeSize;
 
     public BridgeSize(final int bridgeSize) {
@@ -19,7 +17,7 @@ public class BridgeSize {
         final int MIN_SIZE = 3;
         final int MAX_SIZE = 20;
         if (size < MIN_SIZE || MAX_SIZE < size) {
-            throw new IllegalArgumentException(NOT_VALID_RANGE_OF_BRIDGE_SIZE);
+            throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하여야 합니다.");
         }
     }
 }
