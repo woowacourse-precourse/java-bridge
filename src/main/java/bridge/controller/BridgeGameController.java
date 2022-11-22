@@ -32,9 +32,13 @@ public class BridgeGameController {
         outputView.printStartGame();
     }
 
-    private List<String> createBridge() {
+    private int choiceBridgeSize() {
         outputView.printChoiceBridgeSize();
-        return bridgeMaker.makeBridge(inputView.readBridgeSize());
+        return inputView.readBridgeSize();
+    }
+
+    private List<String> createBridge() {
+        return bridgeMaker.makeBridge(choiceBridgeSize());
     }
 
     private void moveBridge(BridgeGame bridgeGame, User user) {
@@ -69,10 +73,14 @@ public class BridgeGameController {
             runPassCase(bridgeGame);
         }
         if (!pass) {
-            outputView.printChoiceRetry();
-            String gameCommand = inputView.readGameCommand();
+            String gameCommand = choiceMoveGameCommand();
             runFailCase(bridgeGame, user, gameCommand);
         }
+    }
+
+    private String choiceMoveGameCommand() {
+        outputView.printChoiceRetry();
+        return inputView.readGameCommand();
     }
 
     private void runPassCase(BridgeGame bridgeGame) {
@@ -81,13 +89,21 @@ public class BridgeGameController {
 
     private void runFailCase(BridgeGame bridgeGame, User user, String gameCommand) {
         if (gameCommand.equals(RETRY.getCommand())) {
-            bridgeMapUpdater.clearMap();
-            user.increaseTryCount();
-            bridgeGame.retry();
+            retry(bridgeGame, user);
         }
         if (gameCommand.equals(QUIT.getCommand())) {
-            user.finishWithFail();
+            giveUp(user);
         }
+    }
+
+    private void retry(BridgeGame bridgeGame, User user) {
+        bridgeMapUpdater.clearMap();
+        user.increaseTryCount();
+        bridgeGame.retry();
+    }
+
+    private void giveUp(User user) {
+        user.finishWithFail();
     }
 
     private void printResult(User user) {
