@@ -1,7 +1,7 @@
-package bridge.model;
+package bridge;
 
-import static bridge.model.BridgeMaker.DOWN_BRIDGE;
-import static bridge.model.BridgeMaker.UP_BRIDGE;
+import static bridge.BridgeMaker.DOWN_BRIDGE;
+import static bridge.BridgeMaker.UP_BRIDGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;

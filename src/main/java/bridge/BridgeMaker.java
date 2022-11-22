@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge;
 
 import static java.util.stream.Collectors.toList;
 

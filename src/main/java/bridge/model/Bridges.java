@@ -2,6 +2,8 @@ package bridge.model;
 
 import static java.util.stream.Collectors.toList;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import java.util.List;
 
 public class Bridges {

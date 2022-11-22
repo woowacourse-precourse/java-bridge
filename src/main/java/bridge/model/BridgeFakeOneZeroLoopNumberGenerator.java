@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.BridgeNumberGenerator;
+
 class BridgeFakeOneZeroLoopNumberGenerator implements BridgeNumberGenerator {
     private int count;
 
