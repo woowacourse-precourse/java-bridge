@@ -1,23 +1,47 @@
 package bridge;
 
+import bridge.view.Sentence;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
+
+    private static final int ONE = 1;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
+    public BridgeMaker(final BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
-    public List<String> makeBridge(int size) {
-        return null;
+    public List<String> makeBridge(final int size) {
+        checkInputSize(size);
+        List<Integer> generatedAnswerNumeric = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            generatedAnswerNumeric.add(bridgeNumberGenerator.generate());
+        }
+        return changeToUAndD(generatedAnswerNumeric);
+    }
+
+    private void checkInputSize(final int size) {
+        if (size < ONE) {
+            throw new IllegalArgumentException(Sentence.LENGTH_NOT_IN_RANGE.getValue());
+        }
+    }
+
+    private List<String> changeToUAndD(final List<Integer> generatedValue) {
+        List<String> convertedValue = new ArrayList<>();
+        for (Integer integer : generatedValue) {
+            addChunkToConverted(convertedValue, integer);
+        }
+        return convertedValue;
+    }
+
+    private static void addChunkToConverted(final List<String> convertedValue, final Integer integer) {
+        if (integer == ONE) {
+            convertedValue.add(Sentence.UP_CHUNK.getValue());
+        } else if (integer == 0) {
+            convertedValue.add(Sentence.DOWN_CHUNK.getValue());
+        }
     }
 }
