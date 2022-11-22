@@ -34,4 +34,8 @@ public class Player {
     public int getGamePlayCount() {
         return this.gamePlayCount;
     }
+
+    public BridgeGameResult getBridgeGameResult() {
+        return bridgeGameResult;
+    }
 }
