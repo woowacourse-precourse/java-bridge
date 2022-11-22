@@ -9,6 +9,8 @@ public class OutputView {
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_END = " ]";
     private static final String BRIDGE_SEPARATOR = " | ";
+    private static final String GAME_STATUS_MESSAGE = "게임 생성 여부: %s";
+    private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %s";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -33,7 +35,7 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         printMap(bridgeGame);
-        System.out.println("게임 성공 여부: " + bridgeGame.getGameStatus().getMessage());
-        System.out.println("총 시도한 횟수: " + bridgeGame.getPlayCount());
+        System.out.printf((GAME_STATUS_MESSAGE) + "%n", bridgeGame.getGameStatus().getMessage());
+        System.out.printf((TOTAL_TRY_COUNT_MESSAGE) + "%n", bridgeGame.getPlayCount());
     }
 }
