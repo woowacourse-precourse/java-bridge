@@ -1,12 +1,13 @@
 package bridge.view;
 
+import bridge.utils.FirstInstanceBuilder;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public String readBridgeSize() {
+    public int readBridgeSize() {
         AnnounceInputMessage(AnnounceMessage.SIZE_INPUT.getMessage());
-        return scan();
+        return FirstInstanceBuilder.makeInputNum(scan());
     }
 
     public String readMoving() {

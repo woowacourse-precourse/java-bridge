@@ -26,7 +26,7 @@ public class BridgeController {
 
     public void prepareGame() {
         Bridge answerBridge = buildAnswerBridge();
-        outputView.print(NEW_LINE);
+        newLineForTheStart();
         OXBridge oxBridge = buildOXBridge();
 
         runGame(answerBridge, oxBridge);
@@ -62,6 +62,10 @@ public class BridgeController {
         return BridgeGame.retry(reOrQuit.getInputRQ());
     }
 
+    private void newLineForTheStart() {
+        outputView.print(NEW_LINE);
+    }
+
     private void printLose(OXBridge oxBridge) {
         printResult(oxBridge);
         outputView.printLose(oxBridge.getTries());
@@ -90,7 +94,7 @@ public class BridgeController {
 
     private Bridge buildAnswerBridge() {
         printStart();
-        return FirstInstanceBuilder.buildAnswerBridge(inputView.readBridgeSize(), inputView, outputView);
+        return FirstInstanceBuilder.buildAnswerBridge(inputView.readBridgeSize());
     }
 
     private UpOrDown makeUD() {

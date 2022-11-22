@@ -11,23 +11,17 @@ public class FirstInstanceBuilder {
         return OXBridge.from();
     }
 
-    public static Bridge buildAnswerBridge(String inputSize, InputView inputView, OutputView outputView) {
-        try {
-            return makeBridgeInstance(inputSize, inputView, outputView);
-        } catch (IllegalArgumentException e) {
-            outputView.printSizeInputException();
-            return buildAnswerBridge(inputView.readBridgeSize(), inputView, outputView);
-        }
+    public static Bridge buildAnswerBridge(int inputSize) {
+        return Bridge.of(inputSize);
     }
 
-    public static Bridge makeBridgeInstance(String inputSize, InputView inputView, OutputView outputView) {
-        InputChecker.nullCheck(inputSize);
+    public static int makeInputNum(String inputSize) {
         try {
-            return Bridge.of(Integer.parseInt(inputSize.trim()));
-        } catch (NumberFormatException e) {
-            outputView.printSizeInputException();
-            return buildAnswerBridge(inputView.readBridgeSize(), inputView, outputView);
-
+            InputChecker.nullCheck(inputSize);
+            return Integer.parseInt(inputSize.trim());
+        } catch (IllegalArgumentException NE) {
+            (new OutputView()).printSizeInputException();
+            return (new InputView()).readBridgeSize();
         }
     }
 }
