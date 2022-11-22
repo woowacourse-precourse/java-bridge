@@ -20,29 +20,29 @@ public class BridgeMap {
     public BridgeMap() {
         bridgeMap = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-            bridgeMap.add(List.of(START,END));
+            bridgeMap.add(new ArrayList<>(List.of(START,END)));
         }
     }
     public void updateChooseUpper(boolean correct) {
         if (correct == true) {
-            bridgeMap.get(0).add(bridgeMap.size() - 2 , CORRECT);
-            bridgeMap.get(1).add(bridgeMap.size() - 2 , BLANK);
+            bridgeMap.get(0).add(bridgeMap.size() - 1, CORRECT);
+            bridgeMap.get(1).add(bridgeMap.size() - 1, BLANK);
             return;
         }
-        bridgeMap.get(0).add(bridgeMap.size() - 2 , MISS);
-        bridgeMap.get(1).add(bridgeMap.size() - 2 , BLANK);
+        bridgeMap.get(0).add(bridgeMap.size() - 1, MISS);
+        bridgeMap.get(1).add(bridgeMap.size() - 1, BLANK);
     }
     public void updateChooseLower(boolean correct) {
         if (correct == true) {
-            bridgeMap.get(0).add(bridgeMap.size() - 2, BLANK);
-            bridgeMap.get(1).add(bridgeMap.size() - 2, CORRECT);
+            bridgeMap.get(0).add(bridgeMap.size() - 1, BLANK);
+            bridgeMap.get(1).add(bridgeMap.size() - 1, CORRECT);
             return;
         }
-        bridgeMap.get(0).add(bridgeMap.size() - 2, BLANK);
-        bridgeMap.get(1).add(bridgeMap.size() - 2, MISS);
+        bridgeMap.get(0).add(bridgeMap.size() - 1, BLANK);
+        bridgeMap.get(1).add(bridgeMap.size() - 1, MISS);
     }
     public void updateMap(String choose, boolean correct) {
-        if (choose == "U") {
+        if (choose.equals("U")) {
             updateChooseUpper(correct);
             return;
         }
@@ -52,7 +52,7 @@ public class BridgeMap {
     public void refreshMap() {
         bridgeMap.clear();
         for (int i = 0; i < 2; i++) {
-            bridgeMap.add(List.of(START,END));
+            bridgeMap.add(new ArrayList<>(List.of(START,END)));
         }
     }
 }
