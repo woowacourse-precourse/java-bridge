@@ -31,28 +31,23 @@ public class BridgeController {
 	}
 
 	private BridgeResult getGameResult(List<String> bridge) {
-		BridgeResult result = initializationBridgeResult("", 0);
+		BridgeResult result = new BridgeResult("", 0);
 
 		return saveGameResult(result, bridge);
 	}
 
 	private BridgeResult saveGameResult(BridgeResult result, List<String> bridge) {
 		do {
-			String movingResult = new RunController().crossBridge(bridge);
-			result = initializationBridgeResult(movingResult, result.getCount() + 1);
+			String movingResult = new MovingController().crossBridge(bridge);
+			result = new BridgeResult(movingResult, result.getCount() + 1);
 
-			if (result.isClear()) {
+			if (result.getIsClear()) {
 				break;
 			}
 		} while (new BridgeGame().retry(choiceEndOrNot()));
 
 		return result;
 	}
-
-	private BridgeResult initializationBridgeResult(String result, int count) {
-		return new BridgeResult(result, count, new RunController().isClearGame(result));
-	}
-
 
 	/*
 		view 관련 클래스

@@ -25,7 +25,7 @@ public class BridgeMaker {
        for (int i = 0; i < size; i++) {
            int shape = bridgeNumberGenerator.generate();
 
-           bridge.add(Bridge.findOrder(shape).getOrder());
+           bridge.add(Bridge.findOrder(shape));
        }
 
         return bridge;
