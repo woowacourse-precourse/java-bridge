@@ -22,27 +22,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
-            bridge.add(Column.changeNumToLetter(generateNumber()));
+            bridge.add(Column.changeNumToLetter(bridgeNumberGenerator.generate()));
         }
         return bridge;
     }
-
-    private int generateNumber(){
-        int number = handleGenerateNumber();
-        return number;
-    }
-
-    private int handleGenerateNumber(){
-        try {
-            int number = bridgeNumberGenerator.generate();
-            RandomNumber.validate(number);
-            return number;
-        }catch (IllegalArgumentException e){
-            e.getMessage();
-            return handleGenerateNumber();
-        }
-    }
-
-
 
 }
