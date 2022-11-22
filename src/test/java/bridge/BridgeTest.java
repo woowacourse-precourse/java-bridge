@@ -19,18 +19,36 @@ class BridgeTest {
 
     @Test
     void 이동칸_비교_테스트() {
-        List<String> input = Arrays.asList("D", "U");
-        List<String> input2 = Arrays.asList("D", "U", "D");
-        List<String> input3 = Arrays.asList("U");
+        List<String> firstInput = Arrays.asList("D", "U");
+        List<String> secondInput = Arrays.asList("D", "U", "D");
+        List<String> thirdInput = Arrays.asList("U");
 
-        assertThat(bridge.compareUserInput(input)).isEqualTo("O");
-        assertThat(bridge.compareUserInput(input2)).isEqualTo("X");
-        assertThat(bridge.compareUserInput(input3)).isEqualTo("X");
+        assertThat(bridge.compareUserInput(firstInput)).isEqualTo("O");
+        assertThat(bridge.compareUserInput(secondInput)).isEqualTo("X");
+        assertThat(bridge.compareUserInput(thirdInput)).isEqualTo("X");
     }
 
     @ParameterizedTest
     @CsvSource({"true,O","false,X"})
     void 비교_사인_변환_테스트(boolean comparison, String sign) {
-        assertThat(bridge.getSign(comparison)).isEqualTo(sign);
+        String input = bridge.getSign(comparison);
+        assertThat(input).isEqualTo(sign);
+    }
+
+    @Test
+    void 길이_비교_테스트() {
+        boolean falseInput = bridge.compareLength(Arrays.asList("U"));
+        boolean trueInput = bridge.compareLength(Arrays.asList("D", "U", "U"));
+
+        assertThat(falseInput).isFalse();
+        assertThat(trueInput).isTrue();
+    }
+
+    @Test
+    void 비교_인덱스_획득_테스트() {
+        int input = bridge.getCompareIndex(Arrays.asList("D", "U", "U"));
+        int expected = 2;
+
+        assertThat(input).isEqualTo(expected);
     }
 }
