@@ -1,8 +1,8 @@
 package bridge.constant;
 
 public enum BridgeMoveCommand {
-    MOVE_UP("U"),
-    MOVE_DOWN("D");
+    MOVE_DOWN("D"),
+    MOVE_UP("U");
 
     public final String command;
 
