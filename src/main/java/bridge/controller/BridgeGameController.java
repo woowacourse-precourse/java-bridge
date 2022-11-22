@@ -1,16 +1,14 @@
 package bridge.controller;
 
-import static bridge.service.BridgeGame.createGame;
 import static bridge.domain.game.GameRunStatus.makeGameRunStatus;
+import static bridge.service.BridgeGame.createGame;
 import static bridge.value.GameCommand.QUIT;
-
 import static bridge.view.game.GameResultView.makeGameResultView;
 import static bridge.view.game.GameStatusView.makeGameResultStatusView;
 import static bridge.view.game.GameStatusView.makeGameStatusView;
 
-import bridge.service.BridgeGame;
 import bridge.domain.game.GameRunStatus;
-import bridge.value.BridgeCharacter;
+import bridge.service.BridgeGame;
 import bridge.value.GameCommand;
 import bridge.view.game.GameStatusView;
 import bridge.view.io.UserIOView;
@@ -39,25 +37,32 @@ public class BridgeGameController {
     }
 
     public void run() {
-        BridgeCharacter bridgeCharacter = userIOView.inputMovingCharacterProcess();
-
-        if (!bridgeGame.canMove(bridgeCharacter)) {
-            gameFailProcess();
+        if (!canMove()) {
+            failProcess();
             return;
         }
+
         bridgeGame.move();
 
-        if (bridgeGame.isGameSuccess()) {
-            gameRunStatus.stop();
-        }
-
+        updateGameRunStatus();
         userIOView.outputGameStatus(makeGameStatusView(bridgeGame.status()));
     }
 
-    private void gameFailProcess() {
+    private void updateGameRunStatus() {
+        if (bridgeGame.isGameSuccess()) {
+            gameRunStatus.stop();
+        }
+    }
+
+    private boolean canMove() {
+        return bridgeGame.canMove(userIOView.inputMovingCharacterProcess());
+    }
+
+    private void failProcess() {
         GameStatusView gameStatusView = makeGameResultStatusView(bridgeGame.status());
         proceedFor(userIOView.inputGameCommandProcess(gameStatusView));
     }
+
     private void proceedFor(GameCommand gameCommand) {
         if (gameCommand == QUIT) {
             gameRunStatus.stop();
