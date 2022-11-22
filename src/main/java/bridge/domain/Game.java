@@ -1,0 +1,47 @@
+package bridge.domain;
+
+public class Game {
+    private boolean isGameDone;
+    private boolean isWinGame;
+
+    private int gameCount;
+
+    public Game() {
+        this.isGameDone = false;
+        this.isWinGame = false;
+        this.gameCount = 1;
+    }
+
+    public boolean isGameDone() {
+        return isGameDone;
+    }
+
+    private void setGameDone(boolean gameDone) {
+        isGameDone = gameDone;
+    }
+
+    public boolean isWinGame() {
+        return isWinGame;
+    }
+
+    private void setWinGame(boolean winGame) {
+        isWinGame = winGame;
+    }
+
+    public void winGame() {
+        setWinGame(true);
+    }
+
+    public void GameDone() {
+        setGameDone(true);
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
+
+    public void restartGame() {
+        gameCount += 1;
+    }
+
+}
