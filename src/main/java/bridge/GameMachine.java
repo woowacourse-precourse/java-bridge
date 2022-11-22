@@ -12,13 +12,13 @@ public class GameMachine {
                 ui.readBridgeSize()
         );
 
-        play(bridge);
+        play(BridgeType.toBridge(bridge));
     }
 
-    private void play(List<String> bridge) {
+    private void play(List<BridgeType> bridge) {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         for (int location = 0; location <= bridge.size(); location++) {
-            String userInput = ui.readMoving();
+            BridgeType userInput = BridgeType.of(ui.readMoving());
             if (MoveResult.FAIL == bridgeGame.move(userInput)) {
                 System.out.println("FAIL");
                 return;
