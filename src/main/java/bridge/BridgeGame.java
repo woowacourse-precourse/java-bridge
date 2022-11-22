@@ -39,6 +39,7 @@ public class BridgeGame {
 
     // Make cursor to zero
     public void retry() {
+        bridgeMap.refreshMap();
         cursor = 0;
     }
 
