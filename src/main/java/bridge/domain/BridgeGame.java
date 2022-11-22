@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.domain;
 
 import bridge.enums.BridgeStatus;
 import bridge.enums.GameCommand;
