@@ -2,9 +2,13 @@
 
 ## Domain logic
 - [] BridgeGame
-    - [] run
-    - [] move
-    - [] retry
+  - [] run
+  - [] trial
+  - [] retry
+  - [] createBridge
+  - [] move
+  - [] calculateScore
+    
 
 - [] BridgeMaker
   - [] makeBridge
@@ -23,23 +27,28 @@
   - [x] readBridgeSize
   - [x] readMoving
   - [x] readGameCommand
+  - [x] readMove
 
 - [] OutputView
   - [] printMap
-  - [] printResult 
+  - [] printResult
+  - [x] printGameStart
 
 - [] UI tool
-  - [] bridgeImage
+  - [] mapImage
 
 ## Test
 - [] Domain logic
   - [] BridgeGame
     - [] run
-    - [] move
+    - [] trial
     - [] retry
+    - [] createBridge
+    - [] move
+    - [] calculateScore
 
-  - [] BridgeMaker
-    - [] makeBridge
+  - [x] BridgeMaker
+    - [x] makeBridge
 
 - [x] Validation logic
   - [x] validateBridgeSize
