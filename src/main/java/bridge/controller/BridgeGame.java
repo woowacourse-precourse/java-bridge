@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.exception.BridgeException;
-import bridge.service.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.User;

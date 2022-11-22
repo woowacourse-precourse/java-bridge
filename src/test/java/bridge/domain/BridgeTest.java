@@ -1,14 +1,12 @@
 package bridge.domain;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.exception.BridgeException;
-import bridge.service.BridgeMaker;
+import bridge.BridgeMaker;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
     @Test
