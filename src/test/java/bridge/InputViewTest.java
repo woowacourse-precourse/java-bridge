@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
     InputView inputView = new InputView();
+
     @Test
     void readBridgeSize() {
         String test = "10";
@@ -28,4 +29,5 @@ class InputViewTest {
         assertThat(inputView.readGameCommand()).isEqualTo("R");
         assertThat(inputView.readGameCommand()).isEqualTo("Q");
     }
+
 }
