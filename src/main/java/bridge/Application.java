@@ -30,9 +30,7 @@ public class Application {
             String cmd=inputView.readMoving();
             boolean isSuccess=bridgeGame.move(round, cmd);
             outputView.printMap(round,bridgeGame.getCurrentBridge());
-            if(!isSuccess){
-                return GameState.FAIL;
-            }
+            if(!isSuccess) return GameState.FAIL;
         }
         return GameState.SUCCESS;
     }
