@@ -17,8 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CustomTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private static final String ENTER_MOVING_SPACE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String RETRY_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String GAME_RESULT = "최종 게임 결과";
 
     @DisplayName("다리 길이로 숫자 이외의 값이 들어오면 예외처리")
     @ValueSource(strings = {"H", "i", "!", ""})
@@ -45,7 +44,7 @@ public class CustomTest extends NsTest {
             run("a", "1", "3", "U", "D", "U");
             assertThat(output()).contains(
                     ERROR_MESSAGE,
-                    ENTER_MOVING_SPACE
+                    GAME_RESULT
             );
         }, 1, 0, 1);
     }
@@ -56,6 +55,18 @@ public class CustomTest extends NsTest {
     void moving_test(String strings) {
         assertThatThrownBy(() -> VerificationUtil.verifyMoving(strings))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("사용자가 이동할 칸을 잘못 입력할 경우 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다")
+    @Test
+    void reenter_moving_test() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "a", "U", "1", "D", "U");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    GAME_RESULT
+            );
+        }, 1, 0, 1);
     }
 
     @DisplayName("게임 재시작/종료 여부 입력이 R 또는 Q가 아닌 경우 예외처리")
