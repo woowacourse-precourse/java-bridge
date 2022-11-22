@@ -1,11 +1,11 @@
 package bridge;
 
-import game.playGame;
+import game.PlayGame;
 
 public class Application {
 
     public static void main(String[] args) {
-        playGame play = new playGame();
+        PlayGame play = new PlayGame();
         play.play();
     }
 }

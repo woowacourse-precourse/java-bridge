@@ -9,7 +9,7 @@ import userdomain.data.BridgeGame;
 import userdomain.userinterface.InputView;
 import userdomain.userinterface.OutputView;
 
-public class playGame {
+public class PlayGame {
     InputView input = new InputView();
     OutputView output = new OutputView();
     BridgeRandomNumberGenerator BridgeNumberGenerator = new BridgeRandomNumberGenerator();
