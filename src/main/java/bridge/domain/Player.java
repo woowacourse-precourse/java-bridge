@@ -13,10 +13,11 @@ public class Player {
         this.positions = new ArrayList<>();
     }
 
+    // 문자열을 받아 PositionType 으로 매핑
     public void selectPosition(String readMove) {
         PositionType matchPosition = PositionType
                 .matchSymbol(readMove)
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] PositionType is not match !!"));
 
         this.positions.add(matchPosition);
     }
