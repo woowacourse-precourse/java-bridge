@@ -1,6 +1,6 @@
 package bridge.handler;
 
-import bridge.view.OrderView;
+import bridge.view.PrintView;
 
 public class InputRestartHandler {
 
@@ -13,18 +13,18 @@ public class InputRestartHandler {
     }
 
     private void checkIsUpDown(String restart) {
-        OrderView orderView = new OrderView();
+        PrintView printView = new PrintView();
 
         if(!restart.equals("Q") && !restart.equals("R")){
-            throw new IllegalArgumentException(orderView.ERROR_ORDER+" 잘못된 재시작 여부의 입력입니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(printView.ERROR_ORDER+" 잘못된 재시작 여부의 입력입니다. 다시 입력해주세요.");
         }
     }
 
     private void checkNonInput(String restart){
-        OrderView orderView = new OrderView();
+        PrintView printView = new PrintView();
 
         if(restart.length() == 0) {
-            throw new IllegalArgumentException(orderView.ERROR_ORDER+" 재시작 여부의 입력이 되지 않았습니다.");
+            throw new IllegalArgumentException(printView.ERROR_ORDER+" 재시작 여부의 입력이 되지 않았습니다.");
         }
     }
 }

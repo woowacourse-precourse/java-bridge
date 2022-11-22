@@ -14,12 +14,12 @@ public class InputView {
      * @return
      */
     public String readBridgeSize() {
-        OrderView orderView = new OrderView();
-        System.out.println(orderView.START_ORDER);
-        orderView.lineSkip();
-        System.out.println(orderView.INPUT_BRIDGE_LENGTH);
+        PrintView printView = new PrintView();
+        System.out.println(printView.START_ORDER);
+        printView.lineSkip();
+        System.out.println(printView.INPUT_BRIDGE_LENGTH);
         String bridgeLength = inputBridgeLengthHandler.checkValidator(Console.readLine());
-        orderView.lineSkip();
+        printView.lineSkip();
 
         return bridgeLength;
     }
