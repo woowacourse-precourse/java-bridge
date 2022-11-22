@@ -73,7 +73,7 @@ public class InputView {
             }
             return true;
         } catch (IllegalArgumentException e){
-            return exception.exceptionMoving();
+            return exception.exceptionGameCommand();
         }
     }
 

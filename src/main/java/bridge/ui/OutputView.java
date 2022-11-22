@@ -112,4 +112,9 @@ public class OutputView {
     public void printErrorMoving() {
         System.out.println("[ERROR] 이동 할 위치는 U 또는 D 값이여야 합니다.");
     }
+
+    public void printErrorGameCommand() {
+        System.out.println("[ERROR] 재시도: R 또는 종료: Q 를 입력해주세요.");
+    }
+
 }

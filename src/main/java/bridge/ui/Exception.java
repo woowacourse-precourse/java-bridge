@@ -12,4 +12,9 @@ public class Exception {
         outputView.printErrorMoving();
         return false;
     }
+
+    public Boolean exceptionGameCommand() {
+        outputView.printErrorGameCommand();
+        return false;
+    }
 }
