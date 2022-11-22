@@ -17,7 +17,7 @@ public class InputView {
     private static final String INPUT_MESSAGE_GAME_COMMAND = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private static final int MIN_BRIDGE_SIZE = 3;
-    private static final int MAX_BRIDGE_SIZE = 21;
+    private static final int MAX_BRIDGE_SIZE = 20;
 
     /**
      * 다리의 길이를 입력받는다.
