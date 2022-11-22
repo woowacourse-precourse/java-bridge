@@ -36,4 +36,21 @@ public class Controller {
             return (true);
         }
     }
+
+    private void moveSafeLoop() {
+        boolean flag = true;
+        while (flag) {
+            flag = move();
+        }
+    }
+
+    private boolean move() {
+        try {
+            bridgeGame.move(inputView.readMoving());
+            return (false);
+        } catch (IllegalArgumentException ex) {
+            outputView.printExceptionMessage(ex.getMessage());
+            return (true);
+        }
+    }
 }
