@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 import bridge.domain.BridgeLength;
 import bridge.domain.BridgeStatus;
