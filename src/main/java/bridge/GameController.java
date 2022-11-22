@@ -29,7 +29,7 @@ public class GameController {
     }
 
     private boolean isEnd() {
-        if (bridgeGame.checkTheEnd == -1) {
+        if (bridgeGame.survivalStatus== checkTheEnd.FAILED) {
             return false;
         }
         return true;
@@ -46,8 +46,8 @@ public class GameController {
             movingByUserInput(bridgeGame, bridge.get(index++));
             bridgeGame.checkTheEndByBrideSize(bridge.size());
             outputView.printMap(bridgeGame.log);
-        } while (bridgeGame.checkTheEnd==0);
-        if (bridgeGame.checkTheEnd == -1) {
+        } while (bridgeGame.survivalStatus.equals(checkTheEnd.RUNNING));
+        if (!isEnd()) {
             count++;
             retryByUserInput(bridgeGame);
         }
@@ -63,10 +63,10 @@ public class GameController {
         outputView.printGameStatusRequest();
         String userInput = inputView.readGameCommand(inputView.readUserInput());
         if (bridgeGame.retry(userInput)) {
-            bridgeGame.checkTheEnd=-1;
+            bridgeGame.survivalStatus = checkTheEnd.FAILED;
             return;
         }
-        bridgeGame.checkTheEnd=1;
+        bridgeGame.survivalStatus=checkTheEnd.SUCCESS;
     }
 
 }
