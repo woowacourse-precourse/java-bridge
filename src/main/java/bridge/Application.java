@@ -6,6 +6,7 @@ public class Application {
 
     public static void main(String[] args) {
         int gameCount = 0;
+        int epoch = 1;
         BridgeGame bridgeGame = new BridgeGame();
 
         //1. 게임 시작 문구 출력
@@ -25,15 +26,21 @@ public class Application {
                     //5. 재시작 여부를 입력받음
                     if(bridgeGame.enterRetry()) {
                         bridgeGame.retry();
-                        tempCount = gameCount + 1;
 
+                        tempCount = gameCount + 1;
+                        epoch += 1;
                         continue;
                     }
 
+                    //6-1. 실패 후 결과 출력
+                    bridgeGame.printResult(true, epoch);
                     return;
                 }
             }
 
+            //6-2. 성공 후 결과 출력
+            bridgeGame.printResult(false, epoch);
+            return;
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
