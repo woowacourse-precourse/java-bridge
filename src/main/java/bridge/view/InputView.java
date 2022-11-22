@@ -7,11 +7,11 @@ import java.util.function.Supplier;
 
 public class InputView {
 
-    private final Valification valification;
+    private final Verification verification;
     private final TypeChange typeChange;
 
-    public InputView(Valification valification, TypeChange typeChange) {
-        this.valification = valification;
+    public InputView(Verification verification, TypeChange typeChange) {
+        this.verification = verification;
         this.typeChange = typeChange;
     }
 
@@ -27,7 +27,7 @@ public class InputView {
         System.out.println(Message.REQUEST_SIZE.getValue());
         int size = typeChange.ChangeStringToInteger(readLine());
         System.out.println(Message.EMPTY.getValue());
-        valification.verifyBridgeSize(size);
+        verification.verifyBridgeSize(size);
 
         return size;
     }
@@ -39,7 +39,7 @@ public class InputView {
     private String inputMoving() {
         System.out.println(Message.REQUEST_BRIDGE.getValue());
         String move = readLine();
-        valification.verifyUorD(move);
+        verification.verifyUorD(move);
 
         return move;
     }
@@ -51,7 +51,7 @@ public class InputView {
     private String inputGameCommand() {
         System.out.println(Message.REQUEST_RETRY.getValue());
         String retry = readLine();
-        valification.verifyQorR(retry);
+        verification.verifyQorR(retry);
 
         return retry;
     }
