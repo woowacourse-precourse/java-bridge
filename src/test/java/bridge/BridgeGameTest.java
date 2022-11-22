@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeGameTest {
 	BridgeGame test = new BridgeGame();
+
 	@DisplayName("입력받은 int 값에 대해 정확한 크기의 bridge 를 생성하는지")
 	@Test
 	void makeBridgeOnInputSize() {
@@ -21,7 +22,7 @@ public class BridgeGameTest {
 	@Test
 	void verifyBridgeCorrectValue() {
 		test.makeBridge(20);
-		for (int i = 0; 20 > i; i ++) {
+		for (int i = 0; 20 > i; i++) {
 			assertThat(Objects.equals(test.bridge.get(i), "U") || Objects.equals(test.bridge.get(i), "D")).isTrue();
 		}
 	}

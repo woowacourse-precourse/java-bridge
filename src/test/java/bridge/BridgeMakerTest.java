@@ -22,6 +22,6 @@ public class BridgeMakerTest {
 	void verifyParseRandomNumber() {
 		BridgeNumberGenerator parseTestNumber = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1, 0, 1));
 		BridgeMaker parseTest = new BridgeMaker(parseTestNumber);
-		assertThat(parseTest.makeBridge(5)).isEqualTo(newArrayList("U","D","U","D","U"));
+		assertThat(parseTest.makeBridge(5)).isEqualTo(newArrayList("U", "D", "U", "D", "U"));
 	}
 }

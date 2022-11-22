@@ -14,12 +14,12 @@ public class OutputViewTest {
 	@DisplayName("입력한 현재좌표 ArrayList 에 대해 단계적으로 bridgeShape 모양이 출력되는지")
 	@Test
 	void verifyBridgeShape() {
-		ArrayList<String> currentCoordinate = newArrayList("U","D","U");
-		test.printMap(0,currentCoordinate);
+		ArrayList<String> currentCoordinate = newArrayList("U", "D", "U");
+		test.printMap(0, currentCoordinate);
 		assertThat(test.mapU).isEqualTo("[ O ");
-		test.printMap(1,currentCoordinate);
+		test.printMap(1, currentCoordinate);
 		assertThat(test.mapU).isEqualTo("[ O |   ");
-		test.printMap(2,currentCoordinate);
+		test.printMap(2, currentCoordinate);
 		assertThat(test.mapU).isEqualTo("[ O |   | O ");
 
 	}
