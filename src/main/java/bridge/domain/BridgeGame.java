@@ -10,8 +10,7 @@ public class BridgeGame {
 
     private int currentPosition = 0;
     private int tryCount = 1;
-    private List<String> userPath = new ArrayList<>();
-    private List<Boolean> userPathAnswer = new ArrayList<>();
+    private List<BridgePath> userPath = new ArrayList<>();
     private final Bridge bridge;
 
     public BridgeGame(int bridgeSize) {
@@ -22,8 +21,7 @@ public class BridgeGame {
         if (compare(command)) {
             return move(command);
         }
-        userPath.add(command);
-        userPathAnswer.add(false);
+        userPath.add(new BridgePath(command, false));
         return false;
     }
 
@@ -45,8 +43,7 @@ public class BridgeGame {
      */
     public boolean move(String command) {
         System.out.println("BridgeGame.move()");
-        userPath.add(command);
-        userPathAnswer.add(true);
+        userPath.add(new BridgePath(command, true));
         currentPosition++;
         return true;
     }
@@ -58,7 +55,6 @@ public class BridgeGame {
      */
     public boolean retry() {
         userPath = new ArrayList<>();
-        userPathAnswer = new ArrayList<>();
         currentPosition = 0;
         tryCount++;
         return true;
@@ -72,11 +68,7 @@ public class BridgeGame {
         return this.tryCount;
     }
 
-    public List<String> getUserPath() {
+    public List<BridgePath> getUserPath() {
         return this.userPath;
-    }
-
-    public List<Boolean> getUserPathAnswer() {
-        return this.userPathAnswer;
     }
 }
