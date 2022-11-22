@@ -1,16 +1,23 @@
 package bridge.controller;
 
-import bridge.domain.Game;
+import bridge.service.BridgeService;
 import bridge.service.GameService;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final GameService gameService = new GameService();
+    private final GameService gameService;
+    private final BridgeService bridgeService;
 
-    public Game start() {
-        return gameService.initializeGame();
+    public BridgeGame(GameService gameService, BridgeService bridgeService) {
+        this.gameService = gameService;
+        this.bridgeService = bridgeService;
+    }
+
+    public void start() {
+        gameService.initializeGame();
+        bridgeService.initializeBridge();
     }
 
     /**

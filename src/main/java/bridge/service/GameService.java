@@ -4,8 +4,10 @@ import bridge.domain.Game;
 import bridge.view.OutputView;
 
 public class GameService {
-    public Game initializeGame() {
+    private Game game;
+
+    public void initializeGame() {
         OutputView.messageGameStart();
-        return new Game(1);
+        game = new Game(1);
     }
 }

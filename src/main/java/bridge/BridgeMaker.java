@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Position;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
+            bridge.add(Position.convertNumberToValue(number));
         }
         return bridge;
     }
