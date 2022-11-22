@@ -5,6 +5,20 @@ package bridge.service;
  */
 public class BridgeGame {
 
+    private List<String> bridge;
+    private List<Round> rounds;
+
+    public BridgeGame(int size) {
+        validBridgeLength(size);
+        setBridge(size);
+        this.rounds = new ArrayList<>();
+    }
+
+    public void setBridge(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = bridgeMaker.makeBridge(size);
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
