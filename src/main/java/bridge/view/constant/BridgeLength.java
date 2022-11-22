@@ -4,13 +4,13 @@ public enum BridgeLength {
 
     MIN_BRIDGE_LENGTH(3), MAX_BRIDGE_LENGTH(20);
 
-    private final int bridgeLength;
+    private final int length;
 
-    BridgeLength(int bridgeLength) {
-        this.bridgeLength = bridgeLength;
+    BridgeLength(int length) {
+        this.length = length;
     }
 
-    public int getValue() {
-        return this.bridgeLength;
+    public int getLength() {
+        return this.length;
     }
 }

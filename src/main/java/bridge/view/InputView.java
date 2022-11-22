@@ -32,7 +32,7 @@ public class InputView {
 
     private int validatedInputBridgeLength(String bridgeLength) {
         int length = Integer.parseInt(bridgeLength);
-        if (length < MIN_BRIDGE_LENGTH.getValue() || MAX_BRIDGE_LENGTH.getValue() < length) {
+        if (length < MIN_BRIDGE_LENGTH.getLength() || MAX_BRIDGE_LENGTH.getLength() < length) {
             throw INVALID_BRIDGE_LENGTH.getValue();
         }
         return length;
