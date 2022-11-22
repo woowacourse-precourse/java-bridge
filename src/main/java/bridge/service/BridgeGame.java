@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.constant.Directions;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeLength;
+import bridge.domain.User;
 import bridge.service.constant.ChoiceResult;
 import bridge.service.constant.GameStatus;
 
@@ -15,15 +16,9 @@ import java.util.stream.Collectors;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private int attemptCount;
-    private int panelOrder;
-    private GameStatus status;
     private Bridge bridge;
 
     public BridgeGame (int lengthInput) {
-        attemptCount = 1;
-        panelOrder = 0;
-        status = GameStatus.PLAYING;
         this.bridge = new Bridge(lengthInput);
     }
 
@@ -32,20 +27,19 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String userChoice) {
-        increaseOrder();
-        boolean isUserChoiceCorrect = bridge.isCorrectPanel(panelOrder, userChoice);
-        modifyStatusAfterChoice(isUserChoiceCorrect);
-        return  isUserChoiceCorrect;
+    public void move(User user, String userChoice) {
+        user.playNextRound();
+        boolean isUserChoiceCorrect = bridge.isCorrectPanel(user.getRound(), userChoice);
+        modifyStatusAfterChoice(user, isUserChoiceCorrect);
     }
 
-    private void modifyStatusAfterChoice(boolean isUserChoiceCorrect) {
-        if (isUserChoiceCorrect && bridge.isEnd(panelOrder)) {
-            status = GameStatus.SUCCESS;
+    private void modifyStatusAfterChoice(User user, boolean isUserChoiceCorrect) {
+        if (isUserChoiceCorrect && bridge.isEnd(user.getRound())) {
+            user.clearGame();
         }
 
         if (!isUserChoiceCorrect) {
-            status = GameStatus.FAIL;
+            user.failRound();
         }
     }
 
@@ -54,37 +48,24 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        status = GameStatus.PLAYING;
-        increaseAttemptCount();
-        decreaseOrder();
+    public void retry(User user) {
+        user.playSameRoundAgain();
     }
 
-    private void increaseAttemptCount() {
-        attemptCount++;
-    }
-
-    private void increaseOrder() {
-        panelOrder++;
-    }
-
-    private void decreaseOrder() {
-        panelOrder--;
-    }
-
-    public List<List<ChoiceResult>> obtainGameLog() {
+    public List<List<ChoiceResult>> obtainGameLog(User user) {
+        int userRound = user.getRound();
         List<List<ChoiceResult>> gameLog = new ArrayList<>();
         Arrays.stream(Directions.values())
-                .forEach(direction -> gameLog.add(obtainGameLogOfLine(direction.getSymbol())));
-        if (status == GameStatus.FAIL) {
-            putFailLogElement(gameLog);
+                .forEach(direction -> gameLog.add(obtainGameLogOfLine(userRound, direction.getSymbol())));
+        if (user.getStatus() == GameStatus.FAIL) {
+            putFailLogElement(gameLog, userRound);
         }
         return gameLog;
     }
 
-    private List<ChoiceResult> obtainGameLogOfLine (String line) {
+    private List<ChoiceResult> obtainGameLogOfLine (int userRound, String line) {
         return bridge.getBridge().stream()
-                .limit(panelOrder)
+                .limit(userRound)
                 .map(panel -> createLogElement(panel, line))
                 .collect(Collectors.toList());
     }
@@ -96,14 +77,14 @@ public class BridgeGame {
         return ChoiceResult.NOT_CHOSEN;
     }
 
-    private void putFailLogElement(List<List<ChoiceResult>> gameLog) {
+    private void putFailLogElement(List<List<ChoiceResult>> gameLog, int userRound) {
         for (List<ChoiceResult> lineLog : gameLog) {
-            putFailureElementToLine(lineLog);
+            putFailureElementToLine(lineLog, userRound);
         }
     }
 
-    private void putFailureElementToLine (List<ChoiceResult> lineLog) {
-        int lastPanelIndex = panelOrder - 1;
+    private void putFailureElementToLine (List<ChoiceResult> lineLog, int userRound) {
+        int lastPanelIndex = userRound - 1;
         ChoiceResult lastPanel = lineLog.get(lastPanelIndex);
         if (lastPanel == ChoiceResult.NOT_CHOSEN) {
             lineLog.set(lastPanelIndex, ChoiceResult.WRONG);
@@ -114,19 +95,7 @@ public class BridgeGame {
         }
     }
 
-    public boolean isGameCleared() {
-        return status == GameStatus.SUCCESS;
-    }
-
-    public int getAttemptCount() {
-        return attemptCount;
-    }
-
-    public int getPanelOrder() {
-        return panelOrder;
-    }
-
-    public GameStatus getStatus() {
-        return status;
+    public boolean isGameCleared(User user) {
+        return user.getStatus() == GameStatus.SUCCESS;
     }
 }
