@@ -1,6 +1,9 @@
 package bridge.view;
 
-import static bridge.Validator.*;
+import static bridge.Validator.validateIsDigit;
+import static bridge.Validator.validateIsMovingValue;
+import static bridge.Validator.validateIsRetryValue;
+import static bridge.Validator.validateSizeRange;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -30,7 +33,7 @@ public class InputView {
     public String readMoving() {
         String movingValue = Console.readLine();
         try {
-            movingValue = validateIsCorrectValue(Console.readLine());
+            movingValue = validateIsMovingValue(movingValue);
         } catch (IllegalArgumentException e) {
             e.getMessage();
             readMoving();
@@ -42,7 +45,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return Console.readLine();
+        String retryValue = Console.readLine();
+        try {
+            retryValue = validateIsRetryValue(retryValue);
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+            readGameCommand();
+        }
+        return retryValue;
     }
-
 }
