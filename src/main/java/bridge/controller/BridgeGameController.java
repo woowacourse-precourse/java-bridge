@@ -30,6 +30,11 @@ public class BridgeGameController {
     public void run() {
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
+        tryGame(bridge);
+        outputView.printResult(upSideDownSideMove, bridgeGame.getRetryCount());
+    }
+
+    public void tryGame(List<String> bridge) {
         while (bridgeGame.getGameFlag() && bridgeGame.isFailure(upSideDownSideMove)) {
             upSideDownSideMove = updateUpSideDownSideMove(bridge);
             if (bridgeGame.isFailure(upSideDownSideMove)) {
@@ -37,11 +42,15 @@ public class BridgeGameController {
                 bridgeGame = bridgeGame.retry(gameCommand);
             }
         }
-        outputView.printResult(upSideDownSideMove, bridgeGame.getRetryCount());
     }
 
     public List<String> updateUpSideDownSideMove(List<String> bridge) {
         List<String> updateMove = new ArrayList<>(List.of("", ""));
+        updateMove = tryMove(updateMove, bridge);
+        return updateMove;
+    }
+
+    public List<String> tryMove(List<String> updateMove, List<String> bridge) {
         for (String bridgeElement : bridge) {
             CompareBridge playerMove = new CompareBridge(inputView.readMoving());
             updateMove = bridgeGame.move(playerMove, updateMove, bridgeElement);
