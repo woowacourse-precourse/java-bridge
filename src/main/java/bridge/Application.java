@@ -51,65 +51,78 @@ public class Application {
         //5.출력: 게임 성공 여부, 총 시도한 횟수
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridges = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridges);
+        int cnt=0;
 
-        while(true){
-            String possibleMove="";
-            String upBridge="";
-            String downBridge="";
+        while(true) {
+            String possibleMove = "";
+            String upBridge = "";
+            String downBridge = "";
             List<String> curBridges = new ArrayList<>();
-            curBridges.add(""); curBridges.add("");
-            boolean flag= false;
+            curBridges.add("");
+            curBridges.add("");
+            boolean flag = false;
+            String gameCommand = "";
+            int lastIdx = 0;
+            cnt+=1;
 
-            for(int i=0;i<bridgeSize;i++){
+            for (int i = 0; i < bridgeSize; i++) {
                 String inputMove = inputView.readMoving();
-                System.out.println("이번 입력은: "+inputMove);
 
                 possibleMove = bridgeGame.move(inputMove, bridges, i);
-                System.out.println("possibleMove는"+possibleMove);
 
-                if(inputMove.equals("U") && possibleMove.equals("O")){
+                if (inputMove.equals("U") && possibleMove.equals("O")) {
                     upBridge = curBridges.get(0);
                     upBridge += "O";
                     curBridges.set(0, upBridge);
                     downBridge = curBridges.get(1);
-                    downBridge+=" ";
+                    downBridge += " ";
                     curBridges.set(1, downBridge);
-                    System.out.println("1번 경우");
                 }
-                if(inputMove.equals("U") && possibleMove.equals("X")){
+                if (inputMove.equals("U") && possibleMove.equals("X")) {
                     upBridge = curBridges.get(0);
                     upBridge += "X";
                     curBridges.set(0, upBridge);
                     downBridge = curBridges.get(1);
-                    downBridge+=" ";
+                    downBridge += " ";
                     curBridges.set(1, downBridge);
-                    System.out.println("2번 경우");
-
                     flag = true;
                 }
-                if(inputMove.equals("D") && possibleMove.equals("O")){
+                if (inputMove.equals("D") && possibleMove.equals("O")) {
                     upBridge = curBridges.get(0);
                     upBridge += " ";
                     curBridges.set(0, upBridge);
                     downBridge = curBridges.get(1);
-                    downBridge+="O";
+                    downBridge += "O";
                     curBridges.set(1, downBridge);
-                    System.out.println("3번 경우");
                 }
-                if(inputMove.equals("D") && possibleMove.equals("X")){
+                if (inputMove.equals("D") && possibleMove.equals("X")) {
                     upBridge = curBridges.get(0);
                     upBridge += " ";
                     curBridges.set(0, upBridge);
                     downBridge = curBridges.get(1);
-                    downBridge+="X";
+                    downBridge += "X";
                     curBridges.set(1, downBridge);
-                    System.out.println("4번 경우");
                     flag = true;
                 }
                 //출력: 현재까지 다리
                 outputView.printMap(curBridges, i);
-                if(flag){ break;}
+                if (flag) {
+                    break;
+                }
+            }
+            if (flag) {
+                gameCommand = inputView.readGameCommand();
+                if (bridgeGame.retry(gameCommand)) {
+                    continue;
+                }
+                if(!bridgeGame.retry(gameCommand)){
+                    outputView.printResult(curBridges, flag, cnt);
+                    break;
+                }
+            }
+            if (!flag) {
+                outputView.printResult(curBridges, flag, cnt);
+                break;
             }
         }
     }
