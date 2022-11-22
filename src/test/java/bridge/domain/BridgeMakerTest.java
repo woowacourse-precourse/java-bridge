@@ -11,8 +11,10 @@ class BridgeMakerTest {
     void 랜덤_다리_길이_사이즈_확인() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int result = 3;
+
         List<String> randomBridge = bridgeMaker.makeBridge(result);
         int randomBridgeSize = randomBridge.size();
+
         assertThat(randomBridgeSize).isEqualTo(result);
     }
 }

@@ -8,12 +8,6 @@ public class ValidateInput {
     private static final int STARTING_POINT_CONDITION = 3;
     private static final int LAST_POINT_CONDITION = 20;
 
-    public void validateNull(String bridgeLength) {
-        if (bridgeLength.equals(REGULAR_PATTERN)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_INPUT_ANYTHING);
-        }
-    }
-
     public void validateBetween(String bridgeLength) {
         int bridge = Integer.parseInt(bridgeLength);
         if (!(STARTING_POINT_CONDITION <= bridge && bridge <= LAST_POINT_CONDITION)) {

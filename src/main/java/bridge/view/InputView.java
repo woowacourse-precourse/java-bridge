@@ -20,7 +20,6 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeInput = Console.readLine();
-        validateInput.validateNull(bridgeInput);
         validateInput.validateNumber(bridgeInput);
         validateInput.validateBetween(bridgeInput);
         return Integer.parseInt(bridgeInput);
