@@ -6,6 +6,7 @@ public class InputView {
     private static final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String RESTART_GAME_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이를 다시 입력해주세요.";
     private static final int BRIDGE_SIZE_MINIMUM = 1;
     private static final int BRIDGE_SIZE_MAXIMUM = Integer.MAX_VALUE;
 
@@ -16,13 +17,12 @@ public class InputView {
         System.out.println(BRIDGE_SIZE_MESSAGE);
         try {
             String size = Console.readLine();
-            int integerSize = stringToInteger(size);
-            if(!isInRange(integerSize)) {
+            if(!isInRange(stringToInteger(size))) {
                 throw new IllegalArgumentException();
             }
-            return integerSize;
+            return stringToInteger(size);
         }catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println(BRIDGE_SIZE_ERROR);
             return readBridgeSize();
         }
     }
