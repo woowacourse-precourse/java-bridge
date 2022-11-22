@@ -1,6 +1,3 @@
-
-
-
 package bridge.controller;
 
 import bridge.BridgeGame;
@@ -48,18 +45,18 @@ public class BridgeGameController {
 
     public boolean askRetry() {
         askValidRetry();
-        if (!bridgeGame.isTerminated())
-            return true;
-        bridgeGame.retry();
-        return false;
+        if (bridgeGame.isAlive())
+            bridgeGame.retry();
+
+        return bridgeGame.isAlive();
     }
 
     private void askValidRetry(){
         retryWhenExceptionOrTryOnce(outputView, () -> {
             String rawRetry = inputView.readGameCommand();
             GameRetry gameRetry = GameRetry.parseRetry(rawRetry);
-            if (gameRetry.equals(GameRetry.RETRY)) {
-                bridgeGame.setTerminated();
+            if (gameRetry.equals(GameRetry.QUIT)) {
+                bridgeGame.setDead();
             }
         });
     }
@@ -75,11 +72,13 @@ public class BridgeGameController {
                 break;
             } catch (IllegalArgumentException | IllegalStateException exception) {
                 outputView.printErrorMessage(exception.getMessage());
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 }
 
 interface Function {
-    void run();
+    void run() throws InterruptedException;
 }

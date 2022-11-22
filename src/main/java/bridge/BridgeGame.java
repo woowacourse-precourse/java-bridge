@@ -12,7 +12,7 @@ public class BridgeGame {
     private Bridge bridge;
     private PlayerPath playerPath;
 
-    private boolean isTerminated;
+    private boolean isAlive;
 
     public BridgeGame() {}
 
@@ -20,7 +20,7 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         playerPath = new PlayerPath();
-        isTerminated = false;
+        isAlive = true;
     }
 
     /**
@@ -57,11 +57,11 @@ public class BridgeGame {
         return false;
     }
 
-    public void setTerminated(){
-        isTerminated = true;
+    public void setDead(){
+        isAlive = false;
     }
 
-    public boolean isTerminated(){
-        return isTerminated;
+    public boolean isAlive(){
+        return isAlive;
     }
 }
