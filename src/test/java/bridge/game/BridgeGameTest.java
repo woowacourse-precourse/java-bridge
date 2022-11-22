@@ -39,7 +39,7 @@ class BridgeGameTest {
 
         var gameStatus = bridgeGame.getGameStatus();
 
-        assertThat(gameStatus.getCode()).isEqualTo("성공");
+        assertThat(gameStatus.resultMessage()).contains("성공");
     }
 
     @Test
@@ -48,7 +48,7 @@ class BridgeGameTest {
 
         var gameStatus = bridgeGame.getGameStatus();
 
-        assertThat(gameStatus.getCode()).isEqualTo("실패");
+        assertThat(gameStatus.resultMessage()).contains("실패");
     }
 
     @Test
@@ -61,8 +61,8 @@ class BridgeGameTest {
 
         var lastStatus = bridgeGame.getGameStatus();
 
-        assertThat(beforeStatus.getCode()).isEqualTo("실패");
-        assertThat(lastStatus.getCode()).isEqualTo("성공");
+        assertThat(beforeStatus.resultMessage()).contains("실패");
+        assertThat(lastStatus.resultMessage()).contains("성공");
     }
 
     private void moveAnswer() {
