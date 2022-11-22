@@ -1,9 +1,6 @@
 package bridge;
 
-import java.security.PublicKey;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -46,9 +43,9 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println("최종 게임 결과");
-        System.out.println("[ " + bridgeGame.firstData + " ]");
-        System.out.println("[ " + bridgeGame.secondData + " ]");
-        System.out.println("게임 성공 여부: " + bridgeGame.isSuccess);
+        System.out.println("[ " + bridgeGame.FIRST_LINE_DATA + " ]");
+        System.out.println("[ " + bridgeGame.SECOND_LINE_DATA + " ]");
+        System.out.println("게임 성공 여부: " + bridgeGame.GAME_STATE);
         System.out.println("총 시도한 횟수: " + bridgeGame.playedCount);
     }
 }

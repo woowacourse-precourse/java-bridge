@@ -9,9 +9,9 @@ import java.util.Objects;
 public class BridgeGame {
 
     int playedCount = 1;
-    String isSuccess = "성공";
-    StringBuilder firstData = new StringBuilder();
-    StringBuilder secondData = new StringBuilder();
+    String GAME_STATE = "성공";
+    StringBuilder FIRST_LINE_DATA = new StringBuilder();
+    StringBuilder SECOND_LINE_DATA = new StringBuilder();
 
     InputView iv = new InputView();
 
@@ -23,7 +23,7 @@ public class BridgeGame {
      */
     public String getNowResult(String bridgeData, String inputMoving) {
         move(bridgeData, inputMoving);
-        if (Objects.equals(isSuccess, "실패")) {
+        if (Objects.equals(GAME_STATE, "실패")) {
             return  iv.readGameCommand();
         }
         return null;
@@ -39,7 +39,7 @@ public class BridgeGame {
         if(!isCorrect(bridgeData, inputMoving)) {
             // 틀렸으면 처리
             playedCount++;
-            isSuccess = "실패";
+            GAME_STATE = "실패";
         }
         // 결과 출력 시키도록..
     }
@@ -50,64 +50,64 @@ public class BridgeGame {
 
     public void makeMapWhenFirstTime(String inputMoving) {
         if (Objects.equals(inputMoving, "U")) {
-            firstData.append("O");
-            secondData.append(" ");
+            FIRST_LINE_DATA.append("O");
+            SECOND_LINE_DATA.append(" ");
         }
         if (Objects.equals(inputMoving, "D")) {
-            firstData.append(" ");
-            secondData.append("O");
+            FIRST_LINE_DATA.append(" ");
+            SECOND_LINE_DATA.append("O");
         }
     }
 
     public void makeMapWhenNormalState(String inputMoving) {
         if (Objects.equals(inputMoving, "U")) {
-            firstData.append(" | O");
-            secondData.append(" |  ");
+            FIRST_LINE_DATA.append(" | " + "O");
+            SECOND_LINE_DATA.append(" | " + " ");
         }
         if (Objects.equals(inputMoving, "D")) {
-            firstData.append(" |  ");
-            secondData.append(" | O");
+            FIRST_LINE_DATA.append(" | " + " ");
+            SECOND_LINE_DATA.append(" | " + "O");
         }
     }
 
     public List<StringBuilder> getMap(String inputMoving) {
-        if (firstData.length() > 0) {
+        if (FIRST_LINE_DATA.length() > 0) {
             makeMapWhenNormalState(inputMoving);
-            return List.of(firstData, secondData);
+            return List.of(FIRST_LINE_DATA, SECOND_LINE_DATA);
         }
         makeMapWhenFirstTime(inputMoving);
-        return List.of(firstData, secondData);
+        return List.of(FIRST_LINE_DATA, SECOND_LINE_DATA);
     }
 
     public void makeResultWhenFirstTime(String inputMoving) {
         if (Objects.equals(inputMoving, "U")) {
-            firstData.append("X");
-            secondData.append(" ");
+            FIRST_LINE_DATA.append("X");
+            SECOND_LINE_DATA.append(" ");
         }
         if (Objects.equals(inputMoving, "D")) {
-            firstData.append(" ");
-            secondData.append("X");
+            FIRST_LINE_DATA.append(" ");
+            SECOND_LINE_DATA.append("X");
         }
     }
 
     public void makeResultWhenNormalState(String inputMoving) {
         if (Objects.equals(inputMoving, "U")) {
-            firstData.append(" | X");
-            secondData.append(" |  ");
+            FIRST_LINE_DATA.append(" | " + "X");
+            SECOND_LINE_DATA.append(" | " + " ");
         }
         if (Objects.equals(inputMoving, "D")) {
-            firstData.append(" |  ");
-            secondData.append(" | X");
+            FIRST_LINE_DATA.append(" | " + " ");
+            SECOND_LINE_DATA.append(" | " + "X");
         }
     }
 
     public List<StringBuilder> getMapWhenFailed(String inputMoving) {
-        if (firstData.length() > 0) {
+        if (FIRST_LINE_DATA.length() > 0) {
             makeResultWhenNormalState(inputMoving);
-            return List.of(firstData, secondData);
+            return List.of(FIRST_LINE_DATA, SECOND_LINE_DATA);
         }
         makeResultWhenFirstTime(inputMoving);
-        return List.of(firstData, secondData);
+        return List.of(FIRST_LINE_DATA, SECOND_LINE_DATA);
     }
 
     /**
@@ -116,8 +116,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        isSuccess = "성공";
-        firstData = new StringBuilder();
-        secondData = new StringBuilder();
+        GAME_STATE = "성공";
+        FIRST_LINE_DATA = new StringBuilder();
+        SECOND_LINE_DATA = new StringBuilder();
     }
 }
