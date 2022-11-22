@@ -15,6 +15,10 @@ public class BridgeGame {
         bridgeGameResult.increaseTryCount();
     }
 
+    public void make(int inputSize) {
+        this.bridge = new Bridge(inputSize);
+    }
+
     public boolean move(int moveCount, String moving) {
         boolean canMove = bridge.canMove(moveCount, moving);
         bridgeGameResult.updateMoveState(moving, canMove);
