@@ -53,7 +53,7 @@ public class OutputView {
     }
 
     private void printWinOrLose(TotalResult totalResult) {
-        if (totalResult.win()) {
+        if (totalResult.winGame()) {
             System.out.println(WIN_OR_LOSE_MESSAGE + WIN);
             return;
         }
