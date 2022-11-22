@@ -25,10 +25,17 @@ public class InputView {
         int bridgeSize;
         try {
             bridgeSize = Integer.parseInt(bridgeSizeStr);
+            validateBoundary(bridgeSize);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER.getMessage());
         }
         return bridgeSize;
+    }
+
+    private void validateBoundary(int bridgeSize) {
+        if(bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_BOUNDARY.getMessage());
+        }
     }
 
     /**
