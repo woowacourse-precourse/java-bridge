@@ -68,13 +68,12 @@ public class BridgeMachine {
         if (success) {
             index--;
         }
+        printAfterGame(bridge);
+    }
+    private void printAfterGame(Bridge bridge) {
         OutputView.printLastBridgeResult();
         OutputView.printMap(bridge.getBridgeMap(), index);
-        if (success == GameResult.FAILED.getTrueOrFalse()) {
-            OutputView.printResult(GameResult.FAILED);
-        } else if (success == GameResult.PASSED.getTrueOrFalse()) {
-            OutputView.printResult(GameResult.PASSED);
-        }
+        printGameResult();
         OutputView.printTotalTry(totalTry);
     }
     private void printGameResult() {
