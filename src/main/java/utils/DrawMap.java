@@ -28,7 +28,7 @@ public class DrawMap {
         setUpperLog();
         setLowerLog();
         setUpperSideOfMap();
-        setLowerLog();
+        setLowerSideOfMap();
         return upperSideOfMap.toString() + "\n" + lowerSideOfMap.toString();
     }
 
