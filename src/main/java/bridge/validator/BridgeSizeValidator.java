@@ -1,4 +1,4 @@
-package bridge.validation;
+package bridge.validator;
 
 import bridge.convertor.InputConvertor;
 import bridge.resource.ErrorMessage;

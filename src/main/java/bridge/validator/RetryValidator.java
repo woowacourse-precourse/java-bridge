@@ -1,4 +1,4 @@
-package bridge.validation;
+package bridge.validator;
 
 import bridge.resource.ErrorMessage;
 import bridge.resource.GameConstant;

@@ -1,4 +1,4 @@
-package bridge.validation;
+package bridge.validator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

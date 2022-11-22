@@ -1,8 +1,8 @@
 package bridge.game;
 
-import bridge.validation.BridgeMoveValidator;
-import bridge.validation.BridgeSizeValidator;
-import bridge.validation.RetryValidator;
+import bridge.validator.BridgeMoveValidator;
+import bridge.validator.BridgeSizeValidator;
+import bridge.validator.RetryValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
