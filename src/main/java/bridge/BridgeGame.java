@@ -13,24 +13,14 @@ public class BridgeGame {
     int idx = 0;
     public void simulate(List<String> bridge) {
         boolean isPlaying = true;
-        boolean isEnd = false;
-        while (true) {
-            if (!isPlaying) {
-                break;
-            }
-            if (idx==bridge.size()) {
-                isEnd = true;
-                idx = bridge.size()-1;
-                break;
-            }
-
+        while (isPlaying && idx<bridge.size()) {
             boolean isMoved = move(bridge);
             if (!isMoved) {
                 isPlaying = retry();
             }
         }
-        if (isEnd) {
-            outputView.printResult(count, idx, bridge,true);
+        if (idx==bridge.size()) {
+            outputView.printResult(count, idx-1, bridge,true);
             return;
         }
         outputView.printResult(count,idx, bridge, false);
