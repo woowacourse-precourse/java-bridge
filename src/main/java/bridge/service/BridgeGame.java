@@ -29,4 +29,8 @@ public class BridgeGame {
         return BINARY_UP;
     }
 
+    public void initBridge(int bridgeSize) {
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
 }

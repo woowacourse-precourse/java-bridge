@@ -49,7 +49,7 @@
 
 ### BridgeGame : 다리 건너기 게임을 관리
 - [x] 총 시도횟수를 초기화 한다. #initTryCount()
-- [ ] 다리를 초기화 한다. #initBridge()
+- [x] 다리를 초기화 한다. #initBridge()
 - [ ] 사용자 위치를 초기화 한다. #initPlayer()
 - [ ] 사용자가 칸을 이동한다. #move()
 - [ ] 사용자의 칸 이동 현황을 초기화 한다. #initBridgeMap()
