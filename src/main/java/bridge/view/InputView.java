@@ -10,6 +10,8 @@ import static bridge.Validator.*;
  */
 public class InputView {
 
+    public static final String INPUT_NOT_NUMBER_ERROR = "[ERROR] 다리 길이는 자연수만 입력 가능합니다.";
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -18,8 +20,8 @@ public class InputView {
             String input = Console.readLine();
             validateBridge(input);
             return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 다리 길이는 자연수만 입력 가능합니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(INPUT_NOT_NUMBER_ERROR);
         }
         return 0;
     }

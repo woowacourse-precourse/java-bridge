@@ -47,15 +47,13 @@ public class GameController {
     List<Cross> crossResult = new ArrayList<>();
     for (Direction bridgeDirection : bridge.getDirections()) {
       Direction userDirection = getDirection();
-      moveAndPrint(bridgeDirection, userDirection, crossResult);
-      if (!canCross(bridgeDirection, userDirection)) {
-        return new MoveResult(GAME_FAIL, crossResult, tryNumber);
-      }
+      moveAndPrintResult(bridgeDirection, userDirection, crossResult);
+      if (!canCross(bridgeDirection, userDirection)) { return new MoveResult(GAME_FAIL, crossResult, tryNumber); }
     }
     return new MoveResult(GAME_SUCCESS, crossResult, tryNumber);
   }
 
-  public void moveAndPrint(Direction bridgeDirection, Direction userDirection, List<Cross> crossResult) {
+  public void moveAndPrintResult(Direction bridgeDirection, Direction userDirection, List<Cross> crossResult) {
     crossResult = bridgeGame.move(bridgeDirection, userDirection, crossResult);
     outputView.printMap(crossResult);
   }
@@ -64,10 +62,15 @@ public class GameController {
     return bridgeDirection.equals(userDirection);
   }
 
+  public int initTryNumber() {
+    int tryNumber = 1;
+    return tryNumber;
+  }
+
   public void playGame() {
     outputView.printGameStartMessage();
     Bridge bridge = makeBridge(getBridgeSize());
-    int tryNumber = 1;
+    int tryNumber = initTryNumber();
     MoveResult moveResult = move(bridge, tryNumber);
     handleMoveResult(bridge, moveResult);
   }
@@ -90,11 +93,9 @@ public class GameController {
   public void handleRestartResult(Bridge bridge, MoveResult moveResult) {
     String restart = getRestartCommand();
     int tryNumber = moveResult.getTryNumber();
-
     if (restart.equals(GAME_RESTART)) {
       move(bridge, bridgeGame.retry(tryNumber));
-    }
-    else if (restart.equals(GAME_QUIT)) {
+    } else if (restart.equals(GAME_QUIT)) {
       outputView.printResult(false, tryNumber,  moveResult.getCrossResult());
     }
   }

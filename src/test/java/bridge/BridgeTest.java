@@ -1,14 +1,12 @@
 package bridge;
 
-import bridge.view.BridgeView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.vo.Bridge;
+import bridge.vo.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,14 +22,15 @@ public class BridgeTest {
     BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    BridgeGame bridgeGame = new BridgeGame();
     int size = 3;
 
     // when
-    GameController gameController = new GameController(bridgeMaker, inputView, outputView);
+    GameController gameController = new GameController(bridgeMaker, inputView, outputView, bridgeGame);
     Bridge bridge = gameController.makeBridge(size);
 
     // then
     assertThat(bridge.getDirections()).containsExactly(Direction.U, Direction.D, Direction.D);
   }
-  
+
 }
