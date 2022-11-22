@@ -37,6 +37,6 @@ public class OutputView {
     }
 
     public void printStartMessage() {
-        System.out.println(PRINT_START_MESSAGE);
+        System.out.printf((PRINT_START_MESSAGE) + "%n", NEWLINE);
     }
 }
