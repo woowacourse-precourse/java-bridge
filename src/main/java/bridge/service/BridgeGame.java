@@ -70,6 +70,14 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean isClearGame() {
+        if (isAcrossLast() && isSameRecentChoiceAndBridge()) {
+            crossAllBridge();
+            return true;
+        }
+        return false;
+    }
+
     private void crossAllBridge() {
         crossAllBridge = true;
     }

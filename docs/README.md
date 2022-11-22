@@ -65,7 +65,7 @@
 - [ ] 사용자가 다시 움직일수 있는지 판별한다. #moveAgain()
 - [x] 사용자의 최근 위치가 동일 위치의 다리와 같은지 확인한다. #isSameRecentChoiceAndBridge()
 - [x] 사용자의 현재 이동 정보가 다리 길이와 같은지 확인한다. #isAcrossLast()
-- [ ] 사용자가 모두 건넜는지 확인한다. #isClearGame()
+- [x] 사용자가 모두 건넜는지 확인한다. #isClearGame()
 - [x] 사용자가 모두 건넌것을 체크한다. #crossAllBridge()
 - [ ] 다리 길이를 검증한다. #validateBridgeSize()
 - [ ] 변환이 되는지 검증한다. #validateConvert()
