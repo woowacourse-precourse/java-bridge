@@ -32,6 +32,10 @@ public class BridgeGame {
         }
     }
 
+    public void checkBridgeSize(int size) {
+        if (!(size >= 3 && size <= 20)) throw new IllegalArgumentException();
+    }
+
     public int getSize() {
         return size;
     }
