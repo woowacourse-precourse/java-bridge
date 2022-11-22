@@ -79,4 +79,36 @@ class ExceptionTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("입력받은 재시작 여부 값이 소문자 q 일경우")
+    @Test
+    void 게임종료_입력_테스트_1() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputQuitRestart("u"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력받은 재시작 여부 값이 다른 문자 일경우")
+    @Test
+    void 게임종료_입력_테스트_2() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputQuitRestart("A"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력받은 재시작 여부 값이 숫자일 경우")
+    @Test
+    void 게임종료_입력_테스트_3() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputQuitRestart("3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력받은 재시작 여부 값이 여러문자일 경우")
+    @Test
+    void 게임종료_입력_테스트_4() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputQuitRestart("RR"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
 }
