@@ -2,7 +2,7 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.Sentence.*;
+import static bridge.BridgeGameMessage.*;
 
 
 public class BridgeGameController {

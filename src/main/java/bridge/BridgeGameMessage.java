@@ -1,6 +1,6 @@
 package bridge;
 
-public enum Sentence {
+public enum BridgeGameMessage {
 
     GAME_START("다리 건너기 게임을 시작합니다."),
     INPUT_BRIDGE_LENGTH("다리의 길이를 입력해주세요."),
@@ -15,7 +15,7 @@ public enum Sentence {
 
     private final String value;
 
-    Sentence(String value) {
+    BridgeGameMessage(String value) {
         this.value = value;
     }
 

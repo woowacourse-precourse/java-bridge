@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import static bridge.OutputView.printStartGame;
 import static bridge.DorU.*;
 import static bridge.ErrorMessage.*;
-import static bridge.Sentence.*;
+import static bridge.BridgeGameMessage.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
