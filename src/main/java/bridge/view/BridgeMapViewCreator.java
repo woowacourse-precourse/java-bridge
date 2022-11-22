@@ -1,5 +1,9 @@
 package bridge.view;
 
+import bridge.GameStatus;
+
+import java.util.List;
+
 public class BridgeMapViewCreator {
     public static class BridgeMap{
         private final StringBuilder upBridge;

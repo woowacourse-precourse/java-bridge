@@ -1,4 +1,6 @@
 package bridge.view;
+import bridge.valid.BridgeValidator;
+import bridge.valid.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -14,11 +16,14 @@ public class InputView {
 
     private static int inputBridgeSize() {
         String size = Console.readLine();
-        try {
 
+        try {
+            InputValidator.validateType(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(OutputView.SYSTEM_MESSAGE_INPUT_BRIDGE_SIZE);
+            return inputBridgeSize();
         }
-        int bridgeSize = Integer.parseInt(input);
-        return bridgeSize;
+        return Integer.parseInt(size);
     }
 
     /**

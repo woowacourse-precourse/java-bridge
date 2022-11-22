@@ -9,6 +9,9 @@ public class OutputView {
     private final static String UP = MoveCommand.UP.getCommand();
     private final static String DOWN = MoveCommand.DOWN.getCommand();
 
+    public static final String SYSTEM_MESSAGE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
