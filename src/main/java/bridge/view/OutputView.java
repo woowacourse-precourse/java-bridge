@@ -18,7 +18,6 @@ public class OutputView {
         maps.forEach(map -> {
             System.out.printf("%s %s %s \n", BRIDGE_START_POINT, String.join(SEPARATOR, map), BRIDGE_END_POINT);
         });
-        System.out.println("\n");
     }
 
     public void printFinalMap(List<List<String>> maps) {

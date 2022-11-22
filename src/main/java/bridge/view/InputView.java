@@ -31,7 +31,7 @@ public class InputView {
 
     public String readMoving() {
         try {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String rawInput = Console.readLine();
             this.movement = inputHandler.getMovingCommand(rawInput);
         } catch (IllegalArgumentException e) {
