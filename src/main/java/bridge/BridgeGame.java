@@ -1,37 +1,16 @@
-//package bridge;
-//
-//import bridge.controller.BridgeGameController;
-//
-//import static bridge.enums.GameStatus.QUIT;
-//
-///**
-// * 다리 건너기 게임을 관리하는 클래스
-// */
-//public class BridgeGame {
-//
-//    private final BridgeGameController bridgeGameController;
-//    public BridgeGame(){
-//        bridgeGameController = new BridgeGameController();
-//    }
-//    public void move() {
-//        while(!(bridgeGameController.isSuccess() || bridgeGameController.isPaused())){
-//            bridgeGameController.moveAStep();
-//        }
-//    }
-//
-//    public void retry() {
-//        bridgeGameController.resetGame();
-//    }
-//
-//    public void stop(){
-//        bridgeGameController.concludeGame();
-//    }
-//
-//    public boolean isGameDone(){
-//        return bridgeGameController.isSuccess();
-//    }
-//
-//    public boolean isGameQuit(){
-//        return bridgeGameController.readFinalCommand().equals(QUIT.getCommand());
-//    }
-//}
+package bridge;
+
+import bridge.model.Bridge;
+import bridge.model.Player;
+
+public class BridgeGame{
+    private final Bridge bridge;
+    private final Player player;
+
+    public BridgeGame(int size){
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        bridge = new Bridge(bridgeMaker.makeBridge(size));
+        player = new Player();
+    }
+}
