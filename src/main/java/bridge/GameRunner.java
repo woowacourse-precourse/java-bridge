@@ -9,19 +9,25 @@ public class GameRunner {
         this.outputView = new OutputView();
     }
 
-    public void play(){
+    public Player play(){
         String input = inputView.readMoving();
         game.move(input);
         outputView.printMap(game);
+        return game.status();
     }
+
+
     public void run(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        int size = inputView.readBridgeSize();
-        game = new BridgeGame(new BridgeGameInfo(size));
-        String gameCommand="R";
-        while(gameCommand.equals("R")) {
-            play();
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        game = new BridgeGame(new BridgeGameInfo(inputView.readBridgeSize()));
+        while(true) {
+            Player status = play();
+            if(status==Player.WIN)break;
+            if(status==Player.SURVIVE)continue;
+            if(inputView.readGameCommand().equals("Q"))break;
+            game.retry();
         }
+        outputView.printResult(game);
     }
 
 }

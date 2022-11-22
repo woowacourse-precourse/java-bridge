@@ -49,7 +49,7 @@ public class OutputView {
     public void printResult(BridgeGame game) {
         BridgeGameInfo gameInfo = game.getInfo();
         String result = "실패";
-        if(gameInfo.getPlayer().equals("O"))result="성공";
+        if(game.status()==Player.WIN)result="성공";
         System.out.println("최종 게임 결과");
         printMap(game);
         System.out.println("게임 성공 여부: "+result);
