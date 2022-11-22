@@ -43,7 +43,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트_게임_재시작_후_성공() {
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 게임_재시작_후_성공() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "R", "U", "D", "D");
             assertThat(output()).contains(
@@ -62,7 +70,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트_게임_종료() {
+    void 게임_종료() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "D", "D", "Q");
             assertThat(output()).contains(
@@ -80,7 +88,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트_잘못된_입력값_받은_후_실패() {
+    void 잘못된_입력값_받은_후_실패() {
         assertRandomNumberInRangeTest(() -> {
             run("-1", "3", "asd", "U", "U", "U", "qwe", "Q");
             assertThat(output()).contains(
@@ -98,14 +106,6 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[   |   |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 1, 0);
-    }
-
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
     }
 
     @Override
