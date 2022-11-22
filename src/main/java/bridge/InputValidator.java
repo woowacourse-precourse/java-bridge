@@ -1,17 +1,12 @@
 package bridge;
 
 import bridge.constant.BridgeMoveCommand;
+import bridge.constant.BridgeRetryCommand;
 import bridge.constant.InputValidationError;
-import java.util.List;
 
 public class InputValidator {
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
-
-    private static final List<String> COMMAND_RETRY_LIST = List.of(
-            "R",
-            "Q"
-    );
 
     public InputValidator() {
 
@@ -38,8 +33,6 @@ public class InputValidator {
     }
 
     public void validateGameCommand(String cmd) throws IllegalArgumentException {
-        if(!COMMAND_RETRY_LIST.contains(cmd)){
-            throw InputValidationError.ERROR_COMMAND_RETRY.exception;
-        }
+        BridgeRetryCommand.getByCommand(cmd);
     }
 }
