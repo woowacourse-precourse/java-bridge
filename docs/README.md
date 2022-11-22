@@ -14,16 +14,16 @@
     - [x] 맵 한칸마다의 해당하는 결과 값 - OutputView#printCell()
   - [x] 게임 최종 결과 - OutputView#printResult()
   
-- [ ] 게임을 시작한다. - GameSimulator#simulateGame()
-  - [ ] 게임을 세팅한다. - GameSimulator#initializeGame()
+- [x] 게임을 시작한다. - GameSimulator#simulateGame()
+  - [x] 게임을 세팅한다. - GameSimulator#initializeGame()
     - [x] 다리를 생성한다. - BridgeMaker#makeBridge()
       - [x] 한 칸마다 위, 아래 랜덤으로 정한다. - BridgeNumberGenerator#generate()
-  - [ ] 게임이 끝날때까지 게임을 진행한다. - GameSimulator#startGame()
+  - [x] 게임이 끝날때까지 게임을 진행한다. - GameSimulator#startGame()
     - [x] 다리를 건넜는지 체크한다. - BridgeGame#checkCrossingBridge()
     - [x] 다리의 다음 구역으로 이동한다. - BridgeGame#move()
-  - [ ] 게임오버가 되었다. - GameSimulator#gameover()
+  - [x] 게임오버가 되었다. - GameSimulator#gameover()
     - [x] 게임을 재시도한다. - BridgeGame#retry()
-  - [ ] 게임을 종료한다. - GameSimulator#quitGame()
+  - [x] 게임을 종료한다. - GameSimulator#quitGame()
     
 ## 에러상황
 - [x] 다리 길이 유효 여부 체크 - InputView#validateBridgeSize()

@@ -16,7 +16,7 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("첫번째_성공")
     @Test
-    void 첫번째_성공() {
+    void 첫시도_성공() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
