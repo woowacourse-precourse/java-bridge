@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.utils.SizeInputParser;
+import bridge.utils.parser.SizeInputParser;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {

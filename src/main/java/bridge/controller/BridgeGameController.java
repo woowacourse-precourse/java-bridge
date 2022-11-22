@@ -4,10 +4,10 @@ import static bridge.domain.BridgeGame.generateBridge;
 import static bridge.domain.BridgeGame.move;
 import static bridge.domain.BridgeGame.retry;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeGameResult;
-import bridge.domain.GameCommand;
-import bridge.domain.BridgeSize;
+import bridge.domain.bridge.Bridge;
+import bridge.domain.result.BridgeGameResult;
+import bridge.domain.command.GameCommand;
+import bridge.domain.bridge.BridgeSize;
 import bridge.service.InputViewService;
 import bridge.utils.Constants;
 import bridge.view.OutputView;

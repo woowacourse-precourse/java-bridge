@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.BridgeGameResult;
+import bridge.domain.result.BridgeGameResult;
 
 public class OutputView {
 

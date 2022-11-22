@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.command;
 
 import bridge.domain.exception.NotExistCommandException;
 import bridge.utils.Constants;
@@ -7,10 +7,6 @@ import java.util.Objects;
 public class MovingCommand {
 
     private String movingCommand;
-
-    public MovingCommand() {
-
-    }
 
     private MovingCommand(String input) {
         if (!isValidateRange(input)) {

@@ -1,6 +1,7 @@
-package bridge.utils;
+package bridge.utils.parser;
 
 import bridge.domain.exception.WrongNumberInputException;
+import bridge.utils.Constants;
 import java.util.stream.Stream;
 
 public class SizeInputParser {

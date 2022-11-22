@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.bridge.Bridge;
 import bridge.utils.Converter;
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.utils.parser;
 
 import bridge.domain.exception.EmptyInputException;
 

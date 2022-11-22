@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.command;
 
 import bridge.domain.exception.NotExistCommandException;
 import bridge.utils.Constants;

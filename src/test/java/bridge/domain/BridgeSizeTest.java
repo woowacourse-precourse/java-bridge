@@ -3,7 +3,8 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.utils.SizeInputParser;
+import bridge.domain.bridge.BridgeSize;
+import bridge.utils.parser.SizeInputParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

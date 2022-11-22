@@ -1,9 +1,9 @@
 package bridge.service;
 
-import bridge.domain.GameCommand;
-import bridge.domain.MovingCommand;
-import bridge.domain.BridgeSize;
-import bridge.utils.CommandInputParser;
+import bridge.domain.command.GameCommand;
+import bridge.domain.command.MovingCommand;
+import bridge.domain.bridge.BridgeSize;
+import bridge.utils.parser.CommandInputParser;
 import bridge.view.InputView;
 
 public class InputViewService {

@@ -1,15 +1,15 @@
-package bridge.utils;
+package bridge.utils.parser;
 
-import bridge.domain.GameCommand;
-import bridge.domain.MovingCommand;
+import bridge.domain.command.GameCommand;
+import bridge.domain.command.MovingCommand;
 import bridge.domain.exception.WrongMovingCommandException;
+import bridge.utils.Constants;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class CommandInputParser {
 
     private CommandInputParser() {
-
     }
 
     public static MovingCommand parseMovingCommand(final String input) {
