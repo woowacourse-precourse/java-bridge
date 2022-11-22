@@ -31,15 +31,24 @@ public class OutputView {
 
     private StringBuilder buildBridgeLine(Line flag, BridgeGame game) {
         StringBuilder builder = new StringBuilder();
+
+        buildInnerBridgeLine(flag, game, builder);
+        appendBracketBothSide(builder);
+        return builder;
+    }
+
+    private void buildInnerBridgeLine(Line flag, BridgeGame game, StringBuilder builder) {
         for (int i = 0; i < game.getPosition(); ++i) {
             builder.append(getCell(flag, i, game));
-            if (i != game.getIndex()) {
-                builder.append(SEPARATOR);
-            }
+            builder.append(getSeparator(game.getIndex(), i));
         }
-        appendBracketBothSide(builder);
+    }
 
-        return builder;
+    private static String getSeparator(int nowIndex, int i) {
+        if (i != nowIndex) {
+            return SEPARATOR;
+        }
+        return "";
     }
 
     private String getCell(Line flag, int index, BridgeGame game) {
