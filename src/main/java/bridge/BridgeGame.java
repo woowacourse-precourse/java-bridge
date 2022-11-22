@@ -16,14 +16,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static String move(List<String> bridgeInfo, int bridgeLength) {
+    public static String move(List<String> bridgeInfo, int bridgeLength, int gameCount) {
         String checkResult;
         for (int i = 0; i < bridgeLength; i++){
             checkResult = BridgeCheck.isRightBridge(bridgeInfo, i);
             if (checkResult.contains("Q")) return checkResult;
-            if (checkResult == "R") i--;
+            if (checkResult == "R") {
+                i--; gameCount++;
+            };
         }
-
         return "C";
     }
 
