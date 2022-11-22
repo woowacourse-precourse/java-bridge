@@ -19,7 +19,7 @@ public class GameController {
         outputView.startPrint();
         int size = inputView.readBridgeSize();
         bridgeGame.initialize(size);
-
+        progress();
     }
     public void progress(){
         boolean retry = true;

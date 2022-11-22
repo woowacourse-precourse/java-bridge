@@ -66,7 +66,7 @@ public class BridgeGame {
             return true;
         }
         else if(!map.get(length).equals(step.direction)){
-            userMap.get(step.moveIdx).add("O");
+            userMap.get(step.moveIdx).add("X");
             userMap.get(step.notMoveIdx).add(" ");
             return false;
         }
