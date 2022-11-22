@@ -5,6 +5,19 @@ package bridge.domain;
  */
 public class BridgeGame {
 
+    private final BridgeMaker bridgeMaker;
+    private Bridge bridge;
+    private Status status;
+
+    public BridgeGame() {
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
+
+    public void init(int size) {
+        this.bridge = new Bridge(bridgeMaker.makeBridge(size));
+        this.status = new Status();
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
