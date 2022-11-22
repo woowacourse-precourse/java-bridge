@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum BridgeRestartCommand {
-	RETRY("R", 0),
-	QUIT("Q", Integer.MAX_VALUE);
+	RETRY("R", -1),
+	QUIT("Q", Integer.MAX_VALUE-1);
 	private String command;
 	private int number;
 
@@ -24,5 +24,9 @@ public enum BridgeRestartCommand {
 				.findAny()
 				.orElseThrow(NoSuchElementException::new)
 				.getNumber();
+	}
+	public static boolean hasGameCommand(String input) {
+		return Arrays.stream(values())
+				.anyMatch(bridgeGameCommand -> bridgeGameCommand.command.equals(input));
 	}
 }
