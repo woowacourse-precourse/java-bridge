@@ -42,4 +42,8 @@ public class BridgeGame {
         upperBridge = new ArrayList<>();
         lowerBridge = new ArrayList<>();
     }
+
+    private String getBridgeByPosition(int position) {
+        return bridge.getBridgeByIndex(position);
+    }
 }
