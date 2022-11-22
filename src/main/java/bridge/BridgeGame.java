@@ -14,7 +14,7 @@ public class BridgeGame {
 
     public BridgeGame() {}
 
-    public void initComponents(int bridgeLength) {
+    public void initComponents(BridgeNumberGenerator bridgeNumberGenerator, int bridgeLength) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         playerPath = new PlayerPath();
@@ -37,5 +37,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public PlayerPath getPlayerPath(){
+        return playerPath;
     }
 }
