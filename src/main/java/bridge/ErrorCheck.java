@@ -31,4 +31,30 @@ public class ErrorCheck {
         }
         return possible;
     }
+
+
+    public boolean errorCheckReadMovig(String userInput) {
+        try{
+            if(!(userInput.equals("U")||userInput.equals("D"))){
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+
+    public boolean errorCheckReadGameCommand(String userInput) {
+        try{
+            if(!(userInput.equals("R")||userInput.equals("Q"))){
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
 }

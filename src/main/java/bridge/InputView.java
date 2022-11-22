@@ -22,19 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String userInput=readLine();
-        errorCheckReadMovig(userInput);
         return userInput;
-    }
-
-    public void errorCheckReadMovig(String userInput) {
-        try{
-            if(!(userInput.equals("U")||userInput.equals("D"))){
-                throw new IllegalArgumentException("[ERROR]");
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            throw e;
-        }
     }
 
     /**
@@ -42,18 +30,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String userInput=readLine();
-        errorCheckReadGameCommand(userInput);
         return userInput;
     }
 
-    public void errorCheckReadGameCommand(String userInput) {
-        try{
-            if(!(userInput.equals("R")||userInput.equals("Q"))){
-                throw new IllegalArgumentException("[ERROR]");
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            throw e;
-        }
-    }
 }
