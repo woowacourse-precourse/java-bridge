@@ -21,6 +21,4 @@ public class BridgeMapViewCreator {
 
     private BridgeMapViewCreator() {
     }
-
-    private
 }
