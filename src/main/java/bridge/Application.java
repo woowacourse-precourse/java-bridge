@@ -10,6 +10,8 @@ public class Application {
         controller.setDifficulty();
         do {
             controller.playGame();
+            if(controller.isSuccess())
+                break;
         } while (controller.askRetry());
         controller.end();
     }

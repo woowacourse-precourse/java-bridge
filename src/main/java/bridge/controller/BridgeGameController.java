@@ -53,6 +53,10 @@ public class BridgeGameController {
         return bridgeGame.isAlive();
     }
 
+    public boolean isSuccess(){
+        return bridgeGame.getIsSuccess();
+    }
+
     private void askValidRetry(){
         retryWhenExceptionOrTryOnce(outputView, () -> {
             String rawRetry = inputView.readGameCommand();
