@@ -37,7 +37,9 @@ public class BridgeController {
 
     public void execute() {
         outputView.printResult(Sentence.BEGIN_GAME.getValue());
-        BridgeAnswer bridgeAnswer = generateAnswer(generateLength());
+        BridgeLength bridgeLength = generateLength();
+        outputView.printResult(Sentence.BLANK_LINE.getValue());
+        BridgeAnswer bridgeAnswer = generateAnswer(bridgeLength);
         userInputCircle(bridgeAnswer);
     }
 

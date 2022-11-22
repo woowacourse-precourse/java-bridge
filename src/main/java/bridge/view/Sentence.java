@@ -7,6 +7,7 @@ public enum Sentence {
     YOU_PURCHASED("\n%d개를 구매했습니다."),
     SUCCESS("성공"),
     FAILURE("실패"),
+    BLANK_LINE(""),
     FINAL_RESULT("최종 게임 결과\n"),
     GAME_SUCCESS_OR_FAIL("게임 성공 여부: "),
     TOTAL_TRIAL("총 시도한 횟수: "),
