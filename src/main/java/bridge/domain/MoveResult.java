@@ -16,15 +16,15 @@ public class MoveResult {
         this.currentStep = currentStep;
     }
 
-    public boolean isUpMove(MoveResult moveResult){
-        if(moveResult.currentStep.equals("U")){
+    public boolean isUpMove(){
+        if(this.currentStep.equals("U")){
             return true;
         }
         return false;
     }
 
-    public boolean isSuccessMove(MoveResult moveResult){
-        if(moveResult.currentMovingResult == true){
+    public boolean isSuccessMove(){
+        if(this.currentMovingResult == true){
             return true;
         }
         return false;

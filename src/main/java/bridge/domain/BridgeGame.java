@@ -10,21 +10,35 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private List<MoveResult> moveResults;
+    private Bridge bridge;
+    private boolean exit;
+
+    public BridgeGame(List<MoveResult> moveResults, Bridge bridge) {
+        this.moveResults = moveResults;
+        this.bridge = bridge;
+        this.exit = false;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static List<MoveResult> move(Bridge bridge, List<MoveResult> moveResults) {
+
+    public List<MoveResult> getMoveResults() {
+        return moveResults;
+    }
+    public void move() {
         MoveSpace moveSpace = InputController.getMoving();
-        moveResults.add(moveSpace.createMoveResult(bridge.checkIfItCanBeMoved(moveSpace)));
-        for (int i = 0; i < moveResults.size(); i++) {
+        this.moveResults.add(bridge.createMoveResult(moveSpace));
+
+//        this.moveResults.add(moveSpace.createMoveResult(this.bridge.checkIfItCanBeMoved(moveSpace)));
+        for (int i = 0; i < this.moveResults.size(); i++) {
             System.out.print(i);
-            moveResults.get(i).pringMoveResult(moveResults.get(i));
+            this.moveResults.get(i).pringMoveResult(this.moveResults.get(i));
         }
 
-        System.out.println(moveResults);
-        return moveResults;
+        System.out.println(this.moveResults);
     }
 
     /**
@@ -32,7 +46,23 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(Bridge bridge) {
-        BridgeGameController.runGame(bridge);
+    public void retry() {
+        this.moveResults = new ArrayList<>();
+        BridgeGameController.runGame(this.bridge);
+    }
+
+    public boolean isFailedGame() {
+        if (!this.bridge.isCurrentMovable(this.moveResults)) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean notExit() {
+        if (!this.exit) {
+            return true;
+        }
+        return false;
     }
 }

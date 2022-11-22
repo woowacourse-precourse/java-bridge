@@ -42,20 +42,20 @@ public class OutputView {
     }
 
     private static String createUpMap(MoveResult moveResult){
-        if(moveResult.isUpMove(moveResult) && moveResult.isSuccessMove(moveResult)){
+        if(moveResult.isUpMove() && moveResult.isSuccessMove()){
             return "O";
         }
-        if(moveResult.isUpMove(moveResult) && !moveResult.isSuccessMove(moveResult)){
+        if(moveResult.isUpMove() && !moveResult.isSuccessMove()){
             return "X";
         }
         return " ";
     }
 
     private static String createDownMap(MoveResult moveResult){
-        if(!moveResult.isUpMove(moveResult) && moveResult.isSuccessMove(moveResult)){
+        if(!moveResult.isUpMove() && moveResult.isSuccessMove()){
             return "O";
         }
-        if(!moveResult.isUpMove(moveResult) && !moveResult.isSuccessMove(moveResult)){
+        if(!moveResult.isUpMove() && !moveResult.isSuccessMove()){
             return "X";
         }
         return " ";

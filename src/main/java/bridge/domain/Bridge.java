@@ -32,18 +32,27 @@ public class Bridge {
         this.stepCount +=1;
     }
 
-    public static boolean runMoving(BridgeGame bridgeGame, Bridge bridge) {
-        boolean movingFail = true;
-        List<MoveResult> moveResults = new ArrayList<>();
-        while (movingFail) {
-            OutputView.printMap(bridgeGame.move(bridge, moveResults));
-            movingFail = bridge.currentResult;
-            if (bridge.stepCount == bridge.bridge.size()) {
-                return false;
-            }
+    public boolean isCurrentMovable(List<MoveResult> moveResults) {
+        if (moveResults.get(this.stepCount).isSuccessMove()) {
+            return true;
         }
-        return true;
+        return false;
     }
 
+    public boolean crossingBridgeSuccess() {
+        if (this.stepCount < this.bridge.size()) {
+            return true;
+        }
+        return false;
+    }
 
+    public MoveResult createMoveResult(MoveSpace movespace){
+        String currentStep = this.bridge.get(this.stepCount);
+        String currentMove = movespace.getMove();
+        boolean currentResult = false;
+        if (movespace.isItMovable(currentStep)) {
+            currentResult = true;
+        }
+        return new MoveResult(currentResult, currentMove);
+    }
 }

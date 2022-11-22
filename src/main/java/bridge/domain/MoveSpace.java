@@ -14,8 +14,8 @@ public class MoveSpace {
         return false;
     }
 
-    public MoveResult createMoveResult(boolean currentResult){
-        return new MoveResult(currentResult, this.move);
+    public String getMove() {
+        return this.move;
     }
 
 }
