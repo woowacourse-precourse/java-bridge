@@ -59,32 +59,6 @@ public class Application {
         }
         output.printResult(bridgeMake, tryCount);
 
-        /**
-         * 이동할 칸 입력받기(U OR D)
-         * move() 메소드 이용해서 U OR D 받기
-         *
-         * 입력에 따른 MAP 출력
-         * outputview.printmap 메소드 이용해서 map 출력
-         *
-         * if) map == O
-         *     bridgemaker의 upper, lowermap 리스트 안의 값 확인하기
-         *     if(uppermap.get() == "o" || lowermap.get() == "o")
-         *            계속 진행
-         *     계속 진행
-         *     map == X
-         *     bridgemaker의 upper, lowermap 리스트 안의 값 확인하기
-         *     if(uppermap.get() == "x" || lowermap.get() == "x")
-         *           inputview.readGameCommand() 이용해서 Q or R 받기
-         *
-         *     bridgegame.retry() 메소드 이용
-         *
-         * 재시작 = R
-         *  다시 진행
-         *  재시작 = Q
-         *  최종 결과 출력
-         */
-
-
     }
 }
 
