@@ -16,24 +16,24 @@ public class GamePlayController {
         outputView = new OutputView();
     }
 
-    public void createBridgeGame() {
-        BridgeGame bridgeGame;
+    public void run() {
+        BridgeGame bridgeGame = createBridgeGame();
+        moveUser(bridgeGame);
+    }
+
+    public BridgeGame createBridgeGame() {
         while (true) {
             try {
-                bridgeGame = createBridgeGame(inputView.readBridgeSize());
-                break;
+                return createBridgeGame(inputView.readBridgeSize());
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
         }
-        moveUser(bridgeGame);
     }
 
     private BridgeGame createBridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-//                Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         return new BridgeGame(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
-//        return new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public void moveUser(BridgeGame bridgeGame) {
@@ -41,9 +41,7 @@ public class GamePlayController {
             try {
                 MoveResult moveResult = bridgeGame.move(inputView.readMoveCommand());
                 outputView.printMap(moveResult);
-                if (isEndGame(moveResult, bridgeGame)) {
-                    return;
-                }
+                if (isEndGame(moveResult, bridgeGame)) return;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
