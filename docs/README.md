@@ -27,17 +27,12 @@
 - BridgeGame
 - BridgeMaker
 - BridgeRandomNumberGenerator
-- AnswerBridge
-- User
-
-
+- Bridge
+- Player
 - constant
   - Message
-
-
 - interfaces
   - BridgeNumberGenerator
-
 - util
   - ExceptionHandler
 
