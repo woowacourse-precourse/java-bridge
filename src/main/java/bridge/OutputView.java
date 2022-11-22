@@ -44,4 +44,12 @@ public class OutputView {
 
         return recordDownTable;
     }
+
+
+    public void printResult(String lastFilter, int totalTrial) {
+        System.out.println("최종 게임 결과");
+        printMap();
+        System.out.println("게임 성공 여부: " + lastFilter);
+        System.out.println("총 시도한 횟수: " + totalTrial);
+    }
 }
