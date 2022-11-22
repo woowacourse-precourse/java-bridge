@@ -17,7 +17,7 @@ public class Application {
         outputView = new OutputView();
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        bridgeGame = new BridgeGame(inputView, outputView, bridge);
+        bridgeGame = new BridgeGame(bridge);
     }
 
     public static void main(String[] args) {

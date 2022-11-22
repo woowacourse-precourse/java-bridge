@@ -20,7 +20,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void initTest() {
-        bridgeGame = new BridgeGame(inputView, outputView, bridge);
+        bridgeGame = new BridgeGame(bridge);
     }
 
     @Test

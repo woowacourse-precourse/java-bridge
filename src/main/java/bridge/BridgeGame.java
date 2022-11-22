@@ -11,16 +11,12 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    private InputView inputView;
-    private OutputView outputView;
     private final List<String> bridge;
     private int locationNumber = 0;
     private List<List<String>> map;
     private Boolean isSuccess = false;
 
-    public BridgeGame(InputView inputView, OutputView outputView, List<String> bridge) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
     }
 
