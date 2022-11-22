@@ -65,6 +65,14 @@ class ApplicationTest extends NsTest {
 		});
 	}
 
+	@Test
+	void moving_예외_알파벳_테스트() {
+		assertSimpleTest(() -> {
+			runException("3", "U", "D", "1");
+			assertThat(output()).contains(ERROR_MESSAGE);
+		});
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
