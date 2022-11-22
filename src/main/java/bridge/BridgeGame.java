@@ -40,20 +40,8 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean hasBridgeToMove(int moveCount) {
-        return moveCount < bridge.getSize();
-    }
-
     public boolean isSuccess() {
         return bridgeGameResult.isSuccess();
-    }
-
-    public void succeed() {
-        bridgeGameResult.setSuccess();
-    }
-
-    public boolean doesRetry(String command) {
-        return command.equals(RETRY);
     }
 
     public BridgeGameResult getBridgeGameResult() {
