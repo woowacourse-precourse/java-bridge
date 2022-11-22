@@ -6,11 +6,21 @@ import java.util.List;
 public class Application {
 
     static boolean move_Status = true;
+
+    public static void gameStart(){
+        moving();
+    }
+
+    public static void moving(){
+
+    }
     public static void main(String[] args) {
         List<String> bridge;
         int num = 0;
         String currentMoving;
         List<String> result = new ArrayList<>();
+
+        gameStart();
 
         OutputView OV = new OutputView();
         OV.startGuidance();
@@ -31,8 +41,9 @@ public class Application {
         }
         if(!move_Status){
             OV.restartGuidance();
-            if(IV.readGameCommand().equals("R"));
-//            BG.retry();
+            String gameCommand = IV.readGameCommand();
+            if(gameCommand.equals("R")) BG.retry();
         }
+        OV.printResult();
     }
 }

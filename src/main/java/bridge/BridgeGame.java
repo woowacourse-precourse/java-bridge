@@ -35,6 +35,10 @@ public class BridgeGame {
         return "O";
     }
 
+//    public void initialize(boolean status, List<String> bridge, int num, String currentMoving, List<String> result){
+//
+//    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -67,7 +71,9 @@ public class BridgeGame {
             num++;
         }
         if (!move_Status) {
-            retry();
+            OV.restartGuidance();
+            String gameCommand = IV.readGameCommand();
+            if(gameCommand.equals("R")) retry();
         }
     }
 }
