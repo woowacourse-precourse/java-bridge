@@ -28,5 +28,14 @@ public class MoveStatus {
         return moveMap;
     }
 
+    private void addDowner(boolean checkIfAvailableToMove) {
+        moveUpper.add("   ");
+        moveDowner.add(successResult(checkIfAvailableToMove));
+    }
+
+    private void addUpper(boolean checkIfAvailableToMove) {
+        moveUpper.add(successResult(checkIfAvailableToMove));
+        moveDowner.add("   ");
+    }
 
 }
