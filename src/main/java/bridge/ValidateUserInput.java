@@ -24,6 +24,6 @@ public class ValidateUserInput {
         if(InputCase.RESTART.getInput().equals(gameCommandButton) || InputCase.QUIT.getInput().equals(gameCommandButton)) {
             return;
         }
-        throw new InputMismatchException(ErrorCase.RESTART_ERROR.getError() + " " + ErrorCase.RESTART_ERROR.getError());
+        throw new InputMismatchException(ErrorCase.ERROR.getError() + " " + ErrorCase.RESTART_ERROR.getError());
     }
 }

@@ -1,9 +1,9 @@
 package bridge;
 
-public class Controller {
+public class TotalViewController {
     private final OutputView outputView;
     private final InputView inputView;
-    public Controller(){
+    public TotalViewController(){
         outputView = new OutputView();
         inputView = new InputView();
     }
@@ -19,7 +19,7 @@ public class Controller {
     }
 
     //Outview Section
-    public Controller startMessage(){
+    public TotalViewController startMessage(){
         outputView.printStart();
         return this;
     }
@@ -35,11 +35,11 @@ public class Controller {
     public void mapMessage(BridgeDTO bridgeDTO){
         outputView.printMap(bridgeDTO);
     }
-    public Controller gameSuccessMessage(BridgeDTO bridgeDTO){
+    public TotalViewController gameSuccessMessage(BridgeDTO bridgeDTO){
         outputView.printSuccessResult(bridgeDTO);
         return this;
     }
-    public Controller gameFailedMessage(BridgeDTO bridgeDTO){
+    public TotalViewController gameFailedMessage(BridgeDTO bridgeDTO){
         outputView.printFailedResult(bridgeDTO);
         return this;
     }

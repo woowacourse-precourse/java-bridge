@@ -3,27 +3,27 @@ package bridge;
 import java.util.List;
 
 public class BridgeGame {
-    private final Controller controller;
+    private final TotalViewController totalViewController;
     private final List<String> bridge;
     private BridgeDTO bridgeDTO;
     public BridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        controller = new Controller();
-        controller.startMessage().bridgeSizeMessage();
-        bridge = bridgeMaker.makeBridge(controller.inputBridgeSize());
+        totalViewController = new TotalViewController();
+        totalViewController.startMessage().bridgeSizeMessage();
+        bridge = bridgeMaker.makeBridge(totalViewController.inputBridgeSize());
         bridgeDTO = new BridgeDTO(bridge);
     }
     public void play() {
         for (int i = 0; i < bridgeDTO.getBridge().size(); i++) {
-            controller.movingCommandMessage();
-            if(!moveJudge(controller.inputMovingCommand(), i)){
+            totalViewController.movingCommandMessage();
+            if(!moveJudge(totalViewController.inputMovingCommand(), i)){
                 askRestart(bridgeDTO);
                 return ;
             }
-            controller.mapMessage(bridgeDTO);
+            totalViewController.mapMessage(bridgeDTO);
             bridgeDTO.addLength(1);
         }
-        controller.gameSuccessMessage(bridgeDTO).gameTriedMessage(bridgeDTO.getCount());
+        totalViewController.gameSuccessMessage(bridgeDTO).gameTriedMessage(bridgeDTO.getCount());
     }
     public boolean moveJudge(String moveCommand, int i) {
         if(bridge.get(i).equals(moveCommand)){
@@ -37,19 +37,19 @@ public class BridgeGame {
         bridgeDTO.move(i);
     }
 
-    private void askRestart(BridgeDTO bridgeDTO)
-    {
-        controller.mapMessage(bridgeDTO);
-        controller.gameRetriedMessage();
-        if(InputCase.QUIT.getInput().equals(controller.inputReadGameCommand())) {
-            controller.gameFailedMessage(bridgeDTO).gameTriedMessage(bridgeDTO.getCount());
-            return ;
-        }
-        retry();
-    }
     public void retry() {
         bridgeDTO.increaseCount();
         bridgeDTO.initBridge();
         play();
+    }
+    private void askRestart(BridgeDTO bridgeDTO)
+    {
+        totalViewController.mapMessage(bridgeDTO);
+        totalViewController.gameRetriedMessage();
+        if(InputCase.QUIT.getInput().equals(totalViewController.inputReadGameCommand())) {
+            totalViewController.gameFailedMessage(bridgeDTO).gameTriedMessage(bridgeDTO.getCount());
+            return ;
+        }
+        retry();
     }
 }

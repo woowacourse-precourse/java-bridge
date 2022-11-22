@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.InputMismatchException;
+
 public class InputView {
     private final ValidateUserInput validateUserInput;
 
@@ -11,8 +13,8 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
 
-        validateUserInput.checkBridgeSizeRange(bridgeSize);
         validateUserInput.checkBridgeSizeIsDigit(bridgeSize);
+        validateUserInput.checkBridgeSizeRange(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
     public String readMoving() {
@@ -30,7 +32,7 @@ public class InputView {
     public int getBrideSize() {
         try {
             return readBridgeSize();
-        }catch(Exception e){
+        }catch(NumberFormatException e){
             OutputView.printError(e);
             return getBrideSize();
         }
@@ -38,7 +40,7 @@ public class InputView {
     public String getReadMoving() {
         try {
             return readMoving();
-        }catch(Exception e){
+        }catch(InputMismatchException e){
             OutputView.printError(e);
             return getReadMoving();
         }
@@ -46,7 +48,7 @@ public class InputView {
     public String getRestartCommand(){
         try {
            return readGameCommand();
-        }catch(Exception e){
+        }catch(InputMismatchException e){
             OutputView.printError(e);
             return getRestartCommand();
         }
