@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.config.ClassConfig;
-import dto.Result;
+import bridge.dto.Result;
 
 import java.util.List;
 

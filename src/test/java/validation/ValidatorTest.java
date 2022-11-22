@@ -1,5 +1,6 @@
 package validation;
 
+import bridge.validation.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -7,7 +7,7 @@ import bridge.controller.BridgeController;
 import bridge.domain.Bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import validation.Validator;
+import bridge.validation.Validator;
 
 public class ClassConfig {
     public Bridge bridge() {

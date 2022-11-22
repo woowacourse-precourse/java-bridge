@@ -1,4 +1,4 @@
-package validation;
+package bridge.validation;
 
 import static bridge.constant.ChoiceGame.QUIT;
 import static bridge.constant.ChoiceGame.RESTART;

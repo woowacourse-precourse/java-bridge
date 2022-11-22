@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
-import dto.Result;
+import bridge.dto.Result;
 
 import static bridge.constant.Movement.DOWN;
 import static bridge.constant.Movement.UP;
