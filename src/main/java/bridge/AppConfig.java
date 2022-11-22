@@ -3,7 +3,6 @@ package bridge;
 import bridge.controller.BridgeGame;
 import bridge.controller.BridgeInputController;
 import bridge.controller.BridgeMaker;
-import bridge.controller.GameManager;
 import bridge.view.InputView;
 
 public class AppConfig {

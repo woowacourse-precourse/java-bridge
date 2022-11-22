@@ -18,4 +18,8 @@ public class Score {
         return scoreBoard;
     }
 
+    public List<String> getScoreBoard() {
+        return scoreBoard;
+    }
+
 }

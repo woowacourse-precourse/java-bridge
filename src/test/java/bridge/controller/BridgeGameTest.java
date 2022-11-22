@@ -20,10 +20,10 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame();
     }
 
-    @Test
+    /*@Test
     @DisplayName("정답 다리 초기화 확인")
     void testInitBridge() {
         bridgeGame.initBridge(new ArrayList<>(List.of("U","D","D")));
         Assertions.assertThat(bridgeGame.bridge.getBridge()).isEqualTo(new ArrayList<>(List.of("U","D","D")));
-    }
+    }*/
 }

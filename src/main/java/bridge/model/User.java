@@ -21,7 +21,7 @@ public class User {
         return userCommand;
     }
 
-    /*public List<String> getUserCommand() {
+    public List<String> getUserCommand() {
         return userCommand;
-    }*/
+    }
 }
