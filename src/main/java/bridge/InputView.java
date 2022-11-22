@@ -18,10 +18,8 @@ public class InputView {
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }
-        if (size < 3 || size > 21) {
+        if (size < 3 || size > 21)
             throw new IllegalArgumentException();
-        }
-
         return size;
     }
 
