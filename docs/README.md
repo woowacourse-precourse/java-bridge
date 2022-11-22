@@ -46,6 +46,7 @@ class InputView {
 ##### InputView, BridgeGame, OutputView를 포함해 게임을 진행하는 클래스
 - 게임을 진행하는 run 함수: run
 - 한 라운드의 게임을 진헁하는 함수:play 
+- 게임 시작 시 출력과, 사용자로부터 입력을 받는 함수: start
 - 재시작 여부를 체크하는 함수: checkRestart
 - 다리의 크기를 사용자에게 입력받아 다리를 생성하는 함수: inputBridge
 - 움직일 칸을 사용자에게 입력받아 한 칸을 움직이는 함수: inputMove

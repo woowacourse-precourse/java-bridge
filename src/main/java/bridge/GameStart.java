@@ -22,7 +22,7 @@ public class GameStart {
     }
 
     public void run() {
-        inputBridge();
+        start();
         boolean isSuccess = false;
         boolean isRestart = true;
         int countOfPlay = 0;
@@ -44,6 +44,11 @@ public class GameStart {
             }
         }
         return true;
+    }
+
+    private void start() {
+        outputView.printStartMessage();
+        inputBridge();
     }
 
     private boolean checkRestart(boolean isSuccess) {
