@@ -19,14 +19,14 @@ public enum Move {
         return Arrays.stream(values())
                 .filter(move -> move.command.equals(command))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidMoving()));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidMovingCommand()));
     }
 
     public static String getCommandByBridgeNumber(int bridgeNumber) {
         return Arrays.stream(values())
                 .filter(move -> move.bridgeNumber == bridgeNumber)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidMoving()))
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidMovingCommand()))
                 .command;
     }
 }

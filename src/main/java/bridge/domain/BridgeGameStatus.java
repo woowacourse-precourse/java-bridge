@@ -17,7 +17,7 @@ public enum BridgeGameStatus {
         return Arrays.stream(values())
                 .filter(gameStatus -> gameStatus.command.equals(command))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidGameStatusCommand()));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.isInvalidGameCommand()));
     }
 
     public static BridgeGameStatus gameStart() {
