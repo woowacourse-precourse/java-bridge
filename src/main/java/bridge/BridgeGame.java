@@ -21,11 +21,9 @@ public class BridgeGame {
     public void startGame(int currentIndex) {
         int bridgeSize = inputView.readBridgeSize();
         bridgeUsable = bridgeMaker.makeBridge(bridgeSize);
-        String resultUp="";
-        String resultDown="";
-        for (String move: bridgeUsable) {
+        for (int i=currentIndex; i<bridgeUsable.size(); i++) {
             String inputMove = inputView.readMoving();
-            move(move, inputMove, currentIndex);
+            move(bridgeUsable.get(currentIndex), inputMove, currentIndex);
             outputView.printMap(result);
         }
     }
