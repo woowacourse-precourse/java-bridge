@@ -12,40 +12,37 @@ import static bridge.constant.Score.FAIL;
 import static bridge.constant.Score.PASS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RefereeTest {
+class BridgeTest {
 
-    Referee recordFirst;
-    Referee recordSecond;
-    Referee recordFinal;
-    Bridge bridge;
+    Bridge bridgeFirst;
+    Bridge bridgeSecond;
+    Bridge bridgeFinal;
 
     @BeforeEach
     void setUp() {
-        bridge = new Bridge(List.of("U", "D", "U"));
-        recordFirst = new Referee(bridge);
-        recordSecond = new Referee(bridge);
-        recordFinal = new Referee(bridge);
+        bridgeFirst = new Bridge(List.of("U", "D", "U"));
+        bridgeSecond = new Bridge(List.of("U", "D", "U"));
+        bridgeFinal = new Bridge(List.of("U", "D", "U"));
 
-        recordFirst.addCurrentRoundNumber();
-        recordSecond.addCurrentRoundNumber();
-        recordFinal.addCurrentRoundNumber();
-        recordFinal.addCurrentRoundNumber();
-        recordFinal.addCurrentRoundNumber();
+        bridgeFirst.addCurrentRoundNumber();
+        bridgeSecond.addCurrentRoundNumber();
+        bridgeFinal.addCurrentRoundNumber();
+        bridgeFinal.addCurrentRoundNumber();
+        bridgeFinal.addCurrentRoundNumber();
     }
 
     @AfterEach
     void afterEach() {
-        bridge = null;
-        recordFirst = null;
-        recordSecond = null;
-        recordFinal = null;
+        bridgeFirst = null;
+        bridgeSecond = null;
+        bridgeFinal = null;
     }
 
     @DisplayName("이동의 성공/실패 여부를 반환한다.")
     @Test
     void judgeMoveTest() {
-        Score scoreFirst = recordFirst.judgeMove("D");
-        Score scoreSecond = recordSecond.judgeMove("U");
+        Score scoreFirst = bridgeFirst.judgeMove("D");
+        Score scoreSecond = bridgeSecond.judgeMove("U");
 
         assertThat(scoreFirst).isEqualTo(FAIL);
         assertThat(scoreSecond).isEqualTo(PASS);
@@ -54,8 +51,8 @@ class RefereeTest {
     @DisplayName("이동이 실패하는 지 반환한다.")
     @Test
     void isFailTest() {
-        Boolean isRecordFirstFail = recordFirst.isFail("D");
-        Boolean isRecordSecondFail = recordSecond.isFail("U");
+        Boolean isRecordFirstFail = bridgeFirst.isFail("D");
+        Boolean isRecordSecondFail = bridgeSecond.isFail("U");
 
         assertThat(isRecordFirstFail).isTrue();
         assertThat(isRecordSecondFail).isFalse();
@@ -64,8 +61,8 @@ class RefereeTest {
     @DisplayName("다리의 마지막 라운드가 통과했는지 확인한다.")
     @Test
     void isFinalRoundPassTest() {
-        Boolean finalPass = recordFinal.isFinalRoundPass("U");
-        Boolean finalNotPass = recordFinal.isFinalRoundPass("D");
+        Boolean finalPass = bridgeFinal.isFinalRoundPass("U");
+        Boolean finalNotPass = bridgeFinal.isFinalRoundPass("D");
 
         assertThat(finalPass).isTrue();
         assertThat(finalNotPass).isFalse();

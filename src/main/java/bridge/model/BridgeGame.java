@@ -10,14 +10,17 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private Referee referee;
     private Bridge bridge;
-    private final User user = new User();
-    private final Result result = new Result();
+    private final User user;
+    private final Result result;
+
+    public BridgeGame () {
+        user = new User();
+        result = new Result();
+    }
 
     public void createBridge(List<String> bridgeInput) {
         bridge = new Bridge(bridgeInput);
-        referee = new Referee(bridge);
     }
 
     /**
@@ -30,8 +33,8 @@ public class BridgeGame {
     }
 
     public void judgeMove(String moveDirection) {
-        referee.addCurrentRoundNumber();
-        Score score = referee.judgeMove(moveDirection);
+        bridge.addCurrentRoundNumber();
+        Score score = bridge.judgeMove(moveDirection);
 
         user.setScore(score);
         result.updateBridgeRecord(score, moveDirection);
@@ -50,26 +53,26 @@ public class BridgeGame {
      */
     public void retry() {
         result.addTryCount();
-        referee.resetCurrentRoundNumber();
+        bridge.resetCurrentRoundNumber();
         result.deleteBridgeRecord();
     }
 
     public Boolean isFail() {
         String moveDirection = user.getMoveDirection();
-        Boolean isFail = referee.isFail(moveDirection);
+        Boolean isFail = bridge.isFail(moveDirection);
         if (isFail) {
-            referee.resetCurrentRoundNumber();
+            bridge.resetCurrentRoundNumber();
         }
         return isFail;
     }
 
     public Boolean isRoundLeft() {
-        int currentRoundNumber = referee.getCurrentRoundNumber();
+        int currentRoundNumber = bridge.getCurrentRoundNumber();
         return bridge.isRoundLeft(currentRoundNumber);
     }
 
     public Boolean isGameRestart(String userChoice) {
-        return referee.isGameRestart(userChoice);
+        return bridge.isGameRestart(userChoice);
     }
 
     public List<List<String>> getBridgeRecord() {
