@@ -46,12 +46,11 @@ public class OutputView {
 
     private String createMap(List<BridgeToken> bridgeTokens) {
         StringBuilder stringBuilder = new StringBuilder();
+
         for (Direction direction : Direction.values()) {
-            stringBuilder.append(BRIDGE_START_REGEX);
             stringBuilder.append(bridgeTokens.stream()
                     .map(bridgeToken -> toSign(direction, bridgeToken))
-                    .collect(Collectors.joining(BRIDGE_SEPARATOR)));
-            stringBuilder.append(BRIDGE_END_REGEX);
+                    .collect(Collectors.joining(BRIDGE_SEPARATOR, BRIDGE_START_REGEX, BRIDGE_END_REGEX)));
         }
         return String.valueOf(stringBuilder);
     }
