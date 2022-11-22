@@ -33,6 +33,6 @@ public class FootPrint {
 
     @Override
     public String toString() {
-        return String.format("[ %s ]\n", String.join(" | ", footPrint));
+        return String.format("[ %s ]%n", String.join(" | ", footPrint));
     }
 }

@@ -34,7 +34,7 @@ public class BridgeGameController {
         while (true) {
             try {
                 bridgeGame = new BridgeGame(createBridge());
-                break;
+                return;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
