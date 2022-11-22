@@ -1,17 +1,17 @@
-# 기능 목록
+# 다리 건너기
 
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
 
 - 다리는 왼쪽에서 오른쪽으로 건너야 한다.
 - 위아래 둘 중 하나의 칸만 건널 수 있다.
 
-## 구성 예시
-
-![img.png](img.png)
+## 🌃 구성
+![img_1.png](img_1.png)
 
 - InputView
 - OutputView
 - BridgeGame
+- BridgeGameController
 - BridgeBroker
 - BridgeMaker
 - BridgeRandomNumberGenerator
@@ -21,7 +21,7 @@
 - GameResult
 - Bridge
 
-## 🚀 기능 요구 사항
+## 🚀 기능 목록
 
 ### BridgeGameController
 - 실제 게임을 진행시키는 진행자의 역할을 한다.
