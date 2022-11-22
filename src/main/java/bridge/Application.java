@@ -3,6 +3,7 @@ package bridge;
 import java.util.List;
 
 public class Application {
+
     private final static InputView inputView = new InputView();
     private final static OutputView outputView = new OutputView();
 
