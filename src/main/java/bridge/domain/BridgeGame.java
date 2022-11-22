@@ -24,9 +24,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String command) {
-        status.increaseSuccessedPhase();
         status.increaseTryNumber();
-        return bridge.canCrossBridge(status.getSuccessedPhase(), command);
+        status.enterCommand(command);
+        status.setSuccess(bridge.canCrossBridge(status.getCurrentPhase(), command));
+        return status.isSuccess();
     }
 
     /**
@@ -34,6 +35,27 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+
+    }
+
+    public boolean isEnd() {
+        return status.isSuccess() && status.getCurrentPhase() == bridge.length();
+    }
+
+    public boolean getSuccess() {
+
+    }
+
+    public String convertBridge() {
+
+    }
+
+    private String convertUpStair() {
+
+    }
+
+    private String convertDownStair() {
+
     }
 }
