@@ -1,6 +1,6 @@
-package bridge.service;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
+import bridge.service.Location;
 
 import java.util.ArrayList;
 import java.util.List;

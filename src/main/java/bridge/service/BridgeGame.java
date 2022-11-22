@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.util.validator.BridgeMakerValidator;
 import bridge.util.validator.BridgeMoveValidator;
