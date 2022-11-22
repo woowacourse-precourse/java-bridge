@@ -1,0 +1,46 @@
+### 기능 구현 목록
+
+- 프로그래밍 요구사항
+  - InputView 클래스에서만 readLine() 이용해 입력 받음, 메서드와 시그니처 반환 타입 변경 가능
+  - OutputView 메서드 이름 변경 불가능, 인자와 반환 타입은 필요에 따라 추가하거나 변경 가능, 메서드 추가 가능
+  - BridgeGame 클래스에서 InputView, OutputView를 사용하지 않는다, 메서드 이름 변경 불가능, 인자와 반환 타입은 필요에 따라 추가하거나 변경 가능, 메서드 추가 또는 변경 가능
+  - BridgeMaker 클래스에서 필드 변경, 메서드 시그니처와 반환 타입 변경 불가능
+  - BridgeRandomNumberGenerator 클래스에서 Random값 추출 bridge.BridgeRandomNumberGenerator의 generate()를 활용
+  - BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스 코드 변경 불가능
+- 게임 시작
+  - [다리 건너기 게임을 시작합니다.] 메시지 출력
+- 다리 길이 입력
+  - [다리의 길이를 입력해주세요.] 메시지 출력
+  - 3 이상 20 이하 다리 길이 입력
+    - InputView#readBridgeSize()
+  - 예외 처리
+    - 숫자가 아닌 값 입력시
+    - 3~20의 범위가 아닌 값 입력시
+    - 공백 입력시
+- 다리 길이 생성
+  - 입력 받은 길이만큼 위 칸, 아래 칸 다리 생성
+    - BridgeMaker#makeBridge()
+  - 다리 생성할 때 위 칸과 아래 칸 건널 수 있는 칸은 0과 1 중 무작위 값을 이용
+    - BridgeRandomNumberGenerator#generate()
+  - 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸
+  - 다리의 시작은 [, 다리의 끝은 ] 으로 표시
+  - 다리 칸의 구분은 | 문자열로 구분
+- 플레이어 이동할 칸 선택
+  - [이동할 칸을 선택해주세요. (위: U, 아래: D)] 메시지 출력
+  - 위 칸을 건널 경우 U, 아래 칸을 건널 경우 D값 입력
+    - InputView#readMoving()
+    - 이동 → BridgeGame#move()
+  - 선택하지 않은 칸은 공백 한 칸으로 표시
+  - 현재까지 건넌 다리를 모두 출력
+  - 예외 처리
+    - U 또는 D 이외의 값 입력시
+    - 공백 입력시
+- 건널 수 없는 칸 선택 시
+  - [게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)] 메시지 출력
+  - R 또는 Q 입력
+    - InputView#readGameCommand()
+  - 재시도 입력 시 처음에 만든 다리로 재생성
+    - BridgeGame#retry()
+  - 종료 입력 시 최종 게임 결과와, 게임 성공 여부, 총 시도한 횟수 출력
+- 게임 성공 시
+  - 최종 게임 결과, 게임 성공 여부, 총 시도한 횟수 출력
