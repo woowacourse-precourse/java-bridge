@@ -8,24 +8,23 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgeController {
-    private static final int BRIDGE_FIRST_INDEX = 0;
-    private static final int DEFAULT_TRY_COUNT = 1;
-    private static boolean gameStatus = true;
+import static bridge.util.Constant.*;
 
+public class BridgeController {
+    private static boolean gameProcessStatus = true;
     public void runGame() {
         OutputView.printGameStartMessage();
         int bridgeSize = InputView.readBridgeSize();
         BridgeGame bridgeGame = createBridgeGame(bridgeSize);
         playGame(bridgeSize, bridgeGame);
-        OutputView.printBridgeResult(gameStatus, bridgeGame.getTryCount());
+        OutputView.printBridgeResult(gameProcessStatus, bridgeGame.getTryCount());
     }
 
     private static void playGame(int bridgeSize, BridgeGame bridgeGame) {
         for (int bridgeIndex = BRIDGE_FIRST_INDEX; bridgeIndex < bridgeSize; bridgeIndex++) {
             String moveSide = inputMoveSide(bridgeIndex);
             if (checkMoveSide(bridgeGame, bridgeIndex, moveSide)) continue;
-            if (gameStatus(gameStatus, bridgeGame, bridgeIndex)) break;
+            if (gameStatus(gameProcessStatus, bridgeGame, bridgeIndex)) break;
             bridgeIndex = backToPreviousIndex(bridgeIndex);
         }
     }
@@ -56,7 +55,7 @@ public class BridgeController {
 
     private static boolean checkMoveSide(BridgeGame bridgeGame, int bridgeIndex, String moveSide) {
         if (isMoveSuccessfulOrNot(bridgeGame, bridgeIndex, moveSide)) return true;
-        gameStatus = bridgeGame.retry();
+        gameProcessStatus = bridgeGame.retry();
         return false;
     }
 
