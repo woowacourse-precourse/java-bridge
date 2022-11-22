@@ -63,4 +63,15 @@ public class OutputView {
             System.out.println();
         }
     }
+    public void printResult(List<String> Bridge, List<String> nextStep, int tryCount, int turn) {
+        System.out.println("최종 게임 결과");
+        printMap(nextStep, Bridge, turn);
+        System.out.print("게임 성공 여부: ");
+        if(Bridge.get(Bridge.size()-1).equals(nextStep.get(nextStep.size()-1))){
+            printSuccess(Bridge,nextStep);
+            printFail1(Bridge,nextStep);
+        }
+        printFail2(Bridge,nextStep);
+        System.out.println("총 시도한 횟수: "+tryCount);
+    }
 }
