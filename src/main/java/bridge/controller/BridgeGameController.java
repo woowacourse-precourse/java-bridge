@@ -43,4 +43,15 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame, userInput, bridge);
     }
 
+
+    // 한 라운드를 진행하는 기능
+    private void playRound(List<String> bridge) {
+        do {
+            userInput = inputView.readMoving();
+            bridgeGame.move(userInput, bridge);
+            bridgeGame.increaseRoundCount();
+            outputView.printMap(bridgeGame);
+        } while (bridgeGame.checkPlayNextRound(userInput, bridge));
+    }
+
 }
