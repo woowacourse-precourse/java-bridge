@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -11,6 +14,12 @@ public class Application {
         // 2.다리 길이 입력
         InputView gameInputView = new InputView();
         int gameBridgeLength = gameInputView.readBridgeSize();
+
+        // 3.다리 생성
+        BridgeRandomNumberGenerator gameBridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker gameBridgeMaker = new BridgeMaker(gameBridgeRandomNumberGenerator);
+        List<String> gameBridge = gameBridgeMaker.makeBridge(gameBridgeLength);
+
 
 
 
