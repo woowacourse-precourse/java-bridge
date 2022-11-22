@@ -7,14 +7,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class MapTest {
-    private static final List<String> upperSide = List.of("O", "O", " ");
-    private static final List<String> bellowSide = List.of(" ", " ", "X");
     private final Map map = new Map();
 
     @DisplayName("맵 생성 테스트")

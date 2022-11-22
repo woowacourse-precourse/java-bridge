@@ -45,7 +45,7 @@ public class BridgeGame {
         return false;
     }
 
-    public GameStatus getGameStatus() {
+    public GameStatus isGameFinished() {
         if (this.bridge.isLastPosition(this.player.getCurrentPosition())) {
             return GameStatus.SUCCESS;
         }

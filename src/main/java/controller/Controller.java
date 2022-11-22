@@ -54,7 +54,7 @@ public class Controller {
         if (!playerOnMovableSide) {
             return askForRetry(bridgeGame, GameStatus.FAILURE);
         }
-        return bridgeGame.getGameStatus();
+        return bridgeGame.isGameFinished();
     }
 
     private GameStatus askForRetry(final BridgeGame bridgeGame, GameStatus gameStatus) {
