@@ -1,4 +1,4 @@
-package bridge.domain.user;
+package bridge.domain.service;
 
 import bridge.constant.enums.Moving;
 import bridge.constant.Message.InputExceptionMessage;

@@ -1,6 +1,6 @@
 package bridge.controller.game;
 
-import bridge.controller.user.BridgeService;
+import bridge.controller.service.BridgeService;
 import bridge.domain.game.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.domain.game.BridgeMap;
