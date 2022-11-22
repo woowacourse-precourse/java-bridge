@@ -12,6 +12,14 @@ public class BridgeGame {
     private int currPosition = 0;
     private List<String> bridgeCurrStatus = new ArrayList<>();
 
+    public BridgeGame() {
+
+    }
+
+    public BridgeGame(List<String> bridgeCurrStatus) {
+        this.bridgeCurrStatus = bridgeCurrStatus;
+    }
+
     public List<String> getBridgeCurrStatus() {
         return bridgeCurrStatus;
     }
