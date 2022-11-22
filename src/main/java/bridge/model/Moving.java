@@ -1,5 +1,8 @@
 package bridge.model;
 
+import bridge.OutputView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.BridgeGame.move;
@@ -8,10 +11,21 @@ import static bridge.enums.DorU.UP;
 
 public class Moving {
 
+    private static final List<String> upLine = new ArrayList<>();
+    private static final List<String> downLine = new ArrayList<>();
+
     private final String RIGHT = " O ";
     private final String WRONG = " X ";
     private final String BLANK = "   ";
 
+    public static void clearMoving() {
+        upLine.clear();
+        downLine.clear();
+    }
+
+    public static void printMoving() {
+        OutputView.printMap(upLine, downLine);
+    }
 
     public List<String> addRightOrWrong(String computer, String userInput) {
         if (move(computer, userInput)) {
