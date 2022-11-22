@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
+    private final int NO_RETRY = 0;
+    private final String MATCH = "O";
+    private final String MISMATCH = "X";
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -20,9 +23,9 @@ public class BridgeGame {
      */
     public String move(String moving, int count) {
         if (bridge.get(count).equals(moving)) {
-            return "O";
+            return MATCH;
         }
-        return "X";
+        return MISMATCH;
     }
 
     /**
@@ -34,6 +37,6 @@ public class BridgeGame {
         if (gameCommand.equals(GameCommandResult.RETRY.getGameCommand())) {
             return GameCommandResult.RETRY.getAttemptPlus();
         }
-        return 0;
+        return NO_RETRY;
     }
 }
