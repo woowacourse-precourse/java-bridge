@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class lengthBridgeTest {
 
-    @ValueSource(strings = {"1", "11", "113", "145141"})
+    @ValueSource(strings = {"3", "5", "8", "20"})
     @ParameterizedTest
     void lengthBridge_테스트(String input) {
         assertThat(new lengthBridge(input).getLength()).isEqualTo(Integer.parseInt(input));
