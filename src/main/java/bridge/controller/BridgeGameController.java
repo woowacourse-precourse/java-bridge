@@ -32,6 +32,7 @@ public class BridgeGameController {
     private Result playBridgeGame(Player player) {
         while (bridgeGameService.isPlaying()) {
             crossBridge(player);
+            checkRetrial(player);
         }
         return generateResult(player);
     }
@@ -44,6 +45,14 @@ public class BridgeGameController {
 
     private Result generateResult(Player player) {
         return bridgeGameService.gameOver(player);
+    }
+    
+    private void checkRetrial(Player player) {
+        if (bridgeGameService.isPlaying() || bridgeGameService.isGameOver(player)) {
+            return;
+        }
+        String command = repeatCommand(inputView::readGameCommand);
+        bridgeGameService.retry(player, command);
     }
 
     private void endGame(Result result) {
