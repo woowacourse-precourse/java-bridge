@@ -17,19 +17,22 @@ public class GameProcess {
     public static int gameCnt = 0;
     public static String length;
     public static int size;
-    public static String status;
     public static List<String> bridge;
     public static List<String> makingBridge = new ArrayList<>(Arrays.asList("[ ]","[ ]"));
 
     public static void gameStart(){
         outputView.printStart();
-        size = getSize();
-        bridge = bridgeMaker.makeBridge(size);
-        while(true){
-            gameCnt++;
-            if (!gameRunning(bridge,size)) break;
+        try {
+            size = getSize();
+            bridge = bridgeMaker.makeBridge(size);
+            while (true) {
+                gameCnt++;
+                if (!gameRunning(bridge, size)) break;
+            }
+            gameEnd(makingBridge, gameCnt);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
-        gameEnd(makingBridge,status,gameCnt);
     }
 
     public static int getSize() {
@@ -40,9 +43,7 @@ public class GameProcess {
         catch(NumberFormatException e){
             throw new IllegalArgumentException(inputE);
         }
-        if(size>max || size<min){
-            throw new IllegalArgumentException(rangeE);
-        }
+        if(size>max || size<min) throw new IllegalArgumentException(rangeE);
         return size;
     }
 
@@ -50,9 +51,7 @@ public class GameProcess {
         makingBridge = new ArrayList<>(Arrays.asList("[ ]","[ ]"));
         for (int i = 0; i < size; i++) {
             String status = getStatus(bridge,i);
-            if(status.equals(wrong)){
-                return bridgeGame.retry(inputView.readGameCommand());
-            }
+            if(status.equals(wrong)) return bridgeGame.retry(inputView.readGameCommand());
         }
         return false;
     }
@@ -73,7 +72,7 @@ public class GameProcess {
     }
 
 
-    public static void gameEnd(List<String> makingBridge, String status, int gameCnt){
-        outputView.printResult(makingBridge,status,gameCnt);
+    public static void gameEnd(List<String> makingBridge, int gameCnt){
+        outputView.printResult(makingBridge,gameCnt);
     }
 }
