@@ -102,8 +102,7 @@ public class GameControllerTest extends NsTest {
     protected void runMain() {
         try{
             Application.main(new String[]{});
-        }catch(NoSuchElementException e){
-        }
+        }catch(NoSuchElementException e){}
     }
 
 }

@@ -14,5 +14,4 @@ public enum GameStatus {
     public String getText() {
         return this.text;
     }
-
 }

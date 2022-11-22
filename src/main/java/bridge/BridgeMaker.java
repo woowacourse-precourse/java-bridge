@@ -3,9 +3,10 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
+import static bridge.Constant.Command.DOWN;
+import static bridge.Constant.Command.UP;
+
+
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -13,28 +14,23 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
         List<String> newBridge = new ArrayList<>();
-        int number = 0;
 
+        int number = 0;
         for(int i=0;i<size;i++) {
             number = bridgeNumberGenerator.generate();
             newBridge.add(number2bridge(number));
         }
-
         return newBridge;
     }
 
     private String number2bridge(int number){
         if(number == 0){
-            return "D";
+            return DOWN;
         }
         if(number == 1){
-            return "U";
+            return UP;
         }
         return null;
     }
