@@ -2,7 +2,7 @@ package bridge.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import bridge.domain.User;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -15,27 +15,27 @@ public class BridgeControllerTest {
     @Test
     public void processTrueCaseTest() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "U", "U"));
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "U"));
         User user = new User();
         boolean isUserAnswerCorrect = true;
 
         // when
-        bridgeController.processGame(bridge, user, isUserAnswerCorrect);
+        bridgeController.processGame(bridgeGame, user, isUserAnswerCorrect);
 
         // then
-        assertThat(bridge.getNowIndex()).isEqualTo(1);
+        assertThat(bridgeGame.getNowIndex()).isEqualTo(1);
     }
 
     @DisplayName("doFailCase 테스트 (restart 경우)")
     @Test
     public void doFailCaseWithRestartTest() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "D"));
         User user = new User();
         String gameStatus = "R";
 
         // when
-        bridgeController.doFailCase(bridge, user, gameStatus);
+        bridgeController.doFailCase(bridgeGame, user, gameStatus);
 
         // then
         assertThat(user.getGameTryCount()).isEqualTo(2);
@@ -45,12 +45,12 @@ public class BridgeControllerTest {
     @Test
     public void doFailCaseWithQuitTest() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "D"));
         User user = new User();
         String gameStatus = "Q";
 
         // when
-        bridgeController.doFailCase(bridge, user, gameStatus);
+        bridgeController.doFailCase(bridgeGame, user, gameStatus);
 
         // then
         assertThat(user.isGameWin()).isEqualTo(false);
@@ -61,13 +61,13 @@ public class BridgeControllerTest {
     @Test
     public void doSuccessCaseTest() {
         // given
-        Bridge bridge = new Bridge(List.of("U", "U", "U"));
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "U"));
         User user = new User();
 
         // when
-        bridgeController.doSuccessCase(bridge, user);
+        bridgeController.doSuccessCase(bridgeGame, user);
 
         // then
-        assertThat(bridge.getNowIndex()).isEqualTo(1);
+        assertThat(bridgeGame.getNowIndex()).isEqualTo(1);
     }
 }
