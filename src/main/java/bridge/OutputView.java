@@ -13,19 +13,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    String[] correctUp;
+    String[] correctDown;
 
     public OutputView(){
         answer = new ArrayList<>();
     }
     public void printMap(String direction, List<String> bridge, GameState state) {
         int size = bridge.size();
-        String[] correctUp = new String[size];
-        String[] correctDown = new String[size];
+
+        correctUp = new String[size];
+        correctDown = new String[size];
 
         answer.add(direction);
         correctUp = makeUpList(answer,state);
         correctDown = makeDownList(answer,state);
-
         printList(correctUp);
         printList(correctDown);
     }
@@ -79,9 +81,20 @@ public class OutputView {
     public void init(){
         answer = new ArrayList<>();
     }
-    public void printResult(List<String> bridge, int location , String directin) {
-       // String[] result = new String[];
-
-
+    public void gameStart(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
     }
+    public void printResult(GameState state ,int retryStack) {
+        System.out.println("최종 게임 결과");
+        printList(correctUp);
+        printList(correctDown);
+        if(state == GameState.FALL){
+            System.out.println("게임 성공 여부: 실패");
+        }
+        if(state == GameState.WIN){
+            System.out.println("게임 성공 여부: 성공");
+        }
+        System.out.println("총 시도한 횟수: " + retryStack);
+    }
+
 }
