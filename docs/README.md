@@ -43,7 +43,6 @@
    - move: 사용자의 선택(입력 값)과, 정답(다리를 건너기 위한 정답 칸)을 비교하여 [마커(O,X), 방향(U,D)]의 형태를 element으로 가진 리스트를 반환.
    - markResult: 사용자의 선택 경로에 마커 (O, X)를 표시, 선택 방향(U, D)를 리스트 형태로 묶어 반환.
    - retry: 사용자가 게임을 다시 시도할 때, 즉 "R" 입력 시 true를 반환, 그렇지 않다면 false를 반환.
-     - "R", "Q" 이외의 입력이 들어온다면 IllegalArgumentException 예외처리 후, INVALID_COMMAND 출력([ERROR] 게임 다시 시도 여부는 R(재시도)과 Q(종료) 중 하나의 문자로 입력해주세요).
 6. **BridgeMaker**
    - makeBridge: 다리 길이를 파라미터로 받아 그 길이 만큼 랜덤으로 생성된 숫자(0,1)를 칸(U,D)으로 표현(saveAnswer)하여 반환.
    - saveAnswer: BridgeNumberGenerator 인터페이스를 구현한 BridgeRandomNumberGenerator의 generate 함수로 생성된 랜덤 값이 0인 경우 아래 칸, 1인 경우 위 칸으로 변환.
@@ -56,10 +55,12 @@
    - greetings: 게임 시작 문구(다리 건너기 게임을 시작합니다.)
    - init: 다리 생성, 다리 길이 초기 입력 세팅.
      - 3-20 사이의 숫자값이 입력으로 들어오지 않으면 예외 처리, 입력받은 에러 메세지 출력(INVALID_SIZE)
-   - moveUntilDone: 다리 건너기 성공할 때까지 게임 진행
-     - 게임 종료의 3가지 경우: 사용자 입력 종료(Q), 실패(X), 최종 성공
-       - 사용자 입력 종료(Q): while loop에서 조건문으로 판별.
-       - 실패(X): 사용자 입력과 정답을 비교하여 "X"가 있는지 여부로 판단(checkGameOver)
-       - 최종 성공: 사용자 입력과 정답을 비교한 결과에 "X"가 존재하지 않고 다리 크기만큼 진행되었으면 성공(checkSucceed)
-   - userSingleMove: 사용자 이동 칸 입력을 받고 정답과 비교한 후, 게임이 끝났는지 여부를 반환.
+   - askUntilDone: 다리 건너기 성공할 때까지 게임 진행
+     - userOneMove -> checkConditions -> restart check
+     - userOneMove: 사용자에게 이동할 칸을 입력받고 적합하지 않은 값을 예외처리 한 후 현재 다리의 상태를 출력.
+     - checkConditions: 
+       - 게임 성공여부 판단(checkSucceed)
+       - 게임 실패 판단(checkGameOver)
+       - 재시도 질문 시 "R" 여부 판단(restart)
+     - restart: 재시도 "R" 입력 시 시도 횟수 trial에 1을 더하고 restart 초기화.
 ---
