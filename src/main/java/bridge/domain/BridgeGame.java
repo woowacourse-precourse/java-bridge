@@ -22,9 +22,10 @@ public class BridgeGame {
   public boolean move(BridgeArea nextArea) {
     int currentLocation = gameState.getCurrentLocation();
     if (bridge.canMove(currentLocation, nextArea)) {
-      gameState.addHistory(nextArea);
+      gameState.addHistory(nextArea, true);
       return true;
     }
+    gameState.addHistory(nextArea, false);
     return false;
   }
 

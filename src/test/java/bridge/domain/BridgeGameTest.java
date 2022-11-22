@@ -21,7 +21,7 @@ class BridgeGameTest {
   }
 
   @Test
-  void 이동시_성공하면_유저의기록에_추가된다(){
+  void 이동시_성공하면_유저의기록에_성공이추가된다(){
     BridgeArea givenNextArea = BridgeArea.U;
 
     boolean moveResult = bridgeGame.move(givenNextArea);
@@ -29,16 +29,19 @@ class BridgeGameTest {
     assertThat(moveResult).isTrue();
     assertThat(gameState.getMovementHistory().size()).isEqualTo(1);
     assertThat(gameState.getMovementHistory().get(0)).isEqualTo(givenNextArea);
+    assertThat(gameState.getStateHistory().get(0)).isTrue();
   }
 
   @Test
-  void 이동에_실패하면_유저의기록에_추가되지않는다(){
+  void 이동에_실패하면_유저의기록에_실패가추가된다(){
     BridgeArea givenNextArea = BridgeArea.D;
 
     boolean result = bridgeGame.move(givenNextArea);
 
     assertThat(result).isFalse();
-    assertThat(gameState.getMovementHistory().size()).isEqualTo(0);
+    assertThat(gameState.getMovementHistory().size()).isEqualTo(1);
+    assertThat(gameState.getStateHistory().size()).isEqualTo(1);
+    assertThat(gameState.getStateHistory().get(0)).isFalse();
   }
 
   @Test
