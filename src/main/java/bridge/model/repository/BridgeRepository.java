@@ -13,7 +13,7 @@ public class BridgeRepository {
     private static int position = Constant.BRIDGE_INITIAL_POSITION;
     private static SuccessOrFail successOrFail = SuccessOrFail.SUCCESS;
 
-    public BridgeRepository(List<String> bridges) {
+    public void createBridge(List<String> bridges) {
         this.bridges = new Bridges(bridges);
     }
 
@@ -49,4 +49,6 @@ public class BridgeRepository {
         return bridges.findBridgeMapByPosition(position);
     }
 
+//    public void createBridge(List<String> bridges) {
+//    }
 }
