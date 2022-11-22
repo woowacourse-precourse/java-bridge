@@ -14,7 +14,8 @@ public enum OutputText {
     BLOCK_BORDER(" | "),
     STATE_CLEAR("성공"),
     STATE_FAIL("실패"),
-    STATE_NONE("잘못된 상태");
+    STATE_NONE("잘못된 상태"),
+    ERROR_HEAD("[ERROR]");
 
     private String message;
     OutputText(String message){

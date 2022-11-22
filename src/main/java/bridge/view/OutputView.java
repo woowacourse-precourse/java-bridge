@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(String errorMessage){
-        System.out.println(DomainError.ERROR_HEAD.getMessage() + errorMessage);
+        System.out.println(OutputText.ERROR_HEAD.getMessage() + errorMessage);
     }
 
 }

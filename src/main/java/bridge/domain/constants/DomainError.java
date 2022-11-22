@@ -1,7 +1,6 @@
 package bridge.domain.constants;
 
 public enum DomainError {
-    ERROR_HEAD("[ERROR]"),
     INVALID_MOVE_COMMAND("위칸을 선택하려면 '"+
             Command.MOVE_UP.getCommand() +
             "', 아래칸을 선택하려면 '"
