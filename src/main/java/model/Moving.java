@@ -1,6 +1,5 @@
 package model;
 
-import model.Bridge;
 import type.MovingType;
 import validation.Validation;
 

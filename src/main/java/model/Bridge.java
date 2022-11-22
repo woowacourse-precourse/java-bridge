@@ -1,7 +1,5 @@
 package model;
 
-import type.MovingType;
-
 import java.util.List;
 
 public class Bridge {

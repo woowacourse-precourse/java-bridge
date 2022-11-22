@@ -1,7 +1,6 @@
 package bridge;
 
 import model.Bridge;
-import bridge.BridgeGame;
 
 import java.util.Map;
 
