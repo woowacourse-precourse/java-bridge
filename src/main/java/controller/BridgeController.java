@@ -1,6 +1,7 @@
 package controller;
 
 import static model.BridgeGame.getTryNumber;
+
 import constant.BridgeConstant;
 import generator.BridgeRandomNumberGenerator;
 import model.BridgeGame;
