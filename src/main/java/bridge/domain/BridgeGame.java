@@ -11,23 +11,24 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    GameResult gameResult = new GameResult();
+    private GameResult gameResult;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameResult move(List<String> bridgeShape, String input) {
+    public void initGameResult() {
+        gameResult = new GameResult();
+    }
+
+    public GameResult move(String bridgeShape, String input) {
         inputShapeValidate(input);
-        for (int i = 0; i < bridgeShape.size(); i++) {
-            if (input.equals(bridgeShape.get(i))) {
-                gameResult = setSuccessResult(bridgeShape.get(i));
-                break;
-            }
-            gameResult = setFailResult(bridgeShape.get(i));
-            break;
+        if (input.equals(bridgeShape)) {
+            gameResult = setSuccessResult(bridgeShape);
+            return gameResult;
         }
+        gameResult = setFailResult(bridgeShape);
         return gameResult;
     }
 
@@ -46,13 +47,13 @@ public class BridgeGame {
 
     public GameResult setFailResult(String bridgeShape) {
         if (bridgeShape.equals("U")) {
-            gameResult.setUpBridgeResult("X");
-            gameResult.setDownBridgeResult(" ");
+            gameResult.setUpBridgeResult(" ");
+            gameResult.setDownBridgeResult("X");
             gameResult.setBridgeGameResult(false);
             return gameResult;
         }
-        gameResult.setUpBridgeResult(" ");
-        gameResult.setDownBridgeResult("X");
+        gameResult.setUpBridgeResult("X");
+        gameResult.setDownBridgeResult(" ");
         gameResult.setBridgeGameResult(false);
         return gameResult;
     }
