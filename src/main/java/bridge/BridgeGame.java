@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
@@ -14,7 +13,8 @@ public class BridgeGame {
 
     public static String status = "성공";
     public static int count = 1;
-    public static int retryornot = 1;
+    //기본 0, 재시도 1, 종료 2
+    public static int retryornot = 0;
 
     public void start() {
         BridgeMaker bridgemaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -36,18 +36,28 @@ public class BridgeGame {
     public void restartGame(int size, BridgeInform bridgeinform, List<String> result, List answer) {
         List<String> copy = new ArrayList<>();
         for(int times = 0; times < size; times++) {
-            if(retryornot == 1) {
-                times = 0;
-                retryornot = 0;
-            }
             if(retryornot == 2) {
-                outputview.printGameResult(copy);
+                //outputview.printGameResult(copy);
                 break;
             }
             bridgeinform.setDirection(inputview.readMoving());
             move(bridgeinform.getDirection(), answer, result);
+            copy.clear();
             copy.addAll(result);
-            outputview.printMap(result);
+            if(retryornot == 0) {
+                outputview.printMap(result);
+            }
+            if(retryornot == 2) {
+                outputview.printGameResult(result);
+            }
+            if(retryornot == 1) {
+                count++;
+                times = -1;
+                bridgeinform.initDirection();
+                retryornot = 0;
+                status = "성공";
+            }
+
             if(times != size-1) {
                 result.clear();
             }
@@ -72,6 +82,7 @@ public class BridgeGame {
         result.add(drawLine(upcompare));
         result.add(drawLine(downcompare));
         if(status.equals("실패")) {
+            outputview.printMap(result);
             retry();
         }
     }
@@ -129,8 +140,6 @@ public class BridgeGame {
         if(quit.equals("R")) {
             retryornot = 1;
         }
-        count = count -1;
-        count++;
     }
 
     public String drawLine(String[] compare) {
