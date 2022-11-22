@@ -18,6 +18,11 @@ public class BridgeSize {
         this.bridgeSize = bridgeSize;
     }
 
+    /**
+     * 
+     * @param input 입력받은 문자열
+     * @return 입력받은 문자열이 숫자인지 여부
+     */
     private boolean isNumber(String input) {
         if (input.matches("^[0-9]*$")) {
             return true;
@@ -25,10 +30,20 @@ public class BridgeSize {
         return false;
     }
 
+    /**
+     * 
+     * @param bridgeSize 다리의 길이
+     * @return 다리의 길이가 유효한지 여부
+     */
     private boolean isValidBridgeSize(int bridgeSize) {
         return bridgeSize >= minBridgeSize && bridgeSize <= maxBridgeSize;
     }
 
+    /**
+     * 다리의 길이 반환
+     * 
+     * @return 다리의 길이
+     */
     public int getBridgeSize() {
         return bridgeSize;
     }

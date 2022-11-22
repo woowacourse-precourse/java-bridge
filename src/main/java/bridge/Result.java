@@ -16,6 +16,12 @@ public class Result {
         tryCount = count;
     }
 
+    /**
+     * 다리의 한 줄을 추가한다.
+     * 
+     * @param resultType
+     * @param direction
+     */
     public void appendResult(ResultType resultType, Direction direction) {
         lastResultType = resultType;
         if (direction == Direction.UP) {
@@ -28,18 +34,38 @@ public class Result {
         }
     }
 
+    /**
+     * 다리의 첫번째 줄을 추가한다.
+     * 
+     * @return 다리의 첫번째 줄
+     */
     public List<ResultType> getFirstRow() {
         return firstRow;
     }
 
+    /**
+     * 다리의 두번째 줄을 추가한다.
+     * 
+     * @return 다리의 두번째 줄
+     */
     public List<ResultType> getSecondRow() {
         return secondRow;
     }
 
+    /**
+     * 시도한 결과를 반환한다.
+     * 
+     * @return 시도한 결과
+     */
     public int getCount() {
         return tryCount + 1;
     }
 
+    /**
+     * 마지막 움직임의 결과를 반환한다.
+     * 
+     * @return 마지막 움직임의 결과
+     */
     public ResultType getLastResultType() {
         return lastResultType;
     }

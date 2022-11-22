@@ -15,6 +15,13 @@ public enum GameCommand {
         return value;
     }
 
+    /**
+     * 
+     * 문자열을 입력받아서 GameCommand를 반환한다.
+     * 
+     * @param input 사용자가 입력한 게임 재시도 여부
+     * @return GameCommand
+     */
     static public GameCommand getGameCommand(String value) {
         for (GameCommand gameCommand : GameCommand.values()) {
             if (gameCommand.getValue().equals(value)) {
@@ -22,9 +29,5 @@ public enum GameCommand {
             }
         }
         throw new IllegalArgumentException(invalidGameCommandMessage);
-    }
-
-    static public boolean isRetry(String value) {
-        return RETRY.getValue().equals(value);
     }
 }

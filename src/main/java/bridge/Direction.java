@@ -18,6 +18,12 @@ public enum Direction {
         return value;
     }
 
+    /**
+     * 문자열로 된 방향을 Direction으로 변환한다.
+     * 
+     * @param value
+     * @return Direction
+     */
     static public Direction getDirection(String value) {
         for (Direction direction : Direction.values()) {
             if (direction.getValue().equals(value)) {
@@ -27,6 +33,12 @@ public enum Direction {
         throw new IllegalArgumentException(invalidMoveDirectionMessage);
     }
 
+    /**
+     * 숫자로 된 방향을 Direction으로 변환한다.
+     * 
+     * @param number
+     * @return Direction
+     */
     static public String getDirection(int number) {
         if (number == 1) {
             return UP.getValue();
@@ -37,6 +49,12 @@ public enum Direction {
         throw new IllegalArgumentException(invalidNumberMessage);
     }
 
+    /**
+     * 문자열 리스트로된 다리를 Direction 리스트로 변환한다.
+     * 
+     * @param values 문자열 리스트
+     * @return Direction 리스트
+     */
     static public List<Direction> getDirections(List<String> values) {
         List<Direction> directions = new ArrayList<>();
         for (String value : values) {

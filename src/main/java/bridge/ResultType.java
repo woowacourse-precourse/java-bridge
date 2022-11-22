@@ -13,6 +13,11 @@ public enum ResultType {
         return value;
     }
 
+    /**
+     * ResultType을 한글 문자열로 변환한다.
+     * 
+     * @return 한글 문자열 | "성공" 혹은 "실패"
+     */
     public String toKoreanString() {
         if (this == SUCCESS) {
             return "성공";
