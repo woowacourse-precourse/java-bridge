@@ -3,19 +3,13 @@ package bridge.view;
 import bridge.handler.InputBridgeLengthHandler;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     private String bridgeLength;
     InputBridgeLengthHandler inputBridgeLengthHandler = new InputBridgeLengthHandler(bridgeLength);
-    /**
-     * 다리의 길이를 입력받는다.
-     *
-     * @return
-     */
+
     public String readBridgeSize() {
         PrintView printView = new PrintView();
+
         System.out.println(printView.START_ORDER);
         printView.lineSkip();
         System.out.println(printView.INPUT_BRIDGE_LENGTH);
@@ -25,13 +19,7 @@ public class InputView {
         return bridgeLength;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readGameCommand() {
         return Console.readLine();
     }
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
 }
