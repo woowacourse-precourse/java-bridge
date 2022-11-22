@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.constant.Directions;
 import bridge.domain.Bridge;
+import bridge.domain.BridgeLength;
 import bridge.service.constant.ChoiceResult;
 import bridge.service.constant.GameStatus;
 
@@ -19,11 +20,11 @@ public class BridgeGame {
     private GameStatus status;
     private Bridge bridge;
 
-    public BridgeGame (Bridge bridge) {
+    public BridgeGame (BridgeLength bridgeLength) {
         attemptCount = 0;
         panelOrder = 0;
         status = GameStatus.PLAYING;
-        this.bridge = bridge;
+        this.bridge = new Bridge(bridgeLength);
     }
 
     /**
