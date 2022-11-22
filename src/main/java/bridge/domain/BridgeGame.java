@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static bridge.domain.vo.BridgeGameResult.confirmGameResult;
+import static bridge.domain.vo.Moving.recordMoving;
 import static bridge.view.InputView.readGameCommand;
 import static bridge.view.InputView.readMoving;
 
@@ -24,7 +25,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public BridgeGameResult move(List<String> bridge, int bridgeIndex) {
-        return computeGameResult(readMoving(), bridge.get(bridgeIndex));
+        Moving bridgeRoom = recordMoving(bridge.get(bridgeIndex));
+        return computeGameResult(readMoving(), bridgeRoom);
     }
 
     /**
@@ -58,12 +60,12 @@ public class BridgeGame {
         return bridgeGameResult.getIsMatched();
     }
 
-    public BridgeGameResult computeGameResult(Moving moving, String bridgeRoom) {
-        boolean isMatched = compare(moving.getMoving(), bridgeRoom);
-        return confirmGameResult(isMatched, moving.getMoving());
+    public BridgeGameResult computeGameResult(Moving userMoving, Moving bridgeRoom) {
+        boolean isMatched = compare(userMoving, bridgeRoom);
+        return confirmGameResult(isMatched, userMoving.getMoving());
     }
 
-    private boolean compare(String moving, String bridgeRoom) {
-        return Objects.equals(moving, bridgeRoom);
+    private boolean compare(Moving userMoving, Moving bridgeRoom) {
+        return userMoving.equals(bridgeRoom);
     }
 }

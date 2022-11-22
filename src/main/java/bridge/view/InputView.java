@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.domain.vo.BridgeSize.recordBridgeSize;
 import static bridge.domain.vo.GameCommand.determineRetry;
-import static bridge.domain.vo.Moving.recordUserMoving;
+import static bridge.domain.vo.Moving.recordMoving;
 import static bridge.view.OutputView.*;
 
 /**
@@ -31,7 +31,7 @@ public class InputView {
     public static Moving readMoving() {
         printMovingRequestMessage();
         String movingInput = Console.readLine();
-        return recordUserMoving(movingInput);
+        return recordMoving(movingInput);
     }
 
     /**

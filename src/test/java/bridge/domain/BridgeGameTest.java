@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static bridge.domain.vo.BridgeGameResult.confirmGameResult;
-import static bridge.domain.vo.Moving.recordUserMoving;
+import static bridge.domain.vo.Moving.recordMoving;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
@@ -26,10 +26,11 @@ class BridgeGameTest {
     @DisplayName("유저가 입력한 값에 따라서 생성된 bridge와의 일치 여부 결정된다.")
     @ParameterizedTest
     @MethodSource("moveTestData")
-    void moveTest(String movingInput, String bridgeRoom, boolean answer) {
-        Moving moving = recordUserMoving(movingInput);
+    void moveTest(String movingInput, String bridgeRoomInput, boolean answer) {
+        Moving userMoving = recordMoving(movingInput);
+        Moving bridgeRoom = recordMoving(bridgeRoomInput);
 
-        assertThat(bridgeGame.computeGameResult(moving, bridgeRoom).getIsMatched())
+        assertThat(bridgeGame.computeGameResult(userMoving, bridgeRoom).getIsMatched())
                 .isEqualTo(answer);
     }
 
