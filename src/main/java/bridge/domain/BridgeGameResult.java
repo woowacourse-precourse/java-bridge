@@ -17,6 +17,10 @@ public class BridgeGameResult {
         moveState = new BridgeMoveState();
     }
 
+    public int getMoveCount() {
+        return moveState.getMoveCount();
+    }
+
     public void updateMoveState(String moving, Boolean canMove) {
         moveState.update(moving, canMove);
     }
