@@ -19,7 +19,8 @@ public class BridgeGame {
         OutputView.startGameMessage();
         int size = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(size);
-        input = inputView.readMoving();
+        System.out.println(bridge);
+        move();
     }
 
     /**
@@ -29,10 +30,16 @@ public class BridgeGame {
      */
     public void move() {
         while(round != bridge.size()){
+            OutputView.movePrint();
+            input = inputView.readMoving();
             if(!comparingInputBridge()) {
                 wrongCase();
+                OutputView.printMap(this.up, this.down);
             }
-            correctCase();
+            if(comparingInputBridge()){
+                correctCase();
+                OutputView.printMap(this.up, this.down);
+            }
         }
     }
 
