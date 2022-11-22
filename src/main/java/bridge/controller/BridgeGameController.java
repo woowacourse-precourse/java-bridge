@@ -26,6 +26,7 @@ public class BridgeGameController {
     public void run() {
         printStartGame();
         Bridge bridge = set();
+        printLineBreak();
         restartGame(bridge, new BridgeGameResult());
     }
 
@@ -60,7 +61,8 @@ public class BridgeGameController {
             bridgeGameResult.setNumberOfRetries();
             restartGame(bridge, new BridgeGameResult(bridgeGameResult.getNumberOfRetries()));
         }
-        checkEndGame(bridgeGameResult, Objects.equals(gameCommand.getGameCommand(), Constants.QUIT));
+        checkEndGame(bridgeGameResult,
+            Objects.equals(gameCommand.getGameCommand(), Constants.QUIT));
     }
 
     private void restartGame(Bridge bridge, BridgeGameResult bridgeGameResult) {
@@ -79,6 +81,10 @@ public class BridgeGameController {
 
     private void printStartGame() {
         outputView.printStartMessage();
+    }
+
+    private void printLineBreak() {
+        outputView.printBreak();
     }
 
     private void printMatchResult(BridgeGameResult bridgeGameResult) {
