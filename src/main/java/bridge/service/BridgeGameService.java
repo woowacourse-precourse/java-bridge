@@ -5,7 +5,7 @@ import bridge.domain.bridge_game.BridgeGame;
 import bridge.domain.bridge_game.NumberOfChallenges;
 import bridge.domain.bridge_game.Player;
 import bridge.domain.bridge_game.Position;
-import bridge.domain.bridge_maker.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.validation.BridgeSize;
 
 public class BridgeGameService {

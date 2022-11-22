@@ -1,10 +1,9 @@
-package bridge.domain.bridge_maker;
+package bridge;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-// TODO : 테스트 통과 못하면 패키지 기존으로 ㄱㄱ
 public class BridgeMaker {
 
     private static final String MOVE_UP_COMMAND = "U";
@@ -16,7 +15,7 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(final int size) {
+    public List<String> makeBridge(int size) {
         List<Integer> randomNumbers = randomNumbers(size);
         return randomNumbers.stream()
                 .map(this::moveCommand)
