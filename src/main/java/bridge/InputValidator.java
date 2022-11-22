@@ -25,6 +25,16 @@ public class InputValidator {
         }
     }
 
+    public int validateBridgeSizeParsable(String size) throws IllegalArgumentException{
+        int parsedSize;
+        try {
+            parsedSize = Integer.parseInt(size);
+        } catch (NumberFormatException e) {
+            throw InputValidationError.ERROR_BRIDGE_SIZE.exception;
+        }
+        return parsedSize;
+    }
+
     public void validateMove(String dir) throws IllegalArgumentException {
         if(!COMMAND_MOVE_LIST.contains(dir)){
             throw InputValidationError.ERROR_COMMAND_MOVE.exception;
