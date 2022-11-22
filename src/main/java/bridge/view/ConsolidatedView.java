@@ -1,6 +1,8 @@
 package bridge.view;
 
 import bridge.model.BridgeResult;
+import bridge.model.GameCommandFlag;
+import bridge.model.ResultFlag;
 
 public class ConsolidatedView {
     private final InputView inputView;
@@ -38,7 +40,7 @@ public class ConsolidatedView {
         }
     }
 
-    public String inputGameCommand() {
+    public GameCommandFlag inputGameCommand() {
         while (true) {
             try {
                 outputView.printMessageForGameCommand();
@@ -51,5 +53,9 @@ public class ConsolidatedView {
 
     public void printMoveMap(BridgeResult bridgeResult) {
         outputView.printMap(bridgeResult);
+    }
+
+    public void printGameResult(BridgeResult bridgeResult, ResultFlag resultFlag, int tryCount) {
+        outputView.printResult(bridgeResult, resultFlag, tryCount);
     }
 }
