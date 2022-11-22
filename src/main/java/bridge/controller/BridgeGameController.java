@@ -20,12 +20,9 @@ public class BridgeGameController {
     }
 
     public void startNewGame() {
-        output.printStartMessage();
         while (true) {
             try {
-                int size = input.readBridgeSize();
-                this.bridge = new Bridge(size);
-                this.game = new BridgeGame(bridge);
+                startGameByInputSize();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -33,24 +30,21 @@ public class BridgeGameController {
         }
     }
 
-    public void playGame() {
+    public void runGame() {
         while (game.currentStatus.equals(GameStatus.CONTINUE)) {
-            movePosition();
+            play();
             if (game.currentStatus.equals(GameStatus.FAIL)) {
                 retryOrEndGame();
-            }
-            if (game.currentStatus.equals(GameStatus.SUCCESS)) {
+            } if (game.currentStatus.equals(GameStatus.SUCCESS)) {
                 output.printResult(game);
             }
         }
     }
 
-    public void movePosition() {
+    public void play() {
         while (true) {
             try {
-                String direction = input.readMoving();
-                game.move(direction);
-                output.printMap(bridge);
+                moveByInputDirection();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -61,17 +55,33 @@ public class BridgeGameController {
     public void retryOrEndGame() {
         while (true) {
             try {
-                String gameCommand = input.readGameCommand();
-                if (gameCommand.equals("R")) {
-                    game.retry();
-                }
-                if (gameCommand.equals("Q")) {
-                    output.printResult(game);
-                }
+                retryOrEndGameByInputCommand();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public void startGameByInputSize() {
+        int size = input.readBridgeSize();
+        this.bridge = new Bridge(size);
+        this.game = new BridgeGame(bridge);
+    }
+
+    public void moveByInputDirection() {
+        String direction = input.readMoving();
+        game.move(direction);
+        output.printMap(bridge);
+    }
+
+    public void retryOrEndGameByInputCommand() {
+        String gameCommand = input.readGameCommand();
+        if (gameCommand.equals("R")) {
+            game.retry();
+        }
+        if (gameCommand.equals("Q")) {
+            output.printResult(game);
         }
     }
 }

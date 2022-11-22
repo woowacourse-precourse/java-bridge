@@ -47,14 +47,12 @@ public class Bridge {
      */
     public List<String> getUserRouteInTargetBridge (String targetBridge) {
         List<String> userRouteInBridge = new ArrayList<>();
-
         for (int round=0; round<userRoute.size(); round++) {
             String currentUserPosition = userRoute.get(round);
             String availableDirection = bridge.get(round);
             String currentMovingResult = getMovingResultInTargetBridge(currentUserPosition, availableDirection, targetBridge);
             userRouteInBridge.add(currentMovingResult);
         }
-
         return userRouteInBridge;
     }
 
