@@ -50,33 +50,27 @@ public class OutputView {
         if (len >= 3 && len <= 20) {
             return len;
         }
-        System.out.println(error + LenError);
-        BridgeController.validate();
-        return 0;
+        throw new IllegalArgumentException(error + LenError);
     }
 
     private static int toInt(String val) {
         try {
             return Integer.parseInt(val);
         } catch (NumberFormatException e) {
-            System.out.println(error + e);
-            BridgeController.validate();
-            return 0;
+            throw new IllegalArgumentException(error + e);
         }
     }
 
     public static String MovingCheck(String moving) {
         if (!MovingCheck.contains(moving)) {
-            System.out.println(error + MovingError);
-            BridgeController.validate();
+            throw new IllegalArgumentException(error + MovingError);
         }
         return moving;
     }
 
     public static String RetryCheck(String retry) {
         if (!ReQuCheck.contains(retry)) {
-            System.out.println(error + RetryQuitError);
-            BridgeController.validate();
+            throw new IllegalArgumentException(error + RetryQuitError);
         }
         return retry;
     }
