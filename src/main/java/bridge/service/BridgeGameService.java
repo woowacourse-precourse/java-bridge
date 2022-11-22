@@ -59,5 +59,12 @@ public class BridgeGameService {
         String gameCommand = inputView.readGameCommand();
         return GameCommand.transformToAction(gameCommand);
     }
+    
+    public void endProcess() {
+        String report = bridgeGame.getFinalResult();
+        outputView.printMapResult(report);
+        outputView.printGameResult(bridgeGame.getBridgeGameState());
+        outputView.printTotalTrial(bridgeGame.getTotalTrial());
+    }
 
 }
