@@ -21,5 +21,16 @@ public class BridgeGame {
         }
     }
 
+    public void checkEndPoint(Bridge bridge, Game game) {
+        if (bridge.isEndPoint()) {
+            endGameWithWin(game);
+            return;
+        }
+        bridge.nextIndex();
+    }
+
+
+
+
 
 }
