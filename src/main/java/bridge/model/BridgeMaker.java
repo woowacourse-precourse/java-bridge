@@ -23,7 +23,10 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            bridge.add(Integer.toString(number));
+            if (number == CrossBridgeType.UPPER_BRIDGE.getBinaryKey())
+                bridge.add(CrossBridgeType.UPPER_BRIDGE.getStringKey());
+            if (number == CrossBridgeType.DOWN_BRIDGE.getBinaryKey())
+                bridge.add(CrossBridgeType.DOWN_BRIDGE.getStringKey());
         }
         return bridge;
     }
