@@ -20,7 +20,7 @@ public class BridgeMakerValidation {
         validateGeneratedNumOneAndLastBoxUpper(generatedNum, bridge);
     }
 
-    public void validateGeneratedNumZeroAndLastBoxLower(int generatedNum, List<String> bridge) {
+    private void validateGeneratedNumZeroAndLastBoxLower(int generatedNum, List<String> bridge) {
         int lastIdx = bridge.size() - 1;
 
         if (generatedNum == RANDOM_NUM_LOWER) {
@@ -30,7 +30,7 @@ public class BridgeMakerValidation {
         }
     }
 
-    public void validateGeneratedNumOneAndLastBoxUpper(int generatedNum, List<String> bridge) {
+    private void validateGeneratedNumOneAndLastBoxUpper(int generatedNum, List<String> bridge) {
         int lastIdx = bridge.size() - 1;
 
         if (generatedNum == RANDOM_NUM_UPPER) {
