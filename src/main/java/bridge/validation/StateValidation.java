@@ -13,7 +13,7 @@ public class StateValidation {
     }
 
     private static void inNotValidation(String input){
-        if(!(input=="D" || input=="U")){
+        if(!(input.equals("D") || input.equals("U"))){
             System.out.println("[ERROR] D 또는 U만 입력 가능합니다.");
             throw new IllegalArgumentException();
         }
