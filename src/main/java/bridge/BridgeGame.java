@@ -1,5 +1,6 @@
 package bridge;
 
+import data.PrintGuide;
 import java.util.ArrayList;
 import java.util.List;
 import data.BridgeData;
@@ -10,9 +11,15 @@ public class BridgeGame {
     InputParser inputParser = new InputParser();
     BridgeComparator bridgeComparator = new BridgeComparator();
     public void start() {
+        PrintGuide.WELCOME.printGuideWithLine();
+        System.out.println();
+
         List<String> bridge;
+        List<String> player = new ArrayList<>();
         bridge = makeBridge(); // 다리 생성
-        playGame(bridge); // 게임 시작
+        System.out.println();
+
+        playGame(bridge, player); // 게임 시작
     }
 
     /**
@@ -30,8 +37,11 @@ public class BridgeGame {
         return bridge;
     }
 
-    private void playGame(List<String> bridge){
-        List<String> player;
+    /**
+     *
+     * @param bridge
+     */
+    private void playGame(List<String> bridge, List<String> player){
         int attempt = 0;
         do{
             attempt++;
@@ -76,7 +86,9 @@ public class BridgeGame {
      * @param player
      */
     public void result(List<String> bridge, List<String> player, int attempt){
-
-        Input
+        String result;
+        bridgeComparator.printResultBridge(bridge, player);
+        result = bridgeComparator.compareBridge(bridge, player);
+        bridgeComparator.printResult(result, attempt);
     }
 }

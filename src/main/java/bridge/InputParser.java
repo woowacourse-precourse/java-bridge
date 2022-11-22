@@ -10,7 +10,7 @@ import view.InputView;
  * 입력 예외도 여기에서 처리함.
  */
 public class InputParser {
-    InputView inputView = new InputView();
+    private InputView inputView = new InputView();
 
     /**
      * 다리길이를 받아서 예외를 검출하고 BridgeGame에 전달.

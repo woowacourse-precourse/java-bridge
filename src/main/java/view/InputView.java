@@ -3,7 +3,7 @@ package view;
 // 여기에서만 readLine()을 사용할 것.
 
 import camp.nextstep.edu.missionutils.Console;
-import data.InputGuide;
+import data.PrintGuide;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -15,7 +15,7 @@ public class InputView {
      */
     public String readBridgeSize() throws IllegalArgumentException {
         try {
-            InputGuide.SIZE.printGuideWithLine();
+            PrintGuide.SIZE.printGuideWithLine();
             return readLine();
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
@@ -28,7 +28,7 @@ public class InputView {
     public String readMoving() {
         while (true) {
             try {
-                InputGuide.MOVE.printGuideWithLine();
+                PrintGuide.MOVE.printGuideWithLine();
                 return readLine();
             } catch (IllegalArgumentException e) {
                 System.out.println("U or D");
@@ -42,7 +42,7 @@ public class InputView {
     public String readGameCommand() throws IllegalArgumentException {
         while (true) {
             try {
-                InputGuide.RESTART.printGuideWithLine();
+                PrintGuide.RESTART.printGuideWithLine();
                 return readLine();
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException();
