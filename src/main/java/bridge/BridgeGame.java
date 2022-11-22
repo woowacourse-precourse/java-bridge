@@ -11,6 +11,8 @@ import bridge.type.BridgeSideType;
  */
 public class BridgeGame {
     private final static int ONE = 1;
+    private final static String SUCCESS = "성공";
+    private final static String FAIL = "실패";
     private int compareCount = 0;
     private int challengeCount = 1;
     private boolean challengeResult = false;
@@ -55,9 +57,9 @@ public class BridgeGame {
 
     public String getChallengeResultToString() {
         if(challengeResult == true) {
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 
     public void createAndRegisterBridge(int bridgeSize) {
