@@ -5,6 +5,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
+    private static final int RESTART_ATTEMPT_INDEX = -1;
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
@@ -17,8 +18,8 @@ public class GameController {
 
     public void start() {
         outputView.startGame();
-        int bridgeSize = createBridge();
         try {
+            int bridgeSize = createBridge();
             moveUserOnBridge(bridgeSize);
         } catch (IllegalStateException | IllegalArgumentException exception) {
             outputView.printResult(exception.getMessage());
@@ -26,7 +27,7 @@ public class GameController {
     }
 
     private int createBridge() {
-        int bridgeSize = inputView.readBridgeSize();
+        String bridgeSize = inputView.readBridgeSize();
         return bridgeGame.createBridge(bridgeSize);
     }
 
@@ -42,7 +43,7 @@ public class GameController {
     private int failGame(int attempt) {
         if (bridgeGame.fail()) {
             bridgeGame.retry(inputView.readGameCommand());
-            return -1;
+            return RESTART_ATTEMPT_INDEX;
         }
         return attempt;
     }

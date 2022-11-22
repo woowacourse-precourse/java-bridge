@@ -3,13 +3,15 @@ package bridge.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import static bridge.resources.GameConfig.*;
+
 public class MovementResultManager {
     private final Map<String, MovementResult> movementResult;
 
     public MovementResultManager() {
         movementResult = new HashMap<>();
-        movementResult.put("U", new MovementResult());
-        movementResult.put("D", new MovementResult());
+        movementResult.put(UPPER, new MovementResult());
+        movementResult.put(LOWER, new MovementResult());
     }
 
     public void setResult(String moveSpace, boolean canMove) {
@@ -25,15 +27,15 @@ public class MovementResultManager {
 
     @Override
     public String toString() {
-        return movementResult.get("U") +
+        return movementResult.get(UPPER) +
                 "\n" +
-                movementResult.get("D");
+                movementResult.get(LOWER);
     }
 
     private String reverse(String moveSpace) {
-        if (moveSpace.equals("U")) {
-            return "D";
+        if (moveSpace.equals(UPPER)) {
+            return LOWER;
         }
-        return "U";
+        return UPPER;
     }
 }

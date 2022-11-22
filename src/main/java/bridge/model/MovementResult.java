@@ -3,6 +3,8 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.resources.GameConfig.*;
+
 public class MovementResult {
     private static int processIndex = 0;
     protected List<String> results;
@@ -16,7 +18,7 @@ public class MovementResult {
     }
 
     public void addBlank() {
-        results.add(processIndex++, " ");
+        results.add(processIndex++, BLANK);
     }
 
     public void reset() {
@@ -27,21 +29,21 @@ public class MovementResult {
     @Override
     public String toString() {
         StringBuilder sentence = new StringBuilder();
-        sentence.append("[ ");
+        sentence.append(PREFIX);
         for (int index = 0; index < processIndex; index++) {
             if (index > 0) {
-                sentence.append(" | ");
+                sentence.append(SEPARATOR);
             }
             sentence.append(results.get(index));
         }
-        sentence.append(" ]");
+        sentence.append(POSTFIX);
         return sentence.toString();
     }
 
     private String convertToString(boolean canGo) {
         if (canGo) {
-            return "O";
+            return CAN_GO;
         }
-        return "X";
+        return CANNOT_GO;
     }
 }
