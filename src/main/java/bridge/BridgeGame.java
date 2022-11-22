@@ -11,6 +11,19 @@ public class BridgeGame {
     public BridgeGame(InputView inputView){
         this.inputView = inputView;
     }
+
+    private void play(Player player) {
+        while(true){
+            player.useCoin();
+            player.makeNewPlayerBridge();
+            move(player);
+            if(retry(player)){
+                continue;
+            }
+            break;
+        }
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
