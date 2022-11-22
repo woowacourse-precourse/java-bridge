@@ -23,7 +23,7 @@ public class GameRecorder {
         pivot = DEFAULT_POSITION;
     }
 
-    public boolean recodeMove(Command command) {
+    public boolean recordMove(Command command) {
         if(bridgeMatcher.match(command)) {
             gameResult.addMapSuccess(command);
             pivotUp();
