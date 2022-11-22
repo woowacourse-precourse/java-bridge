@@ -1,18 +1,16 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.gameManagement.BridgeGame;
 import bridge.view.OutputView;
 
+import java.util.List;
 
 public class BridgeGameController {
     public void run() {
         OutputView outputView = new OutputView();
         outputView.printGameStartMessage();
 
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        int bridgeSize = bridgeMaker.takeBridgeSize();
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = bridgeGame.constructBridge();
     }
 }
