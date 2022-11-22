@@ -29,5 +29,11 @@ public class OutputView {
     public void printMap(String report) {
         System.out.println(report);
     }
+
+    public void printMapResult(String report) {
+        System.out.println("최종 게임 결과");
+        System.out.println(report);
+    }
+
     
 }
