@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static bridge.OutputView.printMap;
-import static bridge.OutputView.printResult;
+import static bridge.OutputView.*;
 import static bridge.UpDown.BridgeGameState;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,6 +15,8 @@ public class OutputViewTest extends NsTest {
     @Test
     @DisplayName("상황에 맞게 잘 출력되는가?")
     void if_success() {
+        UpDown.upBridges.clear();
+        UpDown.downBridges.clear();
         BridgeGameState("U", "PASS");
         BridgeGameState("D", "PASS");
         BridgeGameState("U", "PASS");
@@ -31,6 +32,8 @@ public class OutputViewTest extends NsTest {
     @Test
     @DisplayName("상황에 맞게 잘 출력되는가?")
     void if_fail() {
+        UpDown.upBridges.clear();
+        UpDown.downBridges.clear();
         BridgeGameState("U", "PASS");
         BridgeGameState("D", "FAIL");
         assertSimpleTest(() -> {
@@ -44,6 +47,8 @@ public class OutputViewTest extends NsTest {
 
     @BeforeEach
     void beforeSet(){
+        UpDown.upBridges.clear();
+        UpDown.downBridges.clear();
         BridgeGameState("U", "PASS");
         BridgeGameState("D", "PASS");
         BridgeGameState("D", "PASS");
