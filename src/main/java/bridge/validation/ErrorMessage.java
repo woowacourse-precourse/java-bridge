@@ -3,6 +3,7 @@ package bridge.validation;
 public enum ErrorMessage {
     MOVE_AVAILABLE_BUT_NOT_MOVED("이동 가능한 칸이지만 이동하지 않았습니다."),
     MOVED_WHEN_UNAVAILABLE("이동할 수 없는 칸으로 이동했습니다."),
+    RANDOM_VALUE_MUST_BE_ONE_OR_ZERO("0 또는 1의 값만 생성되어야 합니다."),
     LOWER_BRIDGE_IF_RANDOM_VALUE_ZERO("랜덤값이 0일 경우, 다리에 아래 칸이 추가되어야 합니다."),
     UPPER_BRIDGE_IF_RANDOM_VALUE_ONE("랜덤값이 1일 경우, 다리에 위 칸이 추가되어야 합니다."),
     INPUT_BRIDGE_SIZE_IN_INTEGER("다리의 길이를 숫자로 입력해주세요."),
