@@ -35,14 +35,28 @@ public class Application {
         return bridgeMaker.makeBridge(inputBridgeSize(inputView));
     }
 
+    private static void playGame(InputView inputView, List<String> bridge){
+        BridgeGame bridgeGame;
+        while(true) {
+            bridgeGame = new BridgeGame(bridge);
+            if(bridgeGame.move(inputMove(inputView))){
+                inputRetry();
+            }
+        }
+    }
+
+    public static void inputRetry(){
+
+    }
+
     public static void main(String[] args) {
         InputView inputView = new InputView();
         List<String> bridge = makeBridge(inputView);
-        BridgeGame bridgeGame;
 
         while(true){
-            bridgeGame = new BridgeGame();
-            bridgeGame.move(inputMove(inputView));
+            playGame(inputView, bridge);
+
+
         }
 
 
