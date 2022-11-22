@@ -1,4 +1,4 @@
-package dto;
+package bridge.dto;
 
 import java.util.ArrayList;
 import java.util.List;

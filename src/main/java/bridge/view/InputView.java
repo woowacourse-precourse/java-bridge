@@ -1,12 +1,12 @@
-package view;
+package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public static final char UPPER_START = 'A';
-    public static final char UPPER_END = 'Z';
-    public static final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
+    private final char UPPER_START = 'A';
+    private final char UPPER_END = 'Z';
+    private final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
     public static boolean sizeFormatError;
     public static boolean moveFormatError;
     public static boolean commandFormatError;
@@ -34,6 +34,7 @@ public class InputView {
                 throw new IllegalArgumentException(ERROR_INVALID_INPUT);
             }
         }
+
     }
 
     public String readMoving() {

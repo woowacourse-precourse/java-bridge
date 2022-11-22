@@ -1,27 +1,26 @@
-package view;
+package bridge.view;
 
-import dto.BridgeDto;
-import dto.ResultDto;
+import bridge.dto.BridgeDto;
+import bridge.dto.ResultDto;
 import java.util.List;
 
 public class OutputView {
-    private static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
-    public static final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    public static final String LINE_CHANGE = "\n";
-    public static String ENTER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String ENTER_RESTART = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    public static String FINAL_RESULT = "\n최종 게임 결과";
-    public static final String SUCCESS_OR_NOT = "\n게임 성공 여부: ";
-    public static final String TOTAL_TRIAL = "\n총 시도한 횟수: ";
-    public static final String LINE_START = "[";
-    public static final String CORRECT = " O ";
-    public static final String MISS = " X ";
-    public static final String VERTICAL_BAR = "|";
-    public static final String LINE_END = "]";
-    public static final String ERROR = "[ERROR]";
-    public static final String SPACE = "   ";
-    public static final String FAIL = "실패";
-    public static final String SUCCESS = "성공";
+    private final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
+    private final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private final String LINE_CHANGE = "\n";
+    private final String ENTER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String ENTER_RESTART = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private String FINAL_RESULT = "\n최종 게임 결과";
+    private final String SUCCESS_OR_NOT = "\n게임 성공 여부: ";
+    private final String TOTAL_TRIAL = "\n총 시도한 횟수: ";
+    private final String LINE_START = "[";
+    private final String CORRECT = " O ";
+    private final String MISS = " X ";
+    private final String VERTICAL_BAR = "|";
+    private final String LINE_END = "]";
+    private final String SPACE = "   ";
+    private final String FAIL = "실패";
+    private final String SUCCESS = "성공";
     public static boolean rightAfterFail = false;
 
     public void printStart() {

@@ -1,21 +1,19 @@
 package bridge;
 
-import dto.BridgeGameDto;
+import bridge.dto.BridgeGameDto;
 import java.util.Arrays;
 import java.util.List;
-import view.InputView;
+import bridge.view.InputView;
 
 public class BridgeGame {
-    private int currentPosition = -1;
+    private static int currentPosition = -1;
     private static int totalTrial = 1;
     private static String direction = null;
-    public static final List<String> moveCandidate = Arrays.asList("U", "D");
-
-    public static final List<String> decisionCandidate = Arrays.asList("R", "Q");
-    public static final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
-    public static final String QUIT = "Q";
-
     public static boolean valueError = false;
+    private final List<String> moveCandidate = Arrays.asList("U", "D");
+    private final List<String> decisionCandidate = Arrays.asList("R", "Q");
+    private final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
+    private final String QUIT = "Q";
 
     public void move(String direction) {
         valueError = false;
@@ -43,23 +41,6 @@ public class BridgeGame {
         }
     }
 
-    public void makeRetryDecision(Bridge bridge, String command) {
-        if (command.equals(QUIT)) {
-            Application.endGame(bridge, false);
-            return;
-        }
-        totalTrial++;
-        Application.totalResult = new Result();
-        Application.launchGame(bridge);
-    }
-
-    private void checkCommandValidity(String word) {
-        if (!decisionCandidate.contains(word)) {
-            valueError = true;
-            throw new IllegalArgumentException(ERROR_INVALID_INPUT);
-        }
-    }
-
     public void retry(Bridge bridge, String command) {
         try {
             checkCommandValidity(command);
@@ -71,6 +52,24 @@ public class BridgeGame {
         }
         makeRetryDecision(bridge, command);
     }
+
+    private void checkCommandValidity(String word) {
+        if (!decisionCandidate.contains(word)) {
+            valueError = true;
+            throw new IllegalArgumentException(ERROR_INVALID_INPUT);
+        }
+    }
+
+    public void makeRetryDecision(Bridge bridge, String command) {
+        if (command.equals(QUIT)) {
+            Application.endGame(bridge, false);
+            return;
+        }
+        totalTrial++;
+        Application.totalResult = new Result();
+        Application.launchGame(bridge);
+    }
+
 
     public void initializeValues() {
         currentPosition = -1;

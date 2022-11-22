@@ -1,6 +1,6 @@
 package bridge;
 
-import dto.ResultDto;
+import bridge.dto.ResultDto;
 import java.util.ArrayList;
 import java.util.List;
 

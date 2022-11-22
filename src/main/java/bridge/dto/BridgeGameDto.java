@@ -1,4 +1,4 @@
-package dto;
+package bridge.dto;
 
 public class BridgeGameDto {
     public int currentPosition = -1;
