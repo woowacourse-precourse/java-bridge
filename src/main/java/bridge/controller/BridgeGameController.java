@@ -35,7 +35,7 @@ public class BridgeGameController extends GameActivity {
     @Override
     protected final void onStart() {
         outputView.printGameStart();
-        executeUntilNoException(this::readBridgeSize);
+        executeUntilNoException(() -> createBridgeGame(readBridgeSize()));
     }
 
     @Override
@@ -72,10 +72,9 @@ public class BridgeGameController extends GameActivity {
         }
     }
 
-    private void readBridgeSize() throws IllegalArgumentException {
+    private int readBridgeSize() throws IllegalArgumentException {
         outputView.printEnterBridgeLength();
-        int bridgeSize = inputView.readBridgeSize();
-        createBridgeGame(bridgeSize);
+        return inputView.readBridgeSize();
     }
 
     private void createBridgeGame(int bridgeSize) throws IllegalArgumentException {

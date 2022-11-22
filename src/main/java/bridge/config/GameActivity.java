@@ -29,7 +29,7 @@ public abstract class GameActivity {
             try {
                 runnable.run();
                 return;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 onError(e);
             }
         }

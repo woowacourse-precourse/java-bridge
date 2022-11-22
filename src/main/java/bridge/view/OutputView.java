@@ -53,7 +53,7 @@ public class OutputView {
     }
 
     public void printUnexpectedErrorMessage(Exception e) {
-        System.out.println(String.format(PrintMessageConstant.ERROR_UNEXPECTED_FORMAT, e.getMessage()));
+        System.out.println(String.format(PrintMessageConstant.ERROR_UNEXPECTED_FORMAT, e.getClass(), e.getCause(), e.getMessage()));
     }
 
     private static String getSuccessOrNot(GameStatus gameStatus) throws IllegalArgumentException {

@@ -2,7 +2,7 @@ package bridge.config;
 
 public class PrintMessageConstant {
     public static final String ERROR_EXPECTED_FORMAT = "[ERROR] %s";
-    public static final String ERROR_UNEXPECTED_FORMAT = "[ERROR] 알려지지 않은 예외\n >> %s";
+    public static final String ERROR_UNEXPECTED_FORMAT = "[ERROR] 알려지지 않은 예외\n >> %s %s %s";
     public static final String START_GAME = "다리 건너기 게임을 시작합니다.";
     public static final String PLEASE_ENTER_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     public static final String PLEASE_ENTER_MOVE_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
