@@ -45,12 +45,28 @@ public class InputView {
         return 0;
     }
 
+    public boolean checkNextState(String s){
+        if(checkStringSize(s) && checkMoveString(s)){
+            return true;
+        }
+        return false;
+    }
+
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while (true) {
+            try {
+                String moveNextState = Console.readLine();
+                if (checkNextState(moveNextState)) return moveNextState;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
