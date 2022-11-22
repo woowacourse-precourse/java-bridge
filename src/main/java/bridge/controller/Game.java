@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.service.PlayerSetting;
@@ -10,9 +10,6 @@ public class Game {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final PlayerSetting playerSetting = new PlayerSetting();
-
-    public Game() {
-    }
 
     public void start() {
         try {
