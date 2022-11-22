@@ -1,6 +1,7 @@
 package bridge;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -22,9 +23,9 @@ public class BridgeMaker {
         for(int i = 0; i < size; i++){
             int Random_Num = bridgeNumberGenerator.generate();
             if(Random_Num == 1)
-                newBridge.add("U");
+                newBridge.add(Constant.Up);
             if(Random_Num == 0)
-                newBridge.add("D");
+                newBridge.add(Constant.Down);
         }
         return newBridge;
     }
