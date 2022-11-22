@@ -1,4 +1,4 @@
-package bridge;
+package bridge.presentation;
 
 import bridge.data.GameMessage;
 import bridge.presentation.PlayerMap;

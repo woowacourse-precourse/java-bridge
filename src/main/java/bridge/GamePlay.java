@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.presentation.InputView;
+import bridge.presentation.OutputView;
 import bridge.presentation.PlayerMap;
 
 import java.util.List;

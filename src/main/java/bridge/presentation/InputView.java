@@ -1,4 +1,4 @@
-package bridge;
+package bridge.presentation;
 
 import bridge.data.Error;
 import bridge.presentation.ExceptionHandler;
