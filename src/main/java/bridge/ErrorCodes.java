@@ -10,8 +10,6 @@ public enum ErrorCodes {
 
     String message;
 
-
-
     ErrorCodes(String s) {
         this.message = s;
     }

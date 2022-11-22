@@ -57,6 +57,7 @@ class ApplicationTest extends NsTest {
         Application.main(new String[]{});
     }
 
+    /*
     @DisplayName("다리 길이는 3부터 20 사이의 숫자여야 합니다")
     @ValueSource(strings = {"", "QR", "q", "r", "!", "1", "2", "2.9", "31"})
     @ParameterizedTest
@@ -84,6 +85,8 @@ class ApplicationTest extends NsTest {
         assertThat(new BridgeGame().checkGameCommand("R")).isEqualTo(0);
         assertThat(new BridgeGame().checkGameCommand("Q")).isEqualTo(1);
     }
+
+    */
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
