@@ -18,7 +18,7 @@ public class BridgeGameStandard {
         if (MAXIMUM_BRIDGE_SIZE < bridgeSize) {
             return false;
         }
-        
+
         return true;
     }
 }
