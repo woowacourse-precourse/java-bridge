@@ -45,6 +45,8 @@ public class BridgeGame {
     }
 
     public boolean roundOver() { // 각 라운드는 이동에 실패하거나 성공하면 종료된다.
+        if (bridge.isEmpty()) { return true; }
+
         List<String> subBridge = bridge.subList(0, movement.size());
         return winTheGame() || !subBridge.equals(movement);
     }
