@@ -3,6 +3,7 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +40,25 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-    
+
+    @DisplayName("이동하는 칸이 U, D가 아니면 예외가 발생한다.")
+    @Test
+    void 다리_건너기_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "X");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("재시도로 주어진 입력이 R, Q가 아니면 예외가 발생한다.")
+    @Test
+    void 재시도_입력_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "U", "U", "A");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
