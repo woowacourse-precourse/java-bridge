@@ -20,8 +20,7 @@ class InputValidatorTest {
     void validateMoving_메서드는_사용자_입력을_받아_형식에_안맞으면_예외_던진다(String moving) {
         assertThatThrownBy(() -> {
             InputValidator.validateMoving(moving);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "사용자 입력: {0}이면 0 이상의 정수이다")
@@ -37,8 +36,7 @@ class InputValidatorTest {
     void validateBridgeSize_메서드는_사용자_입력을_받아_0_이상의_정수가_아니면_예외_던진다(String bridgeSize) {
         assertThatThrownBy(() -> {
             InputValidator.validateBridgeSize(bridgeSize);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "사용자 입력: {0}이면 형식에 맞다")
@@ -54,7 +52,6 @@ class InputValidatorTest {
     void validateGameCommand_메서드는_사용자_입력을_받아_형식에_안맞으면_예외_던진다(String gameCommand) {
         assertThatThrownBy(() -> {
             InputValidator.validateGameCommand(gameCommand);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }

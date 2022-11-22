@@ -20,6 +20,9 @@ public class OutputView {
     public static final String GOOD_CHOICE_FORM = "O";
     public static final String BAD_CHOICE_FORM = "X";
     public static final String NO_CHOICE_FORM = " ";
+    public static final String ERROR_MESSAGE_HEAD = "[ERROR] ";
+    public static final String FAIL_MESSAGE = "실패";
+    public static final String SUCCESS_MESSAGE = "성공";
     private static OutputView instance;
 
     private OutputView() {}
@@ -85,9 +88,9 @@ public class OutputView {
 
     private static String generateSuccessFailResult(Player player) {
         if (player.isDead()) {
-            return "실패";
+            return FAIL_MESSAGE;
         }
-        return "성공";
+        return SUCCESS_MESSAGE;
     }
 
     /**
@@ -116,6 +119,6 @@ public class OutputView {
     }
 
     public void printErrorMessage(String message) {
-        System.out.println(message);
+        System.out.println(ERROR_MESSAGE_HEAD + message);
     }
 }

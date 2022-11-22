@@ -13,8 +13,7 @@ class GameCommandTest {
     void toGameCommand_인자_형식이_잘못되면_예외_던지는_기능(String format) {
         assertThatThrownBy(() -> {
             GameCommand.toGameCommand(format);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "{0}를 GameCommand로 변환하면 {1}")

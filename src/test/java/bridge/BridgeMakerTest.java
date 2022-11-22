@@ -22,7 +22,6 @@ class BridgeMakerTest {
     void constructBridge_메서드는_다리_길이를_받아_3_미만_20_초과면_예외를_던진다(int size) {
         assertThatThrownBy(() -> {
             bridgeMaker.constructBridge(size);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
