@@ -4,6 +4,8 @@ package bridge;
 import bridge.enums.RoundResult;
 import bridge.enums.MoveResult;
 import bridge.enums.SystemOperation;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameExecutor {
     private static final BridgeGameExecutor instance = new BridgeGameExecutor();

@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.BridgeGame;
+import bridge.Guess;
 import bridge.enums.Direction;
 
 import java.util.ArrayList;
