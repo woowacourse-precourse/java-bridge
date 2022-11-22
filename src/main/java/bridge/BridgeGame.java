@@ -4,41 +4,28 @@ import java.util.List;
 
 public class BridgeGame {
     private final List<String> bridge;
-    public int playerLocation = -1;
-    private int trial = 1;
+    private int playerLocation = -1;
+    private int nextLocation = playerLocation + 1;
+    private int trialCount = 1;
 
 
     public BridgeGame(List<String> bridge) {;
         this.bridge = bridge;
     }
 
-    public void move(String playerMoving) {
-        if (bridge.get(playerLocation + 1).equals(playerMoving)) {
-            this.playerLocation++;
-        }
+    public void move(boolean isMoveAvailable) {
+        this.playerLocation++;
     }
 
-    public void retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
-            trial++;
-        }
+    public void retry(boolean doesPlayerWantRetrial) {
+        this.trialCount++;
     }
 
     public Boolean checkMoveIsAvailable (String playerMoving) {
-        if (bridge.get(playerLocation+1).equals(playerMoving)) {
+        if (bridge.get(nextLocation).equals(playerMoving)) {
             return true;
         }
-        if (!bridge.get(playerLocation+1).equals(playerMoving)) {
-            return false;
-        }
-        return null;
-    }
-
-    public Boolean checkPlayerWantsRetrial (String gameCommand) {
-        if (gameCommand.equals("R")) {
-            return true;
-        }
-        if (gameCommand.equals("Q")) {
+        if (!bridge.get(nextLocation).equals(playerMoving)) {
             return false;
         }
         return null;
@@ -52,7 +39,7 @@ public class BridgeGame {
         return this.playerLocation;
     }
 
-    public int getTrial() {
-        return this.trial;
+    public int getTrialCount() {
+        return this.trialCount;
     }
 }
