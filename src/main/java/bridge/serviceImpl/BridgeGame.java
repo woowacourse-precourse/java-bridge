@@ -2,7 +2,7 @@ package bridge.serviceImpl;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.message.SystemMessage;
+import bridge.util.message.SystemMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.service.GameService;

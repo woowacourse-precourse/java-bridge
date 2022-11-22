@@ -1,6 +1,6 @@
 package bridge.validation;
 
-import bridge.message.ErrorMessage;
+import bridge.util.message.ErrorMessage;
 
 public class RestartQuickValidation implements Validation {
     private static final String RESTART = "R";

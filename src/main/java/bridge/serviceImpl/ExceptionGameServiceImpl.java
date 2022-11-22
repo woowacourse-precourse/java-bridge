@@ -4,7 +4,7 @@ import bridge.service.GameService;
 
 public class ExceptionGameServiceImpl implements GameService {
 
-    private GameService gameService;
+    private final GameService gameService;
 
     public ExceptionGameServiceImpl(GameService gameService) {
         this.gameService = gameService;

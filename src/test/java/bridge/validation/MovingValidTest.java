@@ -1,6 +1,6 @@
 package bridge.validation;
 
-import bridge.message.ErrorMessage;
+import bridge.util.message.ErrorMessage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
