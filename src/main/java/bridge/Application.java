@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
-import bridge.ui.InputView;
+import bridge.ui.Input.InputView;
 import bridge.ui.OutputView;
 
 public class Application {
