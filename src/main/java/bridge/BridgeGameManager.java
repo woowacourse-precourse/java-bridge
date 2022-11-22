@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.Message;
 import bridge.constant.Status;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class BridgeGameManager {
     private final BridgeGame bridgeGame;
     private static int gamePlayCount = 1;
     private static List<String> bridge;
-    private boolean isClear;
+    private String result;
 
 
     public BridgeGameManager() {
@@ -25,26 +26,29 @@ public class BridgeGameManager {
 
     public void crossBridge() {
         if (crossSuccess()) {
-            isClear = true;
+            result = Message.SUCCESS.getMessage();
             endGame();
             return;
         }
-        isClear = false;
+        result = Message.FAIL.getMessage();
         restartGame();
     }
 
     public void makeBridge() {
-        bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
+        int bridgeSize = InputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     public void endGame() {
-        OutputView.printResult(gamePlayCount, isClear, bridgeConnector.toString());
+        OutputView.printResult(gamePlayCount, result, bridgeConnector.toString());
     }
 
     public void restartGame() {
-        if (bridgeGame.retry(InputView.readGameCommand())) {
+        String playerInput = InputView.readGameCommand();
+        if (bridgeGame.retry(playerInput)) {
             gamePlayCount++;
             crossBridge();
+            return;
         }
         endGame();
     }
