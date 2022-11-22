@@ -11,28 +11,16 @@ public class Application {
 
     public static List<String> userInput = new ArrayList<>();
     public static Integer gameTryCount = 0;
+
+
     
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println("다리 건너기 게임을 시작합니다");
-        System.out.println();
+        GameProcess gameProcess = new GameProcess();
         InputView inputView = new InputView();
-        int userBridgeSize = 0;
-        while(true) {
-            System.out.println("다리의 길이를 입력해주세요");
-            try {
-                userBridgeSize = inputView.readBridgeSize();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
-        }
-
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> bridgeAnswer = bridgeMaker.makeBridge(userBridgeSize);
-        System.out.println(bridgeAnswer);
+        int userBridgeSize = gameProcess.bridgeSizeProcess();
+        gameProcess.userBridgeSizeInput(userBridgeSize);
+        List<String> bridgeAnswer = gameProcess.bridgeGenerateProcess(userBridgeSize);
         boolean passFail = true;
         boolean passFailFinal = true;
         String userGameCommandInput = "Q";

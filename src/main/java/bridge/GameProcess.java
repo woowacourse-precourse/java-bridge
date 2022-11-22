@@ -32,6 +32,7 @@ public class GameProcess {
             }
             break;
         }
+        System.out.println(userBridgeSize);
     }
 
     public List<String> bridgeGenerateProcess(int userBridgeSize) {
@@ -42,5 +43,5 @@ public class GameProcess {
         return bridgeAnswer;
     }
 
-    
+
 }
