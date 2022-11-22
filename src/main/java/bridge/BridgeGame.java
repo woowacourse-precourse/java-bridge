@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class BridgeGame {
     final private BridgeMaker bridgeMaker;
-
     private List<String> bridge;
     private List<List<String>> playerBridge;
 
@@ -50,13 +49,13 @@ public class BridgeGame {
      * 1 - 게임이 성공적으로 끝남
      * 2 - 게임이 실패로 끝남
      */
-    public int checkGameOver() {
-        if (playerBridge.size() == bridge.size()) {
-            if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(playerBridge.size() - 1))) return 1;
-            return 2;
+    public boolean checkGameOver() {
+        for (int i = 0; i < playerBridge.size(); i++) {
+            if (playerBridge.get(i).get(playerBridge.size() - 1).equals("X")) {
+                return true;
+            }
         }
-        if (playerBridge.get(playerBridge.size() - 1).equals(bridge.get(playerBridge.size() - 1))) return 0;
-        return 2;
+        return false;
     }
 
     /**
