@@ -20,21 +20,27 @@ public class BridgeGameProcessor {
 
     public void playGame(BridgeMaker bridgeMaker) {
         outputView.printStartMessage();
-        BridgeGame bridgeGame = startBridgeGame(setUser(setBridge(bridgeMaker)));
+        BridgeGame bridgeGame = startBridgeGame(initUser(generateBridge(bridgeMaker)));
 
         while (!isOver(bridgeGame)) { }
     }
 
     private boolean isOver(BridgeGame bridgeGame) {
         if (!isKeepMoving(bridgeGame)) {
-            outputView.printResult(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
+            printResult(bridgeGame, InformationMessage.FAILURE);
             return true;
         }
         if (bridgeGame.isFinished()) {
-            outputView.printResult(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult(), bridgeGame.getTrialCount(), InformationMessage.SUCCESS);
+            printResult(bridgeGame, InformationMessage.SUCCESS);
             return true;
         }
         return false;
+    }
+
+    private void printResult(BridgeGame bridgeGame, InformationMessage successOrNot) {
+        outputView.printResultMap(bridgeGame.getUpBridgeMoveResult(), bridgeGame.getDownBridgeResult());
+        outputView.printSuccessOrNot(successOrNot);
+        outputView.printTrialCount(bridgeGame.getTrialCount());
     }
 
     private boolean isKeepMoving(BridgeGame bridgeGame) {
@@ -73,7 +79,7 @@ public class BridgeGameProcessor {
         return new BridgeGame(user);
     }
 
-    private Bridge setBridge(BridgeMaker bridgeMaker) {
+    private Bridge generateBridge(BridgeMaker bridgeMaker) {
         while (true) {
             try {
                 outputView.printBridgeSizeInputMessage();
@@ -84,7 +90,7 @@ public class BridgeGameProcessor {
         }
     }
 
-    private User setUser(Bridge bridge) {
+    private User initUser(Bridge bridge) {
         return new User(bridge);
     }
 }

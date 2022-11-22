@@ -11,11 +11,16 @@ public class OutputView {
         printDownBridgeMap(movementsInDownBridge);
     }
 
-    public void printResult(List<String> movementsInUpBridge, List<String> movementsInDownBridge,
-                            int trialCount, InformationMessage successOrNot) {
+    public void printResultMap(List<String> movementsInUpBridge, List<String> movementsInDownBridge) {
         printEndMessage();
         printMap(movementsInUpBridge, movementsInDownBridge);
+    }
+
+    public void printSuccessOrNot(InformationMessage successOrNot) {
         System.out.println(InformationMessage.GAME_IS_SUCCESSFUL.getMessage() + successOrNot.getMessage());
+    }
+
+    public void printTrialCount(int trialCount) {
         System.out.println(InformationMessage.TRIAL_COUNT.getMessage() + trialCount);
     }
 
