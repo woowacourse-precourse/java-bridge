@@ -10,7 +10,30 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> User_Bridge, String User_Move, boolean User_Move_isRight) {
+        List<String> Upper = new ArrayList<>();
+        List<String> Below = new ArrayList<>();
+        for (String element : User_Bridge) {
+            if (element.equals("U")) {
+                Upper.add("O");
+                Below.add(" ");
+            } else if (element.equals("D")) {
+                Upper.add(" ");
+                Below.add("O");
+            }
+        }
+        if (User_Move_isRight == false) {
+            if (User_Move.equals("U")) {
+                Upper.set(Upper.size() - 1, "X");
+            } else if (User_Move.equals("D")) {
+                Below.set(Below.size() - 1, "X");
+            }
+        }
+        String result_Upper = "[ " + String.join(" | ", Upper) + " ]";
+        String result_Below = "[ " + String.join(" | ", Below) + " ]";
+        System.out.println(result_Upper);
+        System.out.println(result_Below);
+        System.out.println("");
     }
 
     /**
