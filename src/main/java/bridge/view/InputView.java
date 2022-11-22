@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.domain.BridgeSize;
+import bridge.domain.GameCommand;
+import bridge.domain.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -16,7 +19,19 @@ public class InputView {
         return input;
     }
 
-    private String checkMethod(int method) {
+    private void checkInputObject(int method, String input) {
+        if (BRIDGE_SIZE == method) {
+            new BridgeSize(input);
+            return;
+        }
+        if (MOVING == method) {
+            new Moving(input);
+            return;
+        }
+        new GameCommand(input);
+    }
+
+    private String checkInputMethod(int method) {
         if (BRIDGE_SIZE == method) {
             return readBridgeSize();
         }
@@ -29,11 +44,11 @@ public class InputView {
     private String repeatForValid(int methodType) {
         try {
             input = Console.readLine();
-            checkObject(methodType, input);
+            checkInputObject(methodType, input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             System.out.println("다시 입력해주세요");
-            input = checkMethod(methodType);
+            input = checkInputMethod(methodType);
         }
         return input;
     }
