@@ -129,6 +129,9 @@ public class Validator {
         }
     }
 
+    /**
+     * 이동할 칸 입력과 게임을 재시작 여부 입렵에 숫자 입력 여부 유효성 검사
+     */
     private static void validateInputNumber(String input) {
         char check = input.charAt(0);
         try {
