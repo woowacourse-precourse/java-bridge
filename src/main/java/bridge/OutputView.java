@@ -38,8 +38,10 @@ public class OutputView {
     public static void printResult(String successOrFail, UpperBridge upperBridge, LowerBridge lowerBridge) {
 
         System.out.println("최종 게임 결과");
-        upperBridge.printBridge();
-        lowerBridge.printBridge();
+//        String joinUpperBridge = upperBridge.printBridge();
+//        String joinLowerBridge = lowerBridge.printBridge();
+//        System.out.printf("[%s]\n[%s]\n", joinUpperBridge, joinLowerBridge);
+        printMap(upperBridge, lowerBridge);
         System.out.println();
         System.out.printf("게임 성공 여부: %s\n",successOrFail);
         System.out.printf("총 시도한 횟수: %s\n",BridgeGame.allTryCount);

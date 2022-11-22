@@ -19,8 +19,8 @@ public class UpperBridge extends GeneralBridge{
         upperStatus.add(" ");
         return;
     }
-    void printBridge(){
+    public String printBridge(){
         final String joinUpperBridge = String.join(" | ",upperStatus);
-        System.out.printf("[ %s ]\n",joinUpperBridge);
+        return joinUpperBridge;
     }
 }

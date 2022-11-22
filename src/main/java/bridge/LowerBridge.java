@@ -19,8 +19,9 @@ public class LowerBridge extends GeneralBridge{
         lowerStatus.add(" ");
         return;
     }
-    void printBridge(){
+    public String printBridge(){
         final String joinLowerBridge = String.join(" | ",lowerStatus);
-        System.out.printf("[ %s ]\n",joinLowerBridge);
+//        System.out.printf("[ %s ]\n",joinLowerBridge);
+        return joinLowerBridge;
     }
 }

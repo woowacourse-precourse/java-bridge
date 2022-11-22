@@ -1,5 +1,7 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -10,15 +12,14 @@ public class InputView {
      */
     public static int readBridgeSize() {
         printStartInst();
-        String bridgeLength = camp.nextstep.edu.missionutils.Console.readLine();
+        String bridgeLength = readLine();
         System.out.println();
         try {
             checkBridgeLength(bridgeLength);
-            Integer numberLength = Integer.parseInt(bridgeLength);
-
+//            Integer.parseInt(bridgeLength);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] should input bridge length as integer");
-            readBridgeSize();
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            return readBridgeSize();
         }
         return Integer.parseInt(bridgeLength);
     }
@@ -28,13 +29,13 @@ public class InputView {
      */
     public static String readMoving() {
         printMoveInst();
-        String upDown = camp.nextstep.edu.missionutils.Console.readLine();
+        String upDown = readLine();
         try {
             checkUpOrDown(upDown);
-            return upDown;
+//            return upDown;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] should input U or D");
-            readMoving();
+            System.out.println("[ERROR] U 또는 D를 입력해야 합니다.");
+            return readMoving();
         }
         return upDown;
     }
@@ -44,7 +45,13 @@ public class InputView {
      */
     public static String readGameCommand() {
         printRetryInst();
-        String retryOrNot = camp.nextstep.edu.missionutils.Console.readLine();
+        String retryOrNot = readLine();
+        try{
+//            checkRetryOrNot(retryOrNot);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] R 또는 Q를 입력해야 합니다.");
+            return readGameCommand();
+        }
         return retryOrNot;
     }
 
@@ -59,6 +66,7 @@ public class InputView {
 
     private static void printRetryInst() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String retryOrNot = readLine();
     }
 
 
@@ -73,4 +81,11 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+//    public static void checkRetryOrNot(String retryOrNot) throws IllegalArgumentException{
+//        if (!retryOrNot.equals("R") && !retryOrNot.equals("Q")) {
+//            throw new IllegalArgumentException();
+//        }
+//
+//    }
 }

@@ -7,15 +7,15 @@ public enum InputRetryOrNot {
     Q;
 
 
-    public static void getRetryOrNot(String retryOrNot, BridgeGame newGame, UpperBridge upperBridge, LowerBridge lowerBridge){
-
+    public static void getRetryOrNot(BridgeGame newGame, UpperBridge upperBridge, LowerBridge lowerBridge){
+        String retryOrNot = InputView.readGameCommand();
         if (retryOrNot.equals(String.valueOf(InputRetryOrNot.R))){
             BridgeGame retryGame = new BridgeGame();
 
             retryGame.move(Application.bridgeLength, retryGame);
             return;
         }
-        newGame.finish("실패",upperBridge,lowerBridge);
+        BridgeGameManager.finish("실패",upperBridge,lowerBridge);
         return;
     }
 }

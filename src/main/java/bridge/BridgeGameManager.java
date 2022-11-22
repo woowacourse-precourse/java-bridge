@@ -15,7 +15,7 @@ public class BridgeGameManager {
         inputBridge(userUpDown, newGame, checkedStatus, upperBridge, lowerBridge);
 
         OutputView.printMap(upperBridge, lowerBridge);
-
+        System.out.println();
         if (checkedStatus == "X") {
             newGame.retry(newGame, upperBridge, lowerBridge);
 //            newGame.finish(false, upperBridge, lowerBridge);
@@ -41,7 +41,9 @@ public class BridgeGameManager {
         if (shouldBe.equals(userUpDown)) {
             return "O";
         }
-
         return "X";
+    }
+    public static void finish(String successOrFail,UpperBridge upperBridge, LowerBridge lowerBridge) {
+        OutputView.printResult(successOrFail, upperBridge, lowerBridge);
     }
 }
