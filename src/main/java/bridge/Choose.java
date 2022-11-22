@@ -5,7 +5,9 @@ public enum Choose {
     DOWN("D"),
     RESTART("R"),
     EXIT("Q"),
-    
+    SUCCESS("O"),
+    FAILURE("X");
+
     private final String value;
 
     private Choose(String value) {
