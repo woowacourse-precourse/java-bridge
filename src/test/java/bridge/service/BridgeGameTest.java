@@ -20,12 +20,13 @@ import static org.assertj.core.api.Assertions.*;
 public class BridgeGameTest {
     private BridgeGame bridgeGame;
     private Bridge bridge;
+    private Player player;
 
     @BeforeEach
     void init() {
         BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
-        Player player = new Player();
+        player = new Player();
         bridge = new Bridge();
         BridgeGameFacade facade = new BridgeGameFacade(bridge, player);
         bridgeGame = new BridgeGame(bridgeMaker, player, facade);
@@ -80,5 +81,31 @@ public class BridgeGameTest {
         GameRetryRequestDto dto = new GameRetryRequestDto(INPUT_RETRY);
         boolean notRetry = bridgeGame.canRetry(dto);
         assertThat(notRetry).isFalse();
+    }
+
+    @DisplayName("게임을 진행한 후 게임 결과가 제대로 작동하는지 확인")
+    @Test
+    void should_correctGameResult_When_playGame() {
+        final String INPUT_BRIDGE_SIZE = "3";
+        BridgeSizeRequestDto bridgeSizeRequestDto = new BridgeSizeRequestDto(INPUT_BRIDGE_SIZE);
+        bridgeGame.create(bridgeSizeRequestDto);
+        playing();
+        GameResultResponseDto resultResponseDto = result();
+        assertThat(resultResponseDto.getBridgeStatus().getUpBlocks()).isNotNull();
+        assertThat(resultResponseDto.getBridgeStatus().getDownBlocks()).isNotNull();
+        assertThat(resultResponseDto.getTotalTryNumber()).isEqualTo(1);
+        assertThat(resultResponseDto.getGameSuccessOrFail()).isEqualTo("실패");
+    }
+
+    private void playing() {
+        bridgeGame.addTryCount();
+        final String INPUT_BLOCK_TO_MOVE = "U";
+        SelectBlockRequestDto selectBlockRequestDto = new SelectBlockRequestDto(INPUT_BLOCK_TO_MOVE);
+        bridgeGame.move(selectBlockRequestDto);
+    }
+
+    private GameResultResponseDto result() {
+        player.fail();
+        return bridgeGame.result();
     }
 }
