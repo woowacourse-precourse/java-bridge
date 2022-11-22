@@ -3,8 +3,8 @@ package bridge.view;
 import bridge.domain.Direction;
 import bridge.domain.Range;
 import bridge.domain.Restart;
-import bridge.validate.validateNumberFormat;
-import bridge.validate.validateStringFormat;
+import bridge.validate.ValidateNumberFormat;
+import bridge.validate.ValidateStringFormat;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -46,17 +46,17 @@ public class InputView {
     }
 
     private void validateBridgeSize(String inputValue) {
-        validateNumberFormat.validate(inputValue);
+        ValidateNumberFormat.validate(inputValue);
         Range.validate(Integer.parseInt(inputValue));
     }
 
     private void validateMoving(String inputValue) {
-        validateStringFormat.validate(inputValue);
+        ValidateStringFormat.validate(inputValue);
         Direction.validate(inputValue);
     }
 
     private void validateGameCommand(String inputValue) {
-        validateStringFormat.validate(inputValue);
+        ValidateStringFormat.validate(inputValue);
         Restart.validate(inputValue);
     }
 }

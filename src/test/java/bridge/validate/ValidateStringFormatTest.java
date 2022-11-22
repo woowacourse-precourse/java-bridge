@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class validateStringFormatTest {
+public class ValidateStringFormatTest {
 
     @DisplayName("문자가 아닌 값이 들어오면 에러를 발생한다.")
     @Test
     void InputStringByWrongFormat() {
-        assertThatThrownBy(() -> validateStringFormat.validate("1"))
+        assertThatThrownBy(() -> ValidateStringFormat.validate("1"))
                 .isInstanceOf(InvalidStringFormatException.class);
     }
 
@@ -22,7 +22,7 @@ public class validateStringFormatTest {
         String string = "abcdek";
 
         // when
-        validateStringFormat.validate(string);
+        ValidateStringFormat.validate(string);
 
         // then
     }

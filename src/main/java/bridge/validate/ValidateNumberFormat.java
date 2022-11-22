@@ -4,7 +4,7 @@ import bridge.exception.InvalidNumberFormatException;
 
 import java.util.regex.Pattern;
 
-public class validateNumberFormat {
+public class ValidateNumberFormat {
     private static final Pattern PATTERN = Pattern.compile("\\d+");
 
     public static void validate(String inputValue) {
