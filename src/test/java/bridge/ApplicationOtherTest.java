@@ -1,17 +1,17 @@
 package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationOtherTest extends NsTest {
+    @DisplayName("첫 커맨드에 실패")
     @Test
     void 첫_실패_Test() {
         assertRandomNumberInRangeTest(() -> {
@@ -29,6 +29,7 @@ class ApplicationOtherTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
+    @DisplayName("세번째 커맨드에 실패")
     @Test
     void 실패_Test() {
         assertRandomNumberInRangeTest(() -> {
@@ -46,6 +47,7 @@ class ApplicationOtherTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
+    @DisplayName("두번째 커맨드에 실패")
     @Test
     void 실패_중간_Test() {
         assertRandomNumberInRangeTest(() -> {
@@ -65,7 +67,7 @@ class ApplicationOtherTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
-
+    @DisplayName("재시도 후 성공")
     @Test
     void 재시도_후_성공_Test() {
         assertRandomNumberInRangeTest(() -> {
