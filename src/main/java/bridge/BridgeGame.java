@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +9,7 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> bridge;
+    private List<String> player = new ArrayList<>();
     private String upResult = "";
     private String downResult = "";
 
@@ -15,20 +17,28 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public void runGame() {
+    public boolean runGame() {
         InputView input = new InputView();
         OutputView printer = new OutputView();
-        do {
-            String playerInput = "";
-            String userMove = "";
-            for (int step = 0; step < bridge.size(); step++) {
-                playerInput = input.readMoving();
-                userMove = move(step, playerInput);
-                printer.printMap(upResultToString(playerInput, userMove), downResultToString(playerInput, userMove));
-                if (!isSuccess(userMove)) break;
+        while (bridge.size() != player.size()) {
+            String playerMove = input.readMoving();
+            if (!move(playerMove)) {
+                resultToString(playerMove,"X");
+                printer.printMap(upResult,downResult);
+                player.clear();
+                if (retry(input.readGameCommand())) {
+                    upResult = "";
+                    downResult = "";
+                    continue;
+                }
+                printer.printResult(upResult,downResult);
+                return false;
             }
-            if(isSuccess(userMove)) break;
-        } while (retry(input.readGameCommand()));
+            resultToString(playerMove,"O");
+            printer.printMap(upResult,downResult);
+        }
+        printer.printResult(upResult,downResult);
+        return true;
     }
 
     /**
@@ -36,33 +46,20 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(int pointer, String playerInput) {
-        if (bridge.get(pointer).equals(playerInput)) {
-            return "O";
-        }
-        return "X";
+    public boolean move(String playerInput) {
+        player.add(playerInput);
+        return bridge.get(player.size() - 1).equals(playerInput);
     }
 
-    public String upResultToString(String playerInput, String move) {
+    public void resultToString(String playerInput, String result){
         if (playerInput.equals("U")) {
-            upResult += move;
-            return upResult;
+            upResult += result;
+            downResult += " ";
         }
-        upResult += " ";
-        return upResult;
-    }
-
-    public String downResultToString(String playerInput, String move) {
         if (playerInput.equals("D")) {
-            downResult += move;
-            return downResult;
+            upResult += " ";
+            downResult += result;
         }
-        downResult += " ";
-        return downResult;
-    }
-
-    public boolean isSuccess(String move) {
-        return !move.equals("X");
     }
 
     /**
@@ -71,8 +68,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String userInput) {
-        upResult = "";
-        downResult = "";
         return userInput.equals("R");
     }
 }
