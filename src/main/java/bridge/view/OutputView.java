@@ -1,10 +1,10 @@
 package bridge.view;
 
 
-import static bridge.enums.Message.COMMAND;
-import static bridge.enums.Message.MOVE;
-import static bridge.enums.Message.SIZE;
-import static bridge.enums.Message.START;
+import static bridge.data.Message.COMMAND;
+import static bridge.data.Message.MOVE;
+import static bridge.data.Message.SIZE;
+import static bridge.data.Message.START;
 
 public class OutputView {
     public void printStartMessage(){

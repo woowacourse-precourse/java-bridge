@@ -1,15 +1,15 @@
 package bridge.model;
 
-import static bridge.enums.Message.BRIDGE_END;
-import static bridge.enums.Message.BRIDGE_MIDDLE;
-import static bridge.enums.Message.BRIDGE_START;
-import static bridge.enums.Message.EMPTY;
-import static bridge.enums.Message.RESULT;
-import static bridge.enums.Message.SUCCESS;
-import static bridge.enums.Message.TRY;
+import static bridge.data.Message.BRIDGE_END;
+import static bridge.data.Message.BRIDGE_MIDDLE;
+import static bridge.data.Message.BRIDGE_START;
+import static bridge.data.Message.EMPTY;
+import static bridge.data.Message.RESULT;
+import static bridge.data.Message.SUCCESS;
+import static bridge.data.Message.TRY;
 
-import bridge.enums.Glass;
-import bridge.enums.State;
+import bridge.data.Glass;
+import bridge.data.State;
 import java.util.ArrayList;
 import java.util.List;
 

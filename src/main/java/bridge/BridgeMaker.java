@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.enums.Glass;
+import bridge.data.Glass;
 import java.util.ArrayList;
 import java.util.List;
 

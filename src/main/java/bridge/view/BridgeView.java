@@ -1,9 +1,5 @@
 package bridge.view;
 
-import bridge.enums.Glass;
-import bridge.enums.State;
-import java.util.List;
-
 public class BridgeView {
     private final InputView inputView;
     private final OutputView outputView;

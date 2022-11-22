@@ -1,4 +1,4 @@
-package bridge.enums;
+package bridge.data;
 
 public enum Message {
     EMPTY(" "),

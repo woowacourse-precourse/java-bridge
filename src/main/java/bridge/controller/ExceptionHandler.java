@@ -1,13 +1,13 @@
 package bridge.controller;
 
-import static bridge.enums.Command.QUIT;
-import static bridge.enums.Command.RESTART;
-import static bridge.enums.Glass.DOWN;
-import static bridge.enums.Glass.UP;
-import static bridge.enums.Message.ERROR_COMMAND;
-import static bridge.enums.Message.ERROR_HEAD;
-import static bridge.enums.Message.ERROR_MOVE;
-import static bridge.enums.Message.ERROR_SIZE;
+import static bridge.data.Command.QUIT;
+import static bridge.data.Command.RESTART;
+import static bridge.data.Glass.DOWN;
+import static bridge.data.Glass.UP;
+import static bridge.data.Message.ERROR_COMMAND;
+import static bridge.data.Message.ERROR_HEAD;
+import static bridge.data.Message.ERROR_MOVE;
+import static bridge.data.Message.ERROR_SIZE;
 
 import bridge.view.BridgeView;
 

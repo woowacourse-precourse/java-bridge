@@ -1,11 +1,11 @@
 package bridge.controller;
 
-import static bridge.enums.Command.QUIT;
+import static bridge.data.Command.QUIT;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.enums.Glass;
-import bridge.enums.State;
+import bridge.data.Glass;
+import bridge.data.State;
 import bridge.model.BridgeGame;
 import bridge.view.BridgeView;
 import java.util.List;

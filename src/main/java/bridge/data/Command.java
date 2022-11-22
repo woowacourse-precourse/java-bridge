@@ -1,4 +1,4 @@
-package bridge.enums;
+package bridge.data;
 
 public enum Command {
     RESTART("R"),
