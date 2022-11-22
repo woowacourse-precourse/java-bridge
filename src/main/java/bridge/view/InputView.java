@@ -12,8 +12,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int size = Utils.inputToNumber(Console.readLine());
-        return size;
+        return Utils.inputToNumber(Console.readLine());
     }
 
     /**
@@ -22,7 +21,7 @@ public class InputView {
     public String readMoving() {
         String movePlace = Console.readLine();
         if (!movePlace.equals("U") && !movePlace.equals("D")) {
-            ExceptionView.commandUpperOrLowerError();
+            ExceptionView.movingCommandError();
             throw new IllegalArgumentException();
         }
         return movePlace;
@@ -39,7 +38,7 @@ public class InputView {
         } else if (command.equals("Q")) {
             return false;
         }
-        ExceptionView.commandRestartOrNotError();
+        ExceptionView.gameCommandError();
         throw new IllegalArgumentException();
     }
 }

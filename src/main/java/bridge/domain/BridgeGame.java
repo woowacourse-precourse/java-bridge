@@ -12,15 +12,15 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private int challenge;
-    private List<String> mark;
+    private int attempt;
+    private List<String> crossedBridge;
     private final Bridge bridge;
 
     public BridgeGame(int size) {
-        bridge = new Bridge(buildBridge(size));
+        bridge = new Bridge(makeBridge(size));
     }
 
-    public List<String> buildBridge(int size) {
+    public List<String> makeBridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
@@ -32,17 +32,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String movePlace) {
-        mark.add(movePlace);
+    public void move(String movingPoint) {
+        crossedBridge.add(movingPoint);
     }
 
-    public boolean checkPassable() {
-        int current = mark.size() - 1;
-        return bridge.checkPassable(mark.get(current), current);
+    public boolean isCrossedBridge() {
+        int current = crossedBridge.size() - 1;
+        return bridge.isCrossed(crossedBridge.get(current), current);
     }
 
-    public boolean gameComplete() {
-        return bridge.isSameBridge(mark);
+    public boolean isComplete() {
+        return bridge.isSame(crossedBridge);
     }
 
     /**
@@ -51,15 +51,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        mark = new ArrayList<>();
-        challenge++;
+        crossedBridge = new ArrayList<>();
+        attempt++;
     }
 
-    public List<String> getMark() {
-        return mark;
+    public List<String> getCrossedBridge() {
+        return crossedBridge;
     }
 
-    public int getChallenge() {
-        return challenge;
+    public int getAttempt() {
+        return attempt;
     }
 }

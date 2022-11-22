@@ -10,14 +10,11 @@ public class BridgeController {
     private InputView inputView = new InputView();
     private BridgeGame bridgeGame;
 
-    public int requestBridgeSize() {
-        try {
-            outputView.printRequestBridgeSize();
-            return inputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            outputView.printError();
-            return requestBridgeSize();
-        }
+    public void run() {
+        outputView.printIntro();
+        setGame(requestBridgeSize());
+        playGame();
+        outputView.printResult(bridgeGame);
     }
 
     public void setGame(int size) {
@@ -29,14 +26,33 @@ public class BridgeController {
         }
     }
 
-    public String requestMovingPoint() {
+    public int requestBridgeSize() {
         try {
-            outputView.printRequestMove();
-            return inputView.readMoving();
+            outputView.printRequestBridgeSize();
+            return inputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
             outputView.printError();
-            return requestMovingPoint();
+            return requestBridgeSize();
         }
+    }
+
+    private void playGame() {
+        do {
+            bridgeGame.retry();
+            gameRound();
+        } while (isGameOver());
+    }
+
+    public void gameRound() {
+        while (cross()) {
+            if (bridgeGame.isComplete()) {
+                break;
+            }
+        }
+    }
+
+    public boolean isGameOver() {
+        return !bridgeGame.isComplete() && requestRetry();
     }
 
     public boolean requestRetry() {
@@ -49,35 +65,19 @@ public class BridgeController {
         }
     }
 
-    public boolean bridgeRound() {
+    public boolean cross() {
         bridgeGame.move(requestMovingPoint());
         outputView.printMap(bridgeGame);
-        return bridgeGame.checkPassable();
+        return bridgeGame.isCrossedBridge();
     }
 
-    public void bridgeGame() {
-        while (bridgeRound()) {
-            if (bridgeGame.gameComplete()) {
-                break;
-            }
+    public String requestMovingPoint() {
+        try {
+            outputView.printRequestMove();
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            outputView.printError();
+            return requestMovingPoint();
         }
-    }
-
-    private void playGame() {
-        do {
-            bridgeGame.retry();
-            bridgeGame();
-        } while (isGameOver());
-    }
-
-    public boolean isGameOver() {
-        return !bridgeGame.gameComplete() && requestRetry();
-    }
-
-    public void start() {
-        outputView.printIntro();
-        setGame(requestBridgeSize());
-        playGame();
-        outputView.printResult(bridgeGame);
     }
 }

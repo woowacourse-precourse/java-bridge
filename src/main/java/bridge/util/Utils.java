@@ -8,7 +8,7 @@ public class Utils {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            ExceptionView.bridgeRangeError();
+            ExceptionView.bridgeSizeError();
             throw new IllegalArgumentException();
         }
     }

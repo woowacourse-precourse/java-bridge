@@ -31,14 +31,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        List<String> upperBridge = setBridge(bridgeGame.getMark(), "U");
-        List<String> loserBridge = setBridge(bridgeGame.getMark(), "D");
+        List<String> upperBridge = setBridge(bridgeGame.getCrossedBridge(), "U");
+        List<String> lowerBridge = setBridge(bridgeGame.getCrossedBridge(), "D");
 
-        if (!bridgeGame.checkPassable()) {
-            setImpassable(upperBridge, loserBridge);
+        if (!bridgeGame.isCrossedBridge()) {
+            setImpassable(upperBridge);
+            setImpassable(lowerBridge);
         }
         printBridge(upperBridge);
-        printBridge(loserBridge);
+        printBridge(lowerBridge);
     }
 
     private void printBridge(List<String> bridge) {
@@ -53,14 +54,12 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    private void setImpassable(List<String> upperBridge, List<String> lowerBridge) {
-        int lastIndex = upperBridge.size() - 1;
+    private void setImpassable(List<String> bridge) {
+        int lastIndex = bridge.size() - 1;
 
-        if (upperBridge.get(lastIndex).equals("O")) {
-            upperBridge.set(lastIndex, "X");
-            return;
+        if (bridge.get(lastIndex).equals("O")) {
+            bridge.set(lastIndex, "X");
         }
-        lowerBridge.set(lastIndex, "X");
     }
 
     private List<String> setBridge(List<String> mark, String which) {
@@ -85,11 +84,11 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
         String result = "실패";
-        if (bridgeGame.gameComplete()) {
+        if (bridgeGame.isComplete()) {
             result = "성공";
         }
         System.out.println("\n게임 성공 여부: " + result);
-        System.out.println("총 시도한 횟수: " + bridgeGame.getChallenge());
+        System.out.println("총 시도한 횟수: " + bridgeGame.getAttempt());
     }
 
     public void printError() {

@@ -31,9 +31,9 @@ public class BridgeTest extends NsTest {
     void checkPassableTest() {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
-        assertThat(bridge.checkPassable("U", 0)).isTrue();
-        assertThat(bridge.checkPassable("U", 1)).isFalse();
-        assertThat(bridge.checkPassable("D", 2)).isFalse();
+        assertThat(bridge.isCrossed("U", 0)).isTrue();
+        assertThat(bridge.isCrossed("U", 1)).isFalse();
+        assertThat(bridge.isCrossed("D", 2)).isFalse();
     }
 
     @DisplayName("다리와 사용자가 건넌 다리가 같을때, 반환값 테스트")
@@ -42,7 +42,7 @@ public class BridgeTest extends NsTest {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
         List<String> mark = new ArrayList<>(List.of("U", "D", "U"));
 
-        assertThat(bridge.isSameBridge(mark)).isTrue();
+        assertThat(bridge.isSame(mark)).isTrue();
     }
 
     @Override

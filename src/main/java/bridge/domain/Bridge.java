@@ -10,23 +10,22 @@ public class Bridge {
     private List<String> bridge;
 
     public Bridge(List<String> bridge) {
-        validate(bridge.size());
+        validateSize(bridge.size());
         this.bridge = bridge;
-        System.out.println(bridge);
     }
 
-    private void validate(int size) {
+    private void validateSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            ExceptionView.bridgeRangeError();
+            ExceptionView.bridgeSizeError();
             throw new IllegalArgumentException();
         }
     }
 
-    public boolean checkPassable(String movingPoint, int index) {
+    public boolean isCrossed(String movingPoint, int index) {
         return movingPoint.equals(bridge.get(index));
     }
 
-    public boolean isSameBridge(List<String> mark) {
+    public boolean isSame(List<String> mark) {
         return bridge.equals(mark);
     }
 }
