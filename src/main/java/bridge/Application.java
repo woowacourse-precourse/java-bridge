@@ -14,36 +14,46 @@ public class Application {
     static String gameCommand = "";
     static int count = 1;
     public static void main(String[] args) {
-        System.out.println(printGameStart);
-        gameInit();
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-
+        gameStart();
         for(int i=0;i<bridge.size();i++){
             String upDown = inputView.readMoving();
-            bridgeGame.playing(bridge,upDown,i);
-            outputView.printMap(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
-
-            if(bridgeGame.success(bridge))
-                outputView.printSuccessResult(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
-
-            if(bridgeGame.fail(i))
-                gameCommand = inputView.readGameCommand();
-
-            if(gameCommand.equals("R")){
-                bridgeGame.retry(gameCommand);
-                i=-1;
-                count++;
-                gameCommand = "";
-            }
-
-            if(gameCommand.equals("Q")){
-                outputView.printFailResult(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
-                break;
-            }
-
+            currentBridgeState(bridge,upDown,i);
+            gameResult(bridge,i);
+            i = selectGameReStart(bridge.size(),i);
         }
         System.out.println("총 시도한 횟수: "+ count);
     }
+
+    private static int selectGameReStart(int bridgeSize,int index) {
+        if(gameCommand.equals("R"))
+            return(gameReStart());
+        if(gameCommand.equals("Q")){
+            outputView.printFailResult(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
+            return bridgeSize-1;
+        }
+        return index;
+    }
+
+    private static void gameStart() {
+        System.out.println(printGameStart);
+        gameInit();
+        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+    }
+
+    private static int gameReStart() {
+        bridgeGame.retry(gameCommand);
+        count++;
+        gameCommand = "";
+        return -1;
+    }
+
+    private static void gameResult(List<String> bridge, int i) {
+        if(bridgeGame.success(bridge))
+            outputView.printSuccessResult(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
+        if(bridgeGame.fail(i))
+            gameCommand = inputView.readGameCommand();
+    }
+
     public static void gameInit(){
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         inputView = new InputView();
@@ -51,6 +61,11 @@ public class Application {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridgeGame = new BridgeGame();
         bridge = new ArrayList<>();
+    }
+
+    public static void currentBridgeState(List<String> bridge,String upDown,int index){
+        bridgeGame.playing(bridge,upDown,index);
+        outputView.printMap(bridgeGame.getCurrentUpState(),bridgeGame.getCurrentDownState());
     }
 
 
