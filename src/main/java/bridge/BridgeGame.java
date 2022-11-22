@@ -7,6 +7,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String CORRECT_MARK = "O";
+    private static final String WRONG_MARK = "X";
     private List<String> playerCommands = new ArrayList<>();
     private int playerMoveCount = 0;
     private GameMap gameMap = new GameMap();
@@ -37,11 +39,11 @@ public class BridgeGame {
     private String checkMoveResult(String moveCommand) {
         String result = "";
         if (moveCommand.equals(bridge.get(playerMoveCount - 1))) {
-            result = "O";
+            result = CORRECT_MARK;
         }
 
         if (!moveCommand.equals(bridge.get(playerMoveCount - 1))) {
-            result = "X";
+            result = WRONG_MARK;
         }
         return result;
     }
@@ -53,7 +55,7 @@ public class BridgeGame {
     }
 
     private void checkFailed(String moveResult) {
-        if (moveResult.equals("X")) {
+        if (moveResult.equals(WRONG_MARK)) {
             gameStatus = GameStatus.GAME_OVER;
         }
     }
