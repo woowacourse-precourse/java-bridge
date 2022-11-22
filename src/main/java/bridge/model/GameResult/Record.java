@@ -11,40 +11,42 @@ import static bridge.constant.Score.NONE;
 
 public class Record {
 
-    private List<String> upBridgeRecord = new ArrayList<>();
-    private List<String> downBridgeRecord = new ArrayList<>();
+    private List<String> upBridgeRecord;
+    private List<String> downBridgeRecord;
+
+    public Record () {
+        upBridgeRecord = new ArrayList<>();
+        downBridgeRecord = new ArrayList<>();
+    }
 
     public List<List<String>> getBridgeRecord() {
         return List.of(upBridgeRecord, downBridgeRecord);
     }
 
     public void updateBridgeRecord(Score score, String moveDirection) {
-        List<String> selectedDirection = getSelectBridge(moveDirection);
-        String gameRecord = score.getMark();
-        selectedDirection.add(gameRecord);
-
-        List<String> unSelectedDirection = getUnSelectedBridge();
-        String noneRecord = NONE.getMark();
-        unSelectedDirection.add(noneRecord);
-    }
-
-    private List<String> getSelectBridge(String moveDirection) {
         Direction direction = getDirectionByMessage(moveDirection);
 
         if (direction == UP) {
-            return upBridgeRecord;
+            updateUpBridgeScoreMark(score);
+            return;
         }
-        return downBridgeRecord;
+        updateDownBridgeScoreMark(score);
     }
 
-    private List<String> getUnSelectedBridge() {
-        int upBridgeSize = upBridgeRecord.size();
-        int downBridgeSize = downBridgeRecord.size();
+    private void updateUpBridgeScoreMark(Score score) {
+        String gameScoreMark = score.getMark();
+        String noneScoreMark = NONE.getMark();
 
-        if (downBridgeSize < upBridgeSize) {
-            return downBridgeRecord;
-        }
-        return upBridgeRecord;
+        upBridgeRecord.add(gameScoreMark);
+        downBridgeRecord.add(noneScoreMark);
+    }
+
+    private void updateDownBridgeScoreMark(Score score) {
+        String gameScoreMark = score.getMark();
+        String noneScoreMark = NONE.getMark();
+
+        downBridgeRecord.add(gameScoreMark);
+        upBridgeRecord.add(noneScoreMark);
     }
 
     public void deleteBridgeRecord() {
