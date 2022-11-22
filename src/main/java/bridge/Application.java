@@ -36,9 +36,12 @@ public class Application {
             gameResult = playGame(bridgeGame);
             if (gameResult.flag == MOVERESULT_FLAG_INVALID) {
                 flag = retryGame(bridgeGame);
-                continue; }
-            flag = gameResult.flag; }
-        return new FinalResult(count, gameResult); }
+                continue;
+            }
+            flag = gameResult.flag;
+        }
+        return new FinalResult(count, gameResult);
+    }
 
     public static int retryGame(BridgeGame bridgeGame) {
         System.out.println(MESSAGE_RESTART);
@@ -53,7 +56,7 @@ public class Application {
         int length = inputView.readBridgeSize();
         System.out.println();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(length, new ArrayList<>());
+        List<String> bridge = bridgeMaker.makeBridge(length);
         return new BridgeGame(bridge);
     }
 
