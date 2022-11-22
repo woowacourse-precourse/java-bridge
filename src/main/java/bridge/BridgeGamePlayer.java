@@ -2,6 +2,8 @@ package bridge;
 
 import static bridge.util.message.GameMessage.*;
 
+import bridge.domain.BridgeBoard;
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,14 +18,16 @@ public class BridgeGamePlayer {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
-    public boolean startGame(){
-
-        List<String> bridge = new ArrayList<>();
+    public void run(){
         outputView.showMessage(START_MESSAGE.getMessage());
-        bridge = getBridge();
-
-        return true;
+        setting();
     }
+    private void setting(){
+        List<String> bridge = new ArrayList<>();
+        bridge = getBridge();
+        gameStart(bridge);
+    }
+
 
     private static List<String> getBridge(){
 
@@ -35,5 +39,22 @@ public class BridgeGamePlayer {
         return inputView.readBridgeSize();
     }
 
+
+    private static void gameStart(List<String> bridge){
+
+        BridgeGame game = new BridgeGame();
+
+        while(true){
+            if(game.compare(bridge,getChoiceMove())){
+                continue;
+            }
+
+        }
+    }
+
+    private static String getChoiceMove(){
+        outputView.showMessage(CHOICE_MOVE.getMessage());
+        return inputView.readMoving();
+    }
 
 }
