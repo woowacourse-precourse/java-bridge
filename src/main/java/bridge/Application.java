@@ -12,9 +12,8 @@ public class Application {
     public static void main(String[] args) {
         int size = init();
         BridgeGame bridgeGame = new BridgeGame(size);
-        while (StartGame.startGame(bridgeGame)) {
-            if (bridgeGame.movingTurn == size) {
-                bridgeGame.success = true;
+        while (StartGame.startGame(bridgeGame, size)) {
+            if (bridgeGame.finish == true) {
                 break;
             }
         }

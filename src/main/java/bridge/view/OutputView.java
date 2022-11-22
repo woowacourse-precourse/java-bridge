@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public static void printSuccess(BridgeGame bridgeGame) {
-        if (bridgeGame.success) {
+        if (bridgeGame.finish) {
             System.out.println(OutputConstants.SUCCESS);
             return;
         }

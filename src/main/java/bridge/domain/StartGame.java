@@ -6,11 +6,11 @@ import bridge.view.OutputView;
 
 public class StartGame {
 
-    public static boolean startGame(BridgeGame bridgeGame) {
+    public static boolean startGame(BridgeGame bridgeGame, int size) {
         requestMove(bridgeGame);
-        bridgeGame.move();
+        bridgeGame.move(size);
         OutputView.printMap(bridgeGame);
-        if (bridgeGame.isWrongWay()) {
+        if (!bridgeGame.goingRight) {
             return chooseWhenWrong(bridgeGame);
         }
         return true;
@@ -26,7 +26,7 @@ public class StartGame {
             bridgeGame.retry();
             return true;
         }
-        bridgeGame.success = false;
+        bridgeGame.finish = false;
         return false;
     }
 

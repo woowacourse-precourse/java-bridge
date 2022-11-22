@@ -17,10 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class BridgeGameTest {
     private static BridgeGame bridgeGame;
 
-    @BeforeAll
-    public static void init() {
-    }
-
     @DisplayName("이동 시 올바른 값을 저장한다.")
     @Test
     void move_테스트() {
@@ -28,7 +24,7 @@ class BridgeGameTest {
         bridgeGame.bridge = Arrays.asList("U", "D", "U");
         for (String e : Arrays.asList("U", "D", "D")) {
             bridgeGame.movingInput = e;
-            bridgeGame.move();
+            bridgeGame.move(3);
         }
         assertEquals(bridgeGame.upSide.upSideArr, Arrays.asList("O", " ", " "));
         assertEquals(bridgeGame.downSide.downSideArr, Arrays.asList(" ", "O", "X"));
@@ -47,10 +43,10 @@ class BridgeGameTest {
     @DisplayName("재시도 선택 시 변수 값을 변화한다.")
     @Test
     void retry_테스트2() {
-        bridgeGame.movingTurn = 3;
+        bridgeGame.movingCount = 3;
         Application.totalTrial = 6;
         bridgeGame.retry();
-        assertEquals(bridgeGame.movingTurn, 0);
+        assertEquals(bridgeGame.movingCount, 0);
         assertEquals(Application.totalTrial, 7);
     }
 

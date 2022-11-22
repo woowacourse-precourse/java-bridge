@@ -15,59 +15,64 @@ public class BridgeGame {
     public String movingInput;
     public UpSide upSide;
     public DownSide downSide;
-    public int movingTurn;
-    public boolean success;
+    public int movingCount;
+    public boolean finish;
+    public boolean goingRight;
 
     public BridgeGame(int size) {
         this.upSide = new UpSide();
         this.downSide = new DownSide();
-        this.movingTurn = 0;
-        this.success = false;
+        this.movingCount = 0;
+        this.finish = false;
+        this.goingRight = false;
         createBridge(size);
     }
 
-    public void move() {
+    public void move(int size) {
         if (isRightWay()) {
             rightWayMove();
-            this.movingTurn++;
+            if (isSucceed(size)) {
+                this.finish = true;
+                return;
+            }
             return;
         }
         wrongWayMove();
-        this.movingTurn++;
     }
 
     public void retry() {
         this.upSide = new UpSide();
         this.downSide = new DownSide();
-        this.movingTurn = 0;
+        this.movingCount = 0;
         Application.totalTrial++;
     }
 
     public void rightWayMove() {
+        movingCount++;
+        this.goingRight = true;
         if (movingInput.equals(OutputConstants.UP)) {
             this.upSide.upSideArr.add(OutputConstants.CORRECT);
             this.downSide.downSideArr.add(OutputConstants.BLANK);
+            return;
         }
-        if (movingInput.equals(OutputConstants.DOWN)) {
-            this.upSide.upSideArr.add(OutputConstants.BLANK);
-            this.downSide.downSideArr.add(OutputConstants.CORRECT);
-        }
+        this.upSide.upSideArr.add(OutputConstants.BLANK);
+        this.downSide.downSideArr.add(OutputConstants.CORRECT);
     }
 
     public void wrongWayMove() {
+        movingCount = 0;
+        this.goingRight = false;
         if (movingInput.equals(OutputConstants.UP)) {
             this.upSide.upSideArr.add(OutputConstants.WRONG);
             this.downSide.downSideArr.add(OutputConstants.BLANK);
+            return;
         }
-        if (movingInput.equals(OutputConstants.DOWN)) {
-            this.upSide.upSideArr.add(OutputConstants.BLANK);
-            this.downSide.downSideArr.add(OutputConstants.WRONG);
-        }
+        this.upSide.upSideArr.add(OutputConstants.BLANK);
+        this.downSide.downSideArr.add(OutputConstants.WRONG);
     }
 
     public boolean isRightWay() {
-        String rightWay = bridge.get(this.movingTurn);
-        return rightWay.equals(movingInput);
+        return bridge.get(this.movingCount).equals(movingInput);
     }
 
     public boolean isWrongWay() {
@@ -80,4 +85,10 @@ public class BridgeGame {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
+    public boolean isSucceed(int size) {
+        if (this.movingCount == size) {
+            return true;
+        }
+        return false;
+    }
 }
