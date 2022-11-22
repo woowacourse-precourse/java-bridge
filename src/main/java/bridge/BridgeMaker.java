@@ -30,6 +30,12 @@ public class BridgeMaker {
         return bridge;
     }
 
+    /**
+     * 랜덤으로 생성된 값(0, 1)과 매칭되는 문자를 반환한다.
+     * 0 : D, 1 : U
+     * @param number
+     * @return
+     */
     private String chooseUpOrDownByNumber(int number) {
         if (number == upperSide) {
             return up;
