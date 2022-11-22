@@ -31,4 +31,8 @@ public class BridgeController {
     public void newRound() {
 
     }
+
+    public boolean continueRound() {
+        return bridgeGame.getGameResult() && (bridgeGame.getCurrentPosition() < bridgeGame.getBridge().size());
+    }
 }
