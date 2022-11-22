@@ -3,6 +3,8 @@ package bridge;
 import java.util.List;
 
 public class BridgeGameController {
+    private final String END_GAME = "Q";
+    private final String RETRY_GAME = "R";
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -44,6 +46,17 @@ public class BridgeGameController {
             return false;
         }
 
-        return true;
+        return askRetry();
+    }
+
+    private boolean askRetry() {
+        String inputValue = inputView.readGameCommand();
+
+        if (inputValue.equals(RETRY_GAME)) {
+            bridgeGame.retry();
+            return true;
+        }
+
+        return false;
     }
 }
