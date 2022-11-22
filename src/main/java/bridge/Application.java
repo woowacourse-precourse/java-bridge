@@ -11,15 +11,19 @@ public class Application {
     private static BridgeGame bridgeGame = new BridgeGame();
     private static InputView inputView = new InputView();
     public static void main(String[] args) {
-        List<String> bridge = bridgeController.start();
-        while(true){
-            if(bridgeController.repeat(bridge)){
-                break;
+        try {
+            List<String> bridge = bridgeController.start();
+            while (true) {
+                if (bridgeController.repeat(bridge)) {
+                    break;
+                }
+                String answer = inputView.readGameCommand();
+                if (!bridgeGame.retry(answer)) {
+                    break;
+                }
             }
-            String answer = inputView.readGameCommand();
-            if (!bridgeGame.retry(answer)) {
-                break;
-            }
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 }

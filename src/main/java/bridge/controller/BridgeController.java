@@ -18,11 +18,11 @@ public class BridgeController {
     private final OutputView outputView = new OutputView();
     private int count = 1;
     public List<String> start(){
-        String BridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(BridgeSize));
+        int BridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(BridgeSize);
         return bridge;
     }
-    public boolean repeat(List<String> bridge) throws IllegalArgumentException{
+    public boolean repeat(List<String> bridge) {
         bridgeGame.movedResult.clear();
         for (int i=0; i<bridge.size(); i++){
             String moving = inputView.readMoving();

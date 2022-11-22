@@ -13,7 +13,6 @@ public class BridgeGame {
     private static final String RESTART = "R";
     private static final String END = "Q";
     public static String gameResult = "";
-    public static int countOfTry = 1;
     public List<String> move(String moving) {
         movedResult.add(moving);
         return movedResult;

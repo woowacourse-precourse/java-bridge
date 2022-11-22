@@ -1,17 +1,27 @@
 package bridge.view;
 
+import bridge.message.ExceptionMessage;
 import bridge.message.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public String readBridgeSize() {
+    public int readBridgeSize() {
         out(InputMessage.START_GAME);
         blank();
         out(InputMessage.INPUT_BRIDGE_SIZE);
         String input = Console.readLine();
         blank();
-        return input;
+        stringType(input);
+        return Integer.parseInt(input);
+    }
+
+    private void stringType(String bonus) {
+        int eachChar = String.valueOf(bonus).charAt(0);
+        if (!Character.isDigit(eachChar)) {
+            out(ExceptionMessage.NOT_INTEGER);
+            throw new IllegalArgumentException(ExceptionMessage.NOT_INTEGER);
+        }
     }
 
     public String readMoving() {
