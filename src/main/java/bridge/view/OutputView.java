@@ -14,7 +14,7 @@ public class OutputView {
     private static final String BRIDGE_END = " ]";
     private static final String BRIDGE_PARTITION = " | ";
     private static final String BRIDGE_BLANK = " ";
-    private static final String START_STRING = "다리 건너기 게임을 시작합니다.";
+    private static final String START_STRING = "다리 건너기 게임을 시작합니다.\n";
     private static final String LAST_GAME_RESULT_STRING = "최종 게임 결과";
     private static final String WHETHER_SUCCESS_OR_NOT_STRING = "게임 성공 여부: ";
     private static final String TOTAL_TRY_COUNT_STRING = "총 시도한 횟수: ";
@@ -31,6 +31,7 @@ public class OutputView {
     public void printMap(GameResult gameResult) {
         printRow(gameResult, BridgeState.UP);
         printRow(gameResult, BridgeState.DOWN);
+        System.out.println();
     }
 
     public void printRow(GameResult gameResult, BridgeState bridgeState) {
