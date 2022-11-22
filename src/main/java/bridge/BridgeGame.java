@@ -19,7 +19,7 @@ public class BridgeGame {
     }
 
     // Compare input direction and cursor direction
-    private boolean canMove(String direction) {
+    public boolean canMove(String direction) {
         if (bridge.get(cursor) == direction) {
             return true;
         }
@@ -28,8 +28,8 @@ public class BridgeGame {
 
 
     // can move? cursor +1, if not? cursor -1
-    public void move(String direction) {
-        cursor += 5 - (canMove(direction) + "").length();
+    public void move() {
+        cursor += 1;
     }
 
     // Make cursor to zero
