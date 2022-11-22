@@ -31,7 +31,7 @@ class ExceptionTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @DisplayName("입력받은 다리사이즈 범위 3보다 작을때 ")
+    @DisplayName("입력받은 다리사이즈 범위 3보다 작을때")
     @Test
     void 다리사이즈_범위_테스트_1() {
         assertThatThrownBy(() -> Exception.checkRangeException("2"))
@@ -39,10 +39,42 @@ class ExceptionTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @DisplayName("입력받은 다리사이즈 범위 20보다 클 때 ")
+    @DisplayName("입력받은 다리사이즈 범위 20보다 클 때")
     @Test
     void 다리사이즈_범위_테스트_2() {
         assertThatThrownBy(() -> Exception.checkRangeException("21"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력받은 이동할 칸이 소문자 u 일경우")
+    @Test
+    void 이동할칸_테스트_1() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputUpDown("u"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력받은 이동할 칸이 다른 문자 일경우")
+    @Test
+    void 이동할칸_테스트_2() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputUpDown("A"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력받은 이동할 칸이 숫자일 경우")
+    @Test
+    void 이동할칸_테스트_3() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputUpDown("3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력받은 이동할 칸이 여러문자일 경우")
+    @Test
+    void 이동할칸_테스트_4() {
+        assertThatThrownBy(() -> Exception.checkCorrectInputUpDown("UU"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
