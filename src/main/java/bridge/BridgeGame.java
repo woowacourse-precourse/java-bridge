@@ -36,10 +36,12 @@ public class BridgeGame {
     public boolean move(String moveInput) {
         if (bridge.get(currentIndex).equals(moveInput)) {
             currentIndex++;
-            saveUpBridgeMemory(moveInput);
-            saveDownBridgeMemory(moveInput);
+            saveUpBridgeMemory(moveInput,true);
+            saveDownBridgeMemory(moveInput,true);
             return true;
         }
+        saveUpBridgeMemory(moveInput,false);
+        saveDownBridgeMemory(moveInput,false);
         currentIndex = 0;
         return false;
     }
@@ -48,7 +50,11 @@ public class BridgeGame {
      * 진행 사항을 각각 위 아래로 저장하는 메소드
      * @param moveInput
      */
-    public void saveUpBridgeMemory(String moveInput) {
+    public void saveUpBridgeMemory(String moveInput, boolean isSuccess) {
+        if (isSuccess == false && moveInput.equals("U")) {
+            bridgeUpMemory.add("X");
+            return;
+        }
         if (moveInput.equals("U")) {
             bridgeUpMemory.add("O");
             return;
@@ -56,12 +62,16 @@ public class BridgeGame {
         bridgeUpMemory.add(" ");
     }
 
-    public void saveDownBridgeMemory(String moveInput) {
+    public void saveDownBridgeMemory(String moveInput, boolean isSuccess) {
+        if (isSuccess == false && moveInput.equals("D")) {
+            bridgeDownMemory.add("X");
+            return;
+        }
         if (moveInput.equals("D")) {
             bridgeUpMemory.add("O");
             return;
         }
-        bridgeUpMemory.add(" ");
+        bridgeDownMemory.add(" ");
     }
 
     /**
@@ -73,6 +83,8 @@ public class BridgeGame {
         if (gameCommandInput.equals("Q"))
             return false;
 
+        bridgeUpMemory = new ArrayList<>();
+        bridgeDownMemory = new ArrayList<>();
         gameTryCount++;
         return true;
     }
@@ -91,14 +103,6 @@ public class BridgeGame {
 
     public int getGameTryCount() {
         return gameTryCount;
-    }
-
-    public List<String> getBridge() {
-        return bridge;
-    }
-
-    public int getCurrentIndex() {
-        return currentIndex;
     }
 
     public List<String> getBridgeUpMemory() {
