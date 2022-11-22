@@ -2,13 +2,17 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.List;
-
 public class InputView {
-    public List<String> readBridgeSize() {
-        String size = Console.readLine();
-        BridgeMaker test = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return test.makeBridge(Integer.parseInt(size));
+    public void readBridgeSize() {
+        try {
+            System.out.println("다리의 길이를 입력해주세요");
+            int size = Integer.parseInt(Console.readLine());
+            BridgeGame bridgeGame = new BridgeGame();
+            bridgeGame.start(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            this.readBridgeSize();
+        }
     }
 
     public String readMoving() {
