@@ -22,4 +22,8 @@ public class Bridge {
     private String getBridgeLocation(int location) {
         return bridge.get(location);
     }
+
+    public int getBridgeEnd() {
+        return bridge.size() - 1;
+    }
 }
