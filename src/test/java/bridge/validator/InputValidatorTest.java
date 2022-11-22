@@ -1,5 +1,6 @@
 package bridge.validator;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -51,6 +52,23 @@ public class InputValidatorTest {
     @ValueSource(strings = { "U", "D" })
     void validateMovingRightTest(String moving) {
         assertThatCode(() -> InputValidator.validateMoving(moving))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("플레이어의 게임 커맨드가 올바르지 않은 경우 예외 발생")
+    @Test
+    void validateGameCommand() {
+        String gameCommand = "3";
+
+        assertThatThrownBy(() -> InputValidator.validateGameCommand(gameCommand))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("플레이어의 게임 커맨드가 올바른 경우 정상 작동")
+    @ParameterizedTest
+    @ValueSource(strings = { "R", "Q" })
+    void validateGameCommand(String gameCommand) {
+        assertThatCode(() -> InputValidator.validateGameCommand(gameCommand))
                 .doesNotThrowAnyException();
     }
 
