@@ -42,9 +42,13 @@ public class BridgeGame {
             if (result.get(index).equals("D")) {
                 downTrue();
             }
-            upResult.append("|");
-            downResult.append("|");
+            andNext();
         }
+    }
+
+    private static void andNext() {
+        upResult.append("|");
+        downResult.append("|");
     }
 
     private static void nowPrint(boolean thisturn) {
