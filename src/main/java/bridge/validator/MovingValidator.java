@@ -40,6 +40,6 @@ public class MovingValidator implements Validator {
     }
 
     private boolean isValidMoving(String inputValue) {
-        return UP.isValidCommand(inputValue) || DOWN.isValidCommand(inputValue);
+        return UP.equalCommand(inputValue) || DOWN.equalCommand(inputValue);
     }
 }

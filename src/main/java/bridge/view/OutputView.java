@@ -18,7 +18,6 @@ import static bridge.utils.message.FixedMessage.TOTAL_ATTEMPTS;
 import bridge.domain.BridgeGame;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -45,11 +44,11 @@ public class OutputView {
 
     private void makeLineMap(BridgeGame bridgeGame, List<String> topLineMap, List<String> bottomLineMap) {
         for (int index = 0; index < bridgeGame.getMovingCount(); index++) {
-            if (Objects.equals(bridgeGame.findMovingByIndex(index), UP.getCommand())) {
+            if (UP.equalCommand(bridgeGame.findMovingByIndex(index))) {
                 topLineMap.add(markMovingSuccessOrFail(bridgeGame.findMovingResultByIndex(index)));
                 bottomLineMap.add(NOTHING_MARKING);
             }
-            if (Objects.equals(bridgeGame.findMovingByIndex(index), DOWN.getCommand())) {
+            if (DOWN.equalCommand(bridgeGame.findMovingByIndex(index))) {
                 bottomLineMap.add(markMovingSuccessOrFail(bridgeGame.findMovingResultByIndex(index)));
                 topLineMap.add(NOTHING_MARKING);
             }
@@ -79,7 +78,8 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("\n" + GAME_RESULT.getMessage());
         printMap(bridgeGame);
-        System.out.println("\n" + String.format(SUCCESS_OR_FAIL.getMessage(), printSuccessOrFail(bridgeGame.isMovingFail())));
+        System.out.println(
+                "\n" + String.format(SUCCESS_OR_FAIL.getMessage(), printSuccessOrFail(bridgeGame.isMovingFail())));
         System.out.println(String.format(TOTAL_ATTEMPTS.getMessage(), bridgeGame.getTotalAttempts()));
     }
 

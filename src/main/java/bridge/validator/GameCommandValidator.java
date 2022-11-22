@@ -40,6 +40,6 @@ public class GameCommandValidator implements Validator {
     }
 
     private boolean isValidGameCommand(String inputValue) {
-        return RETRY.isValidCommand(inputValue) || QUIT.isValidCommand(inputValue);
+        return RETRY.equalCommand(inputValue) || QUIT.equalCommand(inputValue);
     }
 }

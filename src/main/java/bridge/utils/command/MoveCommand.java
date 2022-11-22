@@ -18,15 +18,15 @@ public enum MoveCommand {
         return this.command;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     public boolean isLowerCaseCommand(String inputValue) {
         return Objects.equals(command.toLowerCase(), inputValue);
     }
 
-    public boolean isValidCommand(String inputValue) {
-        return Objects.equals(command, inputValue);
+    public boolean equalCommand(String command) {
+        return Objects.equals(this.command, command);
+    }
+
+    public boolean equalNumber(int number) {
+        return Objects.equals(this.number, number);
     }
 }

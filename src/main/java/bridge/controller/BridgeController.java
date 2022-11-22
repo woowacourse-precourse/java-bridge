@@ -9,7 +9,6 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.Objects;
 
 public class BridgeController {
     private final InputView inputView = new InputView();
@@ -42,7 +41,7 @@ public class BridgeController {
 
     private boolean choiceRetryOrQuit() {
         String gameCommand = inputView.readGameCommand();
-        if (Objects.equals(gameCommand, RETRY.getCommand())) {
+        if (RETRY.equalCommand(gameCommand)) {
             bridgeGame.retry();
             return true;
         }

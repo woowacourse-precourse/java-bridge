@@ -20,7 +20,7 @@ public enum GameCommand {
         return Objects.equals(command.toLowerCase(), inputValue);
     }
 
-    public boolean isValidCommand(String inputValue) {
-        return Objects.equals(command, inputValue);
+    public boolean equalCommand(String command) {
+        return Objects.equals(this.command, command);
     }
 }

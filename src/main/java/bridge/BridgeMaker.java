@@ -5,7 +5,6 @@ import static bridge.utils.command.MoveCommand.UP;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -26,7 +25,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
-            if (Objects.equals(DOWN.getNumber(), bridgeNumberGenerator.generate())) {
+            if (DOWN.equalNumber(bridgeNumberGenerator.generate())) {
                 bridge.add(DOWN.getCommand());
                 continue;
             }
