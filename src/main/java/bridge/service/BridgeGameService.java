@@ -4,7 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Attempt;
 import bridge.domain.Bridge;
-import bridge.domain.Command;
 import bridge.domain.Status;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -46,18 +45,18 @@ public class BridgeGameService {
 
     /**
     * 사용자의 입력을 받으면서 다리 건너기 게임을 진행하는 메서드
-     * @return Status
+     * @return boolean
     * */
-    public Status proceedGame(Bridge bridge) {
+    public boolean proceedGame(Bridge bridge) {
         userMoving = new ArrayList<>();
         while (bridge.getSize() > userMoving.size()) {
             userMoving.add(getMoving());
             OutputView.printMap(bridge, userMoving);
             if (!bridge.isSuccess(userMoving)) {
-                return Status.FAIL;
+                return false;
             }
         }
-        return Status.SUCCESS;
+        return true;
     }
 
     private String getMoving() {
@@ -75,13 +74,10 @@ public class BridgeGameService {
 
     /**
     * 게임 재시도 여부를 입력받는 메서드
-     * @return Command
+     * @return boolean
     * */
-    public Command restartGame() {
-        if (getCommand().equals(RESTART)) {
-            return Command.RESTART;
-        }
-        return Command.QUIT;
+    public boolean restartGame() {
+        return getCommand().equals(RESTART);
     }
 
     private String getCommand() {

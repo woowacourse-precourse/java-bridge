@@ -33,7 +33,7 @@ public class BridgeGame {
      */
     public Status move() {
         attempt.increase();
-        return bridgeGameService.proceedGame(bridge);
+        return Status.of(bridgeGameService.proceedGame(bridge));
     }
 
     /**
@@ -42,7 +42,7 @@ public class BridgeGame {
      * @return Command
      */
     public Command retry() {
-        return bridgeGameService.restartGame();
+        return Command.of(bridgeGameService.restartGame());
     }
 
     /**

@@ -13,4 +13,11 @@ public enum Status {
     public String getMessage() {
         return this.message;
     }
+
+    public static Status of (boolean type) {
+        if (type) {
+            return SUCCESS;
+        }
+        return FAIL;
+    }
 }
