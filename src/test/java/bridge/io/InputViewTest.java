@@ -46,6 +46,21 @@ class InputViewTest {
     assertEquals(expectedOutput, resultOutput);
   }
 
+  @ParameterizedTest
+  @CsvSource(value = {"R,R", "Q,Q"})
+  void command의_입력값을_검증하고_올바른_command을_입력받아_반환하는가(String input, String expectedOutput) {
+    // given
+    InputView inputView = new InputView();
+    InputStream inputStream = readUserInput(input);
+    System.setIn(inputStream);
+
+    // when
+    String resultOutput = inputView.readGameCommand();
+
+    // then
+    assertEquals(expectedOutput, resultOutput);
+  }
+
   private InputStream readUserInput(String input) {
     return new ByteArrayInputStream(input.getBytes());
   }
