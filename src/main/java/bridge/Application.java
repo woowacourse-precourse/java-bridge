@@ -3,9 +3,9 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
+        BridgeGame bridgeGame = new BridgeGame(new InputView(), new OutputView());
         try {
-            inputView.readBridgeSize();
+            bridgeGame.play();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
