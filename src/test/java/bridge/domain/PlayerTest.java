@@ -17,13 +17,13 @@ public class PlayerTest {
     @Test
     void should_Add_playerPosition_When_move() {
         player.move();
-        assertThat(player.nowPosition()).isEqualTo(1);
+        assertThat(player.getCurrentPosition()).isEqualTo(1);
     }
 
     @DisplayName("총 시도 횟수가 잘 구해지는지 확인")
     @Test
     void should_Get_totalTryNumber_When_tryGame() {
-        player.tryGame();
+        player.addTotalTryNumber();
         assertThat(player.getTotalTryNumber()).isEqualTo(1);
     }
 }
