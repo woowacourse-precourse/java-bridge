@@ -14,31 +14,47 @@ public class BridgeGameControllerTest extends NsTest {
     List<String> answerBridge;
 
     @Test
-    @DisplayName("사용자의 입력에 따라 이동한다.")
-    void invalidMovingInputTest() {
+    @DisplayName("틀린 후 게임을 종료한다.")
+    void quitGameTest() {
         answerBridge = List.of("U", "D", "U");
         bridgeGame = new BridgeGame(answerBridge);
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "U");
-            assertThat(bridgeGame.getStatus()).isEqualTo(StatusType.PLAY);
-            assertThat(output().contains("[ O |   | O ]"));
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "[ O |   |   ]",
+                    "[   | O | X ]"
+            );
         }, 1, 0, 1);
     }
 
     @Test
-    void 기능_테스트() {
+    @DisplayName("틀린 후 게임을 재시작한다.")
+    void restartGameTest() {
+        answerBridge = List.of("U", "D", "U");
+        bridgeGame = new BridgeGame(answerBridge);
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "[ O |   | O ]",
+                    "[   | O |   ]"
+            );
+        }, 1, 0, 1);
+    }
+
+    @Test
+    @DisplayName("끝까지 완주한다.")
+    void endGameTest() {
+        answerBridge = List.of("U", "D", "U");
+        bridgeGame = new BridgeGame(answerBridge);
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
                     "[ O |   | O ]",
                     "[   | O |   ]"
             );
-
-            int upSideIndex = output().indexOf("[ O |  ]");
-            int downSideIndex = output().indexOf("[   | O ]");
-            assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
+
 
     @Override
     protected void runMain() {

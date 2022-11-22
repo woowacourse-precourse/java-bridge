@@ -20,12 +20,31 @@ public class BridgeGameController {
     public void gameStart() {
         while (bridgeGame.getStatus().equals(StatusType.PLAY)) {
             move();
+            checkGameStatus();
         }
     }
 
     public void move() {
         bridgeGame.move(new InputView().readMoving());
         new OutputView().printMap(updatedBridge());
+    }
+
+    public void checkGameStatus() {
+        bridgeGame.isSuccess();
+        if (bridgeGame.getStatus().equals(StatusType.FAIL)) {
+            checkGameContinued();
+        }
+    }
+
+    public void checkGameContinued() {
+        String input = new InputView().readGameCommand();
+        if (input.equals("R")) {
+            bridgeGame.retry();
+            gameCount++;
+        }
+        if (input.equals("Q")) {
+            bridgeGame.quit();
+        }
     }
 
     private List<List<String>> updatedBridge() {
