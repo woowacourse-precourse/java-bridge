@@ -4,10 +4,10 @@ import bridge.view.InputView;
 import java.util.List;
 
 public class JudgeCommand {
-    private ExecuteCommand executeCommand;
+    private BridgeGame bridgeGame;
 
     public JudgeCommand(GameStatus gameStatus, BridgeMaker bridgeMaker, PresentBridgeMaker presentBridgeMaker) {
-        executeCommand = new ExecuteCommand(gameStatus, bridgeMaker, presentBridgeMaker);
+        bridgeGame = new BridgeGame(gameStatus, bridgeMaker, presentBridgeMaker);
     }
 
     public boolean judgeMove(List<String> bridge, String moveCommand, int bridgeIndex) {
@@ -21,7 +21,7 @@ public class JudgeCommand {
         String gameCommand = InputView.readGameCommand();
 
         if (gameCommand.equals("R")) {
-            executeCommand.retry();
+            bridgeGame.retry();
             return true;
         }
         return false;

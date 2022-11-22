@@ -49,4 +49,8 @@ public class OutputView {
         }
         System.out.println(TRY_COUNT_TEXT + tryCount);
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

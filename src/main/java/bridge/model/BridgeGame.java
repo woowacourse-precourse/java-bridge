@@ -7,40 +7,44 @@ import bridge.view.OutputView;
 import java.util.HashMap;
 import java.util.List;
 
-public class ExecuteCommand {
+/**
+ * 다리 건너기 게임을 관리하는 클래스
+ */
+public class BridgeGame {
 
     private JudgeCommand judgeCommand;
     private GameStatus gameStatus;
     private BridgeMaker bridgeMaker;
     private PresentBridgeMaker presentBridgeMaker;
 
-    public ExecuteCommand(GameStatus gameStatus, BridgeMaker bridgeMaker,
+    public BridgeGame(GameStatus gameStatus, BridgeMaker bridgeMaker,
         PresentBridgeMaker presentBridgeMaker) {
-
         this.gameStatus = gameStatus;
         this.bridgeMaker = bridgeMaker;
         this.presentBridgeMaker = presentBridgeMaker;
-        this.judgeCommand = new JudgeCommand(this.gameStatus, this.bridgeMaker, this.presentBridgeMaker);
     }
 
     public void initGame() {
         int bridgeSize = InputView.readBridgeSize();
-        gameStatus.setBridgeSize(bridgeSize);
+        judgeCommand = new JudgeCommand(gameStatus, bridgeMaker, presentBridgeMaker);
         bridgeMaker.makeBridge(bridgeSize);
-        gameStatus.setBridgeIndex(0);
-        gameStatus.setGameResult(true);
+        presentBridgeMaker.initPresentBridge();
+        gameStatus.initStatus(bridgeSize);
     }
 
     public void startGame() {
-        initGame();
         boolean flag = true;
         while (flag && gameStatus.getBridgeIndex() != gameStatus.getBridgeSize()) {
             String moveCommand = InputView.readMoving();
             flag = move(moveCommand);
         }
-        endGame();
     }
 
+    /**
+     * 사용자가 칸을 이동할 때 사용하는 메서드
+     * <p>
+     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
     public boolean move(String moveCommand) {
         recordBridge(moveCommand, judgeCommand.judgeMove(bridgeMaker.getBridge(), moveCommand,
             gameStatus.getBridgeIndex()));
@@ -54,6 +58,11 @@ public class ExecuteCommand {
         return judgeCommand.judgeContinue();
     }
 
+    /**
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * <p>
+     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
     public void retry() {
         presentBridgeMaker.initPresentBridge();
         gameStatus.setBridgeIndex(0);
