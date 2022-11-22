@@ -1,5 +1,6 @@
 package bridge;
 
+import domain.Bridge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,9 +44,8 @@ public class BridgeGameTest {
     @DisplayName("이동 성공 확인")
     @Test
     void 이동_성공() {
-        List<String> bridge = List.of("U", "D", "D", "U", "D");
+        bridgeGame.setBridge(List.of("U", "D", "D", "U", "D"));
         List<String> progress = List.of("U", "D", "D", "U", "D");
-        bridgeRepository.saveBridge(bridge);
 
         IntStream.range(0, progress.size())
                 .forEach(i -> {
@@ -57,9 +57,7 @@ public class BridgeGameTest {
     @DisplayName("이동 실패 확인")
     @Test
     void 이동_실패() {
-        List<String> bridge = List.of("U", "D", "D", "U", "D");
-
-        bridgeRepository.saveBridge(bridge);
+        bridgeGame.setBridge(List.of("U", "D", "D", "U", "D"));
         bridgeGame.move("D");
 
         assertThat(bridgeGame.canMove()).isEqualTo(false);
@@ -68,9 +66,9 @@ public class BridgeGameTest {
     @DisplayName("현재까지 진행 결과 확인")
     @Test
     void 진행_결과() {
-        List<String> bridge = List.of("U", "D", "D", "U", "D");
+        bridgeGame.setBridge(List.of("U", "D", "D", "U", "D"));
         List<String> progress = List.of("U", "D", "U");
-        bridgeRepository.saveBridge(bridge);
+
         progress.forEach(bridgeGame::move);
 
         bridgeGame.saveResult();
