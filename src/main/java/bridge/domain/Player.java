@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.utils.Validation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +10,16 @@ import static bridge.utils.Constants.*;
 public class Player {
     private int attempts;
     private List<String> playerBlocks;
+    private Validation validation;
 
     public Player(){
         attempts = 0;
         playerBlocks = new ArrayList<>();
+        validation = new Validation();
     }
 
     public void MoveTo(String playerMove){
+        validation.validatePlayerMove(playerMove);
         playerBlocks.add(playerMove);
     }
 

@@ -22,11 +22,15 @@ public class Validation {
 
 
 
-    public void validatePlayerMove(){
-
+    public void validatePlayerMove(String playerMove){
+        if(playerMove != UP_BLOCK && playerMove != DOWN_BLOCK){
+            throw new IllegalArgumentException(ERROR_PLAYER_MOVE_IS_NOT_U_OR_D);
+        }
     }
 
-    public void validateRestart(){
-
+    public void validateRestart(String playerRestart){
+        if(playerRestart != PLAYER_RETRY && playerRestart != PLAYER_QUIT){
+            throw new IllegalArgumentException(ERROR_PLAYER_RESTART_IS_NOT_R_OR_Q);
+        }
     }
 }
