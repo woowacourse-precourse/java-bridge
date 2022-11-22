@@ -15,6 +15,10 @@ public class Application {
             List<String> bridge = bridgeMaker.makeBridge(size);
 
             BridgeGame game = new BridgeGame(bridge);
+
+            for(int i = 0; i < size; i++){
+                String moving = inputView.readMoving();
+            }
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
