@@ -72,6 +72,7 @@ public class BridgeStage {
 			return true;
 		}
 		outputView.printResult();
+		outputView.printStatistic(currentStatus, numTry);
 		return false;
 	}
 }
