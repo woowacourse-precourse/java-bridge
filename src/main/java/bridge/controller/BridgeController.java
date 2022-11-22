@@ -59,24 +59,21 @@ public class BridgeController {
         return gameCommand.isSameQuit();
     }
 
-    private Result playEachRound(Length length, PassingPositions passingPositions, Result result) {
+    public Result playEachRound(Length length, PassingPositions passingPositions, Result result) {
         int distance = -1;
         do {
             if (length.isSameLength(++distance)) {
                 return result;
             }
-            result = getResult(passingPositions, distance);
-        } while (!outputView.printMap(result));
+            result = doEachRound(passingPositions, distance);
+        } while (!result.isContainWrongAnswer());
         result.rollbackDistance();
         return result;
     }
 
-    private Result getResult(PassingPositions passingPositions, int distance) {
-        Result result;
-        Direction direction = inputHandler.getDirection();
-        Position position = createPosition(distance, direction);
-        bridgeGame.move(position, passingPositions);
-        result = passingPositions.makeResult(distance);
+    private Result doEachRound(PassingPositions passingPositions, int distance) {
+        Result result = bridgeGame.getResult(passingPositions, distance);
+        outputView.printMap(result);
         return result;
     }
 
@@ -91,9 +88,5 @@ public class BridgeController {
 
     private PassingPositions createPassingPositions(Bridge bridge) {
         return new PassingPositions(bridge);
-    }
-
-    private Position createPosition(int distance, Direction direction) {
-        return new Position(distance, direction);
     }
 }
