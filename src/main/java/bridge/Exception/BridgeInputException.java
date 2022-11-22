@@ -17,4 +17,12 @@ public class BridgeInputException {
         }
     }
 
+    private void validInputFormLength(String lenBridge) {
+        try {
+            Integer.parseInt(lenBridge);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 다리의 길이는 숫자만 입력하세요.");
+        }
+    }
+
 }
