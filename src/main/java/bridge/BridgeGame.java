@@ -9,6 +9,11 @@ public class BridgeGame {
     private Status status = new Status();
     private int gameCount = 1;
 
+    public void start() {
+        outputView.printStart();
+        Bridge bridge = new Bridge();
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
