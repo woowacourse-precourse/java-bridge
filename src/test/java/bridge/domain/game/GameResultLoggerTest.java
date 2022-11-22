@@ -1,13 +1,20 @@
 package bridge.domain.game;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameResultLoggerTest {
+
+    private GameResultLogger result;
+
+    @BeforeEach
+    void setup() {
+        result = new GameResultLogger();
+    }
     @Test
     void testLogResult() {
-        GameResultLogger result = new GameResultLogger();
         result.logResult("U", CrossResult.SUCCESS);
         result.logResult("D", CrossResult.SUCCESS);
         result.logResult("U", CrossResult.FAILURE);
@@ -23,7 +30,6 @@ class GameResultLoggerTest {
 
     @Test
     void testCountAttempts() {
-        GameResultLogger result = new GameResultLogger();
         result.logResult("U", CrossResult.FAILURE);
         result.reset();
         assertEquals(2, result.getNumOfAttempts());
