@@ -26,7 +26,6 @@ public class BridgeGame {
     }
 
     private void crossBridge(Bridge bridge) {
-
     }
 
     public String move() {
