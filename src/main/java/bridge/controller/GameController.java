@@ -31,8 +31,8 @@ public class GameController {
     private int tryNumber = 0;
 
     public void init() {
-        bridgeSize = inputView.readBridgeSize();
         outputView.printGameStart();
+        bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
