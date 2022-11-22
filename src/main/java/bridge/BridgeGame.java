@@ -7,17 +7,11 @@ import java.util.List;
  */
 public class BridgeGame {
     public static int numberOfTry = 1;
+    public static int round = 1;
     InputView input = new InputView();
     OutputView output = new OutputView();
     BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator(); //
     BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator); // 인자로 인터페이스 넣음
-
-    /*
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge).containsExactly("U", "D", "D");
-    */
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -36,17 +30,61 @@ public class BridgeGame {
         numberOfTry += 1;
     }
 
-    public void gameStart() {
+    public List<String> gameStart() {
         output.printGameStart();
-    }
-    public void playGame(){
-        gameStart();
         int sizeOfBridge = input.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(sizeOfBridge);
-        System.out.println(bridge);
-        //[ O ]
-        //[ O |O ]
-        //[ O |   ]
-        //[   | O ]
+        return bridge;
     }
+    public void playGame(List<String> bridge){
+        while(true){
+            String move = input.readMoving();
+            boolean match = judgeMatch(bridge.get(round-1),move);
+            if(!match){output.printFailMap(bridge,move);
+                if (playGameWhenNotMatch(bridge,move) == "Q"){break;}
+                retry();
+            } playGameWhenMatch(bridge,match,move);
+            if (judgeSuccess(bridge)){break;}
+        }
+    }
+
+    public String judgeSuccessOrFail(List<String> bridge){
+        if (bridge.size() == round){
+            return "성공";
+        }
+        return "실패";
+    }
+
+    public boolean judgeSuccess(List<String> bridge){
+        if (bridge.size() == round){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean judgeMatch(String bridgeElement,String inputMove){
+        if (bridgeElement == inputMove){
+            return true;
+        }
+        return false;
+    }
+
+    public void playGameWhenMatch(List<String> bridge, boolean match, String move){
+        if (match) {
+            output.printSuccessMap(bridge, match);
+            if (judgeSuccess(bridge)) {
+                output.printResult(bridge, move);
+            }
+            round += 1;
+        }
+    }
+    public String playGameWhenNotMatch(List<String> bridge, String move){
+        output.printFailMap(bridge,move);
+        if (input.readGameCommand() == "Q"){
+            output.printResult(bridge,move);
+        }
+        return input.readGameCommand();
+    }
+
+
 }
