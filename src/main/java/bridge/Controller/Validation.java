@@ -17,20 +17,17 @@ public class Validation {
     private static final String ERROR_MESSAGE_INVALID_GAME_COMMAND = "게임 재시작 또는 종료 시, 조건에 맞지 않는 입력입니다. (" + Validation.GAME_RETRY + " 또는 " + Validation.GAME_QUIT + " 이어야 합니다.)";
     private static final String ERROR_MESSAGE_INVALID_GAME_MOVING = "다리 건너기를 위한 올바른 입력이 아닙니다.";
 
-    
-
-
-    public static void validateReadBridgeSize(String bridgeSize){
+    public static void validateBridgeSize(String bridgeSize){
         validateInputIsNumeric(bridgeSize);
         validateInputIsInRange(bridgeSize);
     }
-    public static void validateReadMoving(String moving){
+    public static void validateMoving(String moving){
         validateInputIsAlphabetic(moving);
         validateInputIsValidMoving(moving);
     }
-    public static void validateReadGameCommand(String gameCommand){
+    public static void validateGameCommand(String gameCommand){
         validateInputIsAlphabetic(gameCommand);
-        validateGameCommand(gameCommand);
+        validateInputIsValidGameCommand(gameCommand);
     }
 
     public static void validateInputIsNumeric(String input){
@@ -57,7 +54,7 @@ public class Validation {
         }
     }
 
-    public static void validateGameCommand(String input){
+    public static void validateInputIsValidGameCommand(String input){
         if(!input.equals(GAME_RETRY) && !input.equals(GAME_QUIT)){
             throw new IllegalArgumentException(ERROR_START_MESSAGE + ERROR_MESSAGE_INVALID_GAME_COMMAND);
         }

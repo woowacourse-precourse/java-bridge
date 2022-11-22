@@ -6,7 +6,7 @@ public class Movement {
     String moving;
 
     public Movement(String moving){
-        Validation.validateReadMoving(moving);
+        Validation.validateMoving(moving);
         this.moving = moving;
     }
 

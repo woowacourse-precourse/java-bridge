@@ -6,7 +6,7 @@ public class Command {
     String command;
 
     public Command(String command){
-        Validation.validateReadGameCommand(command);
+        Validation.validateGameCommand(command);
         this.command = command;
     }
 

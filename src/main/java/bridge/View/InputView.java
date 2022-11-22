@@ -32,14 +32,12 @@ public class InputView {
     public String readMoving() {
         System.out.println(INPUT_MOVING_MESSAGE);
         String moving = readLine();
-        Validation.validateReadMoving(moving);
         return moving;
     }
 
     public String readGameCommand() {
         System.out.println(INPUT_RETRY_MESSAGE);
         String gameCommand = readLine();
-        Validation.validateReadGameCommand(gameCommand);
         return gameCommand;
     }
 }

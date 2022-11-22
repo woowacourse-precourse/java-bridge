@@ -13,7 +13,7 @@ public class Bridge {
     private BridgeMaker bridgeMaker;
 
     public Bridge(String size){
-        Validation.validateReadBridgeSize(size);
+        Validation.validateBridgeSize(size);
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = bridgeMaker.makeBridge(Integer.parseInt(size));
