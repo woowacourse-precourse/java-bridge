@@ -21,7 +21,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return IntStream.range(0, size)
-                .mapToObj(i -> BridgePosition.getCommandByValue(bridgeNumberGenerator.generate()))
+                .mapToObj(i -> Position.getCommandByValue(bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
     }
 }
