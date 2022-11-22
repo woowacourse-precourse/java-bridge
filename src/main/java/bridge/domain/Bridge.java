@@ -30,10 +30,6 @@ public class Bridge {
         return mark.get(current).equals(bridge.get(current));
     }
 
-    public int getSize() {
-        return size;
-    }
-
     public List<String> getBridge() {
         return bridge;
     }

@@ -26,7 +26,6 @@ public class BridgeGame {
         mark.add(movePlace);
         boolean passable = bridge.checkPassable(mark);
 
-        gameComplete();
         if(gameComplete()){
             return false;
         }

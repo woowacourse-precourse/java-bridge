@@ -45,10 +45,7 @@ public class BridgeController {
     }
 
     public boolean bridgeRound() {
-        String movePlace = requestMovingPoint();
-        boolean passable = bridgeGame.move(movePlace);
-
-        return passable;
+        return bridgeGame.move(requestMovingPoint());
     }
 
     public void bridgeGame(){
