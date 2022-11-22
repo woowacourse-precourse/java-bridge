@@ -87,6 +87,16 @@ class BridgeMoveTypeTest {
         assertThat(isMoveTypeSame).isFalse();
     }
 
+    @ParameterizedTest(name = "[{index}] moveType = {0}")
+    @ValueSource(strings = {"Q", "R", "", " ", "1", "A", "ㅕ"})
+    @DisplayName("잘못된 입력값을 통한 이동 타입 존재 확인에 실패한다.")
+    void whenWrongMoveTypeExistsThenFailTest(String moveType) {
+        // given & when
+        boolean moveTypeExists = BridgeMoveType.isMoveTypeExists(moveType);
+        // then
+        assertThat(moveTypeExists).isFalse();
+    }
+
     static Stream<Arguments> whenIntTypeSearchThenSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(0, "D"),
