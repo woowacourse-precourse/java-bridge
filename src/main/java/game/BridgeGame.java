@@ -68,7 +68,8 @@ public class BridgeGame {
     }
 
     public boolean hasFail() {
-        if (record.contains(StateCode.U_FALSE) || record.contains(StateCode.D_FALSE)) {
+        if (record.contains(StateCode.UP_WRONG.getCode()) || record.contains(
+            StateCode.DOWN_WRONG.getCode())) {
             return true;
         }
         return false;

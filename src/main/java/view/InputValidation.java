@@ -27,7 +27,7 @@ public class InputValidation {
     }
 
     public void checkMoving(String input) throws IllegalArgumentException {
-        if (!input.equals(BridgeType.UP) && !input.equals(BridgeType.DOWN)) {
+        if (!input.equals(BridgeType.UP.getMark()) && !input.equals(BridgeType.DOWN.getMark())) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MOVING);
         }
     }

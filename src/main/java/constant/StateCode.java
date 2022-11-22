@@ -2,10 +2,10 @@ package constant;
 
 public enum StateCode {
 
-    U_TRUE("UU", 1),
-    U_FALSE("UD", 2),
-    D_FALSE("DU", 3),
-    D_TRUE("DD", 4);
+    UP_CORRECT("UU", 1),
+    UP_WRONG("UD", 2),
+    DOWN_WRONG("DU", 3),
+    DOWN_CORRECT("DD", 4);
 
     private final String state;
     private final int code;

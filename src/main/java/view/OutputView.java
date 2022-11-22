@@ -54,14 +54,15 @@ public class OutputView {
     }
 
     private int getRecordIndex(int record) {
-        if (record == StateCode.U_TRUE.getCode() || record == StateCode.D_FALSE.getCode()) {
+        if (record == StateCode.UP_CORRECT.getCode() || record == StateCode.DOWN_WRONG.getCode()) {
             return Constant.TOPSIDE;
         }
         return Constant.DOWNSIDE;
     }
 
     private char getRecordResult(int record) {
-        if (record == StateCode.U_TRUE.getCode() || record == StateCode.D_TRUE.getCode()) {
+        if (record == StateCode.UP_CORRECT.getCode()
+            || record == StateCode.DOWN_CORRECT.getCode()) {
             return Constant.RIGHT;
         }
         return Constant.WRONG;
