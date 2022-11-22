@@ -37,7 +37,7 @@ public class Player {
         downsideBridge.add(location, WRONG);
     }
 
-    public boolean isFailToAnswer() { // retry 위한 조건
+    public boolean isFailToAnswer() {
         return upsideBridge.contains(WRONG) || downsideBridge.contains(WRONG);
     }
 
@@ -57,23 +57,23 @@ public class Player {
         return this.downsideBridge;
     }
 
-    private void initProgress() { // 재시도를 할 시, 현재 위치, 윗 다리 현재 진행도, 아랫다리 현재 진행도를 모두 초기화해준다.
+    private void initProgress() {
         this.upsideBridge.clear();
         this.downsideBridge.clear();
     }
 
-    private int countUpsideCorrect(int count){
-        for(String upside : upsideBridge){
-            if(upside.equals(CORRECT)){
+    private int countUpsideCorrect(int count) {
+        for (String upside : upsideBridge) {
+            if (upside.equals(CORRECT)) {
                 count++;
             }
         }
         return count;
     }
 
-    private int countDownsideCorrect(int count){
-        for(String downside : downsideBridge){
-            if(downside.equals(CORRECT)){
+    private int countDownsideCorrect(int count) {
+        for (String downside : downsideBridge) {
+            if (downside.equals(CORRECT)) {
                 count++;
             }
         }
