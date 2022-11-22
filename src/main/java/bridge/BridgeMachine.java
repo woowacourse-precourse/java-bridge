@@ -16,7 +16,7 @@ public class BridgeMachine {
 
     private void playBridgeGame(BridgeGame bridgeGame, Bridge bridge) {
         while (true) {
-            if (userMove(bridgeGame, bridge, getUserCommand())) break;
+            if (!checkUserCanMove(bridgeGame, bridge, getUserCommand())) break;
             if (checkLastIndex(bridge)) break;
         }
     }
@@ -25,17 +25,16 @@ public class BridgeMachine {
         OutputView.gameStart();
         return bridgeGame;
     }
-    private boolean userMove(BridgeGame bridgeGame, Bridge bridge, String userMoveCommand) {
-        if (!bridgeGame.move(userMoveCommand, bridge, index)) {
-            bridge.changeBridgeMap(index, userMoveCommand, cantCross);
-            if (chooseReplay(bridgeGame, bridge)) {
-                return true;
-            }
+    private boolean checkUserCanMove(BridgeGame bridgeGame, Bridge bridge, String userMoveCommand) {
+        if(bridgeGame.move(userMoveCommand,bridge,index)){
+            bridge.changeBridgeMap(index,userMoveCommand,canCross);
+            OutputView.printMap(bridge.getBridgeMap(),index);
+            index++;
+            return true;
         }
-        bridge.changeBridgeMap(index, userMoveCommand, canCross);
-        OutputView.printMap(bridge.getBridgeMap(), index);
-        index++;
-        return false;
+        bridge.changeBridgeMap(index, userMoveCommand, cantCross);
+        OutputView.printMap(bridge.getBridgeMap(),index);
+        return checkReplay(bridgeGame, bridge,getReplayCommand());
     }
 
     private boolean chooseReplay(BridgeGame bridgeGame, Bridge bridge) {
