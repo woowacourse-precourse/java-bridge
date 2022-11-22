@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 import bridge.domain.Retry;
 import bridge.service.RetryService;
@@ -9,7 +9,8 @@ import view.OutputView;
 public class RetryController {
 
     public static final String GAME_SUCCESS = "성공";
-
+    public static final String GAME_FAILURE = "실패";
+    
     private final RetryService retryService;
     private final List<String>[] bridgeMove;
     private final int count;
@@ -25,9 +26,14 @@ public class RetryController {
             printResult(GAME_SUCCESS);
             return false;
         }
+        return runFailure();
+    }
+
+    private boolean runFailure() {
         if (retryService.checkRetry(readRetry())) {
             return true;
         }
+        printResult(GAME_FAILURE);
         return false;
     }
 

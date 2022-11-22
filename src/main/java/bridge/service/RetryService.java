@@ -9,10 +9,6 @@ public class RetryService {
 
     public static final String CANNOT_CROSS_BRIDGE = "X";
 
-    public Retry makeRetry(String command) {
-        return new Retry(command);
-    }
-
     public boolean checkRetry(Retry retry) {
         String retryCommand = retry.getRetry();
         if (retryCommand.equals(RETRY_COMMAND)) {

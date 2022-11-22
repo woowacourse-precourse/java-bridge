@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 import bridge.domain.BridgeMove;
 import bridge.service.BridgeMoveService;

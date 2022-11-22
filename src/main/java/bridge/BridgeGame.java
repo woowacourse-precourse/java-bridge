@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.controller.BridgeMoveController;
+import bridge.controller.RetryController;
 import bridge.repository.BridgeMoveRepository;
 import bridge.service.BridgeMoveService;
 import bridge.service.RetryService;
