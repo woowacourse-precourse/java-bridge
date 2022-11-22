@@ -62,7 +62,12 @@ class BridgeGameTest {
         assertThat(player.getBridgeRoute()).isEqualTo(answer);
     }
 
+    @DisplayName("R을 입력하면 true, Q를 입력하면 false가 반환되는지 확인")
     @Test
-    void retry() {
+    void retry_재시작_검증() {
+        assertAll(
+                () -> assertTrue(bridgeGame.retry("R")),
+                () -> assertFalse(bridgeGame.retry("Q"))
+        );
     }
 }
