@@ -11,18 +11,18 @@ import java.util.List;
  */
 public class OutputView {
     private static final String INIT_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    public static final String RESULT_MESSAGE = "최종 게임 결과";
-    public static final String GAME_SUCCESS_FAIL_FORMAT = "게임 성공 여부: %s";
-    public static final String TRIAL_COUNT_FORMAT = "총 시도한 횟수: %d";
-    public static final String MAP_HEAD = "[ ";
-    public static final String MAP_TAIL = " ]";
-    public static final String MOVING_DELIMITER = " | ";
-    public static final String GOOD_CHOICE_FORM = "O";
-    public static final String BAD_CHOICE_FORM = "X";
-    public static final String NO_CHOICE_FORM = " ";
-    public static final String ERROR_MESSAGE_HEAD = "[ERROR] ";
-    public static final String FAIL_MESSAGE = "실패";
-    public static final String SUCCESS_MESSAGE = "성공";
+    private static final String RESULT_MESSAGE = "최종 게임 결과";
+    private static final String GAME_SUCCESS_FAIL_FORMAT = "게임 성공 여부: %s";
+    private static final String TRIAL_COUNT_FORMAT = "총 시도한 횟수: %d";
+    private static final String SUCCESS_MESSAGE = "성공";
+    private static final String FAIL_MESSAGE = "실패";
+    private static final String ERROR_MESSAGE_HEAD = "[ERROR] ";
+    private static final String MAP_HEAD = "[ ";
+    private static final String MAP_TAIL = " ]";
+    private static final String MOVING_DELIMITER = " | ";
+    private static final String GOOD_CHOICE_FORM = "O";
+    private static final String BAD_CHOICE_FORM = "X";
+    private static final String NO_CHOICE_FORM = " ";
     private static OutputView instance;
 
     private OutputView() {}
@@ -120,5 +120,6 @@ public class OutputView {
 
     public void printErrorMessage(String message) {
         System.out.println(ERROR_MESSAGE_HEAD + message);
+        printBlankLine();
     }
 }
