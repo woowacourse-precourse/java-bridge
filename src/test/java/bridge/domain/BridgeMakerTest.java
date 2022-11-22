@@ -3,7 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
