@@ -15,18 +15,16 @@ public class Controller {
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
     private final InputController inputController;
-    private final InputView inputView;
     private Bridge bridge;
     private OutputView outputView;
     private List<String> choices;
     private int tryNumbers;
     private boolean pass;
 
-    public Controller() {
+    public Controller(InputView inputView) {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeGame = new BridgeGame();
-        inputView   = new InputView();
         inputController = new InputController(inputView);
     }
 
