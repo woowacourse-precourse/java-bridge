@@ -9,12 +9,15 @@ public class MapMaker {
     }
 
     public void setMap(String moving, String match,int position) {
+        if (position != 0){
+            map[0].append("| ");
+            map[1].append("| ");
+        }
         setUpMap(moving, match,position);
         setDownMap(moving, match,position);
     }
 
     private void setUpMap(String moving, String match,int position) {
-        if (position != 0) map[0].append("| ");
         if (moving.equals("U")) {
             map[0].append(match).append(" ");
         }
@@ -24,7 +27,6 @@ public class MapMaker {
     }
 
     private void setDownMap(String moving, String match,int position) {
-        if (position != 0)  map[1].append("| ");
         if (moving.equals("U")) {
             map[1].append("  ");
         }

@@ -52,19 +52,18 @@ public class BridgeGame {
         count++;
         position = 0;
         canMove = true;
-        mapMaker.getMap()[0] = new StringBuilder();
-        mapMaker.getMap()[1] = new StringBuilder();
+        mapMaker=new MapMaker();
         Application.playGame(this);
     }
 
     public StringBuilder getResult() {
         StringBuilder result = new StringBuilder();
-        result.append("\n최종 게임 결과");
-        result.append("[ ").append(mapMaker.getMap()[0]).append("]\n[ ").append(mapMaker.getMap()[1]).append("]");
-        result.append("\n게임 성공 여부: ");
-        if (canMove) result.append("성공");
-        if (!canMove) result.append("실패");
-        result.append("총 시도한 횟수: ").append(count);
+        result.append("\n최종 게임 결과\n[ ").append(mapMaker.getMap()[0]).append("]\n[ ").append(mapMaker.getMap()[1]).append("]\n");
+        if (canMove){
+            result.append("\n게임 성공 여부: 성공").append("\n총 시도한 횟수: ").append(count);
+            return result;
+        }
+        result.append("\n게임 성공 여부: 실패").append("\n총 시도한 횟수: ").append(count);
         return result;
     }
 }
