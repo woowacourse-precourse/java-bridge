@@ -41,7 +41,7 @@ class MovingResultStatesTest {
         
         assertAll(
                 () -> assertThat(movingResultStates.isGameFinished()).isTrue(),
-                () -> movingResultStates.initMovingStates(),
+                () -> movingResultStates.initMovingResultStates(),
                 () -> assertThat(movingResultStates.isGameFinished()).isFalse()
         );
     }

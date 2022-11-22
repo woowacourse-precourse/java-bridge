@@ -45,7 +45,7 @@ public class MovingResultStates {
         return lastState().isMoveFailed();
     }
     
-    public void initMovingStates() {
+    public void initMovingResultStates() {
         movingResultStates.clear();
     }
     
