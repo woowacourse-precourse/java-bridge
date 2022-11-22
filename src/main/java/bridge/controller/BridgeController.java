@@ -22,7 +22,7 @@ public class BridgeController extends BridgeMaker {
         model = new BridgeGame(makeBridge(size));
     }
 
-    private int getSize(){
+    public int getSize(){
         String size;
         try{
             size = exc.validBridgeSize(view.sizeIO());
@@ -33,7 +33,7 @@ public class BridgeController extends BridgeMaker {
         return Integer.parseInt(size);
     }
 
-    private String getCommand(){
+    public String getCommand(){
         String command;
         try{
             command = exc.validGameCommand(view.commandIO());
@@ -57,7 +57,7 @@ public class BridgeController extends BridgeMaker {
         playGame(play);
     }
 
-    private State getMove(){
+    public State getMove(){
         String nextMove;
         try{
             nextMove = exc.validMoving(view.moveIO());
@@ -68,18 +68,18 @@ public class BridgeController extends BridgeMaker {
         return model.move(Glass.glassOf(nextMove));
     }
 
-    private boolean quitGame(State state){
+    public boolean quitGame(State state){
         String result = model.drawResult(state);
         view.printResult(result);
         return false;
     }
 
-    private boolean retryGame(){
+    public boolean retryGame(){
         model.retry();
         return true;
     }
 
-    private boolean dead(State state){
+    public boolean dead(State state){
         String command = getCommand();
         if(command.equals(QUIT.KEY())){
             return quitGame(state);
