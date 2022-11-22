@@ -35,7 +35,7 @@ public class BridgeWalkerTest {
     @BeforeEach
     void setUp() {
         bridge = List.of("U", "D", "U");
-        bridgeWalker = new BridgeWalker(new MoveRecord(), Bridge.from(bridge));
+        bridgeWalker = BridgeWalker.valueOf(Bridge.from(bridge));
     }
 
     void crossStep(String moveCommand) {

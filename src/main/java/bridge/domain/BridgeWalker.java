@@ -3,15 +3,19 @@ package bridge.domain;
 import bridge.domain.type.MoveResultType;
 
 public class BridgeWalker {
-    static int START_POSITION = 0;
-    int position;
-    MoveRecord moveRecord;
-    Bridge bridge;
+    static final int START_POSITION = 0;
+    private int position;
+    private MoveRecord moveRecord;
+    private Bridge bridge;
 
-    public BridgeWalker(MoveRecord moveRecord, Bridge bridge) {
+    private BridgeWalker(MoveRecord moveRecord, Bridge bridge) {
         this.moveRecord = moveRecord;
         this.bridge = bridge;
         this.position = START_POSITION;
+    }
+
+    public static BridgeWalker valueOf(Bridge bridge) {
+        return new BridgeWalker(new MoveRecord(), bridge);
     }
 
     public MoveResultType move(String moveCommand) {

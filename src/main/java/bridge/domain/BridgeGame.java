@@ -8,12 +8,16 @@ import bridge.domain.type.RoundResultType;
  */
 public class BridgeGame {
     static final int INIT_GAME_TRY_COUNT = 0;
-    int gameTryCount;
-    BridgeWalker bridgeWalker;
+    private int gameTryCount;
+    private BridgeWalker bridgeWalker;
 
-    public BridgeGame(BridgeWalker bridgeWalker) {
+    private BridgeGame(BridgeWalker bridgeWalker) {
         this.bridgeWalker = bridgeWalker;
         this.gameTryCount = INIT_GAME_TRY_COUNT;
+    }
+
+    public static BridgeGame from(Bridge bridge){
+        return new BridgeGame(BridgeWalker.valueOf(bridge));
     }
 
     /**

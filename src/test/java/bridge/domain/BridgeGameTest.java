@@ -44,8 +44,7 @@ public class BridgeGameTest {
     @BeforeEach
     private void setUp() {
         Bridge bridge = Bridge.from(List.of("U", "D", "D", "U"));
-        BridgeWalker bridgeWalker = new BridgeWalker(new MoveRecord(), bridge);
-        this.bridgeGame = new BridgeGame(bridgeWalker);
+        this.bridgeGame = BridgeGame.from(bridge);
     }
 
     private RoundResultType move(String moveCommand) {
