@@ -16,10 +16,10 @@ class BridgeTest {
         List<String> list = List.of("U", "D", "D");
 
         // when
-        Bridge bridgeGame = new Bridge(list);
+        Bridge bridge = new Bridge(list);
 
         // then
-        assertThat(bridgeGame.isLastBlock()).isEqualTo(false);
-        assertThat(bridgeGame.getLastBlock()).isEqualTo(0);
+        assertThat(bridge.isLastBlock()).isEqualTo(false);
+        assertThat(bridge.getCurrentBlock()).isEqualTo(0);
     }
 }
