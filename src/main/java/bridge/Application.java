@@ -8,7 +8,7 @@ public class Application {
     static OutputView output = new OutputView();
 
     public static void main(String[] args) {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
         BridgeGame bridgeGame = getBridgeGame();
         while(bridgeGame.clear()) //게임클리어여부
         {
