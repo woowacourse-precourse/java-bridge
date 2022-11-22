@@ -8,14 +8,14 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridge;
     private final List<String> currentlyCrossedBridge;
-    private final BridgeCrossingHistory status;
+    private final BridgeCrossingHistory history;
 
     public Bridge(BridgeMaker bridgeMaker, int size) {
         this.bridge = bridgeMaker.makeBridge(size);
         this.currentlyCrossedBridge = new ArrayList<>();
         StringBuilder upLine = new StringBuilder();
         StringBuilder downLine = new StringBuilder();
-        this.status = new BridgeCrossingHistory(upLine,downLine);
+        this.history = new BridgeCrossingHistory(upLine,downLine);
     }
 
     public boolean isSelectedBridgesRight(String usersPick){
@@ -26,12 +26,12 @@ public class Bridge {
 
     public void crossBridge(String userPick){
         currentlyCrossedBridge.add(userPick);
-        status.updateHistory(userPick);
+        history.updateHistory(userPick);
     }
 
     public void reset(){
         currentlyCrossedBridge.clear();
-        status.clearAll();
+        history.clearAll();
     }
 
     public boolean isBridgeAllCrossed(){
@@ -40,8 +40,8 @@ public class Bridge {
 
     public List<String> getAlreadyCrossedBridge(boolean isLastPickIsRight){
         return List.of(
-                status.getBridgeHistory("U",isLastPickIsRight),
-                status.getBridgeHistory("D",isLastPickIsRight)
+                history.getBridgeHistory("U",isLastPickIsRight),
+                history.getBridgeHistory("D",isLastPickIsRight)
         );
     }
 }

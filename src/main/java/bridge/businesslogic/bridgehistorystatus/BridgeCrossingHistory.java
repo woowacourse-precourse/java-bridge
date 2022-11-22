@@ -3,7 +3,7 @@ package bridge.businesslogic.bridgehistorystatus;
 public class BridgeCrossingHistory {
     private final StringBuilder upLine;
     private final StringBuilder downLine;
-    private final BridgeHistoryUtil statusUtil = new BridgeHistoryUtil();
+    private final BridgeHistoryUtil historyUtil = new BridgeHistoryUtil();
 
     public BridgeCrossingHistory(StringBuilder upLine, StringBuilder downLine) {
         this.upLine = upLine;
@@ -11,7 +11,7 @@ public class BridgeCrossingHistory {
     }
 
     public void updateHistory(String upOrDown){
-        statusUtil.checkLineElementsExists(upLine,downLine);
+        historyUtil.checkLineElementsExists(upLine,downLine);
         if(upOrDown.equals("U")){
             upLine.append("O");
             downLine.append(" ");
@@ -29,9 +29,9 @@ public class BridgeCrossingHistory {
     public String getBridgeHistory(String upOrDown, boolean isLastPickIsRight){
         if(upOrDown.equals("U")){
             StringBuilder getStatus = new StringBuilder(upLine);
-            return statusUtil.checkLastAndPacking(getStatus,isLastPickIsRight);
+            return historyUtil.checkLastAndPacking(getStatus,isLastPickIsRight);
         }
         StringBuilder getStatus = new StringBuilder(downLine);
-        return statusUtil.checkLastAndPacking(getStatus,isLastPickIsRight);
+        return historyUtil.checkLastAndPacking(getStatus,isLastPickIsRight);
     }
 }
