@@ -3,6 +3,11 @@
 ---
 
 ## domain
+
+### Bridge
+- [X] 결과 bridge 저장
+- [X] `isEquals()`: Position과 bridge의 index value가 일치하는지 검증
+
 ### BridgeGame
 - [ ] `move()`: 사용자가 칸을 이동
 - [ ] `retry()`: 사용자가 게임을 다시 시도
@@ -16,13 +21,32 @@
   - [x] 숫자가 아닐 경우
   - [x] 3 ~ 20 사이의 숫자가 아닐 경우
 
-### BridgePosition
+### Position
 - [x] command와 value를 가지고 있음
   - [x] U = 1, D = 0
 - [x] `getPositionByCommand()`: Command로 BridgePosition을 반환
 - [x] `getCommandByValue()`: value로 command를 반환
 - [x] 예외처리
   - [x] U와 D가 아닌 값은 생성할 수 없음
+
+### GameStatus
+- [ ] 게임 성공, 실패, 진행 중 등 상태 표시
+- [ ] 게임 결과 출력
+  - [ ] `게임 성공 여부: + status` 
+
+### MapPrinter
+- [ ] 게임 진행 과정 및 결과 출력
+
+### RepeatCount
+- [ ] 재시도 횟수 저장
+- [ ] 재시도 횟수 증가
+- [ ] 재시도 횟수 출력
+  - [ ] `총 시도한 횟수: n`
+
+### RetryCommand
+- [ ] 재시도 커멘드 입력
+- [ ] R 또한 Q가 아닐 시 예외처리
+<br>
 ---
 ## view
 ### InputView
