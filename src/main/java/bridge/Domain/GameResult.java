@@ -19,6 +19,21 @@ public class GameResult {
         gameStatus = GameStatus.PROGRESS;
     }
 
+    public void setUpBridge(String userChoice, boolean checkIsWrong) {
+        if (userChoice.equals(MoveType.UP.getStrValue())) {
+            upBridge.add(getResultMessage(checkIsWrong));
+            return;
+        }
+        upBridge.add(Message.PASS);
+    }
+
+    public void setDownBridge(String userChoice, boolean checkIsWrong) {
+        if (userChoice.equals(MoveType.DOWN.getStrValue())) {
+            downBridge.add(getResultMessage(checkIsWrong));
+            return;
+        }
+        downBridge.add(Message.PASS);
+    }
 
     public List<String> getUpBridge() {
         return upBridge;
@@ -34,22 +49,6 @@ public class GameResult {
 
     public void setGameStatus(GameStatus gameStatus) {
         this.gameStatus = gameStatus;
-    }
-
-    public void setUpBridge(String userChoice, boolean checkIsWrong) {
-        if (userChoice.equals(MoveType.UP.getStrValue())) {
-            upBridge.add(getResultMessage(checkIsWrong));
-            return;
-        }
-        upBridge.add(Message.PASS);
-    }
-
-    public void setDownBridge(String userChoice, boolean checkIsWrong) {
-        if (userChoice.equals(MoveType.DOWN.getStrValue())) {
-            downBridge.add(getResultMessage(checkIsWrong));
-            return;
-        }
-        downBridge.add(Message.PASS);
     }
 
     public String getResultMessage(boolean checkIsWrong) {
