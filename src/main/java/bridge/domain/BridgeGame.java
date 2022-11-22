@@ -54,6 +54,6 @@ public class BridgeGame {
 
 	public void draw(GameState result) {
 		OutputView.printMap(result, userPlayer.getMoveRecord());
-		OutputView.printResult(result, stage);
+		OutputView.printResult(result, userPlayer.getTotalAttempt());
 	}
 }

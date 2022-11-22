@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserPlayer {
-	private static UserPlayer userPlayer = null;
-	private final List<String> moveRecord = new ArrayList<>();
-	private int totalAttempt = 0;
+	// private static UserPlayer userPlayer = null;
+	private final List<String> moveRecord;
+	private int totalAttempt;
 
-	private UserPlayer() {
+	public UserPlayer() {
+		moveRecord = new ArrayList<>();
+		totalAttempt = 0;
 	}
 
-	public static UserPlayer getInstance() {
+	/*public static UserPlayer getInstance() {
 		if (userPlayer == null) {
 			userPlayer = new UserPlayer();
 		}
 		return userPlayer;
-	}
+	}*/
 
 	public void setMovingDirection(String move) {
 		moveRecord.add(move);
@@ -35,5 +37,9 @@ public class UserPlayer {
 
 	public List<String> getMoveRecord() {
 		return moveRecord;
+	}
+
+	public int getTotalAttempt() {
+		return totalAttempt;
 	}
 }

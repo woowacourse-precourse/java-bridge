@@ -12,10 +12,11 @@ import bridge.vo.UserPlayer;
 public class BridgeGameController {
 	BridgeGameInitialization bridgeGameInitialization;
 	BridgeGame bridgeGame;
-	UserPlayer userPlayer = UserPlayer.getInstance();
+	UserPlayer userPlayer;
 
-	public BridgeGameController(BridgeGameInitialization bridgeGameInitialization) {
+	public BridgeGameController(BridgeGameInitialization bridgeGameInitialization, UserPlayer userPlayer) {
 		this.bridgeGameInitialization = bridgeGameInitialization;
+		this.userPlayer = userPlayer;
 	}
 
 	public void playBridgeGame() {
