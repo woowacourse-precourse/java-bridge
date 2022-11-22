@@ -24,7 +24,6 @@ public class BridgeGameController {
             movingControl(bridgeGame);
         }
     }
-
     public void movingControl(BridgeGame bridgeGame) {
         String moving = inputView.inputMoving();
         outputView.printMoving(moving);
