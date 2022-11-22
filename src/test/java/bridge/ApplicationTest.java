@@ -64,6 +64,23 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    @DisplayName("이동할 칸의 입력은 길이가 1이어야 한다.")
+    void moveTest1() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "UD", "U", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+    @Test
+    @DisplayName("이동할 칸의 입력은 U 또는 D")
+    void moveTest2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "R", "U", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
 
     @Override
     protected void runMain() {
