@@ -14,12 +14,12 @@ public class TryCount {
     }
 
     public TryCount(int count) {
-        validateMin(count);
+        validateRange(count);
 
         this.count = count;
     }
 
-    private void validateMin(int count) {
+    private void validateRange(int count) {
         if (count < TRY_COUNT_START || count > TRY_COUNT_MAX) {
             throw new TryCountRangeException(TRY_COUNT_START, TRY_COUNT_MAX);
         }
