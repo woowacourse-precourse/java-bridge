@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
@@ -98,6 +99,45 @@ class BridgeGameControllerTest extends InOutStreamTest {
                     1, 1, 1
             );
             assertThat(output()).contains(ERROR_MESSAGE);
+        }
+    }
+
+    @Nested
+    class AskRetryTest {
+
+
+        @BeforeEach
+        void initMore(){
+            input("5");
+            controller.start();
+            controller.setDifficulty();
+        }
+
+        @Test
+        void 게임_재시작_입력은_정상동작한다() {
+            assertSimpleTest(()->{
+                input("R");
+                boolean result = controller.askRetry();
+                assertThat(result).isTrue();
+            });
+        }
+
+        @Test
+        void 게임_종료_입력은_정상동작한다() {
+            assertSimpleTest(()->{
+                input("Q");
+                boolean result = controller.askRetry();
+                assertThat(result).isFalse();
+            });
+        }
+
+        @Test
+        void 게임_종료_입력은_잘못된_입력이_안올때까지_반복_동작한다() {
+            assertSimpleTest(()->{
+                input("1", " ", "*", "", "B", "Q");
+                boolean result = controller.askRetry();
+                assertThat(result).isFalse();
+            });
         }
     }
 }
