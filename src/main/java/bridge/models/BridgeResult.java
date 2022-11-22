@@ -4,6 +4,9 @@ import bridge.enums.BridgeDisplay;
 import bridge.enums.BridgeMoving;
 import java.util.ArrayList;
 
+/**
+ * 다리를 건너면 결과를 저장하는 class
+ */
 public class BridgeResult {
 
     private int count;

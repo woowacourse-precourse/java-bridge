@@ -8,6 +8,9 @@ import bridge.OutputView;
 import bridge.enums.BridgeGameCommand;
 import bridge.models.BridgeBluePrint;
 
+/**
+ * MVC 중 컨트롤러 역할을 하는 class, view와 model을 소통시킨다.
+ */
 public class BridgeController {
 
     private InputView inputView;

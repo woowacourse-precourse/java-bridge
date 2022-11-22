@@ -2,6 +2,9 @@ package bridge.enums;
 
 import java.util.Arrays;
 
+/**
+ * 이동할 때 사용되는 enum
+ */
 public enum BridgeMoving {
     D(0),
     U(1);

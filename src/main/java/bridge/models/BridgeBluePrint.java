@@ -3,6 +3,9 @@ package bridge.models;
 import bridge.enums.BridgeRange;
 import bridge.enums.ErrorMessage;
 
+/**
+ * 다리 길이를 가지고 있는 class
+ */
 public class BridgeBluePrint {
 
     private int size;

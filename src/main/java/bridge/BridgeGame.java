@@ -5,7 +5,7 @@ import bridge.models.BridgeResult;
 import java.util.List;
 
 /**
- * 다리 건너기 게임을 관리하는 클래스
+ * MVC 중 모델 기능을 하는 class, 모델들을 가지고 전체 결과를 반환한다.
  */
 public class BridgeGame {
 

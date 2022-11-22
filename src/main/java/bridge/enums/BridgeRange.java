@@ -1,5 +1,8 @@
 package bridge.enums;
 
+/**
+ * 다리 길이를 입력받을 때 사용되는 enum
+ */
 public enum BridgeRange {
     MIN(3),
     MAX(20);

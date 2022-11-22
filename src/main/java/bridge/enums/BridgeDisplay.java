@@ -2,6 +2,9 @@ package bridge.enums;
 
 import java.util.Arrays;
 
+/**
+ * 맵을 그릴 때 사용하는 enum
+ */
 public enum BridgeDisplay {
     O(true, "성공"),
     X(false, "실패");
