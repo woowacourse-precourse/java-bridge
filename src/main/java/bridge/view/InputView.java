@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.domain.MoveDirection;
-import bridge.support.validator.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -9,18 +8,15 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static final String NOT_A_NUMBER_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        try {
-            InputValidator.validateParseStringToInteger(input);
-            return Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readBridgeSize();
-        }
+        this.validateParseStringToInteger(input);
+        return Integer.parseInt(input);
     }
 
     /**
@@ -36,5 +32,13 @@ public class InputView {
      */
     public String readGameCommand() {
         return Console.readLine();
+    }
+
+    private void validateParseStringToInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_A_NUMBER_MESSAGE);
+        }
     }
 }
