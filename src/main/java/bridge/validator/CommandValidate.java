@@ -1,6 +1,7 @@
 package bridge.validator;
 
 import static bridge.Constants.*;
+import static bridge.Message.*;
 
 public class CommandValidate {
 

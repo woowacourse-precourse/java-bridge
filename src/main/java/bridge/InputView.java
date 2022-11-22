@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.Constants.*;
+import static bridge.Message.*;
 
 import bridge.validator.BridgeLengthValidate;
 import bridge.validator.CommandValidate;

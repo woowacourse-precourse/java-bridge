@@ -1,6 +1,7 @@
 package bridge.outputview;
 
 import static bridge.Constants.*;
+import static bridge.Message.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;

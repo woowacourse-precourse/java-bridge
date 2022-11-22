@@ -8,6 +8,7 @@ package bridge;
  */
 
 import static bridge.Constants.*;
+import static bridge.Message.*;
 
 import java.util.HashMap;
 
