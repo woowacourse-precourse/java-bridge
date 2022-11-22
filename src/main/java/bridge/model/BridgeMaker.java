@@ -20,7 +20,6 @@ public class BridgeMaker {
      */
 
     public List<String> makeBridge(int size) {
-        validateSize(size);
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
             bridge.add(Column.changeNumToLetter(generateNumber()));
@@ -28,7 +27,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public int generateNumber(){
+    private int generateNumber(){
         int number = handleGenerateNumber();
         return number;
     }
@@ -36,23 +35,14 @@ public class BridgeMaker {
     private int handleGenerateNumber(){
         try {
             int number = bridgeNumberGenerator.generate();
-            validateRandomNumber(number);
+            RandomNumber.validate(number);
             return number;
         }catch (IllegalArgumentException e){
             e.getMessage();
             return handleGenerateNumber();
         }
     }
-    public void validateSize(int size) {
-        if (size < 3 || 20 < size) {
-            throw new IllegalArgumentException();
-        }
-    }
 
-    public void validateRandomNumber(int number) {
-        if (number != 0 && number != 1) {
-            throw new IllegalArgumentException();
-        }
-    }
+
 
 }

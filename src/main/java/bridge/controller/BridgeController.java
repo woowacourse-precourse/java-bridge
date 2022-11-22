@@ -31,6 +31,7 @@ public class BridgeController {
     }
     private void handleStartingGame(int size){
         try {
+            validate.size(size);
             bridgeGame.start(size);
         }catch (IllegalArgumentException e){
             e.getMessage();

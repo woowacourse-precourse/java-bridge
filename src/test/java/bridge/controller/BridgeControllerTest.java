@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.model.BridgeMaker;
+import bridge.model.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,6 +32,13 @@ class BridgeControllerTest {
     @CsvSource({"h", "A", "영"})
     void inputBridgeLengthByNotNumeric(String input) {
         assertThatThrownBy(() -> validate.numeric(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("다리의 길이가 맞지 않는 범위 라면 예외 처리.")
+    @ParameterizedTest
+    @CsvSource({"-1", "2", "21", "20000"})
+    void inputBridgeLengthByOverSize(int size) {
+        assertThatThrownBy(() -> validate.size(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
