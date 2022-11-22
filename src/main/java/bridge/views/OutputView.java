@@ -6,7 +6,7 @@ import static bridge.enums.Sentence.*;
 
 public class OutputView {
     private final static String COMMA = ", ";
-    private final static String VERTI_BAR = "|";
+    private final static String V_BAR = "|";
 
 
     public static void printStartGame() {
@@ -15,8 +15,8 @@ public class OutputView {
     }
 
     public static void printMap(List<String> upLine, List<String> downLine) {
-        System.out.println(upLine.toString().replace(COMMA, VERTI_BAR));
-        System.out.println(downLine.toString().replace(COMMA, VERTI_BAR));
+        System.out.println(upLine.toString().replace(COMMA, V_BAR));
+        System.out.println(downLine.toString().replace(COMMA, V_BAR));
     }
 
     public static void printResult(String result, int tryCount) {
