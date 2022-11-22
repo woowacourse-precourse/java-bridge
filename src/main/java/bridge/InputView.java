@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() throws IllegalArgumentException {
+    public  int readBridgeSize() throws IllegalArgumentException {
         String userInputSize = readLine();
         int inputsize = 0;
         try {
@@ -27,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() throws IllegalArgumentException{
+    public  String readMoving() throws IllegalArgumentException{
         String userInputMove = readLine();
         char inputMove = userInputMove.charAt(0);
         System.out.println(inputMove);
@@ -43,7 +43,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() throws IllegalArgumentException{
+    public  String readGameCommand() throws IllegalArgumentException{
         String userRestart = readLine();
         char inputRestart = userRestart.charAt(0);
         System.out.println(inputRestart);
