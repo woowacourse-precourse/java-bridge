@@ -1,16 +1,84 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    static String upBridge = "[";
+    static String downBridge = "[";
+
+    public void printStartString() {
+        System.out.println("다리 건너기 게임을 시작합니다.\n" +
+                "\n" +
+                "다리의 길이를 입력해주세요.");
+    }
+
+    public void printUpOrDownMessage() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> bridge, String correctOrFailsign) {
+        makeMap(bridge, correctOrFailsign);
+        System.out.println(upBridge);
+        System.out.println(downBridge);
+        upBridge = "[";
+        downBridge = "[";
+    }
+
+    public void makeMap(List<String> bridge, String correctOrFailsign) {
+        for (int i = 0; i < correctOrFailsign.length(); i++) {
+            if (correctOrFailsign.substring(i, i + 1).equals("O")) {
+                printIfSucces(bridge.get(i));
+            } else {
+                printIfFail(bridge.get(i));
+            }
+            printPartition(i, correctOrFailsign.length() - 1);
+        }
+        printLast();
+    }
+
+    public void printPartition(int i, int size) {
+        if (i != size) {
+            upBridge += "|";
+            downBridge += "|";
+        }
+    }
+
+    public void printLast() {
+        upBridge += "]";
+        downBridge += "]";
+    }
+
+    public void printIfSucces(String upordown) {
+        if (upordown.equals("U")) {
+            upBridge += " O ";
+            downBridge += "   ";
+        } else {
+            upBridge += "   ";
+            downBridge += " O ";
+        }
+    }
+
+    public void printIfFail(String upordown) {
+        if (upordown.equals("U")) {
+            upBridge += "   ";
+            downBridge += " X ";
+        } else {
+            upBridge += " X ";
+            downBridge += "   ";
+        }
+    }
+
+    public void printReOrStart() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
     /**
@@ -18,6 +86,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printfinalResult() {
+        System.out.println("최종 게임 결과");
+    }
+
+    public void printResult(String succesOrNot, int tryNumber) {
+        System.out.println("게임 성공 여부: " + succesOrNot);
+        System.out.println("총 시도한 횟수: " + tryNumber);
     }
 }
