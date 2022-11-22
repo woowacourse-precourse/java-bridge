@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.domain.map.BridgeMap;
 import bridge.domain.map.BridgeMark;

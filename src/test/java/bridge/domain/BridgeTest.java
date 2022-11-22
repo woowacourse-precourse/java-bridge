@@ -1,7 +1,9 @@
-package bridge;
+package bridge.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
