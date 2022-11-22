@@ -8,4 +8,8 @@ public class BridgeGame {
         this.position = 0;
         this.bridge = bridge;
     }
+
+    public void retry() {
+        this.position = 0;
+    }
 }
