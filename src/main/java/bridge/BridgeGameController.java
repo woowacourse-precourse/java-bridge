@@ -1,8 +1,9 @@
 package bridge;
 
-import bridge.Constant.GameCommand;
+import bridge.constant.GameCommand;
 
 public class BridgeGameController {
+
     private GameHelper gameHelper;
 
     public void run() {
@@ -11,6 +12,17 @@ public class BridgeGameController {
         setGame();
         processGame();
         winGame();
+    }
+
+    public void processGame() {
+        while (gameHelper.selectRightBlock() && !gameHelper.reachEnd()) {
+            move();
+            OutputView.printMap(gameHelper.getBridge(), gameHelper.getResultBridge());
+            System.out.println();
+        }
+        if (!gameHelper.reachEnd()) {
+            retry();
+        }
     }
 
     private void setGame() {
@@ -28,16 +40,6 @@ public class BridgeGameController {
         int size = InputValidation.convertToInt(InputView.readBridgeSize());
         InputValidation.validateBridgeSize(size);
         return size;
-    }
-
-    public void processGame() {
-        while (gameHelper.selectRightBlock() && !gameHelper.reachEnd()) {
-            move();
-            OutputView.printMap(gameHelper.getBridge(), gameHelper.getResultBridge());
-            System.out.println();
-        }
-        if (!gameHelper.reachEnd())
-            retry();
     }
 
     private void move() {
@@ -63,7 +65,9 @@ public class BridgeGameController {
     private void retry() {
         try {
             String command = getGameCommand();
-            if (command.equals(GameCommand.RETRY.get())) retryGame();
+            if (command.equals(GameCommand.RETRY.get())) {
+                retryGame();
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             retry();

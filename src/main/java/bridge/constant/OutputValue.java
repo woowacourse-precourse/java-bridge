@@ -1,8 +1,8 @@
-package bridge.Constant;
+package bridge.constant;
 
 public enum OutputValue {
-    rightBlock("O"),
-    wrongBlock("X");
+    RIGHT_BLOCK("O"),
+    WRONG_BLOCK("X");
 
     private final String block;
 

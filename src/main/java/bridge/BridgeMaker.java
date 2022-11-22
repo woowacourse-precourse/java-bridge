@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Constant.BridgeSelection;
+import bridge.constant.BridgeSelection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,12 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomBLock = bridgeNumberGenerator.generate();
-            if (randomBLock == 1) bridge.add(BridgeSelection.Up.get());
-            if (randomBLock == 0) bridge.add(BridgeSelection.Down.get());
+            if (randomBLock == 1) {
+                bridge.add(BridgeSelection.UP.get());
+            }
+            if (randomBLock == 0) {
+                bridge.add(BridgeSelection.DOWN.get());
+            }
         }
         return bridge;
     }

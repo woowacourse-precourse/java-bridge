@@ -1,10 +1,11 @@
 package bridge;
 
-import bridge.Constant.OutputValue;
+import bridge.constant.OutputValue;
 
 import java.util.List;
 
 public class GameHelper {
+
     private final BridgeGame bridgeGame;
     private int trialCount = 1;
 
@@ -26,11 +27,12 @@ public class GameHelper {
     }
 
     public boolean selectRightBlock() {
-        return !bridgeGame.getResultBridge().contains(OutputValue.wrongBlock.get());
+        return !bridgeGame.getResultBridge().contains(OutputValue.WRONG_BLOCK.get());
     }
 
     public boolean reachEnd() {
-        return (bridgeGame.getBridgeSize() == bridgeGame.getResultBridgeSize()) && selectRightBlock();
+        return (bridgeGame.getBridgeSize() == bridgeGame.getResultBridgeSize())
+            && selectRightBlock();
     }
 
     public List<String> getResultBridge() {

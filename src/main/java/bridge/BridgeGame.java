@@ -1,12 +1,13 @@
 package bridge;
 
-import bridge.Constant.OutputValue;
+import bridge.constant.OutputValue;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class BridgeGame {
+
     private final List<String> bridge;
     private final List<String> resultBridge;
 
@@ -17,10 +18,10 @@ public class BridgeGame {
 
     public void move(String selectBlock) {
         if (bridge.get(resultBridge.size()).equals(selectBlock)) {
-            resultBridge.add(OutputValue.rightBlock.get());
+            resultBridge.add(OutputValue.RIGHT_BLOCK.get());
             return;
         }
-        resultBridge.add(OutputValue.wrongBlock.get());
+        resultBridge.add(OutputValue.WRONG_BLOCK.get());
     }
 
     public void retry() {

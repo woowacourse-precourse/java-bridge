@@ -1,8 +1,8 @@
-package bridge.UserInput;
+package bridge.constant;
 
 public enum BridgeSelection {
-    Up("U"),
-    Down("D");
+    UP("U"),
+    DOWN("D");
 
     private final String input;
 

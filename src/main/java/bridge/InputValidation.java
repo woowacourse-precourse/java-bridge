@@ -1,9 +1,10 @@
 package bridge;
 
-import bridge.Constant.BridgeSelection;
-import bridge.Constant.GameCommand;
+import bridge.constant.BridgeSelection;
+import bridge.constant.GameCommand;
 
 public class InputValidation {
+
     private static final String ERROR = "[ERROR]";
     private static final String NOT_IN_RANGE = ERROR + "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String NOT_NUMBER = ERROR + "숫자만 입력할 수 있습니다.";
@@ -25,7 +26,8 @@ public class InputValidation {
     }
 
     public static void validateUpDown(String inputUpDown) {
-        if (!(inputUpDown.equals(BridgeSelection.Up.get()) || inputUpDown.equals(BridgeSelection.Down.get()))) {
+        if (!(inputUpDown.equals(BridgeSelection.UP.get()) || inputUpDown.equals(
+            BridgeSelection.DOWN.get()))) {
             throw new IllegalArgumentException(WRONG_SELECTION_INPUT);
         }
     }

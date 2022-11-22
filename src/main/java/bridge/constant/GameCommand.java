@@ -1,4 +1,4 @@
-package bridge.Constant;
+package bridge.constant;
 
 public enum GameCommand {
     RETRY("R"),
