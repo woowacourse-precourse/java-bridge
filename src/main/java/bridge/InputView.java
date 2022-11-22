@@ -10,17 +10,15 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    // TODO: 검증로직 따로 클래스로 분리하기
     public int readBridgeSize() throws IllegalArgumentException {
         String userInput = Console.readLine();
-        if (userInput == null || !userInput.matches("^[0-9]{1,2}$")) {
+        if (userInput == null ||
+                !userInput.matches("^[0-9]{1,2}$") ||
+                Integer.parseInt(userInput) < 3 ||
+                Integer.parseInt(userInput) > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
-        int convertedInput = Integer.parseInt(userInput);
-        if (convertedInput < 3 || convertedInput > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
-        return convertedInput;
+        return Integer.parseInt(userInput);
     }
 
     /**
