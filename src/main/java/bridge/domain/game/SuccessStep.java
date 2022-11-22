@@ -40,9 +40,7 @@ public enum SuccessStep {
             if (successStep.status == status){
                 return successStep.getResult();
             }
-        }throw new IllegalArgumentException();
-        //TODO: boolean 값으로만 찾도록 오류 메세지 출력
+        }return null;
     }
-
 
 }

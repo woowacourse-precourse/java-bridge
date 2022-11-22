@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.message.ErrorMessage;
+
 public enum Step {
     UPPER_STEP("U", 1),
     LOWER_STEP("D", 0);
@@ -27,7 +29,6 @@ public enum Step {
                 return step;
             }
         }
-        throw new IllegalArgumentException();
-        //TODO: 0 또는 1로만 가능하게 오류 메세지 출력
+        throw new IllegalArgumentException(ErrorMessage.MAKE_BRIDGE_ERROR.get());
     }
 }
