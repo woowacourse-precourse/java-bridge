@@ -6,15 +6,15 @@ import static bridge.domain.enums.Status.FAIL_STATUS;
 import static bridge.domain.enums.Status.PROGRESS_STATUS;
 import static bridge.domain.enums.Status.SUCCESS_STATUS;
 
-
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.controller.request.BridgeSizeRequest;
 import bridge.controller.request.MoveRequest;
-import bridge.domain.enums.Move;
 import bridge.domain.enums.Result;
 import bridge.domain.model.Bridge;
+import bridge.domain.model.GameResult;
 import bridge.domain.model.ScoreMap;
+import bridge.domain.enums.Move;
 import bridge.domain.enums.Status;
 
 /**
@@ -78,10 +78,12 @@ public class BridgeGame {
         return step == bridge.size();
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public boolean isGameOver() {
         return isGameOver;
     }
-
-
 
 }
