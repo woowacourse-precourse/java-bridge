@@ -27,6 +27,7 @@ public class BridgeController {
         List<String> bridge;
         int bridgeSize;
 
+        outputView.printStartingPhrase();
         bridgeSize = inputBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         //실행 예시와 맞추기 위해 한 칸 띄워준다.
