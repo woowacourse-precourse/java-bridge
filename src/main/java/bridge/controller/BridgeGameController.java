@@ -30,11 +30,15 @@ public class BridgeGameController {
     }
 
     public void start() {
-        System.out.println(Message.START_GAME.getMessage());
-        System.out.println(Message.INPUT_SIZE.getMessage());
-        inputSize = inputView.inputBridgeSize();
-        bridges = bridgeMaker.makeBridge(inputSize);
-        runGame();
+        try {
+            System.out.println(Message.START_GAME.getMessage());
+            System.out.println(Message.INPUT_SIZE.getMessage());
+            inputSize = inputView.inputBridgeSize();
+            bridges = bridgeMaker.makeBridge(inputSize);
+            runGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         outputView.printResult();
     }
 
