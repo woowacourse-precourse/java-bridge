@@ -15,4 +15,8 @@ public class User {
     public int getPlayingCount() {
         return this.playingCount;
     }
+
+    public void setQuit() {
+        this.quit = true;
+    }
 }
