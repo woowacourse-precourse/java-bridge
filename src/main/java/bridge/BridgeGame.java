@@ -40,4 +40,8 @@ public class BridgeGame {
         return size;
     }
 
+    public String getReadMoving() {
+        return gameCommand;
+    }
+
 }

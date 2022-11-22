@@ -19,11 +19,14 @@ public class InputView {
         return bridgeGame.getSize();
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        try {
+            this.bridgeGame = new BridgeGame(Console.readLine(),"R");
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 이동할 칸을 U 혹은 D로 선택해주세요. (위: U, 아래: D)");
+            this.readMoving();
+        }
+        return bridgeGame.getReadMoving();
     }
 
     /**
