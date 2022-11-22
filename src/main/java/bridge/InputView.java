@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Collections;
@@ -9,18 +10,23 @@ import java.util.Collections;
  */
 public class InputView {
 
+    private static final int MIN_RANGE = 3;
+    private static final int MAX_RANGE = 20;
+    private static final String rangeErrorMessage = "[ERROR] 다리길이는 3이상 20이하 입니다.";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리 길이를 입력해주세요.");
-        while(true) {
-            try {
-                String input = Console.readLine();
-                return Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 다리는 숫자여야 합니다.");
+        InputViewType inputViewType = InputViewType.BRIDGE_SIZE;
+        inputViewType.printMessage();
+        while (true) {
+            String input = getString(inputViewType);
+            int number = Integer.parseInt(input);
+            if (number >= MIN_RANGE && number <= MAX_RANGE) {
+                return number;
             }
+            System.out.println(rangeErrorMessage);
         }
     }
 
@@ -28,44 +34,29 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        while(true) {
-            try {
-                String input = Console.readLine();
-                validateIsUorD(input);
-                return input;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 이동 입력은 U또는 D여야 합니다.");
-            }
-        }
+        InputViewType inputViewType = InputViewType.MOVING;
+        inputViewType.printMessage();
+        return getString(inputViewType);
     }
 
-    private void validateIsUorD(String input) throws IllegalArgumentException {
-        if (input.equals("U") || input.equals("D")) {
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        InputViewType inputViewType = InputViewType.GAME_COMMAND;
+        inputViewType.printMessage();
+        return getString(inputViewType);
+    }
+
+    private String getString(InputViewType inputViewType) {
         while(true) {
             try {
                 String input = Console.readLine();
-                validateIsQorR(input);
+                inputViewType.validate(input);
                 return input;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 재시작 입력은 Q또는 R이어야 합니다.");
+                inputViewType.printErrorMessage();
             }
         }
-    }
-
-    private void validateIsQorR(String input) throws IllegalArgumentException {
-        if (input.equals("Q") || input.equals("R")) {
-            return;
-        }
-        throw new IllegalArgumentException();
     }
 }
