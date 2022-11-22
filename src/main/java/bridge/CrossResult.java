@@ -44,6 +44,7 @@ public enum CrossResult {
 
     public static String successFailureWord(boolean expected) {
         return Arrays.stream(CrossResult.values())
+                .filter(key -> !key.successFailureWord.matches(NONE.getSuccessFailureWord()))
                 .filter(key -> key.isResult() == expected)
                 .map(CrossResult::getSuccessFailureWord)
                 .collect(Collectors.joining());

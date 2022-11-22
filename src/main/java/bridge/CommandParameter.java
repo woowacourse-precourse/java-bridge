@@ -7,7 +7,6 @@ public class CommandParameter {
     private final String command;
 
     public CommandParameter(String command) {
-        isCommand(command);
         this.command = command;
     }
 

@@ -13,7 +13,7 @@ public class OutputView {
     private static final String ENTRANCE = "[";
     private static final String BRIDGE_EXIT = "]";
 
-    public void printMap(List<String> upMap, List<String> downMap) {
+    public static void printMap(List<String> upMap, List<String> downMap) {
         System.out.println(ENTRANCE + map(upMap) + BRIDGE_EXIT);
         System.out.println(ENTRANCE + map(downMap)+ BRIDGE_EXIT);
     }
@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println(RESULT_GREETING);
     }
 
-    public void printResult(MoveResults moveResults) {
+    public static void printResult(MoveResults moveResults) {
         System.out.println(RESULT + CrossResult.successFailureWord(moveResults.success()));
         System.out.println(TOTAl_TRY + moveResults.getTryNum());
     }

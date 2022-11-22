@@ -3,7 +3,7 @@ package bridge;
 import bridge.domain.BridgeGame;
 
 public class RetryCommand {
-    public static void moveLogic(InputView inputView, BridgeGame bridgeGame) {
+    public static void move(InputView inputView, BridgeGame bridgeGame) {
         while (bridgeGame.isSuccess() && bridgeGame.moveResults().size() < bridgeGame.bridgeSize()) {
             inputView.chooseSquare();
             String movingCommand = inputView.readMoving().getMovingCommand();
@@ -18,7 +18,7 @@ public class RetryCommand {
         bridgeGame.retry();
         inputView.chooseSquare();
         OutputView.printEachMap(bridgeGame.upMap(), bridgeGame.downMap());
-        moveLogic(inputView, bridgeGame);
+        move(inputView, bridgeGame);
     }
 
     private static void quiteLogic(InputView inputView, BridgeGame bridgeGame) {
@@ -29,6 +29,5 @@ public class RetryCommand {
             retryLogic(inputView, bridgeGame);
         }
     }
-
 }
 

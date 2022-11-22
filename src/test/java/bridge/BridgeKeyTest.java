@@ -23,4 +23,20 @@ class BridgeKeyTest {
     void findBridgeKey(String bridgeKey) {
         assertEquals(BridgeKey.UP, BridgeKey.findBridgeKey(bridgeKey));
     }
+
+    @Test
+    void upBridgeKey() {
+        String none = " ";
+        String upKey = "U";
+        assertAll(() -> assertEquals(BridgeKey.NONE, BridgeKey.upBridgeKey(none)),
+                () -> assertEquals(BridgeKey.UP, BridgeKey.upBridgeKey(upKey)));
+    }
+
+    @Test
+    void downBridgeKey() {
+        String none = " ";
+        String downKey = "D";
+        assertAll(() -> assertEquals(BridgeKey.NONE, BridgeKey.downBridgeKey(none)),
+                () -> assertEquals(BridgeKey.DOWN, BridgeKey.downBridgeKey(downKey)));
+    }
 }

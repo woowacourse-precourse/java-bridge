@@ -45,14 +45,6 @@ public enum BridgeKey {
         return NONE;
     }
 
-    public static boolean isUpKey(String controlKey) {
-        return BridgeKey.UP.bridgeKey.matches(controlKey);
-    }
-
-    public static boolean isDownKey(String controlKey) {
-        return BridgeKey.DOWN.bridgeKey.matches(controlKey);
-    }
-
     public int getBridgeNumber() {
         return bridgeNumber;
     }
