@@ -15,6 +15,17 @@ public class Application {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
+    private static boolean playGame(List<String> bridge, int count){
+        BridgeGame bridgeGame = new BridgeGame();
+        for(int i = 0 ; i < bridge.size(); i++){
+            String rightWrong = bridgeState(bridgeGame,bridge,i);
+            if(rightWrong.equals("X")){
+                return chooseRetryQuit(bridgeGame,count);
+            }
+        }
+        return endGame(bridgeGame,"성공",count);
+    }
+    
     private static String bridgeState(BridgeGame bridgeGame, List<String> bridge, int index){
         String userMove = InputView.repeatInputMoving();
         String rightWrong = bridgeGame.moveUpDown(bridge.get(index),userMove);
