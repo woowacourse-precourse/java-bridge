@@ -25,9 +25,7 @@ public class Application {
         startMakingBridge();
         cnt = 0;
         location = 0;
-        do{
-            cnt ++;
-            upBridgeResult = new ArrayList<>();
+        do{ upBridgeResult = new ArrayList<>();
             downBridgeResult = new ArrayList<>();
             gameStatus = "성공";
             playGame();
@@ -48,18 +46,14 @@ public class Application {
     }
 
     public static boolean retryOrQuit(){
-        if (endGame()){
-            return false;
-        }
+        if (endGame()) return false;
         try {
             outputView.printGameCommand();
-            String gameCommand = inputView.readGameCommand();
-            if (bridgeGame.retry(gameCommand)){
-                upBridgeResult.clear();
-                downBridgeResult.clear();
-                location = 0;
+            if (inputView.readGameCommand().equals("R")){
+                bridgeGame.retry(location, upBridgeResult, downBridgeResult);
+                return true;
             }
-            return bridgeGame.retry(gameCommand);
+            return false;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             retryOrQuit();
@@ -74,6 +68,7 @@ public class Application {
     }
 
     public static void playGame(){
+        cnt++;
         try {
             location = movePlayer();
         } catch (IllegalArgumentException e){
@@ -85,7 +80,6 @@ public class Application {
         do{
             outputView.printMoving();
             String moving = inputView.readMoving();
-            boolean compareResult = bridgeGame.compare(bridge, moving, location);
             gameStatus = bridgeGame.crossResult(moving, location, bridge, upBridgeResult, downBridgeResult);
             if (gameStatus.equals("성공")){
                 location = bridgeGame.move(location);
