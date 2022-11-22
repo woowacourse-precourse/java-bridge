@@ -21,18 +21,18 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        GameRecord gameRecord = new GameRecord();
 
-        int playtime = 0;
         boolean retryflag = true;
 
         do {
-            GameRecord gameRecord = new GameRecord();
-            playtime++;
+            gameRecord.clear();
+            gameRecord.updatePlayTime();
 
             playGame(bridgeGame, gameRecord);
             if (gameRecord.isGameSuccess()) {
                 GameResultModel gameResultModel = new GameResultModel(gameRecord.makeBridgeRecord(),
-                        gameRecord.isGameSuccess(), playtime);
+                        gameRecord.isGameSuccess(), gameRecord.getPlayTime());
                 OutputView.printResult(gameResultModel);
                 break;
             }
@@ -42,7 +42,6 @@ public class BridgeGameController {
             retryflag = bridgeGame.retry(s);
 
         } while (retryflag);
-
     }
 
     private void playGame(BridgeGame bridgeGame, GameRecord gameRecord) {

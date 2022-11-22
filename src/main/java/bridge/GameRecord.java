@@ -13,10 +13,16 @@ public class GameRecord {
 
     private final List<String> moveRecord;
     private final List<Boolean> resultRecord;
+    private int playTime;
 
     public GameRecord() {
         moveRecord = new ArrayList<>();
         resultRecord = new ArrayList<>();
+        playTime = 0;
+    }
+
+    public int getPlayTime() {
+        return playTime;
     }
 
     public void addRecord(String move, boolean result) {
@@ -36,6 +42,15 @@ public class GameRecord {
 
     public boolean isGameSuccess() {
         return resultRecord.get(resultRecord.size() - 1);
+    }
+
+    public void updatePlayTime() {
+        playTime++;
+    }
+
+    public void clear() {
+        moveRecord.clear();
+        resultRecord.clear();
     }
 
     private void makeSingleBridge(StringBuilder upperRow, StringBuilder lowerRow) {
