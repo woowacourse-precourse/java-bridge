@@ -3,6 +3,15 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        try{
+            BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+            BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+            InputView inputView = new InputView();
+            OutputView outputView = new OutputView();
+            BridgeGame game = new BridgeGame();
+
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
