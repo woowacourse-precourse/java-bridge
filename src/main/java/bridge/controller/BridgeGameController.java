@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.gameManagement.BridgeGame;
+import bridge.domain.gameOver.GameResult;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
@@ -16,5 +17,6 @@ public class BridgeGameController {
 
         List<String> currentBridge = new ArrayList<>();
         bridgeGame.move(bridge, currentBridge);
+        GameResult.takeResult(currentBridge);
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class OutputView {
     private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private final String GAME_RESULT_MESSAGE = "최종 게임 결과";
 
     private final String LINE_BREAK = "\n";
     private final String PREFIX_SQUARE_BRACKET = "[";
@@ -40,7 +41,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> currentBridge) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        printMap(currentBridge);
     }
 
     public void printGameStartMessage() {
