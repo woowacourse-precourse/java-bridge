@@ -1,6 +1,7 @@
 package domain.player;
 
 import domain.bridge.UserBridge;
+import domain.bridge.view.InputView;
 
 import java.util.List;
 
@@ -29,5 +30,12 @@ public class Player {
 
   public List<String> getUserBridge() {
     return userBridge.getUserBridge();
+  }
+
+  public String wantRetry() {
+    InputView inputView = new InputView();
+
+    System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    return inputView.readGameCommand();
   }
 }
