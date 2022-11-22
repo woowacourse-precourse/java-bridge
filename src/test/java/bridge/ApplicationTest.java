@@ -80,6 +80,20 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 재시작_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D","R","D","Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[   ]",
+                    "[ X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1, 0, 1);
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
