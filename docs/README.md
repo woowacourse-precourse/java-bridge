@@ -9,7 +9,7 @@
 - [x] OutputView에서 사용되는 상수들을 모아놓는다.
 
 ### ExceptionConstants
-- [ ] 예외 처리를 할 때 사용되는 상수들을 모아놓는다.
+- [x] 예외 처리를 할 때 사용되는 상수들을 모아놓는다.
 
 ## [ Controller ]
 
