@@ -92,14 +92,15 @@ class BridgeGameTest {
 
     //게임을 끝낼때 성공, 실패 여부에 따른 결과를 잘 출력하는지 테스트
     @DisplayName("result값이 F면 결과를 실패로, S면 성공으로 출력한다.")
-    @Test
-    void checkFinishResult() {
-        bridgeGame.finish("S",3);
+    @ParameterizedTest
+    @CsvSource({"S,3","F,1"})
+    void checkFinishResult(String result, int count) {
+        bridgeGame.finish(result,count);
+        String str = "실패";
+        if (result.equals("S")) {str = "성공";}
         assertThat(out.toString()).contains(
-                "[",
-                "[",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 3"
+                "게임 성공 여부: " + str,
+                "총 시도한 횟수: " + count
         );
     }
 

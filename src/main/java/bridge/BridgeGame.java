@@ -59,9 +59,9 @@ public class BridgeGame extends BridgeGameInit{
 
     public void finish(String result, int tryCount) {
         outputView.printMap();
-        if (result == "F") {
+        if (result.equals("F") ) {
             outputView.printResult("실패", tryCount);
-        } else if (result == "S") {
+        } else if (result.equals("S") ) {
             outputView.printResult("성공",tryCount);
         }
     }
