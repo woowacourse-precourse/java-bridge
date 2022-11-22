@@ -6,7 +6,12 @@ public class Progress {
     private static final OutputView outputView = new OutputView();
     private static BridgeGame bridgeGame;
     private static boolean loop = true;
-    
+
+    public boolean game() {
+        gameInProcess();
+        return getRetry();
+    }
+
     public void makeBridge() {
         while (true) {
             try {
