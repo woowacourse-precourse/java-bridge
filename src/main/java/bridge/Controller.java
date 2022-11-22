@@ -11,4 +11,8 @@ public class Controller {
 		result();
 		winFailOrCount();
 	}
+
+	public void startBridge() {
+		inputView.startBridge();
+	}
 }
