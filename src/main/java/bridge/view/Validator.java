@@ -2,11 +2,11 @@ package bridge.view;
 
 import static bridge.Constants.MoveMark.*;
 import static bridge.Constants.CommandMark.*;
-import static bridge.Constants.ErrorMessage.*;
+import static bridge.Constants.*;
 
 public class Validator {
-    static final int MIN_BRIDGE_SIZE = 3;
-    static final int MAX_BRIDGE_SIZE = 20;
+    final int MIN_BRIDGE_SIZE = 3;
+    final int MAX_BRIDGE_SIZE = 20;
 
     public void validateBridgeSize(String input) {
         int bridgeSize = strToInt(input);
@@ -15,13 +15,13 @@ public class Validator {
 
     public void validateMoving(String input) {
         if (!input.equals(DOWN.mark()) && !input.equals(UP.mark())) {
-            throw new IllegalArgumentException(IS_NOT_PROPER_MOVING.message());
+            throw new IllegalArgumentException(IS_NOT_PROPER_MOVING);
         }
     }
 
     public void validateGameCommand(String input) {
         if (!input.equals(RETRY.mark()) && !input.equals(QUIT.mark())) {
-            throw new IllegalArgumentException(IS_NOT_PROPER_COMMAND.message());
+            throw new IllegalArgumentException(IS_NOT_PROPER_COMMAND);
         }
     }
 
@@ -29,13 +29,13 @@ public class Validator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(IS_NOT_NUMBER.message());
+            throw new IllegalArgumentException(IS_NOT_NUMBER);
         }
     }
 
     private void isBetweenRange(int input) {
         if (input < MIN_BRIDGE_SIZE || input > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(IS_NOT_IN_RANGE.message());
+            throw new IllegalArgumentException(IS_NOT_IN_RANGE);
         }
     }
 }
