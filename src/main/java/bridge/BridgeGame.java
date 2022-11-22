@@ -35,6 +35,7 @@ public class BridgeGame {
             String moving = move(bridge, i);
             outputView.printMap();
             if (!bridge.canMove(i, moving)) {
+                player.addGameCount();
                 retry();
                 return;
             }
