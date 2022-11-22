@@ -33,4 +33,10 @@ class BridgeGameHistoryTest {
     void whenGetBridgeAnswerThenSuccessTest() {
         assertThat(bridgeGameHistory.getBridgeAnswer()).isNotNull();
     }
+
+    @Test
+    @DisplayName("다리 게임 라운드 수를 불러오는 것에 성공한다.")
+    void whenGetBridgeGameRoundThenSuccessTest() {
+        assertThat(bridgeGameHistory.getBridgeGameRound()).isGreaterThanOrEqualTo(1);
+    }
 }
