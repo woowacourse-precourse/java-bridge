@@ -47,6 +47,23 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 추가_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("#@$#@");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 재시작_테스트() {
+
+        BridgeGame bridgeGame = new BridgeGame();
+        boolean res = bridgeGame.retry();
+        assertThat(res).isFalse();
+
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
