@@ -52,13 +52,13 @@ public class OutputView {
     }
 
     public void printByLine(String userInput,boolean result, String lineCode){
-        if(userInput==lineCode&&result){
+        if(userInput.equals(lineCode)&&result){
             System.out.print(" O");
         }
-        if(userInput==lineCode&&!result){
+        if(userInput.equals(lineCode)&&!result){
             System.out.print(" X");
         }
-        if(userInput!=lineCode){
+        if(!userInput.equals(lineCode)){
             System.out.print("  ");
         }
     }
