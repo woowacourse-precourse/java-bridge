@@ -31,7 +31,7 @@ class BridgeTest {
 
         //given
         bridge = new Bridge(getTestBridgeMaker(numbers));
-        bridge.create(numbers.size());
+        bridge.create(String.valueOf(numbers.size()));
 
         //when
         List<ResultType> actual = moveTypes.stream()
@@ -48,7 +48,7 @@ class BridgeTest {
     void retry() {
         //given
         bridge = new Bridge(getTestBridgeMaker(Lists.newArrayList(1, 0, 1, 0, 1)));
-        bridge.create(5);
+        bridge.create("5");
 
         ResultType expected = bridge.move(DOWN);
 
