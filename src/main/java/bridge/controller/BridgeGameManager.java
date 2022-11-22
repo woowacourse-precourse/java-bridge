@@ -36,7 +36,7 @@ public class BridgeGameManager {
     private void crossBridge() {
         while (!bridgeGame.isCrossed()) {
             bridgeGame.move(chooseDirection());
-            outputView.printRoute(bridgeGame);
+            outputView.printMap(bridgeGame);
             if (bridgeGame.isFailed()) {
                 if (inputGameCommand() == Command.RETRY) {
                     bridgeGame.retry();
