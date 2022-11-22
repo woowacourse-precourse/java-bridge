@@ -16,15 +16,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int size;
-        try {
-            String inputSize = Console.readLine();
-            size = new ValidateBridgeSize().validateBridgeSize(inputSize);
-        } catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return readBridgeSize();
+        while(true) {
+            try {
+                int size = new ValidateBridgeSize().validateBridgeSize(Console.readLine());
+                return size;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return size;
     }
 
     /**
@@ -32,15 +31,14 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String move;
-        try {
-            String inputMove=Console.readLine();
-            move = new ValidateMove().validateMove(inputMove);
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return readMoving();
+        while(true) {
+            try {
+                String move = new ValidateMove().validateMove(Console.readLine());
+                return move;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return move;
     }
 
     /**
@@ -48,14 +46,13 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String command;
-        try {
-            String inputCommand = Console.readLine();
-            command = new ValidateGameCommand().validateGameCommand(inputCommand);
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return readGameCommand();
+        while(true) {
+            try {
+                String command = new ValidateGameCommand().validateGameCommand(Console.readLine());
+                return command;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return command;
     }
 }

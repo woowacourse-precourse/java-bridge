@@ -23,11 +23,13 @@ public class Controller {
     //아직 커밋안함
     public void startGame(){
         int size=inputView.readBridgeSize();
-        try {
-            makeBridge(size);
-        }catch (IllegalStateException e){
-            System.out.println(e.getMessage());
-            makeBridge(size);
+        while(true) {
+            try {
+                makeBridge(size);
+                break;
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
