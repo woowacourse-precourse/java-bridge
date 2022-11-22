@@ -4,10 +4,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import bridge.domain.Bridge;
+import bridge.domain.BridgeLength;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeMove;
 import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeSize;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -34,20 +34,20 @@ class BridgeMakerTest {
 
     @ParameterizedTest(name = "입력한 다리의 길이만큼 다리를 생성한다")
     @MethodSource
-    void makeBridge(BridgeSize size) {
-        Bridge bridge = bridgeMaker.makeBridge(size);
-        assertThat(bridge.size()).isEqualTo(size.getSize());
-        for (int order = 1; order <= bridge.size(); order++) {
-            assertThat(bridge.getMove(order)).isInstanceOf(BridgeMove.class);
+    void makeBridge(BridgeLength bridgeLength) {
+        Bridge bridge = bridgeMaker.makeBridge(bridgeLength);
+        assertThat(bridge.getBridgeLength()).isEqualTo(bridgeLength.getLength());
+        for (int round = 1; round <= bridge.getBridgeLength().getLength(); round++) {
+            assertThat(bridge.getMove(round)).isInstanceOf(BridgeMove.class);
         }
     }
 
     private static Stream<Arguments> makeBridge() {
         return Stream.of(
-                Arguments.of(new BridgeSize(3)),
-                Arguments.of(new BridgeSize(4)),
-                Arguments.of(new BridgeSize(5)),
-                Arguments.of(new BridgeSize(20))
+                Arguments.of(new BridgeLength(3)),
+                Arguments.of(new BridgeLength(4)),
+                Arguments.of(new BridgeLength(5)),
+                Arguments.of(new BridgeLength(20))
         );
     }
 

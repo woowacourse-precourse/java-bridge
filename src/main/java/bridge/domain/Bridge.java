@@ -5,31 +5,32 @@ import java.util.List;
 
 public class Bridge implements Iterable<BridgeMove> {
 
-    private BridgeSize bridgeSize;
+    private BridgeLength bridgeLength;
     private List<BridgeMove> moves;
 
-    public Bridge(BridgeSize bridgeSize, List<BridgeMove> moves) {
-        this.bridgeSize = bridgeSize;
+    public Bridge(BridgeLength bridgeLength, List<BridgeMove> moves) {
+        this.bridgeLength = bridgeLength;
         this.moves = moves;
     }
 
     ;
 
-    public int size() {
-        return bridgeSize.getSize();
+    public BridgeLength getBridgeLength() {
+        return bridgeLength;
     }
+
 
     @Override
     public Iterator<BridgeMove> iterator() {
         return moves.iterator();
     }
 
-    public BridgeMove getMove(int order) {
+    public BridgeMove getMove(int round) {
         BridgeMove move = null;
         try {
-            move = moves.get(order);
+            move = moves.get(round - 1);
         } catch (IndexOutOfBoundsException exception) {
-            throw new IndexOutOfBoundsException("order는 1이상 다리 길이 이하의 값이어야 합니다.");
+            throw new IndexOutOfBoundsException("round는 1이상 다리 길이 이하의 값이어야 합니다.");
         }
         return move;
     }

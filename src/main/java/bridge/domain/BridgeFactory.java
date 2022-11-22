@@ -10,15 +10,15 @@ public class BridgeFactory {
 
     ;
 
-    public static Bridge from(BridgeSize bridgeSize, List<BridgeMove> steps) {
-        checkIsNotNull(bridgeSize);
-        checkStepCountIsEqualToBridgeSize(bridgeSize, steps);
+    public static Bridge from(BridgeLength brideLength, List<BridgeMove> steps) {
+        checkIsNotNull(brideLength);
+        checkStepCountIsEqualToBridgeSize(brideLength, steps);
         checkDoesNotContainNull(steps);
-        return new Bridge(bridgeSize, steps);
+        return new Bridge(brideLength, steps);
     }
 
-    private static void checkIsNotNull(BridgeSize bridgeSize) {
-        if (bridgeSize == null) {
+    private static void checkIsNotNull(BridgeLength brideLength) {
+        if (brideLength == null) {
             throw new NullPointerException("다리의 길이는 null이 될 수 없습니다.");
         }
     }
@@ -27,14 +27,14 @@ public class BridgeFactory {
         if (steps.contains(null)) {
             String stepList = Arrays
                     .stream(BridgeMove.values())
-                    .map(BridgeMove::getStep)
+                    .map(BridgeMove::getMoveCommand)
                     .collect(Collectors.joining(","));
             throw new NullPointerException("다리의 각 칸은 " + stepList + " 중 하나의 값을 가져야 합니다.");
         }
     }
 
-    private static void checkStepCountIsEqualToBridgeSize(BridgeSize bridgeSize, List<BridgeMove> steps) {
-        if (bridgeSize.getSize() != steps.size()) {
+    private static void checkStepCountIsEqualToBridgeSize(BridgeLength brideLength, List<BridgeMove> steps) {
+        if (!brideLength.isEqualTo(steps.size())) {
             throw new IllegalArgumentException("다리의 길이와 칸의 개수는 같아야 합니다.");
         }
     }

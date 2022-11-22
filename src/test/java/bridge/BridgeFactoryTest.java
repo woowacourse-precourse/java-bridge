@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.BridgeFactory;
-import bridge.domain.BridgeSize;
+import bridge.domain.BridgeLength;
 import bridge.domain.BridgeMove;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,10 +16,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class BridgeFactoryTest {
 
-    @ParameterizedTest(name ="다리 생성시 잘못된 값이 입력되면 오류가 발생한다")
+    @ParameterizedTest(name = "다리 생성시 잘못된 값이 입력되면 오류가 발생한다")
     @MethodSource
-    void fromThrowsError(BridgeSize size, List<BridgeMove> moves, Exception e) {
-        assertThatThrownBy(() -> BridgeFactory.from(size, moves))
+    void fromThrowsError(BridgeLength brideLength, List<BridgeMove> moves, Exception e) {
+        assertThatThrownBy(() -> BridgeFactory.from(brideLength, moves))
                 .isInstanceOf(e.getClass())
                 .hasMessageContaining(e.getMessage());
     }
@@ -40,16 +40,16 @@ class BridgeFactoryTest {
         stepsContainingNull.add(null);
 
         return Stream.of(
-                Arguments.of(new BridgeSize(20), movesSizeOutOfRange, illegalArgumentException),
+                Arguments.of(new BridgeLength(20), movesSizeOutOfRange, illegalArgumentException),
                 Arguments.of(null, List.of(BridgeMove.UP, BridgeMove.DOWN), nullPointerException),
-                Arguments.of(new BridgeSize(stepsContainingNull.size()), stepsContainingNull, containsNullException),
-                Arguments.of(new BridgeSize(3), List.of(), illegalArgumentException));
+                Arguments.of(new BridgeLength(stepsContainingNull.size()), stepsContainingNull, containsNullException),
+                Arguments.of(new BridgeLength(3), List.of(), illegalArgumentException));
     }
 
     @ParameterizedTest(name = "주어진 리스트를 활용해 다리를 생성한다")
     @MethodSource
     void fromReturnBridge(List<BridgeMove> steps, int expectedSize) {
-        int actualSize = BridgeFactory.from(new BridgeSize(steps.size()), steps).size();
+        int actualSize = BridgeFactory.from(new BridgeLength(steps.size()), steps).getBridgeLength().getLength();
         assertThat(actualSize).isEqualTo(expectedSize);
     }
 

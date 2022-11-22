@@ -1,22 +1,26 @@
 package bridge.domain;
 
-public class BridgeSize {
-    private final int size;
-    private static int MIN_BRIDGE_SIZE = 3;
-    private static int MAX_BRIDGE_SIZE = 20;
+public class BridgeLength {
+    private final int length;
+    private static int MIN_BRIDGE_LENGTH = 3;
+    private static int MAX_BRIDGE_LENGTH = 20;
 
-    public BridgeSize(int size) {
-        checkSizeIsInRange(size);
-        this.size = size;
+    public BridgeLength(int length) {
+        checkLengthIsInRange(length);
+        this.length = length;
     }
 
-    private void checkSizeIsInRange(int size) {
-        if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException("다리의 길이는 3부터 20 사이의 숫자여야 합니다.");
+    private void checkLengthIsInRange(int size) {
+        if (size < MIN_BRIDGE_LENGTH || size > MAX_BRIDGE_LENGTH) {
+            throw new IllegalArgumentException("다리의 길이는 3부터 20 사이의 자연수여야 합니다.");
         }
     }
 
-    public int getSize() {
-        return this.size;
+    public boolean isEqualTo(int length){
+        return this.length == length;
+    }
+
+    public int getLength() {
+        return this.length;
     }
 }

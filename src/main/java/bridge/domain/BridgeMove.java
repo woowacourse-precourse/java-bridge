@@ -15,6 +15,10 @@ public enum BridgeMove {
         return this.moveCommand;
     }
 
+    public int getMoveCode() {
+        return this.moveCode;
+    }
+
     public static BridgeMove getBridgeMoveByMoveCommand(String moveCommand) {
         for (BridgeMove move : BridgeMove.values()) {
             if (move.moveCommand.equals(moveCommand)) {

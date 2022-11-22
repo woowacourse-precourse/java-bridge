@@ -8,11 +8,13 @@ public class BridgeGameController {
 
     public void start() {
         setBridgeGame();
+        int trial = 1;
         do {
-            boolean trialResult = trial();
+            boolean trialResult = trial(trial);
             if (trialResult) {
                 break;
             }
+            trial += 1;
         } while (doesPlayerWantRetry());
         OutputView.printResult(game.getBridgeGameResult());
     }
@@ -29,10 +31,10 @@ public class BridgeGameController {
         return doRetry;
     }
 
-    private boolean trial() {
+    private boolean trial(int trial) {
         int round = 1;
-        while (round <= game.getBridgeSize()) {
-            boolean roundResult = playRound(round);
+        while (round <= game.getLength()) {
+            boolean roundResult = playRound(trial, round);
             if (!roundResult) {
                 return false;
             }
@@ -41,14 +43,16 @@ public class BridgeGameController {
         return true;
     }
 
-    private boolean playRound(int round) {
-        reTryIfNotFirstRound(round);
+    private boolean playRound(int trial, int round) {
+        reTryIfNotFirstTrial(trial);
         BridgeMove playerMove = readRoundPlayerMoving();
+        game.move(round, playerMove);
+        OutputView.printMap(game.getBridgeGameTrialResult(trial));
         return game.move(round, playerMove);
     }
 
-    private void reTryIfNotFirstRound(int round) {
-        if (round > 1) {
+    private void reTryIfNotFirstTrial(int trial) {
+        if (trial > 1) {
             game.retry();
         }
     }
@@ -58,7 +62,6 @@ public class BridgeGameController {
         while (playerMove == null) {
             try {
                 playerMove = BridgeMove.getBridgeMoveByMoveCommand(InputView.readMoving());
-                OutputView.printMap(new BridgeGameTrialResult());
             } catch (IllegalArgumentException exception) {
                 OutputView.printErrorMessage(exception);
             }
@@ -67,15 +70,15 @@ public class BridgeGameController {
     }
 
     private void setBridgeGame() {
-        BridgeSize bridgeSize = null;
-        while (bridgeSize == null) {
+        BridgeLength brideLength = null;
+        while (brideLength == null) {
             try {
-                bridgeSize = new BridgeSize(InputView.readBridgeSize());
+                brideLength = new BridgeLength(InputView.readBridgeSize());
             } catch (IllegalArgumentException exception) {
                 OutputView.printErrorMessage(exception);
             }
         }
-        game = new BridgeGame(bridgeSize);
+        game = new BridgeGame(brideLength, new BridgeRandomNumberGenerator());
     }
 
 

@@ -7,39 +7,61 @@ public class BridgeGame {
     private final Bridge bridge;
     private BridgeGameResult result;
 
-    public BridgeGame(BridgeSize size) {
-        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = maker.makeBridge(size);
+    public BridgeGame(BridgeLength bridgeLength, BridgeNumberGenerator generator) {
+        this.bridge = new BridgeMaker(generator).makeBridge(bridgeLength);
         this.result = new BridgeGameResult();
+        this.result.addTrial();
     }
 
-    public int getBridgeSize(){
-        return bridge.size();
+
+    public boolean move(int round, BridgeMove move) {
+
+        checkRoundIsConsecutive(round);
+        checkPreviousRoundResultIsSuccess(round);
+        checkBridgeMoveIsNotNull(move);
+
+        BridgeGameTrialResult currentTrial = result.getCurrentTrialResult();
+        boolean roundResult = canMove(round, move);
+        currentTrial.addRoundResult(roundResult);
+        return roundResult;
     }
 
-    public BridgeGameResult getBridgeGameResult(){
+    private void checkPreviousRoundResultIsSuccess(int round) {
+        if (round >= 2 && !result.getCurrentTrialResult().isPreviousRoundSucceeded(round)) {
+            throw new IllegalArgumentException("이전 라운드가 성공한 경우에만 다음 라운드를 진행할 수 있습니다");
+        }
+    }
+
+    private void checkRoundIsConsecutive(int round) {
+        if (round != result.getCurrentTrialResult().getTotalRound() + 1) {
+            throw new IndexOutOfBoundsException("round는 이전 round + 1이어야 합니다.");
+        }
+    }
+
+    private void checkBridgeMoveIsNotNull(BridgeMove move) {
+        if (move == null) {
+            throw new NullPointerException("move는 null이 될 수 없습니다.");
+        }
+    }
+
+    private boolean canMove(int round, BridgeMove move) {
+        return (bridge.getMove(round).equals(move));
+    }
+
+    public void retry() {
+        result.addTrial();
+    }
+
+    public int getLength() {
+        return bridge.getBridgeLength().getLength();
+    }
+
+    public BridgeGameResult getBridgeGameResult() {
         return result;
     }
 
-    public BridgeGameTrialResult getBridgeGameTrialResult(int trial){
-        return result.getTrialResult(trial);
+    public BridgeGameTrialResult getBridgeGameTrialResult(int trial) {
+        return result.getTrialResult(trial - 1);
     }
 
-
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean move(int round, BridgeMove move) {
-        return true;
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-    }
 }
