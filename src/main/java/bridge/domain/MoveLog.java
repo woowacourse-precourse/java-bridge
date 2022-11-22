@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.type.BridgeType;
+import bridge.type.ResultType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

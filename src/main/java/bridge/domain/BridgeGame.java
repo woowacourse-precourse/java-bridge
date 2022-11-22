@@ -11,7 +11,6 @@ public class BridgeGame {
 
     private int trial = 1;
     private int index = 0;
-    private final String NONE = " ";
     private final List<String> bridge;
     private final MoveLog moveLog;
 
@@ -35,10 +34,10 @@ public class BridgeGame {
     private void writeMoveLog(String userMove, ResultType resultType) {
         if (userMove.equals(BridgeType.UP.getStringCode())) {
             moveLog.updateMoveLog(BridgeType.UP, resultType.getShape());
-            moveLog.updateMoveLog(BridgeType.DOWN, NONE);
+            moveLog.updateMoveLog(BridgeType.DOWN, ResultType.BLANK.getShape());
         }
         if (userMove.equals(BridgeType.DOWN.getStringCode())) {
-            moveLog.updateMoveLog(BridgeType.UP, NONE);
+            moveLog.updateMoveLog(BridgeType.UP, ResultType.BLANK.getShape());
             moveLog.updateMoveLog(BridgeType.DOWN, resultType.getShape());
         }
     }
