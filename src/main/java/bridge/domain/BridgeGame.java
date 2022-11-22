@@ -13,6 +13,10 @@ public class BridgeGame {
     private static List<String> answerBridge = BridgeService.getAnswerBridge();
     private static int answerCount = 0;
 
+    public static int getAnswerCount(){
+        return answerCount;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -55,6 +59,7 @@ public class BridgeGame {
             BridgeService.getInitRetryQuit();
         }
         if(check == 2){
+            answerCount = 0;
             BridgeService.viewFinalResult(true);
         }
     }
