@@ -1,7 +1,6 @@
 package bridge.view;
 
-import bridge.BridgeGame;
-import bridge.BridgePlayer;
+import bridge.domain.BridgePlayer;
 
 import static bridge.constant.BridgeConst.*;
 import static bridge.constant.BridgeControl.QUIT;
