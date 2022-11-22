@@ -68,6 +68,7 @@ public class BridgeGame {
         }
 
         movement.clear();
+        tried += 1;
         return true;
     }
 }
