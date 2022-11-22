@@ -1,10 +1,13 @@
 package bridge;
 
 import bridge.constant.Error;
+import bridge.constant.GameCommand;
 
 public class Validate {
 
     private static final String error = Error.ERROR.getMessage();
+    private static final int BRIDGE_SIZE_LOWER_BOUND = 3;
+    private static final int BRIDGE_SIZE_UPPER_BOUND = 20;
 
     public static void checkBridgeSize(String length) {
         if (notNumeric(length)) {
@@ -21,7 +24,7 @@ public class Validate {
     }
 
     public static boolean notInRange(String length) {
-        return Integer.parseInt(length) < 3 || Integer.parseInt(length) > 20;
+        return Integer.parseInt(length) < BRIDGE_SIZE_LOWER_BOUND || Integer.parseInt(length) > BRIDGE_SIZE_UPPER_BOUND;
     }
 
     public static void checkMoveDirection(String direction) {
@@ -31,7 +34,8 @@ public class Validate {
     }
 
     public static boolean invalidDirection(String direction) {
-        return !(direction.equals("U") || direction.equals("D"));
+        return !(direction.equals(GameCommand.GO_UP.getGameCommand())
+                || direction.equals(GameCommand.GO_DOWN.getGameCommand()));
     }
 
     public static void checkRestartCode(String code) {
@@ -41,7 +45,7 @@ public class Validate {
     }
 
     public static boolean invalidRestartCode(String code) {
-        return !(code.equals("R") || code.equals("Q"));
+        return !(code.equals(GameCommand.RESTART.getGameCommand()) || code.equals(GameCommand.QUIT.getGameCommand()));
     }
 
 }
