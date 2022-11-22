@@ -32,8 +32,6 @@
 - service
     - InputService (추가)
         - 질문을 출력하고, 유저로부터 입력을 받고 리턴해준다.
-    - BridgeService
-        - BridgeGame 도메인을 만들어주고 관리한다.
 
 - domain
     - BridgeGame
