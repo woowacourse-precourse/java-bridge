@@ -4,6 +4,8 @@ import bridge.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -18,15 +20,14 @@ public class UserTest {
     }
 
     @DisplayName("moveCount 테스트")
-    @Test
-    void checkGetMoveCount() {
-        List<String> moveInputs = List.of("D","U","D","U","D","U");
-
-        for (String moveInput : moveInputs) {
-            user.move(moveInput);
+    @ParameterizedTest(name = "input = {0}")
+    @ValueSource(ints = {1, 2, 3, 4, 5})
+    void checkGetMoveCount(int expect) {
+        for (int i = 0; i < expect; i++ ) {
+            user.move();
         }
 
-        assertThat(user.getMoveCount()).isEqualTo(moveInputs.size());
+        assertThat(user.getMoveCount()).isEqualTo(expect);
 
     }
 }
