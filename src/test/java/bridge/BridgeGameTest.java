@@ -3,6 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.etc.GameState;
 import bridge.game.Bridge;
 import bridge.game.BridgeGame;
 import java.util.List;
@@ -48,6 +49,6 @@ public class BridgeGameTest {
         game.move("U");
         game.move("U");
 
-        assertThat(game.move("U")).isEqualTo(1);
+        assertThat(game.move("U")).isEqualTo(GameState.CLEAR);
     }
 }
