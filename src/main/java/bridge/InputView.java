@@ -19,8 +19,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String userInput = Console.readLine();
-        return userInput;
+        return Console.readLine();
     }
 
     /**
