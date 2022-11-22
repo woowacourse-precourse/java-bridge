@@ -4,7 +4,6 @@ import bridge.view.Constants;
 import bridge.view.OutputMessage;
 
 public class BridgeState {
-
     public static String upper = OutputMessage.START.getOutputMsg();
     public static String lower = OutputMessage.START.getOutputMsg();
     public static void addString(String str) {

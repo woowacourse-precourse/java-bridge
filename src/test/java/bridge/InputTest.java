@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputTest extends NsTest {
-
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("다리 길이로 문자가 입력되었을때")
