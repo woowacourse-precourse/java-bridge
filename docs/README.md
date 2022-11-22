@@ -32,10 +32,25 @@
 ## 기능 명세
 - --
 ### BridgeGame 객체 클래스
-#### 게임 객체
+#### : 게임 객체
   - ```setBridgeLength``` :  다리 길이 설정
   - ```setBridge``` : 랜덤 다리 설정
 
+
+
+### GameRound 객체 클래스
+#### : 게임 라운드 객체
+  - ```winRound``` : 라운드 승리 여부 판단
+  - ```isWin``` : 승리인지 구하기
+  - ```isContinueRound``` : 라운드 진행 여부 판단
+  - ```end``` : 라운드 종료
+
+### BridgeGameEnd 메서드 클래스
+#### : 다리 게임 종료/재시작 입력
+  - ```isEnd``` : 다리 게임 종료/재시작
+  - ```inputGameEnd``` : 종료/재시작 코드 입력
+    - ```isValidateInputGameEnd``` : 종료/재시작 코드 입력값 확인
+      - ```checkIsEndCode``` : 올바른 코드 입력 확인
 
 ### BridgeMaker 메서드 클래스
 #### : 다리 생성
