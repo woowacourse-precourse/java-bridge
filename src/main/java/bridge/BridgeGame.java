@@ -50,6 +50,8 @@ public class BridgeGame {
         System.out.println();
 
         FinalResult finalResult = runGameWithBridge(bridge, new ArrayList<>(), 1);
+
+        this.resultDemonstrator.printFinalResult(finalResult);
     }
 
     public int bridgeSize() {
