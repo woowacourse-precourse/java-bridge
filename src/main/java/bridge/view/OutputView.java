@@ -1,17 +1,17 @@
 package bridge.view;
 
-import static bridge.utils.BridgeConstant.END_POINT_MARKING;
-import static bridge.utils.BridgeConstant.FAIL;
-import static bridge.utils.BridgeConstant.MIDDLE_POINT_MARKING;
-import static bridge.utils.BridgeConstant.MOVING_FAIL_MARKING;
-import static bridge.utils.BridgeConstant.MOVING_SUCCESS_MARKING;
-import static bridge.utils.BridgeConstant.NOTHING_MARKING;
-import static bridge.utils.BridgeConstant.STARTING_POINT_MARKING;
-import static bridge.utils.BridgeConstant.SUCCESS;
+import static bridge.utils.BridgeMarking.END_POINT_MARKING;
+import static bridge.utils.BridgeMarking.MIDDLE_POINT_MARKING;
+import static bridge.utils.BridgeMarking.MOVING_FAIL_MARKING;
+import static bridge.utils.BridgeMarking.MOVING_SUCCESS_MARKING;
+import static bridge.utils.BridgeMarking.NOTHING_MARKING;
+import static bridge.utils.BridgeMarking.STARTING_POINT_MARKING;
 import static bridge.utils.command.MoveCommand.DOWN;
 import static bridge.utils.command.MoveCommand.UP;
+import static bridge.utils.message.FixedMessage.FAIL;
 import static bridge.utils.message.FixedMessage.GAME_RESULT;
 import static bridge.utils.message.FixedMessage.GAME_START;
+import static bridge.utils.message.FixedMessage.SUCCESS;
 import static bridge.utils.message.FixedMessage.SUCCESS_OR_FAIL;
 import static bridge.utils.message.FixedMessage.TOTAL_ATTEMPTS;
 
@@ -46,26 +46,27 @@ public class OutputView {
         for (int index = 0; index < bridgeGame.getMovingCount(); index++) {
             if (UP.equalCommand(bridgeGame.findMovingByIndex(index))) {
                 topLineMap.add(markMovingSuccessOrFail(bridgeGame.findMovingResultByIndex(index)));
-                bottomLineMap.add(NOTHING_MARKING);
+                bottomLineMap.add(NOTHING_MARKING.mark());
             }
             if (DOWN.equalCommand(bridgeGame.findMovingByIndex(index))) {
                 bottomLineMap.add(markMovingSuccessOrFail(bridgeGame.findMovingResultByIndex(index)));
-                topLineMap.add(NOTHING_MARKING);
+                topLineMap.add(NOTHING_MARKING.mark());
             }
         }
     }
 
     private String markMovingSuccessOrFail(Boolean movingResult) {
         if (Boolean.TRUE.equals(movingResult)) {
-            return MOVING_SUCCESS_MARKING;
+            return MOVING_SUCCESS_MARKING.mark();
         }
-        return MOVING_FAIL_MARKING;
+        return MOVING_FAIL_MARKING.mark();
     }
 
     private String formatMap(List<String> lineMap) {
         return lineMap.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(MIDDLE_POINT_MARKING, STARTING_POINT_MARKING, END_POINT_MARKING));
+                .collect(Collectors.joining(MIDDLE_POINT_MARKING.mark(), STARTING_POINT_MARKING.mark(),
+                        END_POINT_MARKING.mark()));
     }
 
     /**
@@ -85,9 +86,9 @@ public class OutputView {
 
     private String printSuccessOrFail(boolean isMovingFail) {
         if (isMovingFail) {
-            return FAIL;
+            return FAIL.getMessage();
         }
-        return SUCCESS;
+        return SUCCESS.getMessage();
     }
 
     public void printGameStart() {
