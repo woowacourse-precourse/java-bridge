@@ -27,11 +27,19 @@ public class Bridge {
         return bridge.size() - 1;
     }
 
-    public boolean isLastBlock(){
+    public boolean isLastBlock() {
         return currentBlock == getLastBlock();
     }
 
-    public boolean isCorrectMovement(String movement){
+    public boolean isCorrectMovement(String movement) {
         return bridge.get(currentBlock).equals(movement);
+    }
+
+    public void move() {
+        this.currentBlock++;
+    }
+
+    public void retry() {
+        currentBlock = 0;
     }
 }
