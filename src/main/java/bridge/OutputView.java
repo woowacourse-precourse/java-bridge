@@ -60,11 +60,11 @@ public class OutputView {
         lowerBridge = lowerBridge.substring(0, lowerBridge.length() - 4);
     }
 
-    public void drawMap(BridgeGame bridgeGame, Boolean isRetry) {
-        if (!isRetry) {
+    public void drawMap(BridgeGame bridgeGame, Boolean isMovable) {
+        if (isMovable) {
             makeBridgeMap(bridgeGame);
         }
-        if (isRetry) {
+        if (!isMovable) {
             removeRecentBridge();
         }
     }
