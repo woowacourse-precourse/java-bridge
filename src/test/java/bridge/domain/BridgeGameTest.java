@@ -2,6 +2,8 @@ package bridge.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +13,8 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("BridgeGame 클래스")
 class BridgeGameTest {
+	private BridgeGame bridgeGame = new BridgeGame();
+
 	@Nested
 	@DisplayName("move 메소드는")
 	class Describe_move {
@@ -26,7 +30,6 @@ class BridgeGameTest {
 			void it_returns_true() {
 				Bridge bridge = new Bridge(inputBridge);
 				BridgeMap bridgeMap = new BridgeMap();
-				BridgeGame bridgeGame = new BridgeGame();
 
 				movings.stream()
 					.forEach(moving -> {
@@ -48,7 +51,6 @@ class BridgeGameTest {
 			void it_returns_true() {
 				Bridge bridge = new Bridge(inputBridge);
 				BridgeMap bridgeMap = new BridgeMap();
-				BridgeGame bridgeGame = new BridgeGame();
 
 				movings.stream()
 					.forEach(moving -> {
@@ -56,6 +58,41 @@ class BridgeGameTest {
 						boolean moveResult = bridgeGame.move(user, bridge, bridgeMap);
 						assertThat(moveResult).isFalse();
 					});
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("retry 메소드는")
+	class Describe_retry {
+
+		@Nested
+		@DisplayName("만약 입력한 재시도 명령어가 R이면")
+		class Context_retry_command_is_R {
+			private String inputCommand = "R";
+
+			@Test
+			@DisplayName("true를 반환한다.")
+			void it_returns_true() {
+				InputStream in = new ByteArrayInputStream(inputCommand.getBytes());
+				System.setIn(in);
+				boolean isRetry = bridgeGame.retry();
+				assertThat(isRetry).isTrue();
+			}
+		}
+
+		@Nested
+		@DisplayName("만약 입력한 재시도 명령어가 Q면")
+		class Context_retry_command_is_Q {
+			private String inputCommand = "Q";
+
+			@Test
+			@DisplayName("false를 반환한다.")
+			void it_returns_true() {
+				InputStream in = new ByteArrayInputStream(inputCommand.getBytes());
+				System.setIn(in);
+				boolean isRetry = bridgeGame.retry();
+				assertThat(isRetry).isFalse();
 			}
 		}
 	}
