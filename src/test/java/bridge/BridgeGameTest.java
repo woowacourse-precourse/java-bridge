@@ -46,46 +46,6 @@ public class BridgeGameTest {
     }
 
     @Test
-    void move_테스트1() {
-        bridgeGame.reset();
-        bridgeGame.move("U", "U");
-
-        String result = "[ O ]\n[   ]";
-
-        assertThat(result).isEqualTo(output());
-    }
-
-    @Test
-    void move_테스트2() {
-        bridgeGame.reset();
-        bridgeGame.move("U", "D");
-
-        String result = "[ X ]\n[   ]";
-
-        assertThat(result).isEqualTo(output());
-    }
-
-    @Test
-    void move_테스트3() {
-        bridgeGame.reset();
-        bridgeGame.move("D", "U");
-
-        String result = "[   ]\n[ X ]";
-
-        assertThat(result).isEqualTo(output());
-    }
-
-    @Test
-    void move_테스트4() {
-        bridgeGame.reset();
-        bridgeGame.move("D", "D");
-
-        String result = "[   ]\n[ O ]";
-
-        assertThat(result).isEqualTo(output());
-    }
-
-    @Test
     void play_테스트1() {
         bridgeGame.reset();
         command("U", "D", "D");
