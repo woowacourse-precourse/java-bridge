@@ -10,10 +10,13 @@ public class Bridge {
     private final List<String> currentlyCrossedBridge;
     private BridgeCrossingStatus status;
 
+
     public Bridge(BridgeMaker bridgeMaker, int size) {
         this.bridge = bridgeMaker.makeBridge(size);
         this.currentlyCrossedBridge = new ArrayList<>();
-        this.status = new BridgeCrossingStatus();
+        StringBuilder upLine = new StringBuilder();
+        StringBuilder downLine = new StringBuilder();
+        this.status = new BridgeCrossingStatus(upLine,downLine);
     }
 
     public boolean isSelectedBridgesRight(String usersPick){

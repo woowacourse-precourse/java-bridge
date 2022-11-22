@@ -1,9 +1,14 @@
 package bridge.businesslogic.bridgestatus;
 
 public class BridgeCrossingStatus {
-    private final StringBuilder upLine = new StringBuilder();
-    private final StringBuilder downLine = new StringBuilder();
+    private final StringBuilder upLine;
+    private final StringBuilder downLine;
     private final BridgeStatusUtil statusUtil = new BridgeStatusUtil();
+
+    public BridgeCrossingStatus(StringBuilder upLine, StringBuilder downLine) {
+        this.upLine = upLine;
+        this.downLine = downLine;
+    }
 
     public void updateStatus(String upOrDown){
         statusUtil.checkLineElementsExists(upLine,downLine);
