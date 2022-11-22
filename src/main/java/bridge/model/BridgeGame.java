@@ -1,10 +1,11 @@
 package bridge.model;
 
-import java.lang.reflect.Array;
+import bridge.BridgeMaker;
+import bridge.view.InputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.model.BridgeGame.resultFinal;
 import static bridge.view.InputView.*;
 import static bridge.view.OutputView.printMap;
 import static bridge.view.OutputView.printResult;
@@ -13,10 +14,12 @@ import static bridge.view.OutputView.printResult;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private InputView inputView;
     private BridgeMaker bridgeMaker;
     static ArrayList<String> equalsCheck = new ArrayList<>();
     public static ArrayList<String> resultFinal = new ArrayList<>();
     static int successCount = 0;
+    private List<String> bridges;
 
 
     /**
@@ -38,7 +41,7 @@ public class BridgeGame {
         return equalsCheck;
     }
 
-    public static ArrayList<String> moveResult(int bridgeLen, int index, String upAndDown, ArrayList<String> bridges, List<String> move, int startCount){
+    public static ArrayList<String> moveResult(int bridgeLen, int index, String upAndDown, List<String> bridges, List<String> move, int startCount){
         String first = "";
         String second = "";
         equalsCheck = move(index, upAndDown, bridges);
@@ -150,7 +153,7 @@ public class BridgeGame {
         }
     }
 
-    public static ArrayList<String> optionRandQ(int index, int startCount, int bridgeLen, ArrayList<String> bridges){
+    public static ArrayList<String> optionRandQ(int index, int startCount, int bridgeLen, List<String> bridges){
         if(equalsCheck.get(index).equals("X")){
             String input = readGameCommand();
             if(input.equals("R")){
@@ -166,7 +169,7 @@ public class BridgeGame {
         return resultFinal;
     }
 
-    public static void gameResult(ArrayList<String> resultFinal, int bridgeLen, ArrayList<String> bridges, int startCount){
+    public static void gameResult(ArrayList<String> resultFinal, int bridgeLen, List<String> bridges, int startCount){
         int successCount = Integer.parseInt(resultFinal.get(0));
 
         if(successCount == bridgeLen){
@@ -182,7 +185,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void retry(int bridgeLen, ArrayList<String> bridges, int startCount) {
+    public static void retry(int bridgeLen, List<String> bridges, int startCount) {
         equalsCheck.clear();
         successCount = 0;
         int check = 0;
@@ -214,6 +217,8 @@ public class BridgeGame {
         }
 
     }
+
+
 
 
 }

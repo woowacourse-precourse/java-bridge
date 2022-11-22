@@ -1,7 +1,6 @@
-package bridge.model;
+package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static BridgeNumberGenerator bridgeNumberGenerator = null;
+    private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -21,18 +20,23 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    public static ArrayList<String> makeBridge(int size) {
-        ArrayList<String> bridges = new ArrayList<>();
+    public List<String> makeBridge(int size) {
+        System.out.println("여기");
+        List<String> bridges = new ArrayList<>();
+
         for(int num = 0; num < size; num++){
-            double ran = Math.random()*2;
+            System.out.println("여기2");
+            //double ran = Math.random()*2;
             //generate();
             //int rand =  (int) ran;
+            System.out.println("여기3");
             int rand = bridgeNumberGenerator.generate();
-            //System.out.println("rand: " + rand);
+            System.out.println("rand: " + rand);
             // 0이면 U, 1이면 D
             if(rand == 1){
                 bridges.add("U");
-            }else if(rand == 0){
+            }
+            if(rand == 0){
                 bridges.add("D");
             }
         }
