@@ -47,4 +47,9 @@ public class BridgeGame {
         }
         return false;
     }
+    public BridgeGame(){
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        this.userInput = new ArrayList<>();
+        this.bridgeMaker=new BridgeMaker(bridgeRandomNumberGenerator);
+    }
 }
