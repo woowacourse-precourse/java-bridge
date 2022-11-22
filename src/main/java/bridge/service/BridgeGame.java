@@ -165,23 +165,16 @@ public class BridgeGame {
         crossAllBridge = true;
     }
 
-    public boolean validateBridgeSize(String input) {
-        try {
-            validateConvert(input);
-            validateBridgeSizeRange(Integer.parseInt(input));
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException(INVALID_INPUT);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(OUT_OF_RANGE);
-        }
-        return true;
+    public void validateBridgeSize(String input) {
+        validateConvert(input);
+        validateBridgeSizeRange(Integer.parseInt(input));
     }
 
     private void validateConvert(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INPUT);
+            throw new NumberFormatException(INVALID_INPUT);
         }
     }
 
