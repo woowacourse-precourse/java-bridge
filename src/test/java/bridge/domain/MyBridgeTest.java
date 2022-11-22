@@ -1,4 +1,5 @@
 package bridge.domain;
+
 import bridge.validate.Validator;
 import bridge.view.InputView;
 import org.junit.jupiter.api.*;
@@ -6,11 +7,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.MockedStatic;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
 
 
 public class MyBridgeTest {
