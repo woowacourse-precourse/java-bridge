@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Application {
     static OutputView outputView = new OutputView();
     static InputView inputView = new InputView();
@@ -12,8 +15,10 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        System.out.println(bridgeSize);
 
-        bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(bridge.toString());
 
     }
 }
