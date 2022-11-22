@@ -35,12 +35,17 @@ public class GameService {
     }
 
     public State moveMap(Bridge bridge, UserBridges userBridges, int location) {
+        OutputView.printEnterMovingSpace();
+
         String moving = InputView.readMoving();
         String space = bridge.getSpaceByLocation(location);
+
         return BridgeGame.move(moving, space, userBridges);
     }
 
     public State retryOrNot(UserBridges userBridges) {
+        OutputView.printRetryOrQuit();
+
         String retry = InputView.readGameCommand();
 
         if (retry.equals("Q"))
