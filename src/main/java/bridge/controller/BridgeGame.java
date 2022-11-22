@@ -1,12 +1,13 @@
 package bridge.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bridge.model.BridgeMaker;
-import bridge.utils.BridgeNumberGenerator;
+import bridge.utils.BridgeRandomNumberGenerator;
 import bridge.utils.Validator;
 import bridge.view.InputView;
-import camp.nextstep.edu.missionutils.Randoms;
+import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -41,10 +42,14 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void playGame() {
+    public void playGame(List<String> bridge) {
         bridgeSize = readBridgeSize();
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        this.bridge = bridge;
         moveBridge();
+    }
+
+    public List<String> makeBridge() {
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     public void moveBridge() {
