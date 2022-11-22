@@ -26,7 +26,7 @@ public class PositionUtils {
             String readGameCommand = inputView.readGameCommand();
 
             return RetryType.matchSymbol(readGameCommand)
-                    .orElseThrow(() -> new IllegalArgumentException());
+                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] RetryType is not match !!"));
         }
 
         return RetryType.PASS;

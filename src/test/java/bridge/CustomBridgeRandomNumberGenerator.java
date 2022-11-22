@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.service.BridgeNumberGenerator;
+import bridge.domain.BridgeNumberGenerator;
 
 public class CustomBridgeRandomNumberGenerator implements BridgeNumberGenerator {
 

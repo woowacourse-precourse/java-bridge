@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
