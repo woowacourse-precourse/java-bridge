@@ -23,7 +23,7 @@ public class BridgeMaker {
 
     public Bridge constructBridge(int bridgeSize) {
         return makeBridge(bridgeSize).stream()
-                .map(Moving::valueOf)
+                .map(Moving::toMoving)
                 .collect(collectingAndThen(toList(), Bridge::new));
     }
 

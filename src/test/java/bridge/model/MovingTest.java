@@ -18,7 +18,7 @@ class MovingTest {
     }
 
     @ParameterizedTest(name = "{0}를 Bridge로 변환하면 {1}")
-    @CsvSource({"U,U","D,D"})
+    @CsvSource({"U,UP","D,DOWN"})
     void toBridge_문자열을_Bridge로_변환하는_기능(String format, Moving expected) {
         assertThat(Moving.toMoving(format)).isEqualTo(expected);
     }

@@ -1,16 +1,21 @@
 package bridge.model;
 
-public enum Moving {
-    U, D;
+import java.util.Arrays;
 
-    private static final String UP_MOVING_FORMAT_STRING = "U";
-    private static final String DOWN_MOVING_FORMAT_STRING = "D";
+public enum Moving {
+    UP("U"), DOWN("D");
+
     private static final String ERR_MOVING_FORMAT = "윗 칸은 'U', 아랫 칸은 'D'를 입력하세요. 대소문자 구별. 예시) U(O), D(O), d(X)";
+    private final String inputFormat;
+
+    Moving(String inputFormat) {
+        this.inputFormat = inputFormat;
+    }
 
     public static Moving toMoving(String format) {
-        if (format.equals(UP_MOVING_FORMAT_STRING) || format.equals(DOWN_MOVING_FORMAT_STRING)) {
-            return Moving.valueOf(format);
-        }
-        throw new IllegalArgumentException(ERR_MOVING_FORMAT);
+        return Arrays.stream(values())
+                .filter(moving -> moving.inputFormat.equals(format))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ERR_MOVING_FORMAT));
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
-    Bridge bridge = new Bridge(List.of(Moving.U, Moving.U, Moving.D));
+    Bridge bridge = new Bridge(List.of(Moving.UP, Moving.UP, Moving.DOWN));
     BridgeGame bridgeGame = new BridgeGame(bridge);
 
     @BeforeEach
@@ -20,7 +20,7 @@ class BridgeGameTest {
     @DisplayName("move 메서드는 player의 moving을 호출한다")
     @Test
     void move_메서드는_Moving을_받아_player의_move를_호출한다() {
-        bridgeGame.move(Moving.D);
+        bridgeGame.move(Moving.DOWN);
         assertThat(bridgeGame.isPlayerDead()).isTrue();
     }
 
@@ -28,7 +28,7 @@ class BridgeGameTest {
     @Test
     void retry_메서드는_player를_초기화시킨다() {
         // 플레이어를 DEAD 상태로 만들기
-        bridgeGame.move(Moving.D);
+        bridgeGame.move(Moving.DOWN);
         //플래이어 초기화 후 MOVING 상태로 변경
         bridgeGame.retry();
         assertThat(bridgeGame.isPlayable()).isTrue();
