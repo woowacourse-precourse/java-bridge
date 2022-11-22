@@ -43,10 +43,19 @@ public class InputView {
         return movingCommand;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        try {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            return inputGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR + e.getMessage());
+            return readGameCommand();
+        }
+    }
+
+    private String inputGameCommand() {
+        String GameCommand = Console.readLine();
+        InputValidator.validateGameCommand(GameCommand);
+        return GameCommand;
     }
 }

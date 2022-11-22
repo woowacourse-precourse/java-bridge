@@ -7,6 +7,8 @@ public class InputValidator {
     private static final String NUMBER_PATTERN = "\\d+";
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
 
     private InputValidator() {
     }
@@ -35,5 +37,15 @@ public class InputValidator {
 
     private static boolean isValidMovingCommand(String command) {
         return command.equals(UP) || command.equals(DOWN);
+    }
+
+    public static void validateGameCommand(String command) {
+        if(!isValidGameCommand(command)){
+            throw new IllegalArgumentException("R 또는 Q를 입력해주세요.");
+        }
+    }
+
+    private static boolean isValidGameCommand(String command) {
+        return command.equals(RETRY) || command.equals(QUIT);
     }
 }

@@ -38,4 +38,14 @@ class InputValidatorTest {
                     InputValidator.validateMovingCommand(input);
                 });
     }
+
+    @DisplayName("R 또는 Q가 아닐 경우 예외를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "A"})
+    void validateGameCommand(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    InputValidator.validateGameCommand(input);
+                });
+    }
 }
