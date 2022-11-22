@@ -49,10 +49,7 @@ public class OutputViewImpl implements OutputView{
     }
 
     private String getLastElementAddedRow(Entry<String, String> lineEntry, InGameCommandResponseDto responseDto) {
-        String baseLine = lineEntry.getValue();
-        if (!baseLine.isEmpty()) {
-            baseLine += MAP_DELIMITER;
-        }
+        String baseLine = getBaseLine(lineEntry.getValue());
         if (lineEntry.getKey().equals(responseDto.getLastMove())) {
             if (responseDto.isPlayerDead()) {
                 return baseLine + MAP_X_MARK;
@@ -60,6 +57,13 @@ public class OutputViewImpl implements OutputView{
             return baseLine + MAP_O_MARK;
         }
         return baseLine + MAP_BLANK;
+    }
+
+    private String getBaseLine(String baseLine) {
+        if (!baseLine.isEmpty()) {
+            baseLine += MAP_DELIMITER;
+        }
+        return baseLine;
     }
 
     private String stringifyAnswerMapRows(Map<String, String> answerMapRows) {
