@@ -4,8 +4,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
 import bridge.utils.Constants.Command;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
