@@ -5,6 +5,7 @@ import java.util.List;
 public class BridgeGameController {
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String QUIT_MESSAGE = "최종 게임 결과";
+    private static final String RETRY_COMMAND = "R";
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
@@ -38,7 +39,7 @@ public class BridgeGameController {
 
     private void retryOrQuit(BridgeGame bridgeGame) {
         String inputGameCommand = inputView.readGameCommand();
-        if (inputGameCommand.equals("R")) {
+        if (inputGameCommand.equals(RETRY_COMMAND)) {
             bridgeGame.retry();
             crossingBridge(bridgeGame);
         }
