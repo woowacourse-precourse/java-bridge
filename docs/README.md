@@ -25,7 +25,7 @@
 >- BridgeMaker : 규격에 맞는 다리를 생성
 >- BridgeNumberGenerator : 다리 생성에 필요한 숫자를 생성
 >- BridgeGame : 게임 진행 동작(이동, 재시작)을 수행
->- BridgeReferee : 이동 결과, 성공 여부를 판단
+>- BridgeReferee : 이동 결과, 게임 성공 여부를 판단
 >- BridgeDrawer : 화면(콘솔) 출력 용 다리 이동 현황 기록
 ---
 
