@@ -8,25 +8,32 @@ public class BridgeGameController {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeGameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.bridgeMaker = bridgeMaker;
+    public BridgeGameController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public void play() {
-        outputView.printStartTitle();
+    public BridgeGame makeBridgeGame(){
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        return new BridgeGame(bridge);
+    }
+
+    public void run(){
+        outputView.printStartTitle();
+        BridgeGame bridgeGame = makeBridgeGame();
+        play(bridgeGame);
+        outputView.printResult(bridgeGame);
+    }
+
+    public void play(BridgeGame bridgeGame) {
         while (bridgeGame.isMatch() && !bridgeGame.isEnd()){
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame);
             if (!bridgeGame.isMatch()){
                 bridgeGame.retry(inputView.readGameCommand());
-                System.out.println(bridgeGame.isMatch());
             }
         }
-        outputView.printResult(bridgeGame);
     }
 
 }
