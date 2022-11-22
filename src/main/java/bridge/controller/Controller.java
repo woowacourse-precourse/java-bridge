@@ -5,6 +5,7 @@ import bridge.domain.Bridge;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
+import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;

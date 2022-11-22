@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputController {
-    private static InputView inputView;
+    private static InputView inputView = new InputView();
 
-    public InputController(InputView inputView) {
-        this.inputView = inputView;
-    }
+//    public InputController(InputView inputView) {
+//        this.inputView = inputView;
+//    }
 
     private static List<Integer> recursions = Arrays.asList(1, 1, 1);
 
