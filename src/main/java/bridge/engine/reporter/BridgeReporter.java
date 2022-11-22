@@ -4,10 +4,20 @@ import java.util.List;
 
 public class BridgeReporter {
 
+    /**
+     * @param bridge 다리
+     * @param userDirection 유저가 이동한 칸
+     * @return [ O | X | O ] 형태로 전체 다리를 표현하는 문자열
+     * */
     public String reportBridge(List<String> bridge, List<String> userDirection) {
         return renderUpBridge(bridge, userDirection) + "\n" + renderDownBridge(bridge, userDirection);
     }
 
+    /**
+     * @param bridge 다리
+     * @param userDirection 유저가 이동한 칸
+     * @return 위,아래 칸 중에서 위 칸 다리를 표현하는 문자열 [ O | X | O ]
+     * */
     private String renderUpBridge(List<String> bridge, List<String> userDirection) {
         StringBuilder upBridge = new StringBuilder("[ ");
 
@@ -21,6 +31,11 @@ public class BridgeReporter {
         return upBridge.append(" ]").toString();
     }
 
+    /**
+     * @param bridge 다리
+     * @param userDirection 유저가 이동한 칸
+     * @return 위,아래 칸 중에서 아래 칸 다리를 표현하는 문자열 [ X | O | X ]
+     * */
     private String renderDownBridge(List<String> bridge, List<String> userDirection) {
         StringBuilder downBridge = new StringBuilder("[ ");
 
@@ -34,6 +49,12 @@ public class BridgeReporter {
         return downBridge.append(" ]").toString();
     }
 
+    /**
+     * @param location 현재 이동한 칸
+     * @param bridge 다리
+     * @param userDirection 유저가 이동한 칸
+     * @return 문자열 "O", "X" 혹은 빈 문자열 " "
+     * */
     private String renderUpBridgeEachPoint(int location, List<String> bridge, List<String> userDirection) {
         if (userDirection.get(location).equals("U")) {
             return renderSuccessStatus(location, bridge, userDirection);
@@ -42,6 +63,12 @@ public class BridgeReporter {
         return " ";
     }
 
+    /**
+     * @param location 현재 이동한 칸
+     * @param bridge 다리
+     * @param userDirection 유저가 이동한 칸
+     * @return 문자열 "O", "X" 혹은 빈 문자열 " "
+     * */
     private String renderDownBridgeEachPoint(int location, List<String> bridge, List<String> userDirection) {
         if (userDirection.get(location).equals("D")) {
             return renderSuccessStatus(location, bridge, userDirection);
@@ -50,6 +77,12 @@ public class BridgeReporter {
         return " ";
     }
 
+    /**
+     * @param location 현재 이동한 칸
+     * @param bridge 다리
+     * @param userDirection 유저가 이동한 칸
+     * @return 문자열 "O", "X"
+     * */
     private String renderSuccessStatus(int location, List<String> bridge, List<String> userDirection) {
         String status = "X";
 

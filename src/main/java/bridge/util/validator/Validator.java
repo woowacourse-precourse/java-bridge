@@ -2,6 +2,10 @@ package bridge.util.validator;
 
 public abstract class Validator {
 
+    /**
+     * 유효성 검증 로직의 템플릿 메서드
+     * @param input 사용자의 입력값
+     * */
     public boolean validate(final String input) {
         try {
             check(input);
@@ -13,6 +17,10 @@ public abstract class Validator {
         return true;
     }
 
+    /**
+     * 실제 유효성 검증 로직을 처리하는 추상 메서드
+     * @param input 사용자의 입력값
+     * */
     public abstract void check(final String input);
 
     protected static boolean isNumeric(final String input) {

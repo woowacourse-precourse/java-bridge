@@ -6,6 +6,10 @@ import bridge.engine.reporter.BridgeReporter;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+
+/**
+ * 브릿지 게임 전체 프로세스를 진행하는 Context
+ * */
 public class BridgeGameContext {
 
     private BridgeGame bridgeGame;
@@ -20,6 +24,9 @@ public class BridgeGameContext {
         this.inputView = new InputView();
     }
 
+    /**
+     * 게임 전체 프로세스를 진행하는 메서드
+     * */
     public void run() {
         start();
         play();
