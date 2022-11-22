@@ -137,7 +137,18 @@ public class Application {
                 }
             }
             if (flag) {
-                gameCommand = inputView.readGameCommand();
+                boolean gameCommandFlag=true;
+                while(gameCommandFlag){
+                    try {
+                        gameCommand = inputView.readGameCommand();
+                        if(!gameCommand.equals("R") && !gameCommand.equals("Q")){
+                            throw new IllegalArgumentException();
+                        }
+                        gameCommandFlag = false;
+                    }catch (IllegalArgumentException illegalArgumentException){
+                        System.out.println("[ERROR] 게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자를 입력해야 합니다.");
+                    }
+                }
                 if (bridgeGame.retry(gameCommand)) {
                     continue;
                 }
