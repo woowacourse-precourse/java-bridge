@@ -10,19 +10,24 @@ public class BridgeGame {
 
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    private List<String> bridge = new ArrayList<>();
+    BridgeMap bridgeMap;
+    private List<String> bridge;
     private int cursor;
 
     BridgeGame(int size) {
         bridge = bridgeMaker.makeBridge(size);
         cursor = 0;
+        bridgeMap = new BridgeMap();
     }
 
     // Compare input direction and cursor direction
     public boolean canMove(String direction) {
         if (bridge.get(cursor) == direction) {
+            move();
+            bridgeMap.updateMap(direction, true);
             return true;
         }
+        bridgeMap.updateMap(direction, false);
         return false;
     }
 
