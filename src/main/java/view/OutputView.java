@@ -60,7 +60,6 @@ public class OutputView {
 
     private void printOutput(int endTurn, HashMap<Integer, Boolean> bridge, int tryCount) {
         try {
-            System.out.print(OutputStatic.END_GAME.getOutputPrint());
             if (bridge.get(endTurn - 1)) {
                 printGameOver(SUCCESS, tryCount);
                 return;
@@ -73,8 +72,8 @@ public class OutputView {
     }
 
     private void printGameOver(String check, int tryCount) {
-        String test = OutputStatic.valueOf(check).getOutputPrint();
-        System.out.println(test);
+        String checkSuccess = OutputStatic.valueOf(check).getOutputPrint();
+        System.out.println(OutputStatic.END_GAME.getOutputPrint() + checkSuccess);
         System.out.println(String.format(OutputStatic.TRY_COUNT.getOutputPrint(), tryCount));
     }
 }
