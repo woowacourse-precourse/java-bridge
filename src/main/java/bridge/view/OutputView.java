@@ -35,6 +35,10 @@ public class OutputView {
         System.out.println(LENGTH_COMMAND_MESSAGE);
     }
 
+    public void printMovingCommand() {
+        System.out.println(MOVING_COMMAND_MESSAGE);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
