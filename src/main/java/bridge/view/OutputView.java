@@ -22,6 +22,17 @@ public class OutputView {
     private static final String GAME_SUCCESS_MESSAGE = "게임 성공 여부: %s\n";
     private static final String TRY_COUNT_MESSAGE = "총 시도한 횟수: %s\n";
 
+    public void printBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    public void printMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    public void printGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
     
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -58,11 +69,19 @@ public class OutputView {
     public void printResult(List<BridgeStatus> path, boolean isSuccess, int tryCount) {
         System.out.printf(GAME_RESULT_MESSAGE);
         printMap(path);
+        printSuccess(isSuccess);
+        printTryCount(tryCount);
+    }
+
+    private void printSuccess(boolean isSuccess) {
         String successMessage = "실패";
         if (isSuccess) {
             successMessage = "성공";
         }
         System.out.printf(GAME_SUCCESS_MESSAGE, successMessage);
+    }
+
+    private void printTryCount(int tryCount) {
         System.out.printf(TRY_COUNT_MESSAGE, tryCount);
     }
 }

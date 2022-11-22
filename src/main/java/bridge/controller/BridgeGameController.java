@@ -53,6 +53,7 @@ public class BridgeGameController {
     private int setBridgeSize() {
         while (true) {
             try {
+                outputView.printBridgeSize();
                 int bridgeSize = inputView.readBridgeSize();
                 validateBridgeSize(bridgeSize);
                 return bridgeSize;
@@ -65,6 +66,7 @@ public class BridgeGameController {
     private String setMoving() {
         while (true) {
             try {
+                outputView.printMoving();
                 String moveCommand = inputView.readMoving();
                 validateMovingCommand(moveCommand);
                 return moveCommand;
@@ -77,6 +79,7 @@ public class BridgeGameController {
     private String setRetry() {
         while (true) {
             try {
+                outputView.printGameCommand();
                 String retryCommand = inputView.readGameCommand();
                 validateRetryCommand(retryCommand);
                 return retryCommand;
