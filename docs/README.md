@@ -39,7 +39,8 @@
       -[x] R을 입력하였을 때 BridgeGame의 retry()를 실행한다.
 - [x] 위 기능들을 조합해 전체적인 게임을 실행한다 - playWithExceptionCatch()
 
- 
+### BridgeConfig
+ - [x] 의존관계를 주입해주고 객체를 생성한다
 
 ---
 
