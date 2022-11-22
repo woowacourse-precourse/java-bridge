@@ -14,24 +14,22 @@ public class BridgeGameController {
 
     public void startBridgeGame() {
         init();
-        boolean b = true;
-
-        bridgeGame = new BridgeGame(bridge);
         do {
             bridgeGame.move(InputView.getMoving());
             OutputView.printMap(bridgeGame);
             if(bridgeGame.getGameSuccess()!="성공") {
                 String gameCommand = InputView.getGameCommand();
-                if (gameCommand.equals("Q")) {
-                    b = false;
-                }
-                if (gameCommand.equals("R")) {
-                    bridgeGame.retry();
-                    bridgeGame.totalGamePlus();
-                }
+                continueBrideGameCommand(gameCommand);
             }
-        } while (b && bridgeGame.getUpPresentBridge().size() != bridge.size());
+        } while (bridgeGame.gameContinue());
         OutputView.printResult(bridgeGame);
+    }
+
+    public void continueBrideGameCommand(String gameCommand){
+        if(gameCommand.equals("R")){
+            bridgeGame.retry();
+            bridgeGame.totalGamePlus();
+        }
     }
 
     public void init() {
@@ -39,5 +37,6 @@ public class BridgeGameController {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridge = bridgeMaker.makeBridge(InputView.getBridgeSize());
+        bridgeGame = new BridgeGame(bridge);
     }
 }

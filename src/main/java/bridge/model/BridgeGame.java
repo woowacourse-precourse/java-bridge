@@ -50,6 +50,10 @@ public class BridgeGame {
         gameSuccess="실패";
     }
 
+    public boolean gameContinue(){
+        return gameSuccess=="성공"&&upPresentBridge.size()!=bridge.size();
+    }
+
     public void retry() {
         upPresentBridge.clear();
         downPresentBridge.clear();
