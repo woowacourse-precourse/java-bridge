@@ -55,4 +55,21 @@ public class BridgeGameTest {
         assertThat(bridgeGame.isCrossSuccess()).isEqualTo(result);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideDirectionForMakeRecord")
+    @DisplayName("플레이어의 입력에 대해 다리 횡단 결과를 확인한다.")
+    public void makeReportTest(String playerWantToGo, boolean result){
+        bridgeGame.move(playerWantToGo);
+
+        player.saveDirection(playerWantToGo);
+        bridgeGame.makeReport(player.getCurrentDirection());
+        assertThat(bridgeGame.isCrossSuccess()).isEqualTo(result);
+    }
+    private static Stream<Arguments> provideDirectionForMakeRecord() {
+        return Stream.of(
+                Arguments.of("U", true,  "[ O ]\n[   ]\n"),
+                Arguments.of("D", true, "[ O |   ]\n[   | O ]\n")
+        );
+    }
+    
 }
