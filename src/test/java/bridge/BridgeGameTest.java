@@ -8,7 +8,6 @@ import bridge.domain.BridgeMap;
 import bridge.domain.Command;
 import bridge.domain.Direction;
 import bridge.service.BridgeGame;
-import bridge.BridgeRandomNumberGenerator.BridgeMaker;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

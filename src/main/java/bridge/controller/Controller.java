@@ -2,8 +2,8 @@ package bridge.controller;
 
 import static bridge.util.Util.toInt;
 
+import bridge.BridgeMaker;
 import bridge.service.BridgeGame;
-import bridge.BridgeRandomNumberGenerator.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.exception.IllegalArgumentError;
 import bridge.view.InputView;
