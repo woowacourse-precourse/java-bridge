@@ -58,6 +58,9 @@ public class BridgeGame {
     public int getNumberOfTry() {
         return numberOfTry;
     }
+    public int getUserGameList(){
+        return userAnswer.size();
+    }
 
     public boolean endGame() {
         return bridge.size() == userAnswer.size();
