@@ -51,7 +51,7 @@
 
 #### BridgeRandomNumberGenerator 클래스
 - [x] 다리의 각 인덱스마다 0(D), 1(U)을 랜덤으로 생성해주는 기능
-- Random 값 추출은 제공된 `bridge.domain.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 ---
 ### service(입력 제공및 출력에 대한 형식 제공)
