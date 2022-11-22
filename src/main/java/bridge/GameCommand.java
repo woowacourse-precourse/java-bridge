@@ -13,6 +13,10 @@ public enum GameCommand {
         this.command = command;
     }
 
+    public String getCommand() {
+        return this.command;
+    }
+
     public static boolean hasCommandOf(String inputCommand) {
         for (GameCommand command : GameCommand.values()) {
             if (command.equals(inputCommand)) return true;
