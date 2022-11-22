@@ -9,12 +9,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<Column> bridge;
-    private List<List<String>> buffer;
+    private BridgeBuffer buffer;
     private int totalCount;
     public BridgeGame() {
         bridge = new ArrayList<>();
+        buffer = new BridgeBuffer();
         totalCount = 1;
-        initializeBuffer();
+
     }
 
     /**
@@ -22,12 +23,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void start(int size) {
+    public BridgeBuffer start(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> capitalLettrs = bridgeMaker.makeBridge(size);
         for (String capitalLetter : capitalLettrs) {
             bridge.add(Column.valueOfCapitalLetter(capitalLetter));
         }
+        return buffer;
     }
 
     public Column move(int step, String input) {
@@ -46,49 +48,20 @@ public class BridgeGame {
     public void retry() {
         buffer.clear();
         totalCount++;
-        initializeBuffer();
+        buffer.initialize();
     }
 
     public int getTotalCount(){
         return totalCount;
     }
-
-
-    private void initializeBuffer(){
-        buffer = new ArrayList<>();
-        for(int i = 0; i < 2; i++){
-            buffer.add(new ArrayList<>());
-            buffer.get(i).add(BridgeBuffer.START);
-        }
+    public int getIndexByColumns(int step){
+        return bridge.get(step).getIndex();
+    }
+    public int getOppositeIndexByColumns(int step){
+        return bridge.get(step).getOppositeIndex();
     }
 
-    public void addColumn(Column answer){
-        if(buffer.get(0).get(buffer.get(0).size()-1) == BridgeBuffer.END){
-            buffer.get(0).set(buffer.get(0).size()-1,BridgeBuffer.CONTOUR);
-            buffer.get(1).set(buffer.get(1).size()-1,BridgeBuffer.CONTOUR);
-        }
-        buffer.get(answer.getIndex()).add(BridgeBuffer.RIGHT);
-        buffer.get(answer.getIndex()).add(BridgeBuffer.CONTOUR);
-        buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.BLANK);
-        buffer.get(answer.getOppositeIndex()).add(BridgeBuffer.CONTOUR);
-    }
-    public List<List<String>> running(){
-        buffer.get(0).set(buffer.get(0).size()-1,BridgeBuffer.END);
-        buffer.get(1).set(buffer.get(1).size()-1,BridgeBuffer.END);
-        return buffer;
-    }
-    public List<List<String>> over(){
-        return buffer;
-    }
-    public List<List<String>> fail(int step){
-        buffer.get(0).set(buffer.get(0).size()-1,BridgeBuffer.CONTOUR);
-        buffer.get(1).set(buffer.get(1).size()-1,BridgeBuffer.CONTOUR);
-        buffer.get(bridge.get(step).getIndex()).add(BridgeBuffer.WRONG);
-        buffer.get(bridge.get(step).getOppositeIndex()).add(BridgeBuffer.BLANK);
-        buffer.get(0).add(buffer.get(0).size()-1,BridgeBuffer.CONTOUR);
-        buffer.get(1).add(buffer.get(1).size()-1,BridgeBuffer.CONTOUR);
-        return buffer;
-    }
+
 
 
 
