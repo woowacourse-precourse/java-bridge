@@ -55,15 +55,15 @@ public class BridgeGameApplication {
 
     private boolean playTurn() {
         game.move(readMoving());
+        outputView.printMap(game);
         if (game.getGameResult() == GameResult.NOTHING_HAPPENED) {
-            outputView.printMap(game);
+//            outputView.printMap(game);
             return true;
         }
         return playAgain();
     }
 
     private boolean playAgain() {
-        printResultMap();
         if (game.getGameResult() == GameResult.USER_WIN) {
             return false;
         }
@@ -100,7 +100,9 @@ public class BridgeGameApplication {
     }
 
     private void printGameResult() {
-//        printResultMap();
+        System.out.println();
+        printResultMap();
+        System.out.println();
         outputView.printResult(game);
     }
 }

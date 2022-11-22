@@ -68,11 +68,11 @@ public class OutputView {
 
     private void fillMapIfUserShouldGoDownButFail(List<String> mapToPrint) {
         mapToPrint.set(0, mapToPrint.get(0) + "X");
-        mapToPrint.set(1, mapToPrint.get(1) + "O");
+        mapToPrint.set(1, mapToPrint.get(1) + " ");
     }
 
     private void fillMapIfUserShouldGoUpButFail(List<String> mapToPrint) {
-        mapToPrint.set(0, mapToPrint.get(0) + "O");
+        mapToPrint.set(0, mapToPrint.get(0) + " ");
         mapToPrint.set(1, mapToPrint.get(1) + "X");
     }
 
