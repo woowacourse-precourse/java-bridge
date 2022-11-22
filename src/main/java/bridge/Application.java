@@ -22,7 +22,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         outputView.printGameStart();
-        //다리 생성 시작
+        startMakingBridge();
         cnt = 0;
         location = 0;
         do{
@@ -35,4 +35,15 @@ public class Application {
         outputView.printResult(upBridgeResult, downBridgeResult, gameStatus, cnt);
     }
 
+    public static void startMakingBridge() {
+        try{
+            outputView.printBridgeSize();
+            bridgeSize = inputView.readBridgeSize();
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            bridge = bridgeMaker.makeBridge(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            startMakingBridge();
+        }
+    }
 }
