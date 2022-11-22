@@ -54,8 +54,8 @@ class BridgeGameTest {
 
         RetryResponseDto exit = bridgeGame.retry(commandExit);
 
-        assertThat(player.getAttemptCount()).isEqualTo(2);
-        assertThat(exit.getAttemptCount()).isEqualTo(2);
+        assertThat(player.getAttemptCount()).isEqualTo(1);
+        assertThat(exit.getAttemptCount()).isEqualTo(1);
         assertThat(exit.isRetryGame()).isFalse();
     }
 }
