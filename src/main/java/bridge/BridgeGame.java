@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.vo.Cross;
+import bridge.vo.Direction;
 
 import java.util.List;
 

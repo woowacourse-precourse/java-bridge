@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.Direction;
+import bridge.vo.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.Validator.*;

@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.Cross;
+import bridge.vo.Cross;
 
 import java.util.List;
 
@@ -43,8 +43,7 @@ public class OutputView {
    */
   public void printMap(List<Cross> crossResult) {
     BridgeView bridgeView = new BridgeView(crossResult);
-    bridgeView.printUpper();
-    bridgeView.printLower();
+    bridgeView.printAll();
   }
 
   /**
@@ -62,9 +61,9 @@ public class OutputView {
 
   public void printGameResult(boolean isSuccess) {
     if (isSuccess) {
-      System.out.println(SUCCESS);
+      System.out.println(GAME_SUCCESS);
     } else {
-      System.out.println(FAIL);
+      System.out.println(GAME_FAIL);
     }
   }
 

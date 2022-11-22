@@ -1,4 +1,4 @@
-package bridge;
+package bridge.vo;
 
 public class Cross {
 

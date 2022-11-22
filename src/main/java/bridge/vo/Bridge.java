@@ -1,4 +1,4 @@
-package bridge;
+package bridge.vo;
 
 import java.util.List;
 

@@ -2,6 +2,10 @@ package bridge;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import bridge.vo.Bridge;
+import bridge.vo.Cross;
+import bridge.vo.Direction;
+import bridge.vo.MoveResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +52,10 @@ public class GameController {
 
       outputView.printMap(crossResult);
       if (!canCross(bridgeDirection, userDirection)) {
-        return new MoveResult(FAIL, crossResult, tryNumber);
+        return new MoveResult(GAME_FAIL, crossResult, tryNumber);
       }
     }
-    return new MoveResult(SUCCESS, crossResult, tryNumber);
+    return new MoveResult(GAME_SUCCESS, crossResult, tryNumber);
   }
 
   public boolean canCross(Direction bridgeDirection, Direction userDirection) {
@@ -67,9 +71,9 @@ public class GameController {
     String status = moveResult.getGameResult();
     List<Cross> crossResult = moveResult.getCrossResult();
     tryNumber = moveResult.getTryNumber();
-    if (status.equals(FAIL)) {
+    if (status.equals(GAME_FAIL)) {
       isRestart(bridge, moveResult);
-    } else if (status.equals(SUCCESS)) {
+    } else if (status.equals(GAME_SUCCESS)) {
       outputView.printResult(true, tryNumber, crossResult);
     }
   }
@@ -78,9 +82,9 @@ public class GameController {
     outputView.printAskRestartMessage();
     String restart = inputView.readGameCommand();
     int tryNumber = moveResult.getTryNumber();
-    if (restart.equals(RESTART)) {
+    if (restart.equals(GAME_RESTART)) {
       move(bridge, bridgeGame.retry(tryNumber));
-    } else if (restart.equals(STOP)) {
+    } else if (restart.equals(GAME_QUIT)) {
       outputView.printResult(false, tryNumber,  moveResult.getCrossResult());
     }
   }

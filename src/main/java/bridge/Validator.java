@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.Objects;
+import static bridge.Constants.*;
 
 public class Validator {
 
@@ -9,10 +10,6 @@ public class Validator {
   public static final String OUT_OF_RANGE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
   private static final int BRIDGE_LENGTH_LOWER_INCLUSIVE = 3;
   private static final int BRIDGE_LENGTH_UPPER_INCLUSIVE = 20;
-  private static final String BRIDGE_UPPER = "U";
-  private static final String BRIDGE_LOWER = "D";
-  private static final String GAME_RESTART = "R";
-  private static final String GAME_QUIT = "Q";
 
   public static void validateBridge(String input) {
     sizeBetween(input);

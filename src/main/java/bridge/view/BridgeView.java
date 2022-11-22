@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.Cross;
-import bridge.Direction;
+import bridge.vo.Cross;
+import bridge.vo.Direction;
 
 import java.util.List;
 
@@ -19,6 +19,11 @@ public class BridgeView {
 
   public BridgeView(List<Cross> crossResult) {
     this.crossResult = crossResult;
+  }
+
+  public void printAll() {
+    printUpper();
+    printLower();
   }
 
   public void printUpper() {
