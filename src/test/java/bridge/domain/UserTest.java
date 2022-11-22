@@ -65,4 +65,14 @@ public class UserTest {
         Assertions.assertThat(user).extracting("nextLocation").isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("시도 횟수 증가 테스트")
+    public void increaseTryCountTest() {
+
+        for (int i = 0; i < 9; i++) {
+            user.resetUserData();
+        }
+        Assertions.assertThat(user).extracting("tryCount").isEqualTo(10);
+    }
+
 }
