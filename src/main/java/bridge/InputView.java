@@ -36,8 +36,13 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public boolean readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
+        String input = Console.readLine();
+        boolean gameCommand = commandValidate(input);
+
+        return gameCommand;
     }
 
     public int sizeValidate(String number){
@@ -60,5 +65,15 @@ public class InputView {
         if(!move.equals("U") && !move.equals("D")){
             throw new IllegalArgumentException("[ERROR] 입력 형식이 올바르지 않습니다. (위: U, 아래: D)");
         }
+    }
+
+    public boolean commandValidate(String command) {
+        if (command.equals("R")) {
+            return true;
+        }
+        if (command.equals("Q")) {
+            return false;
+        }
+        throw new IllegalArgumentException("[ERROR] 입력 형식이 올바르지 않습니다. (재시도: R, 종료: Q)");
     }
 }
