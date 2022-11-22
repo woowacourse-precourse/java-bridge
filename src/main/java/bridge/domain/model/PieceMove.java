@@ -1,5 +1,8 @@
 package bridge.domain.model;
 
+/**
+ * 이동 방향과 성공 여부를 저장하는 클래스
+ */
 public class PieceMove {
 
     private final Direction direction;
