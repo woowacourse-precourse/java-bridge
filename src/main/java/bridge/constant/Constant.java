@@ -6,7 +6,9 @@ public enum Constant {
     RESTART("R"),
     QUIT("Q"),
     POSSIBLE("O"),
-    IMPOSSIBLE("X");
+    IMPOSSIBLE("X"),
+    SUCCESS(" 성공"),
+    FAIL(" 실패");
 
     private String constant;
 
