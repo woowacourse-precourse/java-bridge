@@ -1,13 +1,11 @@
-package bridge;
+package bridge.view;
+import bridge.exception.BridgeGameError;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public static final String Error_NotNumber = "[ERROR] 숫자만 입력해 주세요!";
-    public static final String Error_NotString = "[ERROR] 문자만 입력해 주세요!";
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -19,13 +17,14 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (RuntimeException e) {
-            throw new IllegalArgumentException(Error_NotNumber);
+            throw new IllegalArgumentException(BridgeGameError.BRIDGE_SIZE_NOT_NUMBER.getErrorMessage());
         }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
+
     public String readMoving() {
         return inputMoving();
     }
@@ -34,7 +33,7 @@ public class InputView {
         try {
             return String.valueOf(Console.readLine());
         } catch (RuntimeException e) {
-            throw new IllegalArgumentException(Error_NotString);
+            throw new IllegalArgumentException(BridgeGameError.INVALID_TYPE_MOVE_COMMAND.getErrorMessage());
         }
     }
 
@@ -49,7 +48,7 @@ public class InputView {
         try {
             return String.valueOf(Console.readLine());
         } catch (RuntimeException e) {
-            throw new IllegalArgumentException(Error_NotString);
+            throw new IllegalArgumentException(BridgeGameError.INVALID_TYPE_GAME_COMMAND.getErrorMessage());
         }
     }
 }
