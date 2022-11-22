@@ -13,7 +13,7 @@ import bridge.utils.BasicBridgeInputNumericParser;
 
 public class BridgeController {
 
-    private static int tryCount = 1;
+    private int tryCount = 1;
     private static final int UP_DOWN_MODE = 1;
     private static final int RETRY_MODE = 2;
     private static final int REACHED_END = 1;
@@ -100,7 +100,7 @@ public class BridgeController {
         wantToEndCase(bridgeAnswer, userGenerate);
     }
 
-    private static void wantToEndCase(final BridgeAnswer bridgeAnswer, final BridgeGame userGenerate) {
+    private void wantToEndCase(final BridgeAnswer bridgeAnswer, final BridgeGame userGenerate) {
         if (!userGenerate.retry(bridgeAnswer)) {
             getFinalResult(Sentence.FAILURE.getValue());
         }
@@ -131,17 +131,17 @@ public class BridgeController {
         }
     }
 
-    private static void getFinalResult(final String successOrFail) {
+    private void getFinalResult(final String successOrFail) {
         outputView.printResultMessage(latestOutput);
         getGameSuccessORFail(successOrFail);
     }
 
-    private static void getGameSuccessORFail(final String successOrFail) {
+    private void getGameSuccessORFail(final String successOrFail) {
         outputView.printSuccessOrFailMessage(successOrFail);
         getTotalTrial();
     }
 
-    private static void getTotalTrial() {
+    private void getTotalTrial() {
         outputView.printTotalTrial(tryCount + "");
     }
 }
