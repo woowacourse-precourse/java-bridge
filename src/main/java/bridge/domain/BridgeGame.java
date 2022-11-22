@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.domain.model.Direction;
 import bridge.domain.model.GameStatus;
-import bridge.config.InvalidMoveException;
 import bridge.domain.model.PieceMove;
 
 import java.util.Stack;
@@ -26,7 +25,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(Direction direction) throws InvalidMoveException {
+    public void move(Direction direction) throws IllegalStateException {
         checkMoveValidation();
         boolean allowed = bridge.isAllow(moveTrace.size(), direction);
         moveTrace.add(new PieceMove(direction, allowed));
@@ -48,7 +47,7 @@ public class BridgeGame {
 
     private void checkMoveValidation() {
         if (this.status != GameStatus.RUNNING) {
-            throw new InvalidMoveException();
+            throw new IllegalStateException();
         }
     }
 

@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.domain.model.Direction;
 import bridge.domain.model.GameStatus;
-import bridge.config.InvalidMoveException;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
@@ -45,7 +44,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(new Bridge(bridgeInput));
         assertThatThrownBy(
                 () -> moveDirections.forEach(d -> bridgeGame.move(Direction.of(d)))
-        ).isInstanceOf(InvalidMoveException.class);
+        ).isInstanceOf(IllegalStateException.class);
     }
 
     @DisplayName("게임에 승리한 이후 더 이동을 시도하는 경우 예외 처리")
@@ -55,7 +54,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(new Bridge(bridgeInput));
         assertThatThrownBy(
                 () -> moveDirections.forEach(d -> bridgeGame.move(Direction.of(d)))
-        ).isInstanceOf(InvalidMoveException.class);
+        ).isInstanceOf(IllegalStateException.class);
     }
 
     @DisplayName("이동에 실패한 후 재시작하는 경우 상태 초기화")
