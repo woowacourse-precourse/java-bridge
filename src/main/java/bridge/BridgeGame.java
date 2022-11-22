@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static bridge.InputView.*;
-import static bridge.OutputView.*;
-import static bridge.PrintMessage.*;
+import static bridge.util.PrintMessage.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,9 +12,20 @@ import static bridge.PrintMessage.*;
 public class BridgeGame {
     private String upBridge = "";
     private String downBridge = "";
-    private List<String> bridges = new ArrayList<>();
+    private final List<String> bridges = new ArrayList<>();
     private Integer count = 1;
 
+    public List<String> getBridges() {
+        return bridges;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -103,45 +112,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean retry(int bridgeSize, List<String> randomBridge) {
-        printChooseRetryGameMessage();
-        String retryGameInput = readGameCommand();
-        if (retryGameInput.equals(QUIT)) {
-            printResult(bridges, false, false);
-            printTotalTryCountMessage(count);
-            return true;
-        }
-
-        BridgeGame bridgeGame = new BridgeGame();
-        return initGame(bridgeSize, bridgeGame, randomBridge);
+        BridgeGamePlay bridgeGamePlay = new BridgeGamePlay();
+        return bridgeGamePlay.retryGame(bridgeSize, randomBridge, new BridgeGame());
     }
-
-    public Boolean initGame(int bridgeSize, BridgeGame bridgeGame, List<String> randomBridge) {
-        for (int i = 0; i < bridgeSize; i++) {
-            printChooseSpaceToMoveMessage();
-            String space = readMoving();
-
-            bridges = bridgeGame.move(space, i, randomBridge.get(i));
-            printMap(bridges);
-
-            if (bridges.get(2).equals(FAIL)) {
-                return false;
-            }
-        }
-        printResult(bridges, true, true);
-        printTotalTryCountMessage(count);
-        return true;
-    }
-
-    public void playGame(BridgeGame bridgeGame) {
-        int bridgeSize = readBridgeSize();
-
-        List<String> randomBridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
-
-        if (!bridgeGame.initGame(bridgeSize, bridgeGame, randomBridge)) {
-            while (!bridgeGame.retry(bridgeSize, randomBridge)) {
-                count += 1;
-            }
-        }
-    }
-
 }

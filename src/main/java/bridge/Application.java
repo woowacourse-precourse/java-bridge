@@ -11,7 +11,8 @@ public class Application {
 
         try {
             BridgeGame bridgeGame = new BridgeGame();
-            bridgeGame.playGame(bridgeGame);
+            BridgeGamePlay bridgeGamePlay = new BridgeGamePlay();
+            bridgeGamePlay.playGame(bridgeGame);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
