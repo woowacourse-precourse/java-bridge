@@ -24,8 +24,12 @@ public class Controller {
 
     public void run(){
         bridgeGameInitialization();
-        //게임 시작
         boolean gameContinue = true;
+        boolean gameClear = gamePlay(gameContinue);
+        finishBridgeGame(gameClear);
+    }
+
+    private boolean gamePlay(boolean gameContinue){
         boolean movingSuccess = true;
         while(gameContinue){
             String movingChoice = inputView.readMoving();
@@ -33,7 +37,7 @@ public class Controller {
             printMovingStatusMap(movingSuccess);
             gameContinue = checkGameContinue(movingSuccess);
         }
-        finishBridgeGame(movingSuccess);
+        return movingSuccess;
     }
 
     private void bridgeGameInitialization(){
@@ -43,9 +47,9 @@ public class Controller {
         bridgeGame = new BridgeGame(bridge);
     }
 
-    private void finishBridgeGame(boolean movingSuccess){
+    private void finishBridgeGame(boolean gameClear){
         outputView.printGameEndMessage();
-        outputView.printMap(bridgeGame.getMyMovingChoices(), movingSuccess, bridgeGame.getMyMovingChoices().size()-1);
+        outputView.printMap(bridgeGame.getMyMovingChoices(), gameClear, bridgeGame.getMyMovingChoices().size()-1);
         outputView.printResult(bridgeGame.getGameSuccess(), bridgeGame.getGameTryCount());
     }
 
