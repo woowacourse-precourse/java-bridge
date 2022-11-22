@@ -14,7 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int askBridgeSize() {
+    public int askBridgeSize() {    //다리의 길이를 입력시 예외 처리 및 반복
         try {
             outputView.bridgeSizeMessage();
             return readBridgeSize();
@@ -37,7 +37,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String askMoving() {
+    public String askMoving() {     //이동 방향 입력시 예외 처리 및 반복
         try {
             outputView.moveMessage();//move message 출력
             return readMoving();
@@ -59,7 +59,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String askRestart() {
+    public String askRestart() {    //재시작 여부 입력시 예외 처리 및 반복
         try {
             outputView.restartMessage();
             return readGameCommand();
