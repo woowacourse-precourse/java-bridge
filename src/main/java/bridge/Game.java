@@ -20,7 +20,6 @@ public class Game {
         BridgeMaker user = new BridgeMaker(bridgeNumberGenerator);
         List<String> userBridge = user.makeBridge(size);
         this.bridgeGame = new BridgeGame(userBridge);
-        System.out.println(userBridge);
     }
 
     public static void playGame() {
