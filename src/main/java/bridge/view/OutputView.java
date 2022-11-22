@@ -9,7 +9,7 @@ public class OutputView {
     private static final String INIT_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private static final String GAME_SUCCESS_OR_FAIL_MESSAGE = "게임 성공 여부: ";
-    private static final String TOTAL_TRY_COUNT_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
 
