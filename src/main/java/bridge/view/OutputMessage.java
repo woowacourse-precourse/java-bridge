@@ -1,6 +1,7 @@
 package bridge.view;
 
 public enum OutputMessage {
+
     GAME_RESULT("최종 게임 결과"),
     WIN_GAME("게임 성공 여부: 성공"),
     LOSE_GAME("게임 성공 여부: 실패"),

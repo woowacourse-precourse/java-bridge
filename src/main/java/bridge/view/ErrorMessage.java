@@ -1,6 +1,7 @@
 package bridge.view;
 
 public enum ErrorMessage {
+
     DIGIT("[ERROR] 다리 길이는 정수만 입력해주세요."),
     SIZE_RANGE("[ERROR] 다리 길이는 3~20 사이입니다."),
     NULL("[ERROR] 값을 입력하셔야 합니다."),
