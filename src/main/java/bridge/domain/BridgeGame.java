@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.Connector;
+import bridge.connector.Connector;
 
 import java.util.ArrayList;
 import java.util.List;
