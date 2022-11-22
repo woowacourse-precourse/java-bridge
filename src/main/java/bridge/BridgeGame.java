@@ -13,7 +13,6 @@ public class BridgeGame {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridge = bridgeMaker.makeBridge(size);
-        System.out.println("bridge = " + bridge);
     }
 
     /**
