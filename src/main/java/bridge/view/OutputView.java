@@ -21,13 +21,17 @@ public class OutputView {
 
         makeMap(position, movingResult, selectedIndex);
 
+        printCurrentMap();
+    }
+
+    public void printCurrentMap() {
         for (String compartment : map) {
             System.out.println(compartment);
         }
         System.out.println();
     }
 
-    private static void makeMap(int position, String movingResult, int selectedIndex) {
+    private void makeMap(int position, String movingResult, int selectedIndex) {
         int notSelectedIndex = 1 - selectedIndex;
         int lengthBeforeSquareBracket = map[selectedIndex].length() - 1;
 
@@ -39,7 +43,7 @@ public class OutputView {
         map[notSelectedIndex] = map[notSelectedIndex].substring(0, lengthBeforeSquareBracket) + INFIX + " " + SUFFIX;
     }
 
-    private static void makeFirstMap(String movingResult, int selectedIndex, int notSelectedIndex) {
+    private void makeFirstMap(String movingResult, int selectedIndex, int notSelectedIndex) {
         map[selectedIndex] = PREFIX + movingResult + SUFFIX;
         map[notSelectedIndex] = PREFIX + " " + SUFFIX;
     }
