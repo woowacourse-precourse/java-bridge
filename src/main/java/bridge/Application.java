@@ -14,6 +14,4 @@ public class Application {
         BridgeGame.bridge_answer = bridgeMaker.makeBridge(inputView.getSize());
         BridgeGame.playBridgeGame();
     }
-
-
 }

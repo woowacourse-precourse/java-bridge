@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
     public static List<String> bridge = new ArrayList<>();
 

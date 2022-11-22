@@ -2,8 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

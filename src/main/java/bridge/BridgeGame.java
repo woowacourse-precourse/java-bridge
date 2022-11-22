@@ -7,7 +7,6 @@ import java.util.Objects;
 public class BridgeGame {
     public static InputView inputView = new InputView();
     public static OutputView outputView = new OutputView();
-
     static List<String> bridge_answer = new ArrayList<>();
 
     static int play_count = 1;
@@ -111,8 +110,4 @@ public class BridgeGame {
         OutputView.downBridge.append("| ");
     }
 
-
-    public List<String> getBridgeAnswer() {
-        return bridge_answer;
-    }
 }
