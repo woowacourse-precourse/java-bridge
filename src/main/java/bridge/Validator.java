@@ -22,6 +22,6 @@ public class Validator {
     }
 
     public boolean readMovingValidator(String input) {
-        return input == "U" || input == "D";
+        return input.equals("U") || input.equals("D");
     }
 }
