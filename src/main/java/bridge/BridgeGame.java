@@ -17,13 +17,19 @@ public class BridgeGame {
 
     public void runGameSystem(List<String> bridge, int countOfTry) {
         GameClear gameClear = new GameClear(move(bridge, "O"));
-        if (gameClear.get()) {
+        if (endBridgeGame(gameClear)) {
             gameClear.printGameClear(countOfTry);
             return;
         }
-        if (!willRetry())
-            gameClear.printGameClear(countOfTry);
         retry(bridge, countOfTry);
+    }
+
+    private boolean endBridgeGame(GameClear gameClear) {
+        if (gameClear.get())
+            return true;
+        if (!willRetry())
+            return true;
+        return false;
     }
 
     private List<String> createBridge() {
