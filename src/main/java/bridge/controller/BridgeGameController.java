@@ -1,9 +1,15 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeGameLauncher {
+public class BridgeGameController {
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final List<String> bridge = bridgeMaker.transmitBridge();

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.controller;
 
 public class InputValidator {
     public int validatePureNumber(String input) throws NumberFormatException {
