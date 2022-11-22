@@ -32,12 +32,14 @@ public class BridgeGameController {
     /**
      * 사용자의 입력을 받아 이동 가능한지 여부를 판단하는 메서드
      */
-    public boolean move() {
+    public void move() {
         String moving = inputView.readMoving();
-        boolean isMovable = bridgeGame.move(moving);
+        bridgeGame.move(moving);
         outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserRoute());
+    }
 
-        return isMovable;
+    public boolean isCorrectMove() {
+        return bridgeGame.isCorrectMove();
     }
 
 
@@ -66,8 +68,8 @@ public class BridgeGameController {
 
     public void play() {
         for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
-            boolean isMovable = move();
-            if (!isMovable && retry()) {
+            move();
+            if (!isCorrectMove() && retry()) {
                 play();
                 break;
             }

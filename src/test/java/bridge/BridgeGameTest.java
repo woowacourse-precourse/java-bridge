@@ -24,7 +24,8 @@ class BridgeGameTest {
     @Test
     void movable() {
         for (String moving : bridge) {
-            Assertions.assertThat(bridgeGame.move(moving)).isTrue();
+            bridgeGame.move(moving);
+            Assertions.assertThat(bridgeGame.isCorrectMove()).isTrue();
         }
     }
 
@@ -33,9 +34,9 @@ class BridgeGameTest {
     void unmovable() {
         String moving = bridge.get(0);
         moving = reverseMoving(moving);
+        bridgeGame.move(moving);
 
-        System.out.println(moving);
-        Assertions.assertThat(bridgeGame.move(moving)).isFalse();
+        Assertions.assertThat(bridgeGame.isCorrectMove()).isFalse();
     }
 
     private static String reverseMoving(String moving) {

@@ -23,15 +23,13 @@ public class BridgeGame {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
-    public boolean move(String moving) {
-        int index = userRoute.size();
+    public void move(String moving) {
         userRoute.add(moving);
-        if (bridge.get(index).equals(moving)) {
-            return true;
-        }
-        return false;
     }
 
+    public boolean isCorrectMove() {
+        return userRoute.equals(bridge.subList(0, userRoute.size()));
+    }
 
 
     /**
