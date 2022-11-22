@@ -1,11 +1,7 @@
 package bridge.domain;
 
-import bridge.constant.GameCommand;
-import bridge.constant.MoveCommand;
-
-import static bridge.constant.MoveSign.MOVE_FAIL;
-import static bridge.constant.MoveSign.MOVE_SUCCESS;
-
+import bridge.constant.*;
+import static bridge.constant.MoveSign.*;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */

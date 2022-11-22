@@ -2,9 +2,7 @@ package bridge.domain;
 
 import bridge.constant.MoveCommand;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class BridgeGameResultLine {
     public static final String BLANK = " ";
