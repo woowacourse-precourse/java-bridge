@@ -18,7 +18,7 @@ public class InputView {
     public BridgeSizeDTO readBridgeSize(final OutputView outputView) {
         printBridgeSizeInputMessage(outputView);
         try {
-            final String inputBridgeSize = Console.readLine();
+            final String inputBridgeSize = userInput();
             InputBridgeSizeValidator.validate(inputBridgeSize);
             return new BridgeSizeDTO(Integer.parseInt(inputBridgeSize));
         } catch (final IllegalArgumentException raisedException) {
@@ -37,7 +37,7 @@ public class InputView {
     public MovingDTO readMoving(final OutputView outputView) {
         printMovingInputMessage(outputView);
         try {
-            final String inputMoving = Console.readLine();
+            final String inputMoving = userInput();
             InputCommandValidator.validate(inputMoving, CommandValidatorKey.MOVING_COMMAND_VALIDATOR);
             return new MovingDTO(inputMoving);
         } catch (final IllegalArgumentException raisedException) {
@@ -56,7 +56,7 @@ public class InputView {
     public GameCommandDTO readGameCommand(final OutputView outputView) {
         printGameCommandInputMessage(outputView);
         try {
-            final String inputGameCommand = Console.readLine();
+            final String inputGameCommand = userInput();
             InputCommandValidator.validate(inputGameCommand, CommandValidatorKey.RETRY_COMMAND_VALIDATOR);
             return new GameCommandDTO(inputGameCommand);
         } catch (final IllegalArgumentException raisedException) {
@@ -67,6 +67,10 @@ public class InputView {
     
     private void printGameCommandInputMessage(final OutputView outputView) {
         outputView.printGameCommandInputMessage();
+    }
+    
+    private String userInput() {
+        return Console.readLine();
     }
     
     private void printErrorMessage(final OutputView outputView, final IllegalArgumentException raisedException) {
