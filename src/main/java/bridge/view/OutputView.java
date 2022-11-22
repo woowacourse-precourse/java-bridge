@@ -3,7 +3,6 @@ package bridge.view;
 import bridge.dto.BridgeResultDto;
 import bridge.dto.GameResultDto;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -11,15 +10,12 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String BRIDGE_INIT = "[ ";
-    private static final String BRIDGE_END = " ]";
-    private static final String BRIDGE_MIDDLE= " | ";
+    private static final String BRIDGE_FROM = "[ %s ]";
+    private static final String BRIDGE_MIDDLE = " | ";
     private static final String GAME_INIT = "다리 건너기 게임을 시작합니다.";
     private static final String FINAL_RESULT = "최종 게임 결과";
     private static final String GAME_SUCCESS = "게임 성공 여부: %s";
     private static final String RETRY_COUNT = "총 시도한 횟수: %d";
-
-    private static final StringBuilder builder = new StringBuilder();
 
     public void printInit() {
         System.out.println(GAME_INIT);
@@ -48,23 +44,9 @@ public class OutputView {
     }
 
     private void printBridgeFormat(List<String> bridge) {
-        builder.append(BRIDGE_INIT);
-        formatElements(bridge);
-        builder.append(BRIDGE_END);
-
-        System.out.println(builder);
-        builder.setLength(0);
-    }
-
-    private void formatElements(List<String> bridge) {
-        Iterator<String> bridgeList = bridge.iterator();
-
-        while (bridgeList.hasNext()) {
-            builder.append(bridgeList.next());
-            if (bridgeList.hasNext()) {
-                builder.append(BRIDGE_MIDDLE);
-            }
-        }
+        String formatBridge = String.join(BRIDGE_MIDDLE, bridge);
+        String outputBridge = String.format(BRIDGE_FROM, formatBridge);
+        System.out.println(outputBridge);
     }
 
     private void printGameSuccess(String success) {
