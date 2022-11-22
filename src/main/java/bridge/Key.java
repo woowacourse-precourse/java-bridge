@@ -1,7 +1,8 @@
 package bridge;
 
 public enum Key {
-    U("U"), D("D"), R("R"), Q("Q");
+    U("U"), D("D"),
+    R("R"), Q("Q");
     private final String value;
 
     Key(String value) {

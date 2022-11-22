@@ -1,6 +1,5 @@
 package bridge;
 
-import javax.swing.text.Position;
 import java.text.MessageFormat;
 
 /**
@@ -10,6 +9,7 @@ public class BridgeGame {
     private final Bridge bridge;
     private final Result result;
     private int position = 0;
+    private static final String FINAL_MAP_FORM = "\n최종 게임 결과\n{0}\n{1}";
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -43,7 +43,7 @@ public class BridgeGame {
     }
 
     public String printGameResult() {
-        return MessageFormat.format("\n최종 게임 결과\n{0}\n{1}", this, result);
+        return MessageFormat.format(FINAL_MAP_FORM, this, result);
     }
 
     @Override

@@ -7,10 +7,10 @@ import bridge.BridgeGame;
  */
 public class OutputView {
 
-    private final static String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private final static String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
-    private final static String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private final static String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
     }
