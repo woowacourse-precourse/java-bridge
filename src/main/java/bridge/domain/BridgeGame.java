@@ -33,4 +33,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public List<String> getSavedStatus() {
+        return bridgeStatusSaver.getMovingStatus();
+    }
 }

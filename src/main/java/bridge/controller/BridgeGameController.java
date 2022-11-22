@@ -34,16 +34,15 @@ public class BridgeGameController {
     }
 
     private static void executeBridgeGame(BridgeGame bridgeGame) {
-//        while (true) {
+        if (true) {
             //이동 정보 입력 받기
             bridgeGame.move(getMoving().getMovingStatus());
-
-//        }
+            //이동한 칸의 정보를 그림으로 그리기
+//            OutputView.printMap(bridgeGame.getSavedStatus());
+        }
     }
 
     private static BridgeMoveStatus getMoving() {
         return BridgeMoveStatus.createMoving(InputView.readMoving());
     }
 }
-
-

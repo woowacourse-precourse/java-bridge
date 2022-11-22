@@ -38,6 +38,10 @@ public class BridgeStatusSaver {
         return bridge.equals(movingStatus);
     }
 
+    public List<String> getMovingStatus() {
+        return this.bridgeMovingStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o){
