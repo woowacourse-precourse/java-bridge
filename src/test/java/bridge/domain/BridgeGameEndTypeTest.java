@@ -45,6 +45,14 @@ class BridgeGameEndTypeTest {
         assertThat(endTypeExists).isFalse();
     }
 
+    @ParameterizedTest(name = "[{index}] gameEndType = {0}")
+    @ValueSource(strings = {"R", "Q"})
+    @DisplayName("입력된 String 타입의 입력값을 확인하여 성공한다.")
+    void whenEndTypeExistsThenSuccessTest(String gameEndType) {
+        boolean endTypeExists = BridgeGameEndType.isEndTypeExists(gameEndType);
+        assertThat(endTypeExists).isTrue();
+    }
+
     @Test
     @DisplayName("잘못 입력된 null를 이용한 다리 이동 타입 검색에 실패하여 예외처리 된다.")
     void whenNullSearchThenExceptionTest() {
