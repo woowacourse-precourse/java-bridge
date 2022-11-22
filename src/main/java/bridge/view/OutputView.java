@@ -15,13 +15,14 @@ public class OutputView {
     private static final String START_BRACKET = "[";
     private static final String END_BRACKET = "]";
     private static final String BAR = "|";
-    private static final String NEW_LINE = System.lineSeparator();
 
     private static final String MSG_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String MSG_FINAL_GAME_RESULT = "최종 게임 결과";
-    private static final String MSG_GAME_SUCCESS_RESULT = "게임 성공 여부: %s" + NEW_LINE;
-    private static final String MSG_TOTAL_TRY_COUNT = "총 시도한 횟수: %d" + NEW_LINE;
-    ;
+    private static final String MSG_GAME_SUCCESS_RESULT = "게임 성공 여부: %s%n";
+    private static final String MSG_TOTAL_TRY_COUNT = "총 시도한 횟수: %d%n";
+
+    private static final String ERROR_FORMAT = "[ERROR] %s%n";
+
     private StringBuilder upRow;
     private StringBuilder downRow;
 
@@ -106,7 +107,11 @@ public class OutputView {
     }
 
     private void concat() {
-        upRow.append(NEW_LINE);
+        upRow.append(System.lineSeparator());
         upRow.append(downRow);
+    }
+
+    public void printErrorMessage(Exception e) {
+        System.out.printf(ERROR_FORMAT, e.getMessage());
     }
 }

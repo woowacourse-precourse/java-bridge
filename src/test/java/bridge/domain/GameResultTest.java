@@ -13,6 +13,7 @@ public class GameResultTest {
     @BeforeEach
     protected final void init() {
         gameResult = new GameResult();
+        gameResult.init();
     }
 
     @DisplayName("건너가기 성공한 지점 정상 저장")

@@ -17,7 +17,6 @@ public class OutputViewTest {
 
     private PrintStream standardOut;
     private OutputStream captor;
-
     private GameResult gameResult;
 
     @BeforeEach
@@ -30,6 +29,7 @@ public class OutputViewTest {
 
     private void initGameResult() {
         gameResult = new GameResult();
+        gameResult.init();
         gameResult.addResult(Step.UP, true);
         gameResult.addResult(Step.DOWN, true);
         gameResult.addResult(Step.DOWN, true);

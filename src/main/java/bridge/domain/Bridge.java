@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Bridge {
 
+    private static final String ERROR_BRIDGE_SIZE = "다리 길이는 %d부터 %d 사이의 숫자여야 합니다.%n";
     private static final int LOWER_INCLUSIVE = 3;
     private static final int UPPER_INCLUSIVE = 20;
     private final List<Step> bridge;
@@ -28,7 +29,7 @@ public class Bridge {
         if (LOWER_INCLUSIVE <= size && size <= UPPER_INCLUSIVE) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR]");
+        throw new IllegalArgumentException(String.format(ERROR_BRIDGE_SIZE, LOWER_INCLUSIVE, UPPER_INCLUSIVE));
     }
 
     public boolean move(Step to) {

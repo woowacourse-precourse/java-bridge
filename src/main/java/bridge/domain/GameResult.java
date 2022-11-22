@@ -10,11 +10,7 @@ public class GameResult {
     private Step failStep;
     private GameStatus gameStatus;
 
-    public GameResult() {
-        reset();
-    }
-
-    public void reset() {
+    public void init() {
         gameCount++;
         successSteps = new LinkedList<>();
         failStep = null;
