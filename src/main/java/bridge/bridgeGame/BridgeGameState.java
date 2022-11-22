@@ -14,6 +14,14 @@ public class BridgeGameState {
         this.finalState = new Bridge(finalState);
     }
 
+    public Integer currentSize() {
+        return currentState.size();
+    }
+
+    public Integer bridgeSize() {
+        return finalState.size();
+    }
+
     public void move(BridgePosition moving) {
         currentState.add(moving.getPosition());
     }
