@@ -59,4 +59,8 @@ public class BridgeGameService {
     public int getTotalTries() {
         return tryRepository.getTotalTries();
     }
+
+    public boolean isRetryCommand(final String gameCommand) {
+        return bridgeGame.retry(gameCommand);
+    }
 }

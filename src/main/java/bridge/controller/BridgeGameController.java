@@ -6,9 +6,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
-import java.util.Objects;
 
-import static bridge.model.GameCommand.RETRY;
 import static bridge.model.GameResultState.LOSE;
 import static bridge.model.GameResultState.WIN;
 
@@ -91,7 +89,7 @@ public class BridgeGameController {
     }
 
     private boolean isRetryCommand(final String gameCommand) {
-        return Objects.equals(gameCommand, RETRY.getSign());
+        return bridgeGameService.isRetryCommand(gameCommand);
     }
 
     private void initialize() {
