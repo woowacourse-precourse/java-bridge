@@ -61,10 +61,11 @@ or
 
 
 ### 객체 디자인
-* BoardGame 다리 건너기 게임을 관리하는 클래스
+* BridgeGame 다리 건너기 게임을 관리하는 클래스
    * 시작
    * 이동
    * 재시작
+* BridgeController 요청과 출력을 맡는 컨트롤러
 * BridgeMaker 다리 생성
 * OutputView 게임진행,결과 출력
 * InputView 사용자 입력
