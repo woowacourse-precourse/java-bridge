@@ -40,7 +40,6 @@ public class NewGame {
 
     private void makeBridge() {
         answerBridge = bridgeMaker.makeBridge(BRIDGE_SIZE);
-        user = userMaker.makeUser(BRIDGE_SIZE);
     }
 
     private void makeUser() {
