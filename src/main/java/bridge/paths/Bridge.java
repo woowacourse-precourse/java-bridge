@@ -9,26 +9,24 @@ import java.util.stream.Collectors;
 public class Bridge {
 
     private final List<Direction> securePath;
-    private final int length;
 
-    public Bridge(List<String> securePath, int length){
-        validate(securePath, length);
-        this.length = length;
+    public Bridge(List<String> securePath){
+        validate(securePath);
         this.securePath = securePath.stream()
                 .map(Direction::valueOf)
                 .collect(Collectors.toList());
     }
 
-    private void validate(List<String> securePath, int length){
-        if(securePath == null || securePath.size() != length)
+    private void validate(List<String> securePath){
+        if(securePath == null)
             throw new CustomInternalOperationError(
                     "다리 길이가 사용자가 입력한 길이와 다릅니다."
             );
     }
 
-    public boolean checkCollapse(PlayerPath playerPath){
-        List<Direction> playerDirections = playerPath.getPath();
-        int index = playerDirections.size() - 1;
-        return securePath.get(index).equals(playerDirections.get(index));
+    public boolean canBeSteppedBy(PlayerPath playerPath){
+        List<Direction> path = playerPath.getPath();
+        List<Direction> subSecurePath = securePath.subList(0, path.size());
+        return subSecurePath.equals(path);
     }
 }
