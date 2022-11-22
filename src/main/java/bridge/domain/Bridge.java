@@ -6,6 +6,8 @@ import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 
 public class Bridge {
+    private static final int LOWER_BOUND_INCLUDE = 3;
+    private static final int UPPER_BOUND_INCLUDE = 20;
     private final List<String> bridge;
 
     private Bridge(List<String> bridge) {
@@ -14,7 +16,14 @@ public class Bridge {
 
     public static Bridge make(int size) {
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        validate(size);
         return new Bridge(maker.makeBridge(size));
+    }
+
+    private static void validate(int size) {
+        if (size < LOWER_BOUND_INCLUDE || size > UPPER_BOUND_INCLUDE) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 
     public boolean isProceeding(List<String> user) {
