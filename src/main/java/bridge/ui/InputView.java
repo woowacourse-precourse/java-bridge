@@ -30,7 +30,7 @@ public class InputView {
             throw new IllegalArgumentException(Exceptions.NotInteger.getMessage());
         int size = Integer.parseInt(size_str);
         if (!ValidCheck.isRange_3to20(size))
-            throw new IllegalStateException(Exceptions.NotInRange.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotInRange.getMessage());
         return size;
     }
 
@@ -52,7 +52,7 @@ public class InputView {
         if (!ValidCheck.isUorD(command))
             throw new IllegalArgumentException(Exceptions.NotUorD.getMessage());
         if (!ValidCheck.isLength1(command))
-            throw new IllegalStateException(Exceptions.NotCorrectSize.getMessage());
+            throw new IllegalArgumentException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
 
