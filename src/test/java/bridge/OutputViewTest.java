@@ -35,22 +35,22 @@ class OutputViewTest {
         return Arrays.asList(
             Arguments.of("위 위 위",
                 new Result(answerA, new UserInfo(Arrays.asList("U", "U", "U"), 3, State.Win)),
-                "[ O | O | O ]\n[   |   |   ]\n"),
+                "[ O | O | O ]\n[   |   |   ]\n\n"),
             Arguments.of("위 위 아래",
                 new Result(answerB, new UserInfo(Arrays.asList("U", "U", "D"), 3, State.Win)),
-                "[ O | O |   ]\n[   |   | O ]\n"),
+                "[ O | O |   ]\n[   |   | O ]\n\n"),
             Arguments.of("위 위 아래(불가능)",
                 new Result(answerA, new UserInfo(Arrays.asList("U", "U", "D"), 3, State.Loss)),
-                "[ O | O |   ]\n[   |   | X ]\n"),
+                "[ O | O |   ]\n[   |   | X ]\n\n"),
             Arguments.of("위 위 위(불가능)",
                 new Result(answerB, new UserInfo(Arrays.asList("U", "U", "U"), 3, State.Loss)),
-                "[ O | O | X ]\n[   |   |   ]\n"),
+                "[ O | O | X ]\n[   |   |   ]\n\n"),
             Arguments.of("위",
                 new Result(answerB, new UserInfo(Arrays.asList("U"), 3, State.Loss)),
-                "[ O ]\n[   ]\n"),
+                "[ O ]\n[   ]\n\n"),
             Arguments.of("위",
                 new Result(answerB, new UserInfo(Arrays.asList("D"), 3, State.Loss)),
-                "[   ]\n[ X ]\n")
+                "[   ]\n[ X ]\n\n")
         );
     }
 

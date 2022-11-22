@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -87,5 +88,16 @@ class BridgeGameTest {
         BridgeGame game = new BridgeGame(answer);
         assertThatThrownBy(() -> directions.forEach(i -> game.move(i))).isInstanceOf(
             IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
+
+    @Test
+    @DisplayName("게임 재시작시 시도 횟수가 증가하는지 테스트")
+    void test5() {
+        BridgeGame game = new BridgeGame(List.of("D", "D", "D"));
+        Result result = game.getResult();
+        Assertions.assertEquals(1, result.getTime());
+        game.retry();
+        result = game.getResult();
+        Assertions.assertEquals(2, result.getTime());
     }
 }

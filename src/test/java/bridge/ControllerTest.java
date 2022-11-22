@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.controller.Controller;
+import bridge.service.BridgeGameService;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -31,7 +32,6 @@ public class ControllerTest {
               "[   ]\n"
             + "[ X ]\n"
             + "\n"
-            + "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n"
             + "Q\n"
             + "최종 게임 결과\n"
             + "[   ]\n"

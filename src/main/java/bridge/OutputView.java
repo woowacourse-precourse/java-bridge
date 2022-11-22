@@ -13,6 +13,7 @@ public class OutputView {
     public void printMap(Result result) {
         print(result.getTop());
         print(result.getBottom());
+        System.out.println();
     }
     private void print(String s) {
         System.out.print(s);
@@ -26,8 +27,12 @@ public class OutputView {
     public void printResult(Result result) {
         System.out.println("최종 게임 결과");
         printMap(result);
-        System.out.println();
         System.out.println("게임 성공 여부: "+result.getState().getMsg());
         System.out.print("총 시도한 횟수: "+result.getTime());
+    }
+
+    public void wellcome() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 }
