@@ -1,0 +1,82 @@
+package bridge;
+
+
+import bridge.enummodel.ErrorMessageEnum;
+import bridge.enummodel.GameResultEnum;
+import bridge.processor.ValidatorProcessorImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameController {
+
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame = new BridgeGame(new ValidatorProcessorImpl());
+    private static int retryNumber = 1;
+    private static final int upSide = 0;
+    private static final int downSide = 1;
+
+
+    public void init() {
+        outputView.initGame();
+        run(bridgeGame.makeBridge(inputBridgeSize()), new ArrayList<>());
+    }
+
+    public void run(List<String> bridge, List<String> inputCommand) {
+        List<String> addedInputCommand = bridgeGame.addCommandInput(inputCommand, inputMoveCommand());
+        List<List<String>> result = bridgeGame.move(bridge, addedInputCommand);
+        outputView.printMap(result.get(upSide), result.get(downSide));
+        isMatchSize(bridge, addedInputCommand, result);
+    }
+
+    private void isMatchSize(List<String> bridge, List<String> inputCommand, List<List<String>> result) {
+        boolean failGame = result.get(upSide).contains(GameResultEnum.CHECK.getValue(false)) ||
+                result.get(downSide).contains(GameResultEnum.CHECK.getValue(false));
+        if (failGame) checkRetry(bridge, result);
+        if (bridge.size() == result.get(upSide).size()) outputView.printResult(result, retryNumber, true);
+        if (!failGame && bridge.size() != result.get(upSide).size()) run(bridge, inputCommand);
+    }
+
+
+    private void checkRetry(List<String> bridge, List<List<String>> result) {
+        String command = inputRetryCommand();
+        if (bridgeGame.retry(command)) {
+            retryNumber++;
+            run(bridge, new ArrayList<>());
+        }
+        if (!bridgeGame.retry(command)) {
+            outputView.printResult(result, retryNumber, false);
+        }
+    }
+
+    private int inputBridgeSize() {
+        while (true) {
+            try {
+                return bridgeGame.convertBridgeSize(inputView.readBridgeSize());
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessageEnum.NOT_VALIDATE_SIZE.getValue());
+            }
+        }
+    }
+
+    private String inputRetryCommand() {
+        while (true) {
+            try {
+                return bridgeGame.checkRetryCommand(inputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessageEnum.NOT_VALIDATE.getValue());
+            }
+        }
+    }
+
+    private String inputMoveCommand() {
+        while (true) {
+            try {
+                return bridgeGame.checkMoveCommand(inputView.readMoving());
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessageEnum.NOT_VALIDATE.getValue());
+            }
+        }
+    }
+}
