@@ -62,5 +62,6 @@ public class Game {
 
     private void endGame() {
         OutputView.printEndGame();
+        OutputView.printMap(bridgeMap);
     }
 }
