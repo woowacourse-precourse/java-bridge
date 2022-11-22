@@ -1,5 +1,6 @@
 package bridge.utils;
 
+import bridge.domain.Direction;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -35,7 +36,14 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("게임 재시작/종료 여부를 입력 시 R, Q 이 정확히 입력되면 예외처리를 하지 않는다.")
+    @DisplayName("이동할 칸 입력 시 U, D가 정확히 입력되면 예외처리를 하지 않는다.")
+    @Test
+    void inputValidMove() {
+        assertThatCode(() -> Validator.validateMove(Direction.UP.getCommand()))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("게임 재시작/종료 여부를 입력 시 R, Q가 정확히 입력되면 예외처리를 하지 않는다.")
     @Test
     void inputValidCommand() {
         assertThatCode(() -> Validator.validateGameCommand(Value.QUIT))
