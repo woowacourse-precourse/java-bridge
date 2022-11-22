@@ -55,7 +55,17 @@ class InputViewTest {
         );
     }
 
+
+    @DisplayName("게임 재시작/종료 입력에 대한 예외 테스트")
+    @ParameterizedTest
+    @MethodSource("readGameCommandParam")
     void readGameCommand(String playerCommand, String exception) {
+        assertThatThrownBy(() -> inputViewException.readGameCommandException(playerCommand))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(exception);
+    }
+
+    static Stream<Arguments> readGameCommandParam() {
 
     }
 }
