@@ -172,4 +172,27 @@ class ApplicationTest extends NsTest {
             }
         }
     }
+
+    @Nested
+    class ControllerTest {
+        @Test
+        void failTest() {
+            assertRandomNumberInRangeTest(() -> {
+                run("3", "U", "D", "U", "Q");
+                assertThat(output()).contains(
+                        "[ O |   | X ]",
+                        "[   | O |   ]",
+                        "최종 게임 결과",
+                        "[ O |   | X ]",
+                        "[   | O |   ]",
+                        "게임 성공 여부: 실패",
+                        "총 시도한 횟수: 1"
+                );
+
+                int upSideIndex = output().indexOf("[ O |   | X ]");
+                int downSideIndex = output().indexOf("[   | O |   ]");
+                assertThat(upSideIndex).isLessThan(downSideIndex);
+            }, 1, 0, 0);
+        }
+    }
 }
