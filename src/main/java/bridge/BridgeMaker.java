@@ -25,13 +25,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            addBridge(bridge);
+            addBridge(bridge, bridgeNumberGenerator.generate());
         }
         return bridge;
     }
 
-    private void addBridge(List<String> bridge) {
-        int randomNumber = bridgeNumberGenerator.generate();
+    private void addBridge(List<String> bridge, int randomNumber) {
         if (randomNumber == 0) {
             bridge.add("D");
         } else if (randomNumber == 1) {
