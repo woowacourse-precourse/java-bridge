@@ -1,14 +1,8 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
 import bridge.domain.Moving;
 import bridge.domain.Result;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -21,19 +15,6 @@ import java.util.List;
  * </p>
  */
 public class BridgeGame {
-    List<String> up = new ArrayList<>();
-    List<String> down = new ArrayList<>();
-    private static final OutputView outputView = new OutputView();
-    private static final InputView inputView = new InputView();
-    private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-//    List<String> bridge;
-    List<List<String>> results = new ArrayList<>();
-    private int count = 0;
-    boolean isRight = true;
-    String gameResult = "";
-    boolean keepGoing = true;
-    private int tryCount = 0;
-
     private Bridge bridge;
     private Moving moving;
     private Result result;
