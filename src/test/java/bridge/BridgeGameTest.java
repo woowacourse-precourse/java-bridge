@@ -35,7 +35,6 @@ class BridgeGameTest {
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         GameStatus gameStatus = gameStatusOperator.getGameStatus();
         Integer numberOfTry = gameStatusOperator.getNumberOfTry();
-
         assertThat(currentPosition).isEqualTo(-1);
         assertThat(gameStatus).isEqualTo(gameStatus.START);
         assertThat(numberOfTry).isEqualTo(0);

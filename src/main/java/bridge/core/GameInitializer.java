@@ -1,5 +1,6 @@
 package bridge.core;
 
+import bridge.BridgeMaker;
 import bridge.core.exception.Error;
 import bridge.core.exception.InvalidInputException;
 import bridge.domain.Bridge;

@@ -1,7 +1,5 @@
-package bridge.core;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.core.exception.Error;
 import bridge.core.exception.InvalidInputException;
 import bridge.type.BridgeBlock;
