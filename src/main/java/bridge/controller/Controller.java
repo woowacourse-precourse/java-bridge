@@ -15,7 +15,6 @@ public class Controller {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
-    private Player player;
     private Result result;
 
     public Controller(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
@@ -27,22 +26,24 @@ public class Controller {
     }
 
     public int inputBridgeLength() {
-        try {
-            String length = inputView.input();
-            return inputView.readBridgeSize(length);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return inputBridgeLength();
+        while (true) {
+            try {
+                String length = inputView.input();
+                return inputView.readBridgeSize(length);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
     public String inputDirection() {
-        try {
-            String direction = inputView.input();
-            return inputView.readMoving(direction);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return inputDirection();
+        while (true) {
+            try {
+                String direction = inputView.input();
+                return inputView.readMoving(direction);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
@@ -53,7 +54,6 @@ public class Controller {
 
     public void initialize() {
         int size = inputBridgeLength();
-        this.player = new Player();
         setUpBridge(size);
     }
     public void play(Player player) throws IllegalArgumentException {
@@ -66,32 +66,34 @@ public class Controller {
         outputView.printMap(result);
         outputView.printResult(player, result, MessageConstant.SUCCESS.getValue());
     }
-    public void compareDecision(String decision) {
+    public void compareDecision(String decision, Player player) {
         if(decision.equals(InputConstant.RESTART.getValue())) {
             result = new Result();
             bridgeGame.initialize(result);
-            start();
+            start(player);
         }
         if(decision.equals(InputConstant.QUIT.getValue())) {
             outputView.printResult(player, result, MessageConstant.FAIL.getValue());
         }
     }
-    public void decisionGameContinuous() {
-        try {
-            String decision = inputView.input();
-            compareDecision(inputView.readGameCommand(decision));
-        } catch(IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            decisionGameContinuous();
+    public void decisionGameContinuous(Player player) {
+        while(true) {
+            try {
+                String decision = inputView.input();
+                compareDecision(inputView.readGameCommand(decision), player);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
-    public void start() {
+    public void start(Player player) {
         try {
             play(player);
         } catch (IllegalArgumentException e) {
             outputView.printMap(result);
             outputView.printErrorMessage(e.getMessage());
-            decisionGameContinuous();
+            decisionGameContinuous(player);
         }
     }
 }
