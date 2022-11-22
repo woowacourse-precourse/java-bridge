@@ -22,6 +22,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 만약_1이면_U_0이면_D_테스트() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList());
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        String string = bridgeMaker.GeneratorToBridge(1);
+        assertThat(string).isEqualTo("U");
+        string = bridgeMaker.GeneratorToBridge(0);
+        assertThat(string).isEqualTo("D");
+
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
