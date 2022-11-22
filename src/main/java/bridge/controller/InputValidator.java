@@ -5,13 +5,13 @@ public class InputValidator {
         try {
             return Integer.parseInt(input);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 정수만 입력 가능합니다.");
         }
     }
 
     public void validateBridgeSizeRange(int size) {
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 정수여야 합니다.");
         }
     }
 

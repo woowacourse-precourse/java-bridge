@@ -8,9 +8,8 @@ public class Application {
         try {
             BridgeGameController bridgeGameController = new BridgeGameController();
             bridgeGameController.run();
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 }
