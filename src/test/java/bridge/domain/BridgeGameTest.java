@@ -10,7 +10,9 @@ class BridgeGameTest {
 
     private final List<String> bridge = List.of("D", "U", "U");
 
-    /** 0 -> down 성공, 1 -> down 실패, 2 -> up 성공, 3 -> up 실패 **/
+    /**
+     * 0 -> down 성공, 1 -> down 실패, 2 -> up 성공, 3 -> up 실패
+     **/
     @DisplayName("한 칸을 이동시킨다.(down 성공)")
     @Test
     void moveSuccess_down() {
@@ -37,7 +39,7 @@ class BridgeGameTest {
 
     @DisplayName("확인한 결과에 따라 재시작 여부를 결정한다.")
     @Test
-     void retry() {
+    void retry() {
         List<Boolean> presentResults = List.of(true, false);
         for (Boolean presentResult : presentResults) {
             assertEquals(!presentResult, BridgeGame.retry(presentResult));

@@ -20,15 +20,21 @@ public class OutputView {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
-    public static void printMessageForTermination() { System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"); }
+    public static void printMessageForTermination() {
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
 
-    public static void printErrorMessage(String e) { System.out.println(e); }
+    public static void printErrorMessage(String e) {
+        System.out.println(e);
+    }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    /** success: 0 -> down 성공, 1 -> down 실패, 2 -> up 성공, 3 -> up 실패 **/
+    /**
+     * success: 0 -> down 성공, 1 -> down 실패, 2 -> up 성공, 3 -> up 실패
+     **/
     public static void printMap(List<Integer> movingSuccess) {
         List<String> upPrintChecker = Arrays.asList("   ", "   ", " O ", " X ");
         List<String> downPrintChecker = Arrays.asList(" O ", " X ", "   ", "   ");
@@ -36,11 +42,11 @@ public class OutputView {
         System.out.println("[" + createBridge(movingSuccess, downPrintChecker) + "]");
     }
 
-    private static String createBridge(List<Integer> movingSuccess, List<String> printChecker){
+    private static String createBridge(List<Integer> movingSuccess, List<String> printChecker) {
         String printBridge = "";
-        for (int indexOfBridge = 0; indexOfBridge < movingSuccess.size(); indexOfBridge++){
+        for (int indexOfBridge = 0; indexOfBridge < movingSuccess.size(); indexOfBridge++) {
             printBridge = printBridge + printChecker.get(movingSuccess.get(indexOfBridge));
-            if (indexOfBridge != movingSuccess.size()-1) {
+            if (indexOfBridge != movingSuccess.size() - 1) {
                 printBridge += "|";
             }
         }
@@ -60,8 +66,9 @@ public class OutputView {
     }
 
     private static String checkFinalResult(List<Integer> movingSuccess) {
-        if ((movingSuccess.get(movingSuccess.size() - 1) == 0) || (movingSuccess.get(movingSuccess.size() - 1) == 2))
+        if ((movingSuccess.get(movingSuccess.size() - 1) == 0) || (movingSuccess.get(movingSuccess.size() - 1) == 2)) {
             return "성공";
+        }
         return "실패";
     }
 }
