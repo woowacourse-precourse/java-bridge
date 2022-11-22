@@ -26,5 +26,13 @@ class BridgeInputExceptionTest {
         assertThatThrownBy(() -> bridgeInputException.validBridgeRetry(retry))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"k", "five", " ", "삼"})
+    @DisplayName("다리 길이가 숫자가 아닐 때 예외 처리")
+    void validInputFormLength(String length) {
+        assertThatThrownBy(() -> bridgeInputException.validBridgeLength(length))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
