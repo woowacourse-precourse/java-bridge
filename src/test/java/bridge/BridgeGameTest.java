@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -87,4 +88,25 @@ class BridgeGameTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource("재시작_입력_생성")
+    void retry(List<String> moveCommands) {
+        for (var moveCommand : moveCommands) {
+            bridgeGame.move(moveCommand);
+        }
+
+        bridgeGame.retry();
+
+        assertThat(bridgeGame.isCompleted()).isEqualTo(false);
+    }
+
+    private static Stream<List<String>> 재시작_입력_생성() {
+        return Stream.of(
+                List.of("U", "U", "U", "D"),
+                List.of("U", "U", "D"),
+                List.of("U", "D"),
+                List.of("D"),
+                List.of("U", "U", "U")
+        );
+    }
 }
