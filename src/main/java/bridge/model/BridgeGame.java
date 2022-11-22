@@ -11,7 +11,7 @@ public class BridgeGame {
     private static final String QUIT = "Q";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
-    private List<String> marks; // "O",
+    private List<String> marks;
     private int gameCount;
     List<String> bridge;
     BridgeMaker bridgeMaker;
@@ -51,7 +51,7 @@ public class BridgeGame {
      * @return
      */
     public boolean isDiscord() {
-        if(marks.get(marks.size() - 1).equals("X")) {
+        if (marks.get(marks.size() - 1).equals("X")) {
             resultOfGame = FAIL;
             return true;
         }
@@ -93,6 +93,41 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(size);
     }
 
+
+    /**
+     * output에서 그려질 때 필요한 그림 정보를 따로 저장
+     * output에서는 보내준 그림을 print만 하는 것으로 수정
+     * @param bridge
+     * @param marks
+     * @return
+     */
+    public void makeMap(List<String> bridge, List<String> marks) {
+        map = makeBridgeSections(bridge, marks);
+    }
+
+    private List<String[]> makeBridgeSections(List<String> bridge, List<String> marks) {
+        List<String[]> temp = new ArrayList<>();
+        for (int i = 0; i < marks.size(); i++) {
+            String[] bridgeSection = makeBridgeSection(bridge.get(i), marks.get(i));
+            temp.add(bridgeSection);
+        }
+        return temp;
+    }
+
+    private String[] makeBridgeSection(String course, String mark) { // "U", "O"
+        String[] section = {" ", " "};
+        int pos = selectPosition(course);
+        section[pos] = mark;
+        return section;
+    }
+
+    private int selectPosition(String course) {
+        if (course.equals(Course.TOP.getDirection())) {
+            return Course.TOP.getNumber();
+        }
+        return Course.BOTTOM.getNumber();
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
@@ -104,6 +139,7 @@ public class BridgeGame {
     public int getGameCount() {
         return gameCount;
     }
+
     public String getResultOfGame() {
         return resultOfGame;
     }

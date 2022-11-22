@@ -24,11 +24,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<String[]> printMap(List<String> bridge, List<String> marks) {
-        List<String[]> map = makeBridgeSections(bridge, marks);
+    public void printMap(List<String[]> map) {
         printLayer(map, Course.TOP.getNumber());
         printLayer(map, Course.BOTTOM.getNumber());
-        return map;
     }
 
     private void printLayer(List<String[]> map, int course) {
@@ -40,29 +38,6 @@ public class OutputView {
         }
         System.out.print(String.join(partition, layer));
         System.out.println(" ]");
-    }
-
-    private List<String[]> makeBridgeSections(List<String> bridge, List<String> marks) {
-        List<String[]> temp = new ArrayList<>();
-        for (int i = 0; i < marks.size(); i++) {
-            String[] bridgeSection = makeBridgeSection(bridge.get(i), marks.get(i));
-            temp.add(bridgeSection);
-        }
-        return temp;
-    }
-
-    private String[] makeBridgeSection(String course, String mark) { // "U", "O"
-        String[] section = {" ", " "};
-        int pos = selectPosition(course);
-        section[pos] = mark;
-        return section;
-    }
-
-    private int selectPosition(String course) {
-        if (course.equals(Course.TOP.getDirection())) {
-            return Course.TOP.getNumber();
-        }
-        return Course.BOTTOM.getNumber();
     }
 
     /**
