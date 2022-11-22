@@ -5,9 +5,15 @@ import java.util.List;
 
 public class GameResult {
 
-    private List<String> upBridgeResult = new ArrayList<>();
-    private List<String> downBridgeResult = new ArrayList<>();
+    private List<String> upBridgeResult;
+    private List<String> downBridgeResult;
     private boolean bridgeGameResult;
+
+    public GameResult() {
+        this.upBridgeResult = new ArrayList<>();
+        this.downBridgeResult = new ArrayList<>();
+        this.bridgeGameResult = true;
+    }
 
     public List<String> getUpBridgeResult() {
         return upBridgeResult;
