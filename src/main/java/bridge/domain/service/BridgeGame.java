@@ -1,12 +1,18 @@
 package bridge.domain.service;
 
+import static bridge.domain.enums.Result.FAIL;
+import static bridge.domain.enums.Result.SUCCESS;
+import static bridge.domain.enums.Status.FAIL_STATUS;
 import static bridge.domain.enums.Status.PROGRESS_STATUS;
+import static bridge.domain.enums.Status.SUCCESS_STATUS;
 
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.controller.request.BridgeSizeRequest;
 import bridge.controller.request.MoveRequest;
+import bridge.domain.enums.Move;
+import bridge.domain.enums.Result;
 import bridge.domain.model.Bridge;
 import bridge.domain.model.ScoreMap;
 import bridge.domain.enums.Status;
@@ -40,7 +46,24 @@ public class BridgeGame {
     }
 
     public ScoreMap move(MoveRequest moveRequest) {
-        return null;
+        Move direction = moveRequest.getMove();
+        scoreMap.score(judge(direction), direction);
+        if (isSuccess()) {
+            isGameOver = true;
+            status = SUCCESS_STATUS;
+        }
+        return scoreMap;
+    }
+
+
+    private Result judge(Move direction) {
+        if (bridge.isCorrectWay(direction, step)) {
+            step++;
+            return SUCCESS;
+        }
+        isGameOver = true;
+        status = FAIL_STATUS;
+        return FAIL;
     }
 
     public void retry() {
