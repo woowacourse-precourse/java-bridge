@@ -22,6 +22,10 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        playgame();
+    }
+
+    private static void playgame() {
         OutputView outputView = new OutputView();
         int tryCount = 0;
         String flag = "retry";
