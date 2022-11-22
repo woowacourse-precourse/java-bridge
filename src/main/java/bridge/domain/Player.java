@@ -34,6 +34,10 @@ public class Player {
         return getMovedResultByPosition(lastMovedPosition);
     }
 
+    public int getGameAttempts() {
+        return this.gameAttempts;
+    }
+
     private void increaseGameAttempts() {
         gameAttempts++;
     }
