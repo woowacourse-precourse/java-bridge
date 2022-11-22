@@ -1,9 +1,9 @@
 package bridge.domain;
 
+import static bridge.domain.command.MoveCommand.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import bridge.domain.command.MoveCommand;
 
 public class ProgressMap {
 	private static final String MOVE_FAILED_VALUE = "X";
@@ -27,10 +27,10 @@ public class ProgressMap {
 	}
 
 	private void correctMove(String moving) {
-		if (moving.equals(MoveCommand.MOVE_UP.getValue())) {
+		if (moving.equals(MOVE_UP.getValue())) {
 			correctMoveUp();
 		}
-		if (moving.equals(MoveCommand.MOVE_DOWN.getValue())) {
+		if (moving.equals(MOVE_DOWN.getValue())) {
 			correctMoveDown();
 		}
 	}
@@ -46,10 +46,10 @@ public class ProgressMap {
 	}
 
 	private void incorrectMove(String moving) {
-		if (moving.equals(MoveCommand.MOVE_UP.getValue())) {
+		if (moving.equals(MOVE_UP.getValue())) {
 			incorrectMoveUp();
 		}
-		if (moving.equals(MoveCommand.MOVE_DOWN.getValue())) {
+		if (moving.equals(MOVE_DOWN.getValue())) {
 			incorrectMoveDown();
 		}
 	}
