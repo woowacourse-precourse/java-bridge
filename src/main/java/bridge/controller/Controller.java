@@ -74,8 +74,8 @@ public class Controller {
         }
         outputView.printMap(bridge);
         bridgeGame.initIndex();
-
-        return retry(bridgeGame);
+        retry(bridgeGame, bridge);
+        return true;
     }
 
     private boolean checkInitMoveBridge(BridgeGame bridgeGame, Bridge bridge, String inputMove) {
@@ -85,7 +85,8 @@ public class Controller {
         }
         outputView.printMap(bridge);
         bridgeGame.initIndex();
-        return retry(bridgeGame);
+        retry(bridgeGame, bridge);
+        return true;
     }
 
     private boolean checkBridgeIndex(BridgeGame bridgeGame) {
@@ -99,15 +100,14 @@ public class Controller {
         return false;
     }
 
-    public boolean retry(BridgeGame bridgeGame) {
-        boolean flag = false;
+    public void retry(BridgeGame bridgeGame, Bridge bridge) {
         String retryOrQuit = getRetryOrQuit();
         if(bridgeGame.checkRetry(retryOrQuit)) {
             user.addTryCount();
             start(bridgeGame);
+        }else {
+            gameEnd(bridge);
         }
-
-        return !flag;
     }
 
     private String getRetryOrQuit() {
