@@ -1,7 +1,6 @@
 package bridge.BridgeGameController;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.Model.Bridge;
 import bridge.Model.BridgeGame;
 import bridge.View.InputView;
 import bridge.View.OutputView;
@@ -10,34 +9,34 @@ import static bridge.Message.GuideMessage.*;
 
 public class BridgeGameController {
 
-    private BridgeMaker bridgeMaker;
+    private Bridge bridge;
+    private BridgeGame bridgeGame;
 
     public void init() {
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         System.out.println(GAME_START_MESSAGE.getGuideMessage());
-        BridgeGame.setBridgeSize(InputView.readBridgeSize());
-        BridgeGame.setBridgeAnswer(bridgeMaker.makeBridge(BridgeGame.getBridgeSize()));
+        bridge = new Bridge();
+        bridgeGame = new BridgeGame();
     }
 
     public boolean playBridgeGame() {
-        for (int currentBridgeSize = 0; currentBridgeSize < BridgeGame.getBridgeSize(); currentBridgeSize++) {
+        for (int currentBridgeSize = 0; currentBridgeSize < bridge.getBridgeSize(); currentBridgeSize++) {
             String nextPosition = InputView.readMoving();
-            BridgeGame.move(nextPosition, currentBridgeSize);
-            OutputView.printMap(BridgeGame.getCurrentBridge());
-            if (!BridgeGame.isSuccess()) {
+            bridgeGame.move(nextPosition, currentBridgeSize, bridge);
+            OutputView.printMap(bridgeGame.getCurrentBridge());
+            if (!bridgeGame.isSuccess()) {
                 return playAgainBridgeGame();
             }
         }
-        BridgeGame.increaseGameCount();
+        bridgeGame.increaseGameCount();
         return true;
     }
 
     public boolean playAgainBridgeGame() {
         String retryCommand = InputView.readGameCommand();
-        boolean playAgain = BridgeGame.retry(retryCommand);
-        BridgeGame.increaseGameCount();
+        boolean playAgain = bridgeGame.retry(retryCommand);
+        bridgeGame.increaseGameCount();
         if (playAgain) {
-            BridgeGame.resetBridge();
+            bridgeGame.resetBridge();
             return playBridgeGame();
         }
         return false;
@@ -46,6 +45,6 @@ public class BridgeGameController {
     public void run() {
         init();
         boolean isSuccess = playBridgeGame();
-        OutputView.printResult(isSuccess, BridgeGame.getGameCount(), BridgeGame.getCurrentBridge());
+        OutputView.printResult(isSuccess, bridgeGame.getGameCount(), bridgeGame.getCurrentBridge());
     }
 }
