@@ -6,6 +6,8 @@ public class Exception {
     private static final int MAX = 20;
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
 
 
     public static void validateIsNumeric(String input) {
@@ -25,6 +27,14 @@ public class Exception {
     public static void validateIsValidMoving(String input) {
         ErrorMessage errorMessage = ErrorMessage.NOT_VALID_MOVING;
         if (input.equals(UP) || input.equals(DOWN)){
+            return;
+        }
+        throw new IllegalArgumentException(errorMessage.getMessage());
+    }
+
+    public static void validateIsValidCommand(String input) {
+        ErrorMessage errorMessage = ErrorMessage.NOT_VALID_MOVING;
+        if (input.equals(RETRY) || input.equals(QUIT)){
             return;
         }
         throw new IllegalArgumentException(errorMessage.getMessage());
