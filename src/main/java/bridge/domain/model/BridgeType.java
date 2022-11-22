@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.model;
 
 public enum BridgeType {
     UP(1, "U"),

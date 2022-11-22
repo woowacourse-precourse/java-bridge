@@ -2,6 +2,9 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
+import bridge.domain.model.Command;
+import bridge.domain.model.GameResult;
+import bridge.domain.model.MoveResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -12,7 +15,7 @@ public class BridgeGameManager {
     private final InputView inputView;
     private final OutputView outputView;
     private List<String> bridge;
-    private String gameResult = "실패";
+    private String gameResult = GameResult.LOSE.getResult();
     private int gameTryCount = 0;
 
     public BridgeGameManager(BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
@@ -34,9 +37,9 @@ public class BridgeGameManager {
     }
 
     private void tryGame(int bridgeSize) {
-        String command = "R";
+        String command = Command.RETRY.getSymbol();
 
-        while (command.equals("R")) {
+        while (command.equals(Command.RETRY.getSymbol())) {
             bridgeGame.retry();
             gameTryCount += 1;
             String moveResult = tryMove(bridgeSize);
@@ -46,10 +49,10 @@ public class BridgeGameManager {
     }
 
     private String tryMove(int bridgeSize) {
-        String movingResult = " O ";
+        String movingResult = MoveResult.SUCCESS.getSymbol();
         int bridgeIndex = 0;
 
-        while (movingResult.equals(" O ") && bridgeIndex < bridgeSize) {
+        while (movingResult.equals(MoveResult.SUCCESS.getSymbol()) && bridgeIndex < bridgeSize) {
             String moving = inputView.readMoving();
             movingResult = bridgeGame.move(bridge, moving, bridgeIndex);
             outputView.printMap();
@@ -59,9 +62,9 @@ public class BridgeGameManager {
     }
 
     private String judgeSuccessOrReadCommand(String moveResult) {
-        if (moveResult.equals(" O ")) {
-            gameResult = "성공";
-            return "Q";
+        if (moveResult.equals(MoveResult.SUCCESS.getSymbol())) {
+            gameResult = GameResult.WIN.getResult();
+            return Command.QUIT.getSymbol();
         }
 
         return inputView.readGameCommand();

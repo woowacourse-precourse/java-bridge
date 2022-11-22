@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.model.BridgeType;
+import bridge.domain.model.MoveResult;
+
 import java.util.List;
 
 /**
@@ -23,10 +26,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(List<String> bridge, String moving, int bridgeIndex) {
-        String movingResult = " X ";
+        String movingResult = MoveResult.FAIL.getSymbol();
 
         if (bridge.get(bridgeIndex).equals(moving)) {
-            movingResult = " O ";
+            movingResult = MoveResult.SUCCESS.getSymbol();
         }
 
         setBridgeGameResult(movingResult, moving);
@@ -35,12 +38,12 @@ public class BridgeGame {
     }
 
     private void setBridgeGameResult(String movingResult, String moving) {
-        if (moving.equals("U")) {
+        if (moving.equals(BridgeType.UP.getType())) {
             bridgeGameUpResult += movingResult + "|";
             bridgeGameDownResult += "   |";
         }
 
-        if (moving.equals("D")) {
+        if (moving.equals(BridgeType.DOWN.getType())) {
             bridgeGameUpResult += "   |";
             bridgeGameDownResult += movingResult + "|";
         }
