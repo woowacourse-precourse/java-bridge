@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final String ERROR_MESSAGE_BRIDGE_SIZE = "[ERROR]  다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String ERROR_MESSAGE_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_NUMBER_FORMAT = "[ERROR] 숫자 외 문자가 입력되었습니다.";
     private static final String ERROR_MESSAGE_INPUT_MOVING = "[ERROR] U 또는 D만 입력할 수 있습니다.";
     private static final String ERROR_MESSAGE_GAME_COMMAND = "[ERROR] R 또는 Q만 입력할 수 있습니다.";
