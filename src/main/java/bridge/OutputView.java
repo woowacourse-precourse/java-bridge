@@ -10,7 +10,31 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+
+    public boolean score = true;//결과과 X면(-1) 게임 계속 할 지 묻기
+
+    public boolean printMap(int i, int val ,String udsel, int[] arry) {
+
+        System.out.print("[ ");
+        if(udsel.equals("U") && val == 0) {//U가 입력되고 U가 0 틀릴때
+            System.out.print("X");
+            score=false;
+        }else if(udsel.equals("U") && val == 1){ //U가 입력되고 U가 1 맞을때
+            System.out.print("O");
+            score=true;
+        }else { System.out.print(" "); }
+        System.out.print(" ]\r\n");
+        System.out.print("[ ");
+        if(udsel.equals("D") && val == 0) {//U가 입력되고 U가 0 틀릴때
+            System.out.print("O");
+            score=true;
+        }else if(udsel.equals("D") && val == 1){ //U가 입력되고 U가 1 맞을때
+            System.out.print("X");
+            score=false;
+        }else { System.out.print(" "); }
+        System.out.print(" ]");
+
+        return score;
     }
 
     /**
