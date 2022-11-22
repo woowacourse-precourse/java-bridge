@@ -1,4 +1,4 @@
-package bridge.util.inputvalidator;
+package bridge;
 
 public enum ErrorMessage {
 

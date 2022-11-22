@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.util.numberhandler.RandomNumberHandler;
-import bridge.util.numberhandler.RandomNumberHandlerImpl;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 

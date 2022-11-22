@@ -1,10 +1,5 @@
 package bridge;
 
-import bridge.util.inputvalidator.InputValidator;
-import bridge.util.inputvalidator.InputValidatorImpl;
-import bridge.util.numberhandler.RandomNumberHandler;
-import bridge.util.numberhandler.RandomNumberHandlerImpl;
-
 public class ContextFactory {
 
     public BridgeNumberGenerator getBridgeNumberGenerator() {

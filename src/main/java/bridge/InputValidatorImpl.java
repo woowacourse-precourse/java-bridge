@@ -1,6 +1,6 @@
-package bridge.util.inputvalidator;
+package bridge;
 
-import static bridge.util.inputvalidator.ErrorMessage.*;
+import static bridge.ErrorMessage.*;
 
 public class InputValidatorImpl implements InputValidator {
 
