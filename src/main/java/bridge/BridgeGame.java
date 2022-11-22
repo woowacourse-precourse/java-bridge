@@ -23,7 +23,10 @@ public class BridgeGame {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-
+    
+    public void end() {
+        output.printResult(bridge, current, this);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
