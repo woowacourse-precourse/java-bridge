@@ -1,5 +1,6 @@
 package bridge.Domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,5 @@ public enum BridgeRow {
     public static final int getBridgeRowNumber(){
         return (int)Arrays.stream(BridgeRow.values()).count();
     }
-
 
 }

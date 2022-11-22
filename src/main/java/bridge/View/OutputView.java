@@ -18,12 +18,9 @@ public class OutputView {
     static final String PRINT_GAME_TRY_COUNT = "총 시도한 횟수: ";
 
 
-    public void printMap(List<String> bridge, boolean success, int position) { //depth줄이기, 함수길이 줄이기
-        List<String> check = new ArrayList<>();
-        check.add("U"); //enum
-        check.add("D"); //enum
-        for(int index = 0; index< BridgeRow.getBridgeRowNumber(); index++){
-            String standard = check.get(index);
+    public void printMap(List<String> bridge, boolean success, int position) {
+        for(int index = BridgeRow.getBridgeRowNumber()-1; index >= 0 ; index--){
+            String standard = BridgeRow.getRowUsingNumber(index);
             printMapStartPoint(bridge, standard, position);
             printMapEndPoint(bridge.get(position), standard, success);
         }
@@ -33,9 +30,8 @@ public class OutputView {
         System.out.print(BRIDGE_START);
         for(int index=0; index<position; index++){
             String eachSpace = BLANK;
-            if(standard.equals(bridge.get(index))){
+            if(standard.equals(bridge.get(index)))
                 eachSpace = CORRECT_SPACE;
-            }
             System.out.print(BLANK + eachSpace + BLANK);
             System.out.print(BAR);
         }

@@ -16,10 +16,10 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public boolean gamePlayOnce(String position){
+    public boolean gamePlayOnce(String position) {
         int len = mySelectBridge.size();
         mySelectBridge.add(position);
-        if(mySelectBridge.get(len).equals(bridge.get(len))) {
+        if (mySelectBridge.get(len).equals(bridge.get(len))){
             return true;
         }
         return false;

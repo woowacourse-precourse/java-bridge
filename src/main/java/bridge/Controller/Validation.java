@@ -50,7 +50,7 @@ public class Validation {
 
     public static void validateGameCommand(String input){
         if(!input.equals(GAME_RETRY) && !input.equals(GAME_QUIT)){
-            throw new IllegalArgumentException("게임 재시작 또는 종료 시, 조건에 맞지 않는 입력입니다. (" + Validation.GAME_RETRY + " 또는 " + Validation.GAME_RETRY + " 이어야 합니다.)");
+            throw new IllegalArgumentException("게임 재시작 또는 종료 시, 조건에 맞지 않는 입력입니다. (" + Validation.GAME_RETRY + " 또는 " + Validation.GAME_QUIT + " 이어야 합니다.)");
         }
     }
 }
