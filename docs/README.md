@@ -3,7 +3,7 @@
 ## [ Constant ]
 
 ### InputViewConstants
-- [ ] InputView에서 사용되는 상수들을 모아놓는다.
+- [x] InputView에서 사용되는 상수들을 모아놓는다.
 
 ### OutputViewConstants
 - [ ] OutputView에서 사용되는 상수들을 모아놓는다.
