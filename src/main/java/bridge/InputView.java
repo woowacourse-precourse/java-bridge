@@ -14,7 +14,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        return 0;
+        validInput(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
@@ -41,5 +42,9 @@ public class InputView {
         if (input < MIN_BRIDGE_SIZE || input > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException(Messages.ERROR_INPUT_BRIDGE_MESSAGE.getMessage());
         }
+    }
+    private void validInput(String input){
+        int size = strToInt(input);
+        isBetweenRange(size);
     }
 }
