@@ -23,28 +23,33 @@ public class OutputView {
         BridgeGame.retryCount++;
         for(int index = 0 ; index < bridgeData.size(); index++) {
             if(index != 0) printView.lineSkip();
-            System.out.println(printView.MOVE_STEP);
-            moveStep = inputView.readGameCommand();
-            bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
+            stepIntoBridge(bridgeData, index);
             if(BridgeGame.checkResultFlag == 1 || BridgeGame.checkResultFlag == 2) break;
             succesStepBridge(index, bridgeData);
         }
     }
 
-    private boolean exitLoop() {
-        return BridgeGame.checkResultFlag != 1 && BridgeGame.checkResultFlag != 2;
+    private void stepIntoBridge(List<String> bridgeData, int index) {
+        System.out.println(printView.MOVE_STEP);
+        moveStep = inputView.readGameCommand();
+        bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
     }
 
     private void succesStepBridge(int index, List<String> bridgeData) {
-        BridgeMoveStepService bridgeMoveStepService = new BridgeMoveStepService();
         if(index == bridgeData.size() - 1 && BridgeGame.checkResultFlag == 0) {
-            BridgeGame.checkResultFlag = 2;
-            printView.lineSkip();
-            System.out.println(printView.THE_GAME_RESULT);
-            bridgeMoveStepService.extractBracket(bridgeGame.upSide,bridgeGame.downSide);
-            printView.lineSkip();
+            successStepIntoBridge();
             printSuccessOrFailCase();
         }
+    }
+
+    private void successStepIntoBridge() {
+        BridgeMoveStepService bridgeMoveStepService = new BridgeMoveStepService();
+
+        BridgeGame.checkResultFlag = 2;
+        printView.lineSkip();
+        System.out.println(printView.THE_GAME_RESULT);
+        bridgeMoveStepService.extractBracket(bridgeGame.upSide,bridgeGame.downSide);
+        printView.lineSkip();
     }
 
     public void printSuccessOrFailCase() {
@@ -58,5 +63,9 @@ public class OutputView {
             System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.SUCCESS);
             System.out.println(printView.TOTAL_COUNT+" "+ bridgeGame.retryCount);
         }
+    }
+
+    private boolean exitLoop() {
+        return BridgeGame.checkResultFlag != 1 && BridgeGame.checkResultFlag != 2;
     }
 }
