@@ -2,11 +2,13 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import bridge.model.BridgeGame;
 import bridge.model.Progress;
 import bridge.model.constant.BridgePattern;
+import bridge.model.constant.Command;
 import bridge.model.constant.GameCondition;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -75,7 +77,7 @@ public class FunctionListTest {
     }
 
     /**
-     * BridgePattern에 대한 테스트
+     * BridgePattern 클래스에 대한 테스트
      */
     @DisplayName("입력된 숫자를 상수로 정의된 문자로 변환 성공 케이스")
     @ParameterizedTest
@@ -91,17 +93,36 @@ public class FunctionListTest {
         assertThatThrownBy(() -> BridgePattern.convertNumberToMove(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력한 문자에 부합하는 항목을 성공적으로 찾는 케이스")
+    @DisplayName("입력한 문자에 부합하는 유형을 성공적으로 찾는 케이스")
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
     public void searchSuccess(String input) {
         assertThatCode(() -> BridgePattern.searchBridgeType(input)).doesNotThrowAnyException();
     }
 
-    @DisplayName("입력한 문자에 부합하는 항목을 성공적으로 찾지 못하는 케이스")
+    @DisplayName("입력한 문자에 부합하는 유형을 성공적으로 찾지 못하는 케이스")
     @ParameterizedTest
     @ValueSource(strings = {"X", "Y"})
     public void searchFail(String input) {
         assertThatThrownBy(() -> BridgePattern.searchBridgeType(input)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    /**
+     * Command 클래스에 대한 테스트
+     */
+    @DisplayName("입력한 문자에 부합하는 명령 유형을 성공적으로 찾는 케이스")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    public void searchCommandSuccess(String input) {
+        assertThatCode(() -> Command.searchCommand(input)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력한 문자에 부합하는 명령 유형을 성공적으로 찾지 못하는 케이스")
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "B"})
+    public void searchCommandFail(String input) {
+        assertThatThrownBy(() -> Command.searchCommand(input)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }
