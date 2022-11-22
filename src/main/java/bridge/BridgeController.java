@@ -5,6 +5,7 @@ import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
 import bridge.domain.MovingCommand;
 import bridge.domain.RetryCommand;
+import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

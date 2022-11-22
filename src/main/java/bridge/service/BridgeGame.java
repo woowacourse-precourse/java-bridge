@@ -1,5 +1,7 @@
-package bridge;
+package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeStatusSaver;
 import bridge.domain.BridgeLength;
 import bridge.domain.BridgeStatus;
 import bridge.domain.MovingCommand;

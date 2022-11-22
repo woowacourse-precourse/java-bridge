@@ -1,10 +1,12 @@
-package bridge;
+package bridge.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import bridge.BridgeMaker;
+import bridge.BridgeStatusSaver;
 import bridge.domain.BridgeLength;
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
