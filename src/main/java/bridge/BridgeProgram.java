@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.controller.BridgeGame;
 import bridge.dto.MapDto;
-import bridge.exception.GameCommandException;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -30,7 +29,7 @@ public class BridgeProgram {
     }
 
     private boolean canRetry() {
-        return !bridgeGame.success() && retry();
+        return !bridgeGame.success() && checkGameCommand();
     }
 
     private void make() {
@@ -61,21 +60,10 @@ public class BridgeProgram {
         }
     }
 
-    private boolean retry() {
-        String gameCommand = validateGameCommand();
-        if (gameCommand.equals("R")) {
-            bridgeGame.retry();
-            return true;
-        }
-        return false;
-    }
-
-    private String validateGameCommand() {
+    private boolean checkGameCommand() {
         while (true) {
             try {
-                String gameCommand = inputView.readGameCommand();
-                GameCommandException.validate(gameCommand);
-                return gameCommand;
+                return bridgeGame.retry(inputView.readGameCommand());
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }
