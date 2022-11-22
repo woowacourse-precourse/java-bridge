@@ -11,6 +11,7 @@ public class OutputView {
     static final String END_GAME = "최종 게임 결과";
     static final String GAME_STATE = "게임 성공 여부: %s";
     static final String TRY_COUNT = "총 시도한 횟수: %d";
+    static final String DELIMITER = "|";
     static String upState = "";
     static String downState = "";
 
@@ -22,8 +23,8 @@ public class OutputView {
     public static void printMap() {
         List<String> upResult = UpDown.upBridges;
         List<String> downResult = UpDown.downBridges;
-        upState = String.join("|", upResult);
-        downState = String.join("|", downResult);
+        upState = String.join(DELIMITER, upResult);
+        downState = String.join(DELIMITER, downResult);
         System.out.printf(BRIDGE_STATE, upState);
         System.out.printf(BRIDGE_STATE, downState);
     }

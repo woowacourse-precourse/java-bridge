@@ -7,7 +7,7 @@ import java.util.Objects;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    static final String END = "END";
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -18,7 +18,7 @@ public class BridgeGame {
             bridgeShape.remove(0);
             return selectMove;
         }
-        return "END";
+        return END;
     }
 
     /**

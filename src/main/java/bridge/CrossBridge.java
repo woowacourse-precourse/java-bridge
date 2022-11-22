@@ -5,6 +5,9 @@ import java.util.Objects;
 
 public class CrossBridge {
 
+    static final String PASS = "PASS";
+    static final String FAIL = "FAIL";
+
     public CrossBridge(int bridgeSize, List<String> bridgeShape) {
         crossBridge(bridgeSize, bridgeShape);
     }
@@ -14,12 +17,12 @@ public class CrossBridge {
         while (i < bridgeSize) {
             String selectMove = InputView.readMoving();
             String aliveOrDie = BridgeGame.move(selectMove, bridgeShape);
-            if (Objects.equals(aliveOrDie, "END")) {
-                UpDown.BridgeGameState(selectMove, "FAIL");
+            if (Objects.equals(aliveOrDie, BridgeGame.END)) {
+                UpDown.BridgeGameState(selectMove, FAIL);
                 OutputView.printMap();
                 break;
             }
-            UpDown.BridgeGameState(selectMove, "PASS");
+            UpDown.BridgeGameState(selectMove, PASS);
             OutputView.printMap();
             i++;
         }

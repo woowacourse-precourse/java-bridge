@@ -7,6 +7,8 @@ import java.util.Objects;
 public class Application {
 
     static final String START_GAME = "다리 건너기 게임을 시작합니다. \n";
+    static final String SUCCESS = "성공";
+    static final String FAIL = "실패";
 
     public static void main(String[] args) {
         // 게임 시작
@@ -53,8 +55,8 @@ public class Application {
 
     private static String checkGameState(List<String> bridgeShape){
         if (bridgeShape.isEmpty()){
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 }

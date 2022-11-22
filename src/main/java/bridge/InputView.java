@@ -13,6 +13,11 @@ public class InputView {
     static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     static final String ENTER_UP_OR_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     static final String RESTART_GAME = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    static final String BRIDGE_SIZE_EXCEPTION = "[ERROR] 다리 길이는 3이상 20사이의 숫자를 입력할 수 있습니다.";
+    static final String NUMBER_EXCEPTION = "[ERROR] 숫자만 입력가능합니다.";
+    static final String NOTHING_EXCEPTION = "[ERROR] 입력 값이 없어 종료합니다.";
+    static final String BRIDGE_MOVING_EXCEPTION = "[ERROR] U와 D만 입력 가능 합니다.";
+    static final String BRIDGE_GAME_RESTART_EXCEPTION = "[ERROR] R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있습니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -22,12 +27,12 @@ public class InputView {
             System.out.println(ENTER_BRIDGE_SIZE);
             int bridgeSize = Integer.parseInt(Console.readLine());
             if (bridgeSize < 3 | bridgeSize > 20) {
-                System.out.println("[ERROR] 다리 길이는 3이상 20이사의 숫자를 입력할 수 있습니다.");
+                System.out.println(BRIDGE_SIZE_EXCEPTION);
                 return readBridgeSize();
             }
             return bridgeSize;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자만 입력가능합니다.");
+            System.out.println(NUMBER_EXCEPTION);
             return readBridgeSize();
         }
     }
@@ -41,7 +46,7 @@ public class InputView {
         String selectMove = Console.readLine();
         System.out.println(selectMove);
         if (!Objects.equals(selectMove, "U") && !Objects.equals(selectMove, "D")) {
-            System.out.println("[ERROR] U와 D만 입력 가능 합니다.");
+            System.out.println(BRIDGE_MOVING_EXCEPTION);
             return readMoving();
         }
         return selectMove;
@@ -57,15 +62,15 @@ public class InputView {
         try {
             String selectRestart =  Console.readLine();
             if (!Objects.equals(selectRestart, "R") && !Objects.equals(selectRestart, "Q")){
-                System.out.println("[ERROR] R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있습니다.");
+                System.out.println(BRIDGE_GAME_RESTART_EXCEPTION);
                 return readGameCommand();
             }
             return selectRestart;
         } catch (NoSuchElementException e) {
-            System.out.println("[ERROR] 입력 값이 없어 종료합니다.");
+            System.out.println(NOTHING_EXCEPTION);
             return "Q";
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] R(재시작)과 q(종료) 중 하나의 문자를 입력할 수 있습니다.");
+            System.out.println(BRIDGE_GAME_RESTART_EXCEPTION);
             return readGameCommand();
         }
     }

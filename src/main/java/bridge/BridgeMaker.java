@@ -30,8 +30,6 @@ public class BridgeMaker {
             String shapeUD = UpDown.valueOfLabel(shape);
             bridgeShape.add(shapeUD);
         }
-        System.out.println(bridgeNumber);
-        System.out.println(bridgeShape);
         return bridgeShape;
     }
 }
