@@ -14,7 +14,7 @@ class LengthBridgeTest {
         assertThat(new LengthBridge(input).getLength()).isEqualTo(Integer.parseInt(input));
     }
 
-    @ValueSource(strings = {"x", "a1", "1d", "@"})
+    @ValueSource(strings = {"x", "a1", "1d", "@", "2"})
     @ParameterizedTest
     void lengthBridge_예외_테스트(String input) {
         assertThatThrownBy(() -> new LengthBridge(input)).isInstanceOf(IllegalArgumentException.class);
