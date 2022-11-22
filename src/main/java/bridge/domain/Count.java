@@ -4,6 +4,8 @@ public class Count {
     public static int tryCount;
     public static int passCount;
 
+    public static int crossCount;
+
     public static int getTryCount() {
         return tryCount;
     }

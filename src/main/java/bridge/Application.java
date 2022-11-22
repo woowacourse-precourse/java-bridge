@@ -11,12 +11,5 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
-        List<Integer> number = new ArrayList<>();
-
-        System.out.println(bridgeMaker.putNumber(number,3));
     }
 }
