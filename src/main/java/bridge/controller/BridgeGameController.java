@@ -111,7 +111,6 @@ public class BridgeGameController extends LoopActivity {
         if (command == CommandType.GAME_QUIT) {
             return false;
         }
-        bridgeGame.retry();
         return true;
     }
 
