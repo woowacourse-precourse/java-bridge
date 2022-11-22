@@ -55,14 +55,14 @@ class BridgeGameTest {
     public void initLocationTest() {
         //given
         BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
-        int initialLocation = 0;
+        int resetLocation = 0;
         bridge.move();
 
         //when
         bridge.retry();
 
         //then
-        assertThat(bridge.getLocation()).isEqualTo(initialLocation);
+        assertThat(bridge.getLocation()).isEqualTo(resetLocation);
     }
 
     @DisplayName("위치 비교가 잘되는지 테스트")
