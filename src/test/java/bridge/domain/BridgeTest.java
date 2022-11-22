@@ -22,4 +22,33 @@ class BridgeTest {
         assertThat(bridge.isLastBlock()).isEqualTo(false);
         assertThat(bridge.getCurrentBlock()).isEqualTo(0);
     }
+
+    @DisplayName("reset 테스트")
+    @Test
+    public void resetTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        bridge.move();
+        bridge.move();
+        bridge.move();
+
+        // when
+        bridge.retry();
+
+        // then
+        assertThat(bridge.getCurrentBlock()).isEqualTo(0);
+    }
+
+    @DisplayName("move 테스트")
+    @Test
+    public void currentBlockTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+
+        // when
+        bridge.move();
+
+        // then
+        assertThat(bridge.getCurrentBlock()).isEqualTo(1);
+    }
 }
