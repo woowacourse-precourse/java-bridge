@@ -35,7 +35,7 @@ public class BridgeController {
     private void playTurn() {
         try {
             bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.getSketch());
+            outputView.printMap(bridgeGame.getPicture());
             checkFail();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -61,8 +61,8 @@ public class BridgeController {
 
     private void announceFinalResult() {
         outputView.announceEndGame();
-        String bridgeSketch = bridgeGame.getSketch();
-        outputView.printMap(bridgeSketch);
+        String bridgePicture = bridgeGame.getPicture();
+        outputView.printMap(bridgePicture);
         boolean isSuccess = bridgeGame.isSuccess();
         int tryCount = bridgeGame.getTryCount();
         outputView.printResult(isSuccess, tryCount);

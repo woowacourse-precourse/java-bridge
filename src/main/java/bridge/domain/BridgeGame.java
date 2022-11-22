@@ -58,8 +58,8 @@ public class BridgeGame {
         return bridgeReferee.isCrossCompletely();
     }
 
-    public String getSketch() {
-        return bridgeDrawer.getSketch();
+    public String getPicture() {
+        return bridgeDrawer.getPicture();
     }
 
     public int getTryCount() {

@@ -13,8 +13,8 @@ public class OutputView {
         System.out.println(NO_LETTER);
     }
 
-    public void printMap(String bridgeSketch) {
-        System.out.println(bridgeSketch);
+    public void printMap(String bridgePicture) {
+        System.out.println(bridgePicture);
         System.out.println(NO_LETTER);
     }
 

@@ -16,7 +16,7 @@ public class BridgeDrawer {
     private static final String CORRECT_MOVING = " O ";
     private static final String WRONG_MOVING = " X ";
     private static final String BETWEEN_LINE = "|";
-    private static final String SKETCH_FRAME = "%s\n%s";
+    private static final String PICTURE_FRAME = "%s\n%s";
     private static final int GAP_BETWEEN_INDEX_AND_LENGTH = 1;
 
     public BridgeDrawer() {
@@ -35,11 +35,11 @@ public class BridgeDrawer {
         closeBracket();
     }
 
-    public String getSketch() {
-        String upperLineSketch = upperLine.toString();
-        String lowerLineSketch = lowerLine.toString();
-        String sketch = String.format(SKETCH_FRAME, upperLineSketch, lowerLineSketch);
-        return sketch;
+    public String getPicture() {
+        String upperLinePicture = upperLine.toString();
+        String lowerLinePicture = lowerLine.toString();
+        String picture = String.format(PICTURE_FRAME, upperLinePicture, lowerLinePicture);
+        return picture;
     }
 
     public void reset() {
@@ -59,8 +59,8 @@ public class BridgeDrawer {
     }
 
     private boolean isEndWithSpace() {
-        String upperLineSketch = upperLine.toString();
-        return upperLineSketch.endsWith(SPACE);
+        String upperLinePicture = upperLine.toString();
+        return upperLinePicture.endsWith(SPACE);
     }
 
     private int getLastIndexOfLine() {

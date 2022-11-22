@@ -31,7 +31,7 @@ class BridgeDrawerTest {
             String moving = UPPER_SIDE;
             GameStatus gameStatusAfterMoving = ON_WAY;
             bridgeDrawer.record(moving, gameStatusAfterMoving);
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[ O ]" + "\n" + "[   ]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O ]" + "\n" + "[   ]");
         }
 
         @DisplayName("아래 방향 이동에 실패")
@@ -40,7 +40,7 @@ class BridgeDrawerTest {
             String moving = LOWER_SIDE;
             GameStatus gameStatusAfterMoving = FAIL;
             bridgeDrawer.record(moving, gameStatusAfterMoving);
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[   ]" + "\n" + "[ X ]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[   ]" + "\n" + "[ X ]");
         }
 
         @DisplayName("위, 아래 방향 이동 성공 후, 아래 방향 이동에 실패")
@@ -49,7 +49,7 @@ class BridgeDrawerTest {
             bridgeDrawer.record(UPPER_SIDE, ON_WAY);
             bridgeDrawer.record(LOWER_SIDE, ON_WAY);
             bridgeDrawer.record(LOWER_SIDE, FAIL);
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | X ]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | X ]");
         }
 
         @DisplayName("위, 아래 방향 이동 성공 후, 아래 방향 이동에 성공하며 다리를 모두 건너기 완료")
@@ -58,7 +58,7 @@ class BridgeDrawerTest {
             bridgeDrawer.record(UPPER_SIDE, ON_WAY);
             bridgeDrawer.record(LOWER_SIDE, ON_WAY);
             bridgeDrawer.record(LOWER_SIDE, END);
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | O ]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O |   |   ]" + "\n" + "[   | O | O ]");
         }
     }
 
@@ -71,18 +71,18 @@ class BridgeDrawerTest {
         void should_DeleteRecordOfWrongMoving_When_FailToMoveAfterSuccessOnce() {
             bridgeDrawer.record(UPPER_SIDE, ON_WAY);
             bridgeDrawer.record(LOWER_SIDE, FAIL);
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
             bridgeDrawer.reset();
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[]" + "\n" + "[]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[]" + "\n" + "[]");
         }
 
         @DisplayName("시작 후 바로 이동 실패한 경우")
         @Test
         void should_DeleteRecordOfWrongMoving_When_FailToMoveRightAfterStart() {
             bridgeDrawer.record(LOWER_SIDE, FAIL);
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[   ]" + "\n" + "[ X ]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[   ]" + "\n" + "[ X ]");
             bridgeDrawer.reset();
-            assertThat(bridgeDrawer.getSketch()).isEqualTo("[]" + "\n" + "[]");
+            assertThat(bridgeDrawer.getPicture()).isEqualTo("[]" + "\n" + "[]");
         }
     }
 }
