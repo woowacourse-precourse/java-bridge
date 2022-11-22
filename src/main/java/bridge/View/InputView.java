@@ -1,9 +1,9 @@
 package bridge.View;
 
-import bridge.Controller.BridgeSizeValidator;
-import bridge.Controller.GameCommandValidator;
-import bridge.Controller.MovingCommandValidator;
-import bridge.Controller.Validator;
+import bridge.Model.BridgeSizeValidator;
+import bridge.Model.GameCommandValidator;
+import bridge.Model.MovingCommandValidator;
+import bridge.Model.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -27,7 +27,7 @@ public class InputView {
         try{
             validator.validate(input);
         } catch(IllegalArgumentException e){
-            readBridgeSize();
+            return readBridgeSize();
         }
         return Integer.parseInt(input);
     }
@@ -42,7 +42,7 @@ public class InputView {
         try{
             validator.validate(input);
         }catch(IllegalArgumentException e){
-            readMoving();
+            return readMoving();
         }
         return input;
     }
@@ -57,7 +57,7 @@ public class InputView {
         try{
             validator.validate(input);
         }catch(IllegalArgumentException e){
-            readGameCommand();
+            return readGameCommand();
         }
         return input;
     }
