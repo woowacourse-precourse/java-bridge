@@ -23,7 +23,7 @@ public class OutputView {
 
     public void printPlayerBridgeTop(Map<Integer, ArrayList<String>> playerBridge) {
         top = new StringBuilder();
-        top.append("[");
+        top.append("[ ");
         for(int i=0;i<playerBridge.size();i++){
             String position = playerBridge.get(i).get(0);
             String correct = playerBridge.get(i).get(1);
@@ -34,16 +34,16 @@ public class OutputView {
                 top.append(" ");
             }
             if(i!=(playerBridge.size()-1)){
-                top.append("|");
+                top.append(" | ");
             }
         }
-        top.append("]");
+        top.append(" ]");
         System.out.println(top);
     }
 
     public void printPlayerBridgeDown(Map<Integer, ArrayList<String>> playerBridge) {
         down = new StringBuilder();
-        down.append("[");
+        down.append("[ ");
         for(int i=0;i<playerBridge.size();i++){
             String position = playerBridge.get(i).get(0);
             String correct = playerBridge.get(i).get(1);
@@ -54,10 +54,10 @@ public class OutputView {
                 down.append(correct);
             }
             if(i!=(playerBridge.size()-1)){
-                down.append("|");
+                down.append(" | ");
             }
         }
-        down.append("]");
+        down.append(" ]");
         System.out.println(down);
     }
     /**
