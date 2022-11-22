@@ -2,6 +2,8 @@ package utils;
 
 import static constant.Message.*;
 
+import org.assertj.core.util.Strings;
+
 public class Validation {
 
     public static final int MINIMUM_LENGTH = 3;
@@ -17,7 +19,12 @@ public class Validation {
 
     public String validMovingNext(String movingNext) throws IllegalArgumentException {
         try {
+            if (Strings.isNullOrEmpty(movingNext)) {
+                throw new NullPointerException(String.format(ASK_INPUT_CHARACTER_U_OR_D, ERROR_HEAD_MESSAGE));
+            }
             return validUOrD(movingNext);
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException(e.getMessage());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_U_OR_D, ERROR_HEAD_MESSAGE));
         }
