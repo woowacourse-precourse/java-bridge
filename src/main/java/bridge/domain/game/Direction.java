@@ -1,4 +1,4 @@
-package bridge.domain.userInfo;
+package bridge.domain.game;
 
 public class Direction {
 

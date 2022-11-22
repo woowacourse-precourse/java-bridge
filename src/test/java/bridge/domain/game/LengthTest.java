@@ -1,8 +1,7 @@
-package bridge.domain;
+package bridge.domain.game;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.domain.bridgeInfo.Length;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

@@ -1,6 +1,6 @@
 package bridge.domain.result;
 
-import bridge.domain.bridgeInfo.Length;
+import bridge.domain.game.Length;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

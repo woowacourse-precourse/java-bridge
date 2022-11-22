@@ -1,4 +1,4 @@
-package bridge.domain.bridgeInfo;
+package bridge.domain.game;
 
 import bridge.BridgeMaker;
 import java.util.List;

@@ -2,8 +2,8 @@ package bridge.service;
 
 import bridge.domain.result.MovedPositions;
 import bridge.domain.result.Result;
-import bridge.domain.userInfo.Direction;
-import bridge.domain.userInfo.Position;
+import bridge.domain.game.Direction;
+import bridge.domain.game.Position;
 import bridge.handler.InputHandler;
 
 /**

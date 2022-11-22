@@ -1,7 +1,7 @@
 package bridge.domain.result;
 
-import bridge.domain.bridgeInfo.Bridge;
-import bridge.domain.userInfo.Position;
+import bridge.domain.game.Bridge;
+import bridge.domain.game.Position;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

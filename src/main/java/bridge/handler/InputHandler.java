@@ -1,8 +1,8 @@
 package bridge.handler;
 
-import bridge.domain.bridgeInfo.Length;
-import bridge.domain.userInfo.Direction;
-import bridge.domain.userInfo.GameCommand;
+import bridge.domain.game.Length;
+import bridge.domain.game.Direction;
+import bridge.domain.game.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
