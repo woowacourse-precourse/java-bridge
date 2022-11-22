@@ -19,7 +19,7 @@ class CustomExceptionTest {
     @DisplayName("true case : 다리 길이 3")
     @Test
     void checkBridgeSize() {
-        String input = "3";
+        int input = 3;
         boolean bool = customException.checkBridgeSize(input);
         assertThat(bool).isEqualTo(true);
     }
@@ -27,7 +27,7 @@ class CustomExceptionTest {
     @DisplayName("false case : 다리 길이 21")
     @Test
     void checkBridgeSize2() {
-        String input = "21";
+        int input = 21;
         boolean bool = customException.checkBridgeSize(input);
         assertThat(bool).isEqualTo(false);
     }
