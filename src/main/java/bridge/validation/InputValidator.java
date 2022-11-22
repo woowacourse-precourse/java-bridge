@@ -9,7 +9,7 @@ public class InputValidator {
     public void validateBridgeSize(String input) {
         final int MIN_BRIDGE_SIZE = 3;
         final int MAX_BRIDGE_SIZE = 20;
-        String form = "[-+]?\\d*\\.?\\d+";
+        final String form = "[-+]?\\d*\\.?\\d+";
 
         if(input.matches(form)==false) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
