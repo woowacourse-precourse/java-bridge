@@ -29,4 +29,15 @@ public class InputView {
             return readMoving();
         }
     }
+
+    public String readGameCommand() {
+        try {
+            String retryInput = Console.readLine();
+            bridgeException.checkRestartOrDoneException(retryInput);
+            return retryInput;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + "게임을 재시작하고 싶으시면 R, 그만하고 싶으시면 Q를 입력해주세요.");
+            return readGameCommand();
+        }
+    }
 }
