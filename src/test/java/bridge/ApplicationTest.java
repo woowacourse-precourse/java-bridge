@@ -5,13 +5,20 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
 
     @Test
     void 다리_생성_테스트() {
@@ -22,15 +29,39 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 움직임_테스트(){
+        BridgeGame bridgeGame = new BridgeGame();
+        String move = bridgeGame.move(List.of("U"), "U", 1);
+        assertThat(move).isEqualTo(" O ");
+    }
+
+    @Test
+    void 재시작_테스트(){
+        BridgeGame bridgeGame = new BridgeGame();
+        assertThat(bridgeGame.retry("R")).isTrue();
+    }
+
+    @Test
+    void 맵_출력_테스트(){
+        setUp();
+        OutputView outputView = new OutputView();
+        outputView.printMap(List.of(" O ", "   "), List.of("   ", " X "));
+        assertThat(outputStreamCaptor.toString()).contains(
+                "[ O |   ]",
+                "[   | X ]"
+        );
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
@@ -64,5 +95,9 @@ class ApplicationTest extends NsTest {
         public int generate() {
             return numbers.remove(0);
         }
+    }
+
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
     }
 }
