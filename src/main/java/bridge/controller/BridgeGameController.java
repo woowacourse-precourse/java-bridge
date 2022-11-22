@@ -30,15 +30,15 @@ public class BridgeGameController {
     }
 
     public void start() {
-//        try {
+        try {
             System.out.println(Message.START_GAME.getMessage());
             System.out.println(Message.INPUT_SIZE.getMessage());
             inputSize = inputView.inputBridgeSize();
             bridges = bridgeMaker.makeBridge(inputSize);
             runGame();
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//        }
+        } catch (RuntimeException error) {
+            System.out.println(error.getMessage());
+        }
         outputView.printResult();
     }
 
@@ -63,7 +63,7 @@ public class BridgeGameController {
     }
 
     private static void restartGame(String moveResult) {
-        if (moveResult.equals("X")) {
+        if (moveResult.equals(Message.MOVE_FAIL.getMessage())) {
             System.out.println(Message.ASK_RESTART.getMessage());
             String inputRestart = inputView.inputGameRestart();
             if (inputRestart.equals(Message.RESTART.getMessage())) {
