@@ -27,7 +27,7 @@ public class GameStatusOperator {
 
     public void initPosition() { currentPosition = START_POSITION; }
 
-    public void changePosition() { currentPosition++; }
+    public int changePosition() { return ++currentPosition; }
 
     public void turnBackPosition() { currentPosition--; }
 

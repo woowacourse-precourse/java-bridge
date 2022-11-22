@@ -35,18 +35,14 @@ public class OutputView {
     public static void printResult(ProcessCondition finishCondition, BridgeGame bridgeGame) {
         System.out.println();
         System.out.println(RESULT);
-        if (finishCondition == FinishCondition.FINISHED) {
+        if (finishCondition == FinishCondition.FINISHED)
             printWhetherFinished(PassCondition.PASS, FINISHED, bridgeGame);
-        }
-        if (finishCondition == FinishCondition.NOT_FINISHED) {
+        if (finishCondition == FinishCondition.NOT_FINISHED)
             printWhetherFinished(PassCondition.FAIL, NOT_FINISHED, bridgeGame);
-        }
         System.out.println(NUMBER_OF_TRY + bridgeGame.getGameStatusOperator().getNumberOfTry());
     }
 
-    private static void printWhetherFinished(ProcessCondition passCondition,
-                                             String finishCondition,
-                                             BridgeGame bridgeGame) {
+    private static void printWhetherFinished(ProcessCondition passCondition, String finishCondition, BridgeGame bridgeGame) {
         printMap(passCondition, bridgeGame);
         System.out.println();
         System.out.println(FINISHED_OR_NOT_FINISHED + finishCondition);

@@ -36,8 +36,7 @@ public class BridgeGameHandler {
         OutputView.printMap(passCondition, bridgeGame);
         FinishCondition finishCondition = bridgeGame.checkWhetherFinished(passCondition);
         if (finishCondition.equals(FinishCondition.FINISHED)) return bridgeGame.quit(FinishCondition.FINISHED);
-        if (finishCondition.equals(FinishCondition.NOT_FINISHED)) return executeGame(passCondition, bridgeGame);
-        return null;
+        return executeGame(passCondition, bridgeGame);
     }
 
     public ProcessCondition executeFailCondition(BridgeGame bridgeGame) {
@@ -45,13 +44,7 @@ public class BridgeGameHandler {
         do {
             selectGameProcess = bridgeGame.selectRetryOrQuit(readGameCommand());
         } while (selectGameProcess == null);
-        if (selectGameProcess.equals(GameStatus.RESTART)) {
-            ProcessCondition processCondition = bridgeGame.retry();
-            return executeGame(processCondition, bridgeGame);
-        }
-        if (selectGameProcess.equals(GameStatus.QUIT)) {
-            return bridgeGame.quit(FinishCondition.NOT_FINISHED);
-        }
-        return null;
+        if (selectGameProcess.equals(GameStatus.RESTART)) return executeGame(bridgeGame.retry(), bridgeGame);
+        return bridgeGame.quit(FinishCondition.NOT_FINISHED);
     }
 }

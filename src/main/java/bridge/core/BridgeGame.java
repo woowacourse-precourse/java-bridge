@@ -22,8 +22,7 @@ public class BridgeGame {
 
     public static BridgeGame initBridgeGame(String bridgeLength) {
         try {
-            GameInitializer gameInitializer = new GameInitializer();
-            return gameInitializer.init(bridgeLength);
+            return (new GameInitializer()).init(bridgeLength);
         } catch (InvalidInputException e) {
             ExceptionHandler.handle(e);
             return null;
@@ -40,16 +39,12 @@ public class BridgeGame {
 
     public ProcessCondition move(String selectBlock) {
         try {
-            gameStatusOperator.changePosition();
-            Integer nextPosition = gameStatusOperator.getCurrentPosition();
-            if (bridge.checkPassableBlock(nextPosition, selectBlock)) return PassCondition.PASS;
+            if (bridge.checkPassableBlock(gameStatusOperator.changePosition(), selectBlock)) return PassCondition.PASS;
             return PassCondition.FAIL;
         } catch (InvalidInputException e) {
             gameStatusOperator.turnBackPosition();
             ExceptionHandler.handle(e);
             return null;
-        } catch (Exception e) {
-            throw new CommonException(Error.FAIL, "플레이어 이동");
         }
     }
 
