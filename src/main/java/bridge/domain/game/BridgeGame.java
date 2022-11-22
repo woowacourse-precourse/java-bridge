@@ -48,7 +48,7 @@ public class BridgeGame {
         if (movings.isEmpty()) {
             return false;
         }
-        int movingCount = movings.size() - GameConstants.REVISION_NUMBER;
+        int movingCount = movings.size() - GameConstants.INDEX_REVISION_NUMBER;
         return !movings.get(movingCount).equals(bridge.get(movingCount));
     }
 
