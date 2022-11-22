@@ -8,7 +8,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
 
     OutputView outView = new OutputView();
-    private int sizeValidate(){
+    public int sizeValidate(){
 
         int size;
 
@@ -23,7 +23,7 @@ public class InputView {
         return size;
     }
 
-    private void checkSize(int size) {
+    public void checkSize(int size) {
         if (size < 3 || size > 20)
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 수만 가능합니다.");
     }
@@ -40,7 +40,7 @@ public class InputView {
         return size;
     }
 
-    private void MoveCheck(String word){
+    public void MoveCheck(String word){
         if (word.charAt(0) != 'U' && word.charAt(0) != 'D') {
             throw new IllegalArgumentException("[ERROR] 올바르게 입력해 주세요.");
         }
