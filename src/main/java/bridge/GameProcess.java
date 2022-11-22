@@ -38,6 +38,32 @@ public class GameProcess {
         }
     }
 
+    private String userUpOrDownInput(String userUpOrDown) {
+        while(true) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            try {
+                userUpOrDown = inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return userUpOrDown;
+        }
+    }
+
+    private String userGameCommandInput(String userGameCommand) {
+        while(true) {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            try {
+                userGameCommand = inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return userGameCommand;
+        }
+    }
+
     public List<String> bridgeGenerateProcess(int userBridgeSize) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -74,25 +100,20 @@ public class GameProcess {
             passFail = false;
         } while(passFail);
         if (!passFailFinal) {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-            userGameCommandInput = inputView.readGameCommand();
-            if (userGameCommandInput.equals("R")) {
-                userInput.clear();
-            }
+            userGameCommandInput = userGameCommandInput(userGameCommandInput);
+            if (userGameCommandInput.equals("R")) { userInput.clear(); }
         }
         return new RoundResult(passFail, passFailFinal, userGameCommandInput);
     }
 
     private boolean userMove(boolean passFail) {
+        String userUpOrDownInput = "";
         for (int index = 0 ; index < userBridgeSize ; index++) {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-            String userUpOrDownInput = inputView.readMoving();
+            userUpOrDownInput = userUpOrDownInput(userUpOrDownInput);
             userInputAdd(userUpOrDownInput);
             passFail = bridgeGame.move(bridgeAnswer, userInput);
             outputView.printMap(userInput, passFail);
-            if (!passFail) {
-                break;
-            }
+            if (!passFail) { break; }
         }
         return passFail;
     }
