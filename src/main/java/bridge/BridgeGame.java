@@ -74,7 +74,7 @@ public class BridgeGame {
         try {
             inputResult = retryInput();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] R 또는 Q 를 입력해주세요.");
             retryInput();
         }
         return inputResult;
