@@ -14,9 +14,8 @@ public class BridgeGame {
         this.result=new Result();
         tryCount=1;
     }
-    public void makeBridge(int bridgeSize){
-        BridgeMaker bridgeMaker=new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge=new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    public void makeBridge(List<String> bridge){
+        this.bridge=new Bridge(bridge);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

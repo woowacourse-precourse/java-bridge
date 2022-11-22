@@ -1,10 +1,14 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.util.Constants;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.List;
 
 public class BridgeGameController {
     private final OutputView outputView;
@@ -16,12 +20,14 @@ public class BridgeGameController {
         bridgeGame=new BridgeGame();
     }
     public void gameStart(){
+        outputView.printStartGame();
         makeBridge();
         move(bridgeGame.getBridgeSize());
     }
     public int makeBridge(){
-        outputView.printStartGame();
-        bridgeGame.makeBridge(inputBridgeSize());
+        BridgeMaker bridgeMaker=new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge=bridgeMaker.makeBridge(inputBridgeSize());
+        bridgeGame.makeBridge(bridge);
         return bridgeGame.getBridgeSize();
     }
     public int inputBridgeSize(){
