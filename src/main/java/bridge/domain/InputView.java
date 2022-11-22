@@ -50,7 +50,7 @@ public class InputView {
 			try {
 				readMovingExceptionCheck(tempUpOrDown);
 			} catch (IllegalArgumentException e) {
-				continue;
+				System.out.println("[ERROR] U와 D만 선택하세요.");
 			}
 		} while (!upOrDown.equals("U") && !upOrDown.equals("D"));
 		return upOrDown;
@@ -61,7 +61,7 @@ public class InputView {
 			this.upOrDown = tempUpOrDown;
 			return;
 		}
-		System.out.println("[ERROR] U와 D만 선택하세요.");
+		this.upOrDown = "";
 		throw new IllegalArgumentException("[ERROR] U와 D만 선택하세요.");
 	}
 
@@ -75,7 +75,7 @@ public class InputView {
 			try {
 				readGameCommandExceptionCheck(tempRestartOrQuit);
 			} catch (IllegalArgumentException e) {
-				continue;
+				System.out.println("[ERROR] R와 Q만 선택하세요.");
 			}
 		} while (!restartOrQuit.equals("R") && !restartOrQuit.equals("Q"));
 		return restartOrQuit;
@@ -86,7 +86,7 @@ public class InputView {
 			this.restartOrQuit = tempRestartOrQuit;
 			return;
 		}
-		System.out.println("[ERROR] R와 Q만 선택하세요.");
+		this.restartOrQuit = "";
 		throw new IllegalArgumentException("[ERROR] R와 Q만 선택하세요.");
 	}
 
