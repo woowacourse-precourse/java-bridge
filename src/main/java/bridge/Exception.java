@@ -10,4 +10,11 @@ public class Exception {
 		}
 	}
 
+	public void checkBridgeSize(String bridgeSizeInput) throws IllegalArgumentException {
+		if (Integer.parseInt(bridgeSizeInput) < Constants.NUMBER_THREE
+			|| Integer.parseInt(bridgeSizeInput) > Constants.NUMBER_TWENTY) {
+			throw new IllegalArgumentException(Constants.ERROR_NUMBER_RANGE);
+		}
+	}
+
 }
