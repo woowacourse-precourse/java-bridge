@@ -32,6 +32,8 @@
 4. BridgeGame
    1. 사용자의 칸이동
    2. 다시시작
+   3. 사용자 위치 저장
+   4. 게임 실패 성공 여부 저장
 5. BridgeMaker
    1. 다리를 생성
 6. BridgeNumberGenerator
