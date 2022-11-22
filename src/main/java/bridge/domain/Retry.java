@@ -1,6 +1,8 @@
-package bridge;
+package bridge.domain;
 
-import static bridge.exception.ExceptionName.BRIDGE_GAME_RETRY_EXCEPTION;
+import static bridge.constant.Commands.QUIT_COMMAND;
+import static bridge.constant.Commands.RETRY_COMMAND;
+import static bridge.constant.ExceptionName.BRIDGE_GAME_RETRY_EXCEPTION;
 
 public class Retry {
 
@@ -12,7 +14,7 @@ public class Retry {
     }
 
     private void validate(String retry) {
-        if (!retry.equals("R") && !retry.equals("Q")) {
+        if (!retry.equals(RETRY_COMMAND) && !retry.equals(QUIT_COMMAND)) {
             throw new IllegalArgumentException(BRIDGE_GAME_RETRY_EXCEPTION);
         }
     }

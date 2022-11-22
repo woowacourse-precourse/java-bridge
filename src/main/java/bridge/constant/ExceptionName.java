@@ -1,4 +1,4 @@
-package bridge.exception;
+package bridge.constant;
 
 public class ExceptionName {
 

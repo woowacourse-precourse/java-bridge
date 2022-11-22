@@ -1,5 +1,8 @@
 package view;
 
+import static bridge.constant.GameMessage.GAME_RESULT_MESSAGE;
+import static bridge.constant.GameMessage.GAME_SUCCESS_OR_FAILURE_MESSAGE;
+import static bridge.constant.GameMessage.TOTAL_NUMBER_OF_ATTEMPTS_MESSAGE;
 
 import java.util.List;
 
@@ -35,11 +38,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String>[] bridgeMove, String successful, int count) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT_MESSAGE);
         System.out.println(addMap(bridgeMove[0]));
         System.out.println(addMap(bridgeMove[1]));
-        System.out.println("\n게임 성공 여부: " + successful);
-        System.out.println("총 시도한 횟수: " + count);
+        System.out.println(GAME_SUCCESS_OR_FAILURE_MESSAGE + successful);
+        System.out.println(TOTAL_NUMBER_OF_ATTEMPTS_MESSAGE + count);
     }
 
     public void printException(String errorMessage) {

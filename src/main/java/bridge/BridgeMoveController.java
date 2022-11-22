@@ -1,12 +1,19 @@
-package bridge.controller;
+package bridge;
 
-import bridge.BridgeMove;
+import static bridge.constant.Commands.DOWN_COMMAND;
+import static bridge.constant.Commands.UP_COMMAND;
+
+import bridge.domain.BridgeMove;
 import java.util.ArrayList;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
 
 public class BridgeMoveController {
+
+    public static final String CAN_CROSS_BRIDGE = "O";
+    public static final String CANNOT_CROSS_BRIDGE = "X";
+    public static final String EMPTY_SPACE = " ";
 
     private final List<String> bridge;
     private List<String> upperBridgeMove = new ArrayList<>();
@@ -26,17 +33,17 @@ public class BridgeMoveController {
 
     private void runBuildBridgeMove() {
         int location = 0;
-        String correct = "O";
-        while (location < bridge.size() && correct.equals("O")) {
+        String correct = CAN_CROSS_BRIDGE;
+        while (location < bridge.size() && correct.equals(CAN_CROSS_BRIDGE)) {
             correct = checkCorrectAndBuildBridge(location++);
         }
     }
 
     private String checkCorrectAndBuildBridge(int location) {
         String upDown = readMoving().getMove();
-        String correct = "X";
+        String correct = CANNOT_CROSS_BRIDGE;
         if (checkMove(location, upDown)) {
-            correct = "O";
+            correct = CAN_CROSS_BRIDGE;
         }
         addBridgeAndPrintMap(location, upDown, correct);
         return correct;
@@ -49,11 +56,11 @@ public class BridgeMoveController {
     }
 
     private void addBridge(int location, String upDown, String correct) {
-        if (upDown.equals("U")) {
+        if (upDown.equals(UP_COMMAND)) {
             upperBridgeMove.add(location, correct);
-            lowerBridgeMove.add(location, " ");
-        } else if (upDown.equals("D")) {
-            upperBridgeMove.add(location, " ");
+            lowerBridgeMove.add(location, EMPTY_SPACE);
+        } else if (upDown.equals(DOWN_COMMAND)) {
+            upperBridgeMove.add(location, EMPTY_SPACE);
             lowerBridgeMove.add(location, correct);
         }
     }
@@ -67,6 +74,4 @@ public class BridgeMoveController {
         String bridgeUpDown = bridge.get(index);
         return (bridgeMoveUpDown.equals(bridgeUpDown));
     }
-
-
 }

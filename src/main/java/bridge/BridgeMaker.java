@@ -1,6 +1,8 @@
 package bridge;
 
-import static bridge.exception.ExceptionName.BRIDGE_MAKER_SIZE_EXCEPTION;
+import static bridge.constant.Commands.DOWN_COMMAND;
+import static bridge.constant.Commands.UP_COMMAND;
+import static bridge.constant.ExceptionName.BRIDGE_MAKER_SIZE_EXCEPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,32 +23,28 @@ public class BridgeMaker {
     }
 
     public int readBridgeSize() {
-        InputView inputView = new InputView();
-        String bridgeSize = inputView.readBridgeSize();
+        String bridgeSize = new InputView().readBridgeSize();
         return validateBridgeSize(bridgeSize);
     }
 
     private int validateBridgeSize(String bridgeSize) {
-        int integerBridgeSize = 0;
-        integerBridgeSize = validateBridgeSizeInteger(bridgeSize);
+        int integerBridgeSize = validateBridgeSizeInteger(bridgeSize);
         validateBridgeSizeRange(integerBridgeSize);
         return integerBridgeSize;
+    }
+
+    private int validateBridgeSizeInteger(String bridgeSize) {
+        try {
+            return Integer.parseInt(bridgeSize);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BRIDGE_MAKER_SIZE_EXCEPTION);
+        }
     }
 
     private void validateBridgeSizeRange(int integerBridgeSize) {
         if (integerBridgeSize < MIN_BRIDGE_SIZE || integerBridgeSize > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException(BRIDGE_MAKER_SIZE_EXCEPTION);
         }
-    }
-
-    private int validateBridgeSizeInteger(String bridgeSize) {
-        int integerBridgeSize;
-        try {
-            integerBridgeSize = Integer.parseInt(bridgeSize);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BRIDGE_MAKER_SIZE_EXCEPTION);
-        }
-        return integerBridgeSize;
     }
 
     /**
@@ -64,9 +62,9 @@ public class BridgeMaker {
     private void buildBridge(List<String> bridge) {
         int randomNumber = bridgeNumberGenerator.generate();
         if (randomNumber == 0) {
-            bridge.add("D");
+            bridge.add(DOWN_COMMAND);
         } else if (randomNumber == 1) {
-            bridge.add("U");
+            bridge.add(UP_COMMAND);
         }
     }
 }

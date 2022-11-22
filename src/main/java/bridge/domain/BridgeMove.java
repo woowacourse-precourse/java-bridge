@@ -1,6 +1,8 @@
-package bridge;
+package bridge.domain;
 
-import static bridge.exception.ExceptionName.BRIDGE_MOVE_EXCEPTION;
+import static bridge.constant.Commands.DOWN_COMMAND;
+import static bridge.constant.Commands.UP_COMMAND;
+import static bridge.constant.ExceptionName.BRIDGE_MOVE_EXCEPTION;
 
 public class BridgeMove {
 
@@ -12,7 +14,7 @@ public class BridgeMove {
     }
 
     private String validateMove(String move) {
-        if (!move.equals("U") && !move.equals("D")) {
+        if (!move.equals(UP_COMMAND) && !move.equals(DOWN_COMMAND)) {
             throw new IllegalArgumentException(BRIDGE_MOVE_EXCEPTION);
         }
         return move;

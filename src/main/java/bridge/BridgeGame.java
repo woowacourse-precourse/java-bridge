@@ -1,6 +1,8 @@
 package bridge;
 
-import bridge.controller.BridgeMoveController;
+import static bridge.constant.Commands.RETRY_COMMAND;
+
+import bridge.domain.Retry;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -9,6 +11,10 @@ import view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    public static final String GAME_SUCCESS = "성공";
+    public static final String GAME_FAILURE = "실패";
+    public static final String CANNOT_CROSS_BRIDGE = "X";
 
     private final List<String> bridge;
     private int count = 0;
@@ -38,7 +44,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        String successful = "성공";
+        String successful = GAME_SUCCESS;
         List<String>[] moveBridge = new BridgeMoveController(bridge).run();
         count++;
         successful = checkSuccessful(successful, moveBridge);
@@ -48,8 +54,8 @@ public class BridgeGame {
     }
 
     private String checkSuccessful(String successful, List<String>[] moveBridge) {
-        if (moveBridge[0].contains("X") || moveBridge[1].contains("X")) {
-            successful = "실패";
+        if (moveBridge[0].contains(CANNOT_CROSS_BRIDGE) || moveBridge[1].contains(CANNOT_CROSS_BRIDGE)) {
+            successful = GAME_FAILURE;
             if (checkRetry()) {
                 return null;
             }
@@ -60,7 +66,7 @@ public class BridgeGame {
     private boolean checkRetry() {
         Retry retry = new Retry(new InputView().readGameCommand());
         String retryCommand = retry.getRetry();
-        if (retryCommand.equals("R")) {
+        if (retryCommand.equals(RETRY_COMMAND)) {
             retry();
             return true;
         }
