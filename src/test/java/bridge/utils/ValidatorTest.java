@@ -1,4 +1,4 @@
-package bridge;
+package bridge.utils;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
