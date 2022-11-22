@@ -10,6 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeTest {
+
     private static final int INIT_VALUE_OF_POSITION = 0;
     private static final int INIT_VALUE_OF_CHALLENGES = 1;
 
@@ -18,7 +19,7 @@ public class BridgeTest {
 
     @BeforeEach
     void setUp() {
-        bridge = new Bridge(List.of("U", "D", "U"));
+        bridge = new Bridge(List.of("D", "D", "U"));
         player = new Player(
                 Position.of(INIT_VALUE_OF_POSITION),
                 new ChallengeNumbers(INIT_VALUE_OF_CHALLENGES));
@@ -28,14 +29,14 @@ public class BridgeTest {
     @Test
     void isMatchedTrue() {
         boolean actual = bridge.isMatched(player, MoveCommand.MOVE_UP_VALUE);
-        assertThat(actual).isTrue();
+        assertThat(actual).isFalse();
     }
 
     @DisplayName("player가 입력한 값과 현재 포지션이 Bridge와 일치하지 않으면 false를 반환한다.")
     @Test
     void isMatchedFalse() {
         boolean actual = bridge.isMatched(player, MoveCommand.MOVE_DOWN_VALUE);
-        assertThat(actual).isFalse();
+        assertThat(actual).isTrue();
     }
 
     @DisplayName("player의 현재 포지션이 Bridge의 index를 넘기지 않으면 true를 반환한다.")
