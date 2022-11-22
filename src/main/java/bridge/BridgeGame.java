@@ -33,6 +33,38 @@ public class BridgeGame {
 //        return false;
         }
 
+        public boolean rightAnswer() {
+            int idx = bridge_create -1;
+            if(moveUser.get(idx) == bridge.get(idx)) {
+                return true;
+            }
+            return false;
+        }
+        public void makeBridge() {
+            String result = Choose.FAILURE.getValue();
+            if (rightAnswer()) {
+                result = Choose.SUCCESS.getValue();
+            }
+            makeupBridge(result);
+            makedownBridge(result);
+        }
+
+        private void makeupBridge(String result) {
+            if(moveUser.get(moveUser.size()-1) == Choose.UP.getValue()) {
+                upBridge.add(result);
+                return;
+            }
+            upBridge.add(" ");
+        }
+
+        private void makedownBridge(String result) {
+            if(moveUser.get(moveUser.size()-1) == Choose.DOWN.getValue()) {
+                downBridge.add(result);
+                return;
+            }
+            downBridge.add(" ");
+        }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
