@@ -25,6 +25,19 @@ public class OutputViewTest extends NsTest {
         output.printMap(testMove, testBridge);
 
     }
+
+    @Test
+    void testPrintMap2(){
+        List<String> testBridge = new ArrayList<>(Arrays.asList("U", "D", "U"));
+        ArrayList<String> testMove = new ArrayList<>();
+        testMove.add("success");
+        testMove.add("success");
+        testMove.add("success");
+        System.out.println("bridge: "+testBridge);
+        System.out.println("testMove: "+testMove);
+        output.printMap(testMove, testBridge);
+
+    }
     @Override
     protected void runMain() {
 
