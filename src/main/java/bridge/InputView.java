@@ -15,11 +15,33 @@ public class InputView {
     public int readBridgeSize() {
 
         System.out.println("다리의 길이를 입력해주세요.");
-        String bridgeLengthInput = Console.readLine();
-        int bridgeLength = Integer.parseInt(bridgeLengthInput); // TODO 숫자가 아닌 값이 들어왔을 때 예외 처리 할것
+
+        String bridgeLengthInput= Console.readLine();
+        if(!bridgeLengthInput.matches("[0-9]+")){
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+        int bridgeLength = Integer.parseInt(bridgeLengthInput);
+
+        if(bridgeLength<3 && bridgeLength>20){
+            throw new IllegalArgumentException("[ERROR] 다리의 길이는 3이상 20이하로만 설정 가능합니다.");
+        }
 
         return bridgeLength;
     }
+    public int readBridgeSizeWithValidityCheck(){
+        int bridgeLength;
+        while(true){
+            try{
+                bridgeLength=readBridgeSize();
+                break;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return bridgeLength;
+    }
+
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
@@ -30,21 +52,6 @@ public class InputView {
         return nextStepInput;
     }
 
-/*    public String readMoving() {
-        String nextStepInput;
-        while(true) {
-            try {
-                nextStepInput = Console.readLine();
-                if (nextStepInput.length() > 1) {
-                    throw new IllegalArgumentException("[ERROR] 한자리 숫자만 입력하세요"); //TODO 예외 종류 알아보기
-                }
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return nextStepInput;
-    }*/
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
