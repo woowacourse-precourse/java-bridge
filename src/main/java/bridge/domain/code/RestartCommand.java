@@ -6,7 +6,7 @@ public enum RestartCommand {
     RESTART("R"),
     QUIT("Q");
 
-    public static final String ERROR_DID_NOT_FOUND_RESTART_CODE = "[ERROR] 재시작/ 종료 명령어가 아닙니다.";
+    public static final String ERROR_DID_NOT_FOUND_RESTART_CODE = "[ERROR] 재시작/종료 명령어가 아닙니다.";
     private final String commandCode;
 
     RestartCommand(final String commandCode) {

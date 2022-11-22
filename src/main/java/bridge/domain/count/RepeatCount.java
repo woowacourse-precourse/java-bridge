@@ -16,7 +16,6 @@ public class RepeatCount {
     }
 
     private void validateRepeatCountLessThanMaxValue(Integer count) {
-        System.out.println(count);
         if (count < 0) {
             throw new IllegalStateException(ERROR_COUNT_OVER_MAX_SIZE);
         }
