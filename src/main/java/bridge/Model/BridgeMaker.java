@@ -1,11 +1,13 @@
 package bridge.Model;
 
 import bridge.BridgeNumberGenerator;
+import bridge.Constant.BridgeValue;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
 
+    private static final int UP = 1;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -22,9 +24,9 @@ public class BridgeMaker {
     }
 
     private String changeValue(final int number) {
-        if (number == 1) {
-            return "U";
+        if (number == UP) {
+            return BridgeValue.UP.value();
         }
-        return "D";
+        return BridgeValue.DOWN.value();
     }
 }
