@@ -28,10 +28,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame.getDashBoard(), bridgeGame.getCount());
+        System.out.println();
+        System.out.print("게임 성공 여부: ");
+        System.out.println(printIsGameClear(bridgeGame.getIsWin()));
+        System.out.println("총 시도한 횟수: "+bridgeGame.getNumberOfTimes());
     }
-
+    public String printIsGameClear(boolean isClear){
+        if(isClear){
+            return "성공";
+        }
+        return "실패";
+    }
     //게임시작 메시지 출력
     public void printGameStart(){
         System.out.println("다리 건너기 게임을 시작합니다.");

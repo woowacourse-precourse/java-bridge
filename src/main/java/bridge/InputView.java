@@ -51,13 +51,17 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public boolean readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
+
         if(!isRestartQuit(input)){
             throw  new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q 두 가지 입력만 가능합니다.");
         }
-        return input;
+        if(input.equals("R")){
+            return true;
+        }
+        return false;
     }
 
     // 게임 재시도 여부 입력이 R 또는 Q인지 예외처리

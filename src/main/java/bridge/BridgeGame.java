@@ -28,7 +28,7 @@ public class BridgeGame {
         this.dashBoard.add(bridgeDown); //0
         this.dashBoard.add(bridgeUp); //1
         this.count =0;
-        this.numberOfTimes =1;
+        this.numberOfTimes =0;
         isWin =false;
     }
     public void setBridge(int size) {
@@ -58,6 +58,13 @@ public class BridgeGame {
     public int getNumberOfTimes(){
         return  this.numberOfTimes;
     }
+    public boolean isProceed(){
+        if(isContainX() || isWin){
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -89,6 +96,7 @@ public class BridgeGame {
         this.dashBoard.get(1).set(count, WRONG);
         return;
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

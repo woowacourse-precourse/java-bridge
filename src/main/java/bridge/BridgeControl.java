@@ -24,8 +24,15 @@ public class BridgeControl {
         getBridgeSize();
 
         //게임 시작
-        play();
+        do{
+            bridgeGame.retry();
+            play();
+        }while (isRetry());
+
         //결과 출력
+        if(bridgeGame.getIsWin()){
+            // TODO: 2022-11-22 최종결과출력
+        }
     }
 
     private void getBridgeSize(){
@@ -41,15 +48,35 @@ public class BridgeControl {
     }
 
     private void play(){
-        String
+       try {
+           moving();
+       }catch (IllegalArgumentException e){
+           System.out.println(e.getMessage());
+           play();
+       }
+
+
+
+    }
+    private void moving(){
         do {
             bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.);
-        }while(retry());
+            outputView.printMap(bridgeGame.getDashBoard(), bridgeGame.getCount());
+            //x가 있거나 게임이 종료되면 false
+        }while(bridgeGame.isProceed());
+
     }
-    private boolean retry(){
+    private boolean isRetry(){
+        //이겼으면 종료
         if(bridgeGame.getIsWin()){
             return false;
+        }
+        try {
+            return inputView.readGameCommand();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            isRetry();
         }
         return true;
     }
