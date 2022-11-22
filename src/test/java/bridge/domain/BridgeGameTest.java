@@ -32,6 +32,16 @@ class BridgeGameTest {
         assertThat(bridgeGame.move("D")).isEqualTo("FAIL");
     }
 
+    @DisplayName("다리 끝까지 올바른 방향으로 가면 'SUCCESS'가 리턴되는지 확인")
+    @Test
+    void move_다리_끝까지_올바른_방향_이동() {
+        assertAll(
+                () -> assertEquals(bridgeGame.move("U"), "NEXT"),
+                () -> assertEquals(bridgeGame.move("D"), "NEXT"),
+                () -> assertEquals(bridgeGame.move("D"), "SUCCESS")
+        );
+    }
+
     @Test
     void retry() {
     }
