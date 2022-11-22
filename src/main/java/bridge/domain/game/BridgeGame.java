@@ -2,6 +2,7 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeBlock;
+import bridge.domain.game.dto.BridgeGameDto;
 import bridge.resource.ErrorMessage;
 
 import java.util.ArrayList;
@@ -12,14 +13,12 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private int location;
-    private int attempt;
+    BridgeGameDto bridgeGameDto;
     CrossingResult crossingResult;
     Bridge bridge;
 
     public BridgeGame(Bridge bridge) {
-        this.attempt = 1;
-        this.location = 0;
+        this.bridgeGameDto = new BridgeGameDto();
         this.crossingResult = new CrossingResult();
         this.bridge = bridge;
     }
@@ -32,9 +31,9 @@ public class BridgeGame {
     public boolean move(String input) {
         validateBlock(input);
 
-        if (bridge.isSameBlock(location, input)) {
+        if (bridge.isSameBlock(bridgeGameDto.getLocation(), input)) {
             crossingResult.add(Crossing.SUCCESS, input);
-            location++;
+            bridgeGameDto.addLocation();
             return true;
         }
         crossingResult.add(Crossing.FAIL, input);
@@ -51,24 +50,22 @@ public class BridgeGame {
 
         boolean isRetry = input.equals(Retry.RETRY.value);
         if (isRetry) {
-            location = 0;
+            bridgeGameDto.resetLocation();
             this.crossingResult = new CrossingResult();
         }
-        attempt++;
+        bridgeGameDto.addAttempt();
 
         return isRetry;
     }
 
     private void validateRetry(String input) {
-        if (!input.equals(Retry.RETRY.value) &&
-                !input.equals(Retry.QUIT.value)) {
+        if (!input.equals(Retry.RETRY.value) && !input.equals(Retry.QUIT.value)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_Q_OR_R_INPUT.getValue());
         }
     }
 
     private void validateBlock(String input) {
-        if (!input.equals(BridgeBlock.UP.getDirection()) &&
-                !input.equals(BridgeBlock.DOWN.getDirection())) {
+        if (!input.equals(BridgeBlock.UP.getDirection()) && !input.equals(BridgeBlock.DOWN.getDirection())) {
             throw new IllegalArgumentException(ErrorMessage.NOT_U_OR_D_INPUT.getValue());
         }
     }
@@ -78,10 +75,10 @@ public class BridgeGame {
     }
 
     public int getAttempt() {
-        return attempt;
+        return bridgeGameDto.getAttempt();
     }
 
-    public String isFail() {
+    public String getSuccess() {
         if (crossingResult.isFail()) {
             return Crossing.FAIL.success;
         }

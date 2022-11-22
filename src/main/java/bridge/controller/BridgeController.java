@@ -18,9 +18,9 @@ public class BridgeController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        play(Integer.parseInt(bridgeSize), bridgeGame);
+        play(bridge.getSize(), bridgeGame);
 
-        getResult(bridgeGame.getCrossingResult(), bridgeGame.isFail(), bridgeGame.getAttempt());
+        getResult(bridgeGame.getCrossingResult(), bridgeGame.getSuccess(), bridgeGame.getAttempt());
     }
 
     private static void getResult(String result, String success, int attempt) {
