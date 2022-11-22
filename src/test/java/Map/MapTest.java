@@ -18,8 +18,10 @@ public class MapTest {
     @Test
     void mapStartTest() {
         Map map = new Map(crossable);
-        map.startMap();
         List<String> valueResult = List.of("[");
+
+        map.startMap();
+
         assertEquals(valueResult,map.getMapUpper());
         assertEquals(valueResult,map.getMapLower());
     }
@@ -27,8 +29,10 @@ public class MapTest {
     @Test
     void endMapTest() {
         Map map = new Map(crossable);
-        map.endMap();
         List<String> valueResult = List.of("]");
+
+        map.endMap();
+
         assertEquals(valueResult,map.getMapUpper());
         assertEquals(valueResult,map.getMapLower());
     }
@@ -36,9 +40,11 @@ public class MapTest {
     @Test
     void makeMapUpperWhenCorrectTest() {
         Map map = new Map(crossable);
-        map.makeMapUpper(true);
         List<String> mapUpperResult = List.of(" O ");
         List<String> mapLowerResult = List.of("   ");
+
+        map.makeMapUpper(true);
+
         assertEquals(mapUpperResult,map.getMapUpper());
         assertEquals(mapLowerResult,map.getMapLower());
     }
@@ -46,9 +52,11 @@ public class MapTest {
     @Test
     void makeMapUpperWhenIncorrectTest() {
         Map map = new Map(crossable);
-        map.makeMapUpper(false);
         List<String> mapUpperResult = List.of(" X ");
         List<String> mapLowerResult = List.of("   ");
+
+        map.makeMapUpper(false);
+
         assertEquals(mapUpperResult,map.getMapUpper());
         assertEquals(mapLowerResult,map.getMapLower());
     }
@@ -56,9 +64,11 @@ public class MapTest {
     @Test
     void makeMapLowerWhenCorrectTest() {
         Map map = new Map(crossable);
-        map.makeMapLower(true);
         List<String> mapUpperResult = List.of("   ");
         List<String> mapLowerResult = List.of(" O ");
+
+        map.makeMapLower(true);
+
         assertEquals(mapUpperResult,map.getMapUpper());
         assertEquals(mapLowerResult,map.getMapLower());
     }
@@ -66,9 +76,11 @@ public class MapTest {
     @Test
     void makeMapLowerWhenIncorrectTest() {
         Map map = new Map(crossable);
-        map.makeMapLower(false);
         List<String> mapUpperResult = List.of("   ");
         List<String> mapLowerResult = List.of(" X ");
+
+        map.makeMapLower(false);
+
         assertEquals(mapUpperResult,map.getMapUpper());
         assertEquals(mapLowerResult,map.getMapLower());
     }
@@ -76,9 +88,11 @@ public class MapTest {
     @Test
     void extendMapTest() {
         Map map = new Map(crossable);
+        List<String> result = List.of("|");
+
         map.startMap();
         map.extendMap(1);
-        List<String> result = List.of("|");
+
         assertEquals(result,map.getMapUpper());
         assertEquals(result,map.getMapLower());
     }
@@ -87,6 +101,7 @@ public class MapTest {
     void checkWhenInputIsDTest() {
         Map map = new Map(crossable);
         boolean result = true;
+
         assertEquals(result,map.checkWhenInputIsD("D"));
     }
 
@@ -94,6 +109,7 @@ public class MapTest {
     void checkWhenInputIsUTest() {
         Map map = new Map(crossable);
         boolean result = false;
+
         assertEquals(result,map.checkWhenInputIsU("D"));
     }
 
@@ -101,6 +117,7 @@ public class MapTest {
     void runMapTest() {
         Map map = new Map(crossable);
         boolean result = false;
+
         assertEquals(result,map.runMap("D","U"));
     }
 }
