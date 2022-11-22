@@ -16,9 +16,8 @@ public class Player {
         if (isDead() || isArrived(bridge)) {
             throw new IllegalStateException(MOVE_INVALID_ERROR.getMessage());
         }
-        int nextSpaceIndex = currentSpaceIndex + 1;
         currentSpaceIndex += 1;
-        if (bridge.isBroken(nextSpaceIndex, spaceToMove)) {
+        if (bridge.isBroken(currentSpaceIndex, spaceToMove)) {
             fallOff();
         }
     }
