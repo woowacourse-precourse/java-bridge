@@ -72,7 +72,7 @@ public class BridgeGameController extends BaseGameActivity {
         Bridge bridge = new Bridge(bridgeInfo);
         bridgeGame = new BridgeGame(bridge);
     }
-    
+
     private boolean enterRetry() {
         outputView.printEnterGameRetry();
         CommandType command = inputView.readGameCommand();
@@ -83,11 +83,19 @@ public class BridgeGameController extends BaseGameActivity {
         return true;
     }
 
-    private void proceedTurn() {
+    private void proceedTurn() throws IllegalArgumentException {
         outputView.printEnterMoveDirection();
-        Direction moving = mapToDirection(inputView.readMoving());
-        bridgeGame.move(moving);
+        Direction direction = mapToDirection(inputView.readMoving());
+        moveToDirection(direction);
         outputView.printMap(bridgeGame, bridgePrinter);
+    }
+
+    private void moveToDirection(Direction direction) throws IllegalArgumentException {
+        try {
+            bridgeGame.move(direction);
+        } catch (IllegalStateException e) {
+            throw new IllegalArgumentException(ErrorMessageConstant.GAME_STATUS_NOT_ALLOW_MOVE);
+        }
     }
 
     private static Direction mapToDirection(CommandType commandType) {
