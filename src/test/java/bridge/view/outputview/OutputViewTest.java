@@ -1,11 +1,10 @@
-package bridge.view;
+package bridge.view.outputview;
 
-import bridge.system.util.BridgeMessageMaker;
-import bridge.view.outputview.OutputView;
-import bridge.vo.GameResult;
-import bridge.vo.enums.Step;
-import bridge.vo.StepResult;
 import bridge.dto.TryCountDto;
+import bridge.system.util.BridgeMessageMaker;
+import bridge.vo.GameResult;
+import bridge.vo.StepResult;
+import bridge.vo.enums.Step;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -130,7 +129,7 @@ class OutputViewTest {
         }
 
         @ParameterizedTest(name = "입력값 -> isFinished: {0}")
-        @MethodSource("bridge.view.OutputViewTest#sourceOfIsFinishedAndMessage")
+        @MethodSource("bridge.view.outputview.OutputViewTest#sourceOfIsFinishedAndMessage")
         @DisplayName("게임 성공 여부를 출력한다.")
         void givenGameResult_whenPrintingResult_thenPrintsGamePassingMessage(boolean isFinished, String message) {
             //given

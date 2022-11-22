@@ -1,11 +1,15 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.dto.TryCountDto;
 import bridge.vo.Bridge;
 import bridge.vo.enums.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Iterator;
 import java.util.List;
@@ -14,10 +18,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BridgeGameTest {
+class BridgeServiceTest {
     public static final String UP = Step.U.toString();
     public static final String DOWN = Step.D.toString();
-    private final BridgeGame bridgeGame = new BridgeGame();
+
+    private final BridgeService bridgeService
+            = new BridgeService(new BridgeGame(), new BridgeMaker(new BridgeRandomNumberGenerator()));
+    
+    @Nested
+    @DisplayName("주어진 다리 길이만큼 다리를 만드는 makeBridge 메서드")
+    class MakeBridgeTest {
+        @ParameterizedTest
+        @ValueSource(ints = {3, 7, 20})
+        @DisplayName("주어진 다리 길이만큼의 다리를 생성한다.")
+        void givenBridgeSize_whenMakingBridge_thenReturnsBridge(int bridgeSize) {
+            //when
+            Bridge bridge = bridgeService.makeBridge(bridgeSize);
+            
+            //then
+            assertThat(bridge.size()).isEqualTo(bridgeSize);
+        }
+    }
 
     @Nested
     @DisplayName("사용자가 칸을 이동할 때 사용하는 move 메서드")
@@ -31,7 +52,7 @@ class BridgeGameTest {
 
             //when
             for (Step step : steps) {
-                assertTrue(bridgeGame.move(step, bridgeIter.next()).isCorrect());
+                assertTrue(bridgeService.move(step, bridgeIter.next()).isCorrect());
             }
         }
 
@@ -43,10 +64,10 @@ class BridgeGameTest {
             Iterator<Step> bridgeIter = getBridgeIter(steps);
 
             //when.isCorrect()
-            assertTrue(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
-            assertTrue(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
-            assertFalse(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
-            assertFalse(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
+            assertTrue(bridgeService.move(Step.D, bridgeIter.next()).isCorrect());
+            assertTrue(bridgeService.move(Step.U, bridgeIter.next()).isCorrect());
+            assertFalse(bridgeService.move(Step.D, bridgeIter.next()).isCorrect());
+            assertFalse(bridgeService.move(Step.U, bridgeIter.next()).isCorrect());
         }
     }
 
@@ -61,7 +82,7 @@ class BridgeGameTest {
             assertThat(tryCount.toString())
                     .as("생성했을 때 기본값은 0").isEqualTo("0");
             //when
-            bridgeGame.retry(tryCount);
+            bridgeService.retry(tryCount);
 
             //then
             assertThat(tryCount.toString())

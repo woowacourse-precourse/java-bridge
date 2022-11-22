@@ -1,10 +1,9 @@
-package bridge.view;
+package bridge.view.inputview;
 
 import bridge.mock.MockInputView;
 import bridge.system.validation.InputToBridgeSizeValidator;
 import bridge.system.validation.InputToCommandValidator;
 import bridge.system.validation.InputToMovingPointValidator;
-import bridge.view.inputview.InputView;
 import bridge.vo.enums.Command;
 import bridge.vo.enums.Step;
 import org.junit.jupiter.api.DisplayName;

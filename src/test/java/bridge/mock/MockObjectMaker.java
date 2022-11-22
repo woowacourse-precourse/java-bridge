@@ -1,6 +1,7 @@
 package bridge.mock;
 
 import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.controller.BridgeController;
 import bridge.controller.GameController;
 import bridge.service.BridgeGame;
@@ -23,6 +24,14 @@ public class MockObjectMaker {
         return new GameController(
                 outputView,
                 new BridgeController(outputView, inputView, bridgeService)
+        );
+    }
+
+    public static BridgeController makeMockBridgeController(List<String> mockInputs) {
+        return new BridgeController(
+                new OutputView(new BridgeMessageMaker()),
+                makeMockProxyInputView(mockInputs),
+                new BridgeService(new BridgeGame(), new BridgeMaker(new BridgeRandomNumberGenerator()))
         );
     }
 

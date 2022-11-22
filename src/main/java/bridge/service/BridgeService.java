@@ -1,11 +1,10 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.vo.StepResult;
 import bridge.dto.TryCountDto;
+import bridge.vo.Bridge;
+import bridge.vo.StepResult;
 import bridge.vo.enums.Step;
-
-import java.util.List;
 
 public class BridgeService {
     private final BridgeGame bridgeGame;
@@ -16,8 +15,8 @@ public class BridgeService {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public List<Step> makeBridge(int bridgeSize) {
-        return Step.from(bridgeMaker.makeBridge(bridgeSize));
+    public Bridge makeBridge(int bridgeSize) {
+        return new Bridge(Step.from(bridgeMaker.makeBridge(bridgeSize)));
     }
 
     public StepResult move(Step userStep, Step answerStep) {

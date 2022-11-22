@@ -28,8 +28,7 @@ public class BridgeController {
         outputView.printAskingBridgeSizeMessage();
         int bridgeSize = inputView.readBridgeSize();
 
-        List<Step> steps = bridgeService.makeBridge(bridgeSize);
-        return new Bridge(steps);
+        return bridgeService.makeBridge(bridgeSize);
     }
 
     public GameResult doGame(Bridge bridge) {
