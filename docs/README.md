@@ -30,3 +30,14 @@
 - 결과 업데이트
 - 결과 조회를 위한 getter와 toString
 
+# BridgeGame
+- move, retry 구현
+- 게임 상태 조회, 관리를 위한 status변수와 관리 함수들 추가
+- 결과 조회를 위한 함수 추가
+
+# GameController
+- 게임 시작: 객체 생성
+- 게임 플레이
+  - move-> 게임 상태가 플레이가 아닐 때까지
+  - retry -> move 결과가 실패일 때
+  - end-> 최종 결과 출력시 부르는 함수
