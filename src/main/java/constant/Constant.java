@@ -6,6 +6,9 @@ public class Constant {
     public static final String QUIT = "Q";
     public static final String SUCCESS = "성공";
     public static final String FAILURE = "실패";
+    public static final String BRIDGE_START = "[";
+    public static final String BRIDGE_PART = " %c |";
+    public static final String BRIDGE_CONNECTION = "]\n[";
     public static final char RIGHT = 'O';
     public static final char WRONG = 'X';
     public static final char DEFAULT = ' ';

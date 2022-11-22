@@ -21,19 +21,19 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<Integer> record) {
-        String map = mapToString(new StringBuilder("["), buildMap(record));
+        String map = mapToString(new StringBuilder(Constant.BRIDGE_START), buildMap(record));
         System.out.println(map);
     }
 
-    private String mapToString(StringBuilder stringBuilder, char[][] map) {
+    private String mapToString(StringBuilder builder, char[][] map) {
         for (int i = Constant.TOPSIDE; i <= Constant.DOWNSIDE; i++) {
             for (int j = 0; j < map.length; j++) {
-                stringBuilder.append(String.format(" %c |", map[j][i]));
+                builder.append(String.format(Constant.BRIDGE_PART, map[j][i]));
             }
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1).append("]\n[");
+            builder.deleteCharAt(builder.length() - 1).append(Constant.BRIDGE_CONNECTION);
         }
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        return stringBuilder.toString();
+        builder.deleteCharAt(builder.length() - 1);
+        return builder.toString();
     }
 
     private char[][] buildMap(List<Integer> record) {
