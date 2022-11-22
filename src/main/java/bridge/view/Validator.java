@@ -36,9 +36,9 @@ public class Validator {
     private static void validateInputSize(int bridgeSize) {
         try {
             if (bridgeSize < MIN_NUM || bridgeSize > MAX_NUM) {
-                throw new IllegalArgumentException();
+                throw new IllegalStateException();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_INPUT_RANGE.getErrorMessage());
         }
     }
@@ -67,9 +67,9 @@ public class Validator {
     private static void validateInputDirection(String inputDirection) {
         try {
             if (!inputDirection.equals(Message.UP.getMessage()) && !inputDirection.equals(Message.Down.getMessage())) {
-                throw new IllegalArgumentException();
+                throw new IllegalStateException();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_MOVE_INPUT.getErrorMessage());
         }
     }
@@ -78,9 +78,9 @@ public class Validator {
         char check = inputDirection.charAt(0);
         try {
             if (!Character.isUpperCase(check)) {
-                throw new IllegalArgumentException();
+                throw new IllegalStateException();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
         }
     }
@@ -101,9 +101,9 @@ public class Validator {
     private static void validateInputGameRestart(String inputRestart) {
         try {
             if (!inputRestart.equals(Message.RESTART.getMessage()) && !inputRestart.equals(Message.QUIT.getMessage())) {
-                throw new IllegalArgumentException();
+                throw new IllegalStateException();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_RESTART_INPUT.getErrorMessage());
         }
     }
@@ -112,9 +112,9 @@ public class Validator {
         char check = inputRestart.charAt(0);
         try {
             if (!Character.isUpperCase(check)) {
-                throw new IllegalArgumentException();
+                throw new IllegalStateException();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_RESTART_INPUT_LOWERCASE.getErrorMessage());
         }
     }
@@ -136,9 +136,9 @@ public class Validator {
         char check = input.charAt(0);
         try {
             if (check >= '0' && check <= '9') {
-                throw new IllegalArgumentException();
+                throw new IllegalStateException();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_INPUT_NUMBER.getErrorMessage());
         }
     }
