@@ -41,4 +41,13 @@ public class Player {
         }
         return false;
     }
+
+    public void tryAgain(){
+        attempts++;
+        playerBlocks = new ArrayList<>();
+    }
+
+    public int getAttempts(){
+        return attempts;
+    }
 }
