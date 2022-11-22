@@ -40,7 +40,11 @@ public class Bridge {
     }
 
     public Boolean isClear() {
-        return bridge.size() >= distance;
+        return bridge.size() <= distance;
+    }
+
+    public void resetDistance() {
+        this.distance = 0;
     }
 
     public String getBridgeView(GameState state) {

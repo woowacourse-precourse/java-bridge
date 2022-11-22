@@ -50,7 +50,14 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridge, state);
         System.out.println();
-        System.out.println("최종 게임 결과");
+        System.out.println(String.format("게임 성공 여부: %s", getGameResult(bridge)));
         System.out.println(String.format("총 시도한 횟수: %d", count));
+    }
+
+    private String getGameResult(Bridge bridge) {
+        if (bridge.isClear()) {
+            return "성공";
+        }
+        return "실패";
     }
 }
