@@ -12,6 +12,11 @@ public class GameController {
   private final BridgeMaker bridgeMaker;
   private final InputView inputView;
   private final OutputView outputView;
+  public static final String RESTART = "R";
+  public static final String STOP = "Q";
+  public static final String SUCCESS = "성공";
+  public static final String FAIL = "실패";
+  int gameNum = 0;
 
   public GameController(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
     this.bridgeMaker = bridgeMaker;
@@ -33,18 +38,19 @@ public class GameController {
     return inputView.readMoving();
   }
 
-
-  public List<Cross> move(Bridge bridge) {
+  public MoveResult move(Bridge bridge) {
     List<Cross> crossResult = new ArrayList<>();
+    gameNum ++;
     for (Direction bridgeDirection : bridge.getDirections()) {
+      outputView.printAskDirectionMessage();
       Direction userDirection = getMove();
       addCrossResult(crossResult, bridgeDirection, userDirection);
       outputView.printMap(crossResult);
       if (!canCross(bridgeDirection, userDirection)) {
-        return crossResult;
+        return new MoveResult(FAIL, crossResult);
       }
     }
-    return crossResult;
+    return new MoveResult(SUCCESS, crossResult);
   }
 
   public boolean canCross(Direction bridgeDirection, Direction userDirection) {
