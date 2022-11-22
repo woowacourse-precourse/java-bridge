@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Dto;
 
 public class InputMessageConst {
 

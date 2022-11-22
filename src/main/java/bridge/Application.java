@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.View.InputView;
+import bridge.View.OutputView;
+
 import java.util.List;
 
 public class Application {

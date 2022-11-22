@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.Dto.InputAnswerBridgeElement;
+
 import java.util.ArrayList;
 import java.util.List;
 

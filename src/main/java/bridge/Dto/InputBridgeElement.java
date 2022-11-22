@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Dto;
 
 import java.util.Arrays;
 

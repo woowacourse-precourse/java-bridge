@@ -1,7 +1,7 @@
-package bridge;
+package bridge.View;
 
-import static bridge.ErrorInputMessageConst.*;
-import static bridge.InputMessageConst.*;
+import static bridge.Dto.ErrorInputMessageConst.*;
+import static bridge.Dto.InputMessageConst.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**

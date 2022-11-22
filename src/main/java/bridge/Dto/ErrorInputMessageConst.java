@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Dto;
 
 public class ErrorInputMessageConst {
     public static final String ERROR_NOT_NUMBER_MESSAGE = "[ERROR] 숫자만 입력을 받습니다." ;

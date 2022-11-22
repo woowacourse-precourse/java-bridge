@@ -1,10 +1,9 @@
 package bridge;
 
+import bridge.View.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,9 +14,7 @@ public class InputViewTest extends NsTest {
     @Test
     @DisplayName("게임의 진행 상항을 확인")
     void 게임의_진행_상항을_확인(){
-        List<String> upMap = List.of("O"," ","X");
-        List<String> downMap = List.of(" ","O"," ");
-        outputView.printMap(upMap,downMap);
+        outputView.printMap("[ O |   | X ]\n[   | O |   ]");
         assertThat(output()).isEqualTo("[ O |   | X ]\n[   | O |   ]");
     }
 
