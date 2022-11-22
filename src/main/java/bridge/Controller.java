@@ -9,6 +9,7 @@ public class Controller {
     private final OutputView outputView;
 
     private BridgeGame bridgeGame;
+    public int count = 1;
 
     public Controller() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -20,42 +21,51 @@ public class Controller {
     private int makeBridge() {
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
-        System.out.println(bridge);
         this.bridgeGame = new BridgeGame(bridge);
         return size;
     }
 
-    private String isCorrect(String correct){
-        if(correct.contains("C"))
+    private String isCorrect(String correct) {
+        if (correct.contains("C"))
             return OutputView.Message.SUCCESS.get();
         return OutputView.Message.FAILURE.get();
     }
 
-    private void RoundGame(int size) {
-        int count = 0;
-        List<String> current_map = new ArrayList<>();
-        String correct = "0";
-        while(current_map.size() < size) {
-            String move = inputView.readMoving();
-            correct = bridgeGame.move(current_map.size(), move);
-            current_map.add(correct);
-            outputView.printMap(current_map);
-            ++count;
-            if(!correct.contains("C")) {
-                if(inputView.readGameCommand().equals("R")){
-                    current_map.clear();
-                }
-                else
-                    break;
-            }
+    private Boolean isQuit(String correct, List<String> current_status) {
+        if (correct.equals(OutputView.Message.FAILURE.get())) {
+            return retry(inputView.readGameCommand(), current_status);
         }
-        outputView.printResult(current_map, count, isCorrect(correct));
+        return true;
+    }
+
+    private boolean retry(String command, List<String> current_status) {
+        if (command.equals("R")) {
+            this.count++;
+            current_status.clear();
+            return true;
+        }
+        return false;
+    }
+
+    private String RoundGame(int size, List<String> current_status) {
+        String correct = "0";
+        while (current_status.size() < size) {
+            String move = inputView.readMoving();
+            correct = bridgeGame.move(current_status.size(), move);
+            current_status.add(correct);
+            outputView.printMap(current_status);
+            boolean quit = isQuit(isCorrect(correct), current_status);
+            if (!quit) break;
+        }
+        return correct;
     }
 
     public void bridgeGame() {
         int size;
+        List<String> current_status = new ArrayList<>();
         outputView.printStart();
         size = makeBridge();
-        RoundGame(size);
+        String correct = RoundGame(size, current_status);
+        outputView.printResult(current_status, count, isCorrect(correct));
     }
 }

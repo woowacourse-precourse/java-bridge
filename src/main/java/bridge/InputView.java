@@ -27,6 +27,7 @@ public class InputView {
             this.error_message = error_message;
         }
     }
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -36,11 +37,11 @@ public class InputView {
         return validateBridgeSize(input);
     }
 
-    private int validateBridgeSize(String input){
-        try{
-            if(!input.matches(Data.BRIDGE_SIZE.pattern))
+    private int validateBridgeSize(String input) {
+        try {
+            if (!input.matches(Data.BRIDGE_SIZE.pattern))
                 throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(Data.BRIDGE_SIZE.error_message);
             readBridgeSize();
         }
@@ -57,11 +58,11 @@ public class InputView {
         return input;
     }
 
-    private void validateMoving(String input){
-        try{
-            if(!input.matches(Data.MOVING.pattern))
+    private void validateMoving(String input) {
+        try {
+            if (!input.matches(Data.MOVING.pattern))
                 throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(Data.MOVING.error_message);
             readMoving();
         }
@@ -77,11 +78,11 @@ public class InputView {
         return input;
     }
 
-    private void validateGameCommand(String input){
-        try{
-            if(!input.matches(Data.GAME_COMMAND.pattern))
+    private void validateGameCommand(String input) {
+        try {
+            if (!input.matches(Data.GAME_COMMAND.pattern))
                 throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(Data.GAME_COMMAND.error_message);
             readGameCommand();
         }

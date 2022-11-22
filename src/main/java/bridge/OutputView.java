@@ -28,6 +28,7 @@ public class OutputView {
         Message(String out) {
             this.out = out;
         }
+
         public String get() {
             return out;
         }
@@ -40,7 +41,7 @@ public class OutputView {
      */
     public void printMap(List<String> bridge) {
         String layers = bridge.toString();
-        layers = layers.replace(", ",Message.BRIDGE_MIDDLE.out);
+        layers = layers.replace(", ", Message.BRIDGE_MIDDLE.out);
         printUpMap(layers);
         printDownMap(layers);
         System.out.println();
@@ -49,21 +50,22 @@ public class OutputView {
 
     public void printUpMap(String layers) {
         String convert_layers = layers;
-        convert_layers = convert_layers.replace(BridgeGame.Move.UP_CORRECT.get(),Message.CORRECT.out);
-        convert_layers = convert_layers.replace(BridgeGame.Move.UP_INCORRECT.get(),Message.INCORRECT.out);
-        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_CORRECT.get(),Message.BLANK.out);
-        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_INCORRECT.get(),Message.BLANK.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.UP_CORRECT.get(), Message.CORRECT.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.UP_INCORRECT.get(), Message.INCORRECT.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_CORRECT.get(), Message.BLANK.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_INCORRECT.get(), Message.BLANK.out);
         System.out.println(convert_layers);
     }
 
     public void printDownMap(String layers) {
         String convert_layers = layers;
-        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_CORRECT.get(),Message.CORRECT.out);
-        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_INCORRECT.get(),Message.INCORRECT.out);
-        convert_layers = convert_layers.replace(BridgeGame.Move.UP_CORRECT.get(),Message.BLANK.out);
-        convert_layers = convert_layers.replace(BridgeGame.Move.UP_INCORRECT.get(),Message.BLANK.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_CORRECT.get(), Message.CORRECT.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.DOWN_INCORRECT.get(), Message.INCORRECT.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.UP_CORRECT.get(), Message.BLANK.out);
+        convert_layers = convert_layers.replace(BridgeGame.Move.UP_INCORRECT.get(), Message.BLANK.out);
         System.out.println(convert_layers);
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>

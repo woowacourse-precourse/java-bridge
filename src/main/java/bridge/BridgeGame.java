@@ -30,6 +30,7 @@ public class BridgeGame {
         Move(String status) {
             this.status = status;
         }
+
         public String get() {
             return status;
         }
@@ -66,6 +67,7 @@ public class BridgeGame {
         }
         return Move.DOWN_INCORRECT.status;
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

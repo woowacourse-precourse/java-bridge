@@ -14,11 +14,12 @@ public class BridgeMaker {
         private String Data;
         private int number;
 
-        private Input(String Data, int number){
+        private Input(String Data, int number) {
             this.Data = Data;
             this.number = number;
         }
     }
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -31,7 +32,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             if (bridgeNumberGenerator.generate() == Input.UP.number) {
                 bridge.add(Input.UP.Data);
                 continue;
