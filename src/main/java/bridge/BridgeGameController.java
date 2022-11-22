@@ -15,12 +15,13 @@ public class BridgeGameController {
     }
 
     public BridgeGame makeBridgeGame(){
+        outputView.printBridgeSizeMessage();
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         return new BridgeGame(bridge);
     }
 
     public void run(){
-        outputView.printStartTitle();
+        outputView.printStartGameMessage();
         BridgeGame bridgeGame = makeBridgeGame();
         play(bridgeGame);
         outputView.printResult(bridgeGame);
@@ -28,9 +29,11 @@ public class BridgeGameController {
 
     public void play(BridgeGame bridgeGame) {
         while (bridgeGame.isMatch() && !bridgeGame.isEnd()){
+            outputView.printMovingMessage();
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame);
             if (!bridgeGame.isMatch()){
+                outputView.printRetryMessage();
                 bridgeGame.retry(inputView.readGameCommand());
             }
         }
