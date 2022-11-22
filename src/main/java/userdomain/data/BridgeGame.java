@@ -21,6 +21,7 @@ public class BridgeGame {
     public int getBridgeSize() {
         return Integer.valueOf(bridgeSize);
     }
+
     public List<String> getMoveList() {
         return Collections.unmodifiableList(userMove);
     }
