@@ -37,6 +37,12 @@ public abstract class BridgeDrawer {
                 .replaceAll(Pattern.CLOSE_BRACKET, Pattern.SPACE + Pattern.CLOSE_BRACKET);
     }
 
+    protected static class Marker {
+        protected static final String CORRECT = "O";
+        protected static final String IN_CORRECT = "X";
+        protected static final String EMPTY = " ";
+    }
+
     private static class Pattern {
         private static final String COMMA = ",";
         private static final String SPACE = " ";
