@@ -31,11 +31,22 @@ public class GameController {
         if (!isMoveSuccess) {
             retry();
         }
+        end(game.getGameStatus());
     }
 
     public void retry() {
         game.retry(inputView.readGameCommand());
     }
 
+    public void end(int gameStatus) {
+        outputView.printResult(game.getResult(), successOrFailString(gameStatus == GameStatus.SUCCESS));
+    }
+
+    private String successOrFailString(boolean isSuccess){
+        if (isSuccess) {
+            return "성공";
+        }
+        return "실패";
+    }
 
 }
