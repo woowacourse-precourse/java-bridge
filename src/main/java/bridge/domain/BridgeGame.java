@@ -7,7 +7,7 @@ import bridge.domain.type.RoundResultType;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    static final int INIT_GAME_TRY_COUNT = 0;
+    static final int INIT_GAME_TRY_COUNT = 1;
     private int gameTryCount;
     private final BridgeWalker bridgeWalker;
 
