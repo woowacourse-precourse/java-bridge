@@ -12,9 +12,13 @@ public class BridgeGame {
 	}
 
 	public void run() {
-		init();
-		while (loop()) {
+		try {
+			init();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			run();
 		}
+		loop();
 	}
 
 	public void init() {
@@ -36,13 +40,33 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public boolean retry() {
-		return true;
+		return bridgeStage.retry();
 	}
 
-	public boolean loop() {
+	public void loop() {
+		try {
+			while (process()) {
+			}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			loop();
+		}
+	}
+
+	public boolean process() {
 		while (move()) {
 		}
+		if (finish()) {
+			return false;
+		}
 		if (retry()) {
+			return true;
+		}
+		return false;
+	}
+
+	private boolean finish() {
+		if (bridgeStage.finish()) {
 			return true;
 		}
 		return false;
