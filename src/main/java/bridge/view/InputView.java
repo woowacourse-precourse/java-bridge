@@ -24,5 +24,8 @@ public class InputView {
         return Console.readLine();
     }
 
-
+    public String inputCommand() {
+        System.out.println(SELECT_RESTART_MESSAGE);
+        return Console.readLine();
+    }
 }

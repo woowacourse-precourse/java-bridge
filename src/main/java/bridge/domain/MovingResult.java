@@ -16,5 +16,8 @@ public class MovingResult {
         return Objects.equals(moving, bridge.get(distance));
     }
 
-
+    public boolean isComplete(String moving, int distance) {
+        Validation.movedValidation(moving);
+        return bridge.size() - 1 == distance && Objects.equals(moving, bridge.get(distance));
+    }
 }

@@ -42,5 +42,34 @@ public class BridgeGame {
         bridgeMap.createMap(movingResult.movedResult(moving, distance), moving);
     }
 
+    private void bridgeInitialization() {
+        distance = 0;
+        bridgeMap.initial();
+    }
 
+    public boolean move(String moving) {
+        if (movingResult.movedResult(moving, distance)) {
+            distance++;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean retry(String command) {
+        Validation.restartValidation(command);
+        if (Objects.equals(command, Command.RESTART.getCommand())) {
+            bridgeInitialization();
+            retryCount++;
+            return Command.RESTART.getStatus();
+        }
+        return Command.QUIT.getStatus();
+    }
+
+    public boolean isGameComplete(String moving) {
+        if (movingResult.isComplete(moving, distance)) {
+            isGame = true;
+            return true;
+        }
+        return false;
+    }
 }

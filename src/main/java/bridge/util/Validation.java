@@ -21,6 +21,11 @@ public class Validation {
         }
     }
 
-
+    public static void restartValidation(String move) {
+        if (!Objects.equals(move, Command.RESTART.getCommand()) && !Objects.equals(move,
+                Command.QUIT.getCommand())) {
+            throw new IllegalArgumentException(INVAILED_COMMAND);
+        }
+    }
 
 }

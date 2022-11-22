@@ -26,7 +26,6 @@ public class BridgeMap {
             put(Position.DOWN.getInitial(), new ArrayList<>());
         }};
     }
-
     public void createMap(boolean isMove, String moving) {
         String str = FAILED;
         if (isMove) {
