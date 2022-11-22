@@ -14,13 +14,13 @@ public class Validation {
 
     public String validMovingNext(String movingNext) throws IllegalArgumentException {
         try {
-            return validUpperUOrUpperD(movingNext);
+            return validUOrD(movingNext);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_VALUE, ERROR_HEAD_MESSAGE));
         }
     }
 
-    public String validUpperUOrUpperD(String movingNext) throws IllegalArgumentException {
+    public String validUOrD(String movingNext) throws IllegalArgumentException {
         if (!(movingNext.equals("U") || movingNext.equals("D"))) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_U_OR_D, ERROR_HEAD_MESSAGE));
         }
