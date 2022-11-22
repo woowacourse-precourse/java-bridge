@@ -1,4 +1,4 @@
-package bridge.game;
+package bridge;
 
 import bridge.io.ErrorMessage;
 

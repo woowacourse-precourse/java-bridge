@@ -1,4 +1,4 @@
-package bridge.game;
+package bridge;
 
 public enum GameResultCode {
 	SUCCESS("성공"),

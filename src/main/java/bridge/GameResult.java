@@ -1,4 +1,4 @@
-package bridge.game;
+package bridge;
 
 public class GameResult {
 	private final GameResultCode gameResultCode;

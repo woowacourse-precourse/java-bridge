@@ -1,8 +1,8 @@
 package bridge.controller;
 
-import bridge.game.BridgeGame;
-import bridge.game.GameCommand;
-import bridge.game.MoveCode;
+import bridge.BridgeGame;
+import bridge.GameCommand;
+import bridge.MoveCode;
 import bridge.io.InputView;
 import bridge.io.OutputView;
 
