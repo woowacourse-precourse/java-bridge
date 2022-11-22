@@ -11,6 +11,8 @@ public class BridgeGameController {
     public void gameStart() {
         outputView.printStartMessage();
         initBridge();
+        gamePlay();
+        outputView.printResult(bridgeGame.getTryCount(), bridgeGame.isSuccess());
     }
 
     private void initBridge() {
@@ -20,5 +22,19 @@ public class BridgeGameController {
 
     private List<String> makeBridge() {
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
+    }
+
+    private void gamePlay() {
+        boolean gameState = true;
+
+        while (gameState) {
+            gameMovement();
+        }
+    }
+
+    private void gameMovement() {
+        while (true) {
+            outputView.printMap(bridgeGame.move(inputView.readMoving()));
+        }
     }
 }
