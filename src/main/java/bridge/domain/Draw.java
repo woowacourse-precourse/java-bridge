@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.type.DrawType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +31,17 @@ public class Draw {
     public void removeAll() {
         this.upBridges.clear();
         this.downBridges.clear();
+    }
+
+    public int countPassSymbol() {
+        int upPassCount = (int) this.upBridges.stream()
+                .filter(symbol -> symbol.equals(DrawType.PASS.getSymbol()))
+                .count();
+
+        int downPassCount = (int) this.downBridges.stream()
+                .filter(symbol -> symbol.equals(DrawType.PASS.getSymbol()))
+                .count();
+
+        return upPassCount + downPassCount;
     }
 }
