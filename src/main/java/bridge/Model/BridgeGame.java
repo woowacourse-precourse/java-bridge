@@ -11,18 +11,12 @@ public class BridgeGame {
     private static final String RIGHT_POSITION = "O";
     private static final String WRONG_POSITION = "X";
     private static final String RETRY = "R";
-    private static int bridgeSize;
-    private static List<String> bridgeAnswer;
-    private static int gameCount = 0;
+    private static int gameCount;
+    private static List<List<String>> currentBridge;
 
-    private static List<List<String>> currentBridge = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
-
-    public static void setBridgeSize(int bridgeSize) {
-        BridgeGame.bridgeSize = bridgeSize;
-    }
-
-    public static int getBridgeSize() {
-        return bridgeSize;
+    public BridgeGame() {
+        gameCount = 0;
+        currentBridge = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
     }
 
     public static int getGameCount() {
@@ -33,16 +27,12 @@ public class BridgeGame {
         gameCount++;
     }
 
-    public static void setBridgeAnswer(List<String> bridgeAnswer) {
-        BridgeGame.bridgeAnswer = bridgeAnswer;
-    }
-
     public static List<List<String>> getCurrentBridge() {
         return Collections.unmodifiableList(currentBridge);
     }
 
-    public static void move(String nextPosition, int currentBridgeSize) {
-        String answerPosition = bridgeAnswer.get(currentBridgeSize);
+    public static void move(String nextPosition, int currentBridgeSize, Bridge bridge) {
+        String answerPosition = bridge.getBridgeAnswer().get(currentBridgeSize);
         boolean isEqual = nextPosition.equals(answerPosition);
         if (isEqual) {
             rightMove(nextPosition);
