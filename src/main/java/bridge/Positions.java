@@ -13,6 +13,7 @@ public class Positions {
     public static List<String> getDown_positions(){
         return down_positions;
     }
+
     public static void set_positions(String up_position,String down_position){
         up_positions.add(up_position);
         down_positions.add(down_position);

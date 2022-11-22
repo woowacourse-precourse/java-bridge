@@ -12,7 +12,6 @@ public class Application {
 
     public static void main(String[] args) {
         GameController gameController = new GameController();
-        //mainView mainview= new mainView(gameController);
         int input = gameController.inputView().readBridgeSize();
         if (input == 1) {
             System.out.println("[ERROR] 다리의 길이는 3~20이여야 합니다.");
@@ -24,8 +23,6 @@ public class Application {
             System.out.print("[ERROR] U,D 둘중 하나만 입력해주세요." );
             return;
         }
-
-
     }
 }
 
