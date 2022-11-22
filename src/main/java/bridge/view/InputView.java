@@ -45,13 +45,17 @@ public class InputView {
             throw new IllegalArgumentException(ExceptionMessage.NOT_RIGHT_MOVE);
         }
     }
-
     public String readGameCommand() {
         out(InputMessage.INPUT_GAME_COMMAND);
         String input = Console.readLine();
+        rightCommand(input);
         return input;
     }
-
+    private void rightCommand(String input) {
+        if(!(input.equals("R")||input.equals("Q"))) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_RIGHT_COMMAND);
+        }
+    }
     private void out(String text) {
         System.out.println(text);
     }
