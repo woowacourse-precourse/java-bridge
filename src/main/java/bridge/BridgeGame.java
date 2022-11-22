@@ -21,10 +21,53 @@ public class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 이동 결과에 따라 알맞은 '다리 모양 출력 형식'을 만들어 bridgeFormat 리스트에 추가한다.
+     *
+     * @param index 사용자가 건너고자 하는 다리의 인덱스 번호
+     * @param chooseBridge "U", "D" 중 하나의 값
+     * @return bridgeFormat 다리의 출력 형식
      */
-    public void move() {
+    public void move(int index, String chooseBridge) {
+        bridgeFormat.add(getBridgeFormatMember(index, chooseBridge));
+    }
+
+    /**
+     * 사용자의 다리 칸 선택 결과에 따라 알맞은 Bridgeformat 값을 반환하는 메소드
+     *
+     * @param index 다리에서 몇 번째 칸인지를 의미
+     * @param chooseBridge 사용자의 다리 이동 입력
+     * @return
+     */
+    private List<String> getBridgeFormatMember(int index, String chooseBridge) {
+        if (!bridge.get(index).equals(chooseBridge)) {
+            setStopOption();
+            return inputBridgeFormatMember(chooseBridge, "X");
+        }
+        return inputBridgeFormatMember(chooseBridge, "O");
+    }
+
+    /**
+     * bridgeGame의 '진행 가능 상황'을 불가능으로 바꿔주는 메소드
+     */
+    private void setStopOption() {
+        keepGoing = false;
+    }
+
+    /**
+     * 사용자의 다리 칸 선택 결과에 따라 알맞은 bridgeFormat을 만드는 메소드
+     *
+     * @param chooseBridge 사용자의 다리 칸 선택
+     * @param OX 사용자의 다리 칸 선택 결과("O" 또는 "X")
+     * @return bridgeFormatMember
+     */
+    private List<String> inputBridgeFormatMember(String chooseBridge, String OX) {
+        if (chooseBridge.equals("U")) {
+            return Arrays.asList(new String[]{OX, " "});
+        }
+        if (chooseBridge.equals("D")) {
+            return Arrays.asList(new String[]{" ", OX});
+        }
+        return inputBridgeFormatMember(chooseBridge, OX);
     }
 
     /**
