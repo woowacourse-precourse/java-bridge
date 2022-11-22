@@ -1,6 +1,7 @@
 package bridge;
 
 public class Env {
+    public static final String ERROR_MESSAGE_PREFIX = "[ERROR]";
     public static String NAME_OF_TRIES_NUMBER = "try";
 
     public static String CODE_OF_UP = "U";

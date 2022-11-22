@@ -14,7 +14,7 @@ public enum Lang {
     IS_GAME_PASS("게임 성공 여부: %s"),
     GAME_IS_PASS("성공"),
     GAME_IS_FAIL("실패"),
-    TOTAL_ATTEMPT("총 시도 횟수: %d");
+    TOTAL_ATTEMPT("총 시도한 횟수: %d");
 
     private final String message;
 

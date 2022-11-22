@@ -13,11 +13,16 @@ import java.util.List;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
+        try {
+            return this.validateReadBridgeSize();
+        } catch (IllegalArgumentException exception) {
+            Console.printError(exception.getMessage());
+            return this.readBridgeSize();
+        }
+    }
+
+    private int validateReadBridgeSize() {
         String response = Console.readLine(Lang.get(Lang.INPUT_BRIDGE_SIZE));
         Validator.checkConsoleInputNumberInRange(
                 List.of(Env.MIN_SIZE_OF_BRIDGE, Env.MAX_SIZE_OF_BRIDGE),
@@ -27,10 +32,16 @@ public class InputView {
         return Parser.toIntFrom(response);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public PositionType readMoving() {
+        try {
+            return this.validateReadMoving();
+        } catch (IllegalArgumentException exception) {
+            Console.printError(exception.getMessage());
+            return this.readMoving();
+        }
+    }
+
+    private PositionType validateReadMoving() {
         String response = this.getMovingResponse();
         Validator.checkConsoleCommandIsCorrect(
                 List.of(Env.CODE_OF_UP, Env.CODE_OF_DOWN),
@@ -48,10 +59,16 @@ public class InputView {
         ));
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public boolean readGameCommand() {
+        try {
+            return this.validateReadGameCommand();
+        } catch (IllegalArgumentException exception) {
+            Console.printError(exception.getMessage());
+            return this.readGameCommand();
+        }
+    }
+
+    private boolean validateReadGameCommand() {
         String response = this.getGameCommandResponse();
         Validator.checkConsoleCommandIsCorrect(
                 List.of(Env.CODE_OF_RETRY, Env.CODE_OF_QUIT),
@@ -68,5 +85,4 @@ public class InputView {
                 Env.CODE_OF_QUIT
         ));
     }
-
 }
