@@ -5,12 +5,15 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class Controller {
+    private final BridgeGame bridgeGame;
+
     private boolean playGame = true;
 
-    private BridgeGame bridgeGame;
+    public Controller(){
+        this.bridgeGame = new BridgeGame();
+    }
 
     public void setUp() {
-        bridgeGame = new BridgeGame();
         OutputView.reset();
         System.out.printf(OutputView.START_MESSAGE);
         bridgeInput();
