@@ -1,7 +1,7 @@
 package bridge.view;
 
+import bridge.domain.Command;
 import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -42,10 +42,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Command readMoving() {
         System.out.println(INPUT_SELECT_TO_GO_MSG);
 
-        return validateMoving(getInput());
+        return convertStringToCommand(validateMoving(getInput()));
     }
 
     private String validateMoving(String input) {
@@ -58,9 +58,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public Command readGameCommand() {
         System.out.println(INPUT_SELECT_TO_RETRY_MSG);
-        return validateGameCommand(getInput());
+        return convertStringToCommand(validateGameCommand(getInput()));
     }
 
     private String validateGameCommand(String input) {
@@ -68,5 +68,9 @@ public class InputView {
             throw new IllegalArgumentException();
         }
         return input;
+    }
+
+    private Command convertStringToCommand(String input) {
+        return Command.getCommand(input);
     }
 }
