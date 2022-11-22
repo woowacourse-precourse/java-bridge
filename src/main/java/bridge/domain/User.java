@@ -20,4 +20,8 @@ public class User {
     public void setQuit() {
         this.quit = true;
     }
+
+    public void addPlayCount() {
+        this.playCount += 1;
+    }
 }
