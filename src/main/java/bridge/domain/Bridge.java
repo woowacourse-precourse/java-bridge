@@ -6,6 +6,7 @@ import static bridge.util.constants.MovableSpace.UPPER_SPACE;
 import static bridge.util.constants.MovableSpace.LOWER_SPACE;
 import static bridge.util.constants.ErrorMessage.BRIDGE_INVALID_ERROR;
 import static bridge.util.constants.ErrorMessage.BRIDGE_INDEX_ERROR;
+import static bridge.util.constants.BridgeConstant.MIN_BRIDGE_INDEX;
 
 public class Bridge {
     private final List<String> movableSpaces;
@@ -28,7 +29,7 @@ public class Bridge {
     }
 
     private String get(int index) {
-        if (index < 1 || size() < index) {
+        if (index < MIN_BRIDGE_INDEX.getValue() || this.size() < index) {
             String errorMessage = String.format(BRIDGE_INDEX_ERROR.getMessage(), index);
             throw new IllegalStateException(errorMessage);
         }
