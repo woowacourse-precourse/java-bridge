@@ -6,7 +6,7 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
 
     private static final int RANDOM_LOWER_INCLUSIVE = 0;
     private static final int RANDOM_UPPER_INCLUSIVE = 1;
-
+    private int randomNumber = 0;
     @Override
     public int generate() {
         return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
