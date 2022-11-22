@@ -51,8 +51,6 @@ public class OutputView {
         List<String> resultDown = new ArrayList<>();
 
 
-
-
 //        String upperLine = users.toString().replace(COMMA, BAR).replace(UP, " " + UP + " ").replace(DOWN, "   ");
 //        String downLine = users.toString().replace(COMMA, BAR).replace(DOWN, " " + DOWN + " ").replace(UP, "   ");
 //
