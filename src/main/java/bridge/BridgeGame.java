@@ -8,7 +8,18 @@ import java.lang.StringBuilder;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public static String status = "성공";
+    public static final String WIN = "성공";
+    public static final String LOSE = "실패";
+    public static final String UP = "U";
+    public static final String DOWN = "D";
+    public static final String BLANK = " ";
+    public static final String CORRECT = "O";
+    public static final String WRONG = "X";
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
+    public static final String ERROR_RETRYQUIT = "[ERROR] R(재시작) , Q(종료)중에 선택해주세요";
+
+    public static String status = WIN;
     public static int count = 1;
     public static int retryornot = 0;
 
@@ -57,7 +68,7 @@ public class BridgeGame {
                 times = -1;
                 bridgeinform.initDirection();
                 retryornot = 0;
-                status = "성공";
+                status = WIN;
             }
 
             if (times != size - 1) {
@@ -85,48 +96,48 @@ public class BridgeGame {
         }
         result.add(drawLine(upcompare));
         result.add(drawLine(downcompare));
-        if (status.equals("실패")) {
+        if (status.equals(LOSE)) {
             outputview.printMap(result);
             retry();
         }
     }
 
     public void upNotEqual(List<String> moving, int direction, String[] upcompare) {
-        if (moving.get(direction).equals("U")) {
-            upcompare[direction] = "X";
+        if (moving.get(direction).equals(UP)) {
+            upcompare[direction] = WRONG;
         }
-        if (moving.get(direction).equals("D")) {
-            upcompare[direction] = " ";
+        if (moving.get(direction).equals(DOWN)) {
+            upcompare[direction] = BLANK;
         }
-        status = "실패";
+        status = LOSE;
     }
 
     public void downNotEqual(List<String> moving, int direction, String[] downcompare) {
-        if (moving.get(direction).equals("D")) {
-            downcompare[direction] = "X";
+        if (moving.get(direction).equals(DOWN)) {
+            downcompare[direction] = WRONG;
         }
-        if (moving.get(direction).equals("U")) {
-            downcompare[direction] = " ";
+        if (moving.get(direction).equals(UP)) {
+            downcompare[direction] = BLANK;
         }
-        status = "실패";
+        status = LOSE;
     }
 
     public String[] upLine(List<String> moving, int direction, String[] compare) {
-        if (moving.get(direction).equals("U")) {
-            compare[direction] = "O";
+        if (moving.get(direction).equals(UP)) {
+            compare[direction] = CORRECT;
         }
-        if (moving.get(direction).equals("D")) {
-            compare[direction] = " ";
+        if (moving.get(direction).equals(DOWN)) {
+            compare[direction] = BLANK;
         }
         return compare;
     }
 
     public String[] downLine(List<String> moving, int direction, String[] compare) {
-        if (moving.get(direction).equals("U")) {
-            compare[direction] = " ";
+        if (moving.get(direction).equals(UP)) {
+            compare[direction] = BLANK;
         }
-        if (moving.get(direction).equals("D")) {
-            compare[direction] = "O";
+        if (moving.get(direction).equals(DOWN)) {
+            compare[direction] = CORRECT;
         }
         return compare;
     }
@@ -137,18 +148,18 @@ public class BridgeGame {
      */
     public void retry() {
         String quit = inputview.readExitCommand();
-        if (quit.equals("R") == false && quit.equals("Q") == false) {
+        if (quit.equals(RETRY) == false && quit.equals(QUIT) == false) {
             try {
                 throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] R(재시작) , Q(종료)중에 선택해주세요");
+                System.out.println(ERROR_RETRYQUIT);
                 retry();
             }
         }
-        if (quit.equals("Q")) {
+        if (quit.equals(QUIT)) {
             retryornot = 2;
         }
-        if (quit.equals("R")) {
+        if (quit.equals(RETRY)) {
             retryornot = 1;
         }
     }
