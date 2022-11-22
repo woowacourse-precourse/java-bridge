@@ -72,6 +72,13 @@ class ApplicationTest extends NsTest {
         }, 0, 0, 1);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "-","2"})
+    void 재시작_종료_여부_예외_테스트(String input) {
+        assertThatThrownBy(() -> ValidateInput.validateGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Test
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
