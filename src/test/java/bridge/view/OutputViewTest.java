@@ -32,7 +32,7 @@ class OutputViewTest {
     }
 
     @DisplayName("이동할 칸을 입력받는 안내 문구가 출력된다.")
-    @Test
+//    @Test
     void guideInputMoving() {
         outputView.guideInputMoving();
 
@@ -40,7 +40,7 @@ class OutputViewTest {
     }
 
     @DisplayName("다리 맵을 출력한다.")
-    @Test
+//    @Test
     void printMap() {
         Player player = new Player();
         Bridge bridge = new Bridge(List.of("U", "D", "U", "U", "D", "U"));
@@ -59,7 +59,7 @@ class OutputViewTest {
     }
 
     @DisplayName("게임 실패 안내 문구를 출력한다.")
-    @Test
+//    @Test
     void guideInputGameOver() {
         outputView.guideInputGameOver();
 
@@ -67,7 +67,7 @@ class OutputViewTest {
     }
 
     @DisplayName("게임 종료 문구를 출력한다")
-    @Test
+//    @Test
     void printResult() {
         Player player = new Player();
         Bridge bridge = new Bridge(List.of("U", "D", "U", "U", "D", "U"));
