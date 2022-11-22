@@ -54,8 +54,13 @@ public class OutputView {
         makeBridgeSeparator(isRetry);
         makeBridgePart();
         makeBridgeEnd();
+        printCompleteBridgeMap();
+    }
+
+    private void printCompleteBridgeMap() {
         System.out.println(bridgeUpMap.toString());
         System.out.println(bridgeDownMap.toString());
+        System.out.println();
     }
 
     private void deleteLastSeparator(boolean isRetry) {
@@ -147,6 +152,7 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(RESULT.getMessage());
+        printCompleteBridgeMap();
         System.out.printf(SUCCESS_OR_FAILURE.getMessage(), getGameResult());
         System.out.printf(TOTAL_ATTEMPTS.getMessage(), bridgePlayer.getTryCount());
     }
