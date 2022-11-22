@@ -31,6 +31,12 @@
 
 ## 기능 명세
 - --
+### BridgeGame 객체 클래스
+#### 게임 객체
+  - ```setBridgeLength``` :  다리 길이 설정
+  - ```setBridge``` : 랜덤 다리 설정
+
+
 ### BridgeMaker 메서드 클래스
 #### : 다리 생성
   - ```makeBridge``` : 다리 생성 및 반환
