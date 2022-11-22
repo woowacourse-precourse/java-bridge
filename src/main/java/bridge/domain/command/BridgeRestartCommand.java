@@ -9,11 +9,10 @@ public enum BridgeRestartCommand {
 	private String command;
 	private boolean isRetry;
 
-	BridgeRestartCommand(String command,boolean isRetry) {
+	BridgeRestartCommand(String command, boolean isRetry) {
 		this.command = command;
 		this.isRetry = isRetry;
 	}
-
 
 
 	public static boolean isRetry(String input) {

@@ -22,12 +22,14 @@ public enum BridgeMoveCommand {
 				.orElseThrow(IllegalArgumentException::new)
 				.getCommand();
 	}
+
 	public static boolean hasMoveCommand(String input) {
 		return Arrays.stream(values())
 				.anyMatch(bridgeMoveCommand -> bridgeMoveCommand.command.equals(input));
 
 	}
-	public static int findStoreIndex(String input){
+
+	public static int findStoreIndex(String input) {
 		return Arrays.stream(values())
 				.filter(bridgeMoveCommand -> bridgeMoveCommand.command.equals(input))
 				.findAny()
@@ -35,7 +37,8 @@ public enum BridgeMoveCommand {
 				.getNumber();
 
 	}
-	public static int getSize(){
+
+	public static int getSize() {
 		return (int) Arrays.stream(values())
 				.count();
 	}

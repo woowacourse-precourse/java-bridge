@@ -31,7 +31,7 @@ public class OutputView {
 	public void printMap(BridgeGame bridgeGame) {
 		List<List<String>> resultMap = bridgeGame.getResultMap();
 		StringBuilder log = new StringBuilder();
-		int size = BridgeMoveCommand.getSize()-1;
+		int size = BridgeMoveCommand.getSize() - 1;
 		for (int i = size; i >= 0; i--) {
 			log.append(BRIDGE_RESULT_OPEN);
 			log.append(getBody(resultMap.get(i)));
@@ -39,7 +39,8 @@ public class OutputView {
 		}
 		System.out.println(log);
 	}
-	public String getBody(List<String> result){
+
+	public String getBody(List<String> result) {
 		return String.join(BRIDGE_RESULT_MIDDLE, result);
 	}
 
@@ -51,7 +52,7 @@ public class OutputView {
 	public void printResult(BridgeGame bridgeGame) {
 		System.out.println(PRINT_FINAL_GAME_RESULT);
 		printMap(bridgeGame);
-		System.out.println(PRINT_GAME_IS_SUCCESS+ bridgeGame.isSuccessGame());
+		System.out.println(PRINT_GAME_IS_SUCCESS + bridgeGame.isSuccessGame());
 		System.out.println(PRINT_GAME_TRY_COUNT + bridgeGame.getCountOfAttemps());
 	}
 }
