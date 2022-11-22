@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import repository.BridgeRepository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,7 +49,7 @@ public class BridgeGameTest {
 
         IntStream.range(0, progress.size())
                 .forEach(i -> {
-                    bridgeRepository.saveProgress(progress.get(i));
+                    bridgeGame.move(progress.get(i));
                     assertThat(bridgeGame.canMove()).isEqualTo(true);
                 });
     }
@@ -59,8 +60,23 @@ public class BridgeGameTest {
         List<String> bridge = List.of("U", "D", "D", "U", "D");
 
         bridgeRepository.saveBridge(bridge);
-        bridgeRepository.saveProgress("D");
+        bridgeGame.move("D");
 
         assertThat(bridgeGame.canMove()).isEqualTo(false);
+    }
+
+    @DisplayName("현재까지 진행 결과 확인")
+    @Test
+    void 진행_결과() {
+        List<String> bridge = List.of("U", "D", "D", "U", "D");
+        List<String> progress = List.of("U", "D", "U");
+        bridgeRepository.saveBridge(bridge);
+        progress.forEach(bridgeGame::move);
+
+        bridgeGame.saveResult();
+        Map<String, List<String>> result = bridgeRepository.getResult();
+
+        assertThat(result.get("U")).containsExactly("O", " ", "X");
+        assertThat(result.get("D")).containsExactly(" ", "O", " ");
     }
 }
