@@ -70,7 +70,7 @@ public class OutputView {
         return String.format(ResultPhrase.ATTEMPT_COUNT.get(), attemptCount);
     }
 
-    public static void insertLineBreak() {
+    public void insertLineBreak() {
         System.out.println();
     }
 }
