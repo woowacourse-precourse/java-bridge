@@ -97,6 +97,12 @@ class ApplicationTest extends NsTest {
 		}, 1, 0, 1);
 	}
 
+	@Test
+	void retry_R_기능_테스트() {
+		BridgeGame bridgeGame = new BridgeGame();
+		assertThat(true).isEqualTo(bridgeGame.retry("R"));
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
