@@ -35,13 +35,25 @@
 
 * **start()**
     * simulates start and initialization
+* **movement()**
+    * simulates one move forward
 * **play()**
     * simulates play bridge game
+* **finish()**
+    * simulates retry or finish game
 * **result()**
     * simulates finish and show result
+* **getBridgeLength()**
+    * return bridge length if it is valid
+* **getMoving()**
+    * return moving sign if it is valid
+* **getCommand()**
+    * return game command if it is valid
 
 ### Function.java
 
+* **validCastingBridgeSize()**
+    * check whether input is integer or not
 * **validBridgeSize()**
     * check whether bridge size is valid or not
 * **validMoving()**
@@ -64,10 +76,14 @@
     * print current bridge state
 * **printResult()**
     * print result of the game
-* **printMapLine()**
-    * print current bridge state about one line
 * **printStart()**
     * print start message
+* **printMapLine()**
+    * print current bridge state about one line
+* **printMapContent()**
+    * print map content for one line
+* **printMapSuffix()**
+    * print map suffix for one line
 * **printGetLength()**
     * print message for getting length of bridge
 * **printGetMoving()**
