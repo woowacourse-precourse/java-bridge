@@ -14,25 +14,28 @@ public class OutputView {
      */
     int cur;
     List<String> bridge;
-    public OutputView(int c,List<String> b){
+    List<String> mov;
+    public OutputView(int c,List<String> b,List<String> m){
         cur = c;
         bridge = b;
+        mov = m;
     }
     public String selectLetter(String letter, int i, int last){
-        if(bridge.get(i).equals(letter)) {
-            if(i != cur) return "O";
-            if(last == 1) return "X";
-            return "O";
+        if(bridge.get(i).equals(mov.get(i))){
+            if(bridge.get(i).equals(letter)) return "O";
+            else return " ";
+        } else {
+            if(bridge.get(i).equals(letter)) return " ";
+            return "X";
         }
-        else return " ";
     }
     public void printMap(String letter, int last) {
         System.out.print("[");
-        for(int i = 0; i <= cur; i++){
+        for(int i = 0; i < mov.size(); i++){
             System.out.print(" ");
             System.out.print(selectLetter(letter,i, last));
             System.out.print(" ");
-            if(i != cur) System.out.print("|");
+            if(i < mov.size() - 1) System.out.print("|");
         }
         System.out.print("]\n");
     }
@@ -47,6 +50,7 @@ public class OutputView {
      */
     public void printResult(int last, int cnt) {
         System.out.print("최종 게임 결과\n");
+        System.out.println(cur);
         cur--;
         printMap("U",last);
         printMap("D",last);
