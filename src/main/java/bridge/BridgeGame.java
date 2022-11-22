@@ -30,4 +30,15 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    private boolean isLastElementsSame() {
+        int lastIndex = selectedPath.size() - 1;
+        String currentBridge = bridge.get(lastIndex);
+        String currentSelected = selectedPath.get(lastIndex);
+        return (currentBridge.equals(currentSelected));
+    }
+
+    public boolean checkCurrentStatus() {
+        return (selectedPath.isEmpty() || isLastElementsSame());
+    }
 }
