@@ -15,7 +15,6 @@ public enum Error {
                                + GameCommand.QUIT.getExpression() + "("
                                + GameCommand.QUIT.getDescription() + ")" + "여야 합니다.");
 
-    private final String ERROR = "[ERROR] ";
     private final String message;
 
     Error(String message) {
@@ -23,7 +22,7 @@ public enum Error {
     }
 
     public String getMessage() {
-        return ERROR + message;
+        return "[ERROR] " + message;
     }
 
 }
