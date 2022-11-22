@@ -3,6 +3,7 @@ package bridge.domain;
 import static bridge.view.SystemMessage.BRIDGE_SIZE_LIMIT_ERROR_MESSAGE;
 import static bridge.view.SystemMessage.ERROR_MESSAGE;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
