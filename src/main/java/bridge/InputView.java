@@ -12,10 +12,6 @@ public class InputView {
      * 다리의 길이를 입력받는다. -> bridgemaker
      */
 
-    public String userInput() {
-        return readLine();
-    }
-
     public int readBridgeSize() {
         String userInput;
         while (true) {
@@ -36,19 +32,36 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String userInput) {
+    public String readMoving() {
+        String userInput ;
+        while (true) {
+            try {
+                userInput = readLine();
+                validateError.validIsNotSuitableMovingCommand(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
 
-        validateError.validIsNotSuitableMovingCommand(userInput);
+        }
         return userInput;
-
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(String userInput) {
-        System.out.println(printOutput.RESTART_OR_QUIT);
-        validateError.validIsNotSuitableEndCommand(userInput);
+    public String readGameCommand() {
+        String userInput;
+        while (true) {
+            System.out.println(printOutput.RESTART_OR_QUIT.getGameOutput());
+            try {
+                userInput = readLine();
+                validateError.validIsNotSuitableEndCommand(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return userInput;
     }
 }
