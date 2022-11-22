@@ -14,7 +14,6 @@ public class BridgeGame {
     public static final String RIGHT = "O ";
     public static final String WRONG = "X ";
     public static final String SPACE_BRIDGE = "  ";
-
     public static final String RESTART = "R";
     public static final String QUIT = "Q";
 
@@ -68,7 +67,7 @@ public class BridgeGame {
         if(Objects.equals(command, QUIT)) {
             return false;
         }
-        if(Objects.equals(command, RESTART)) {
+        if (Objects.equals(command, RESTART)) {
             return true;
         }
         return true;
@@ -76,7 +75,6 @@ public class BridgeGame {
 
     public static int getAnswerCount(String direction) {
         triedAnswers.add(direction);
-        System.out.println(triedAnswers);
         return triedAnswers.size();
     }
 

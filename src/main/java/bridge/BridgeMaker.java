@@ -30,13 +30,4 @@ public class BridgeMaker {
         System.out.println(bridge);
         return bridge;
     }
-//    public List<String> makeBridge(int size) {
-//        List<String> bridge = new ArrayList<>();
-//        for (int idx = 0; idx < size; idx++) {
-//            int randNumber = bridgeNumberGenerator.generate();
-//            addBridge(bridge, randNumber);
-//        }
-//        return bridge;
-//    }
-
 }

@@ -53,8 +53,7 @@ public class GameController {
 
     private static String getMoveCommand(OutputView outputView, InputView inputView) {
         outputView.enterMoveDirection();
-        String direction = inputView.readMoving();
-        return direction;
+        return inputView.readMoving();
     }
 
     private static String getContinueCommand(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
