@@ -38,4 +38,8 @@ public class MapArray {
     public String getDownBridge() {
         return downBridge;
     }
+    public void retry(){
+        upBridge ="";
+        downBridge = "";
+    }
 }

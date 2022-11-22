@@ -21,14 +21,14 @@ public class InputView {
 
     private static void validateBridgeSize(String  bridgeSize) {
         try {
-            Integer.parseInt(bridgeSize);
+            int size = Integer.parseInt(bridgeSize);
+            if(size <3|| size >20){
+                throw new IllegalArgumentException("[ERROR] 다리의 길이는 3부터 20까지입니다.");
+            }
         }catch (Exception e){
             throw new IllegalArgumentException("[ERROR] 다리의 길이는 정수로 입력해 주십시오");
         }
 
-        if(bridgeSize.length() <3|| bridgeSize.length() >20){
-            throw new IllegalArgumentException("[ERROR] 다리의 길이는 3부터 20까지입니다.");
-        }
     }
 
     /**
@@ -43,10 +43,11 @@ public class InputView {
 
     private static void validateMove(String playerMove) {
         if(playerMove.length()!=1){
-            throw new IllegalArgumentException("[ERROR] 이동은 U, 또는 R로 입력하셔야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 이동은 U, 또는 D로 입력하셔야 합니다.");
         }
-        if(!playerMove.equals("U")||!playerMove.equals("R")){
-            throw new IllegalArgumentException("[ERROR] 이동은 U, 또는 R로 입력하셔야 합니다.");
+        if(!(playerMove.equals("U")||playerMove.equals("D"))){
+            System.out.println(playerMove);
+            throw new IllegalArgumentException("[ERROR] 이동은 U, 또는 D로 입력하셔야 합니다.");
         }
     }
 
@@ -61,10 +62,10 @@ public class InputView {
 
     private static void validateGameCommand(String gameCommand) {
         if(gameCommand.length()!=1){
-            throw new IllegalArgumentException("[ERROR] 이동은 R, 또는 Q로 입력하셔야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 다시 시작은 R, 게임 종료는 Q를 입력하셔야 합니다.");
         }
-        if(!gameCommand.equals("Q")||!gameCommand.equals("R")){
-            throw new IllegalArgumentException("[ERROR] 이동은 R, 또는 Q로 입력하셔야 합니다.");
+        if(!(gameCommand.equals("Q")||gameCommand.equals("R"))){
+            throw new IllegalArgumentException("[ERROR] 다시 시작은 R, 게임 종료는 Q를 입력하셔야 합니다.");
         }
     }
 }
