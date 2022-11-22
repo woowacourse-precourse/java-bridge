@@ -18,10 +18,10 @@ class BridgeTest {
     // 테스트를 위해, 다리 길이는 3으로 고정하고, 정답 bridge 는 "U,D,D"로 제한함.
 
     private final BridgeMaker testBridgeMaker = new BridgeMaker(testNumberGenerator);
-    private final int testBridgeSize = 3;
 
     @BeforeEach
     void beforeProcess(){
+        int testBridgeSize = 3;
         testBridge = new Bridge(testBridgeMaker, testBridgeSize);
     }
 
