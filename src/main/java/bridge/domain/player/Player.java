@@ -7,13 +7,13 @@ import bridge.utils.message.ExceptionMessageUtils;
 
 public class Player {
 
-    private final PlayerStepHistory playerStepHistory;
+    private final MovingPathHistory movingPathHistory;
     private final PlayerState playerState;
 
     public Player(int size) {
         validateBridgeSize(size);
 
-        playerStepHistory = new PlayerStepHistory();
+        movingPathHistory = new MovingPathHistory();
         playerState = new PlayerState();
     }
 
@@ -31,12 +31,12 @@ public class Player {
         boolean movable = bridge.calculatePlayerMoving(playerStep, playerState);
 
         playerState.move(movable);
-        playerStepHistory.updateHistory(playerStep, movable);
+        movingPathHistory.updateHistory(playerStep, movable);
         return movable;
     }
 
     public String getPlayerTargetTileHistory(final BridgeTile targetTile) {
-        return playerStepHistory.getPlayerTargetTileHistory(targetTile);
+        return movingPathHistory.getPlayerTargetTileHistory(targetTile);
     }
 
     public boolean isSuccessful(final Bridge bridge) {
@@ -45,7 +45,7 @@ public class Player {
 
     public void preparedNextPlay() {
         playerState.preparedNextPlay();
-        playerStepHistory.clear();
+        movingPathHistory.clear();
     }
 
     public long getTryCount() {

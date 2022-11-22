@@ -5,7 +5,7 @@ import bridge.exception.domain.WrongBridgeTileException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerStepHistory {
+public class MovingPathHistory {
 
     private static final String HISTORY_SEPARATOR = " | ";
     private static final String CORRECT_MOVE = "O";

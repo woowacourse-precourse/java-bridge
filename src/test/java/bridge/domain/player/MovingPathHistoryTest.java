@@ -8,15 +8,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class PlayerStepHistoryTest {
+class MovingPathHistoryTest {
 
-    private PlayerStepHistory playerStepHistory;
+    private MovingPathHistory movingPathHistory;
 
     @BeforeEach
     void initPlayerStepHistory() {
-        playerStepHistory = new PlayerStepHistory();
-        playerStepHistory.updateHistory(BridgeTile.DOWN, true);
-        playerStepHistory.updateHistory(BridgeTile.UP, false);
+        movingPathHistory = new MovingPathHistory();
+        movingPathHistory.updateHistory(BridgeTile.DOWN, true);
+        movingPathHistory.updateHistory(BridgeTile.UP, false);
     }
 
     @Nested
@@ -30,8 +30,8 @@ class PlayerStepHistoryTest {
             @Test
             @DisplayName("BridgeTile에 맞는 플레이어의 이동 경로를 반환한다")
             void it_return_targetHistory() {
-                String upHistory = playerStepHistory.getPlayerTargetTileHistory(BridgeTile.UP);
-                String downHistory = playerStepHistory.getPlayerTargetTileHistory(BridgeTile.DOWN);
+                String upHistory = movingPathHistory.getPlayerTargetTileHistory(BridgeTile.UP);
+                String downHistory = movingPathHistory.getPlayerTargetTileHistory(BridgeTile.DOWN);
 
                 assertThat(upHistory).contains("X");
                 assertThat(downHistory).contains("O");
@@ -50,12 +50,12 @@ class PlayerStepHistoryTest {
             @Test
             @DisplayName("플레이어 이동 경로를 초기화한다")
             void it_clear_history() {
-                String downHistory = playerStepHistory.getPlayerTargetTileHistory(BridgeTile.DOWN);
+                String downHistory = movingPathHistory.getPlayerTargetTileHistory(BridgeTile.DOWN);
                 assertThat(downHistory.length()).isGreaterThan(0);
 
-                playerStepHistory.clear();
+                movingPathHistory.clear();
 
-                downHistory = playerStepHistory.getPlayerTargetTileHistory(BridgeTile.DOWN);
+                downHistory = movingPathHistory.getPlayerTargetTileHistory(BridgeTile.DOWN);
                 assertThat(downHistory.length()).isSameAs(0);
             }
         }
