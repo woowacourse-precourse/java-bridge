@@ -8,7 +8,7 @@ import bridge.test.BridgeGame;
 public class OutputView {
 
     public static void printgameStart() {
-        System.out.println("다리 건너기 게임을 시작합니다\n");
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
 
     public static void printMap(StringBuilder upline, StringBuilder downline) {
