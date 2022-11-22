@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final String RETRY = "R";
-    private static final String QUIT = "Q";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private List<String> marks;
@@ -51,11 +50,15 @@ public class BridgeGame {
      * @return
      */
     public boolean isDiscord() {
-        if (marks.get(marks.size() - 1).equals("X")) {
+        if (isX(marks, "X")) {
             resultOfGame = FAIL;
             return true;
         }
         return false;
+    }
+
+    public boolean isX(List<String> marks, String result) {
+        return marks.get(marks.size() - 1).equals(result);
     }
 
     /**
@@ -97,6 +100,7 @@ public class BridgeGame {
     /**
      * output에서 그려질 때 필요한 그림 정보를 따로 저장
      * output에서는 보내준 그림을 print만 하는 것으로 수정
+     *
      * @param bridge
      * @param marks
      * @return
@@ -142,10 +146,6 @@ public class BridgeGame {
 
     public String getResultOfGame() {
         return resultOfGame;
-    }
-
-    public void setMap(List<String[]> map) {
-        this.map = map;
     }
 
     public List<String[]> getMap() {
