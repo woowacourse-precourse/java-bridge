@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    public static final int FIRST_BLOCK = 0;
-    public static final int MIN_SIZE = 3;
-    public static final int MAX_SIZE = 20;
+    private static final int FIRST_BLOCK = 0;
+    private static final int MIN_SIZE = 3;
+    private static final int MAX_SIZE = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 

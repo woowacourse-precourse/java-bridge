@@ -16,8 +16,8 @@ import java.util.List;
 
 public class BridgeGameController {
 
-    public static final boolean IN_PROGRESS = true;
-    public static final boolean GAME_OVER = false;
+    private static final boolean IN_PROGRESS = true;
+    private static final boolean GAME_OVER = false;
 
     private final InputView inputView;
     private final OutputView outputView;

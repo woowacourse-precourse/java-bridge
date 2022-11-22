@@ -11,11 +11,10 @@ import bridge.SideMap;
  */
 public class OutputView {
 
-    int STARTING_POINT = 0;
-    String BRIDGE_START = "[ ";
-    String BRIDGE_END = " ]";
-    String BRIDGE_SEPARATOR = " | ";
-
+    private final static int STARTING_POINT = 0;
+    private final static String BRIDGE_START = "[ ";
+    private final static String BRIDGE_END = " ]";
+    private final static String BRIDGE_SEPARATOR = " | ";
 
     public void printGameIntro() {
         System.out.println(GuidanceMessage.GAME_INTRO);
