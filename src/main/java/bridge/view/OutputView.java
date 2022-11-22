@@ -83,4 +83,8 @@ public class OutputView {
         System.out.println(GAME_SUCCESS_OR_NOT_MSG + successOrFail);
         System.out.println(TOTAL_NUMBER_MSG + attemptCount);
     }
+
+    public void printExceptionMessage(IllegalArgumentException e){
+        System.out.println(e.getMessage());
+    }
 }

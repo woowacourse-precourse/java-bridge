@@ -38,7 +38,7 @@ public class BridgeController {
         try{
             this.bridgeSize = inputView.readBridgeSize();
         } catch (IllegalArgumentException e){
-            System.out.println(e);
+            outputView.printExceptionMessage(e);
             inputBridgeSize();
         }
     }
