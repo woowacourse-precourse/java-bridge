@@ -50,5 +50,10 @@ public class OutputView {
         System.out.println("");
     }
 
+    public void printFailEnd(Integer Number_of_Attempts) {
+        System.out.println("게임 성공 여부: 실패");
+        System.out.print("총 시도한 횟수: " + Number_of_Attempts);
+    }
+
     }
 }
