@@ -25,7 +25,7 @@ public class PrintView {
         return "[   ]";
     }
 
-    public String continueOrExit() {
+    public String exitOrContinue() {
         return inputView.readGameCommand();
     }
 }

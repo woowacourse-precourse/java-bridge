@@ -9,24 +9,24 @@ import java.util.List;
 
 public class BridgeMoveStepService {
 
-    public void selectRestart(List<String> upSide, List<String> downSide) {
+    public void pickRestart(List<String> upSide, List<String> downSide) {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
 
-        bridgeGame.checkAnswerIndex = 0;
+        bridgeGame.checkResultFlag = 0;
         upSide.clear();
         downSide.clear();
         outputView.stepBridge(BridgeController.bridgeData);
     }
 
-    public void selectQuit(List<String> upSide, List<String> downSide) {
+    public void pickExit(List<String> upSide, List<String> downSide) {
         PrintView printView = new PrintView();
         BridgeGame bridgeGame = new BridgeGame();
 
         System.out.println(printView.THE_GAME_RESULT);
         extractBracket(upSide,downSide);
         printView.lineSkip();
-        bridgeGame.printFailOrSuccessCase();
+        bridgeGame.printSuccessOrFailCase();
     }
 
     public void extractBracket(List<String> upSideList, List<String> downSideList) {

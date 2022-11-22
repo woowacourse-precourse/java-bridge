@@ -26,24 +26,24 @@ public class OutputView {
             System.out.println(printView.MOVE_STEP);
             moveStep = inputView.readGameCommand();
             bridgeGame.move(inputMoveStepHandler.checkValidator(moveStep), bridgeData.get(index), index);
-            if(BridgeGame.checkAnswerIndex == 1 || BridgeGame.checkAnswerIndex == 2) break;
+            if(BridgeGame.checkResultFlag == 1 || BridgeGame.checkResultFlag == 2) break;
             succesStepBridge(index, bridgeData);
         }
     }
 
     private boolean exitLoop() {
-        return BridgeGame.checkAnswerIndex != 1 && BridgeGame.checkAnswerIndex != 2;
+        return BridgeGame.checkResultFlag != 1 && BridgeGame.checkResultFlag != 2;
     }
 
     private void succesStepBridge(int index, List<String> bridgeData) {
         BridgeMoveStepService bridgeMoveStepService = new BridgeMoveStepService();
-        if(index == bridgeData.size() - 1 && BridgeGame.checkAnswerIndex == 0) {
-            BridgeGame.checkAnswerIndex = 2;
+        if(index == bridgeData.size() - 1 && BridgeGame.checkResultFlag == 0) {
+            BridgeGame.checkResultFlag = 2;
             printView.lineSkip();
             System.out.println(printView.THE_GAME_RESULT);
             bridgeMoveStepService.extractBracket(bridgeGame.upSide,bridgeGame.downSide);
             printView.lineSkip();
-            bridgeGame.printFailOrSuccessCase();
+            bridgeGame.printSuccessOrFailCase();
         }
     }
 }
