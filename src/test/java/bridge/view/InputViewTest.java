@@ -49,6 +49,36 @@ public class InputViewTest {
                 .hasMessageStartingWith("[ERROR]");
     }
 
+    @DisplayName("다리를 위로 건널지 아래로 건널지 입력받는 코드를 테스트, 유효한 입력이 들어왔을 경우 성공")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D", "D", "U"})
+    void givenUpOrDown_whenReadMoving_thenReturnUpOrDown(String inputUpOrDown){
+        // Given
+        InputStream inputStream = generateUserInput(inputUpOrDown);
+        System.setIn(inputStream);
+
+        // When
+        String upOrDown = inputView.readMoving();
+
+        // Then
+        assertThat(upOrDown).containsPattern("[UD]");
+        assertThat(upOrDown).hasSize(1);
+    }
+
+    @DisplayName("다리를 위로 건널지 아래로 건널지 입력받는 코드를 테스트 - 유효하지 않은 값 입력")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "UD", "DU", "123", "**", "12D", "D12"})
+    void givenUpOrDown_whenReadMoving_thenThrowIllegalArgumentException(String upOrDown){
+        // Given
+        InputStream inputStream = generateUserInput(upOrDown);
+        System.setIn(inputStream);
+
+        // When & Then
+        assertThatThrownBy(()->inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
     private InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
