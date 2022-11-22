@@ -7,6 +7,6 @@ public class BridheGameController {
 
     private void gameStart() {
         OutputView outputView = new OutputView();
-        outputView.gameStart();
+        outputView.printgameStart();
     }
 }
