@@ -13,6 +13,7 @@ public class InputView {
     private static final String COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료:  Q)";
 
     InputViewException inputViewException;
+    private String input;
 
 
     public InputView() {
@@ -25,10 +26,21 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(START_MESSAGE);
-        System.out.println(BRIDGE_SIZE_MESSAGE);
-        String input = Console.readLine().trim();
-        inputViewException.readBridgeSizeException(input);
+        do {
+            System.out.println(BRIDGE_SIZE_MESSAGE);
+            input = Console.readLine().trim();
+        } while (this.bridgeSizeTryCatch(input));
         return Integer.parseInt(input);
+    }
+
+    public boolean bridgeSizeTryCatch(String str) {
+        try {
+            inputViewException.readBridgeSizeException(str);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getLocalizedMessage());
+            return true;
+        }
+        return false;
     }
 
 
@@ -36,10 +48,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(MOVE_MESSAGE);
-        String input = Console.readLine().trim();
-        inputViewException.readMovingException(input);
+        do {
+            System.out.println(MOVE_MESSAGE);
+            input = Console.readLine().trim();
+        } while (this.movingTryCatch(input));
         return input;
+    }
+
+    public boolean movingTryCatch(String str) {
+        try {
+            inputViewException.readMovingException(str);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getLocalizedMessage());
+            return true;
+        }
+        return false;
     }
 
 
@@ -47,9 +70,20 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(COMMAND_MESSAGE);
-        String input = Console.readLine().trim();
-        inputViewException.readGameCommandException(input);
+        do {
+            System.out.println(COMMAND_MESSAGE);
+            input = Console.readLine().trim();
+        } while (this.gameCommandTryCatch(input));
         return input;
+    }
+
+    public boolean gameCommandTryCatch(String str) {
+        try {
+            inputViewException.readGameCommandException(str);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getLocalizedMessage());
+            return true;
+        }
+        return false;
     }
 }

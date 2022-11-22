@@ -24,11 +24,7 @@ public class BridgeController {
     }
 
     public void playBridge() {
-        try {
-            this.newGame(new ArrayList<>(bridgeMaker.makeBridge(inputView.readBridgeSize())));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getLocalizedMessage());
-        }
+        this.newGame(new ArrayList<>(bridgeMaker.makeBridge(inputView.readBridgeSize())));
     }
 
     public void newGame(List<String> bridge) {
