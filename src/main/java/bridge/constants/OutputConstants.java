@@ -5,11 +5,11 @@ public enum OutputConstants {
 
     SET_SIZE_BRIDGE_MESSAGE("다리의 길이를 입력해주세요"),
 
-    CHOICE_UP_DOWN_MESSAGE("\n이동할 칸을 선택해주세요. (위: U, 아래 : D)"),
+    CHOICE_UP_DOWN_MESSAGE("이동할 칸을 선택해주세요. (위: U, 아래 : D)"),
 
-    RESULT_MESSAGE("\n최종 게임 결과"),
+    RESULT_MESSAGE("최종 게임 결과"),
 
-    SELECT_RESTART_OR_QUIT("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도 : R, 종료 : Q)\n"),
+    SELECT_RESTART_OR_QUIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도 : R, 종료 : Q)"),
 
     TOTAL_TRY("총 시도한 횟수: "),
 
