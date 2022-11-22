@@ -19,6 +19,10 @@ public class MovingMap {
         movingMap.put(UpAndDown.DOWN.getCommand(), new ArrayList<>());
     }
 
+    public void putStatus(String moving, boolean moveStatus) {
+        movingMap.forEach((targetUpAndDown, stateList) -> stateList.add(judgeStatus(targetUpAndDown, moving, moveStatus)) );
+    }
+
     public String judgeStatus(String targetUpAndDown, String moving, boolean moveStatus) {
         if (moveStatus && targetUpAndDown.equals(moving)) { //
             return CORRECT;
