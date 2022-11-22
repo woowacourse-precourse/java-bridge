@@ -13,7 +13,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<Stack> stairs) {
+        for (Stack stair : stairs) {
+            for (Object o : stair) {
+                System.out.print(o + "");
+            }
+            System.out.println();
+        }
     }
 
     /**
@@ -21,25 +27,31 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<Stack> stairs, int runCnt, boolean isSuccess) {
+        System.out.println("\n최종 게임 결과");
+        printMap(stairs);
+        String success = convertBooleanToStr(isSuccess);
+        System.out.println("\n게임 성공 여부: " + success);
+        System.out.println("총 시도한 횟수: " + runCnt);
+    }
+
+    private String convertBooleanToStr(boolean isSuccess) {
+        if (isSuccess) {
+            return "성공";
+        }
+        if (!isSuccess) {
+            return "실패";
+        }
+        throw new IllegalArgumentException("잘못된 입력 값입니다.");
     }
 
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
     public void printPlay() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-    }
-
-    public void printStairs(List<Stack> stairs) {
-        for (Stack stair : stairs) {
-            for (Object o : stair) {
-                System.out.print(o+"");
-            }
-            System.out.println();
-        }
     }
 
     public void printRetry() {
