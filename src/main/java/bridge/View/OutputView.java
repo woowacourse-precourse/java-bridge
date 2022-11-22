@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println(GAME_START);
     }
 
-    public void printEnterLengthOfBridge(){
+    public void printEnterLengthOfBridge() {
         System.out.println(ENTER_LENGTH_OF_BRIDGE);
     }
 
@@ -26,6 +26,10 @@ public class OutputView {
 
     public void printEnterRetryOrNot() {
         System.out.println(ENTER_RETRY_OR_NOT);
+    }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 
     /**
