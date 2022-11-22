@@ -1,7 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class BridgeGameController {
 
     InputView inputView = new InputView();
@@ -10,7 +8,7 @@ public class BridgeGameController {
 
     public void run() {
         Bridge bridge = createBridge();
-        moveAndCheck(bridge);
+        doBridge(bridge);
     }
 
     private Bridge createBridge() {
@@ -21,18 +19,27 @@ public class BridgeGameController {
     }
 
 
+    private void doBridge(Bridge bridge) {
+        moveAndCheck(bridge);
+        checkSuccess(bridge);
+    }
+
     private void moveAndCheck(Bridge bridge) {
         for (int i = 0; i < bridge.getBridge().size(); i++) {
             moveUser(bridge); // 사용자 이동
             String examineResult = examineBridge(bridge);
-            if (examineResult.equals("R")) {
-                i = -1;
-            }
+            i = checkIsR(i, examineResult);
             if (examineResult.equals("Q")) {
                 return;
             }
         }
-        checkSuccess(bridge);
+    }
+
+    private static int checkIsR(int i, String examineResult) {
+        if (examineResult.equals("R")) {
+            i = -1;
+        }
+        return i;
     }
 
     private String examineBridge(Bridge bridge) {
