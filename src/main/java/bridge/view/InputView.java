@@ -1,6 +1,9 @@
 package bridge.view;
 
-import bridge.Controller;
+import static bridge.BridgeGame.BRIDGE_MIN_SIZE;
+import static bridge.BridgeGame.BRIDGE_MAX_SIZE;
+import static bridge.BridgeGame.BRIDGE_SIZE_ERROR;
+
 import bridge.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -9,8 +12,6 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -18,7 +19,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         try {
             int bridgeSize = Integer.parseInt(Console.readLine());
-            if (bridgeSize < 3 || 20 < bridgeSize) {
+            if (bridgeSize < BRIDGE_MIN_SIZE || BRIDGE_MAX_SIZE < bridgeSize) {
                 throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
             }
             return bridgeSize;
