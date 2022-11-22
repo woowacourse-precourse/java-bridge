@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.*;
+
 public class BridgeValid {
 
     private final InputView inputView = new InputView();
@@ -34,6 +35,7 @@ public class BridgeValid {
             checkMoving(upBridge.size());
         }
     }
+
     public void checkMoving(int i) {
         String userMoving = checkMovingInput();
         if (bridgeGame.move(userMoving)) {
@@ -42,7 +44,7 @@ public class BridgeValid {
         if (!bridgeGame.move(userMoving)) {
             downMoving(i);
         }
-        outputView.printMap(upBridge,downBridge);
+        outputView.printMap(upBridge, downBridge);
     }
 
     private String checkMovingInput() {
@@ -75,7 +77,7 @@ public class BridgeValid {
     }
 
     public void totalResult() {
-        outputView.printResult(upBridge,downBridge);
+        outputView.printResult(upBridge, downBridge);
     }
 
     public void ScoreCount() {
@@ -86,7 +88,6 @@ public class BridgeValid {
             outputView.fail(count);
         }
     }
-
 
 
     public void setNumber() {
@@ -125,12 +126,12 @@ public class BridgeValid {
             downBridge.add("X");
         }
     }
+
     public void downPattern() {
         upBridge.add(Command.BLANK);
         downBridge.add("O");
         stack++;
     }
-
 
 
 }
