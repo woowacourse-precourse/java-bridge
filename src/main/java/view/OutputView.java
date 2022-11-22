@@ -25,11 +25,12 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     *
      * @param currentPosition 이동할 칸의 위치
-     * @param bridgeMap 다리의 상태를 기록한 리스트
+     * @param bridgeMap       다리의 상태를 기록한 리스트
      */
     public static void printMap(int currentPosition, List<List<String>> bridgeMap) {
-        for(int height=0; height<MAX_HEIGHT; height++){
+        for (int height = 0; height < MAX_HEIGHT; height++) {
             System.out.print(START_ROW);
             System.out.print(String.join(SPLIT_UNIT, bridgeMap.get(height).subList(0, currentPosition)));
             System.out.println(END_ROW);
@@ -39,8 +40,9 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     *
      * @param currentPosition 이동할 칸의 위치
-     * @param bridgeGame bridgeGame 객체(다리 상태와 결과, 시도 횟수를 얻기 위함)
+     * @param bridgeGame      bridgeGame 객체(다리 상태와 결과, 시도 횟수를 얻기 위함)
      */
     public static void printResult(int currentPosition, BridgeGame bridgeGame) {
         if (!bridgeGame.isSuccess()) {

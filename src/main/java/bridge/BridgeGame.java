@@ -29,7 +29,8 @@ public class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * @param command 이동 명령의 종류 ("U": 위, "D": 아래)
+     *
+     * @param command         이동 명령의 종류 ("U": 위, "D": 아래)
      * @param currentPosition 이동할 칸의 위치
      * @return 이동 가능 여부에 따라 가능하다면 true, 불가능하다면 false 반환
      */
@@ -55,6 +56,7 @@ public class BridgeGame {
 
     /**
      * 최초의 다리 상태를 만들 때 사용하는 메서드
+     *
      * @param size 다리 길이
      * @return 공백으로 채워져있는 다리 상태 반환
      */
@@ -72,6 +74,7 @@ public class BridgeGame {
 
     /**
      * 이동 명령에 따라 bridgeMap에서 올바른 인덱스를 구할 때 사용하는 메서드
+     *
      * @param command 이동 명령의 종류 ("U": 위, "D": 아래)
      * @return 이동 명령(위, 아래)에 따라 bridgeMap에서의 인덱스를 반환
      */

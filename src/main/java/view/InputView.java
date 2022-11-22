@@ -58,7 +58,7 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println(INPUT_GAME_COMMAND);
         String gameCommand = Console.readLine();
-        try{
+        try {
             validateGameCommand(gameCommand);
             return gameCommand;
         } catch (IllegalArgumentException e) {
@@ -68,7 +68,7 @@ public class InputView {
     }
 
     private static void isDigit(String input) {
-        if(!input.matches(CHECK_NUMBER_REGEX)) {
+        if (!input.matches(CHECK_NUMBER_REGEX)) {
             throw new IllegalArgumentException(TYPE_ERROR);
         }
     }
