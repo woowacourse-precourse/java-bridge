@@ -51,6 +51,11 @@ public class Application {
         return answerRetry;
     }
 
-
+    public String[] printMap(List<String> bridge_input, String choice, boolean same){
+        return outputView.printMap(bridge_input, choice, same);
+    }
+    public void printResult(String[] Bridge_out,boolean result,int count){
+        outputView.printResult(Bridge_out,result,count);
+    }
 
 }
