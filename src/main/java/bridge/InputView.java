@@ -19,11 +19,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         try {
             String bridgeSize = Console.readLine();
-            Exception.validateByNull(bridgeSize);
-            Exception.validateByNotNumber(bridgeSize);
-            int size = Integer.parseInt(bridgeSize);
-            Exception.validateByOverRange(size);
-            return size;
+            return validatedBridgeSize(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return 0;
@@ -53,12 +49,24 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         try {
             String endCommand = Console.readLine();
-            Exception.validateByNull(endCommand);
-            Exception.validateByNotROrQ(endCommand);
-            return endCommand;
+            return validatedCommand(endCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return "[ERROR]";
         }
+    }
+
+    private int validatedBridgeSize(String bridgeSize) {
+        Exception.validateByNull(bridgeSize);
+        Exception.validateByNotNumber(bridgeSize);
+        int size = Integer.parseInt(bridgeSize);
+        Exception.validateByOverRange(size);
+        return size;
+    }
+
+    private String validatedCommand(String command) {
+        Exception.validateByNull(command);
+        Exception.validateByNotROrQ(command);
+        return command;
     }
 }
