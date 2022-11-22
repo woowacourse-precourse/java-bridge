@@ -26,8 +26,7 @@ public class BridgeGameTest {
         mock = mockStatic(Randoms.class);
         mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                 .thenReturn(1, 0, 1);
-        BridgeLength bridgeLength = new BridgeLength(3);
-        game = new BridgeGame(bridgeLength);
+        game = new BridgeGame(3);
     }
 
     @AfterEach
