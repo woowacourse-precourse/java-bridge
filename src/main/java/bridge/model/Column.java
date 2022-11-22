@@ -57,8 +57,8 @@ public enum Column {
     }
 
     public static void validateLetter(String input) {
-        if(!(BY_CAPITAL_LETTER.containsKey(input)) || input == ""){
-            throw new IllegalArgumentException();
+        if(!(BY_CAPITAL_LETTER.containsKey(input)) || input.equals("")){
+            throw new IllegalArgumentException("[ERROR] 문자가 올바르지 않습니다.");
         }
     }
 }
