@@ -26,6 +26,10 @@ public class Path {
         paths.add(Path.EMPTY_PATH);
     }
 
+    public void clearPath() {
+        paths.clear();
+    }
+
     @Override
     public String toString() {
         return String.format("[ %s ]\n", String.join(" | ", paths));
