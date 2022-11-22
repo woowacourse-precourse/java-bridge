@@ -22,8 +22,6 @@ public class BridgeGame {
     private boolean isWin = false;
 
     BridgeMove bridgeMove = new BridgeMove();
-    BridgeRetry bridgeRetry = new BridgeRetry();
-    BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
     BridgeResult bridgeResult = new BridgeResult();
     Bridge bridge;
 
@@ -54,6 +52,7 @@ public class BridgeGame {
     }
 
     private void check(Player player) {
+        BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
         boolean moveSuccess = bridgeMove.getMoveSuccess(player, bridge);
         bridgeMapMaker.addBridgeMapBlock(player, moveSuccess);
         bridgeResult.printMap();
@@ -68,6 +67,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(Player player) {
+        BridgeRetry bridgeRetry = new BridgeRetry();
         boolean continueCommand = bridgeRetry.getContinueCode(player);
         if (continueCommand == QUIT_GAME) {
             gameSet(LOSE);

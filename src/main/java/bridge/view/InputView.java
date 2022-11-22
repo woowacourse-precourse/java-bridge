@@ -55,7 +55,7 @@ public class InputView {
                 validator.validate(readValue);
                 return readValue;
             } catch (IllegalArgumentException e) {
-                printErrorMessage(e);
+                printInputErrorMessage(e);
                 readValue = Console.readLine();
             }
         }
@@ -65,7 +65,7 @@ public class InputView {
         System.out.println(message);
     }
 
-    private void printErrorMessage(IllegalArgumentException e) {
+    private void printInputErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 }
