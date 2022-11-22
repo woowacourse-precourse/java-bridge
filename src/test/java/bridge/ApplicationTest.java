@@ -47,6 +47,27 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 게임_성공_여부() {
+        BridgeGame game = new BridgeGame();
+        OutputView output= new OutputView();
+        game.isSuccess=true;
+        output.printSuccessOrFail(game);
+        assertThat(output()).contains("성공");
+
+        game.isSuccess=false;
+        output.printSuccessOrFail(game);
+        assertThat(output()).contains("실패");
+    }
+    @Test
+    void 정답_일치_여부() {
+        OutputView output= new OutputView();
+        output.isMatch("U","U","U");
+        assertThat(output()).contains("O");
+
+        output.isMismatch("U","U","D");
+        assertThat(output()).contains("X");
+    }
     @Override
     protected void runMain() {
         Application.main(new String[]{});
