@@ -1,9 +1,7 @@
 package bridge.domain;
 
-import bridge.exception.ExceptionInput;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,22 +9,12 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private Bridge bridge;
-    private List<String> results;
+    private final List<String> bridge;
+    private final List<String> selections;
 
-    public void start() {
-        OutputView.printStart();
-        makeBridge();
-    }
-
-    public void makeBridge() {
-        try {
-            int size = ExceptionInput.validateInputLength(InputView.readBridgeSize());
-            this.bridge = new Bridge(size);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            makeBridge();
-        }
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
+        selections = new ArrayList<>();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
