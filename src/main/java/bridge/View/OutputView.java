@@ -28,7 +28,7 @@ public class OutputView {
         System.out.println(ENTER_RETRY_OR_NOT);
     }
 
-    public void printErrorMessage(Exception e) {
+    public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 

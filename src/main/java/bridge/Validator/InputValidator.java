@@ -4,15 +4,12 @@ import static bridge.Validator.Constants.ErrorConstants.*;
 import static bridge.View.Constants.InputConstants.*;
 
 public class InputValidator {
-    public static void validateNumeric(String input) {
-        boolean isNumeric = isNumeric(input);
-        if (!isNumeric) {
+    public static void validateInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ERROR_FOR_LENGTH_OF_BRIDGE);
         }
-    }
-
-    public static boolean isNumeric(String input) {
-        return input.chars().allMatch(Character::isDigit);
     }
 
     public static void validateRange(int input) {

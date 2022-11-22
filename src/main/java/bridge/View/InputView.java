@@ -7,19 +7,18 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         try {
             String candidate = readLine();
-            validateNumeric(candidate);
+            validateInteger(candidate);
             int lengthOfBridge = Integer.parseInt(candidate);
             validateRange(lengthOfBridge);
             return lengthOfBridge;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
             return readBridgeSize();
         }
     }
@@ -33,7 +32,7 @@ public class InputView {
             validateUpOrDown(candidate);
             return candidate;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
             return readMoving();
         }
     }
@@ -47,7 +46,7 @@ public class InputView {
             validateRetryOrQuit(candidate);
             return candidate;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
             return readGameCommand();
         }
     }
