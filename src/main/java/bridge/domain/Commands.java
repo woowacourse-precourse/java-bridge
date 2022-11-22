@@ -5,17 +5,11 @@ import java.util.List;
 
 public class Commands {
 
-    private static List<String> visited = new ArrayList<>();
+    private final List<String> visited;
     private static int retryCount = 1;
 
-    private static final Commands instance = new Commands();
-
-    public static Commands getInstance() {
-        return instance;
-    }
-
-    private Commands() {
-
+    public Commands() {
+        this.visited = new ArrayList<>();
     }
 
     public void insertCommand(String nextMove) {

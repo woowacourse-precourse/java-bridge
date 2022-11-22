@@ -19,8 +19,8 @@ public class BridgeGame {
     private final Commands commands;
 
     public BridgeGame() {
-        drawBridge = DrawBridge.getInstance();
-        commands = Commands.getInstance();
+        drawBridge = new DrawBridge();
+        commands = new Commands();
     }
 
     /**

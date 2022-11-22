@@ -7,17 +7,12 @@ import static bridge.utils.Constant.WRONG_MARK;
 
 public class DrawBridge {
 
-    private final StringBuilder top = new StringBuilder("[");
-    private final StringBuilder bottom = new StringBuilder("[");
+    private final StringBuilder top;
+    private final StringBuilder bottom;
 
-    private static final DrawBridge instance = new DrawBridge();
-
-    public static DrawBridge getInstance() {
-        return instance;
-    }
-
-    private DrawBridge() {
-
+    public DrawBridge() {
+        top = new StringBuilder("[");
+        bottom = new StringBuilder("[");
     }
 
     public void draw(String nextMove, boolean correctLastPosition) {
