@@ -25,7 +25,7 @@ public class BridgeGameController {
     }
     private void initGame() {
         outputView.printGameStartMessage();
-        int size = repeatCommand(inputView::readBridgeSize);
+        int size = repeatRead(inputView::readBridgeSize);
         bridgeGameService.initBridgeGame(size);
     }
 
@@ -38,7 +38,7 @@ public class BridgeGameController {
     }
 
     private void crossBridge(Player player) {
-        String move = repeatCommand(inputView::readMoving);
+        String move = repeatRead(inputView::readMoving);
         MoveResultDto moveResultDto = bridgeGameService.play(player, move);
         outputView.printMap(moveResultDto);
     }
@@ -51,7 +51,7 @@ public class BridgeGameController {
         if (bridgeGameService.isPlaying() || bridgeGameService.isGameOver(player)) {
             return;
         }
-        String command = repeatCommand(inputView::readGameCommand);
+        String command = repeatRead(inputView::readGameCommand);
         bridgeGameService.retry(player, command);
     }
 
@@ -59,12 +59,12 @@ public class BridgeGameController {
         outputView.printResult(result);
     }
 
-    private <T> T repeatCommand(Supplier<T> reader) {
+    private <T> T repeatRead(Supplier<T> reader) {
         try {
             return reader.get();
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return repeatCommand(reader);
+            return repeatRead(reader);
         }
     }
 }
