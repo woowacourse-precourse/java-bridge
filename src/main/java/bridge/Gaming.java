@@ -25,6 +25,7 @@ public class Gaming {
             new OutputView().printGetMoving();
             boolean moveResult = new BridgeGame().move(bridge, count, new InputView().readMoving()); // 잘 움직였는지 결과 가져오고
             fillBridgeMap(count, moveResult); // 지도저장
+            new OutputView().printMap(upBridgeMap, DownBridgeMap); count++; // 지도 출력
             return false;
         }
         return true;
