@@ -1,10 +1,9 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 class BridgeRandomNumberGeneratorTest {
 
@@ -14,13 +13,10 @@ class BridgeRandomNumberGeneratorTest {
     @Test
     @DisplayName("0 ,1 둘 중 랜덤 출력")
     void generateTest() {
-        List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             int randomNumber = bridgeRandomNumberGenerator.generate();
-            randomNumbers.add(randomNumber);
+            assertThat(randomNumber == 0 || randomNumber == 1)
+                    .isEqualTo(true);
         }
-        randomNumbers.contains(0);
-        randomNumbers.contains(1);
     }
-
 }
