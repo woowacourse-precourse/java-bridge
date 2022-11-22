@@ -9,7 +9,7 @@ import view.InputView;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class BridgeTest {
+public class ExceptionTest {
 
     InputView inputView = new InputView();
 
@@ -39,5 +39,19 @@ public class BridgeTest {
     void bridgeSizeCorrect() {
         String bridgeSize = "15";
         assertThat(inputView.checkBridgeSize(bridgeSize)).isEqualTo(15);
+    }
+
+    @DisplayName("플레이어가 이동할 칸에 U 또는 D가 아닌 경우 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={"Y","T","C"})
+    void playerInputNotUorD(String move) {
+        assertThatThrownBy(() -> inputView.checkMove(move)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("플레이가 이동할 칸에 U 또는 D가 입력된 경우 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={"U","D"})
+    void playerInputUorD(String move) {
+        assertThat(inputView.checkMove(move)).isEqualTo(move);
     }
 }
