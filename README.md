@@ -1,5 +1,31 @@
 # 미션 - 다리 건너기
 
+## 📝 다리 건너기(기능 목록)
+
+### **1. function**
+
+- BridgeGame
+  - 다리 건너기 게임을 관리하는 기능
+- BridgeMaker
+  - 다리를 생성하는 기능
+- BridgeRandomNumberGenerator
+  - 다리의 위, 아래를 랜덤으로 결정하는 기능
+- InputView
+  - 다리 건너기 게임의 입력을 담당하는 기능
+- BridgeComponentGenerator
+  - 다리의 위, 아래를 생성하는 기능
+- MapMaker
+  - 사용자가 지나간 길을 만드는 기능
+- Validate
+  - 유효한 값 검사 기능
+
+### **2. ui**
+
+- OutputView
+  - 다리 건너기 게임의 출력을 담당하는 기능
+- ErrorMessage
+  - Error message 담은 enum
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
