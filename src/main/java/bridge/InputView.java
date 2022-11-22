@@ -1,7 +1,6 @@
 package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.InputMismatchException;
 
 
 public class InputView {
@@ -65,7 +64,7 @@ public class InputView {
 
     public void checkCorrectMoving(String moving) {
         if(moving.indexOf(0) != 'U' || moving.indexOf(0) != 'D') {
-            throw new IllegalArgumentException("[ERROR] : U나 D가 입력되어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] U나 D가 입력되어야 합니다.");
         }
     }
 
@@ -89,7 +88,7 @@ public class InputView {
 
     public void checkCorrectRetry(String retry) {
         if(retry.indexOf(0) != 'R' || retry.indexOf(0) != 'Q') {
-            throw new IllegalArgumentException("[ERROR : R이나 Q가 입력되어야 합니다");
+            throw new IllegalArgumentException("[ERROR] R이나 Q가 입력되어야 합니다");
         }
     }
 

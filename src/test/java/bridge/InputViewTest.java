@@ -7,7 +7,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputViewTest {
-
     @Test
     @DisplayName("다리 길이를 입력받고 예외를 잘 처리하는지 확인")
     public void checkCorrectLengthTest() {
