@@ -8,6 +8,7 @@ import static bridge.Instances.Setting.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    static final String START_GAME = "다리 건너기 게임을 시작합니다.";
     static final String START_MAP = "[";
     static final String END_MAP = "]";
     static final String IN_MAP_O = " O ";
@@ -19,6 +20,9 @@ public class OutputView {
     static final String RESULT_FAIL = "게임 성공 여부: 실패\n";
     static final String RESULT_TRIAL = "총 시도한 횟수: ";
 
+    public void startGame(){
+        System.out.println(START_GAME);
+    }
     private String OorNothing(boolean print) {
         if (print) {
             return IN_MAP_O;
