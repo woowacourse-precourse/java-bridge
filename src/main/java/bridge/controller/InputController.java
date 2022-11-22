@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.util.InputValidator;
+import bridge.view.InputView;
 
 public class InputController {
 
@@ -22,17 +23,32 @@ public class InputController {
     }
 
     private int checkBridgeSize(String bridgeSize) throws RuntimeException {
-        InputValidator.validateBridgeSizeRange(toInt(bridgeSize));
+        try {
+            InputValidator.validateBridgeSizeRange(toInt(bridgeSize));
+        } catch (RuntimeException exception) {
+            System.out.println(exception.getMessage());
+            return checkBridgeSize(InputView.readBridgeSize());
+        }
         return toInt(bridgeSize);
     }
 
     private String checkMoving(String moving) throws RuntimeException {
-        InputValidator.validateMoving(moving);
+        try {
+            InputValidator.validateMoving(moving);
+        } catch (RuntimeException exception) {
+            System.out.println(exception.getMessage());
+            return checkMoving(InputView.readMoving());
+        }
         return moving;
     }
 
     private String checkGameCommand(String gameCommand) throws RuntimeException {
-        InputValidator.validateGameCommand(gameCommand);
+        try {
+            InputValidator.validateGameCommand(gameCommand);
+        } catch (RuntimeException exception) {
+            System.out.println(exception.getMessage());
+            return checkGameCommand(InputView.readGameCommand());
+        }
         return gameCommand;
     }
 }
