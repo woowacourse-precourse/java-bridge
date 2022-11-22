@@ -6,7 +6,7 @@ public enum BridgeShape {
     COLLECT_UP(List.of(" O |", "   |"), List.of(" O ", "   ")),
     COLLECT_DOWN(List.of("   |", " O |"), List.of("   ", " O ")),
     WRONG_UP(List.of(" X |", "   |"), List.of(" X ", "   ")),
-    WRONG_DOWN(List.of("   |", " X |"), List.of("  ", " X "));
+    WRONG_DOWN(List.of("   |", " X |"), List.of("   ", " X "));
 
     private List<String> shape;
     private List<String> lastShape;
