@@ -32,13 +32,11 @@ public class BridgeGame {
      */
     public boolean move(String moveCommand) {
         validateMoveCommand(moveCommand);
-        String correctDirection = bridge.get(player.getCurrentPosition());
-        if (moveCommand.equals(correctDirection)) {
-            player.addOneCurrentPosition();
-            player.setMoving(true);
+        if (moveCommand.equals(bridge.get(player.getCurrentPosition()))) {
+            player.movePlayer();
             return true;
         }
-        player.setMoving(false);
+        player.stopPlayer();
         return false;
     }
 

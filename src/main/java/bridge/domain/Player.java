@@ -14,12 +14,17 @@ public class Player {
         this.isMoving = false;
     }
 
-    public int getCurrentPosition() {
-        return currentPosition;
+    public void movePlayer() {
+        currentPosition++;
+        isMoving = true;
     }
 
-    public void addOneCurrentPosition() {
-        currentPosition++;
+    public void stopPlayer() {
+        isMoving = false;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
     }
 
     public void resetCurrentPosition() {
@@ -36,9 +41,5 @@ public class Player {
 
     public boolean getMoving() {
         return isMoving;
-    }
-
-    public void setMoving(boolean moving) {
-        isMoving = moving;
     }
 }
