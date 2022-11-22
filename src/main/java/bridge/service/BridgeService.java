@@ -20,4 +20,10 @@ public class BridgeService {
             throw new IllegalArgumentException(BridgeException.NOT_NUMERIC.getErrorMessage());
         }
     }
+
+    public static String validateMove(String input){
+        if (!input.equals("U") && !input.equals("D"))
+            throw new IllegalArgumentException(BridgeException.INVALID_MOVE.getErrorMessage());
+        return input;
+    }
 }
