@@ -26,6 +26,8 @@ public class OutputView {
         makeResult(user, score);
         System.out.println(sb1);
         System.out.println(sb2);
+        System.out.println();
+
     }
 
     public void makeUpper(int idx, List<String> score){

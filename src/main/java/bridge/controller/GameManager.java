@@ -14,6 +14,8 @@ public class GameManager {
     OutputView outputView;
     BridgeGame bridgeGame;
 
+    String successOrFail;
+
     public GameManager() {
         inputView = new InputView(new ValidationException());
         outputView = new OutputView();
@@ -28,15 +30,15 @@ public class GameManager {
 
     public void startGame() {
         int count = 0;
-
         do {
             count += 1;
             if (playGame()) {
+                successOrFail = "성공";
                 break;
             }
+            successOrFail = "실패";
         } while (continueGame());
-
-        outputView.printResult("", count);
+        outputView.printResult(successOrFail, count);
     }
 
     public boolean playGame() {
@@ -49,6 +51,7 @@ public class GameManager {
                 return true;
             }
         }
+        outputView.printMap(user.getUserCommand(),score.getScoreBoard());
         return false;
     }
 
