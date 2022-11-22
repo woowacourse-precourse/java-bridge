@@ -1,23 +1,52 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeMovement;
+import bridge.domain.GameCommand;
+import bridge.domain.GameStatus;
+import bridge.domain.Player;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final BridgeMaker bridgeMaker;
+    private final Player player;
+    private Bridge bridge;
+    private int numberOfAttempts;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
+        player = new Player();
+        numberOfAttempts = 1;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void createBridge(int bridgeSize) {
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
+
+    public int getNumberOfAttempts() {
+        return numberOfAttempts;
+    }
+
+    public String crossResult() {
+        return player.toString();
+    }
+
+    public GameStatus move(BridgeMovement playerMove) {
+        boolean playerCrossable = bridge.isCrossable(playerMove, player.getPlayerPosition());
+        player.crossBridge(playerMove, playerCrossable);
+        boolean isReachedBridge = bridge.isReachedTheEnd(player.getPlayerPosition());
+        return GameStatus.findByStatus(playerCrossable, isReachedBridge);
+    }
+
+    public GameStatus retry(GameCommand command) {
+        if (command == GameCommand.RETRY) {
+            player.reset();
+            numberOfAttempts += 1;
+            return GameStatus.PLAYING;
+        }
+        return GameStatus.FAILED;
+    }
+
 }
