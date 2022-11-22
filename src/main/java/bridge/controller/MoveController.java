@@ -28,7 +28,7 @@ public class MoveController extends Controller {
 
     public boolean getMoveResult() {
         this.updateRetries();
-        int step = this.getLastTreadStep() + 1;
+        int step = this.getLastTreadStep();
 
         return Stream.of(
                 this.findSlabBy(step, PositionType.UP),
@@ -37,12 +37,10 @@ public class MoveController extends Controller {
     }
 
     private boolean updateAndPrintSlab(SlabDTO destinationSlab, int step) {
-        boolean canContinue = this.canContinue(destinationSlab);
+        this.updateTread(destinationSlab);
 
-        if (canContinue) {
-            this.updateTread(destinationSlab);
-            this.outputView.printMap(this.getSlapMaps(step));
-        }
+        boolean canContinue = this.canContinue(destinationSlab);
+        this.outputView.printMap(this.getSlapMaps(step));
 
         return canContinue;
     }
@@ -50,7 +48,7 @@ public class MoveController extends Controller {
     private boolean canContinue(SlabDTO slab) {
         int size = this.slabs.getAll().size() / 2;
 
-        return slab.getStep() < size
+        return slab.getStep() < (size - 1)
                 && slab.getGlass() == GlassType.TEMPERED;
     }
 }
