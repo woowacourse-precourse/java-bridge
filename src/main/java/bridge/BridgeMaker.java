@@ -29,6 +29,6 @@ public class BridgeMaker {
             Position position = Position.valueOf(POSITION_NAME.get(randomNum));
             bridge.add(position.getValue());
         }
-        return null;
+        return bridge;
     }
 }
