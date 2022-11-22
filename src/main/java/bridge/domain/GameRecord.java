@@ -12,6 +12,7 @@ import static bridge.util.constants.MovableSpace.UPPER_SPACE;
 import static bridge.util.constants.Marker.NOT_CROSS;
 
 public class GameRecord {
+    private static final int INITIAL_TRY_COUNT = 1;
     private final Map<String, List<String>> crossedRecord;
     private int tryCount;
 
@@ -19,7 +20,7 @@ public class GameRecord {
         crossedRecord = new HashMap<>();
         crossedRecord.put(UPPER_RECORD_KEY.getValue(), new ArrayList<>());
         crossedRecord.put(LOWER_RECORD_KEY.getValue(), new ArrayList<>());
-        this.tryCount = 1;
+        tryCount = INITIAL_TRY_COUNT;
     }
 
     public void recordMove(String spaceToMove, boolean isDead) {
