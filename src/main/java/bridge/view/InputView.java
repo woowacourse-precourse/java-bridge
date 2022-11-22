@@ -1,8 +1,5 @@
 package bridge.view;
 
-import bridge.domain.provider.BridgeGame;
-import bridge.domain.provider.BridgeMaker;
-
 import camp.nextstep.edu.missionutils.Console;
 
 

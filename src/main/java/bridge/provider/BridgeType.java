@@ -1,4 +1,4 @@
-package bridge.domain.provider;
+package bridge.provider;
 
 public enum BridgeType {
     MOVE_UP("U", 1),

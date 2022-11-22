@@ -1,7 +1,7 @@
-package bridge.domain.player;
+package bridge.player;
 
-import bridge.domain.provider.BridgeGame;
-import bridge.domain.provider.BridgeMaker;
+import bridge.provider.BridgeGame;
+import bridge.provider.BridgeMaker;
 import bridge.view.InputView;
 
 public class Player {
@@ -18,7 +18,7 @@ public class Player {
     public void StartBridge() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         final int bridgeSize = inputView.readBridgeSize();
-        bridgeGame.getBridge(bridgeSize);
+        //bridgeGame.getBridge(bridgeSize);
     }
 
 }
