@@ -18,6 +18,11 @@ public class Application {
 
             for(int i = 0; i < size; i++){
                 String moving = inputView.readMoving();
+                if(game.move(moving)){
+                    outputView.printMap(game.userMoving, true);
+                    continue;
+                }
+                outputView.printMap(game.userMoving, false);
             }
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
