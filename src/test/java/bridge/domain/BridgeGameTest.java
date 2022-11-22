@@ -24,7 +24,7 @@ class BridgeGameTest {
         // then
         assertThat(bridgeGame.getCurrentIndex()).isEqualTo(2);
         assertThat(bridgeGame.isGameContinue()).isEqualTo(true);
-        assertThat(bridgeGame.isGameSuccess()).isEqualTo(true);
+        assertThat(bridgeGame.isGameFinish()).isEqualTo(true);
     }
 
     @Test
@@ -43,7 +43,7 @@ class BridgeGameTest {
         // then
         assertThat(bridgeGame.getCurrentIndex()).isEqualTo(3);
         assertThat(bridgeGame.isGameContinue()).isEqualTo(false);
-        assertThat(bridgeGame.isGameSuccess()).isEqualTo(false);
+        assertThat(bridgeGame.isGameFinish()).isEqualTo(false);
     }
 
     @Test

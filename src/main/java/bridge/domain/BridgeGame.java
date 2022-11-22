@@ -51,7 +51,7 @@ public class BridgeGame {
         currentIndex = -1;
     }
 
-    public boolean isGameSuccess() {
+    public boolean isGameFinish() {
         return ((currentIndex == (bridge.size() - 1)) && gameContinue);
     }
 }
