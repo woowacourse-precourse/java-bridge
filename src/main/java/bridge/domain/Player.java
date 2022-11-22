@@ -18,6 +18,13 @@ public class Player {
         playerBlocks.add(playerMove);
     }
 
+    public boolean isUpMove(int blockNumber){
+        if(playerBlocks.get(blockNumber) == UP_BLOCK){
+            return true;
+        }
+        return false;
+    }
+
     public boolean isSuccess(Bridge bridge, int blockNumber){
         if(playerBlocks.get(blockNumber) == UP_BLOCK){
             if(bridge.isUpBlock(blockNumber) == true)
