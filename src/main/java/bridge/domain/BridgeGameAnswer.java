@@ -58,4 +58,9 @@ public class BridgeGameAnswer {
             throw new IllegalArgumentException(ErrorMessage.isInvalidRoundRange());
         }
     }
+
+    public boolean isLastRound(Round round) {
+        Round lastRound = Round.valueOf(answer.size());
+        return round.equals(lastRound);
+    }
 }

@@ -62,4 +62,22 @@ class BridgeGameAnswerTest {
         MovingResult result = gameAnswer.check(Round.valueOf(1), Direction.DOWN);
         assertThat(result).isEqualTo(MovingResult.FAIL);
     }
+
+    @Test
+    @DisplayName("[정상] 마지막 라운드일 시, true 반환한다.")
+    void isLastRoundWhenLastParameter() {
+        List<String> bridge = List.of("U", "D", "U");
+        BridgeGameAnswer gameAnswer = new BridgeGameAnswer(bridge);;
+
+        assertThat(gameAnswer.isLastRound(Round.valueOf(3))).isTrue();
+    }
+
+    @Test
+    @DisplayName("[정상] 마지막 라운드가 아닐시, false 반환한다.")
+    void isLastRoundWhenNotLastParameter() {
+        List<String> bridge = List.of("U", "D", "U");
+        BridgeGameAnswer gameAnswer = new BridgeGameAnswer(bridge);
+
+        assertThat(gameAnswer.isLastRound(Round.valueOf(1))).isFalse();
+    }
 }
