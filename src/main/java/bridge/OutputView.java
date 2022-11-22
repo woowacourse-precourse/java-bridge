@@ -46,14 +46,16 @@ public class OutputView {
     private static String topSideMap(BridgeData bridgeData) {
         StringBuilder topSideMap = new StringBuilder();
         for (int i = 0; i < bridgeData.getCurrentPosition() - 1; i++) {
-            if (bridgeData.getBridge().get(i).equals(TOP)) {
-                topSideMap.append(CORRECT + BAR);
-            }
-            if (bridgeData.getBridge().get(i).equals(BOTTOM)) {
-                topSideMap.append(SPACE + BAR);
-            }
+            topSideMap.append(topSideCheck(bridgeData, i));
         }
         return topSideMap.toString();
+    }
+
+    private static String topSideCheck(BridgeData bridgeData, int index){
+        if (bridgeData.getBridge().get(index).equals(TOP)) {
+            return CORRECT + BAR;
+        }
+        return SPACE + BAR;
     }
 
     private static String topSideResult(BridgeData bridgeData, boolean pass) {
@@ -67,16 +69,18 @@ public class OutputView {
     }
 
     private static String bottomSideMap(BridgeData bridgeData) {
-        StringBuilder topSideMap = new StringBuilder();
+        StringBuilder bottomSideMap = new StringBuilder();
         for (int i = 0; i < bridgeData.getCurrentPosition() - 1; i++) {
-            if (bridgeData.getBridge().get(i).equals(TOP)) {
-                topSideMap.append(SPACE + BAR);
-            }
-            if (bridgeData.getBridge().get(i).equals(BOTTOM)) {
-                topSideMap.append(CORRECT + BAR);
-            }
+            bottomSideMap.append(bottomSideCheck(bridgeData, i));
         }
-        return topSideMap.toString();
+        return bottomSideMap.toString();
+    }
+
+    private static String bottomSideCheck(BridgeData bridgeData, int index){
+        if (bridgeData.getBridge().get(index).equals(BOTTOM)) {
+            return CORRECT + BAR;
+        }
+        return SPACE + BAR;
     }
 
     private static String bottomSideResult(BridgeData bridgeData, boolean pass) {
