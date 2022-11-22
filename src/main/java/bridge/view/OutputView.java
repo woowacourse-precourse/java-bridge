@@ -51,13 +51,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String currentMap, boolean isSuccess, int totalTryNumber) {
+        System.out.println(EXIT_MESSAGE);
         printMap(currentMap);
-        if (isSuccess) {
-            System.out.println(RESULT_MESSAGE + SUCCESS);
-        }
-        if (!isSuccess) {
-            System.out.println(RESULT_MESSAGE + FAIL);
-        }
+        printSuccessOrFailMessage(isSuccess);
         System.out.println(TOTAL_TRY_MESSAGE + totalTryNumber);
+    }
+
+    public void printSuccessOrFailMessage(boolean isSuccess) {
+        if(isSuccess) {
+            System.out.println(RESULT_MESSAGE + SUCCESS);
+            return;
+        }
+        System.out.println(RESULT_MESSAGE + FAIL);
     }
 }
