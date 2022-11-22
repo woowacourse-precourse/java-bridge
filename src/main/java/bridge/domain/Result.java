@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Result {
     private boolean moveSuccess;
-    private boolean remainBridge;
+    private boolean gameEnd;
 
     public void updateResult(int moveCount, String moveInput, List<String> answerBridge) {
         int lastIndex = moveCount - 1;
@@ -22,7 +22,7 @@ public class Result {
         if (!moveSuccess) {
             return GameState.LOOSE.name();
         }
-        if (remainBridge) {
+        if (gameEnd) {
             return GameState.WIN.name();
         }
         return GameState.PLAYING.name();
@@ -33,6 +33,6 @@ public class Result {
     }
 
     private void updateRemainBridge(int moveCount, List<String> answerBridge) {
-        remainBridge = moveCount == answerBridge.size();
+        gameEnd = moveCount == answerBridge.size();
     }
 }
