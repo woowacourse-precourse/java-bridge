@@ -4,6 +4,8 @@ import bridge.domain.BridgeMoveJudgment;
 
 import java.util.List;
 
+import static bridge.ui.UiMessage.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -35,38 +37,38 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<BridgeMoveJudgment> moveResult, boolean isFailFinalGame, int retryCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(OUTPUT_FINAL_GAME_RESULT.getMessage());
         printMap(moveResult);
         printGameSuccessOrFail(isFailFinalGame);
-        System.out.println("총 시도한 횟수: " + retryCount);
+        System.out.println(OUTPUT_TOTAL_TRY.getMessage() + retryCount);
     }
 
     /**
      * 게임 시작을 정해진 형식에 맞춰 출력한다.
      */
     public void printGameStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(OUTPUT_GAME_START.getMessage());
     }
 
     /**
      * 게임의 다리 길이 입력 받기 문구를 정해진 형식에 맞춰 출력한다.
      */
     public void printBridgeLengthInput() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(OUTPUT_BRIDGE_LENGTH.getMessage());
     }
 
     /**
      * 이동할 다리 칸 입력 받기 문구를 정해진 형식에 맞춰 출력한다.
      */
     public void printMovingSpaceChoice() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(OUTPUT_CHOICE_MOVE_SPACE.getMessage());
     }
 
     /**
      * 게임 재시도 또는 종료 여부 문구를 정해진 형식에 맞춰 출력한다.
      */
     public void printRetryOrQuitChoice() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(OUTPUT_CHOICE_RETRY_QUIT.getMessage());
     }
 
     /**
@@ -100,9 +102,9 @@ public class OutputView {
      */
     private void printGameSuccessOrFail(boolean isFailFinalGame) {
         if (isFailFinalGame) {
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(OUTPUT_GAME_FAIL.getMessage());
             return;
         }
-        System.out.println("게임 성공 여부: 성공");
+        System.out.println(OUTPUT_GAME_SUCCESS.getMessage());
     }
 }
