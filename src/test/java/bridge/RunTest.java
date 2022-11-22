@@ -31,6 +31,25 @@ class RunTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @Test
+    void Run_Output_InputRRQ() {
+        assertRandomNumberInRangeTest(() -> {
+            run("24", "3", "U", "D", "D", "R", "D", "R", "D", "Q");
+            assertThat(output()).contains(
+                    "[ERROR] 3과 20 사이의 자연수를 입력해주세요.",
+                    "최종 게임 결과",
+                    "[   ]",
+                    "[ X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf("[   ]");
+            int downSideIndex = output().indexOf("[ X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
 
     @Override
     protected void runMain() {
