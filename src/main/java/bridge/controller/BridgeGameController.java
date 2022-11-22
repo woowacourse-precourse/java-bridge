@@ -13,10 +13,17 @@ public class BridgeGameController {
 
     public void play() {
         start();
-        while (isPlaying) {
+        do {
             moveBridge();
-        }
+        } while (isPlaying());
         end();
+    }
+
+    private boolean isPlaying() {
+        if (bridgeGame.isSuccess()) {
+            return false;
+        }
+        return isRetrying();
     }
 
     private void start() {
