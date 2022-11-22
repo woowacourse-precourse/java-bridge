@@ -14,48 +14,21 @@ public class BridgeGame {
      *
      * @return
      */
-    public static String move(int bridge_size,int cnt) {
-        Map<String, String> mineMap = new HashMap<String, String>() {
-            {
-                put("U", "1");
-                put("D", "0");
-            }
+    Map<String, String> mineMap = new HashMap<String, String>() {
+        {
+            put("U", "1");
+            put("D", "0");
+        }
 
-        };
+    };
+    public static String move(int bridge_size,int cnt) {
         String blank="";
         String result = null;
         int bridge_index=0;
         boolean check = true;
-        List<Integer> list =  new ArrayList();
-        List<String> list2 =  new ArrayList();
-        BridgeMaker bridgeMaker=new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge=bridgeMaker.makeBridge(bridge_size);
-        System.out.println(bridge);
-        while (check==true){
-            if(bridge_index==bridge_size){
-                OutputView.printResult(result,cnt,1);
-                return "";
-            }
 
-            blank=InputView.readMoving();
-            if(Objects.equals(bridge.get(bridge_index), blank)){
-
-                list.add(1);
-                list2.add(blank);
-                bridge_index+=1;
-                result=OutputView.printMap(list,list2,bridge_index);
-                continue;
-            }
-            check=false;
-            list.add(0);
-            list2.add(blank);
-            bridge_index+=1;
-            result=OutputView.printMap(list,list2,bridge_index);
-
-        }
+        result=BridgeGameRepeat.gamerepeat(check,bridge_index,bridge_size,cnt);
         return result;
-
-
     }
 
     /**
@@ -73,6 +46,5 @@ public class BridgeGame {
             return true;
         }
         return true;
-
     }
 }
