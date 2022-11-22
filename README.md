@@ -1,5 +1,47 @@
 # 미션 - 다리 건너기
 
+## 구현 목록
+* [x] 다리의 길이 받기 getBridgeSize #GameController
+  * [x] 멘트 출력 printReadBridgeSize #OutputView
+  * [x] 입력 받기 readBridgeSize #InputView
+* [x] 다리 건너기 시작하기 crossBridge #GameController
+  * [x] 방향 입력 받기 readMoving #InputView
+  * [x] 방향에 따른 판단하기 judgeMoving 
+  * [x] 시도한 결과 보여주기 printMap #OutputView
+    * [x] bridge의 시작과 끝, 구분 부분 출력하기 printDivisionOfBridge
+    * [x] O, X 올바른 위치에 넣기 printOX
+  * [x] 틀렸다면 재시도 여부 묻기 retry
+* [x] 최종 게임 결과 출력하기 printResult
+  * [x] 게임 성공 여부 출력 printGameSuccess
+  * [x] 총 시도 횟수 출력 printAttempts
+
+## 테스트 항목
+  * 다리 길이 입력
+    * 숫자가 아닌 것 입력
+    * 숫자인데 범위가 아님.
+      * 0
+      * 음수
+      * 20보다 큰 수
+  * 방향키 입력
+    * U, D
+    * u, d
+    * 1, ㄱ, \t, \n
+  * 게임 명령어 입력
+    * R, Q
+    * r, q
+    * 1, ㄱ, \t, \n
+  * 다리 생성 테스트 (원하는 만큼 제대로 생성되었는가?)
+  * move 테스트 (bridge와 input을 넣었을 때, 예상한 결과가 출력되는가?)
+## Todo
+* [x] refactor : 함수 이름 변경 BridgeGame - getResult()
+* [x] refactor : 주석 제거
+* [x] java 컨벤션 지키기
+* [x] BridgeMaker - makeBridge : 10줄 이하로 리팩토링하기
+* [x] BridgeGame - retry : controller에서 in&output 관리. retry 함수 자체에서는 boolean 반환 
+* [x] InputView - validateSize : 리팩토링 필요
+* [x] OutputView - printMap : forEach 리팩토링
+* [x] OutputView - printSuccess : else 사용 리팩토링
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
@@ -137,6 +179,7 @@ D
 ```
 
 ```
+다리 건너기 게임을 시작합니다.
 다리 건너기 게임을 시작합니다.
 
 다리의 길이를 입력해주세요.

@@ -1,28 +1,49 @@
 package bridge;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import bridge.constant.ErrorMessage;
+import bridge.constant.Game;
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(Game.INPUT_BRIDGE_SIZE);
+        int result = validateSize(Console.readLine());
+        if (result < Game.MIN_SIZE || result > Game.MAX_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_SIZE);
+        }
+        return result;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        System.out.println(Game.INPUT_DIRECTION);
+        return validateMoving(Console.readLine());
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        return validateCommend(Console.readLine());
+    }
+
+    private String validateCommend(String commend) {
+        if (!(commend.equals("R") || commend.equals("Q"))) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_COMMEND);
+        }
+        return commend;
+    }
+
+    private int validateSize(String size) {
+        for (int i = 0; i < size.length(); i++) {
+            if (!(size.charAt(i) <= '9' && size.charAt(i) >= '0')) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NUMBER);
+            }
+        }
+        return Integer.parseInt(size);
+    }
+
+    private String validateMoving(String moving) {
+        if (!(moving.equals("U") || moving.equals("D"))) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_DIRECTION);
+        }
+        return moving;
     }
 }
