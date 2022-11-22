@@ -24,6 +24,10 @@ public class Bridge {
         return createErasedShapeBridge(BridgeShape.UP.getShape());
     }
 
+    public String getBridgeShapeByPosition(int position) {
+        return bridge.get(position);
+    }
+
     private Bridge createErasedShapeBridge(String shapeToErase) {
         List<String> removedBridge = new ArrayList<>(bridge);
         removedBridge.replaceAll(bridgeShape -> bridgeShape.replace(shapeToErase, " "));
