@@ -58,7 +58,6 @@ public class BridgeGameController {
     private void play() {
         while (gameStatus == GameStatus.PLAYING) {
             moveBridge();
-            checkClear();
             if (gameStatus == GameStatus.DEATH) {
                 askRetry();
             }
@@ -68,14 +67,23 @@ public class BridgeGameController {
     }
 
     private void checkClear() {
-        if (bridgeGame.isClear()) {
+        if (gameStatus != GameStatus.DEATH && bridgeGame.isClear()) {
             gameStatus = GameStatus.CLEAR;
         }
     }
 
     private void askRetry() {
-        gameStatus = InputView.printAskRetry();
+        try {
+            gameStatus = InputView.printAskRetry();
+        } catch (IllegalArgumentException ex) {
+            handleErrors(GameException.valueOf(ex.getMessage()));
+            askRetry();
+        }
 
+        retry();
+    }
+
+    private void retry() {
         if (gameStatus == GameStatus.RETRY) {
             bridgeGame.retry();
             gameStatus = GameStatus.PLAYING;
@@ -88,6 +96,7 @@ public class BridgeGameController {
         }
 
         OutputView.printMap(bridgeGame.getPlayer());
+        checkClear();
     }
 
     private void create() {
