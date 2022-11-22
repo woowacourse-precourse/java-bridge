@@ -27,6 +27,13 @@ public class InputView {
         if (!input.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
+        checkBlank(input);
+    }
+
+    private void checkBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 빈 칸은 입력할 수 없습니다.");
+        }
     }
 
     /**
@@ -34,9 +41,9 @@ public class InputView {
      */
     public String readMoving() {
         outputView.printMove();
-        String input;
+        String input = Console.readLine();
         try{
-            input = Console.readLine();
+            checkAlphabet(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
@@ -49,9 +56,8 @@ public class InputView {
      */
     public String readGameCommand() {
         outputView.printRetry();
-        String input;
+        String input = Console.readLine();
         try{
-            input = Console.readLine();
             checkAlphabet(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -59,11 +65,11 @@ public class InputView {
         }
         return input;
     }
-    //수정 고려
 
     private void checkAlphabet(String input) {
         if (!input.chars().allMatch(Character::isAlphabetic)) {
             throw new IllegalArgumentException("[ERROR] 알파벳을 입력해 주세요.");
         }
+        checkBlank(input);
     }
 }
