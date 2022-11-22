@@ -36,7 +36,7 @@ public class OutputView {
             String currentBridgeType = bridgeMap.get(position);
             boolean isEdge = position == (bridgeMap.size() - Constant.INDEX_ZEROING_NUMBER);
             boolean isRightCurrentBridgePick = currentBridgeType.equals(bridgeTypeToPrint);
-            BridgePrintSign bridgePrintSign = BridgePrintSign.getInstance(isEdge, isRightCurrentBridgePick, isRightLastBridgePick);
+            BridgePrintSign bridgePrintSign = BridgePrintSign.of(isEdge, isRightCurrentBridgePick, isRightLastBridgePick);
             bridgesSign.add(bridgePrintSign.getSign());
         }
         return bridgesSign;
