@@ -36,6 +36,7 @@ public class BridgeControl {
 
     private void getBridgeSize(){
         try {
+            outputView.printBridgeSize();
             int size = inputView.readBridgeSize();
             //다리생성
             bridgeGame.setBridge(size);
@@ -56,6 +57,7 @@ public class BridgeControl {
     }
     private void moving(){
         do {
+            outputView.printMoving();
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getDashBoard(), bridgeGame.getCount());
             //x가 있거나 게임이 종료되면 false
@@ -69,6 +71,7 @@ public class BridgeControl {
             return false;
         }
         try {
+            outputView.printRetryGameCommand();
             return inputView.readGameCommand();
         }
         catch (IllegalArgumentException e){
