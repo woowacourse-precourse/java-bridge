@@ -8,6 +8,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -46,30 +47,6 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
-    }
-
-    @Test
-    void 입력_공백처리_테스트() {
-        assertRandomNumberInRangeTest(() -> {
-            run("3", " U", "D ", " U ");
-            assertThat(output()).contains(
-                    "게임 성공 여부: 성공",
-                    "총 시도한 횟수: 1"
-            );
-
-        }, 1, 0, 1);
-    }
-
-    @Test
-    void 소문자입력_처리_테스트() {
-        assertRandomNumberInRangeTest(() -> {
-            run("3", "u", "d", " u");
-            assertThat(output()).contains(
-                    "게임 성공 여부: 성공",
-                    "총 시도한 횟수: 1"
-            );
-
-        }, 1, 0, 1);
     }
 
     @Override
