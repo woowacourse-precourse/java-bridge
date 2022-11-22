@@ -20,9 +20,18 @@ public class BridgeGame {
         List<List<String>> side = new ArrayList<>();
         while (true) {
             initBridgeStatus(side);
-            List<List<String>> finalState = move(side);
+            List<List<String>> sideState = move(side);
+            if (!checkFinalState(sideState)) break;
             clearMap(side);
         }
+    }
+
+    public boolean checkFinalState(List<List<String>> sideState) {
+        if (sideState.get(0).contains("X") || sideState.get(1).contains("X")) {
+            return retry(inputView.readGameCommand());
+        }
+        outputView.printResult(sideState);
+        return false;
     }
 
     /**
