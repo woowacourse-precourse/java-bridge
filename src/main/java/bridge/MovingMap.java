@@ -51,4 +51,7 @@ public class MovingMap {
         return stateList.get(stateList.size() - 1);
     }
 
+    public Map<String, List<String>> getMovingMap() {
+        return movingMap;
+    }
 }
