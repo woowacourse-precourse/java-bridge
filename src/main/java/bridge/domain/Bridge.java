@@ -14,8 +14,4 @@ public class Bridge {
         return bridge.get(index);
     }
 
-    @Override
-    public String toString() {
-        return bridge.stream().collect(Collectors.joining(" | ", "[ ", " ]"));
-    }
 }
