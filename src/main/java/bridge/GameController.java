@@ -23,7 +23,7 @@ public class GameController {
         initBridgeGame(bridgeNumberGenerator);
         while (!bridgeGame.isEndOfBridge()) {
             outputView.printMap(crossBridge());
-            if (failToMove()) {
+            if (failToMoveAndQuit()) {
                 break;
             }
         }
@@ -43,7 +43,7 @@ public class GameController {
         return map;
     }
 
-    private boolean failToMove() {
+    private boolean failToMoveAndQuit() {
         if (bridgeGame.failToMove()) {
             outputView.AskRetry();
             return isGameOver(inputView.readGameCommand());
