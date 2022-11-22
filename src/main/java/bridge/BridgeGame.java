@@ -11,20 +11,50 @@ import static message.GeneralMessage.*;
  */
 public class BridgeGame {
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-    int flag = 1;
+    int bridgeSize;
+    int gameCount = 1;
+    boolean canGo;
 
+    public void game() {
+        List<String> answerBridge = start();
+        List<List<String>> currentBridge = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
+        repeatGame(answerBridge, currentBridge);
+    }
 
-    public void start() { // start()는 내가 만든 메서드
-        int bridgeSize = inputView.readBridgeSize();
+    private void repeatGame(List<String> answerBridge, List<List<String>> currentBridge) {
+        canGo = true;
+        int index = 0;
+        currentBridge.get(0).clear();
+        currentBridge.get(1).clear();
+        while ((canGo == true) && (index < bridgeSize)) {
+            outputView.printMap(move(index, answerBridge, currentBridge));
+            index++;
+        }
+        if (canGo == true) {
+            outputView.printResult(currentBridge, true, gameCount);
+            return;
+        }
+        if (canGo == false) {
+            String restartOrQuit = retry();
+            if (restartOrQuit.equals("Q")) {
+                outputView.printResult(currentBridge, false, gameCount);
+                return;
+            }
+            gameCount++;
+            repeatGame(answerBridge, currentBridge);
+        }
 
+    }
+
+    public List<String> start() {
         System.out.println(GAME_START.getMessage() + INPUT_BRIDGE_LENGTH.getMessage());
-        List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize); // 여기까진 한 번만 실행
-        // 여기부터 쭉 짜보자
-        List<List<String>> currentBridge = new ArrayList<>(List.of(List.of(), List.of()));
-        move(bridgeSize, answerBridge, currentBridge);
+        bridgeSize = inputView.readBridgeSize();
+        List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
+        return answerBridge;
     }
 
     /**
@@ -44,10 +74,10 @@ public class BridgeGame {
         currentBridge.get(1).add(" ");
         if (answerBridge.get(index).equals("U")) {
             currentBridge.get(0).add("O");
+            return currentBridge;
         }
-        if (answerBridge.get(index).equals("D")) {
-            currentBridge.get(0).add("X");
-        }
+        currentBridge.get(0).add("X");
+        canGo = false;
         return currentBridge;
     }
 
@@ -55,26 +85,17 @@ public class BridgeGame {
         currentBridge.get(0).add(" ");
         if (answerBridge.get(index).equals("D")) {
             currentBridge.get(1).add("O");
+            return currentBridge;
         }
-        if (answerBridge.get(index).equals("U")) {
-            currentBridge.get(1).add("X");
-        }
+        currentBridge.get(1).add("X");
+        canGo = false;
         return currentBridge;
     }
 
-
-
     public String selectStep() {
-        System.out.println(SELECT_UP_OR_DOWN);
+        System.out.println(SELECT_UP_OR_DOWN.getMessage());
         String gamerStep = inputView.readMoving();
         return gamerStep;
-    }
-
-    public String goOrStop(String gamerStep, List<String> answerBridge, int index) {
-        if (answerBridge.get(index).equals(gamerStep)) {
-            return "O";
-        }
-        return "X";
     }
 
     /**
@@ -82,9 +103,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public String retry() {
         System.out.println(RETRY_OR_QUIT.getMessage());
         String retryOrQuit = inputView.readGameCommand();
-
+        return retryOrQuit;
     }
 }

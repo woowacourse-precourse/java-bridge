@@ -16,7 +16,7 @@ public class InputView {
     public int readBridgeSize() {
         while (true) {
             try {
-                int bridgeSize = checkBridgeSize(Integer.parseInt(Console.readLine()));
+                int bridgeSize = checkBridgeSize(checkString(Console.readLine()));
                 return bridgeSize;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -24,11 +24,19 @@ public class InputView {
         }
     }
 
-    public int checkBridgeSize(int bridgeSize) { // 문자로 들어왔을 경우에도 예외처리 해줘야한다.
+    public int checkBridgeSize(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(OUT_OF_LENGTH_ERROR.getMessage());
         }
         return bridgeSize;
+    }
+
+    public int checkString(String bridgeSize) {
+        try {
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(TYPE_ERROR.getMessage());
+        }
     }
 
     /**
@@ -36,8 +44,9 @@ public class InputView {
      */
     public String readMoving() {
         while (true) {
+            String upOrDown = Console.readLine();
             try {
-                String upOrDown = checkMoving(Console.readLine());
+                checkMoving(upOrDown);
                 return upOrDown;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -45,11 +54,10 @@ public class InputView {
         }
     }
 
-    public String checkMoving(String upOrDown) { // 숫자일 경우도 예외지만, 숫자는 그냥 String으로 받아올 수 있으니까 괜찮지 않을까?
-        if (upOrDown != "U" || upOrDown != "D") {
+    public void checkMoving(String upOrDown) {
+        if (!(upOrDown.equals("U") || upOrDown.equals("D"))) {
             throw new IllegalArgumentException(MOVING_ERROR.getMessage());
         }
-        return upOrDown;
     }
 
     /**
@@ -67,10 +75,9 @@ public class InputView {
     }
 
     public String checkGameCommand(String retryOrNot) {
-        if (retryOrNot != "R" || retryOrNot != "Q") {
+        if (!(retryOrNot.equals("R") || retryOrNot.equals("Q"))) {
             throw new IllegalArgumentException(RETRY_INPUT_ERROR.getMessage());
         }
         return retryOrNot;
     }
-
 }
