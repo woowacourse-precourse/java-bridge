@@ -9,7 +9,6 @@ public class BridgeGameController {
     private int tryCount = 1;
 
     public void startBridgeGame() {
-
         outputView.printStart();
         int size = inputView.readBridgeSize();
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.Error.BRIDGE_NUMBER_ERROR;
+import static bridge.Constants.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -34,8 +35,8 @@ public class BridgeMaker {
 
     private String numberToString(int number) {
         if (number == 0) {
-            return "D";
+            return DOWN;
         }
-        return "U";
+        return UP;
     }
 }

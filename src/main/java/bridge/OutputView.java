@@ -2,16 +2,17 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.Constants.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
     private int moveCount;
     private boolean isCorrect;
 
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(START_MESSAGE);
         System.out.println();
     }
 
@@ -24,32 +25,32 @@ public class OutputView {
         moveCount = bridgeGame.moveCount - 1;
         isCorrect = bridgeGame.isCorrect;
 
-        printMoving(bridge, "U");
-        printMoving(bridge, "D");
+        printMoving(bridge, UP);
+        printMoving(bridge, DOWN);
         System.out.println();
     }
 
     private void printMoving(List<String> bridge, String upDown) {
-        System.out.print("[ ");
+        System.out.print(LEFT);
         for (int i = 0; i < moveCount; i++) {
-            System.out.printf(isUpOrDown(bridge.get(i), upDown) + " | ");
+            System.out.printf(isUpOrDown(bridge.get(i), upDown) + MIDDLE);
         }
         if (isCorrect) {
-            System.out.printf(isUpOrDown(bridge.get(moveCount), upDown) + " ]\n");
+            System.out.printf(isUpOrDown(bridge.get(moveCount), upDown) + RIGHT);
             return;
         }
         if (bridge.get(moveCount).equals(upDown)) {
-            System.out.print("  ]\n");
+            System.out.print(SPACE + RIGHT);
             return;
         }
-        System.out.print("X ]\n");
+        System.out.print(WRONG + RIGHT);
     }
 
     private String isUpOrDown(String moving, String upDown) {
         if (moving.equals(upDown)) {
-            return "O";
+            return CORRECT;
         }
-        return " ";
+        return SPACE;
     }
 
     /**
@@ -58,17 +59,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame, List<String> bridge, int tryCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(RESULT_MESSAGE);
         printMap(bridgeGame, bridge);
         printSuccess();
-        System.out.println("총 시도한 횟수: " + tryCount);
+        System.out.println(TRY_COUNT_MESSAGE + tryCount);
     }
 
     public void printSuccess() {
         if (isCorrect) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(SUCCESS_MESSAGE);
             return;
         }
-        System.out.println("게임 성공 여부: 실패");
+        System.out.println(FAILURE_MESSAGE);
     }
 }
