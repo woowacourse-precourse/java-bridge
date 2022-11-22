@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -9,6 +11,8 @@ import java.util.List;
 public class BridgeController {
 
     private static final List<String> COMMAND_INPUT = List.of("R", "Q");
+
+    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -27,7 +31,7 @@ public class BridgeController {
         while (true) {
             try {
                 int size = inputView.readBridgeSize();
-                bridgeGame = new BridgeGame(size);
+                bridgeGame = new BridgeGame(size, bridgeNumberGenerator);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());

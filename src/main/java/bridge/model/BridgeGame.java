@@ -1,7 +1,7 @@
 package bridge.model;
 
 import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.config.BridgeComponent;
 
 import java.util.ArrayList;
@@ -18,12 +18,12 @@ public class BridgeGame {
     private int trial;
     private int currentLocation;
 
-    public BridgeGame(int bridgeSize) {
+    public BridgeGame(int bridgeSize, BridgeNumberGenerator bridgeNumberGenerator) {
         currentLocation = INIT_LOCATION;
         trial = INIT_TRIAL;
         records = new ArrayList<>();
 
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
