@@ -21,9 +21,9 @@ public class Bridge {
         return new Bridge(generatedBridge);
     }
 
-    public static Bridge makeBridge() throws IllegalArgumentException, IllegalStateException {
+    public static Bridge makeBridge(int bridgeSize) throws IllegalArgumentException, IllegalStateException {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return of(bridgeMaker.makeBridge(InputView.readBridgeSize()));
+        return of(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public GameResult play(PositionTable userTable) {
