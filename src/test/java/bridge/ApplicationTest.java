@@ -32,7 +32,6 @@ class ApplicationTest extends NsTest {
                 "게임 성공 여부: 성공",
                 "총 시도한 횟수: 1"
             );
-
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
@@ -46,7 +45,13 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
+    @Test
+    void 무빙_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3","u");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Override
     protected void runMain() {
         Application.main(new String[]{});
