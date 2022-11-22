@@ -8,7 +8,7 @@ public class User {
 
     public User() {
         moveCount = 0;
-        trial = 0;
+        trial = 1;
     }
 
     public void move() {
