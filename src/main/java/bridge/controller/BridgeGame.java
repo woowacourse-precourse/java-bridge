@@ -5,8 +5,10 @@
 package bridge.controller;
 
 //Controller
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.View.BridgeView;
-import bridge.domain.Computer;
+import bridge.domain.User;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,21 +20,41 @@ public class BridgeGame {
 
     // component
     private int bridgeSize; // 총 다리 개수
-    private List<Integer> bridgeNumber = new ArrayList<>(); // 각 다리의 정답
-    private String nextStep; // 유저가 선택한 다음 위치
+    private List<String> bridgeNumber = new ArrayList<>(); // 각 다리의 정답
 
-    // domain
-    Computer computer = new Computer();
+    //domain
+    private User user = new User();
 
     // Util
     private final BridgeView bridgeView = new BridgeView();
+    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeMaker bridgeMaker;
+
+    public BridgeGame() {
+        this.bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        this.bridgeMaker = new BridgeMaker(this.bridgeRandomNumberGenerator);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move() {
+        if(jumpNextStep()) {
+            bridgeView.printMap(bridgeNumber, user.getCurrentBridge(), false);
+            return true;
+        }
+
+        bridgeView.printMap(bridgeNumber, user.getCurrentBridge(), true);
+        return false;
+    }
+
+    public String convertObstacle(String obstacle) {
+        if(obstacle.equals("U"))
+            return "1";
+
+        return "0";
     }
 
     /**
@@ -53,23 +75,30 @@ public class BridgeGame {
     /**
      * 사용자가 다리 개수를 입력할 때 사용하는 메서드
      */
-    public void enterNumberOfBridge() {
+    public int enterNumberOfBridge() {
         this.bridgeSize = bridgeView.readBridgeSize();
-    }
+        this.bridgeNumber = bridgeMaker.makeBridge(bridgeSize);
 
-    /**
-     * 컴퓨터가 랜덤 값을 생성하는 메서드
-     */
-    public void createRandomNumber() {
-        bridgeNumber.add(computer.createRandomNumber());
-        System.out.println(bridgeNumber.get(bridgeNumber.size()-1));
+        return bridgeSize;
     }
 
     /**
      * 사용자가 이동할 다음 칸을 선택하는 기능
      */
     public void enterNextStep() {
-        this.nextStep = bridgeView.readNextStep();
+        this.user.setNextStep(bridgeView.readNextStep());
+    }
+
+    public boolean jumpNextStep() {
+        user.moveNextBridge();
+
+        System.out.println(user.getNextStep() + " " + bridgeNumber.get(user.getCurrentBridge() - 1));
+
+        if(user.getNextStep().equals(bridgeNumber.get(user.getCurrentBridge() - 1))) {
+            return false;
+        }
+
+        return true;
     }
 
 }
