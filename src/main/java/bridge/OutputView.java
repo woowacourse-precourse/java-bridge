@@ -20,4 +20,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printException(Exception e){
+        System.out.println();
+    }
 }

@@ -2,13 +2,13 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.Message.INVALID_MOVE_INPUT;
+import static bridge.Message.INVALID_RETRY_INPUT;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    private static final String INVALID_MOVE_INPUT = "이동할 칸은 U 또는 D 이어야합니다.";
-    private static final String INVALID_RETRY_INPUT = "게임 재시도 여부는 R 또는 Q 이어야합니다.";
 
     private final BridgeState bridgeState;
     public BridgeGame(BridgeState bridgeState){

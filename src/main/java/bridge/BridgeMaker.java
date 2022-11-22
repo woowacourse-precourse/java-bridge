@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static bridge.Message.INVALID_BRIDGE_SIZE;
+import static bridge.Message.INVALID_RANDOM_NUMBER;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
-    private static final String INVALID_BRIDGE_SIZE = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private static final String INVALID_RANDOM_NUMBER = "다리 생성 숫자는 0 또는 1이어야 합니다.";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
