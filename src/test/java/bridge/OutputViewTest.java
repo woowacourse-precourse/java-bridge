@@ -126,4 +126,13 @@ class OutputViewTest {
         outputView.printRestartMessage();
         assertThat(outputStream.toString()).isEqualTo(result);
     }
+
+    @DisplayName("예외 메시지 출력 테스트")
+    @Test
+    void 예외_메시지_출력_테스트() {
+        final String startMessage = "[ERROR]";
+        IllegalArgumentException exception = new IllegalArgumentException("입력 오류입니다.");
+        outputView.printExceptionMessage(exception);
+        assertThat(outputStream.toString()).startsWith(startMessage);
+    }
 }
