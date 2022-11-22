@@ -18,7 +18,7 @@ public class BridgeGame {
     }
 
     public boolean determineMove(String command) {
-        if (compare(command)) {
+        if (bridge.isCorrectDirection(currentPosition, command)) {
             return move(command);
         }
         bridgeStatus.add(new BridgeStatus(command, false));
@@ -57,10 +57,6 @@ public class BridgeGame {
         currentPosition = 0;
         tryCount++;
         return true;
-    }
-
-    private boolean compare(String command) {
-        return bridge.get(currentPosition).equals(command);
     }
 
     public int getTryCount() {

@@ -6,7 +6,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
 public class Bridge {
-    private List<String> bridge;
+    private final List<String> bridge;
 
     public Bridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -14,8 +14,7 @@ public class Bridge {
         System.out.println("Bridge.Bridge(): " + this.bridge); // DEBUG
     }
 
-    // TODO: get 고려
-    public String get(int index) {
-        return this.bridge.get(index);
+    public boolean isCorrectDirection(int index, String direction) {
+        return this.bridge.get(index).equals(direction);
     }
 }
