@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Bridge {
 
+    public static final int INPUT_SIZE = 1;
+    public static final int MIN_BRIDGE_SIZE = 3;
+    public static final int MAX_BRIDGE_SIZE = 20;
+
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
