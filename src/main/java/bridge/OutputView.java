@@ -21,10 +21,8 @@ public class OutputView {
     }
     public void printMap(String direction, List<String> bridge, GameState state) {
         int size = bridge.size();
-
         correctUp = new String[size];
         correctDown = new String[size];
-
         answer.add(direction);
         correctUp = makeUpList(answer,state);
         correctDown = makeDownList(answer,state);
@@ -54,12 +52,9 @@ public class OutputView {
         return uplist;
     }
     private String[] makeDownList(List<String> answer,GameState state){
-
         int size = answer.size();
         String[] downlist = new String[size];
-
         for(int i = 0 ; i < size ; i++){
-
             downlist[i] = " " ;
             if(answer.get(i).equals("D")){
                 downlist[i] = "O";
@@ -73,11 +68,10 @@ public class OutputView {
         return downlist;
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
+
+
+
     public void init(){
         answer = new ArrayList<>();
     }
@@ -89,12 +83,9 @@ public class OutputView {
         printList(correctUp);
         printList(correctDown);
         if(state == GameState.FALL){
-            System.out.println("게임 성공 여부: 실패");
-        }
+            System.out.println("게임 성공 여부: 실패");}
         if(state == GameState.WIN){
-            System.out.println("게임 성공 여부: 성공");
-        }
+            System.out.println("게임 성공 여부: 성공");}
         System.out.println("총 시도한 횟수: " + retryStack);
     }
-
 }
