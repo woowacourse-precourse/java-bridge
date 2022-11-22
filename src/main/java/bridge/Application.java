@@ -11,7 +11,11 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         BridgeGame bridgeGame = new BridgeGame();
-        BridgeGameController controller = new BridgeGameController(inputView, outputView, bridgeGame);
-        controller.run();
+        try {
+            BridgeGameController controller = new BridgeGameController(inputView, outputView, bridgeGame);
+            controller.run();
+        } catch (Exception exception) {
+            outputView.printUnExpectedErrorMessage(exception);
+        }
     }
 }

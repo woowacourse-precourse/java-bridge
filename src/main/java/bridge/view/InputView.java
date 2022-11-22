@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.model.Plate;
 import bridge.util.Errors;
 import bridge.util.Rules;
 import camp.nextstep.edu.missionutils.Console;

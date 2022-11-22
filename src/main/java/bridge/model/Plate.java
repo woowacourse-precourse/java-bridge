@@ -2,7 +2,6 @@ package bridge.model;
 
 import bridge.util.Rules;
 
-import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
