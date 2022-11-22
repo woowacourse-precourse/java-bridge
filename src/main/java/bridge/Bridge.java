@@ -8,7 +8,7 @@ public class Bridge {
     private static final String NOT_GO = " ";
     private static final String OPEN_SQUARE_BRACKETS = "[";
     private static final String CLOSE_SQUARE_BRACKETS = "]";
-    private static final String VERTICAL_BAR = "|";
+    private static final String VERTICAL_BAR = " | ";
 
     private List<String> upper;
     private List<String> lower;
@@ -40,9 +40,9 @@ public class Bridge {
 
     private StringBuilder pretty(List<String> bridge) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(OPEN_SQUARE_BRACKETS)
+        stringBuilder.append(OPEN_SQUARE_BRACKETS + " ")
                      .append(String.join(VERTICAL_BAR, bridge))
-                     .append(CLOSE_SQUARE_BRACKETS);
+                     .append(" " + CLOSE_SQUARE_BRACKETS);
         return stringBuilder;
     }
 
