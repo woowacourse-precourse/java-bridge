@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public enum State {
 
-    UP(0, "U"),
-    DOWN(1, "D"),
+    UP(0, "D"),
+    DOWN(1, "U"),
     No_VALUE(-1, "");
 
     private final int zeroOrOne;
