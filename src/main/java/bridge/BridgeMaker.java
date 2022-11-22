@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    /**
+     * 0-1 사이의 숫자를 생성할 generator
+     */
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
