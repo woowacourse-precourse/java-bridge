@@ -3,7 +3,7 @@ package bridge.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import bridge.domain.User;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ class BridgeGameControllerTest {
     @Test
     public void runPassOrFailCaseTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "U", "D"));
         User user = new User();
         boolean pass = true;
         int moveLocation = 1;
@@ -32,14 +32,15 @@ class BridgeGameControllerTest {
     @Test
     public void runSuccessCompleteTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "U", "D"));
         User user = new User();
         boolean pass = true;
         bridgeGameController.runPassOrFailCase(pass, bridge, user);
         bridgeGameController.runPassOrFailCase(pass, bridge, user);
+        bridgeGameController.runPassOrFailCase(pass, bridge, user);
 
         //when
-        bridgeGameController.runPassOrFailCase(pass, bridge, user);
+        bridgeGameController.completeBridge(bridge,user);
 
         //then
         assertThat(user.isSuccessComplete()).isEqualTo(true);
@@ -50,7 +51,7 @@ class BridgeGameControllerTest {
     @Test
     public void runFailCaseWithEndTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "U", "D"));
         User user = new User();
         String gameCommand = "Q";
 
@@ -65,11 +66,11 @@ class BridgeGameControllerTest {
     @Test
     public void runFailCaseWithRetryTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        BridgeGame bridge = new BridgeGame(List.of("U", "U", "D"));
         User user = new User();
         String gameCommand = "R";
         int startLocation = 0;
-        bridge.increaseLocation();
+        bridge.move();
 
         //when
         bridgeGameController.runFailCase(bridge, user, gameCommand);
