@@ -55,4 +55,5 @@ public class GameController {
         Moving.printMoving();
         OutputView.printResult(returnSuccessOrFailure(!isClear), TRY_COUNT);
     }
+
 }
