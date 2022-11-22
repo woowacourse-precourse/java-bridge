@@ -33,7 +33,7 @@ public class BridgeGameController {
     public void playGame() {
         if (bridgeGame.checkPlay(InputView.readMoving()))
             playGame();
-        if (bridgeGame.checkArrival())
+        if (bridgeGame.checkSucess())
             return;
         if (bridgeGame.checkRetry(InputView.readGameCommand()))
             retryGame();
