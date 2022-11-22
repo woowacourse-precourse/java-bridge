@@ -2,7 +2,9 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.GameStatus;
 import bridge.service.BridgeService;
+import bridge.service.GameStatusService;
 import bridge.service.MovedBridgeService;
 import bridge.util.Command;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeService bridgeService = new BridgeService();
     private final MovedBridgeService movedBridgeService = new MovedBridgeService();
+    private final GameStatusService gameStatusService = new GameStatusService();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -37,5 +40,29 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(readBridgeSize);
         bridgeService.save(bridge);
+    }
+
+    public void reset() {
+        resetMovedBridge();
+        resetGameStatus();
+    }
+
+    private void resetMovedBridge() {
+        movedBridgeService.reset();
+    }
+    private void resetGameStatus() {
+        gameStatusService.reset();
+    }
+
+    public GameStatus getGameStatus() {
+        return gameStatusService.find();
+    }
+
+    public boolean isFinish() {
+        return gameStatusService.isFinish();
+    }
+
+    public boolean isResult() {
+        return gameStatusService.isResult();
     }
 }

@@ -24,4 +24,12 @@ public class GameStatusService {
     public void reset() {
         find().reset();
     }
+
+    public boolean isFinish() {
+        return find().isFinish();
+    }
+
+    public boolean isResult() {
+        return find().isResult();
+    }
 }
