@@ -22,6 +22,11 @@ public class OutputView {
 
     private static void printBridge(List<String> bridge){
         System.out.print("[");
+        bridgeForm(bridge);
+        System.out.print("]");
+    }
+
+    private static void bridgeForm(List<String> bridge){
         for(int i = 0 ; i < bridge.size();i++){
             if(i == bridge.size() - 1){
                 System.out.print(bridge.get(i));
@@ -29,9 +34,8 @@ public class OutputView {
             }
             System.out.print(bridge.get(i) + "|");
         }
-        System.out.print("]");
     }
-    
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
