@@ -22,14 +22,14 @@ public enum GameCommand {
         this.command = command;
     }
 
-    public String getCommandString() {
-        return command;
-    }
-
     public static GameCommand fromString(String command) throws IllegalArgumentException {
         if (!mapper.containsKey(command)) {
             throw new IllegalArgumentException(ILLEGAL_GAME_COMMAND.getMessage());
         }
         return mapper.get(command);
+    }
+
+    public String getCommandString() {
+        return command;
     }
 }
