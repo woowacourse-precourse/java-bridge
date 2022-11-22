@@ -1,5 +1,7 @@
-package bridge.domain;
+package bridge.service;
 
+import bridge.domain.GameProgress;
+import bridge.service.MapService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -8,15 +10,15 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class MapManagerTest {
+class MapServiceTest {
 
     GameProgress gameProgress;
-    MapManager mapManager;
+    MapService mapService;
 
     @BeforeEach
     void init() {
         gameProgress = new GameProgress();
-        mapManager = new MapManager();
+        mapService = new MapService();
     }
 
     @Test
@@ -29,7 +31,7 @@ class MapManagerTest {
         gameProgress.add("D", false);
 
         //when
-        String map = mapManager.getMap(gameProgress);
+        String map = mapService.getMap(gameProgress);
 
         //then
         assertThat(map).isEqualTo(expect);
@@ -45,7 +47,7 @@ class MapManagerTest {
         gameProgress.add("D", true);
 
         //when
-        String map = mapManager.getMap(gameProgress);
+        String map = mapService.getMap(gameProgress);
 
         //then
         assertThat(map).isEqualTo(expect);

@@ -1,4 +1,8 @@
-package bridge.domain;
+package bridge.service;
+
+import bridge.domain.GameProgress;
+import bridge.domain.Move;
+import bridge.domain.MoveResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +14,7 @@ import static bridge.support.MapConst.SYMBOL_FAIL;
 import static bridge.support.MapConst.SYMBOL_FORMAT;
 import static bridge.support.MapConst.SYMBOL_SUCCESS;
 
-public class MapManager {
+public class MapService {
 
     public String getMap(GameProgress gameProgress) {
         String upSide = getSideResultOf(gameProgress, Move.UP);
