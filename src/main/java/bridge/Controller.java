@@ -5,20 +5,37 @@ import java.util.List;
 public class Controller {
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
-    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private static Controller instance;
+    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeGame bridgeGame = BridgeGame.getInstance();
-    String bridgeSize;
+    static String bridgeSize;
     String command;
     String restartCommand;
-    private int bridgeCount = 0;
-    private int gameCount = 1;
+    private int gameCount = 0;
 
+    public Controller() {
+    }
+
+    public static Controller getInstance() {
+        if(instance == null) {
+            instance = new Controller();
+        }
+        return instance;
+    }
+
+    public String getBridgeSize() {
+        return bridgeSize;
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
 
     public void run() {
         List<String> bridge = bridgeGameInit();
         System.out.println(bridge);
         bridgeGameStart(bridge);
+        outputView.printResult(gameCount);
     }
 
     private void bridgeGameStart(List<String> bridge) {
