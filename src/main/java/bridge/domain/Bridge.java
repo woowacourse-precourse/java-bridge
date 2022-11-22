@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.user.MoveType;
 import java.util.List;
 
 public class Bridge {
@@ -12,6 +13,10 @@ public class Bridge {
     public static Bridge initBridge(List<String> bridge) {
         Bridge bridgeInstance = new Bridge(bridge);
         return bridgeInstance;
+    }
+
+    public boolean canCross(int location, MoveType moveType) {
+        return moveType.compareTo(getBridgeLocation(location));
     }
 
     private String getBridgeLocation(int location) {
