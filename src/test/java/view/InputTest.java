@@ -6,8 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class InputTest {
 
@@ -17,5 +16,12 @@ public class InputTest {
     void 다리생성_입력_숫자_실패_테스트(String size) {
         assertThatThrownBy(() -> InputException.validateInputLength(size))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리생성입력_숫자이면_성공")
+    @ValueSource(strings = {"5", "10", "20"})
+    @ParameterizedTest()
+    void 다리생성_입력_숫자_성공_테스트(String size) {
+        assertThatNoException().isThrownBy(() -> InputException.validateInputLength(size));
     }
 }
