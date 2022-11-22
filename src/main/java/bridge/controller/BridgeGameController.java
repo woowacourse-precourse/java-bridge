@@ -81,8 +81,7 @@ public class BridgeGameController {
 
     private boolean crossTheBridge() {
         String moving = getSpaceToMove();
-        boolean check = bridgeGame.move(gameStatus, copyBridge, moving);
-        return check;
+        return bridgeGame.move(gameStatus, copyBridge, moving);
     }
 
     private void makeBridge(int bridgeLength) {
