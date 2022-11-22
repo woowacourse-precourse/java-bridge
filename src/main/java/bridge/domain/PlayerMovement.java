@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.constant.ExceptionMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerMovement {
@@ -15,7 +16,7 @@ public class PlayerMovement {
     }
 
     public List<String> getMovement() {
-        return movement;
+        return Collections.unmodifiableList(movement);
     }
 
     public int getMovementCount() {
