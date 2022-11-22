@@ -1,9 +1,9 @@
 package bridge;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.ConstValue;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ public class BridgeTest {
 
     @BeforeEach
     void clearBridge() {
-        bridge = new Bridge(Arrays.asList("U", "D", "D"));
+        bridge = new Bridge(Arrays.asList(ConstValue.UPPER_BRIDGE, ConstValue.LOWER_BRIDGE, ConstValue.LOWER_BRIDGE));
     }
 
     @DisplayName("새로운 다리를 생성한다.")
@@ -26,7 +26,7 @@ public class BridgeTest {
     @DisplayName("입력 값이 맞았을 경우 true 를 반환한다.")
     @Test
     void correctBridge() {
-        String movingPlace = "U";
+        String movingPlace = ConstValue.UPPER_BRIDGE;
 
         assertThat(bridge.isCorrect(movingPlace)).isTrue();
     }
@@ -34,7 +34,7 @@ public class BridgeTest {
     @DisplayName("입력 값이 틀렸을 경우 true 를 반환한다.")
     @Test
     void incorrectBridge() {
-        String movingPlace = "D";
+        String movingPlace = ConstValue.LOWER_BRIDGE;
 
         assertThat(bridge.isCorrect(movingPlace)).isFalse();
     }
@@ -42,7 +42,7 @@ public class BridgeTest {
     @DisplayName("정답인 다리를 이동한다.")
     @Test
     void moveCorrectly() {
-        String movingPlace = "U";
+        String movingPlace = ConstValue.UPPER_BRIDGE;
 
         bridge.addUpBridgeResult(movingPlace);
         bridge.addDownBridgeResult(movingPlace);
@@ -53,7 +53,7 @@ public class BridgeTest {
     @DisplayName("오답인 다리를 이동한다.")
     @Test
     void moveIncorrectly() {
-        String movingPlace = "D";
+        String movingPlace = ConstValue.LOWER_BRIDGE;
 
         bridge.addUpBridgeResult(movingPlace);
         bridge.addDownBridgeResult(movingPlace);
