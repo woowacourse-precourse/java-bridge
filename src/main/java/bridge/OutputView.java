@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,71 +20,73 @@ public class OutputView {
     public void printMap(List<String> bridge, List<String> move) {
         bridgeStateValidate(bridge, move);
         StringBuilder upLine = new StringBuilder("["), downLine = new StringBuilder("[");
-        addBridgeMap(upLine, downLine, move);
-        addLastBridgeMap(upLine, downLine, bridge.get(move.size() - 1), move.get(move.size() - 1));
+        List<StringBuilder> lines = Arrays.asList(upLine, downLine);
+        addBridgeMap(lines, move);
+        addLastBridgeMap(lines, bridge.get(move.size() - 1), move.get(move.size() - 1));
         System.out.println(upLine.toString());
         System.out.println(downLine.toString());
     }
 
     /**
-     * @param upLine      다리 건너기 결과의 윗부분에 해당하는 문자열
-     * @param downLine    다리 건너기 결과의 아랫부분에 해당하는 문자열
-     * @param bridgeState 마지막 입력 커맨드 위치에 해당하는 다리의 상태
-     * @param moveCommand 마지막 입력 커맨드
-     *                    <p>
-     *                    마지막 부분의 입력을 출력으로 변환한다.
+     * @param lines 출력할 다리 상태
+     * @param move  현재까지의 입력 커맨드
+     *              <p>
+     *              마지막을 제외한 부분의 입력을 출력으로 변환한다.
      */
-    private void addLastBridgeMap(StringBuilder upLine, StringBuilder downLine, String bridgeState, String moveCommand) {
-        String isCorrect = "X";
-        if (moveCommand.equals(bridgeState)) isCorrect = "O";
-
-        if (moveCommand.equals("U")) {
-            insertResult(upLine, downLine, " " + isCorrect + " ]", "   ]");
-            return;
-        }
-        insertResult(upLine, downLine, "   ]", " " + isCorrect + " ]");
-    }
-
-    /**
-     * @param upLine     다리 건너기 결과의 윗부분에 해당하는 문자열
-     * @param downLine   다리 건너기 결과의 아랫부분에 해당하는 문자열
-     * @param upString   윗부분의 문자열에 추가할 문자열
-     * @param downString 아랫부분의 문자열에 추가할 문자열
-     *                   <p>
-     *                   위아래 문자열과 각각 추가할 문자열을 입력받아 추가한다.
-     */
-    private void insertResult(StringBuilder upLine, StringBuilder downLine, String upString, String downString) {
-        upLine.append(upString);
-        downLine.append(downString);
-    }
-
-    /**
-     * @param upLine   다리 건너기 결과의 윗부분에 해당하는 문자열
-     * @param downLine 다리 건너기 결과의 아랫부분에 해당하는 문자열
-     * @param move     현재까지의 입력 커맨드
-     *                 <p>
-     *                 마지막을 제외한 부분의 입력을 출력으로 변환한다.
-     */
-    private void addBridgeMap(StringBuilder upLine, StringBuilder downLine, List<String> move) {
+    private void addBridgeMap(List<StringBuilder> lines, List<String> move) {
         for (int i = 0; i < move.size() - 1; i++) {
             if (move.get(i).equals("U")) {
-                upLine.append(" O |");
-                downLine.append("   |");
+                lines.get(0).append(" O |");
+                lines.get(1).append("   |");
                 continue;
             }
-            upLine.append("   |");
-            downLine.append(" O |");
+            lines.get(0).append("   |");
+            lines.get(1).append(" O |");
         }
     }
 
+
     /**
+     * @param lines      출력할 다리 상태
+     * @param lastBridge 마지막 다리 위치
+     * @param lastMove   마지막 이동 위치
+     *                   <p>
+     *                   마지막을 제외한 부분의 입력을 출력으로 변환한다.
+     */
+    private void addLastBridgeMap(List<StringBuilder> lines, String lastBridge, String lastMove) {
+        char result = match(lastBridge, lastMove);
+        if (lastMove.equals("U")) {
+            lines.get(0).append(" " + result + " ]");
+            lines.get(1).append("   ]");
+            return;
+        }
+        lines.get(0).append("   ]");
+        lines.get(1).append(" " + result + " ]");
+    }
+
+    /**
+     * @param first  비교할 문자열 1
+     * @param second 비교할 문자열 2
+     * @return 서로 맞는 경우 O, 다르면 X 반환
+     * <p>
+     * 문자열을 비교해 맞으면 O, 틀리면 X를 반환한다.
+     */
+    private char match(String first, String second) {
+        if (first.equals(second)) return 'O';
+        return 'X';
+    }
+
+    /**
+     * @param bridge 다리 위치
+     * @param move   이동 위치
      * @Exception IllegalStateException 마지막이 아닌 중간에서 일치하지 않는 경우 예외를 던진다.
      * <p>
      * 현재까지의 이동 상태를 검증한다.
      */
     private void bridgeStateValidate(List<String> bridge, List<String> move) {
         for (int i = 0; i < move.size() - 1; i++) {
-            if (!bridge.get(i).equals(move.get(i))) throw new IllegalStateException("내부 상태이상: 중간에 일치하지 않는 부분이 있습니다.");
+            if (!bridge.get(i).equals(move.get(i)))
+                throw new IllegalStateException("내부 상태이상: 중간에 일치하지 않는 부분이 있습니다.");
         }
     }
 
