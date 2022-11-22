@@ -102,13 +102,24 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        countPlus();
+        this.acrossBridge = 0;
+        this.upperBridge = new StringBuilder();
+        this.lowerBridge = new StringBuilder();
     }
 
-    public void printStartGame() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+    public void printResultMessage() {
+        System.out.println();
+        System.out.println(printOutput.GAME_RESULT.getGameOutput());
     }
-    public void printInputBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+
+    public String InstanceMap(int bridgeSize) {
+        String result = upperBridge + "\n" + lowerBridge;
+        if (acrossBridge != bridgeSize) {
+            result = upperBridge.deleteCharAt(upperBridge.length()-1)+BRIDGE_END + "\n" + lowerBridge.deleteCharAt(lowerBridge.length()-1)+BRIDGE_END;
+        }
+
+        return result;
     }
 
     public int accrosBridgePlus() {
