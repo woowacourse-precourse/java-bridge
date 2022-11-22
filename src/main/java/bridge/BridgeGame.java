@@ -1,8 +1,7 @@
 package bridge;
 
-import java.util.List;
-
 import bridge.domain.BridgeColumn;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -37,15 +36,15 @@ public class BridgeGame {
             movable = bridgeColumns.get(moveCount++).equals(markToMove);
             BridgeColumn.addResultToMap(markToMove, movable);
             bridgeMover.printBridgeResultMap();
-        } while(!isGameSuccess(movable));
+        } while (!isGameSuccess(movable));
     }
 
     private boolean isGameSuccess(boolean movable) {
-        if(!movable) {
+        if (!movable) {
             return !retry();
         }
         boolean success = moveCount == bridgeColumns.size();
-        if(success) {
+        if (success) {
             quit(true);
             return true;
         }
@@ -56,11 +55,10 @@ public class BridgeGame {
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     *
      */
     public boolean retry() {
         BridgeMover bridgeMover = new BridgeMover();
-        if(bridgeMover.askRetry()) {
+        if (bridgeMover.askRetry()) {
             gamePlayCount++;
             moveCount = 0;
             BridgeColumn.clearAllResultMap();
@@ -69,6 +67,7 @@ public class BridgeGame {
         quit(false);
         return false;
     }
+
     public void quit(boolean gameSuccess) {
         BridgeGameResult bridgeGameResult = new BridgeGameResult();
         bridgeGameResult.printGameResult(gameSuccess, gamePlayCount);

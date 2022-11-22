@@ -1,8 +1,11 @@
 package bridge.view;
 
-import static bridge.constant.InformationMessage.*;
-
-import bridge.constant.InformationMessage;
+import static bridge.constant.InformationMessage.GAME_RESULT_HEADER;
+import static bridge.constant.InformationMessage.GAME_RESULT_IS_SUCCESS_GAME;
+import static bridge.constant.InformationMessage.GAME_RESULT_PLAY_COUNT;
+import static bridge.constant.InformationMessage.INPUT_BRIDGE_MARK_TO_MOVE;
+import static bridge.constant.InformationMessage.INPUT_BRIDGE_MOVE_RETRY;
+import static bridge.constant.InformationMessage.INPUT_BRIDGE_SIZE;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -43,7 +46,7 @@ public class OutputView {
         System.out.println(GAME_RESULT_HEADER);
         printMap(resultMap);
         String resultMessage = "실패";
-        if(success) {
+        if (success) {
             resultMessage = "성공";
         }
         System.out.printf(GAME_RESULT_IS_SUCCESS_GAME, resultMessage);
