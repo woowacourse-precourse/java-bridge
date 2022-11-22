@@ -6,7 +6,7 @@ public class Controller {
     private BridgeGame bridgeGame;
 
     public void startGame() throws IllegalAccessException {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        outputView.printLabel("다리 건너기 게임을 시작합니다.\n");
         initBridgeGame();
         do {
             if (tryGame()) {
@@ -18,7 +18,7 @@ public class Controller {
     }
 
     private void initBridgeGame() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        outputView.printLabel("다리의 길이를 입력해주세요.");
 
         int size = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(size);
@@ -35,7 +35,7 @@ public class Controller {
     }
 
     private void moveStep() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        outputView.printLabel("이동할 칸을 선택해주세요. (위: U, 아래: D)");
 
         String move = inputView.readMoving();
         bridgeGame.move(move);
@@ -43,7 +43,7 @@ public class Controller {
     }
 
     private boolean getRetry() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        outputView.printLabel("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
         String command = inputView.readGameCommand();
         if (command.equals("R")) bridgeGame.retry();

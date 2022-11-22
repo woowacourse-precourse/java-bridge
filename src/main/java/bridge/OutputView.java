@@ -29,6 +29,10 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + count);
     }
 
+    public void printLabel(String label) {
+        System.out.println(label);
+    }
+
     private void printSingleBridge(List<String> inputBridge, List<String> bridge, String option) {  // option : "U" | "D"
         System.out.print("[ ");
         for (int i = 0; i < inputBridge.size(); i++) {
