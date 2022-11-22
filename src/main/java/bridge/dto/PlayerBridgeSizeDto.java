@@ -1,4 +1,4 @@
-package bridge;
+package bridge.dto;
 
 import bridge.domain.Player;
 

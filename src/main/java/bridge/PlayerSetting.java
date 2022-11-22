@@ -1,6 +1,9 @@
 package bridge;
 
 import bridge.domain.Player;
+import bridge.dto.BridgeCorrectLocationDto;
+import bridge.dto.BridgeDto;
+import bridge.dto.PlayerBridgeSizeDto;
 
 import java.util.List;
 
