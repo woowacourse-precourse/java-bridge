@@ -25,7 +25,7 @@ class BridgeGameTest {
 
 
         @Test
-        public void 생성자에_따른_올바른_다리_체크(){
+        public void 생성자에_따른_올바른_다리_체크() {
             BridgeGame bridgeGame = new BridgeGame(List.of(first, second, third));
             List<Direction> bridge = bridgeGame.getBridge();
 
@@ -35,7 +35,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 올바른_곳으로_이동시_PASS(){
+        public void 올바른_곳으로_이동시_PASS() {
             BridgeGame bridgeGame = new BridgeGame(List.of(first, second, third));
             Direction selection = firstDir;
             bridgeGame.move(selection);
@@ -47,7 +47,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 옳지않은_곳으로_이동시_FAIL(){
+        public void 옳지않은_곳으로_이동시_FAIL() {
             BridgeGame bridgeGame = new BridgeGame(List.of(first, second, third));
             Direction selection = Direction.DOWN;
             bridgeGame.move(selection);
@@ -59,7 +59,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 재시도시_history_초기화_후_trial증가(){
+        public void 재시도시_history_초기화_후_trial증가() {
             BridgeGame bridgeGame = new BridgeGame(List.of(first, second, third));
             Direction selection = firstDir;
 
@@ -80,7 +80,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 포기할_시_게임_종료(){
+        public void 포기할_시_게임_종료() {
             BridgeGame bridgeGame = new BridgeGame(List.of(first, second, third));
 
             // 포기 전
@@ -93,7 +93,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 다리_끝에_실패없이_도착하면_게임_종료(){
+        public void 다리_끝에_실패없이_도착하면_게임_종료() {
             BridgeGame bridgeGame = new BridgeGame(List.of(first, second, third));
 
             assertThat(bridgeGame.isSuccess()).isEqualTo(false);
@@ -116,7 +116,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 성공할_시_게임_종료(){
+        public void 성공할_시_게임_종료() {
             BridgeGame bridgeGame = new BridgeGame(List.of(first, second, third));
 
             assertThat(bridgeGame.isSuccess()).isEqualTo(false);
@@ -145,7 +145,7 @@ class BridgeGameTest {
     class 예외_테스트 {
 
         @Test
-        public void 올바르지_않은_문자열로_생성시_예외_발생(){
+        public void 올바르지_않은_문자열로_생성시_예외_발생() {
             assertThatThrownBy(() -> new BridgeGame(List.of("A", "B", "C")))
                     .isInstanceOf(IllegalArgumentException.class);
 
@@ -154,7 +154,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 올바르지_않은_문자열로_다리_설정시_예외_발생(){
+        public void 올바르지_않은_문자열로_다리_설정시_예외_발생() {
             BridgeGame bridgeGame = new BridgeGame();
             assertThatThrownBy(() -> bridgeGame.setBridge(List.of("A", "B", "C")))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -164,7 +164,7 @@ class BridgeGameTest {
         }
 
         @Test
-        public void 올바르지_않은_값으로_이동시_예외_발생(){
+        public void 올바르지_않은_값으로_이동시_예외_발생() {
             BridgeGame bridgeGame = new BridgeGame();
             assertThatThrownBy(() -> bridgeGame.move(Direction.valueOf("U")))
                     .isInstanceOf(IllegalArgumentException.class);

@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.model.generator.BridgeMaker;
 import bridge.model.generator.BridgeNumberGenerator;
-import bridge.model.generator.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,9 +13,9 @@ import static org.assertj.core.util.Lists.newArrayList;
 public class BridgeMakerTest {
 
     @Test
-    public void 숫자생성기가_범위_밖의_숫자를_생성할_때_예외_발생(){
+    public void 숫자생성기가_범위_밖의_숫자를_생성할_때_예외_발생() {
         int wrongInput = 100;
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             BridgeNumberGenerator numberGenerator = new BridgeMakerTest.TestNumberGenerator(newArrayList(0, 0, wrongInput));
             BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
             List<String> bridge = bridgeMaker.makeBridge(3);
@@ -24,7 +23,7 @@ public class BridgeMakerTest {
     }
 
     @Test
-    public void 생성된_숫자에_따른_문자열_리스트_생성(){
+    public void 생성된_숫자에_따른_문자열_리스트_생성() {
         int size = 3;
         BridgeNumberGenerator numberGenerator = new BridgeMakerTest.TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
