@@ -1,4 +1,4 @@
-package bridge;
+package utils;
 
 public enum STATUS {
     RUNNING("실패"),
