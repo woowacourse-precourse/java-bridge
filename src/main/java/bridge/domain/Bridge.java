@@ -9,6 +9,7 @@ import static bridge.util.constants.ErrorMessage.BRIDGE_INDEX_ERROR;
 
 public class Bridge {
     private final List<String> movableSpaces;
+
     public Bridge(List<String> movableSpaces) {
         validate(movableSpaces);
         this.movableSpaces = movableSpaces;
@@ -35,6 +36,7 @@ public class Bridge {
     }
 
     public boolean isBroken(int index, String spaceToMove) {
-        return !(get(index).equals(spaceToMove));
+        String spaceOfIndex = this.get(index);
+        return !spaceOfIndex.equals(spaceToMove);
     }
 }
