@@ -11,27 +11,32 @@ public class BridgeJudge {
     // userInput 과 madeBridge 를 비교하여 결과를 bridge 에 저장하는 함수
     public void judgeInput(String userInput, String madeBridge, Bridge bridge) {
         if (userInput.equals(madeBridge)) {
-            if (userInput.equals("U")) {
-                bridge.updateUp("O");
-                bridge.updateDown(" ");
-            }
-            if (userInput.equals("D")) {
-                bridge.updateDown("O");
-                bridge.updateUp(" ");
-            }
+            judgeEqual(userInput, bridge);
+            return;
         }
 
-        if (!userInput.equals(madeBridge)) {
-            Bridge.bridge.setRightAnswer(false);
-            if (userInput.equals("U")) {
-                bridge.updateUp("X");
-                bridge.updateDown(" ");
-            }
-            if (userInput.equals("D")) {
-                bridge.updateDown("X");
-                bridge.updateUp(" ");
-            }
+        judgeNotEqual(userInput, bridge);
+    }
+
+    private void judgeEqual(String userInput, Bridge bridge) {
+        if (userInput.equals("U")) {
+            bridge.updateUp("O");
+            bridge.updateDown(" ");
+            return;
         }
+        bridge.updateDown("O");
+        bridge.updateUp(" ");
+    }
+
+    private void judgeNotEqual(String userInput, Bridge bridge) {
+        bridge.setRightAnswer(false);
+        if (userInput.equals("U")) {
+            bridge.updateUp("X");
+            bridge.updateDown(" ");
+            return;
+        }
+        bridge.updateDown("X");
+        bridge.updateUp(" ");
     }
 
     public static List<String> getBridgeMapDown(List<String> result, int count) {
@@ -47,23 +52,21 @@ public class BridgeJudge {
     private static List<String> setBridge(List<String> result, int count) {
         List<String> bridgeMap = new ArrayList<>();
         int resultIndex = 0;
-        for (int index = 0; index < count * 2 + 1; index++) {
+        count = count * 2 + 1;
+        for (int index = 0; index < count; index++) {
             if (index == 0) {
                 bridgeMap.add("[ ");
                 continue;
             }
             if (index % 2 != 0) {
-                bridgeMap.add(result.get(resultIndex));
-                resultIndex++;
+                bridgeMap.add(result.get(resultIndex++));
                 continue;
             }
-            if (index != count * 2) {
+            if (index != count - 1) {
                 bridgeMap.add(" | ");
                 continue;
             }
-            if (index == count * 2) {
-                bridgeMap.add(" ]");
-            }
+            bridgeMap.add(" ]");
         }
         return bridgeMap;
     }
