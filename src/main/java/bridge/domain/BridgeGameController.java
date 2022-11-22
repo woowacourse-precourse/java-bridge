@@ -52,8 +52,7 @@ public final class BridgeGameController {
     private Bridge setUpBridge(final BridgeMaker bridgeMaker) {
         try {
             printStartingMessages();
-            final int size = receiveBridgeSize();
-            return new Bridge(bridgeMaker.makeBridge(size));
+            return Bridge.from(bridgeMaker, receiveBridgeSize());
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return setUpBridge(bridgeMaker);
@@ -65,9 +64,8 @@ public final class BridgeGameController {
         outputView.printAskBridgeLength();
     }
 
-    private int receiveBridgeSize() {
-        final BridgeSizeCommand sizeCommand = inputView.readBridgeSize();
-        return sizeCommand.getBridgeSize();
+    private BridgeSizeCommand receiveBridgeSize() {
+        return inputView.readBridgeSize();
     }
 
     public void play() {
