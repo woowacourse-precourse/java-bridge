@@ -12,6 +12,7 @@ public class Bridge {
     }
 
     public Bridge(List<String> setBridge) {
+        Bridge.bridge.clear();
         Bridge.bridge.addAll(setBridge);
     }
 
