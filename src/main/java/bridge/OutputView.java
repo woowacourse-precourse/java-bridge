@@ -6,6 +6,10 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String RETRY_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -44,19 +48,19 @@ public class OutputView {
     }
     //게임시작 메시지 출력
     public void printGameStart(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(GAME_START_MESSAGE);
         System.out.println();
     }
     //다리 길이 입력
     public void printBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(BRIDGE_SIZE_MESSAGE);
     }
     //이동할 칸 입력
     public void printMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(MOVING_MESSAGE);
     }
     //다시 시도여부 입력
     public void printRetryGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(RETRY_GAME_COMMAND_MESSAGE);
     }
 }
