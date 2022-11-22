@@ -5,14 +5,22 @@ import static bridge.InputView.readBridgeSize;
 public class Application {
 
     public static void main(String[] args) {
-        try {
-            BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-            OutputView.String("다리 건너기 게임을 시작합니다.");
-            BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(readBridgeSize()));
-        } catch (IllegalArgumentException e) {
+        OutputView.String("다리 건너기 게임을 시작합니다.");
+
+        int size = 0;
+        while (true) {
+            try {
+                size = readBridgeSize();
+                break;
+            } catch (NumberFormatException e) {
+                OutputView.String("[ERROR] 입력된 값이 정수가 아닙니다.");
+            } catch (IllegalArgumentException e) {
+                OutputView.String("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
         }
-
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
     }
 }
