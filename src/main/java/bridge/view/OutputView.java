@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.Constants;
 import bridge.domain.GameRecord;
+import bridge.service.BridgeGame;
 import java.util.List;
 
 /**
@@ -33,6 +34,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println(Constants.OUTPUT_GAME_RESULT);
+        printMap(bridgeGame.getGameRecord());
+        String gameStatus = bridgeGame.checkSituation().getStatus();
+        System.out.printf(Constants.OUTPUT_SUCCESS_FAIL, gameStatus);
+        System.out.printf(Constants.OUTPUT_GAME_ATTEMPTS, bridgeGame.getGameRecord().getTryAttempts());
     }
 }
