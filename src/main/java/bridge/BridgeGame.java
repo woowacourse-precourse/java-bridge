@@ -22,9 +22,7 @@ public class BridgeGame {
             if (ret == 0){
                 if (inputView.readGameCommand().equals("R")){
                     retry(inputView, answer_list);
-                    return;}
-            }
-        }
+                    return;}}}
         outputView.printResult(try_count);
     }
 
