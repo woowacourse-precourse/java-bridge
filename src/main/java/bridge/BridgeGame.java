@@ -38,13 +38,11 @@ public class BridgeGame {
      * 한 번 이동할 때마다 실행되는 전체 메서드
      */
     private void trial(List<String> playerInput) {
-        int score = 0;
         for (int i = 0; i < newBridge.size(); i++) {
-            playerInput = updatePlayerInput(playerInput, move());
-            drawMap = new DrawMap(newBridge, playerInput);
-            currentMap = drawMap.returnMapToPrint();
+            playerInput.add(move());
+            currentMap = getCurrentMapInString(playerInput);
             outputView.printMap(currentMap);
-            score = calculateScore(playerInput);
+            int score = calculateScore(playerInput);
             if (score == newBridge.size()) {
                 outputView.printResult(currentMap, "성공", gameTrialCount);
                 return;
@@ -64,6 +62,14 @@ public class BridgeGame {
     public String move() {
         outputView.printMove();
         return inputView.readMoving();
+    }
+
+    /**
+     * 현재 결과를 그림으로 나타내주는 메서드
+     */
+    public String getCurrentMapInString(List<String> playerInput) {
+        drawMap = new DrawMap();
+        return drawMap.returnMapToPrint(newBridge, playerInput);
     }
 
     /**
@@ -89,7 +95,6 @@ public class BridgeGame {
         gameTrialCount += 1;
         trial(new ArrayList<>());
     }
-
 
     /**
      * 다리 길이를 입력받아 다리를 생성하는 메서드
