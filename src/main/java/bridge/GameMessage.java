@@ -1,4 +1,4 @@
-package bridge.message;
+package bridge;
 
 public enum GameMessage {
     REQUEST_BRIDGE_LENGTH_MESSAGE("다리 길이를 입력해주세요."),

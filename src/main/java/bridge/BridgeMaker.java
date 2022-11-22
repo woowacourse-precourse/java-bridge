@@ -1,6 +1,4 @@
-package bridge.domain;
-
-import bridge.variable.Variable;
+package bridge;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package bridge.variable;
+package bridge;
 
 public enum Variable {
     FAIL(" X "),

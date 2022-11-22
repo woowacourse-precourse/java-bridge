@@ -1,9 +1,4 @@
-package bridge.controller;
-
-import bridge.domain.BridgeGame;
-import bridge.variable.Variable;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+package bridge;
 
 import java.util.List;
 
