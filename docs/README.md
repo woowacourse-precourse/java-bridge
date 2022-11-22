@@ -40,7 +40,7 @@
 - [x] 설정 값을 검증한다. #validateInputSetting()
 - [x] 게임에 대한 설정을 한다. #gameSetting()
 - [x] 게임을 진행한다. #gamePlay()
-- [x] 이동와 그 결과를 출력한다. #moveAndResult()
+- [x] 이동과 그 결과를 출력한다. #moveAndResult()
 - [x] 이동 입력을 반환한다. #getMoveCommand()
 - [x] 허가되지 않은 이동 입력인지 체크한다. #isDisallowInputMoveCommand()
 - [x] 게임 입력을 반환한다. #getReadGameCommand()
