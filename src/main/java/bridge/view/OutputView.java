@@ -35,12 +35,11 @@ public class OutputView {
 
     private void makeMap(int position, String movingResult, int selectedIndex) {
         int notSelectedIndex = 1 - selectedIndex;
-        int lengthBeforeSquareBracket = map[selectedIndex].length() - 1;
-
         if (position == FIRST) {
             makeFirstMap(movingResult, selectedIndex, notSelectedIndex);
             return;
         }
+        int lengthBeforeSquareBracket = map[selectedIndex].length() - 1;
         map[selectedIndex] = map[selectedIndex].substring(0, lengthBeforeSquareBracket) + INFIX + movingResult + SUFFIX;
         map[notSelectedIndex] = map[notSelectedIndex].substring(0, lengthBeforeSquareBracket) + INFIX + " " + SUFFIX;
     }
