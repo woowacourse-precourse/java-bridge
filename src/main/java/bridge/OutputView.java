@@ -41,4 +41,8 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + status.result());
         System.out.println("총 시도한 횟수: " + gameCount);
     }
+
+    public static void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }
