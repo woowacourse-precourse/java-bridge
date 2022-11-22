@@ -17,6 +17,16 @@ public class Result {
     public Result() {
     }
 
+    public void updateBridge(List<String> bridge, List<String> moves) {
+        setBridgeMap();
+        findFail(bridge, moves);
+    }
+
+    private void setBridgeMap() {
+        topBridgeResult = START_BRIDGE_CHARACTER;
+        bottomBridgeResult = START_BRIDGE_CHARACTER;
+    }
+
     private void compareMoveCommand(String move) {
         if (move.equals(BridgeMaker.UP_BRIDGE_PHRASE)) {
             topBridgeResult += (SUCCESS + SEPARATOR);
@@ -31,6 +41,7 @@ public class Result {
     public boolean findFail(List<String> bridge, List<String> moves) {
         for (int findIndex = 0; findIndex < moves.size(); findIndex++) {
             if (!bridge.get(findIndex).equals(moves.get(findIndex))) {
+                isFailedBridgeMap(moves.get(findIndex));
                 return true;
             }
             compareMoveCommand(moves.get(findIndex));
@@ -50,5 +61,16 @@ public class Result {
         bottomBridgeResult += END_BRIDGE_CHARACTER;
 
         return bottomBridgeResult;
+    }
+
+    private void isFailedBridgeMap(String bridge) {
+        if (bridge.equals(BridgeMaker.UP_BRIDGE_PHRASE)) {
+            topBridgeResult += (FAIL + END_BRIDGE_CHARACTER);
+            bottomBridgeResult += (BLANK + END_BRIDGE_CHARACTER);
+        }
+        if (bridge.equals(BridgeMaker.DOWN_BRIDGE_PHRASE)) {
+            topBridgeResult += (BLANK + END_BRIDGE_CHARACTER);
+            bottomBridgeResult += (FAIL + END_BRIDGE_CHARACTER);
+        }
     }
 }
