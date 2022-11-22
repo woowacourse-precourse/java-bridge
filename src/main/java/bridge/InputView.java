@@ -2,10 +2,13 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.Application.*;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    static boolean error_Statement = true;
 
     public enum exceptions{
         BRIDGESIZE_EXCEPTION(new IllegalArgumentException("[ERROR] 3~20까지의 숫자 중 하나를 입력하세요.")),
@@ -24,6 +27,7 @@ public class InputView {
 
         public IllegalArgumentException getException() {
             viewException();
+            error_Statement = false;
             return exception;
         }
     }
@@ -57,7 +61,6 @@ public class InputView {
 
     public void exceptionOccured_Bridge(){
         exceptions.BRIDGESIZE_EXCEPTION.getException();
-        readBridgeSize();
     }
 
     public void exceptionCheck_Moving(String input){
@@ -66,7 +69,6 @@ public class InputView {
 
     public void exceptionOccured_Moving(){
         exceptions.MOVE_EXCEPTION.getException();
-        readMoving();
     }
 
     public void exceptionCheck_Command(String input){
@@ -75,7 +77,6 @@ public class InputView {
 
     public void exceptionOccured_Command(){
         exceptions.COMMAND_EXCEPTION.getException();
-        readGameCommand();
     }
 
     public int StringtoInt(String input){
@@ -88,6 +89,10 @@ public class InputView {
     public int readBridgeSize() {
         String input = Console.readLine();
         exceptionCheck_Bridge(input);
+        if(!error_Statement) {
+            error_Statement = true;
+            return readBridgeSize();
+        }
         return StringtoInt(input);
     }
 
@@ -97,6 +102,10 @@ public class InputView {
     public String readMoving() {
         String input = Console.readLine();
         exceptionCheck_Moving(input);
+        if(!error_Statement) {
+            error_Statement = true;
+            return readMoving();
+        }
         return input;
     }
 
@@ -106,6 +115,10 @@ public class InputView {
     public String readGameCommand() {
         String input = Console.readLine();
         exceptionCheck_Command(input);
+        if(!error_Statement) {
+            error_Statement = true;
+            return readGameCommand();
+        }
         return input;
     }
 }

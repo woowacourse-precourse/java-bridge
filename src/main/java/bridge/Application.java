@@ -45,6 +45,7 @@ public class Application {
         }
         final_Map_Number = --num;
     }
+
     public static void restart(OutputView OV, InputView IV, BridgeGame BG, List<String> bridge, BridgeNumberGenerator BNG, BridgeMaker BM){
         if(!move_Status){
             OV.restartGuidance();
@@ -58,6 +59,7 @@ public class Application {
         object.add(element_2);
         return object;
     }
+
     public static void main(String[] args) {
         gameStart();
     }
