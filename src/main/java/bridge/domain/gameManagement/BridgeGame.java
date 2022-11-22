@@ -23,8 +23,6 @@ public class BridgeGame {
     public int move(List<String> bridge, List<String> currentBridge) {
         int currentLocation = INITIAL_LOCATION;
 
-        //currentLocation = PlayerMove.handlePlayerMove(currentLocation, bridge, currentBridge);
-
         PlayerMove.attemptCrossBridge(bridge, currentBridge, currentLocation);
 
         return currentLocation;

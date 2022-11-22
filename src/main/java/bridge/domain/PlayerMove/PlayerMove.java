@@ -12,8 +12,9 @@ import java.util.List;
 public class PlayerMove {
     private static final String GAME_COMMAND_RESTART = "R";
     private static final String GAME_COMMAND_QUIT = "Q";
-    private static final int ONE_INDEX = 1;
+    private static final String MOVE_FAIL = "X";
     private static final int END_OF_MOVE = -1;
+    private static final int ONE_INDEX = 1;
 
     public static String takeMovingPosition() {
         InputView inputView = new InputView();
@@ -42,6 +43,9 @@ public class PlayerMove {
 
     public static int handlePlayerMove(int currentLocation, List<String> bridge, List<String> currentBridge) {
         currentLocation = crossBridgeUntilFailOrEnd(currentLocation, bridge, currentBridge);
+        if (currentLocation == bridge.size() && !currentBridge.get(currentBridge.size() - ONE_INDEX).contains(MOVE_FAIL)) {
+            return END_OF_MOVE;
+        }
 
         int currentLocationForRestart = handleIntermediateFailure(currentLocation, bridge, currentBridge);
         if (currentLocation == currentLocationForRestart) {
