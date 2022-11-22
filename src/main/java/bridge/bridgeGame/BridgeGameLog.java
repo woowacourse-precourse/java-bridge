@@ -43,13 +43,24 @@ public class BridgeGameLog {
         addDefaultValueIfFull();
         final int bridgeIndex = BridgeRouter.getMatchBridge(command).getIndex();
         bridges.get(bridgeIndex).set(currentLocation, getValue(isMove));
-        if (isMove) {
-            currentLocation++;
-        }
-        if (!isMove) {
-            count++;
-        }
+        addValueIfTrue(isMove);
+        addValueIfFalse(isMove);
     }
+
+    private void addValueIfFalse(boolean isMove) {
+        if (isMove) {
+            return;
+        }
+        count++;
+    }
+
+    private void addValueIfTrue(boolean isMove) {
+        if (!isMove) {
+            return;
+        }
+        currentLocation++;
+    }
+
 
     private String getValue(boolean isEnd) {
         if (isEnd) {
