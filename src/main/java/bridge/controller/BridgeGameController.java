@@ -32,7 +32,7 @@ public class BridgeGameController {
     }
 
     private void end() {
-        outputView.printResult(bridgeGame.getBridgeGameResult());
+        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getBridgeGameResult());
     }
 
     private void makeBridge() {
@@ -52,7 +52,7 @@ public class BridgeGameController {
         do {
             outputView.printMovingMsg();
             canMove = canMove();
-            outputView.printMap(bridgeGame.getBridgeGameResult());
+            outputView.printMap(bridgeGame.getBridge(), bridgeGame.getMoveState());
         } while (canMove);
     }
 

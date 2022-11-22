@@ -42,9 +42,9 @@ public class OutputView {
         System.out.println(msg);
     }
 
-    public void printResult(BridgeGameResult gameResult) {
+    public void printResult(List<String> bridge, BridgeGameResult gameResult) {
         System.out.println(GAME_RESULT);
-        printMap(gameResult);
+        printMap(bridge, gameResult.getMoveState());
         System.out.println(GAME_SUCCESS + gameResult.getResult());
         System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
     }
