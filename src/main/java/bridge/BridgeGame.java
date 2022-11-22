@@ -70,7 +70,9 @@ public class BridgeGame {
     }
 
     private void clearFailStage() {
-        upperBridge.remove(upperBridge.size() - 1);
-        bottomBridge.remove(bottomBridge.size() - 1);
+        if(tryCount > 1) {
+            upperBridge.remove(upperBridge.size() - 1);
+            bottomBridge.remove(bottomBridge.size() - 1);
+        }
     }
 }
