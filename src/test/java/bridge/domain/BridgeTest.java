@@ -15,11 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeTest {
     private Bridge bridge;
-    private List<String> testBridge;
 
     @BeforeEach
     void initTest() {
-        testBridge = Arrays.asList("D", "U", "U", "D");
+        List<String> testBridge = Arrays.asList("D", "U", "U", "D");
 
         bridge = new Bridge(testBridge);
     }
