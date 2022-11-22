@@ -27,7 +27,7 @@ public class BridgeGameProgram {
     public void run() {
         Bridge bridge = initGame();
         while (GameStatus.isRunning) {
-            Mark mark = bridge.matchRoute(getInputDirection(), bridgeGame.countMoving());
+            Mark mark = match(bridge);
             List<List<String>> route = bridgeGame.move(mark);
             output.printMap(route);
             checkFail(mark, route);
@@ -39,6 +39,35 @@ public class BridgeGameProgram {
         output.printMessage(Message.START);
         List<String> bridgeRoute = bridgeMaker.makeBridge(getBridgeSize());
         return new Bridge(bridgeRoute);
+    }
+
+    private Mark match(Bridge bridge) {
+        return bridge.matchRoute(getInputDirection(), bridgeGame.countMoving());
+    }
+
+    private void checkFail(Mark mark, List<List<String>> route) {
+        if (!mark.isRight()) {
+            restartOrStop(route);
+        }
+    }
+
+    private void restartOrStop(List<List<String>> route) {
+        if (getGameCommand().equals(GameCommand.END.getCommand())) {
+            endGame(route, Message.FAIL);
+            return;
+        }
+        bridgeGame.retry();
+    }
+
+    private void checkSuccess(Bridge bridge, List<List<String>> route) {
+        if (bridge.isLast(bridgeGame.getMovingCount())) {
+            endGame(route, Message.SUCCESS);
+        }
+    }
+
+    private void endGame(List<List<String>> route, Message result) {
+        GameStatus.quitGame();
+        output.printResult(route, result, bridgeGame.getGameCount());
     }
 
     private int getBridgeSize() {
@@ -63,20 +92,6 @@ public class BridgeGameProgram {
         }
     }
 
-    private void checkFail(Mark mark, List<List<String>> route) {
-        if (!mark.isRight()) {
-            restartOrStop(route);
-        }
-    }
-
-    private void restartOrStop(List<List<String>> route) {
-        if (getGameCommand().equals(GameCommand.END.getCommand())) {
-            endGame(route, Message.FAIL);
-            return;
-        }
-        bridgeGame.retry();
-    }
-
     private String getGameCommand() {
         while (true) {
             try {
@@ -87,15 +102,5 @@ public class BridgeGameProgram {
             }
         }
     }
-
-    private void checkSuccess(Bridge bridge, List<List<String>> route) {
-        if (bridge.getSize() == bridgeGame.getMovingCount()) {
-            endGame(route, Message.SUCCESS);
-        }
-    }
-
-    private void endGame(List<List<String>> route, Message result) {
-        GameStatus.quitGame();
-        output.printResult(route, result, bridgeGame.getGameCount());
-    }
 }
+

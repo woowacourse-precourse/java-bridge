@@ -18,7 +18,7 @@ public class Bridge {
         return Mark.toMark(inputDirection, isRight);
     }
 
-    public int getSize() {
-        return bridgeRoute.size();
+    public boolean isLast(int movingCount) {
+        return bridgeRoute.size() == movingCount;
     }
 }
