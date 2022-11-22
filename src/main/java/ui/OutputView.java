@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public void printGameTryResultMessage(int userTry) {
-        System.out.println(GAME_TRY + userTry);
+        System.out.print(GAME_TRY + userTry);
     }
 
     private void printFinalGameMapMessage() {
