@@ -7,19 +7,24 @@ import java.util.List;
  */
 public class OutputView {
 
+    private String getBlankOrX(boolean isCorrect) {
+        if(isCorrect) return " ";
+        return "X";
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> userPick, boolean isCorrect) { // todo : 리팩토링
+    public void printMap(List<String> bridge, List<String> userPick, boolean isCorrect) {
         int SIZE = userPick.size();
         System.out.print("[");
         for (int i = 0; i < SIZE; i++) {
             if (bridge.get(i).equals("U") && userPick.get(i).equals("U"))
                 System.out.print(" O ");
             if (!bridge.get(i).equals("U") && userPick.get(i).equals("D"))
-                System.out.print(" " + (isCorrect ? " " : "X") + " ");
+                System.out.print(" " + getBlankOrX(isCorrect) + " ");
             if (i <= SIZE - 2) System.out.print("|");
         }
         System.out.println("]");
@@ -28,10 +33,15 @@ public class OutputView {
             if (bridge.get(i).equals("D") && userPick.get(i).equals("D"))
                 System.out.print(" O ");
             if (!bridge.get(i).equals("D") && userPick.get(i).equals("U"))
-                System.out.print(" " + (isCorrect ? " " : "X") + " ");
+                System.out.print(" " + getBlankOrX(isCorrect) + " ");
             if (i <= SIZE - 2) System.out.print("|");
         }
         System.out.println("]");
+    }
+
+    private String getSuccessOfFailure(boolean isCorrect) {
+        if(isCorrect) return "성공";
+        return "실패;";
     }
 
     /**
@@ -42,7 +52,7 @@ public class OutputView {
     public void printResult(List<String> bridge, List<String> userPicks, boolean isCorrect, int gameCount) {
         System.out.println("최종 게임 결과");
         printMap(bridge, userPicks, isCorrect);
-        System.out.println("\n게임 성공 여부: " + (isCorrect ? "성공" : "실패"));
+        System.out.println("\n게임 성공 여부: " + getSuccessOfFailure(isCorrect));
         System.out.println("총 시도한 횟수: " + gameCount);
     }
 }
