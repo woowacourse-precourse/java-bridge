@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bridge {
-    private List<BridgeDirection> directions;
+    private final List<BridgeDirection> directions;
 
     public Bridge(List<String> directionWords) {
         this.directions = getBridgeDirections(directionWords);

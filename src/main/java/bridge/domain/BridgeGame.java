@@ -6,7 +6,7 @@ package bridge.domain;
  */
 public class BridgeGame {
 
-    private Bridge bridge;
+    private final Bridge bridge;
     private int position;
     private int tryCount = 1;
     private GameStatus gameStatus;
