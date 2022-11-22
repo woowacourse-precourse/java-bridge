@@ -19,16 +19,17 @@ public class BridgeMaker {
 
         List<String> bridges = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridges.add(addBridge());
+            addBridge(bridges, bridgeNumberGenerator.generate());
         }
         return bridges;
     }
 
-    private String addBridge() {
-        if (bridgeNumberGenerator.generate() == 1) {
-            return Command.UP;
+    private void addBridge(List<String> bridges, int randomNumber) {
+        if (randomNumber == 1) {
+            bridges.add(Command.UP);
+            return;
         }
-        return Command.DOWN;
+        bridges.add(Command.DOWN);
     }
 
     private void validateNumberRange(int size) {
