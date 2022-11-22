@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.config.BridgeGameConfig.bridgeGame;
 import static bridge.io.InputView.*;
 import static bridge.io.OutputView.*;
 
@@ -33,9 +34,7 @@ public class Application {
 
     private static BridgeGame createBridgeGame() {
         printStartMessage();
-        final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        return new BridgeGame(bridgeMaker);
+        return bridgeGame();
     }
 
     private static void setupGame() {
