@@ -16,23 +16,23 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        List<String> userPicks = new ArrayList<>();
-        boolean isCorrect = false;
+        BridgeGame.bridgeSize = inputView.readBridgeSize();
+        BridgeGame.bridge = bridgeMaker.makeBridge(BridgeGame.bridgeSize);
+        BridgeGame.userPicks = new ArrayList<>();
+        BridgeGame.isCorrect = false;
         while (!GAME_STATE.equals("Q")) {
             String userPick = inputView.readMoving();
-            userPicks.add(userPick);
-            isCorrect = bridgeGame.move(bridge, userPicks);
-            outputView.printMap(bridge, userPicks, isCorrect);
-            if (index == bridgeSize && isCorrect) {
-                outputView.printResult(bridge, userPicks, true, gameCount);
+            BridgeGame.userPicks.add(userPick);
+            BridgeGame.isCorrect = bridgeGame.move();
+            outputView.printMap();
+            if (index == BridgeGame.bridgeSize && BridgeGame.isCorrect) {
+                outputView.printResult(gameCount);
                 return;
             }
-            if (!isCorrect) {
+            if (!BridgeGame.isCorrect) {
                 GAME_STATE = inputView.readGameCommand();
                 if (GAME_STATE == "Q") {
-                    outputView.printResult(bridge, userPicks, false, gameCount);
+                    outputView.printResult(gameCount);
                     return;
                 }
                 if (GAME_STATE == "R") gameCount++;
