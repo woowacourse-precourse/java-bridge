@@ -11,14 +11,14 @@ public class Validator {
     }
 
     public static void validateStringIsNumeric(String input){
-        if(!input.matches("[+-]?\\d*(\\.\\d+)?")){
+        if(!input.matches("[+-]?\\d+(\\.\\d+)?")){
             throw new IllegalArgumentException("[ERROR] 입력 값은 숫자여야합니다.");
         }
     }
 
     public static void validateMovingType(String input){
         String upperInput = input.toUpperCase();
-        if(!BridgeType.isContains(upperInput)){
+        if(!MovingType.isContains(upperInput)){
             throw new IllegalArgumentException("[ERROR] 입력된 이동 옵션 값이 유효한 옵션이 아닙니다.");
         }
     }
@@ -34,6 +34,10 @@ public class Validator {
         if(!upperInput.equals("Q") && !upperInput.equals("R")){
             throw new IllegalArgumentException("[ERROR] 입력된 재시작 옵션 값이 유효한 옵션이 아닙니다.");
         }
+    }
+
+    public static boolean isNeedRestart(String input){
+        return input.equals("R");
     }
 }
 
