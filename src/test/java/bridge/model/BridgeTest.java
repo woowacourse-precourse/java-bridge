@@ -1,9 +1,5 @@
 package bridge.model;
 
-import bridge.ApplicationTest;
-import bridge.Bridge;
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,8 +12,16 @@ public class BridgeTest {
     void successStepTest() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         Bridge bridge = new Bridge(3,numberGenerator);
-        assertThat(bridge.isSuccess(2,"D")).isEqualTo(true);
+        assertThat(bridge.isSuccess(2,"D")).isTrue();
 
+    }
+
+    @Test
+    void playerArrivedFinishPointTest(){
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        Bridge bridge = new Bridge(3,numberGenerator);
+        Player player = new Player(1,3);
+        assertThat(bridge.isFinish(player)).isEqualTo(true);
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
