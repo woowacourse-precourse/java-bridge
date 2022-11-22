@@ -40,16 +40,19 @@ public class OutputView {
 
     public void printStart() {
         System.out.println(GAME_START.getText());
+    }
+
+    public void inputBridgeSize() {
         System.out.println();
         System.out.println(INPUT_BRIDGE_SIZE.getText());
     }
 
-    public void printMoving() {
+    public void inputMoving() {
         System.out.println();
         System.out.println(INPUT_MOVING.getText());
     }
 
-    public void printRetry() {
+    public void inputRetry() {
         System.out.println();
         System.out.println(INPUT_RETRY.getText());
     }
