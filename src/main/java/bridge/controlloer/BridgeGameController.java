@@ -21,11 +21,12 @@ public class BridgeGameController {
         this.inputView = new InputView();
         this.outputView = new OutputView();
 
+        outputView.printStart();
         final int bridgeSize = readBridgeSize();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.bridgeGame = new BridgeGame();
-        this.attempts = 0;
+        this.attempts = 1;
     }
 
     private int readBridgeSize() {
@@ -37,7 +38,7 @@ public class BridgeGameController {
         }
     }
 
-    private String readMoving() {
+    private Command readMoving() {
         while (true) {
             try {
                 return inputView.readMoving();
@@ -46,7 +47,7 @@ public class BridgeGameController {
         }
     }
 
-    private String readGameCommand() {
+    private Command readGameCommand() {
         while (true) {
             try {
                 return inputView.readGameCommand();
@@ -59,7 +60,7 @@ public class BridgeGameController {
         Result result = Result.SUCCESS;
         while (Result.SUCCESS.equals(result)) {
             result = bridgeGame.move(bridge, readMoving());
-            outputView.printMap(bridge, bridgeGame.getIndexOfBridge(), result);
+            outputView.printMap(bridgeGame.getBridgeResult(), result);
             if (result.equals(Result.FAIL) && chooseRetryOrEnd().equals(Result.SUCCESS)) {
                 bridgeGame.retry();
                 result = Result.SUCCESS;
@@ -69,7 +70,7 @@ public class BridgeGameController {
     }
 
     private Result chooseRetryOrEnd() {
-        final Command command = Command.getCommand(readGameCommand());
+        final Command command = readGameCommand();
         if (command.equals(Command.RETRY)) {
             return Result.SUCCESS;
         }
@@ -77,6 +78,6 @@ public class BridgeGameController {
     }
 
     private void end(Result result) {
-        outputView.printResult(bridge, attempts, result);
+        outputView.printResult(bridgeGame.getBridgeResult(), attempts, result);
     }
 }

@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -7,13 +9,19 @@ import java.util.List;
  */
 public class BridgeGame {
     private int indexOfBridge;
+    private List<Command> bridgeResult;
 
     public BridgeGame() {
         this.indexOfBridge = 0;
+        this.bridgeResult = new ArrayList<>();
     }
 
     public int getIndexOfBridge() {
         return indexOfBridge;
+    }
+
+    public List<Command> getBridgeResult() {
+        return Collections.unmodifiableList(bridgeResult);
     }
 
     /**
@@ -21,12 +29,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Result move(List<String> bridge, String direction) {
-        final boolean canMove = bridge.get(this.indexOfBridge).equals(direction);
+    public Result move(List<String> bridge, Command direction) {
+        final boolean canMove = bridge.get(this.indexOfBridge).equals(direction.getString());
+        bridgeResult.add(direction);
         this.indexOfBridge++;
 
+        return getResultOfMove(bridge, canMove);
+    }
+
+    private Result getResultOfMove(List<String> bridge, boolean canMove) {
         if (canMove) {
-            if (this.indexOfBridge == bridge.size()) {
+            if (bridge.size() == indexOfBridge) {
                 return Result.ARRIVED;
             }
             return Result.SUCCESS;
@@ -41,5 +54,6 @@ public class BridgeGame {
      */
     public void retry() {
         this.indexOfBridge = 0;
+        this.bridgeResult.clear();
     }
 }
