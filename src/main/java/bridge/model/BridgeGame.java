@@ -70,8 +70,16 @@ public class BridgeGame {
         return upPresentBridge;
     }
 
+    public void setUpPresentBridge(List<String> upPresentBridge) {
+        this.upPresentBridge = upPresentBridge;
+    }
+
     public List<String> getDownPresentBridge() {
         return downPresentBridge;
+    }
+
+    public void setDownPresentBridge(List<String> downPresentBridge) {
+        this.downPresentBridge = downPresentBridge;
     }
 
     public List<String> getBridge() {
@@ -82,12 +90,24 @@ public class BridgeGame {
         return userMoveList;
     }
 
+    public void setUserMoveList(List<String> userMoveList) {
+        this.userMoveList = userMoveList;
+    }
+
     public String getGameBoolean() {
         return gameBoolean;
     }
 
+    public void setGameBoolean(String gameBoolean) {
+        this.gameBoolean = gameBoolean;
+    }
+
     public int getGameCount() {
         return gameCount;
+    }
+
+    public void setGameCount(int gameCount) {
+        this.gameCount = gameCount;
     }
 
     public void totalGamePlus(){
