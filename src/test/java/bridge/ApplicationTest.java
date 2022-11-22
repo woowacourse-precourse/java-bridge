@@ -7,9 +7,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import java.util.List;
 
-import bridge.Application;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
