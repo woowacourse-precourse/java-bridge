@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
-    private List<String> upper;
-    private List<String> lower;
+    private final List<String> upper;
+    private final List<String> lower;
 
     Map(){
         this.upper = new ArrayList<>();
@@ -63,7 +63,6 @@ public class Map {
      */
     public List<String> getPrintableMap(){
         List<String> printableMaps = new ArrayList<>(2);
-
         String printableUpper = this.upper.toString().replaceAll(", ", "|");
         String printableLower = this.lower.toString().replaceAll(", ", "|");
 
