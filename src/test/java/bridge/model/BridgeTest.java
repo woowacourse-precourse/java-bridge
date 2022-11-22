@@ -25,4 +25,19 @@ class BridgeTest {
         Assertions.assertThat(result).isFalse();
     }
 
+    @DisplayName("다리의 끝에 도달했다면 true")
+    @Test
+    void isEndTrue() {
+        Bridge bridge = new Bridge(Arrays.asList("U", "U", "D"));
+        boolean result = bridge.isEnd(2);
+        Assertions.assertThat(result).isTrue();
+    }
+
+    @DisplayName("다리의 끝에 도달하지 못했다면 false")
+    @Test
+    void isEndFalse() {
+        Bridge bridge = new Bridge(Arrays.asList("U", "U", "D"));
+        boolean result = bridge.isEnd(1);
+        Assertions.assertThat(result).isFalse();
+    }
 }
