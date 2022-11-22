@@ -1,7 +1,6 @@
 package bridge.util;
 
 import bridge.error.ErrorMessage;
-import bridge.util.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
