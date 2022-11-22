@@ -19,8 +19,8 @@ public class BridgeMaker {
 
 
     public List<String> makeBridge(int size) {
-        final List<Integer> bridgeNumbers = generateBridgeNumbers(size);
-        final List<String> bridge = bridgeNumbers.stream()
+        List<Integer> bridgeNumbers = generateBridgeNumbers(size);
+        List<String> bridge = bridgeNumbers.stream()
                 .map(bridgeNumber -> BridgeBlock.getBlockIdentifier((bridgeNumber)))
                 .collect(Collectors.toList());
 
@@ -28,7 +28,7 @@ public class BridgeMaker {
     }
 
     private List<Integer> generateBridgeNumbers(int size) {
-        final List<Integer> bridgeNumbers = new ArrayList<>(size);
+        List<Integer> bridgeNumbers = new ArrayList<>(size);
 
         for (int i = 0; i < size; i++) {
             int blockNumber = bridgeNumberGenerator.generate();

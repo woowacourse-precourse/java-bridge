@@ -40,11 +40,11 @@ public class OutputView {
     }
 
     private void printStair(BridgeGame bridgeGame, int passedCount, String stair) {
-        final List<String> bridgeStates = bridgeGame.getBridgeStates();
-        final String selectedBridgeState = bridgeStates.get(passedCount);
+        List<String> bridgeStates = bridgeGame.getBridgeStates();
+        String selectedBridgeState = bridgeStates.get(passedCount);
         boolean playerDead = bridgeGame.isPlayerDead();
 
-        final String result = getPassedStair(bridgeStates, passedCount, stair)
+        String result = getPassedStair(bridgeStates, passedCount, stair)
                 + getSelectResult(playerDead, selectedBridgeState, stair);
 
         System.out.printf(BRIDGE_MAP, result);
