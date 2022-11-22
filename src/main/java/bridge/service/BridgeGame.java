@@ -6,9 +6,6 @@ import bridge.domain.Player;
 import java.util.List;
 import java.util.Map;
 
-import static bridge.util.constants.MovableSpace.UPPER_SPACE;
-import static bridge.util.constants.MovableSpace.LOWER_SPACE;
-import static bridge.util.constants.ErrorMessage.MOVING_SPACE_INPUT_ERROR;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
