@@ -78,6 +78,7 @@ public class OutputView {
         System.out.println(Constants.GameProcessMessages.FINAL_RESULT);
         System.out.println(upperBuffer.toString());
         System.out.println(lowerBuffer.toString());
+        System.out.println();
         System.out.printf(Constants.GameProcessMessages.GAME_PASS_OR_NOT, printWinorLose(pass));
         printTryNumbers(tryNumber);
     }
