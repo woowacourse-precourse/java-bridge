@@ -20,23 +20,37 @@ public class BridgeControl {
         //게임 시작 메시지 출력
         outputView.printGameStart();
 
-        //다리 길이 입력받기
+        //다리 길이 입력받기 및 다리생성
         getBridgeSize();
 
-
-        //다리 생성
-
         //게임 시작
-        
+        play();
         //결과 출력
     }
+
     private void getBridgeSize(){
         try {
             int size = inputView.readBridgeSize();
             bridgeGame = new BridgeGame(size);
+            //다리생성
+            bridgeGame.setBridge(size);
         }
         catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
+    }
+
+    private void play(){
+        String
+        do {
+            bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.);
+        }while(retry());
+    }
+    private boolean retry(){
+        if(bridgeGame.getIsWin()){
+            return false;
+        }
+        return true;
     }
 }

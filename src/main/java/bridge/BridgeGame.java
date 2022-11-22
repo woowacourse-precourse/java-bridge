@@ -40,31 +40,49 @@ public class BridgeGame {
             this.isWin = true;
         }
     }
+    public boolean getIsWin(){
+        return isWin;
+    }
+    public boolean isContainX() {
+        if(dashBoard.get(0).contains(WRONG) || dashBoard.get(1).contains(WRONG)){
+            return true;
+        }
+        return false;
+    }
+    public List<List<String>> getDashBoard(){
+        return this.dashBoard;
+    }
+    public int getCount (){
+        return this.count;
+    }
+    public int getNumberOfTimes(){
+        return  this.numberOfTimes;
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input, List<String> bridge) {
+    public void move(String input) {
         if(input.equals("D")){
-            moveDown(bridge);
+            moveDown();
             this.count += 1;
             return;
         }
-        moveUp(bridge);
+        moveUp();
         this.count += 1;
         return;
     }
-    private void moveDown(List<String> bridge){
-        if(bridge.get(count).equals("D")){
+    private void moveDown(){
+        if(rightWayBridge.get(count).equals("D")){
             this.dashBoard.get(0).set(count, RIGHT);
             return;
         }
         this.dashBoard.get(0).set(count, WRONG);
         return;
     }
-    private void moveUp(List<String> bridge){
-        if(bridge.get(count).equals("U")){
+    private void moveUp(){
+        if(rightWayBridge.get(count).equals("U")){
             this.dashBoard.get(1).set(count, RIGHT);
             return;
         }
