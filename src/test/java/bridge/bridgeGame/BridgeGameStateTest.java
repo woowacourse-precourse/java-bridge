@@ -65,4 +65,17 @@ class BridgeGameStateTest {
         // then
         assertThat(bridgeGameState.currentSize()).isEqualTo(0);
     }
+
+    @Test
+    public void getCurrentAtTest() throws Exception {
+        // given
+
+        // when
+        String currentAt0 = bridgeGameState.getCurrentAt(0);
+        String currentAt1 = bridgeGameState.getCurrentAt(1);
+
+        // then
+        assertThat(currentAt0).isEqualTo("U");
+        assertThat(currentAt1).isEqualTo("D");
+    }
 }
