@@ -73,6 +73,14 @@ class ApplicationTest extends NsTest {
 		});
 	}
 
+	@Test
+	void retry_예외_R_Q_테스트() {
+		assertRandomNumberInRangeTest(() -> {
+			runException("3", "U", "D", "D", "T");
+			assertThat(output()).contains(ERROR_MESSAGE);
+		}, 1, 0, 1);
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
