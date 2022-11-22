@@ -2,8 +2,7 @@ package bridge;
 
 import java.util.Objects;
 
-import static bridge.constant.BridgeConstant.BRIDGE_MAX_SIZE;
-import static bridge.constant.BridgeConstant.BRIDGE_MIN_SIZE;
+import static bridge.constant.BridgeConstant.*;
 import static bridge.constant.ErrorConstant.*;
 
 public class InputViewValidation {
@@ -27,6 +26,12 @@ public class InputViewValidation {
     public static void isValidRangeOfBridgeSize(int bridgeSize) {
         if (bridgeSize < BRIDGE_MIN_SIZE || bridgeSize > BRIDGE_MAX_SIZE) {
             throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
+        }
+    }
+
+    public static void isValidMovingCommand(String movingCommand) {
+        if (!movingCommand.equals(BRIDGE_UP_COMMAND) && !movingCommand.equals(BRIDGE_DOWN_COMMAND)) {
+            throw new IllegalArgumentException(ERROR_NOT_VALID_MOVING_COMMAND);
         }
     }
 }
