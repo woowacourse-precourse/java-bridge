@@ -8,7 +8,6 @@ public class ConstantMessage {
     public static final String GAME_RESULT_MAP_MESSAGE = "최종 게임 결과";
     public static final String GAME_RESULT_SUCCESS_OR_FAIL_MESSAGE = "게임 성공 여부: ";
     public static final String GAME_RETRY_COUNT_MESSAGE = "총 시도한 횟수: ";
-
     public static final String INVALID_RANGE_BRIDGE_LENGTH_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static final String NOT_NUMBER_BRIDGE_LENGTH_MESSAGE = "[ERROR] 다리 길이는 숫자여야 합니다.";
     public static final String INVALID_DIRECTION_MESSAGE = "[ERROR] 사용자가 움직일 수 있는 방향은 U 또는 D 입니다.";

@@ -9,7 +9,7 @@ import static bridge.domain.BridgeLength.MIN;
 
 public class InputValidation {
 
-    public boolean isNumber(String bridgeLength){
+    public boolean isNumber(String bridgeLength) {
         try {
             stringToInt(bridgeLength);
         } catch (IllegalArgumentException e) {
@@ -22,39 +22,37 @@ public class InputValidation {
         try {
             if (bridgeLength < MIN.bridgeLength || bridgeLength > MAX.bridgeLength)
                 throw new IllegalArgumentException();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
     }
 
-    public boolean isValidDirection(String moveDirection){
-        try{
-            if(!U.strMoveDirection.equals(moveDirection) && !D.strMoveDirection.equals(moveDirection))
+    public boolean isValidDirection(String moveDirection) {
+        try {
+            if (!U.strMoveDirection.equals(moveDirection) && !D.strMoveDirection.equals(moveDirection))
                 throw new IllegalArgumentException();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
     }
 
-    public boolean isValidGameRetryInput(String gameRetryInput){
-        try{
-            if(!R.command.equals(gameRetryInput) && !Q.command.equals(gameRetryInput))
+    public boolean isValidGameRetryInput(String gameRetryInput) {
+        try {
+            if (!R.command.equals(gameRetryInput) && !Q.command.equals(gameRetryInput))
                 throw new IllegalArgumentException();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
     }
 
-    public void stringToInt(String bridgeLength){
+    public void stringToInt(String bridgeLength) {
         try {
             Integer.parseInt(bridgeLength);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
     }
-
-
 }

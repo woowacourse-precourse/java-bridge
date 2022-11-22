@@ -1,7 +1,9 @@
 package bridge;
 
 import bridge.BridgeNumberGenerator;
+
 import java.util.*;
+
 import static bridge.domain.MoveDirection.*;
 
 
@@ -24,7 +26,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int idx = 0; idx < size; idx++) {
             int moveDirection = bridgeNumberGenerator.generate();
-            if(moveDirection == U.numMoveDirection) {
+            if (moveDirection == U.numMoveDirection) {
                 bridge.add(U.strMoveDirection);
                 continue;
             }

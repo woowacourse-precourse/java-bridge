@@ -1,7 +1,7 @@
 package bridge.domain;
 
 public enum SuccessOrFail {
-    성공(true) , 실패(false);
+    성공(true), 실패(false);
 
     public boolean isSuccess;
 

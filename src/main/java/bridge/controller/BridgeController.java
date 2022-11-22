@@ -6,7 +6,7 @@ public class BridgeController {
 
     static BridgeService bridgeService = new BridgeService();
 
-    public void gameStart(){
+    public void gameStart() {
         bridgeService.bridgeGameStart();
     }
 
