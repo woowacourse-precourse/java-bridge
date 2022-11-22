@@ -12,5 +12,11 @@ public class BridgeGameService {
         this.bridgeGame = bridgeGame;
     }
 
+    public void moveNext(String command) {
+        bridgeGame.move(command);
+    }
 
+    public boolean success() {
+        if ( !bridgeGame)
+    }
 }

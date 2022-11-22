@@ -15,7 +15,7 @@ public class BridgeController {
         initial();
     }
 
-    public void initial() {
+    private void initial() {
         try {
             int size = ExceptionInput.validateInputLength(InputView.readBridgeSize());
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -26,4 +26,16 @@ public class BridgeController {
         }
     }
 
+    private void moving() {
+        try {
+            String command = getMoveCommand();
+            bridgeGameService.moveNext(command);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            moving();
+        }
+    }
+    private String getMoveCommand() {
+        return ExceptionInput.validateInputMoveCommand(InputView.readMoving());
+    }
 }
