@@ -4,7 +4,7 @@ import bridge.model.constant.BridgeStatistic;
 
 import java.util.regex.Pattern;
 
-public class BridgeSizeValidator implements Validator{
+public class BridgeSizeValidator implements Validator {
     private static final String bridgeSizePattern = "^[0-9]*$";
 
     @Override
