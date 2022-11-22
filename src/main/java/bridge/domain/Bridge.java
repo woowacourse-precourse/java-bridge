@@ -21,7 +21,7 @@ public class Bridge {
         shape = new ArrayList<>(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void validate(int bridgeSize) {
+    private void validate(int bridgeSize) {
         PlayerInputValidator.bridgeLengthValidator(bridgeSize);
     }
 

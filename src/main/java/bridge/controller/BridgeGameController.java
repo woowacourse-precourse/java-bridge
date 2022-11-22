@@ -32,7 +32,7 @@ public class BridgeGameController {
         outputView.printResult(gameResult, checkGameResult(), gameCount);
     }
 
-    public void setBridgeSize() {
+    private void setBridgeSize() {
         while (true) {
             try {
                 bridge = new Bridge(inputView.readBridgeSize());
@@ -44,7 +44,7 @@ public class BridgeGameController {
         outputView.printEmptyLine();
     }
 
-    public void startGame() {
+    private void startGame() {
         while (retryFlag) {
             playGame();
             gameCount++;
@@ -55,7 +55,7 @@ public class BridgeGameController {
         }
     }
 
-    public void playGame() {
+    private void playGame() {
         bridgeGame.initGameResult();
         for (String str : bridge.getShape()) {
             setMove(str);
@@ -68,7 +68,7 @@ public class BridgeGameController {
         }
     }
 
-    public void setMove(String str) {
+    private void setMove(String str) {
         while (true) {
             try {
                 inputMove = inputView.readMoving();
@@ -80,7 +80,7 @@ public class BridgeGameController {
         }
     }
 
-    public void setRetryOrEnd() {
+    private void setRetryOrEnd() {
         while (true) {
             try {
                 retryFlag = bridgeGame.retry(inputView.readGameCommand());
@@ -91,7 +91,7 @@ public class BridgeGameController {
         }
     }
 
-    public String checkGameResult() {
+    private String checkGameResult() {
         if (gameResult.isBridgeGameResult()) {
             return "성공";
         }

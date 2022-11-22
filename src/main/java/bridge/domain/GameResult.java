@@ -41,7 +41,7 @@ public class GameResult {
         this.bridgeGameResult = bridgeGameResult;
     }
 
-    public void validate(String output) {
+    private void validate(String output) {
         if (!output.equals("O") && !output.equals("X") && !output.equals(" ")) {
             throw new IllegalArgumentException("[ERROR] 잘못된 값이 들어왔습니다.");
         }

@@ -71,11 +71,11 @@ public class BridgeGame {
         return false;
     }
 
-    public void inputShapeValidate(String input) {
+    private void inputShapeValidate(String input) {
         PlayerInputValidator.moveBridgeInputValidator(input);
     }
 
-    public void inputRetryValidate(String input) {
+    private void inputRetryValidate(String input) {
         PlayerInputValidator.restartOrEndInputValidator(input);
     }
 }
