@@ -15,7 +15,9 @@ public class InputView {
             System.out.println("다리의 길이를 입력해주세요.");
             String inputBridgeLength = Console.readLine();
             // 만약 올바른 값이라면 그 값 리턴
+
             // 올바르지 않은 값이라면 에러 Exception 발생 후 에러 메시지 출력 후 반복
+            throwExceptionIfNotValidBrideSize(inputBridgeLength);
             return 0;
         }
     }
@@ -40,6 +42,21 @@ public class InputView {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 입력 받은 다리 길이가 올바르지 않을 때 예외처리 후 에러 메시지를 발생한다.
+     */
+    private void throwExceptionIfNotValidBrideSize(String s) throws IllegalArgumentException {
+        if (!isNumber(s)) {
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+        }
+        if (isNumber(s)) {
+            int num = Integer.parseInt(s);
+            if (!isBetween3To20(num)) {
+                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        }
     }
 
     /**
