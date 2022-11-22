@@ -37,42 +37,54 @@ public class InputView {
      * 사용자의 입력을 받아 다리 길이를 반환
      */
     public int readBridgeSize() {
-        String size = loopUntilValid((input) -> {
+        String size = loopUntilValid(bridgeSizeCondition());
+        return Integer.parseInt(size);
+    }
+
+    private Loopable bridgeSizeCondition(){
+        return (input) -> {
             try {
                 return ValidateInput.isAllDigit(input) && ValidateInput.isInRange(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
                 return false;
             }
-        });
-        return Integer.parseInt(size);
+        };
     }
 
     /**
      * 사용자의 입력을 받아 이동할 방향 반환
      */
     public String readMoving() {
-        return loopUntilValid((input) -> {
+        return loopUntilValid(movingCondition());
+    }
+
+    private Loopable movingCondition(){
+        return (input) -> {
             try {
                 return ValidateInput.isUorD(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
                 return false;
             }
-        });
+        };
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return loopUntilValid((input) -> {
+        return loopUntilValid(gameCommendCondition());
+    }
+
+    private Loopable gameCommendCondition(){
+        return (input) -> {
             try {
                 return ValidateInput.isRorQ(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
                 return false;
             }
-        });
+        };
     }
 }
