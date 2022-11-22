@@ -3,10 +3,10 @@ package bridge.controller;
 import static bridge.controller.GameState.*;
 import static bridge.view.ProgressMessage.*;
 
-import bridge.domain.BridgeGame;
+import bridge.BridgeGame;
+import bridge.InputView;
+import bridge.OutputView;
 import bridge.domain.BridgeGameInitialization;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 import bridge.vo.UserPlayer;
 
 public class BridgeGameController {

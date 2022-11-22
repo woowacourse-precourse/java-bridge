@@ -3,6 +3,7 @@ package bridge.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import bridge.BridgeGame;
 import bridge.vo.UserPlayer;
 
 public class BridgeGameTest {

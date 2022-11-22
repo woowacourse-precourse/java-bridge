@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeMakerTest {

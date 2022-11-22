@@ -2,9 +2,10 @@ package bridge.domain;
 
 import static bridge.view.ProgressMessage.*;
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.InputView;
+import bridge.OutputView;
 import bridge.vo.Bridge;
 
 public class BridgeGameInitialization {
