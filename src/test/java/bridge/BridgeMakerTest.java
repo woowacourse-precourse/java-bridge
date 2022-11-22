@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.BridgeMaker;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -30,7 +29,7 @@ public class BridgeMakerTest {
 
     @DisplayName("1은 U, 0은 D로 다리를 올바르게 생성하는지 테스트")
     @ParameterizedTest
-    @CsvSource("1, 0, 0, 3, U, D, D, 1, 1, 1, 3, U, U, U" )
+    @CsvSource("1, 0, 0, 3, U, D, D, 1, 1, 1, 3, U, U, U")
     void 다리_생성_테스트(int element1, int element2, int element3, int size, String moving1, String moving2, String moving3) {
         numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(element1, element2, element3));
         bridgeMaker = new BridgeMaker(numberGenerator);
