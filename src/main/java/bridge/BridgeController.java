@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
@@ -25,7 +26,11 @@ public class BridgeController {
     }
 
     public void newGame(List<String> bridge) {
-        this.newRound();
+        bridgeGame.setBridge(bridge);
+        do {
+            bridgeGame.retry();
+            this.newRound();
+        } while (this.continueGame());
     }
 
     public void newRound() {
