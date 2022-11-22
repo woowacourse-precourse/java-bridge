@@ -9,6 +9,8 @@ import bridge.view.OutputView;
 
 public class BridgeController {
 
+    private static final int LOWER_BOUND = 3;
+    private static final int UPPER_BOUND = 20;
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private BridgeGame bridgeGame;
@@ -112,7 +114,7 @@ public class BridgeController {
     public void validateBridgeSizeRange(String size) {
         int bridgeSize = Integer.parseInt(size);
 
-        if (bridgeSize < 3 || bridgeSize > 20) {
+        if (bridgeSize < LOWER_BOUND || bridgeSize > UPPER_BOUND) {
             throw new IllegalArgumentException(String.valueOf(ExceptionMessage.BRIDGE_SIZE_RANGE_ERROR));
         }
     }
