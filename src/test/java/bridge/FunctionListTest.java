@@ -1,5 +1,7 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import bridge.model.BridgeGame;
@@ -12,13 +14,17 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class FunctionListTest {
 
     private final Progress progress = new Progress(5);
     private final BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U", "D", "U"), progress);
 
-    // BridgeGame 클래스에 대한 테스트
+    /**
+     * BridgeGame 클래스에 대한 테스트
+     */
     @DisplayName("move 메소드가 성공적으로 실행되는 케이스")
     @Test
     public void moveSuccess() {
@@ -66,5 +72,36 @@ public class FunctionListTest {
             put(BridgePattern.MOVE_UP, up);
             put(BridgePattern.MOVE_DOWN, down);
         }};
+    }
+
+    /**
+     * BridgePattern에 대한 테스트
+     */
+    @DisplayName("입력된 숫자를 상수로 정의된 문자로 변환 성공 케이스")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1})
+    public void convertSuccess(int input) {
+        assertThatCode(() -> BridgePattern.convertNumberToMove(input)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력된 숫자롤 상수로 정의된 문자로 변환 실패 케이스")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 2})
+    public void convertFail(int input) {
+        assertThatThrownBy(() -> BridgePattern.convertNumberToMove(input)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력한 문자에 부합하는 항목을 성공적으로 찾는 케이스")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    public void searchSuccess(String input) {
+        assertThatCode(() -> BridgePattern.searchBridgeType(input)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력한 문자에 부합하는 항목을 성공적으로 찾지 못하는 케이스")
+    @ParameterizedTest
+    @ValueSource(strings = {"X", "Y"})
+    public void searchFail(String input) {
+        assertThatThrownBy(() -> BridgePattern.searchBridgeType(input)).isInstanceOf(IllegalArgumentException.class);
     }
 }
