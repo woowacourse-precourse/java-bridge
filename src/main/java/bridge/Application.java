@@ -1,8 +1,16 @@
 package bridge;
 
+import bridge.controller.BridgeGameManager;
+import bridge.domain.BridgeGame;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeGame bridgeGame = new BridgeGame();
+
+        BridgeGameManager bridgeGameManager = new BridgeGameManager(bridgeMaker, bridgeGame);
+
+        bridgeGameManager.start();
     }
 }
