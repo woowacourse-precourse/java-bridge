@@ -1,9 +1,8 @@
 package bridge.domain;
 
-import bridge.controller.BridgeController;
 import bridge.handler.InputRestartHandler;
+import bridge.service.BridgeMoveStepService;
 import bridge.view.PrintView;
-import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ public class BridgeGame {
     public List<String> downSide = new ArrayList<>();
     private String restart;
     PrintView printView = new PrintView();
+    BridgeMoveStepService bridgeMoveStepService = new BridgeMoveStepService();
     InputRestartHandler inputRestartHandler = new InputRestartHandler(restart);
 
     public void move(String moveStep, String bridgeIndexData, int index) {
@@ -57,46 +57,29 @@ public class BridgeGame {
 
     private void checkRestartOrQuit(String checkRestart) {
         if(checkRestart.equals("Q")) {
-            selectQuit();
+            bridgeMoveStepService.selectQuit(upSide, downSide);
         }
 
         if(checkRestart.equals("R")) {
-            selectRestart();
+            bridgeMoveStepService.selectRestart(upSide, downSide);
         }
-    }
-
-    private void selectQuit() {
-        System.out.println(printView.THE_GAME_RESULT);
-        extractBracket(upSide,downSide);
-        printView.lineSkip();
-        printFailOrSuccessCase();
     }
 
     public void printFailOrSuccessCase() {
         if(checkAnswerIndex == 1) {
-            System.out.println();
+            printView.lineSkip();
             System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.FAIL);
             System.out.println(printView.TOTAL_COUNT+" "+ retryCount);
         }
-
         if(checkAnswerIndex == 2) {
-            System.out.println();
+            printView.lineSkip();
             System.out.println(printView.SUCCESS_OR_FAIL+" "+ printView.SUCCESS);
             System.out.println(printView.TOTAL_COUNT+" "+ retryCount);
         }
     }
 
-    private void selectRestart() {
-        OutputView outputView = new OutputView();
-
-        checkAnswerIndex = 0;
-        upSide.clear();
-        downSide.clear();
-        outputView.stepBridge(BridgeController.bridgeData);
-    }
-
     private void remainResult(List<String> upSideList, List<String> downSideList) {
-        extractBracket(upSideList, downSideList);
+        bridgeMoveStepService.extractBracket(upSideList, downSideList);
         printView.lineSkip();
 
         if(!checkRemainResult(upSide, downSide)){
@@ -113,33 +96,16 @@ public class BridgeGame {
         printView.lineSkip();
     }
 
-    public void extractBracket(List<String> upSideList, List<String> downSideList) {
-        System.out.print(changeToBracket(upSideList));
-        printView.lineSkip();
-        System.out.print(changeToBracket(downSideList));
-    }
-
     private boolean checkRemainResult(List<String> upSide, List<String> downSide) {
 
         for (String s : upSide) {
             if (s.contains("X")) return false;
         }
-
         for (String s : downSide) {
             if (s.contains("X")) return false;
         }
 
         return true;
-    }
-
-    private String changeToBracket(List<String> extractBracket){
-        StringBuilder bridgeData = new StringBuilder();
-
-        for (String s : extractBracket) {
-            bridgeData.append(s);
-        }
-
-        return bridgeData.toString().replaceAll("]\\[","|");
     }
 
     private String retry() {
