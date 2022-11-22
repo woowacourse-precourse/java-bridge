@@ -1,35 +1,38 @@
-package bridge;
+package bridge.Controller;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.service.Map;
-import bridge.service.Move;
+import bridge.domain.User;
+import bridge.domain.Map;
+import bridge.service.GameService;
 import bridge.view.InputView;
-
-import java.util.List;
+import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private List<String> bridge;
+    private GameService gameService;
 
-    public void play(){
+    public void play() {
         set();
         move();
     }
-    public void set(){
+
+    public void set() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
-    }
-    public void move() {
+        User user = new User();
         Map map = new Map();
-        Move move = new Move(bridge);
-        while(move.isKeepGoing()){
-            String moveDirection = InputView.readMoving();
-            move.moveBridge(moveDirection);
-            map.drawMap(moveDirection,move.getMoveResult());
+        gameService = new GameService(bridgeMaker.makeBridge(InputView.readBridgeSize()), user, map);
+    }
+
+    public void move() {
+        boolean proceed = true;
+        while (proceed) {
+            gameService.move(InputView.readMoving());
+            OutputView.printMap(gameService.drawMap());
+            proceed = gameService.CanKeepGoingGame();
         }
     }
 
