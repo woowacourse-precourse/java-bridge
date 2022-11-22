@@ -2,9 +2,9 @@ package bridge.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.BridgeMaker;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeSize;
-import bridge.domain.bridge.maker.BridgeMaker;
 import bridge.domain.bridge.maker.BridgeMakerFake;
 import bridge.domain.code.BridgePosition;
 import bridge.utils.TestUtils;

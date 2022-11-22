@@ -1,5 +1,6 @@
 package bridge.domain.bridge.maker;
 
+import bridge.BridgeNumberGenerator;
 import java.util.List;
 
 public class BridgeMakerFake implements BridgeNumberGenerator {

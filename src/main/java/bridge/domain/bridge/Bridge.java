@@ -1,6 +1,6 @@
 package bridge.domain.bridge;
 
-import bridge.domain.bridge.maker.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.SurviveStatus;
 import java.util.List;

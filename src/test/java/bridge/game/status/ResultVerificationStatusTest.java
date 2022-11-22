@@ -13,7 +13,7 @@ class ResultVerificationStatusTest {
 
     @Test
     void 결과상태_다음은_종료상태입니다() {
-        
+
         var actual = TestUtils.statusNext(
                 new ResultVerificationStatus(),
                 new FakeContext()

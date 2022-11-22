@@ -3,6 +3,7 @@ package bridge.domain.bridge.maker;
 import static bridge.utils.TestUtils.convertStringToListNumber;
 import static bridge.utils.TestUtils.convertStringToListString;
 
+import bridge.BridgeMaker;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

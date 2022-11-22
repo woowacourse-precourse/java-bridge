@@ -1,9 +1,9 @@
 package bridge.game.context;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeSize;
-import bridge.domain.bridge.maker.BridgeMaker;
-import bridge.domain.bridge.maker.BridgeRandomNumberGenerator;
 import bridge.domain.code.BridgePosition;
 import bridge.domain.code.GameStatus;
 import bridge.domain.count.RepeatCount;
