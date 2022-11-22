@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import static bridge.controller.GameState.*;
 import static bridge.view.ProgressMessage.*;
@@ -7,9 +7,6 @@ import java.util.List;
 
 import bridge.controller.GameState;
 import bridge.domain.BridgeConfiguration;
-import bridge.view.DrawBridge;
-import bridge.view.GameResult;
-import bridge.view.ProgressMessage;
 
 public class OutputView {
 	public static void printMap(GameState result, List<String> moveRecord) {

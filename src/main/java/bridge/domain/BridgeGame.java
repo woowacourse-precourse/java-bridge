@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.controller.GameState;
 import bridge.vo.Bridge;
