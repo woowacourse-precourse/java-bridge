@@ -10,7 +10,7 @@ public enum InGameMessage {
     WHETHER_GAME_IS_SUCCESSFUL("게임 성공 여부: "),
     TOTAL_TRY_COUNT("총 시도한 횟수: ");
 
-    private String message;
+    private final String message;
 
     InGameMessage(String message) {
         this.message = message;

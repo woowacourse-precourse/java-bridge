@@ -18,11 +18,11 @@ public class BridgeGameController {
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
 
-    private InputView inputView;
-    private OutputView outputView;
-    private BridgeMaker bridgeMaker;
-    private BridgeGame bridgeGame;
-    private GameStatus gameStatus;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeMaker bridgeMaker;
+    private final BridgeGame bridgeGame;
+    private final GameStatus gameStatus;
     private Bridge bridge;
     private Bridge copyBridge;
     private boolean isFinish;
