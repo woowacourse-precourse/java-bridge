@@ -24,6 +24,13 @@ public class BridgeGame {
         movePath.add(moveCommand);
     }
 
+    public boolean checkPossibleMove(int index) {
+        if (bridge.get(index).equals(movePath.get(index))) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -34,7 +41,7 @@ public class BridgeGame {
         movePath.clear();
     }
 
-    private void addTotalCount(){
+    private void addTotalCount() {
         this.totalCount++;
     }
 

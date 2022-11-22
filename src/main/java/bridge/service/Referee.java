@@ -12,20 +12,28 @@ public class Referee {
     private static final String RESULT_WIN = "성공";
     private static final String RESULT_FAIL = "실패";
 
-    public static String makeResult(List<String> myPaths, List<String> bridgePaths){
-        for (int i = 0; i < myPaths.size(); i++) {
-            if(!myPaths.get(i).equals(bridgePaths.get(i))){
-                return RESULT_FAIL;
+    public static boolean makeResult(List<String> myPaths, List<String> bridgePaths) {
+        for (int i = 0; i < bridgePaths.size(); i++) {
+            if (!myPaths.get(i).equals(bridgePaths.get(i))) {
+                return false;
             }
         }
-
-        return RESULT_WIN;
+        return true;
     }
+
+    public static String convertResult(List<String> myPaths, List<String> bridgePaths) {
+        if (makeResult(myPaths, bridgePaths)) {
+            return RESULT_WIN;
+        }
+        return RESULT_FAIL;
+
+    }
+
     private static int convertPath(String path) {
         if (path.equals(MOVE_COMMAND_UP)) {
-            return 1;
+            return 0;
         }
-        return 0;
+        return 1;
     }
 
     private static String comparePath(String movePath, String bridgePath) {
@@ -36,15 +44,15 @@ public class Referee {
     }
 
     public static String[][] makeComparePath(List<String> myPaths, List<String> bridgePaths) {
-        String[][] comparePaths = new String[BRIDGE_COUNT][];
+        String[][] comparePaths = new String[BRIDGE_COUNT][myPaths.size()];
 
         for (int i = 0; i < BRIDGE_COUNT; i++) {
             Arrays.fill(comparePaths[i], " ");
-            for (int j = 0; j < myPaths.size(); i++) {
-                String myPath = myPaths.get(i);
-                String bridgePath = bridgePaths.get(i);
-                comparePaths[i][convertPath(myPath)] = comparePath(myPath, bridgePath);
-            }
+        }
+        for (int j = 0; j < myPaths.size(); j++) {
+            String myPath = myPaths.get(j);
+            String bridgePath = bridgePaths.get(j);
+            comparePaths[convertPath(myPath)][j] = comparePath(myPath, bridgePath);
         }
         return comparePaths;
     }
