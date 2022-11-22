@@ -4,23 +4,17 @@ import bridge.domain.game.Bridge;
 import bridge.domain.game.BridgeTile;
 import bridge.utils.common.BridgeConst;
 import bridge.utils.message.ExceptionMessageUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Player {
 
-    private static final String HISTORY_SEPARATOR = " | ";
-
-    private final List<BridgeTile> playerStepHistory;
-    private long tryCount;
+    private final PlayerStepHistory playerStepHistory;
+    private final PlayerState playerState;
 
     public Player(int size) {
         validateBridgeSize(size);
 
-        this.playerStepHistory = new ArrayList<>(size);
-        tryCount = 1L;
+        playerStepHistory = new PlayerStepHistory();
+        playerState = new PlayerState();
     }
 
     private void validateBridgeSize(int size) {
@@ -34,38 +28,27 @@ public class Player {
     }
 
     public boolean move(final Bridge bridge, final BridgeTile playerStep) {
-        int playerPosition = playerStepHistory.size();
+        boolean movable = bridge.calculatePlayerMoving(playerStep, playerState);
 
-        playerStepHistory.add(playerStep);
-        return bridge.calculatePlayerMoving(playerStep, playerPosition);
+        playerState.move(movable);
+        playerStepHistory.updateHistory(playerStep, movable);
+        return movable;
     }
 
-    public String getPlayerTargetTileHistory(final Bridge bridge, final BridgeTile targetTile) {
-        return IntStream.range(0, playerStepHistory.size())
-                .mapToObj(position -> playerStepHistory.get(position)
-                        .getBridgeTileLog(bridge, targetTile, position))
-                .collect(Collectors.joining(HISTORY_SEPARATOR));
+    public String getPlayerTargetTileHistory(final BridgeTile targetTile) {
+        return playerStepHistory.getPlayerTargetTileHistory(targetTile);
     }
 
     public boolean isSuccessful(final Bridge bridge) {
-        if (playerStepHistory.size() < BridgeConst.MIN_BRIDGE_SIZE) {
-            return false;
-        }
-        return lastPlayerStepMovable(bridge);
-    }
-
-    private boolean lastPlayerStepMovable(final Bridge bridge) {
-        int playerSteps = playerStepHistory.size() - 1;
-
-        return bridge.calculatePassingBridge(playerSteps, playerStepHistory.get(playerSteps));
+        return playerState.isSuccessful(bridge);
     }
 
     public void preparedNextPlay() {
+        playerState.preparedNextPlay();
         playerStepHistory.clear();
-        tryCount++;
     }
 
     public long getTryCount() {
-        return tryCount;
+        return playerState.getTryCount();
     }
 }

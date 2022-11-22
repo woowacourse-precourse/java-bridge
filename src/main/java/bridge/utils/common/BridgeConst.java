@@ -8,6 +8,8 @@ public final class BridgeConst {
     public static final int DOWN_TILE_VALUE = 0;
     public static final int UP_TILE_VALUE = 1;
 
+    public static final String ERROR_FORMAT = "[ERROR] %s";
+
     private BridgeConst() {
     }
 }

@@ -10,9 +10,12 @@ import bridge.dto.input.ReadGameCommandDto;
 import bridge.dto.input.ReadMovingDto;
 import bridge.dto.output.PrintExceptionDto;
 import bridge.dto.output.PrintResultDto;
+import bridge.exception.domain.WrongBridgeTileException;
 import bridge.exception.domain.WrongGeneratorException;
 import bridge.exception.view.NotFoundViewException;
+import bridge.utils.common.BridgeConst;
 import bridge.utils.game.GameStatus;
+import bridge.utils.message.ExceptionMessageUtils;
 import bridge.view.GuideView;
 import bridge.view.IOViewResolver;
 import java.util.EnumMap;
@@ -44,15 +47,22 @@ public class GameController {
         try {
             return gameStatusMappings.get(gameStatus).get();
         } catch (IllegalArgumentException e) {
-            return processException(e.getMessage(), gameStatus);
-        } catch (WrongGeneratorException | NotFoundViewException e) {
-            return processException(e.getMessage(), GameStatus.APPLICATION_EXIT);
+            return processGameException(e.getMessage(), gameStatus);
+        } catch (WrongGeneratorException | NotFoundViewException | WrongBridgeTileException e) {
+            return processApplicationException(e.getMessage());
         }
     }
 
-    private GameStatus processException(String message, final GameStatus gameStatus) {
+    private GameStatus processGameException(String message, final GameStatus gameStatus) {
         ioViewResolver.outputViewResolve(new PrintExceptionDto(message));
         return gameStatus;
+    }
+
+    private GameStatus processApplicationException(String message) {
+        String exceptionFullMessage = String
+                .format(BridgeConst.ERROR_FORMAT, ExceptionMessageUtils.WRONG_CONFIGURATION.getMessage());
+        System.out.println(exceptionFullMessage);
+        return GameStatus.APPLICATION_EXIT;
     }
 
     private GameStatus applicationStart() {

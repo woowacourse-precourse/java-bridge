@@ -10,10 +10,6 @@ public enum BridgeTile {
     DOWN(CommandConst.PLAYER_MOVE_DOWN, BridgeConst.DOWN_TILE_VALUE),
     UP(CommandConst.PLAYER_MOVE_UP, BridgeConst.UP_TILE_VALUE);
 
-    private static final String CORRECT_MOVE = "O";
-    private static final String WRONG_MOVE = "X";
-    private static final String NOT_MOVE = " ";
-
     private final String command;
     private final int value;
 
@@ -38,15 +34,5 @@ public enum BridgeTile {
             return BridgeTile.UP.command;
         }
         throw new WrongGeneratorException();
-    }
-
-    public String getBridgeTileLog(final Bridge bridge, final BridgeTile targetTile, int position) {
-        if (this != targetTile) {
-            return NOT_MOVE;
-        }
-        if (bridge.calculatePlayerMoving(this, position)) {
-            return CORRECT_MOVE;
-        }
-        return WRONG_MOVE;
     }
 }

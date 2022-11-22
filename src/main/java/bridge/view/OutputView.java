@@ -4,6 +4,7 @@ import bridge.dto.output.PrintExceptionDto;
 import bridge.dto.output.PrintGameInfoDto;
 import bridge.dto.output.PrintMapDto;
 import bridge.dto.output.PrintResultDto;
+import bridge.utils.common.BridgeConst;
 import java.util.function.Consumer;
 
 public class OutputView {
@@ -53,7 +54,7 @@ public class OutputView {
     }
 
     private enum OutputViewMessage {
-        EXCEPTION("[ERROR] %s"),
+        EXCEPTION(BridgeConst.ERROR_FORMAT),
         HISTORY_FORMAT("[ %s ]"),
         GAME_RESULT("게임 성공 여부: %s"),
         GAME_TRY_COUNT("총 시도한 횟수: %d");

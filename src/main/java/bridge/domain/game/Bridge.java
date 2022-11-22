@@ -2,8 +2,10 @@ package bridge.domain.game;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.player.PlayerState;
 import bridge.utils.common.BridgeConst;
 import bridge.utils.message.ExceptionMessageUtils;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,22 +40,11 @@ public class Bridge {
         return bridgeMaker.makeBridge(size);
     }
 
-    public boolean calculatePlayerMoving(final BridgeTile playerStep, int playerPosition) {
-        return bridgeTiles.get(playerPosition) == playerStep;
+    public boolean calculatePlayerMoving(final BridgeTile playerStep, final PlayerState playerState) {
+        return playerState.findPlayerPositionTile(Collections.unmodifiableList(bridgeTiles)) == playerStep;
     }
 
-    public boolean calculatePassingBridge(int playerPosition, final BridgeTile playerStep) {
-        int lastBridgeTileIndex = bridgeTiles.size() - 1;
-
-        return isEndOfBridge(lastBridgeTileIndex, playerPosition)
-                && isMovable(lastBridgeTileIndex, playerStep);
-    }
-
-    private boolean isMovable(int lastBridgeTileIndex, final BridgeTile playerStep) {
-        return bridgeTiles.get(lastBridgeTileIndex) == playerStep;
-    }
-
-    private boolean isEndOfBridge(int lastBridgeTileIndex, int playerPosition) {
-        return lastBridgeTileIndex == playerPosition;
+    public boolean isEndOfBridge(int playerPosition) {
+        return bridgeTiles.size() == playerPosition;
     }
 }

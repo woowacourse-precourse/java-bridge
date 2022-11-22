@@ -24,7 +24,7 @@ public class BridgeGame {
         BridgeTile playerStep = BridgeTile.findTile(readMovingDto.getMovingCommand());
         boolean movable = player.move(bridge, playerStep);
         boolean success = player.isSuccessful(bridge);
-        PrintMapDto printMapDto = new PrintMapDto(bridge, player);
+        PrintMapDto printMapDto = new PrintMapDto(player);
 
         return new MoveDto(GameStatus.findNextGamePlay(success, movable), printMapDto);
     }
