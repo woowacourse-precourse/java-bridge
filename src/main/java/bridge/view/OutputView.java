@@ -23,5 +23,9 @@ public class OutputView {
         downView = new StringBuilder();
     }
 
+    public void printBridgeGameStartMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
 
 }
