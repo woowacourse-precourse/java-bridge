@@ -42,73 +42,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> playerBridge, List<String> bridge) {
-        printUpBridge(playerBridge, bridge);
-        printDownBridge(playerBridge, bridge);
-    }
-
-    /**
-     * 위쪽에 있는 다리 정보를 출력한다.
-     *
-     * @param playerBridge 플레이어 입력 정보
-     * @param bridge       다리 정보
-     */
-    public void printUpBridge(List<String> playerBridge, List<String> bridge) {
-        System.out.print("[");
-        System.out.print(printUpBridgeCheck(playerBridge.get(0), bridge.get(0)));
-        for (int i = 1; i < playerBridge.size(); i++) {
-            System.out.print("|");
-            System.out.print(printUpBridgeCheck(playerBridge.get(i), bridge.get(i)));
+    public void printMap(List<List<String>> playerBridge) {
+        for (int i = 0; i < playerBridge.size(); i++) {
+            System.out.print("[ ");
+            System.out.print(String.join(" ", playerBridge.get(i)));
+            System.out.println(" ]");
         }
-        System.out.println("]");
-    }
-
-    /**
-     * 아래쪽에 있는 다리 정보를 출력한다.
-     *
-     * @param playerBridge 플레이어 입력 정보
-     * @param bridge       다리 정보
-     */
-    public void printDownBridge(List<String> playerBridge, List<String> bridge) {
-        System.out.print("[");
-        System.out.print(printDownBridgeCheck(playerBridge.get(0), bridge.get(0)));
-        for (int i = 1; i < playerBridge.size(); i++) {
-            System.out.print("|");
-            System.out.print(printDownBridgeCheck(playerBridge.get(i), bridge.get(i)));
-        }
-        System.out.println("]");
-    }
-
-    /**
-     * 위쪽에 있는 다리가 O인지 공백인지 체크한다.
-     *
-     * @param playerBlock
-     * @param bridgeBlock
-     */
-    public String printUpBridgeCheck(String playerBlock, String bridgeBlock) {
-        if (playerBlock.equals(bridgeBlock) && playerBlock.equals("U")) {
-            return " O ";
-        }
-        if (playerBlock.equals(bridgeBlock) && playerBlock.equals("D")) {
-            return "   ";
-        }
-        if (playerBlock.equals("U") && !playerBlock.equals(bridgeBlock)) {
-            return " X ";
-        }
-        return "   ";
-    }
-
-    public String printDownBridgeCheck(String playerBlock, String bridgeBlock) {
-        if (playerBlock.equals(bridgeBlock) && playerBlock.equals("D")) {
-            return " O ";
-        }
-        if (playerBlock.equals(bridgeBlock) && playerBlock.equals("U")) {
-            return "   ";
-        }
-        if (playerBlock.equals("D") && !playerBlock.equals(bridgeBlock)) {
-            return " X ";
-        }
-        return "   ";
     }
 
     /**
@@ -116,7 +55,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> playerBridge, List<String> bridge, int tryCount, int gameOverResult) {
+    public void printResult(List<List<String>> playerBridge, int tryCount, int gameOverResult) {
         System.out.println("\n최종 게임 결과");
         printMap(playerBridge, bridge);
         printWinOrDefeat(gameOverResult);
