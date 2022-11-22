@@ -19,22 +19,26 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> upAndDown = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            upAndDown.add(makeBridgeSpace());
+        for (int index = 0; index < size; index++) {
+            int number = makeRandomNumbers();
+            upAndDown.add(makeBridgeSpace(number));
         }
         return upAndDown;
     }
 
-    private String makeBridgeSpace() {
-        int generate = bridgeNumberGenerator.generate();
+    private String makeBridgeSpace(int randomNumber) {
         String space = "";
-        if (generate == 1) {
-            space = "U";
+        if (randomNumber == 1) {
+            space = UserMove.UP.getUserMove();
         }
-        if (generate == 0) {
-            space = "D";
+        if (randomNumber == 0) {
+            space = UserMove.DOWN.getUserMove();
         }
         return space;
+    }
+
+    private int makeRandomNumbers() {
+        return bridgeNumberGenerator.generate();
     }
 
 //    private List<Boolean> makeUpLocationExist(String upAndDown) {

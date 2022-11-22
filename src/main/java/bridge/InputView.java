@@ -12,7 +12,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         try {
-            System.out.println("다리의 길이를 입력해주세요.");
+            System.out.println(GameMessage.INPUT_BRIDGE_SIZE_MESSAGE.getGameMessage());
             String bridgeSize = Console.readLine();
             System.out.println();
             BridgeSizeInputException.validateBridgeSize(bridgeSize);
@@ -28,7 +28,7 @@ public class InputView {
      */
     public String readMoving() {
         try {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            System.out.println(GameMessage.INPUT_MOVE_MESSAGE.getGameMessage());
             String upOrDown = Console.readLine();
             MoveInputException.validateMoveInput(upOrDown);
             return upOrDown;
@@ -43,7 +43,7 @@ public class InputView {
      */
     public String readGameCommand() {
         try {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            System.out.println(GameMessage.GAME_RETRY_MESSAGE.getGameMessage());
             String restartAndQuit = Console.readLine();
             RetryInputException.validateRetryInput(restartAndQuit);
             return restartAndQuit;

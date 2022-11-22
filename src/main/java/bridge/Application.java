@@ -7,8 +7,6 @@ public class Application {
         outputView.printStartMessage();
 
         Controller controller = new Controller();
-
         controller.readyBridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
-
     }
 }

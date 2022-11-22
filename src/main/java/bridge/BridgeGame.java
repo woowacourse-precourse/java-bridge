@@ -25,10 +25,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String restartAndQuit) {
-        if (restartAndQuit.equals("Q")) {
+        if (restartAndQuit.equals(GameCommand.QUIT.getGameCommand())) {
             return false;
         }
-        if (restartAndQuit.equals("R")) {
+        if (restartAndQuit.equals(GameCommand.RESTART.getGameCommand())) {
             CurrentLocationInformation.init();
             return true;
         }

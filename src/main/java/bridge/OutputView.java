@@ -22,20 +22,25 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(int challengeCount, boolean state) {
-        String gameResult = "실패";
         String resultLocation = CurrentLocationInformation.getResultLocation();
-        System.out.println("최종 게임 결과");
-        if (state) {
-            gameResult = "성공";
-        }
+        System.out.println(GameMessage.GAME_RESULT_MESSAGE.getGameMessage());
         System.out.println(resultLocation);
         System.out.println();
-        System.out.println("게임 성공 여부: " + gameResult);
-        System.out.print("총 시도한 횟수: " + challengeCount);
+        printWinOrFail(state);
+        System.out.print(GameMessage.GAME_TRY_COUNT_MESSAGE.getGameMessage() + challengeCount);
+    }
+
+    private void printWinOrFail(boolean state) {
+        if (state) {
+            System.out.println(GameMessage.GAME_WIN_MESSAGE.getGameMessage());
+        }
+        if (!state) {
+            System.out.println(GameMessage.GAME_FAIL_MESSAGE.getGameMessage());
+        }
     }
 
     public void printStartMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(GameMessage.GAME_START_MESSAGE.getGameMessage());
         System.out.println();
     }
 }

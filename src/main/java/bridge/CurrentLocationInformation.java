@@ -49,10 +49,10 @@ public class CurrentLocationInformation {
     private List<Boolean> makeUpLocationExist(List<String> bridge) {
         List<Boolean> bridgeExist = new ArrayList<>();
         for (int index = 0; index < bridge.size(); index++) {
-            if (bridge.get(index).equals("U")) {
+            if (bridge.get(index).equals(UserMove.UP.getUserMove())) {
                 bridgeExist.add(true);
             }
-            if (bridge.get(index).equals("D")) {
+            if (bridge.get(index).equals(UserMove.DOWN.getUserMove())) {
                 bridgeExist.add(false);
             }
         }
@@ -75,10 +75,10 @@ public class CurrentLocationInformation {
     private List<Boolean> makeDownLocationExist(List<String> bridge) {
         List<Boolean> bridgeExist = new ArrayList<>();
         for (int index = 0; index < bridge.size(); index++) {
-            if (bridge.get(index).equals("D")) {
+            if (bridge.get(index).equals(UserMove.DOWN.getUserMove())) {
                 bridgeExist.add(true);
             }
-            if (bridge.get(index).equals("U")) {
+            if (bridge.get(index).equals(UserMove.UP.getUserMove())) {
                 bridgeExist.add(false);
             }
         }
