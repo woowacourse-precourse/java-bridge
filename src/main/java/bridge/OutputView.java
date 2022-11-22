@@ -27,5 +27,23 @@ public class OutputView {
         }
         return str;
     }
+    public String printMap(List<String> nextStep, List<String> Bridge, int turn) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        sb.append("[");sb2.append("[");
+        String result = checkBridge(nextStep, Bridge, nextStep.size()-1);
+        for(int i=0;i<turn;i++){
+            if(nextStep.get(i).equals("U")){
+                sb.append(checkBridge(nextStep,Bridge,i)).append(separate(i,turn));
+                sb2.append("   ").append(separate(i,turn));
+            }
+            if(nextStep.get(i).equals("D")){
+                sb.append("   ").append(separate(i,turn));
+                sb2.append(checkBridge(nextStep,Bridge,i)).append(separate(i,turn));
+            }
+        }
+        System.out.println(sb.append('\n').append(sb2));
+        return result;
+    }
 
 }
