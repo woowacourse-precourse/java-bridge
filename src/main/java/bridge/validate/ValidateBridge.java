@@ -1,6 +1,5 @@
 package bridge.validate;
 
-
 import static bridge.constants.CommandConstants.*;
 import static bridge.constants.ExceptionConstants.*;
 
