@@ -3,6 +3,8 @@ package bridge.UI.Input;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.regex.Pattern;
+
 
 public class InputView {
 
@@ -21,6 +23,9 @@ public class InputView {
 
     public String readMoving() throws IllegalArgumentException {
         String userInput = Console.readLine();
+        if(Pattern.matches(".*[0-9].*", userInput)) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하였습니다 U(위칸) 혹은 D(아래칸)을 입력해주세요");
+        }
         if(!(userInput.equals("U") || userInput.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] U(위칸) 혹은 D(아래칸)을 입력해주세요");
         }
@@ -29,6 +34,9 @@ public class InputView {
 
     public String readGameCommand() throws IllegalArgumentException {
         String userInput = Console.readLine();
+        if(Pattern.matches(".*[0-9].*", userInput)) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하였습니다 U(위칸) 혹은 D(아래칸)을 입력해주세요");
+        }
         if(!(userInput.equals("R") || userInput.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] R(재시작) 혹은 Q(종료)를 입력해주세요");
         }
