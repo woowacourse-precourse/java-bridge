@@ -20,11 +20,11 @@ public class BridgeGame {
     }
 
     public Boolean match(String moving) {
-        return bridge.get(step).equalsIgnoreCase(moving);
+        return bridge.get(step - 1).equalsIgnoreCase(moving);
     }
 
     public Boolean isEnd() {
-        return step > bridge.size();
+        return step.equals(bridge.size());
     }
 
     public List<String> getCurrentBridge() {

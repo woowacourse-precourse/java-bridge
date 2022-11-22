@@ -15,11 +15,12 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
+        System.out.println(bridge);
+
         while (!bridgeGame.isEnd()) {
             String moving = inputView.readMoving();
             Boolean moved = bridgeGame.move(moving);
-            outputView.printMap(bridgeGame);
-            System.out.println(moved);
+            outputView.printMap(bridgeGame, moved);
             if (moved) {
                 continue;
             }
@@ -30,7 +31,7 @@ public class Application {
             }
             bridgeGame.retry();
         }
-        outputView.printResult();
-
+//        outputView.printResult();
+        System.out.println("exit~");
     }
 }

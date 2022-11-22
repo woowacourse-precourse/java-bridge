@@ -18,15 +18,15 @@ class OutputViewTest {
 
     @Test
     void convertUpperRow() {
-        List<String> upperRow = outputView.convertUpperRow(bridge);
+        List<String> upperRow = outputView.convertUpperRow(bridge, true);
         String printed = outputView.addDelimiter(upperRow);
-        assertEquals("[O | O | X]", printed);
+        assertEquals("[O | O |  ]", printed);
     }
 
     @Test
     void convertLowerRow() {
-        List<String> lowerRow = outputView.convertLowerRow(bridge);
+        List<String> lowerRow = outputView.convertLowerRow(bridge, false);
         String printed = outputView.addDelimiter(lowerRow);
-        assertEquals("[X | X | O]", printed);
+        assertEquals("[  |   |  ]", printed);
     }
 }
