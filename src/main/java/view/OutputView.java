@@ -3,8 +3,8 @@ package view;
 import constant.BothSideConstant;
 import constant.NumberConstant;
 import constant.PrintConstant;
-import java.util.List;
 import util.validator.BridgeGameValidator;
+import java.util.List;
 
 public class OutputView {
     private static final OutputView outputView = new OutputView();
