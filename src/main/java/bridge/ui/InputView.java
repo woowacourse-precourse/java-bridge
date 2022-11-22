@@ -26,8 +26,10 @@ public class InputView {
 
     public int readBridgeSize() {
         String size_str = readLine();
+        if (ValidCheck.isBlank(size_str))
+            throw new IllegalStateException(Exceptions.Blank.getMessage());
         if (!ValidCheck.isString_in_0to9(size_str))
-            throw new IllegalArgumentException(Exceptions.NotInteger.getMessage());
+            throw new IllegalStateException(Exceptions.NotInteger.getMessage());
         int size = Integer.parseInt(size_str);
         if (!ValidCheck.isRange_3to20(size))
             throw new IllegalArgumentException(Exceptions.NotInRange.getMessage());
@@ -49,10 +51,12 @@ public class InputView {
 
     public String readMoving() {
         String command = readLine();
+        if (ValidCheck.isBlank(command))
+            throw new IllegalStateException(Exceptions.Blank.getMessage());
         if (!ValidCheck.isUorD(command))
             throw new IllegalArgumentException(Exceptions.NotUorD.getMessage());
         if (!ValidCheck.isLength1(command))
-            throw new IllegalArgumentException(Exceptions.NotCorrectSize.getMessage());
+            throw new IllegalStateException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
 
@@ -71,10 +75,12 @@ public class InputView {
 
     public String readGameCommand() {
         String command = readLine();
+        if (ValidCheck.isBlank(command))
+            throw new IllegalStateException(Exceptions.Blank.getMessage());
         if (!ValidCheck.isRorQ(command))
             throw new IllegalArgumentException(Exceptions.NotRorQ.getMessage());
         if (!ValidCheck.isLength1(command))
-            throw new IllegalArgumentException(Exceptions.NotCorrectSize.getMessage());
+            throw new IllegalStateException(Exceptions.NotCorrectSize.getMessage());
         return command;
     }
 
