@@ -13,11 +13,13 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private final List<String> userBridge;
+    private final List<List<String>> movingMap;
     private int tryCount;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.userBridge = new ArrayList<>();
+        this.movingMap = new ArrayList<>(Arrays.asList(new ArrayList<>(), new ArrayList<>()));
         this.tryCount = 1;
     }
 
@@ -29,7 +31,12 @@ public class BridgeGame {
     public boolean move(String moving) {
         int position = userBridge.size();
         userBridge.add(moving);
-        return bridge.get(position).equals(moving);
+
+        String bridgeValue = bridge.get(position);
+        String passStatus = pass(moving, bridgeValue);
+        movingMap.get(getMovingStatus(moving).get(0).ordinal()).add(passStatus);
+        movingMap.get(getMovingStatus(moving).get(1).ordinal()).add(Pass.NOTHING.getLabel());
+        return bridgeValue.equals(moving);
     }
 
     public boolean allPass() {
@@ -37,28 +44,7 @@ public class BridgeGame {
     }
 
     public List<List<String>> getMovingMap() {
-        List<List<String>> movingStatus = new ArrayList<>(Arrays.asList(new ArrayList<>(), new ArrayList<>()));
-
-        for (int i = 0; i < userBridge.size(); i++) {
-            String passStatus = pass(userBridge.get(i), bridge.get(i));
-            movingStatus.get(getMovingStatus(i).get(0).ordinal()).add(passStatus);
-            movingStatus.get(getMovingStatus(i).get(1).ordinal()).add(Pass.NOTHING.getLabel());
-        }
-        return movingStatus;
-    }
-
-    private String pass(String user, String bridge) {
-        if (user.equals(bridge)) {
-            return Pass.YES.getLabel();
-        }
-        return Pass.NO.getLabel();
-    }
-
-    private List<Moving> getMovingStatus(int index) {
-        if (userBridge.get(index).equals(Moving.DOWN.getLabel())) {
-            return List.of(Moving.DOWN, Moving.UP);
-        }
-        return List.of(Moving.UP, Moving.DOWN);
+        return movingMap;
     }
 
     /**
@@ -68,10 +54,25 @@ public class BridgeGame {
      */
     public void retry() {
         userBridge.clear();
+        movingMap.clear();
         tryCount += 1;
     }
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    private String pass(String user, String bridge) {
+        if (user.equals(bridge)) {
+            return Pass.YES.getLabel();
+        }
+        return Pass.NO.getLabel();
+    }
+
+    private List<Moving> getMovingStatus(String moving) {
+        if (moving.equals(Moving.DOWN.getLabel())) {
+            return List.of(Moving.DOWN, Moving.UP);
+        }
+        return List.of(Moving.UP, Moving.DOWN);
     }
 }
