@@ -3,6 +3,7 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum BridgeEnum {
+
     UP_TRUE("U", 1, true),
     UP_FALSE("U", 1, false),
     DOWN_TRUE("D", 0, true),
@@ -11,7 +12,6 @@ public enum BridgeEnum {
     private final String bridgeStringType;
     private final int bridgeNumberType;
     private final boolean correctLocation;
-
 
     BridgeEnum(String stringType, int numberType, boolean correctLocation) {
         this.bridgeStringType = stringType;

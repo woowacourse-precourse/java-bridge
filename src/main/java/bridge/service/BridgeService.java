@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import java.util.List;
 
 public class BridgeService {
+
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
@@ -20,5 +21,4 @@ public class BridgeService {
         List<String> bridge = bridgeMaker.makeBridge(size);
         return bridge;
     }
-
 }

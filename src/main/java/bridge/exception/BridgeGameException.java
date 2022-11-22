@@ -15,7 +15,6 @@ public class BridgeGameException {
 
     public void validateBridgeSize(String readLine) {
         validateType(readLine);
-        ;
         validateRange(readLine);
     }
 

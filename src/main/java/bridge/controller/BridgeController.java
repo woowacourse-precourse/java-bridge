@@ -27,7 +27,6 @@ public class BridgeController {
         bridgeGame = bridgeService.bridgeMaker(inputView);
         playBridgeGame();
         outputView.printResult(bridgeGame.currentBridge(), gameEndCheck, bridgeGame.getNumberOfTry());
-
     }
 
     public void playBridgeGame() {
@@ -62,6 +61,4 @@ public class BridgeController {
         }
         return gameRunningCheck;
     }
-
-
 }
