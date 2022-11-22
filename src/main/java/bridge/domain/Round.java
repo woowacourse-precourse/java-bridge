@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Round {
 
     private final String playerMoving;
-    private RoundResult result;
+    private final RoundResult result;
 
     public Round(String playerMoving, String bridgeMoving) {
         Validator.validMoving(playerMoving);
