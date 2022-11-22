@@ -40,7 +40,7 @@ final class Logger {
         line.append(BLANK_SIGN);
     }
 
-    String calculateLog() {
+    String toPrintableLog() {
         final StringBuilder firstLine = new StringBuilder(up);
         final StringBuilder secondLine = new StringBuilder(down);
         firstLine.setCharAt(firstLine.length() - 1, ']');

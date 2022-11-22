@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DisplayName("Visited 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class VisitedTest {
-    private static final Bridge bridge = Bridge.from(
+    private static final Bridge bridge = Bridge.getInstance(
             new BridgeMaker(new MockBridgeNumberGenerator()), new BridgeSizeCommand("3"));
     private static final Visited visited1 = new Visited();
     private static final Visited visited2 = new Visited();

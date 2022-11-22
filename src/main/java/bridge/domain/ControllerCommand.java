@@ -12,21 +12,21 @@ enum ControllerCommand {
     RETRY("R"),
     QUIT("Q");
 
-    private final String key;
+    private final String command;
 
-    ControllerCommand(final String key) {
-        this.key = key;
+    ControllerCommand(final String command) {
+        this.command = command;
     }
 
     public static ControllerCommand from(final RetryCommand retryCommand) {
         return Arrays.stream(ControllerCommand.values())
-                .filter(it -> Objects.equals(it.key, retryCommand.getRetry()))
+                .filter(it -> Objects.equals(it.command, retryCommand.getRetry()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("R,Q 만 입력 가능합니다"));
     }
 
     @Override
     public String toString() {
-        return "ControllerCommand : " + key;
+        return "ControllerCommand : " + command;
     }
 }

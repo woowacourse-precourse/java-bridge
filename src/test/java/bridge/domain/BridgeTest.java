@@ -17,6 +17,6 @@ class BridgeTest {
 
     @Test
     void size_메서드는_생성된_다리의_길이를_반환한다() {
-        assertThat(Bridge.from(bridgeMaker, new BridgeSizeCommand("4")).size()).isEqualTo(4);
+        assertThat(Bridge.getInstance(bridgeMaker, new BridgeSizeCommand("4")).size()).isEqualTo(4);
     }
 }

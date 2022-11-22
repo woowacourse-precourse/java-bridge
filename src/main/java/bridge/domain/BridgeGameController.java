@@ -51,7 +51,7 @@ public final class BridgeGameController {
     private Bridge setUpBridge(final BridgeMaker bridgeMaker) {
         try {
             printStartingMessages();
-            return Bridge.from(bridgeMaker, inputView.readBridgeSize());
+            return Bridge.getInstance(bridgeMaker, inputView.readBridgeSize());
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return setUpBridge(bridgeMaker);

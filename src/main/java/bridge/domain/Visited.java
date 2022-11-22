@@ -22,7 +22,7 @@ final class Visited {
     }
 
     String toPrintableLog() {
-        return logger.calculateLog();
+        return logger.toPrintableLog();
     }
 
     boolean isRemained(final Bridge bridge) {

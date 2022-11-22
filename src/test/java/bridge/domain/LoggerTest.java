@@ -24,13 +24,13 @@ class LoggerTest {
     }
 
     @Test
-    void calculateLog_메서드는_주어진_결과에_따라_출력할_수_있는_결과물을_만들어낸다() {
+    void toPrintableLog_메서드는_주어진_결과에_따라_출력할_수_있는_결과물을_만들어낸다() {
         final Logger logger = new Logger();
         logger.put(Position.UP, true);
-        assertThat(logger.calculateLog()).isEqualTo("[ O ]\n[   ]");
+        assertThat(logger.toPrintableLog()).isEqualTo("[ O ]\n[   ]");
         logger.put(Position.UP, true);
-        assertThat(logger.calculateLog()).isEqualTo("[ O | O ]\n[   |   ]");
+        assertThat(logger.toPrintableLog()).isEqualTo("[ O | O ]\n[   |   ]");
         logger.put(Position.DOWN, false);
-        assertThat(logger.calculateLog()).isEqualTo("[ O | O |   ]\n[   |   | X ]");
+        assertThat(logger.toPrintableLog()).isEqualTo("[ O | O |   ]\n[   |   | X ]");
     }
 }

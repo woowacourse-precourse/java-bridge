@@ -15,7 +15,7 @@ final class Bridge {
         this.positions = positions;
     }
 
-    static Bridge from(final BridgeMaker bridgeMaker, final BridgeSizeCommand sizeCommand) {
+    static Bridge getInstance(final BridgeMaker bridgeMaker, final BridgeSizeCommand sizeCommand) {
         final List<String> bridge = bridgeMaker.makeBridge(sizeCommand.getBridgeSize());
         return new Bridge(bridge);
     }
