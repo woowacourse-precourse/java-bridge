@@ -1,9 +1,11 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import constant.Constant;
 import game.BridgeGame;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,7 @@ class BridgeGameTest {
         bridgeGame.initialize(List.of("U", "D", "D"));
         assertThat(bridgeGame.getRecord().isEmpty());
         assertThat(bridgeGame.getTrial() == 1);
-        assertThat(bridgeGame.getSuccess().equals("실패"));
+        assertThat(bridgeGame.getSuccess().equals(Constant.FAILURE));
     }
 
     @Test
@@ -65,6 +67,7 @@ class BridgeGameTest {
         assertTrue(bridgeGame.retry("R"));
         assertThat(bridgeGame.getRecord()).isEmpty();
         assertThat(bridgeGame.getTrial()).isEqualTo(2);
+        assertThat(bridgeGame.getSuccess()).isEqualTo(Constant.FAILURE);
     }
 
     @Test
@@ -75,7 +78,7 @@ class BridgeGameTest {
         bridgeGame.move("D");
         bridgeGame.move("D");
         assertTrue(bridgeGame.checkComplete());
-        assertThat(bridgeGame.getSuccess()).isEqualTo("성공");
+        assertThat(bridgeGame.getSuccess()).isEqualTo(Constant.SUCCESS);
     }
 
     @Test
