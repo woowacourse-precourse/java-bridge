@@ -78,5 +78,4 @@ public class Valid {
             throw new IllegalArgumentException(ValidMessage.ValidFinish.getMessage());
         }
     }
-
 }

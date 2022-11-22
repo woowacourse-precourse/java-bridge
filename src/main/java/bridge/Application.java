@@ -1,4 +1,6 @@
-package game;
+package bridge;
+
+import game.BridgeGameController;
 
 public class Application {
 

@@ -45,5 +45,4 @@ public class BridgeDraw {
         upMap = new ArrayList<>();
         downMap = new ArrayList<>();
     }
-
 }
