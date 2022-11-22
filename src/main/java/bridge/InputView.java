@@ -24,7 +24,7 @@ public class InputView {
         }
     }
 
-    private static int strToInt(String number) {
+    private int strToInt(String number) {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException ex) {
@@ -32,7 +32,7 @@ public class InputView {
         }
     }
 
-    private static void validateBridgeSize(int bridgeSize) {
+    private void validateBridgeSize(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(ErrorMessageGenerator.generate(BRIDGE_OUT_OF_RANGE_ERROR_MESSAGE));
         }
@@ -51,7 +51,7 @@ public class InputView {
         }
     }
 
-    private static void validateMovingCommand(String line) {
+    private void validateMovingCommand(String line) {
         if (line.equals(BridgeGame.CMD_UP) || line.equals(BridgeGame.CMD_DOWN)) {
             return;
         }
@@ -71,7 +71,7 @@ public class InputView {
         }
     }
 
-    private static void validateGameCommand(String line) {
+    private void validateGameCommand(String line) {
         if (line.equals(BridgeGame.CMD_RETRY) || line.equals(BridgeGame.CMD_QUIT)) {
             return;
         }
