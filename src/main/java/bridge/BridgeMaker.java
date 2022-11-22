@@ -33,8 +33,7 @@ public class BridgeMaker {
     }
 
     private String checkUpDown() {
-        int num;
-        num = bridgeNumberGenerator.generate();
+        int num = bridgeNumberGenerator.generate();
         if(num == Direction.UP.num){
             return Direction.UP.word;
         }
