@@ -14,7 +14,7 @@ public class InputView {
         Validation validation = new Validation();
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
-        validation.isInputType(input);
+        validation.totalValidation(input);
 
         int inputBridge = parseStringToInt(input);
         System.out.println(input);
@@ -35,8 +35,6 @@ public class InputView {
 
         System.out.println(input);
 
-
-
         return input;
     }
 
@@ -44,7 +42,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        Validation validation = new Validation();
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+
+        System.out.println(input);
+
+        return input;
     }
 
     public int parseStringToInt(String number){

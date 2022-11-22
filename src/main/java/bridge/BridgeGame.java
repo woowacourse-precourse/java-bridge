@@ -36,11 +36,12 @@ public class BridgeGame {
         List<String> bridgeResultUp = new ArrayList<>();
         List<String> bridgeResultDown = new ArrayList<>();
 
+
         bridgeResultUp = getBridgeUpList(bridge, input, cnt);
         tempUpList = bridgeResultUp;
-
         bridgeResultDown = getBridgeDownList(bridge, input, cnt);
         tempDownList = bridgeResultDown;
+
 
         if(bridge.size() == cnt+1){
             bridgeUpList = bridgeResultUp;

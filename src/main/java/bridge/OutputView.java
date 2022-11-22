@@ -47,6 +47,7 @@ public class OutputView {
      */
     public void printResult(boolean success, List<String> upList, List<String> downList, int count) {
         String successMessage = "성공";
+        String notSuccessMessage = "실패";
 
         System.out.println("최종 게임 결과");
         printFinalUpList(upList);
@@ -59,7 +60,11 @@ public class OutputView {
         if(success){
             System.out.println("게임 성공 여부: " + successMessage);
         }
+        if(!success){
+            System.out.println("게임 성공 여부: " + notSuccessMessage);
+        }
         System.out.println("총 시도한 횟수: " + count);
+
     }
 
 
