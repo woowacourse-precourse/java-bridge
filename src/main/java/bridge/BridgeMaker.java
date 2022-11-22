@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.data.Moving;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +33,9 @@ public class BridgeMaker {
      * @return 랜덤으로 생성된 값이 0이면 "D"를, 1이면 "U"를 리턴한다.
      */
     private String parseBridgeNumber() {
-        final String RANDOM_LOWER_INCLUSIVE = "D";
-        final String RANDOM_UPPER_INCLUSIVE = "U";
         if (bridgeNumberGenerator.generate() == 0) {
-            return RANDOM_LOWER_INCLUSIVE;
+            return Moving.DOWN.getLabel();
         }
-        return RANDOM_UPPER_INCLUSIVE;
+        return Moving.UP.getLabel();
     }
 }
