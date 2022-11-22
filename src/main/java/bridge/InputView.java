@@ -10,6 +10,7 @@ public class InputView {
 
     /**
      * 다리의 길이를 입력받는다.
+     * @return bridgeSize 다리의 길이
      */
     public int readBridgeSize() {
         try {
@@ -24,6 +25,7 @@ public class InputView {
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
+     * @return 이동할 위치
      */
     public String readMoving() {
         try {
@@ -36,6 +38,7 @@ public class InputView {
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     * @return 입력 받은 커맨드
      */
     public String readGameCommand() {
         try {

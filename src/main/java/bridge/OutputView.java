@@ -10,8 +10,9 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 
+     * @param bridge 다리의 정보를 담은 리스트
+     * @param result 이동 결과 정보를 담은 리스트
      */
     public void printMap(List<String> bridge, List<String> result) {
         System.out.println(bridgeOfTop(bridge, result));
@@ -20,8 +21,8 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param game 다리 게임 객체
      */
     public void printResult(BridgeGame game) {
         String resultOfGame = "실패";
