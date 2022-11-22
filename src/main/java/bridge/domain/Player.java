@@ -18,6 +18,7 @@ public class Player {
         this.attemptCount++;
     }
 
+    //getter 보다는 메세지를 보내자.
     public void enterCommand(Command command) {
         this.commands.add(command);
     }
