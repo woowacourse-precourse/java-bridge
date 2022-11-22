@@ -10,7 +10,7 @@ public class Bridge {
         this.bridgePosition = bridgePosition;
     }
 
-    public String compare(List<String> move) {
+    public String compareUserInput(List<String> move) {
         int compareIndex = getCompareIndex(move);
         boolean comparison = move.get(compareIndex).equals(bridgePosition.get(compareIndex));
         return getSign(comparison);

@@ -1,7 +1,6 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,9 +23,9 @@ class BridgeTest {
         List<String> input2 = Arrays.asList("D", "U", "D");
         List<String> input3 = Arrays.asList("U");
 
-        assertThat(bridge.compare(input)).isEqualTo("O");
-        assertThat(bridge.compare(input2)).isEqualTo("X");
-        assertThat(bridge.compare(input3)).isEqualTo("X");
+        assertThat(bridge.compareUserInput(input)).isEqualTo("O");
+        assertThat(bridge.compareUserInput(input2)).isEqualTo("X");
+        assertThat(bridge.compareUserInput(input3)).isEqualTo("X");
     }
 
     @ParameterizedTest

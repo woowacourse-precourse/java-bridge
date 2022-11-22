@@ -26,7 +26,7 @@ public class BridgeGameController {
     public void start() {
         while (true) {
             String movingCommand = inputView.readMoving();
-            String sign = bridgeGame.getBridge().compare(bridgeGame.move(movingCommand));
+            String sign = bridgeGame.getBridge().compareUserInput(bridgeGame.move(movingCommand));
             bridgeGame.getBridgeGameResult().addResult(movingCommand, sign);
             outputView.printMap(bridgeGame.getBridgeGameResult());
             if (!crossingBridge(sign) || compareBridgeLength()) {
