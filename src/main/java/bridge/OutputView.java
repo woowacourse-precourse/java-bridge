@@ -1,5 +1,11 @@
 package bridge;
 
+import org.mockito.internal.matchers.Null;
+
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +16,58 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    String[][] check_msg;
+    public void printMap(List<String> answerList, List<String> inputList) {
+        System.out.println(inputList.size());
+        this.check_msg = new String[2][answerList.size()];
+        for (int i = 0; i < inputList.size(); i++) {
+            String chk = Check(answerList.get(i), inputList.get(i));
+            if (chk.equals("0")){
+                nullCheck(answerList.get(i),i);
+                continue;
+            }
+            ansCheck(chk,i);
+        }
+        printMsg(inputList.size());
+    }
+
+    public String Check(String answerStr,String inputStr){
+        if (answerStr.equals(inputStr)){
+            if(answerStr.equals("U")){
+                return "U";
+            }
+            return "D";
+        }
+        return "0";
+    }
+    public void nullCheck(String answerStr, int i){
+        if (answerStr.equals("U")){
+            this.check_msg[0][i] = " ";
+            this.check_msg[1][i] = "X";
+            return;
+        }
+        this.check_msg[0][i] = "X";
+        this.check_msg[1][i] = " ";
+    }
+
+    public void ansCheck(String chk, int i){
+        if (chk.equals("U")){
+            this.check_msg[0][i] = "O";
+            this.check_msg[1][i] = " ";
+            return;
+        }
+        this.check_msg[0][i] = " ";
+        this.check_msg[1][i] = "O";
+    }
+    public void printMsg(int len){
+        for (int i = 0; i<2; i++){
+            System.out.print("[ ");
+            System.out.print(this.check_msg[i][0]);
+            for(int j = 1; j<len; j++){
+                System.out.print(" | "+this.check_msg[i][j]);
+            }
+            System.out.println(" ]");
+        }
     }
 
     /**
