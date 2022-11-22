@@ -43,9 +43,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> playerBridge) {
-        for (int i = 0; i < playerBridge.size(); i++) {
+        for (int i = playerBridge.size()-1; i >= 0; i--) {
             System.out.print("[ ");
-            System.out.print(String.join(" ", playerBridge.get(i)));
+            System.out.print(String.join(" | ", playerBridge.get(i)));
             System.out.println(" ]");
         }
     }
@@ -55,28 +55,23 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> playerBridge, int tryCount, int gameOverResult) {
+    public void printResult(List<List<String>> playerBridge, int tryCount, boolean gameWin) {
         System.out.println("\n최종 게임 결과");
-        printMap(playerBridge, bridge);
-        printWinOrDefeat(gameOverResult);
+        printMap(playerBridge);
+        printWinOrDefeat(gameWin);
         System.out.printf("총 시도한 횟수: %d\n", tryCount);
     }
 
     /**
      * 게임의 성공 여부를 판단하는 메소드
      *
-     * @param gameOverResult <p>1: 성공 <p>2: 실패
+     * @param gameOverResult <p>true : 성공 <p>false : 실패
      */
-    public void printWinOrDefeat(int gameOverResult) {
-        if (gameOverResult == 1) {
+    public void printWinOrDefeat(boolean gameOverResult) {
+        if (gameOverResult) {
             System.out.println("\n게임 성공 여부: 성공");
             return;
         }
-        if (gameOverResult == 2) {
-            System.out.println("\n게임 성공 여부: 실패");
-            return;
-        }
-        System.out.println("[ERROR] 게임 성공 여부 값은 1또는 2여야 합니다.");
-        throw new IllegalArgumentException();
+        System.out.println("\n게임 성공 여부: 실패");
     }
 }
