@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Exception;
 
 public enum ErrorMessage {
     NOT_NUMERIC_VALUE("[ERROR] 숫자만 입력해야 합니다."),

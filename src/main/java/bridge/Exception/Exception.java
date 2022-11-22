@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Exception;
 
 public class Exception {
     private static final String regExp = "^[0-9]+$";
