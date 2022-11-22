@@ -35,7 +35,6 @@ public enum DirectionType {
     public boolean equalDirection(String str){
         return str.equals(this.str);
     }
-
     public String mapMakeByDirection(String str, int mapType){
         if (!equalDirection(str) && DirectionType.findByString(str).getNum() != mapType)
             return " ";
