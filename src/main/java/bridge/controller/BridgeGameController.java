@@ -1,11 +1,7 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.Bridgelocation;
-import bridge.model.MoveBox;
-import bridge.view.InputView;
 import bridge.view.OutputView;
-import bridge.Utility;
 
 import java.util.List;
 

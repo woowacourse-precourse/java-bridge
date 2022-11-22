@@ -11,7 +11,7 @@ public class BridgeGame {
     private final List<Bridge> result = new ArrayList<>();
 
     public void move(String userInput, String bridge) {
-        Bridgelocation bridgelocation = Bridgelocation.valueOf(userInput,userInput.equals(bridge));
+        Bridgelocation bridgelocation = Bridgelocation.valueOf(userInput, userInput.equals(bridge));
         validate(bridgelocation);
         result.add(bridgelocation.getBridge());
     }
@@ -37,7 +37,7 @@ public class BridgeGame {
         return "성공";
     }
 
-    public boolean failCheck(){
+    public boolean failCheck() {
         return result.contains(Bridgelocation.UPX.getBridge()) || result.contains(Bridgelocation.DOWNX.getBridge());
     }
 
