@@ -115,6 +115,29 @@
   - int getBridgeSize() : 다리의 크기만큼 게임을 진행하기 위해, 다리의 크기를 반환한다. <br>
   - void clear() : 게임이 재시작되는 경우에 호출되어 멤버 변수 top과 bottom의 내용을 초기화한다. <br>
 
+< Class - BridgeGameController >
+- Attribute 
+  - InputView inputView
+  - OutputView outputView
+  - BridgeRandomNumberGenerator generator 
+  - BridgeGame bridgeGame
+  - BridgeMaker bridgeMaker
+  - List<String> bridge
+  - int currentLocation : 현재 다리에서 몇 번째 칸에 있는 지를 의미한다.
+  - int count : 현재 게임에서 몇 번째 도전하는 지를 의미한다.
+  - boolean tryFlag : 현재 도전중인 지를 아닌 지를 의미한다.
+  - boolean retryFlag : 재도전 여부를 의미한다.
+
+- Method
+  - BridgeGameController() : 멤버 변수들을 초기화하기 위한 생성자이다. <br>
+  - void initializeBridge() : 다리를 생성하기 위한 메서드이다. (생성자가 호출) <br>
+  - void initializeAttribute() : 게임 진행을 위한 변수들을 초기화한다. (생성자가 최초로 호출하고, 재도전 시에도 호출된다.) <br>
+  - String enterMove() : 플레이어에게 입력을 받아, 그 값을 반환한다. <br>
+  - boolean moveSuccess() : 다리를 성공적으로 이동하면 그 결과를 출력하고, currentLocation을 하나 증가시킨다. <br>
+  - boolean moveFail() : 다리를 이동하는 것에 실패하면, 재도전 여부를 묻기 위한 메서드를 호출한다. <br> 
+  - void judgeMove(String move) : 다리의 이동에 대한 결과를 판정한다. 실패하는 경우에만 moveFail 메서드를 호출한다. <br>
+  - void retry() : 재시작을 위해 호출되는 메서드이며, 호출 시에 initializeAttribute를 호출하고 count 값을 하나 증가시킨다. <br>
+  - void run() : 현재 위치가 다리의 마지막에 도달할 때까지, tryFlag가 true인 동안 다리 건너기 게임을 진행한다. <br>
 
 ## [ 테스트 코드 ]
 - ApplicationTest : 프로그램의 전체적인 실행이 정상적인 지를 테스트한다.

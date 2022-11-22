@@ -24,8 +24,8 @@ public class BridgeGame {
     public boolean move(int currentLocation, String move) {
         boolean flag = true;
 
-        if(move.equals("U")) flag = compareTop(currentLocation, bridge);
-        if(move.equals("D")) flag = compareBottom(currentLocation, bridge);
+        if(move.equals("U")) flag = compareTop(currentLocation);
+        if(move.equals("D")) flag = compareBottom(currentLocation);
 
         return flag;
     }
@@ -41,7 +41,7 @@ public class BridgeGame {
         return flag;
     }
 
-    private boolean compareTop(int location, List<String> bridge) {
+    private boolean compareTop(int location) {
         // 다리를 맞춘 경우
         if(bridge.get(location).equals("U")) {
             top.append('O');
@@ -55,7 +55,7 @@ public class BridgeGame {
         return false;
     }
 
-    private boolean compareBottom(int location, List<String> bridge) {
+    private boolean compareBottom(int location) {
         // 다리를 맞춘 경우
         if(bridge.get(location).equals("D")) {
             bottom.append('O');
