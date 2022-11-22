@@ -39,45 +39,51 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(MapDTO map) {
-        List<String> currentBridge = map.getCurrentBridge();
-        boolean flag = map.getFlag();
         List<String> upBridge = new ArrayList<>();
         List<String> downBridge = new ArrayList<>();
-        changeForPrint(currentBridge, upBridge, downBridge, flag);
+        changeForPrint(map, upBridge, downBridge);
         printBridge(upBridge);
         printBridge(downBridge);
         System.out.println();
     }
 
-    private void changeForPrint(List<String> currentBridge,
-                                List<String> upBridge,
-                                List<String> downBridge,
-                                boolean flag) {
+    private void changeForPrint(MapDTO map, List<String> upBridge, List<String> downBridge) {
+        List<String> currentBridge = map.getCurrentBridge();
+        boolean flag = map.getFlag();
         for (int i = 0; i < currentBridge.size(); i++) {
             String current = currentBridge.get(i);
-            String correctCheck = O;
-            if (!flag && i == currentBridge.size() - 1) {
-                correctCheck = X;
-            }
-            setSideBridge(upBridge, downBridge, current, correctCheck);
+            String OX = makeOX(currentBridge, flag, i);
+            setUpsideBridge(upBridge, current, OX);
+            setDownSideBridge(upBridge, current, OX);
         }
+    }
+
+    private String makeOX(List<String> currentBridge, boolean flag, int i) {
+        String correctCheck = O;
+        if (!flag && i == currentBridge.size() - 1) {
+            correctCheck = X;
+        }
+        return correctCheck;
     }
 
     public void printEmptyLine(){
         System.out.println();
     }
 
-    private void setSideBridge(List<String> upBridge, List<String> downBridge, String current, String correctCheck) {
+    private void setUpsideBridge(List<String> upBridge, String current, String correctCheck) {
         if (current.equals(UP)) {
             upBridge.add(correctCheck);
-            downBridge.add("   ");
-        }
-        if (current.equals(DOWN)) {
-            upBridge.add("   ");
-            downBridge.add(correctCheck);
-        }
-    }
 
+        }
+        upBridge.add("   ");
+    }
+    private void setDownSideBridge(List<String> downBridge, String current, String correctCheck) {
+        if (current.equals(DOWN)) {
+            downBridge.add(correctCheck);
+            return;
+        }
+        downBridge.add("   ");
+    }
 
     private void printBridge(List<String> upOrDownBridge) {
         System.out.print("[");

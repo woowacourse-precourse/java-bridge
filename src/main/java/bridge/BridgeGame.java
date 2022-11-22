@@ -40,7 +40,7 @@ public class BridgeGame {
     }
     //
     public MapDTO transferProgressMap(boolean flag, String selectedSpace) {
-        // playerLocation는 현재입력 전까지 나오고 현재입력은 true or false로 나타내어 MapDTO로 전달한다.
+        // playerLocation는 현재입력 전단계까지 나오고 현재입력을 넣어 Map에 넣는다.
         List<String> currentBridge = bridge.getCurrentBridge(playerLocation);
         currentBridge.add(selectedSpace);
         return new MapDTO(currentBridge, flag);
