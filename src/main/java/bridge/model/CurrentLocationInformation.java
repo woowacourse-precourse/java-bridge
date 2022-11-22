@@ -91,9 +91,10 @@ public class CurrentLocationInformation {
 
     private String makeProgressStatus(List<Boolean> bridgeExist, List<String> bridge, String moving) {
         String currentStatus = "";
-        currentStatus += showUpAndDownResult(bridgeExist, bridge, moving);
+        if (check == 0) {
+            currentStatus += showUpAndDownResult(bridgeExist, bridge, moving);
+        }
         if (check > 0) {
-            currentStatus = "";
             currentStatus += MiniMapState.LINE.getMiniMapState();
             currentStatus += showUpAndDownResult(bridgeExist, bridge, moving);
         }

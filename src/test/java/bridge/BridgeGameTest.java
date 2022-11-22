@@ -71,21 +71,18 @@ public class BridgeGameTest extends NsTest {
             run("3", "D", "D", "R", "D", "U", "U");
             assertThat(output()).contains(
                     "최종 게임 결과",
-                    "[   |   ]",
-                    "[ O | X ]",
+                    "[   | O | O ]",
+                    "[ O |   |   ]",
                     "게임 성공 여부: 성공",
                     "총 시도한 횟수: 2"
             );
 
-            int upSideIndex = output().indexOf("[   |   ]");
-            int downSideIndex = output().indexOf("[ O | X ]");
+            int upSideIndex = output().indexOf("[   | O | O ]");
+            int downSideIndex = output().indexOf("[ O |   |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
 
         }, 0, 1, 1);
     }
-
-
-
 
     @Override
     protected void runMain() {
