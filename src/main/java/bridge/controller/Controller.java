@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    private static InputView inputview = new InputView();
+    private InputView inputview = new InputView();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
