@@ -1,5 +1,6 @@
 package bridge.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,15 +13,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> inputResults, int index, String moveAnswer) {
+    public void printMap(List<String> upResults, List<String> downResults, int index) {
         System.out.print("[ ");
         for (int i = 0; i <= index; i++) {
-            if (moveAnswer.equals("U")) {
-                System.out.print(inputResults.get(i));
-            } else {
-                System.out.print(" ");
-            }
-
+            System.out.print(upResults.get(i));
             if (i < index) {
                 System.out.print(" | ");
             }
@@ -29,12 +25,7 @@ public class OutputView {
 
         System.out.print("[ ");
         for (int i = 0; i <= index; i++) {
-            if (moveAnswer.equals("D")) {
-                System.out.print(inputResults.get(i));
-            } else {
-                System.out.print(" ");
-            }
-
+            System.out.print(downResults.get(i));
             if (i < index) {
                 System.out.print(" | ");
             }

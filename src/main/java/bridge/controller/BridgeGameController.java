@@ -28,14 +28,23 @@ public class BridgeGameController {
     }
 
     private void doGame(int bridgeSize) {
-        List<String> inputResults = new ArrayList<>();
+        List<String> upResults = new ArrayList<>();
+        List<String> downResults = new ArrayList<>();
 
         for (int i = 0; i < bridgeSize; i++) {
             String moveAnswer = INPUT_VIEW.readMoving();
-            inputResults.add(bridgeGame.move(moveAnswer, i));   // 모델로 가야하는 코드
-            OUTPUT_VIEW.printMap(inputResults, i, moveAnswer);
 
-            if (inputResults.get(i).equals("X")) {  // 모델에서 처리
+            if (moveAnswer.equals("U")) {
+                upResults.add(bridgeGame.move(moveAnswer, i));
+                downResults.add(" ");
+            } else {
+                downResults.add(bridgeGame.move(moveAnswer, i));
+                upResults.add(" ");
+            }
+
+            OUTPUT_VIEW.printMap(upResults, downResults, i);
+
+            if (upResults.get(i).equals("X") || downResults.get(i).equals("X")) {  // 모델에서 처리
                 count++;
                 String retryAnswer = INPUT_VIEW.readGameCommand();
 

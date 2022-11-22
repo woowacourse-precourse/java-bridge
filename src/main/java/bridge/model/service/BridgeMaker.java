@@ -27,8 +27,6 @@ public class BridgeMaker {
             bridge.add(returnBridgeValue(randomNumber));
         }
 
-        System.out.println(bridge);
-
         return bridge;
     }
 
