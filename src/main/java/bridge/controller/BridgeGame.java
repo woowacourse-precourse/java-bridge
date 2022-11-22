@@ -19,14 +19,14 @@ public class BridgeGame {
         return new BridgeGame(bridge, userTable);
     }
 
-    public GameResult determineRetry(GameResult gameResult) {
+    public GameResult determineRetry(GameResult gameResult) throws IllegalArgumentException {
         if (gameResult.isLose()) {
             gameResult = GameResult.retryOrNot(BridgeGameManager.readGameCommand());
         }
         return gameResult;
     }
 
-    public GameResult move() throws IllegalStateException {
+    public GameResult move() throws IllegalArgumentException, IllegalStateException {
         return Stream.iterate(0,i->i<bridge.size(),i->i+1)
                 .map(i-> BridgeGameManager.moveUser(userTable, bridge))
                 .filter(GameResult::isNotKeep)
@@ -36,7 +36,7 @@ public class BridgeGame {
     public int getTryNumber() {
         return tryNumber.getTryNumber();
     }
-    public GameResult retry(GameResult gameResult) throws IllegalStateException {
+    public GameResult retry(GameResult gameResult) throws IllegalArgumentException, IllegalStateException {
         while (gameResult.isKeep()) {
             userTable.clear();
             gameResult = startGame();
@@ -44,7 +44,7 @@ public class BridgeGame {
         return gameResult;
     }
 
-    public GameResult startGame() throws IllegalStateException {
+    public GameResult startGame() throws IllegalArgumentException, IllegalStateException {
         tryNumber.increase();
         GameResult gameResult = move();
         return determineRetry(gameResult);
