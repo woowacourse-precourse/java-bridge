@@ -66,6 +66,7 @@ public class OutputView {
     public void printMove() {
         System.out.println(upBridge);
         System.out.println(downBridge);
+        System.out.println();
     }
 
     private void lastPrint() {
