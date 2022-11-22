@@ -1,9 +1,9 @@
 package bridge.view;
 
-import static bridge.constant.BridgeLength.MAX_BRIDGE_LENGTH;
-import static bridge.constant.BridgeLength.MIN_BRIDGE_LENGTH;
 import static bridge.constant.ErrorResponse.INVALID_BRIDGE_INPUT_TYPE;
 import static bridge.constant.ErrorResponse.INVALID_BRIDGE_LENGTH;
+import static bridge.view.constant.BridgeLength.MAX_BRIDGE_LENGTH;
+import static bridge.view.constant.BridgeLength.MIN_BRIDGE_LENGTH;
 
 import bridge.constant.GameCommand;
 import bridge.constant.MovingDirection;
