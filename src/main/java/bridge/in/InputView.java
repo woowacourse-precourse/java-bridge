@@ -64,6 +64,11 @@ public class InputView {
         validateBridgeSizeRange(validateParseInteger(input));
     }
 
+    public void validateCommand(List<Command> commands, String inputCommand, int validSize) {
+        checkNotLargeThenValidSize(inputCommand, validSize);
+        checkValidateCommandInput(commands, inputCommand);
+    }
+
     private int validateParseInteger(String input) {
         int result = 0;
         try {
@@ -78,11 +83,6 @@ public class InputView {
         if (input < 3 || input > 20) {
             throw new IllegalArgumentException("다리 길이 범위를 확인해주세요");
         }
-    }
-
-    public void validateCommand(List<Command> commands, String inputCommand, int validSize) {
-        checkNotLargeThenValidSize(inputCommand, validSize);
-        checkValidateCommandInput(commands, inputCommand);
     }
 
     private Command convertInputToCommand(String input, List<Command> commands) {
