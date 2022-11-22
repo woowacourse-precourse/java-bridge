@@ -62,6 +62,21 @@ class InputViewTest {
         assertThat(size).isEqualTo(result);
     }
     @Test
-    void readGameCommand() {
+    void 재시작_종료_입력_테스트() {
+        String input = "R";
+        inputStream = new ByteArrayInputStream(input.getBytes());
+        setIn(input);
+        String size = inputView.readGameCommand();
+        String result = "R";
+        assertThat(size).isEqualTo(result);
+    }
+    @Test
+    void 재시작_종료_입력_예외_테스트() {
+        String input = "E";
+        inputStream = new ByteArrayInputStream(input.getBytes());
+        setIn(input);
+        String size = inputView.readGameCommand();
+        String result = "E";
+        assertThat(size).isEqualTo(result);
     }
 }
