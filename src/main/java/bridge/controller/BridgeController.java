@@ -1,6 +1,9 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
+import bridge.validator.BridgeMoveInputValidator;
+import bridge.validator.BridgeSizeInputValidator;
+import bridge.validator.GameRetryValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -15,12 +18,15 @@ public class BridgeController {
     }
 
     public void makeBridge() {
-        int bridgeSize = Integer.parseInt(inputView.readBridgeSize());
+        String bridgeSizeInput = inputView.readBridgeSize();
+        BridgeSizeInputValidator.validate(bridgeSizeInput);
+        int bridgeSize = Integer.parseInt(bridgeSizeInput);
         bridgeGame = new BridgeGame(bridgeSize);
     }
 
     public Boolean moveBridge() {
         String moving = inputView.readMoving();
+        BridgeMoveInputValidator.validate(moving);
         Boolean moveResult = bridgeGame.move(moving);
         outputView.printMap(bridgeGame.getUserMoveState());
         return moveResult;
@@ -28,6 +34,7 @@ public class BridgeController {
 
     public void restart() {
         String command = inputView.readGameCommand();
+        GameRetryValidator.validate(command);
         if (bridgeGame.retry(command)) {
             run();
         }
