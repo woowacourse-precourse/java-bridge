@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,5 +24,10 @@ public class Draw {
 
     public List<String> getDownBridges() {
         return downBridges;
+    }
+
+    public void removeAll() {
+        this.upBridges.clear();
+        this.downBridges.clear();
     }
 }
