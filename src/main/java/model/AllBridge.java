@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllBridge {
+
     private List<String> bridge = new ArrayList<>();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     InputController inputController = new InputController();

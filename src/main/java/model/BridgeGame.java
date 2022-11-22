@@ -9,6 +9,7 @@ import view.OutputMessage;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
     InputController inputController = new InputController();
     private int userPos;
     private int attempts;

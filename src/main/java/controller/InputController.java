@@ -3,6 +3,7 @@ package controller;
 import view.InputView;
 
 public class InputController {
+
     InputView inputView = new InputView();
 
     public int getBridgeSize() {

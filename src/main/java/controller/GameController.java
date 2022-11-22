@@ -6,6 +6,7 @@ import view.InputMessage;
 import view.OutputView;
 
 public class GameController {
+
     InputController inputController = new InputController();
     OutputController outputController = new OutputController();
     OutputView outputView = new OutputView();

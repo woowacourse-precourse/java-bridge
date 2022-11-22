@@ -4,6 +4,7 @@ import view.Constants;
 import view.ErrorMessage;
 
 public class BridgeSizeValidator {
+
     public final int bridgeSize;
 
     public BridgeSizeValidator(String bridgeSize) {
