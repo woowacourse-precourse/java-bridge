@@ -1,6 +1,6 @@
 package bridge.util;
 
-public class BridgeUtil {
+public final class BridgeUtil {
 
     public static final int BINARY_UP = 1;
     public static final int GAP_IN_INDEX_AND_SIZE = 1;
