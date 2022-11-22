@@ -29,10 +29,10 @@ public class BridgeConnector {
             }
             Status status = statuses.get(section);
             if (status.getIsRight()) {
-                recordResult(status.getCurrSelected(), BridgeConstant.CAN_GO.getBridgeConstant());
+                recordResult(status.getCurrSelected(), BridgeConstant.CAN_NOT_GO.getBridgeConstant());
             }
             if (!status.getIsRight()) {
-                recordResult(status.getCurrSelected(), BridgeConstant.CAN_NOT_GO.getBridgeConstant());
+                recordResult(status.getCurrSelected(), BridgeConstant.CAN_GO.getBridgeConstant());
             }
         }
     }
