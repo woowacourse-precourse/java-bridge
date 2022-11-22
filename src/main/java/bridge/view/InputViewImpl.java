@@ -6,14 +6,14 @@ import static bridge.type.InputMessageType.*;
 
 import bridge.type.FailMenuCommandType;
 import bridge.type.InGameCommandType;
-import bridge.utils.InputReader;
+import camp.nextstep.edu.missionutils.Console;
 
 public class InputViewImpl implements InputView {
 
     @Override
     public int readBridgeSize() {
         System.out.println(ASK_BRINDGE_SIZE_MESSAGE);
-        String input = InputReader.readLine();
+        String input = Console.readLine();
         checkNumberFormat(input);
         int bridgeSize = Integer.parseInt(input);
         checkBridgeSizeRange(bridgeSize);
@@ -37,7 +37,7 @@ public class InputViewImpl implements InputView {
     @Override
     public InGameCommandType readInGameCommand() {
         System.out.println(ASK_IN_GAME_COMMAND_MESSAGE);
-        InGameCommandType command = InGameCommandType.find(InputReader.readLine());
+        InGameCommandType command = InGameCommandType.find(Console.readLine());
         checkInGameCommand(command);
         return command;
     }
@@ -51,7 +51,7 @@ public class InputViewImpl implements InputView {
     @Override
     public FailMenuCommandType readFailMenuCommand() {
         System.out.println(ASK_FAIL_MENU_COMMAND_MESSAGE);
-        FailMenuCommandType command = FailMenuCommandType.find(InputReader.readLine());
+        FailMenuCommandType command = FailMenuCommandType.find(Console.readLine());
         checkFailMenuCommand(command);
         return command;
     }
