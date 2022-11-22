@@ -32,26 +32,28 @@ public class OutputView {
 
     public void makeUpSide(String moving, boolean moveResult) {
         if (moving.equals(BridgePanel.UP_PANEL.getPosition())) {
-            if (moveResult) {
-                upSide.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
-                return;
-            }
-            upSide.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
-            return;
+            insertResult(upSide, moveResult);
         }
-        upSide.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+        if (!moving.equals(BridgePanel.UP_PANEL.getPosition())) {
+            upSide.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+        }
     }
 
     public void makeDownSide(String moving, boolean moveResult) {
         if (moving.equals(BridgePanel.DOWN_PANEL.getPosition())) {
-            if (moveResult) {
-                downSide.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
-                return;
-            }
-            downSide.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
+            insertResult(downSide, moveResult);
+        }
+        if (!moving.equals(BridgePanel.DOWN_PANEL.getPosition())) {
+            downSide.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+        }
+    }
+
+    public void insertResult(StringBuilder builder, boolean moveResult) {
+        if (moveResult) {
+            builder.append(MapType.CAN_STEP.getType()).append(MapType.END.getType());
             return;
         }
-        downSide.append(MapType.EMPTY.getType()).append(MapType.END.getType());
+        builder.append(MapType.CAN_NOT_STEP.getType()).append(MapType.END.getType());
     }
 
     public void insertDivision(StringBuilder builder) {
