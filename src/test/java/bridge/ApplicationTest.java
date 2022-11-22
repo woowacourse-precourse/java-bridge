@@ -7,7 +7,10 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -83,80 +86,32 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @Test
-    void 예외_테스트() {
+    @DisplayName("잘못된 다리 길이 입력 시 예외 처리")
+    @ValueSource(strings = {"A", "-5", "22", " ", "qerqw", " 5 ", " 7", "7 "})
+    @ParameterizedTest
+    void 예외_테스트_다리길이(String input) {
         assertSimpleTest(() -> {
-            runException("a");
+            runException(input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
-    void 예외_테스트_다리길이_음수() {
+    @DisplayName("잘못된 이동 커맨드 입력 시 예외 처리")
+    @ValueSource(strings = {"A", "-5", "22", " ", "qerqw", " 5 ", " 7", "7 "})
+    @ParameterizedTest
+    void 예외_테스트_이동(String input) {
         assertSimpleTest(() -> {
-            runException("-5");
+            runException("5", input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
-    void 예외_테스트_다리길이_범위초과() {
-        assertSimpleTest(() -> {
-            runException("22");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_이동_다른문자() {
-        assertSimpleTest(() -> {
-            runException("5", "A");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_이동_공백() {
-        assertSimpleTest(() -> {
-            runException("5", " ");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_이동_숫자() {
-        assertSimpleTest(() -> {
-            runException("5", "5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_재시도_다른문자() {
+    @DisplayName("잘못된 재시도 커맨드 입력 시 예외 처리")
+    @ValueSource(strings = {"A", "-5", "22", " ", "qerqw", " 5 ", " 7", "7 "})
+    @ParameterizedTest
+    void 예외_테스트_재시도(String input) {
         assertRandomNumberInRangeTest(() -> {
-            runException("3", "D", "A");
-            assertThat(output()).contains(
-                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
-                    ERROR_MESSAGE
-            );
-        }, 1, 0, 1);
-    }
-
-    @Test
-    void 예외_테스트_재시도_공백() {
-        assertRandomNumberInRangeTest(() -> {
-            runException("3", "D", " ");
-            assertThat(output()).contains(
-                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
-                    ERROR_MESSAGE
-            );
-        }, 1, 0, 1);
-    }
-
-    @Test
-    void 예외_테스트_재시도_숫자() {
-        assertRandomNumberInRangeTest(() -> {
-            runException("3", "D", "5");
+            runException("3", "D", input);
             assertThat(output()).contains(
                     "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
                     ERROR_MESSAGE
