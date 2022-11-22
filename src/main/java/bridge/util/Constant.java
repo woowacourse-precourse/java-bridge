@@ -10,6 +10,7 @@ public class Constant {
 
     public static final int BRIDGE_SIZE_INPUT_RETRY_POINT = -1;
     public static final String BRIDGE_MOVE_INPUT_RETRY_POINT = "";
+    public static final String BRIDGE_RETRY_COMMAND_INPUT_POINT = "";
     public static final int BRIDGE_FIRST_TRY_INDEX = 0;
     public static final int BRIDGE_ONE_TRY_SPACE_SIZE = 4;
     public static final int MIN_BRIDGE_SIZE = 3;
@@ -26,6 +27,6 @@ public class Constant {
     public static final String SIZE_INPUT_TYPE_ERROR = "[ERROR] 다리 길이는 숫자만 입력할 수 있습니다.";
     public static final String SIZE_RANGE_ERROR = "[ERROR] 다리의 길이는 3 ~ 20 사이의 숫자만 입력할 수 있습니다.";
     public static final String MOVING_WORD_INPUT_ERROR = "[ERROR] 이동할 칸은 'U' 혹은 'D'만 입력할 수 있습니다.";
-    public static final String GAME_COMMAND_INPUT_ERROR = "[ERROR] 재시작('R') 혹은 종료('Q')만 입력할 수 있습니다.";
+    public static final String RETRY_COMMAND_INPUT = "[ERROR] 'R' 혹은 'Q'만 입력할 수 있습니다.";
 
 }

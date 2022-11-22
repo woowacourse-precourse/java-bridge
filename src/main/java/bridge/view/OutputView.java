@@ -3,9 +3,6 @@ package bridge.view;
 import static bridge.util.Constant.*;
 
 public class OutputView {
-
-
-
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
         System.out.println();
@@ -108,7 +105,7 @@ public class OutputView {
             moveSuccessDownside(index);
         }
         printMap();
-        }
+    }
 
     public static void moveFail(String moveSide, int index) {
         if (moveSide.equals("U")) {

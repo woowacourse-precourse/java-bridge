@@ -11,12 +11,12 @@ public class InputView {
         OutputView.printInputBridgeSizeMessage();
         int result = BRIDGE_SIZE_INPUT_RETRY_POINT;
         while (result == BRIDGE_SIZE_INPUT_RETRY_POINT) {
-            result = retryBridgeSizeInput();
+            result = retryInputBridgeSize();
         }
         return result;
     }
 
-    private static int retryBridgeSizeInput() {
+    private static int retryInputBridgeSize() {
         try {
             String inputSize = Console.readLine();
             Validator.validateInputBridgeSizeType(inputSize);
@@ -32,12 +32,12 @@ public class InputView {
         OutputView.printMovingSelectMessage();
         String moveWord = BRIDGE_MOVE_INPUT_RETRY_POINT;
         while (moveWord.equals(BRIDGE_MOVE_INPUT_RETRY_POINT)) {
-            moveWord = retryBridgeMoveInput();
+            moveWord = retryInputBridgeMove();
         }
         return moveWord;
     }
 
-    private static String retryBridgeMoveInput() {
+    private static String retryInputBridgeMove() {
         try {
             String moveCommandInput = Console.readLine();
             Validator.validateMovingWord(moveCommandInput);
@@ -48,11 +48,22 @@ public class InputView {
         return BRIDGE_MOVE_INPUT_RETRY_POINT;
     }
 
-
-
     public static String inputGameCommand() {
-        String command = Console.readLine();
-        Validator.validateGameCommand(command);
-        return command;
+        String retryCommand = BRIDGE_RETRY_COMMAND_INPUT_POINT;
+        while (retryCommand.equals(BRIDGE_RETRY_COMMAND_INPUT_POINT)) {
+            retryCommand = retryInputGameCommand();
+        }
+        return retryCommand;
+    }
+
+    private static String retryInputGameCommand() {
+        try {
+            String command = Console.readLine();
+            Validator.validateGameCommand(command);
+            return command;
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+        }
+        return BRIDGE_RETRY_COMMAND_INPUT_POINT;
     }
 }

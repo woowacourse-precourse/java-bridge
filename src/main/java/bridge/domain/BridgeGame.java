@@ -5,6 +5,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.util.Constant.*;
+
 public class BridgeGame {
     private List<String> bridgeGame;
     private int tryCount;
@@ -31,6 +33,6 @@ public class BridgeGame {
         String command = InputView.inputGameCommand();
         if (command.equals("R")) return true;
         if (command.equals("Q")) return false;
-        throw new IllegalArgumentException("[ERROR] 'R' 또는 'Q'를 입력해 주세요.");
+        throw new IllegalArgumentException(RETRY_COMMAND_INPUT);
     }
 }

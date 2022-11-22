@@ -25,7 +25,7 @@ public class Validator {
 
     public static void validateGameCommand(String command) {
         if (!command.equals("R") && !command.equals("Q")) {
-            throw new IllegalArgumentException(GAME_COMMAND_INPUT_ERROR);
+            throw new IllegalArgumentException(RETRY_COMMAND_INPUT);
         }
     }
 }
