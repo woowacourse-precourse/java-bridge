@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Constant;
 
 public enum MatchWord {
     Up(1, "U"),

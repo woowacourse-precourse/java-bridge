@@ -1,11 +1,15 @@
-package bridge;
+package bridge.Model;
+
+import bridge.BridgeRandomNumberGenerator;
+import bridge.View.InputView;
+import bridge.View.OutputView;
+import bridge.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.Constant.START_BRIDGE_GAME;
+import static bridge.Constant.Constant.START_BRIDGE_GAME;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

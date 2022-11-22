@@ -1,4 +1,7 @@
-package bridge;
+package bridge.Controller;
+
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 public class BridgeGameController {
     private static final InputView inputView = new InputView();

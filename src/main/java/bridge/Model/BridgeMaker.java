@@ -1,10 +1,12 @@
-package bridge;
+package bridge.Model;
+
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.MatchWord.Down;
-import static bridge.MatchWord.Up;
+import static bridge.Constant.MatchWord.Down;
+import static bridge.Constant.MatchWord.Up;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
