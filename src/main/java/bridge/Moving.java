@@ -22,4 +22,8 @@ public enum Moving {
                 .findFirst()
                 .orElseThrow(InvalidMovingException::new);
     }
+
+    public static boolean isSame(String mark, Moving moving) {
+        return mark.equals(moving.mark);
+    }
 }
