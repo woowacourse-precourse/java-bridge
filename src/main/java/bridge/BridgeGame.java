@@ -48,7 +48,9 @@ public class BridgeGame {
         return doRetry;
     }
 
-    //여기서 upSide와 downSide를 더해서 출력 하게끔 하자
+    /**
+     * 게임을 종료할 때 실행이 되는 메소드
+     */
     public void endGame() {
         List<String> upSide = movingProcessing.getUpSide();
         List<String> downSide = movingProcessing.getDownSide();

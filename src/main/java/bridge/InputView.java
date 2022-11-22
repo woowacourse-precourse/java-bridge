@@ -43,10 +43,10 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = "";
-        try{
+        try {
             input = Console.readLine();
             ExceptionBasket.invalidRetryRequestInputKey(input);
-        } catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
             input = "";
         }

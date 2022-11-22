@@ -1,7 +1,5 @@
 package bridge;
 
-import static java.util.stream.Collectors.joining;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,7 @@ public class MovingProcessing {
     private final OutputView outputView;
     private final List<String> upSide;
     private final List<String> downSide;
-    private int count;
+
     public MovingProcessing() {
         inputView = new InputView();
         randomBridge = new RandomBridge();
@@ -20,16 +18,18 @@ public class MovingProcessing {
         outputView = new OutputView();
         upSide = new ArrayList<>();
         downSide = new ArrayList<>();
-        count = 0;
     }
 
+    /**
+     * 사용자로부터 움직임(U, D)을 입력받습니다.
+     */
     public boolean readMove() {
         List<String> bridge = randomBridge.getBridge();
         while (upSide.size() < bridge.size()) {
             String input = inputView.readMoving();
             if (input.length() == 0)
                 continue;
-            if (!compareBridgeToInput(input, bridge)){
+            if (!compareBridgeToInput(input, bridge)) {
                 return false;
             }
         }
@@ -37,7 +37,10 @@ public class MovingProcessing {
     }
 
     //이부분 바꿀 수 있다면 노력해보자
-    //랜덤으로 입력된 브릿지를 매개변수로 사용자의 입력과 매치한다.
+
+    /**
+     * 랜덤으로 입력된 브릿지를 매개변수로 사용자의 입력과 매치한다.
+     */
     public boolean compareBridgeToInput(String input, List<String> bridge) {
         boolean isSuccess = true;
         int index = upSide.size();
@@ -81,16 +84,12 @@ public class MovingProcessing {
         }
     }
 
-    public List<String> getUpSide(){
+    public List<String> getUpSide() {
         return upSide;
     }
 
-    public List<String> getDownSide(){
+    public List<String> getDownSide() {
         return downSide;
-    }
-
-    public int getCount(){
-        return count;
     }
 
 }

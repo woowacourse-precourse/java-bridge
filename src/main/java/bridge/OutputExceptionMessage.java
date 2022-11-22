@@ -9,7 +9,9 @@ public enum OutputExceptionMessage {
     private final String ERROR_MESSAGE = "[ERROR]";
     private final String outputMessage;
 
-    /** [ERROR] + "메시지" */
+    /**
+     * [ERROR] + "메시지"
+     */
     OutputExceptionMessage(String message) {
         this.outputMessage =
                 ERROR_MESSAGE
@@ -17,7 +19,9 @@ public enum OutputExceptionMessage {
                         + message;
     }
 
-    /** 메시지를 담은 예외를 반환합니다. */
+    /**
+     * 메시지를 담은 예외를 반환합니다.
+     */
     public IllegalArgumentException getException() {
         return new IllegalArgumentException(outputMessage);
     }

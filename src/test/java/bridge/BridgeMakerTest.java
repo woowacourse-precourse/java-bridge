@@ -15,18 +15,17 @@ class BridgeMakerTest {
     private BridgeMaker bridgeMaker;
 
     @BeforeEach
-    void initBridge(){
+    void initBridge() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
     @Test
     @DisplayName("다리를 제대로 만드는지 테스트")
-    void makeBridgeTest(){
+    void makeBridgeTest() {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge.size()).isEqualTo(3);
     }
-
 
 
 }

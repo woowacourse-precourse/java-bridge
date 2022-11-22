@@ -29,7 +29,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         System.out.println(upSideBridge);
         System.out.println(downSideBridge);
-        if (upSideBridge.contains("X") || downSideBridge.contains("X")){
+        if (upSideBridge.contains("X") || downSideBridge.contains("X")) {
             System.out.println("게임 성공 여부: 실패");
             System.out.println("총 시도한 횟수: " + count);
             return;

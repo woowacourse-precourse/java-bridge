@@ -8,14 +8,14 @@ import java.util.List;
 
 class BridgeRandomNumberGeneratorTest {
 
-    private final BridgeRandomNumberGenerator  bridgeRandomNumberGenerator =
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator =
             new BridgeRandomNumberGenerator();
 
     @Test
     @DisplayName("0 ,1 둘 중 랜덤 출력")
-    void generateTest(){
+    void generateTest() {
         List<Integer> randomNumbers = new ArrayList<>();
-        for (int i = 0 ; i < 100; i++){
+        for (int i = 0; i < 100; i++) {
             int randomNumber = bridgeRandomNumberGenerator.generate();
             randomNumbers.add(randomNumber);
         }

@@ -5,16 +5,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-class RandomBridgeTest extends CustomNsTest{
+class RandomBridgeTest extends CustomNsTest {
     public final RandomBridge randomBridge = new RandomBridge();
 
     @Test
     @DisplayName("다리 크기를 제대로 입력 받고 할당하는지 테스트")
-    void initBridgeTest(){
+    void initBridgeTest() {
         {
             command("20");
             randomBridge.initBridge();
