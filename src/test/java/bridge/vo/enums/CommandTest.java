@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CommandTest {
+
     @Nested
     @DisplayName("주어진 문자열에 해당하는 Command 객체를 반환하는 getByValue 메서드")
     class GetByValueTest {

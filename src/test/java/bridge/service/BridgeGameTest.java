@@ -15,9 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BridgeGameTest {
+
     public static final String UP = Step.U.toString();
     public static final String DOWN = Step.D.toString();
     private final BridgeGame bridgeGame = new BridgeGame();
+
+    private static Iterator<Step> getBridgeIter(List<Step> steps) {
+        Bridge bridge = new Bridge(steps);
+        return bridge.toIterator();
+    }
 
     @Nested
     @DisplayName("사용자가 칸을 이동할 때 사용하는 move 메서드")
@@ -67,10 +73,5 @@ class BridgeGameTest {
             assertThat(tryCount.toString())
                     .as("매서드를 호출 후에는 카운트가 1 올라간다.").isEqualTo("1");
         }
-    }
-
-    private static Iterator<Step> getBridgeIter(List<Step> steps) {
-        Bridge bridge = new Bridge(steps);
-        return bridge.toIterator();
     }
 }

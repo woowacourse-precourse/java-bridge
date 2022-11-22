@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTest {
+
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream captor = new ByteArrayOutputStream();
     private final OutputView outputView = new OutputView(new BridgeMessageMaker());

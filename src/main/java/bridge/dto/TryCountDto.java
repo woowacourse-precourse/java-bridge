@@ -3,6 +3,7 @@ package bridge.dto;
 import java.util.Objects;
 
 public class TryCountDto {
+
     private int tryCount;
 
     public TryCountDto() {

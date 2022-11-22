@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Step {
+
     U(1),
     D(0);
 

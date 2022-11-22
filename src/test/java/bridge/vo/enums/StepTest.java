@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StepTest {
+
     @Nested
     @DisplayName("주어진 숫자에 해당하는 BridgeAnswer 값을 문자열로 반환하는 getByNumber 메서드 테스트")
     class GetByNumberTest {

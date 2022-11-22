@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
  * 메시지 출력 후 입력을 다시 받는 예외 핸들링을 진행할 수 있습니다.
  */
 public class InputViewExceptionHandlingProxy implements InvocationHandler {
+
     private final Object target;
     private final OutputView outputView;
 

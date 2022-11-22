@@ -5,6 +5,7 @@ import bridge.vo.Bridge;
 import bridge.vo.GameResult;
 
 public class GameController {
+
     private final OutputView outputView;
     private final BridgeController bridgeController;
 

@@ -5,6 +5,7 @@ import bridge.vo.enums.Step;
 import java.util.Objects;
 
 public class StepResult {
+
     private final Step step;
     private final boolean isCorrect;
 

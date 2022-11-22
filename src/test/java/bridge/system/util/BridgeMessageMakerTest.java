@@ -1,7 +1,7 @@
 package bridge.system.util;
 
-import bridge.vo.enums.Step;
 import bridge.vo.StepResult;
+import bridge.vo.enums.Step;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -10,7 +10,12 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class BridgeMessageMakerTest {
+
     private final BridgeMessageMaker bridgeMessageMaker = new BridgeMessageMaker();
+
+    private String makeBridgeMessage(List<StepResult> stepResults) {
+        return bridgeMessageMaker.makeBridgeMessage(stepResults);
+    }
 
     @Nested
     @DisplayName("주어진 이동 결과를 바탕으로 실행 결과 메시지를 만드는 makeBridgeMessage 메서드 테스트")
@@ -59,9 +64,5 @@ class BridgeMessageMakerTest {
             Assertions.assertThat(resultMessage)
                     .isEqualTo("[ O |   |   ]" + System.lineSeparator() + "[   | X | O ]");
         }
-    }
-
-    private String makeBridgeMessage(List<StepResult> stepResults) {
-        return bridgeMessageMaker.makeBridgeMessage(stepResults);
     }
 }

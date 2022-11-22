@@ -15,6 +15,16 @@ class BridgeMakerTest {
     public static final String DOWN = Step.D.toString();
     public static final String UP = Step.U.toString();
 
+    private static BridgeMaker getMockBridgeMaker(List<Integer> mockValue) {
+        return new BridgeMaker(
+                getMockNumberGenerator(mockValue)
+        );
+    }
+
+    private static MockNumberGenerator getMockNumberGenerator(List<Integer> mockValues) {
+        return new MockNumberGenerator(mockValues);
+    }
+
     @Nested
     @DisplayName("입력받은 갈이를 가진 다리를 생성하는 makeBridge 메서드")
     class makeBridge {
@@ -57,15 +67,5 @@ class BridgeMakerTest {
             //then
             assertThat(target).containsExactly(DOWN, UP, DOWN, DOWN, UP, UP, UP, DOWN);
         }
-    }
-
-    private static BridgeMaker getMockBridgeMaker(List<Integer> mockValue) {
-        return new BridgeMaker(
-                getMockNumberGenerator(mockValue)
-        );
-    }
-
-    private static MockNumberGenerator getMockNumberGenerator(List<Integer> mockValues) {
-        return new MockNumberGenerator(mockValues);
     }
 }

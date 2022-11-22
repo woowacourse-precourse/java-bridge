@@ -1,12 +1,12 @@
 package bridge.controller;
 
+import bridge.dto.TryCountDto;
 import bridge.service.BridgeService;
 import bridge.view.inputview.InputViewInterface;
 import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;
 import bridge.vo.GameResult;
 import bridge.vo.StepResult;
-import bridge.dto.TryCountDto;
 import bridge.vo.enums.Command;
 import bridge.vo.enums.Step;
 
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
+
     private final OutputView outputView;
     private final InputViewInterface inputView;
     private final BridgeService bridgeService;

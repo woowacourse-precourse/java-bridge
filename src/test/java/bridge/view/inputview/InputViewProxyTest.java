@@ -12,6 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InputViewProxyTest {
+
     @Nested
     @DisplayName("InputView에 ExceptionHandling 코드를 씌운 프록시객체 테스트")
     class InputViewExceptionHandlingProxyTest {

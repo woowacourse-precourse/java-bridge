@@ -3,6 +3,7 @@ package bridge.vo.enums;
 import java.util.Arrays;
 
 public enum Command {
+
     R,
     Q;
 

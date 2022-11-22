@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MockNumberGenerator implements BridgeNumberGenerator {
+
     private final Iterator<Integer> numbers;
 
     public MockNumberGenerator(List<Integer> numbers) {

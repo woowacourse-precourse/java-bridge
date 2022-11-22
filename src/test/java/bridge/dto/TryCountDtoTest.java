@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TryCountDtoTest {
+
     @Nested
     @DisplayName("tryCount의 카운트를 올리는 addCount 메서드")
     class AddCountTest {

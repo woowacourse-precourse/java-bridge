@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("GameControllerTest 테스트 (= 통합테스트)")
 class GameControllerTest {
+
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream captor = new ByteArrayOutputStream();
 

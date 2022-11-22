@@ -1,8 +1,8 @@
 package bridge.service;
 
-import bridge.vo.enums.Step;
-import bridge.vo.StepResult;
 import bridge.dto.TryCountDto;
+import bridge.vo.StepResult;
+import bridge.vo.enums.Step;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

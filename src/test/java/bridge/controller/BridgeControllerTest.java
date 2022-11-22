@@ -14,6 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeControllerTest {
+
     public static final String UP = Step.U.toString();
     public static final String DOWN = Step.D.toString();
 

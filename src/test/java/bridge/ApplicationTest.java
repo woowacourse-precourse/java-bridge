@@ -14,9 +14,9 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 class ApplicationTest extends NsTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
     public static final String UP = Step.U.toString();
     public static final String DOWN = Step.D.toString();
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void 다리_생성_테스트() {

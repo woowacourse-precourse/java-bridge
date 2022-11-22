@@ -1,7 +1,7 @@
 package bridge.system.util;
 
-import bridge.vo.enums.Step;
 import bridge.vo.StepResult;
+import bridge.vo.enums.Step;
 
 import java.util.Iterator;
 import java.util.List;

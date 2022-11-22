@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MockInputView extends InputView {
+
     private final Iterator<String> mockInputs;
 
     public MockInputView(List<String> mockInputs) {

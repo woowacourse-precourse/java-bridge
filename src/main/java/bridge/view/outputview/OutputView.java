@@ -2,7 +2,8 @@ package bridge.view.outputview;
 
 import bridge.dto.TryCountDto;
 import bridge.system.util.BridgeMessageMaker;
-import bridge.vo.*;
+import bridge.vo.GameResult;
+import bridge.vo.StepResult;
 import bridge.vo.enums.Command;
 import bridge.vo.enums.Step;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
     public static final String GAME_STARTING_MESSAGE = String.format("다리 건너기 게임을 시작합니다.%n%n");
     public static final String ASKING_BRIDGE_SIZE_MESSAGE = String.format("다리의 길이를 입력해주세요.%n");
     public static final String ASKING_NEXT_STEP_MESSAGE

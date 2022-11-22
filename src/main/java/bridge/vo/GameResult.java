@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameResult {
+
     private final List<StepResult> stepResults;
     private final TryCountDto tryCount;
 
