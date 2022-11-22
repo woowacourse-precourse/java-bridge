@@ -19,7 +19,6 @@ public class GameCommandValidator {
 		if (!isRightCommand(input)) {
 			throw new RestartOrQuitCommandException();
 		}
-
 	}
 
 	private static boolean isRightCommand(final String input) {
