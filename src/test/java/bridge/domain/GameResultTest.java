@@ -19,8 +19,8 @@ class GameResultTest {
         List<Boolean> boolBridge = newArrayList();
         String expected = "[ O |   ]\n" + "[   | X ]\n";
 
-        gameResult = new GameResult();
-        bridgeMatcher = new BridgeMatcher(boolBridge);
+        gameResult = new GameResult("", "");
+        bridgeMatcher = new BridgeMatcher(boolBridge, 1);
 
         gameResult.makeBridgeResult(Validator.MOVE_UP, true, bridgeMatcher);
         String actual = gameResult.makeBridgeResult(Validator.MOVE_DOWN, false, bridgeMatcher);

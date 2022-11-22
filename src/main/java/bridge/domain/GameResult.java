@@ -15,7 +15,15 @@ public class GameResult {
     private String upBridge;
     private String downBridge;
 
-    public GameResult() {
+    public GameResult(String upBridge, String downBridge) {
+        this.upBridge = upBridge;
+        this.downBridge = downBridge;
+    }
+
+    public String getFinalResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(upBridge).append(downBridge);
+        return stringBuilder.toString();
     }
 
     public String makeBridgeResult(String input, boolean isMatch, BridgeMatcher bridgeMatcher) {
