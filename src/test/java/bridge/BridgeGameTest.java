@@ -33,4 +33,16 @@ class BridgeGameTest {
         assertThat(bridgeGame.inputHistory()).isEqualTo(history);
     }
 
-}
+    @Test
+    @DisplayName("입력 값에 따른 반환 값 테스트")
+    void returnResultValue() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeMove(bridgeGame);
+
+        assertThat(bridgeGame.returnResultValue(0)).isEqualTo("U");
+        assertThat(bridgeGame.returnResultValue(1)).isEqualTo("D");
+        assertThat(bridgeGame.returnResultValue(2)).isEqualTo("UF");
+        assertThat(bridgeGame.returnResultValue(3)).isEqualTo("DF");
+        assertThat(bridgeGame.returnResultValue(4)).isEqualTo("DF");
+    }
