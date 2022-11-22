@@ -13,16 +13,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             InputController inputController = new InputController();
-
-            int bridgeSize = inputController.getBridgeSize(InputView.readBridgeSize());
-            BridgeGame bridgeGame = new BridgeGame(bridgeSize);
-
-            List<String> bridge = bridgeGame.makeBridge();
-            OutputView.printGameStart();
-
             List<List<String>> bridgeMap;
             boolean success;
             int gameCount = 0;
+
+            OutputView.printGameStart();
+            int bridgeSize = inputController.getBridgeSize(InputView.readBridgeSize());
+            BridgeGame bridgeGame = new BridgeGame(bridgeSize);
+            List<String> bridge = bridgeGame.makeBridge();
 
             do {
                 success = true;
@@ -32,6 +30,7 @@ public class Application {
                     String moving = inputController.getMoving(InputView.readMoving());
                     if (!bridgeGame.move(moving, bridgeBlock, bridgeMap)) {
                         success = false;
+                        OutputView.printMap(bridgeMap);
                         break;
                     }
                     OutputView.printMap(bridgeMap);
