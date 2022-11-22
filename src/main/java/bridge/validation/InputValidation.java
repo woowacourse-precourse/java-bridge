@@ -1,6 +1,6 @@
-package bridge;
+package bridge.validation;
 
-import static bridge.ErrorMessage.*;
+import static bridge.constants.ErrorMessage.*;
 
 public class InputValidation {
 

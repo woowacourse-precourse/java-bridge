@@ -1,12 +1,11 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static bridge.Moving.UP;
-import static bridge.Result.UP_FAIL;
-import static bridge.Result.UP_SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 

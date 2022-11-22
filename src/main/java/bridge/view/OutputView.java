@@ -1,10 +1,12 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.Result;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.OutputMessage.*;
-import static bridge.Result.*;
+import static bridge.constants.OutputMessage.*;
+import static bridge.domain.Result.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

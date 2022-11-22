@@ -1,8 +1,9 @@
-package bridge;
+package bridge.view;
 
+import bridge.validation.InputValidation;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.InputMessage.*;
+import static bridge.constants.InputMessage.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

@@ -1,11 +1,11 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static bridge.Moving.UP;
-import static bridge.Result.*;
+import static bridge.domain.Moving.UP;
+import static bridge.domain.Result.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

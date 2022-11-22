@@ -1,4 +1,10 @@
-package bridge;
+package bridge.controller;
+
+import bridge.*;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -7,7 +13,7 @@ public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    BridgeController(InputView inputView, OutputView outputView) {
+    public BridgeController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
