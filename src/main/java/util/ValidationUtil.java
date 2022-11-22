@@ -1,13 +1,13 @@
 package util;
 
+import enums.BridgeEnum;
 import enums.ErrorMessage;
 
 import java.util.regex.Pattern;
 
 public class ValidationUtil {
-
     public static int isValidSize(int size){
-        if(size < 3 || size > 20) throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getValue());
+        if(size < BridgeEnum.MIN_SIZE.getValue() || size > BridgeEnum.MAX_SIZE.getValue()) throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getValue());
         return size;
     }
 

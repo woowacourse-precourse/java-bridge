@@ -22,9 +22,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(
-//            Bridge bridge, int position
+            Bridge bridge, int position
     ) {
         System.out.println("printMap");
+        System.out.println(bridge.getUp());
+        System.out.println(bridge.getDown());
         StringBuilder upStringBuilder = new StringBuilder().append(start);
         StringBuilder downStringBuilder = new StringBuilder().append(start);
 
@@ -35,22 +37,23 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Result result) {
-        if(!result.getIsSuccess()) printMapWhenFail();
-        printMap();
+    public void printResult(Result result, Bridge bridge) {
+        if(!result.getIsSuccess()) printMapWhenFail(bridge);
+//        if(result.getIsSuccess()) printMap();
         String resultString = new StringBuilder()
                 .append(ResultMessage.GAME_SUCCESS_OR_FAIL.getText()).append(result.getIsSuccess()).append("\n")
                 .append(ResultMessage.TOTAL_TRIAL_COUNT.getText()).append(result.getTrial()).append("\n")
                 .toString();
-
         System.out.println(resultString);
     }
 
-    public void printMapWhenFail(){
+    public void printMapWhenFail(Bridge bridge){
         System.out.println("printMapWhenFail");
     }
 
-    public void printResultWhenQuit(){
+    private void buildMap(Bridge bridge){
+        StringBuilder stringBuilder = new StringBuilder();
 
+        stringBuilder.append()
     }
 }

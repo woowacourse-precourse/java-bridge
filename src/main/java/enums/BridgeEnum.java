@@ -1,6 +1,8 @@
 package enums;
 
 public enum BridgeEnum {
+    MIN_SIZE(3),
+    MAX_SIZE(20),
     D(0),
     U(1);
 
