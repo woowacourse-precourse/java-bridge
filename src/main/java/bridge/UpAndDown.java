@@ -15,12 +15,20 @@ public enum UpAndDown {
         this.description = description;
     }
 
+    public static String convertRandomValueToCommand(int randomValue) {
+        return findUpAndDown(randomValue).getCommand();
+    }
+
     public static UpAndDown findUpAndDown(int randomValue) {
         return Arrays.stream(UpAndDown.values())
                 .filter(c -> c.getRandomValue() == randomValue)
                 .findFirst().get();
     }
-    
+
+    public String getCommand() {
+        return command;
+    }
+
     public int getRandomValue() {
         return randomValue;
     }
