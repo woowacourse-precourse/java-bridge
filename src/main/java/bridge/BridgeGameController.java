@@ -28,9 +28,9 @@ public class BridgeGameController {
     public void playBridgeGame() {
         boolean gameContinueFlag = true;
         while (gameContinueFlag) {
-            gameContinueFlag = playGame(bridgeGame);
+            gameContinueFlag = playGame();
             outputView.printMap(bridgeGame.getBridge());
-            gameContinueFlag = askToRestartOrEnd(bridgeGame, gameContinueFlag);
+            gameContinueFlag = askToRestartOrEnd(gameContinueFlag);
             if (bridgeGame.isUserReachedToEndOfTheBridge(bridgeGame.getBridge().getSize())) {
                 break;
             }
@@ -38,22 +38,22 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame.getPlayer(), bridgeGame.getBridge());
     }
 
-    private boolean playGame(BridgeGame bridgeGame) {
+    private boolean playGame() {
         try{
             return bridgeGame.playGame(inputView.readMoving());
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e);
-            return playGame(bridgeGame);
+            return playGame();
         }
     }
 
-    private boolean askToRestartOrEnd(BridgeGame bridgeGame, boolean gameContinueFlag) {
+    private boolean askToRestartOrEnd(boolean gameContinueFlag) {
         if (!gameContinueFlag) {
             try {
                 return bridgeGame.retry(inputView.readGameCommand());
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e);
-                return askToRestartOrEnd(bridgeGame, gameContinueFlag);
+                return askToRestartOrEnd(gameContinueFlag);
             }
         }
         return true;
