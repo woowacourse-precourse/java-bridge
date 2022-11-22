@@ -3,7 +3,6 @@ package bridge;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
