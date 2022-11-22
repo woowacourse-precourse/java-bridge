@@ -1,84 +1,42 @@
 package bridge.service;
 
-import bridge.service.BridgeGenerateService;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGame {
     private static int position;
-    private static int trialCount;
+    private static int trialCount = 0;
     private static boolean onMovableCompartment;
-    private static List<String> bridge;
 
-    private final OutputView outputView;
-    private final InputView inputView;
-    private final BridgeGenerateService bridgeGenerateService;
-
-    public BridgeGame() {
-        this.outputView = new OutputView();
-        this.inputView = new InputView();
-        this.bridgeGenerateService = new BridgeGenerateService();
-    }
-
-    public void Run() {
-        outputView.printGameStartNotice();
-        bridge = generateBridge();
-
-        trialCount = 0;
-        playGame();
-
-        outputView.printResult(onMovableCompartment, trialCount);
-    }
-
-    private List<String> generateBridge() {
-        outputView.printBridgeSizeInputNotice();
-        return bridgeGenerateService.generateBridgeBySize(inputView.readBridgeSize());
-    }
-
-    private void playGame() {
+    public void initializeRound() {
         trialCount++;
-
-        moveUntilFailOrSuccess();
-        if (onMovableCompartment) {
-            return;
-        }
-        if (askGameCommand().equals("R")) {
-            retry();
-        }
+        position = 0;
+        onMovableCompartment = true;
     }
 
-    private void moveUntilFailOrSuccess() {
-        initializeGame();
-
-        while (isPlaying()) {
-            move();
-        }
-    }
-
-    private boolean isPlaying() {
+    public boolean isPlaying(List<String> bridge) {
         return onMovableCompartment && position < bridge.size();
     }
 
-    private void initializeGame() {
-        position = 0;
-        onMovableCompartment = true;
-        outputView.initializeMap();
-    }
-
-    private void move() {
-        outputView.printMovingInputNotice();
-        String moving = inputView.readMoving();
+    public void move(String moving, List<String> bridge) {
         onMovableCompartment = bridge.get(position).equals(moving);
-        outputView.printMap(position++, moving, onMovableCompartment);
     }
 
-    private String askGameCommand() {
-        outputView.printGameCommandInputNotice();
-        return inputView.readGameCommand();
+    public void retry() {
     }
 
-    private void retry() {
-        playGame();
+    public void addPosition() {
+        position++;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public int getTrialCount() {
+        return trialCount;
+    }
+
+    public boolean isOnMovableCompartment() {
+        return onMovableCompartment;
     }
 }

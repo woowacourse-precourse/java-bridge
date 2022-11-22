@@ -1,13 +1,13 @@
 package bridge;
 
-import bridge.service.BridgeGame;
+import bridge.controller.BridgeGameController;
 
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGameController bridgeGameController = new BridgeGameController();
         try {
-            bridgeGame.Run();
+            bridgeGameController.Run();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
