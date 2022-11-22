@@ -5,7 +5,11 @@ public class Player {
     private boolean GameClear;
 
     public Player() {
-        this.gameCount = 0;
+        this.gameCount = 1;
         this.GameClear = false;
+    }
+
+    public void addGameCount() {
+        this.gameCount++;
     }
 }
