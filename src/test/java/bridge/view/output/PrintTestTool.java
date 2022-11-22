@@ -16,7 +16,7 @@ public abstract class PrintTestTool {
     }
 
     @BeforeEach
-    protected final void init() {
+    protected final void initializeTest() {
         standardOut = System.out;
         captor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(captor));
