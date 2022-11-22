@@ -42,14 +42,6 @@ public class BridgeMap {
         }
     }
 
-    public void move(Move move, boolean isCorrect) {
-        if (isCorrect) {
-            correctMove(move);
-            return;
-        }
-        wrongMove(move);
-    }
-
     public String getUpSide() {
         return PREFIX + String.join(DELIMITER, upSide) + SUFFIX;
     }
@@ -61,10 +53,5 @@ public class BridgeMap {
     @Override
     public String toString() {
         return getUpSide() + "\n" + getDownSide() + "\n";
-    }
-
-    public void clear() {
-        upSide.clear();
-        downSide.clear();
     }
 }

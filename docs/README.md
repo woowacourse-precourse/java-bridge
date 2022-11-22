@@ -8,13 +8,13 @@
   - Bridge$createBridge()
 - [x] 사용자가 이동할 칸을 입력받는다.
   - InputView$readMoving()
-- [ ] 다리를 이동한다.
+- [x] 다리를 이동한다.
   - BridgeGame$move()
 - [x] 현재까지 이동한 다리의 상태를 출력한다.
   - OutputView$printMap()
 - [x] 사용자가 게임을 재시작할지 입력 받는다.
   - InputView$readGameCommand()
-- [ ] 게임을 재시작하거나 종료한다.
+- [x] 게임을 재시작하거나 종료한다.
   - BridgeGame$retry()
 - [x] 게임의 최종 결과를 출력한다.
   - OutputView$printResult()
