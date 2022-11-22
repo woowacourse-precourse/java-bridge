@@ -2,8 +2,15 @@ package bridge;
 
 public class BridgeGameController {
 
-    private final BridgeGameView bridgeGameView = new BridgeGameView();
-    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeMaker bridgeMaker;
+    
+    public BridgeGameController() {
+        this.inputView = InputView.getInstance();
+        this.outputView = OutputView.getInstance();
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
+
 
 }
