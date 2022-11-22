@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import static bridge.ErrorMessage.INVALID_BRIDGE_SIZE_ERROR;
 import static bridge.ErrorMessage.INVALID_MOVE_DIRECTION_ERROR;

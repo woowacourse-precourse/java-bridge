@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.core.GameCommand;
+import bridge.Logger;
 import java.util.function.Supplier;
 
 public class InputViewRetryProxy extends InputView {

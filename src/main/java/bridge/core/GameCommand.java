@@ -1,4 +1,4 @@
-package bridge;
+package bridge.core;
 
 import static bridge.ErrorMessage.INVALID_GAME_COMMAND_ERROR;
 

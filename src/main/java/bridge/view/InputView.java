@@ -1,11 +1,12 @@
-package bridge;
+package bridge.view;
 
-import static bridge.Bridge.UP_BLOCK_MARK;
-import static bridge.Bridge.DOWN_BLOCK_MARK;
+import static bridge.core.Bridge.UP_BLOCK_MARK;
+import static bridge.core.Bridge.DOWN_BLOCK_MARK;
 import static bridge.ErrorMessage.INVALID_BRIDGE_SIZE_ERROR;
 import static bridge.ErrorMessage.INVALID_MOVE_DIRECTION_ERROR;
-import static bridge.GameCommand.getEnum;
+import static bridge.core.GameCommand.getEnum;
 
+import bridge.core.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 

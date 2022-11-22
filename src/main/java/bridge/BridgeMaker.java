@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.Bridge.UP_BLOCK_MARK;
-import static bridge.Bridge.DOWN_BLOCK_MARK;
+import static bridge.core.Bridge.UP_BLOCK_MARK;
+import static bridge.core.Bridge.DOWN_BLOCK_MARK;
 import static java.util.Collections.unmodifiableList;
 
 import java.util.ArrayList;

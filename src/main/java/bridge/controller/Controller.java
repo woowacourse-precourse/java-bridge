@@ -1,6 +1,13 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.GameCommand.RETRY;
+import static bridge.core.GameCommand.RETRY;
+
+import bridge.core.Bridge;
+import bridge.core.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.core.GameCommand;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Controller {
 

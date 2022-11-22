@@ -1,10 +1,12 @@
-package bridge;
+package bridge.view;
 
-import static bridge.Bridge.UP_BLOCK_MARK;
-import static bridge.Bridge.DOWN_BLOCK_MARK;
+import static bridge.core.Bridge.UP_BLOCK_MARK;
+import static bridge.core.Bridge.DOWN_BLOCK_MARK;
 import static java.util.stream.Collectors.toUnmodifiableList;
 import static java.util.stream.Collectors.joining;
 
+import bridge.core.BridgeGame;
+import bridge.core.History;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;

@@ -1,9 +1,9 @@
-package bridge;
+package bridge.core;
 
 import static bridge.ErrorMessage.INVALID_GAME_COMMAND_ERROR;
-import static bridge.GameCommand.QUIT;
-import static bridge.GameCommand.RETRY;
-import static bridge.GameCommand.getEnum;
+import static bridge.core.GameCommand.QUIT;
+import static bridge.core.GameCommand.RETRY;
+import static bridge.core.GameCommand.getEnum;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
