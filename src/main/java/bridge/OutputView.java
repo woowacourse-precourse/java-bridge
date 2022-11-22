@@ -26,47 +26,6 @@ public class OutputView {
         }
     }
 
-    private void printSuccess(List<String> movement, int idx, String pivot) {
-        System.out.print("[ ");
-        for (int i = 0; i <= idx; i++) {
-            if (i != 0) {
-                System.out.print("| ");
-            }
-            if (movement.get(i).equals(pivot)) {
-                System.out.print("O ");
-            }
-            if (!movement.get(i).equals(pivot)) {
-                System.out.print("  ");
-            }
-        }
-        System.out.println("]");
-    }
-
-    private void printFailure(List<String> movement, int idx, String pivot) {
-        System.out.print("[ ");
-        for (int i = 0; i < idx; i++) {
-            if (i != 0) {
-                System.out.print("| ");
-            }
-            if (movement.get(i).equals(pivot)) {
-                System.out.print("O ");
-            }
-            if (!movement.get(i).equals(pivot)) {
-                System.out.print("  ");
-            }
-        }
-        if (idx != 0) {
-            System.out.print("| ");
-        }
-        if (movement.get(idx).equals(pivot)) {
-            System.out.print("X ");
-        }
-        if (!movement.get(idx).equals(pivot)) {
-            System.out.print("  ");
-        }
-        System.out.println("]");
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -83,4 +42,43 @@ public class OutputView {
             printFailure(movement, idx, MOVE_DOWN);
         }
     }
+
+    private void printBlock(boolean correct, boolean found) {
+        if (correct && found) {
+            System.out.print("O ");
+        }
+        if (!correct && found) {
+            System.out.print("X ");
+        }
+        if (!found) {
+            System.out.print("  ");
+        }
+    }
+
+    private void printBarrier(int idx) {
+        if (idx != 0) {
+            System.out.print("| ");
+        }
+    }
+
+    private void printSuccess(List<String> movement, int idx, String pivot) {
+        System.out.print("[ ");
+        for (int i = 0; i <= idx; i++) {
+            printBarrier(i);
+            printBlock(true, movement.get(i).equals(pivot));
+        }
+        System.out.println("]");
+    }
+
+    private void printFailure(List<String> movement, int idx, String pivot) {
+        System.out.print("[ ");
+        for (int i = 0; i < idx; i++) {
+            printBarrier(i);
+            printBlock(true, movement.get(i).equals(pivot));
+        }
+        printBarrier(idx);
+        printBlock(false, movement.get(idx).equals(pivot));
+        System.out.println("]");
+    }
+
 }
