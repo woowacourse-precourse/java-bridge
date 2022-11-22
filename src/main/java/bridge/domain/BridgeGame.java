@@ -97,4 +97,8 @@ public class BridgeGame {
             progress.put(BlockSymbol.BLANK.getSymbol(), symbol);
         }
     }
+
+    public BridgeProgress getProgress(){
+        return progress;
+    }
 }

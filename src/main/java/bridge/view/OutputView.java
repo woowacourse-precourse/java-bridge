@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printMap(String upperBlock, String lowerBlock) {
-        System.out.println(OutputText.MAP_START.getMessage() + upperBlock + OutputText.MAP_END.getMessage());
-        System.out.println(OutputText.MAP_START.getMessage() + lowerBlock + OutputText.MAP_END.getMessage());
-
+    public void printMap(List<String> bridgeMap) {
+        for (String blocks : bridgeMap){
+            System.out.println(OutputText.MAP_START.getMessage() + blocks + OutputText.MAP_END.getMessage());
+        }
     }
 
     public void printResult(String gameClear, int trialCount) {

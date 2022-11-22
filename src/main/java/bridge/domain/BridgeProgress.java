@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.constants.BlockSymbol;
+import bridge.view.text.OutputText;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,11 @@ public class BridgeProgress {
     public void clear(){
         upperBlock.clear();
         lowerBlock.clear();
+    }
+
+    public List<String> asString(){
+        return List.of(String.join(BlockSymbol.BORDER.getSymbol(), upperBlock),
+                String.join(BlockSymbol.BORDER.getSymbol(), lowerBlock));
     }
 
 }

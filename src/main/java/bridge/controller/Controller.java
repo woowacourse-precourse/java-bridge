@@ -8,15 +8,10 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.text.OutputText;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Controller {
-    private BridgeMaker bridgeMaker;
-    private InputView inputView;
-    private OutputView outputView;
+    private final BridgeMaker bridgeMaker;
+    private final InputView inputView;
+    private final OutputView outputView;
     private BridgeGame bridgeGame;
     public Controller (BridgeMaker bridgeMaker, InputView inputView, OutputView outputView){
         this.bridgeMaker = bridgeMaker;
@@ -44,9 +39,8 @@ public class Controller {
     private void inputBridgeLength(){
         try {
             outputView.printBridgeLengthInputRequest();
-            int bridgeLength = inputView.readBridgeSize();
-            List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
-            bridgeGame.setBridge(bridge);
+            bridgeGame.setBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            showMap();
         }
         catch (IllegalArgumentException exception){
             outputView.printErrorMessage(exception.getMessage());
@@ -57,9 +51,7 @@ public class Controller {
     private void move(){
         try {
             outputView.printMoveInputRequest(Command.MOVE_UP.getCommand(), Command.MOVE_DOWN.getCommand());
-            String moveCommand = inputView.readMoving();
-            bridgeGame.move(moveCommand);
-            outputView.printMap(mapToString(bridgeGame.getUpperBlock()), mapToString(bridgeGame.getLowerBlock()));
+            bridgeGame.move(inputView.readMoving());
         }
         catch (IllegalArgumentException exception){
             outputView.printErrorMessage(exception.getMessage());
@@ -67,15 +59,10 @@ public class Controller {
         }
     }
 
-    private String mapToString(List<String> map){
-        return String.join(OutputText.MAP_BORDER.getMessage(), map);
-    }
-
     private void retry(){
         try {
             outputView.printRetryInputRequest(Command.RETRY.getCommand(), Command.QUIT.getCommand());
-            String retrialInput = inputView.readGameCommand();
-            bridgeGame.retry(retrialInput);
+            bridgeGame.retry(inputView.readGameCommand());
         }
         catch (IllegalArgumentException exception){
             outputView.printErrorMessage(exception.getMessage());
@@ -85,11 +72,15 @@ public class Controller {
 
     private void showResult(){
         outputView.printResult(gameStateToString(bridgeGame.getGameState()), bridgeGame.getTrialCount());
-        outputView.printMap(mapToString(bridgeGame.getUpperBlock()), mapToString(bridgeGame.getLowerBlock()));
+        showMap();
     }
 
     private String gameStateToString(GameState gameState){
         if (gameState == GameState.CLEAR) return OutputText.CLEAR.getMessage();
         return OutputText.FAIL.getMessage();
+    }
+
+    private void showMap(){
+        outputView.printMap(bridgeGame.getProgress().asString());
     }
 }
