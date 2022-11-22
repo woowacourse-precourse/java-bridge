@@ -1,6 +1,6 @@
 package bridge.ModelTest;
 
-import bridge.UI.InputView;
+import bridge.View.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

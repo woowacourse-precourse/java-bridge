@@ -1,4 +1,4 @@
-package bridge.UI;
+package bridge.View;
 
 import bridge.Constant.Constant;
 import camp.nextstep.edu.missionutils.Console;
