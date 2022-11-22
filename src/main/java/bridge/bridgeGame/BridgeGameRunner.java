@@ -1,5 +1,7 @@
 package bridge.bridgeGame;
 
+import static bridge.bridgeGame.GameCommand.COMMAND_RETRY;
+
 import bridge.bridge.BridgeNumberGenerator;
 import bridge.bridge.BridgePosition;
 import bridge.view.InputView;
@@ -51,8 +53,8 @@ public class BridgeGameRunner {
 
     private RoundResult checkRetry() {
         outputView.printRequestGameRetry();
-        String gameCommand = inputView.readGameCommand();
-        if (gameCommand.equals(InputView.GAME_RESTART)) {
+        GameCommand gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals(COMMAND_RETRY)) {
             return RoundResult.CONTINUE;
         }
         return RoundResult.END;
