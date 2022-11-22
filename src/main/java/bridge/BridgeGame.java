@@ -13,15 +13,21 @@ public class BridgeGame {
     BridgeMap bridgeMap;
     private List<String> bridge;
     private int cursor;
+    private int trial;
 
     BridgeGame(int size) {
         bridge = bridgeMaker.makeBridge(size);
         cursor = 0;
+        trial = 1;
         bridgeMap = new BridgeMap();
     }
 
     public int getCursor() {
         return cursor;
+    }
+
+    public int getTrial() {
+        return trial;
     }
 
     // Compare input direction and cursor direction
@@ -45,6 +51,7 @@ public class BridgeGame {
     public void retry() {
         bridgeMap.refreshMap();
         cursor = 0;
+        trial += 1;
     }
 
     // check game is over

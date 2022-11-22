@@ -23,11 +23,12 @@ public class GameController {
     }
 
     private void ending() {
-        outputView.printResult(bridgeGame.bridgeMap.getBridgeMap(), bridgeGame.isOver(), bridgeGame.getCursor());
+        outputView.printResult(bridgeGame.bridgeMap.getBridgeMap(), bridgeGame.isOver(), bridgeGame.getTrial());
     }
 
     public void run() {
         bridgeGame = new BridgeGame(inputView.readBridgeSize());
+        outputView.openingMention();
         while (true) {
             if (simulate() || inputView.readGameCommand().equals("Q")) {
                 break;
