@@ -3,7 +3,6 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.utils.BridgeNumberGenerator;
 import bridge.view.message.ErrorMessage;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;

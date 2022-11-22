@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge;
 
 import bridge.model.BridgeStatus;
 import java.util.ArrayList;
