@@ -28,7 +28,7 @@ public class BridgeMaker {
 
     private void validateSize(int size) {
         if (size < BRIDGE_MINIMUM || size > BRIDGE_MAXIMUM) {
-            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("다리 길이는 " + BRIDGE_MINIMUM + "부터 " + BRIDGE_MAXIMUM + " 사이의 숫자여야 합니다.");
         }
     }
 
