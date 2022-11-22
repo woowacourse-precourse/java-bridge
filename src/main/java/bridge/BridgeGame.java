@@ -11,6 +11,7 @@ import bridge.input.getter.GameCommandGetter;
 import bridge.input.getter.MoveGetter;
 import bridge.output.ResultDemonstrator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
@@ -44,8 +45,11 @@ public class BridgeGame {
     public void runGame() {
         this.bridgeGameStarter.atGameStart();
         System.out.println();
+
         List<String> bridge = this.bridgeMaker.makeBridge(bridgeSize());
         System.out.println();
+
+        FinalResult finalResult = runGameWithBridge(bridge, new ArrayList<>(), 1);
     }
 
     public int bridgeSize() {
