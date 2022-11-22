@@ -46,7 +46,7 @@ public class InputView {
         }
         if (stringToint < 3 || stringToint > 20) {
             throw new IllegalArgumentException("다리 길이는 3이상 20이하의 자연수 입니다.");
-            }
+        }
     }
     private void validateRetry(String inputMoving) throws IllegalArgumentException{
         if(inputMoving.replaceAll("[^QR]","").length() != inputMoving.length()){

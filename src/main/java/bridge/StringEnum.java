@@ -2,6 +2,7 @@ package bridge;
 
 public enum StringEnum {
     Q("Q"),
+    R("R"),
     UP("U"),
     DOWN("D"),
     O(" O "),
@@ -17,7 +18,8 @@ public enum StringEnum {
     GAME_RESULT_FINAL("최종 게임 결과"),
     INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
     INPUT_RETRYORQUITE("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
-    INPUT_MOVIECHOICE("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    INPUT_MOVIECHOICE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
+    ERROR("[ERROR]");
 
     private String str;
     StringEnum(){}
