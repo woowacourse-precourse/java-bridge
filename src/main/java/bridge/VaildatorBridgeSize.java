@@ -2,14 +2,13 @@ package bridge;
 
 public class VaildatorBridgeSize {
 
-    private static String userInputBridgeSize;
+    private static String userInputBridgeString;
+    public static int userInputBridgeSize;
 
-    public VaildatorBridgeSize(String userInputBridgeSize){
-        this.userInputBridgeSize = userInputBridgeSize;
+    public VaildatorBridgeSize(String userInputBridgeString){
+        this.userInputBridgeString = userInputBridgeString;
 
         validate();
-
-
     }
 
     private void validate() {
@@ -17,16 +16,16 @@ public class VaildatorBridgeSize {
         rangeValidate();
     }
     private void integerValidate() {
-        if (!userInputBridgeSize.matches("[+-]?\\d*(\\.\\d+)?")) {
+        if (!userInputBridgeString.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
 
     }
 
     private void rangeValidate() {
-        int bridgeSizeInteger = Integer.parseInt(userInputBridgeSize);
+        userInputBridgeSize = Integer.parseInt(userInputBridgeString);
 
-        if (! (bridgeSizeInteger >=3 && bridgeSizeInteger<=20 )) {
+        if (! (userInputBridgeSize >=3 && userInputBridgeSize<=20 )) {
             throw new IllegalArgumentException("[ERROR] 3~20사이의 값을 입력해주세요.");
         }
 
