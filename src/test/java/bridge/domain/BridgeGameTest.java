@@ -38,4 +38,13 @@ public class BridgeGameTest {
         List<String> bridgeCurrStatus = bridgeGame.getBridgeCurrStatus();
         assertThat(bridgeCurrStatus).isEqualTo(List.of("X"));
     }
+
+    @DisplayName("게임 성공 여부 잘 판단하는지 테스트")
+    @Test
+    public void isSuccessTest() {
+        List<String> bridge = List.of("U", "D", "U");
+        bridgeGame = new BridgeGame(List.of("O", "O", "O"));
+
+        assertThat(bridgeGame.isSuccess(bridge)).isEqualTo(true);
+    }
 }
