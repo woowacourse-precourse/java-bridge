@@ -8,8 +8,8 @@ public class Application {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
 
-        outputView.printGameStart();
-        outputView.printInputBridgeSize();
+        outputView.printGameStartMessage();
+        outputView.printInputBridgeSizeMessage();
 
         try {
             int bridgeSize = inputView.readBridgeSize();
