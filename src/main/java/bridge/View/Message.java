@@ -13,13 +13,13 @@ public enum Message {
     OPEN_BRACKET("[ "),
     CLOSED_BRACKET(" ]");
 
-    private String message;
+    private final String message;
 
-    Message(String message){
+    Message(String message) {
         this.message = message;
     }
 
-    String getMessage(){
+    String getMessage() {
         return this.message;
     }
 }
