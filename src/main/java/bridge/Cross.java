@@ -21,4 +21,8 @@ public enum Cross {
                 .findFirst()
                 .orElseGet(null);
     }
+
+    public String getMark() {
+        return mark;
+    }
 }
