@@ -1,4 +1,4 @@
-package domain.bridge;
+package bridge;
 
 import domain.player.Player;
 

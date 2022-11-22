@@ -1,6 +1,6 @@
 package domain.player;
 
-import domain.bridge.UserBridge;
+import bridge.UserBridge;
 import view.InputView;
 
 import static constant.ApplicationMessage.ASK_RETRY;

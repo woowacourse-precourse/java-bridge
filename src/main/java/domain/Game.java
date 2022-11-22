@@ -1,7 +1,7 @@
 package domain;
 
-import domain.bridge.AnswerBridge;
-import domain.bridge.BridgeGame;
+import bridge.AnswerBridge;
+import bridge.BridgeGame;
 import view.OutputView;
 import domain.player.Player;
 
