@@ -17,4 +17,20 @@ class BridgeGameTest {
         assertThat(result)
                 .isEqualTo(false);
     }
+
+    @DisplayName("canMove함수가 다리와 같은 문자열을 넣었을때 true를 반환하는 지 테스트")
+    @Test
+    void canMove() {
+        final BridgeGame bridgeGame = new BridgeGame(3);
+        List<String> move = bridgeGame.getBridge();
+        List<String> bridge = bridgeGame.getBridge();
+        boolean result = true;
+        for(String str : move){
+            if(!bridgeGame.canMove(str)){
+                result = false;
+            }
+        }
+        assertThat(result).isEqualTo(true);
+    }
+
 }
