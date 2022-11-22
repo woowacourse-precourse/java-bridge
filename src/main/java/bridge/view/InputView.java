@@ -82,7 +82,7 @@ public class InputView {
         return !isRestartGame.equals(Constant.QUIT_GAME) && !isRestartGame.equals(Constant.RESTART_GAME);
     }
 
-    public boolean isThrowError(Consumer<String> validateFunction, String input) {
+    private boolean isThrowError(Consumer<String> validateFunction, String input) {
         boolean isThrowError = false;
         try {
             validateFunction.accept(input);
