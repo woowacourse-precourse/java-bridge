@@ -20,7 +20,6 @@ class UserTest {
         assertThat(user.getTryCount()).isEqualTo(1);
     }
 
-
     @DisplayName("시도 횟수 증가 테스트")
     @Test
     public void increaseTryCountTest() {
@@ -58,7 +57,6 @@ class UserTest {
         //then
         assertThat(user.isSuccessComplete()).isEqualTo(false);
     }
-
 
     @DisplayName("게임 종료 및 실패 테스트")
     @Test
