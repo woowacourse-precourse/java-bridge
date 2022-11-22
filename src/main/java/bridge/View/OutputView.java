@@ -23,7 +23,11 @@ public class OutputView {
         System.out.println(Message.MOVE.print());
     }
 
-    public static void printMap(BridgeMap bridgeMap) {
+    public static void printMap(final BridgeMap bridgeMap) {
         System.out.print(bridgeMap + "\n");
+    }
+
+    public static void printStartOrEnd() {
+        System.out.println(Message.START_OR_END.print());
     }
 }

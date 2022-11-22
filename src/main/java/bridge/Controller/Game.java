@@ -23,6 +23,7 @@ public class Game {
             if(isStart) { // 다리를 다 건넜을 때
                 break;
             }
+            isStartOrEnd();
         }
     }
 
@@ -52,4 +53,7 @@ public class Game {
         return gameState;
     }
 
+    private boolean isStartOrEnd() {
+        OutputView.printStartOrEnd();
+    }
 }
