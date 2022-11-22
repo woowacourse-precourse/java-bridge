@@ -61,4 +61,13 @@ public class GameController {
     crossResult.add(new Cross(userDirection, canCross(bridgeDirection, userDirection)));
   }
 
+  public void playGame() {
+    outputView.printGameStartMessage();
+    outputView.printAskBridgeSizeMessage();
+    Bridge bridge = makeBridge(getBridgeSize());
+    move(bridge);
+  }
+
+
+
 }
