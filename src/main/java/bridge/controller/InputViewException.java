@@ -24,4 +24,37 @@ public class InputViewException {
     }
 
 
+
+    private static void error01Check(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(error01);
+        }
+    }
+
+    private static void error02Check(String input) {
+        if (isInteger(input)) {
+            throw new IllegalArgumentException(error02);
+        }
+    }
+
+    private static void error03Check(String input) {
+        if ((Integer.parseInt(input) < 3) || (Integer.parseInt(input) > 20)) {
+            throw new IllegalArgumentException(error03);
+        }
+    }
+
+
+    private static void error04Check(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException(error04);
+        }
+    }
+
+    private static void error05Check(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException(error05);
+        }
+    }
+
+
 }
