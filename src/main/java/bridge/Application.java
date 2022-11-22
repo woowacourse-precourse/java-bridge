@@ -9,9 +9,9 @@ public class Application {
         InputView inputView = new InputView();
         inputView.greetingGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeSizeParameter bridgeSizeParameter = inputView.readBridgeSize();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker, bridgeSizeParameter.getBridgeSize());
-        RetryCommand.move(inputView, bridgeGame);
+        int bridgeSize = inputView.readBridgeSize();
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker, bridgeSize);
+        RetryFrame.move(inputView, bridgeGame);
 
         OutputView.resultGreeting();
         OutputView.printMap(bridgeGame.upMap(), bridgeGame.downMap());

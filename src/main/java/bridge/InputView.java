@@ -11,6 +11,9 @@ public class InputView {
     private static final String GREETING_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final Pattern INT_FILTER = Pattern.compile("^\\d*$");
     private static final Pattern RANGE_FILTER = Pattern.compile("^[1-9]|1[0-9]|20$");
+    private static final Pattern MOVING_FILTER = Pattern.compile("^[DU]$");
+
+    private static final Pattern RETRY_COMMAND_FILTER = Pattern.compile("^[RQ]$");
 
     public void greetingGame() {
         System.out.println(GREETING_GAME);
@@ -20,12 +23,12 @@ public class InputView {
         System.out.println(CHOOSE_SQUARE);
     }
 
-    public BridgeSizeParameter readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println(CHOOSE_BRIDGE_SIZE);
         String bridgeSize = Console.readLine();
         checkBridgeSize(bridgeSize);
 
-        return new BridgeSizeParameter(convertBridge(bridgeSize));
+        return convertBridge(bridgeSize);
     }
 
     public MovingCommandParameter readMoving() {
@@ -35,12 +38,12 @@ public class InputView {
         return new MovingCommandParameter(moving);
     }
 
-    public CommandParameter readGameCommand() {
+    public RetryCommandParameter readGameCommand() {
         System.out.println(GREETING_GAME_COMMAND);
         String command = Console.readLine();
         checkRetryCommand(command);
 
-        return new CommandParameter(command);
+        return new RetryCommandParameter(command);
     }
 
     private void checkBridgeSize(String bridgeSize) {
@@ -57,7 +60,8 @@ public class InputView {
     private void checkMovingCommand(String movingCommand) {
         try {
             blank(movingCommand);
-        } catch (InputException e) {
+            checkMoving(movingCommand);
+        } catch (InputException | MovingCommandException e) {
             System.out.println(e.getMessage());
             readMoving();
         }
@@ -66,7 +70,8 @@ public class InputView {
     private void checkRetryCommand(String retryCommand) {
         try {
             blank(retryCommand);
-        } catch (InputException e) {
+            isRetryCommand(retryCommand);
+        } catch (InputException | RetryCommandException e) {
             System.out.println(e.getMessage());
             readGameCommand();
         }
@@ -88,6 +93,18 @@ public class InputView {
     private void isNumber(String input) {
         if (!INT_FILTER.matcher(input).matches()) {
             throw new InputException("[ERROR] 숫자만 입력할 수 있습니다.");
+        }
+    }
+
+    private void checkMoving(String movingCommand) {
+        if (!MOVING_FILTER.matcher(movingCommand).matches()) {
+            throw new MovingCommandException("[ERROR] U또는 D를 입력해주세요");
+        }
+    }
+
+    private void isRetryCommand(String command) {
+        if (!RETRY_COMMAND_FILTER.matcher(command).matches()) {
+            throw new RetryCommandException("[ERROR] Q와 R만 입력할 수 있습니다.");
         }
     }
 

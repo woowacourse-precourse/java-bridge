@@ -2,11 +2,13 @@ package bridge;
 
 import bridge.domain.BridgeGame;
 
-public class RetryCommand {
+public class RetryFrame {
+
     public static void move(InputView inputView, BridgeGame bridgeGame) {
         while (bridgeGame.isSuccess() && bridgeGame.moveResults().size() < bridgeGame.bridgeSize()) {
             inputView.chooseSquare();
-            String movingCommand = inputView.readMoving().getMovingCommand();
+            MovingCommandParameter movingCommandParameter = inputView.readMoving();
+            String movingCommand = movingCommandParameter.getMovingCommand();
             bridgeGame.move(movingCommand);
             OutputView.printEachMap(bridgeGame.upMap(), bridgeGame.downMap());
 

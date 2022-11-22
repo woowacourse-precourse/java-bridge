@@ -6,11 +6,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MovingCommandParameterTest {
+class MovingRetryCommandParameterTest {
     @ParameterizedTest
     @ValueSource(strings = {"3", "A", "B", "!"})
     void if_wrong_input(String input) {
-        CommandException commandException = assertThrows(CommandException.class, () -> new MovingCommandParameter(input));
+        MovingCommandException commandException = assertThrows(MovingCommandException.class, () -> new MovingCommandParameter(input));
 
         assertThat(commandException.getMessage()).contains("[ERROR]");
     }

@@ -1,15 +1,10 @@
 package bridge.domain;
 
-import bridge.BridgeKey;
-import bridge.CrossResult;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MoveResults {
     private final List<MoveResult> moveResults = new ArrayList<>();
-
 
     private int tryNum = 1;
 

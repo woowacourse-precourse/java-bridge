@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+
 public class BridgeGame {
     private final Bridge bridge;
     private final MoveResults moveResults = new MoveResults();
@@ -25,7 +23,6 @@ public class BridgeGame {
         moveResults.addResult(bridge.moveResult(moveResults().size(), controlKey));
         addMapParameter();
     }
-
 
     public void retry() {
         moveResults.addTryNum();

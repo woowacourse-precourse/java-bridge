@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.CommandException;
-import bridge.CommandParameter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,12 +7,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CommandParameterTest {
+class RetryCommandParameterTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"3", "A", "B", "!"})
     void if_wrong_input(String input) {
-        CommandException commandException = assertThrows(CommandException.class, () -> new CommandParameter(input));
+        MovingCommandException commandException = assertThrows(MovingCommandException.class, () -> new RetryCommandParameter(input));
 
         assertThat(commandException.getMessage()).contains("[ERROR]");
     }
@@ -22,14 +20,14 @@ class CommandParameterTest {
     @ParameterizedTest
     @ValueSource(strings = {"Q", "R"})
     void if_right_input(String input) {
-        CommandParameter commandParameter = new CommandParameter(input);
+        RetryCommandParameter retryCommandParameter = new RetryCommandParameter(input);
 
-        assertThat(commandParameter.getCommand()).isEqualTo(input);
+        assertThat(retryCommandParameter.getCommand()).isEqualTo(input);
     }
 
     @Test
     void quiet() {
-        CommandParameter key = new CommandParameter("Q");
+        RetryCommandParameter key = new RetryCommandParameter("Q");
         assertTrue(key.quiet());
     }
 }
