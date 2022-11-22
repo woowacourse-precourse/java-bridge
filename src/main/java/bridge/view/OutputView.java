@@ -13,16 +13,20 @@ public class OutputView {
         System.out.println(GameMessage.STARTING_GAME);
         System.out.println();
         System.out.println(GameMessage.SET_GAME);
+        System.out.println();
     }
 
     public void printMove(){
         System.out.println(GameMessage.RUNNING_GAME);
+        System.out.println();
     }
     public void printRetry(){
         System.out.println(GameMessage.GAME_RETRY);
+        System.out.println();
     }
     public void printException(String exception){
         System.out.println(exception);
+        System.out.println();
     }
 
     /**
@@ -45,6 +49,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<String>> buffer, String result, int totalCount) {
+        System.out.println();
         System.out.println(GameMessage.GAME_RESULT);
         printMap(buffer);
         System.out.println();
