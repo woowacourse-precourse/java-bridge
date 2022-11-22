@@ -1,20 +1,25 @@
 package bridge;
 
+import static bridge.Application.inputView;
+import static bridge.Application.outputView;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final int END_GAME = 0;
+    ErrorCheck errorCheck = new ErrorCheck();
+    private final int END_GAME = 0;
+    private final String QUIT = "Q";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static String move() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String nextMove = InputView.readMoving();
-        if(ErrorCheck.isValidUpOrDown(nextMove));
+    public String move() {
+        Message.choiceMove();
+        String nextMove = inputView.readMoving();
+        if(errorCheck.isValidUpOrDown(nextMove));
         return nextMove;
     }
 
@@ -23,29 +28,29 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static int retry(int gameCnt, String answerOfRetry, int BRIDGE_LENGTH) {
-        if(answerOfRetry.equals("Q")) {
+    public int retry(int gameCnt, String answerOfRetry, int BRIDGE_LENGTH) {
+        if(answerOfRetry.equals(QUIT)) {
             retryAnswerIsQuit(gameCnt);
             return END_GAME;
         }
         return BRIDGE_LENGTH;
     }
 
-    public static void retryAnswerIsQuit(int gameCnt) {
-        System.out.println("최종 게임 결과");
-        OutputView.printUpBridge();
-        OutputView.printDownBridge();
-        System.out.println();
-        System.out.println("게임 성공 여부: 실패");
-        System.out.println("총 시도한 횟수: " + gameCnt);
+    public void retryAnswerIsQuit(int gameCnt) {
+        Message.gameResult();
+        outputView.printUpBridge();
+        outputView.printDownBridge();
+        Message.blank();
+        Message.gameFail();
+        Message.tryCount(gameCnt);
     }
 
-    public static void retryAnswerIsSuccess(int gameCnt) {
-        System.out.println("최종 게임 결과");
-        OutputView.printUpBridge();
-        OutputView.printDownBridge();
-        System.out.println();
-        System.out.println("게임 성공 여부: 성공");
-        System.out.println("총 시도한 횟수: " + gameCnt);
+    public void retryAnswerIsSuccess(int gameCnt) {
+        Message.gameResult();
+        outputView.printUpBridge();
+        outputView.printDownBridge();
+        Message.blank();
+        Message.gameSuccess();
+        Message.tryCount(gameCnt);
     }
 }

@@ -10,18 +10,23 @@ import static bridge.Application.bridgeGame;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String START_POINT = "[ ";
-    private static final String END_POINT = " ]";
-    private static final List<String> upBridge = new ArrayList<>();
-    private static final List<String> downBridge = new ArrayList<>();
-    private static boolean SUCCESS_OR_FAIL = true;
+    private final String START_POINT = "[ ";
+    private final String END_POINT = " ]";
+    private final String UP_BRIDGE_BTN = "U";
+    private final String DOWN_BRIDGE_BTN = "D";
+    private final String BLANK = " ";
+    private final String WALK_SUCCESS = "O";
+    private final String WALK_FAIL = "X";
+    private final List<String> upBridge = new ArrayList<>();
+    private final List<String> downBridge = new ArrayList<>();
+    private boolean SUCCESS_OR_FAIL = true;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static boolean printMap(int idx, List<String> bridge, String nextMove) {
+    public boolean printMap(int idx, List<String> bridge, String nextMove) {
         boolean canNextMove = CheckNextMove(idx, bridge, nextMove);
         nextMoving(nextMove, canNextMove);
         printUpBridge();
@@ -38,74 +43,74 @@ public class OutputView {
         if(CURRENT_LOCATION==0 && successOrFail) bridgeGame.retryAnswerIsSuccess(gameCnt);
     }
 
-    public static void getSuccessOrFail() {
+    public void getSuccessOrFail() {
         SUCCESS_OR_FAIL = true;
     }
 
-    public static void bridgeInitialize() {
+    public void bridgeInitialize() {
         upBridge.clear();;
         downBridge.clear();
     }
 
-    public static void printUpBridge() {
+    public void printUpBridge() {
         StringBuilder sb = new StringBuilder();
         sb.append(START_POINT).append(JoinBridge(upBridge)).append(END_POINT);
         System.out.print(sb);
         System.out.println();
     }
 
-    public static void printDownBridge() {
+    public void printDownBridge() {
         StringBuilder sb = new StringBuilder();
         sb.append(START_POINT).append(JoinBridge(downBridge)).append(END_POINT);
         System.out.println(sb);
     }
 
-    public static String JoinBridge(List<String> upBridge) {
+    public String JoinBridge(List<String> upBridge) {
         return String.join(" | ", upBridge);
     }
 
-    public static void nextMoving(String nextMove, boolean canNextMove) {
-        if(Objects.equals(nextMove, "U")) {
+    public void nextMoving(String nextMove, boolean canNextMove) {
+        if(Objects.equals(nextMove, UP_BRIDGE_BTN)) {
             MoveUpBridge(canNextMove);
             notMoveDownBridge();
         }
-        if(Objects.equals(nextMove, "D")) {
+        if(Objects.equals(nextMove, DOWN_BRIDGE_BTN)) {
             MoveDownBridge(canNextMove);
             notMoveUpBridge();
         }
     }
 
-    public static void notMoveUpBridge() {
-        upBridge.add(" ");
+    public void notMoveUpBridge() {
+        upBridge.add(BLANK);
     }
-    public static void notMoveDownBridge() {
-        downBridge.add(" ");
+    public void notMoveDownBridge() {
+        downBridge.add(BLANK);
     }
 
-    public static void MoveDownBridge(boolean canNextMove) {
-        if(canNextMove) downBridge.add("O");
+    public void MoveDownBridge(boolean canNextMove) {
+        if(canNextMove) downBridge.add(WALK_SUCCESS);
         if(!canNextMove) {
-            downBridge.add("X");
+            downBridge.add(WALK_FAIL);
             SUCCESS_OR_FAIL = false;
         }
     }
 
-    public static void MoveUpBridge(boolean canNextMove) {
-        if(canNextMove) upBridge.add("O");
+    public void MoveUpBridge(boolean canNextMove) {
+        if(canNextMove) upBridge.add(WALK_SUCCESS);
         if(!canNextMove)  {
-            upBridge.add("X");
+            upBridge.add(WALK_FAIL);
             SUCCESS_OR_FAIL = false;
         }
     }
 
-    public static boolean CheckNextMove(int idx, List<String> bridge, String nextMove) {
-        if(Objects.equals(nextMove, "U")) {
+    public boolean CheckNextMove(int idx, List<String> bridge, String nextMove) {
+        if(Objects.equals(nextMove, UP_BRIDGE_BTN)) {
             return SecondCheckNextMove(idx, bridge);
         }
         return !(SecondCheckNextMove(idx, bridge));
     }
 
-    public static boolean SecondCheckNextMove(int idx, List<String> bridge) {
-        return Objects.equals(bridge.get(idx), "U");
+    public boolean SecondCheckNextMove(int idx, List<String> bridge) {
+        return Objects.equals(bridge.get(idx), UP_BRIDGE_BTN);
     }
 }
