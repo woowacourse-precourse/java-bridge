@@ -12,7 +12,7 @@ public class Application {
         OutputView outputs = new OutputView();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator(); // 난수 생성 객체
         BridgeMaker newBridge = new BridgeMaker(bridgeNumberGenerator); // 난수를 이용한 다리 빌딩 객체
-        List<String> newWholeBridge = new ArrayList<>(); // 빌드한 다리 저장 객체
+        List<String> newWholeBridge; // 빌드한 다리 저장 객체
         BridgeGame bridgeGame = new BridgeGame();
         boolean stageResult;
         boolean retry = true;
