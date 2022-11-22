@@ -48,10 +48,6 @@ public class BridgeGame {
         updateGameResult(move);
     }
 
-    private int getStage() {
-        return maps.getStage();
-    }
-
     private void updateBridgeMaps(MoveMark mark, boolean move) {
         PositionType position = mark.getMark();
         maps.updateMaps(position, move);
@@ -63,6 +59,10 @@ public class BridgeGame {
 
     public boolean isContinue() {
         return !bridge.isLast(getStage()) && isSuccess();
+    }
+
+    private int getStage() {
+        return maps.getStage();
     }
 
     public boolean isSuccess() {
