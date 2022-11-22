@@ -33,4 +33,14 @@ public class ExceptionHandler {
     private static boolean isUorD(String input) {
         return input != null && input.length() == 1 && (input.contains("U") || input.contains("D"));
     }
+
+    public static void checkRorQ(String input) throws IllegalArgumentException {
+        if (!isRorQ(input)) {
+            throw new IllegalArgumentException(Errors.NOT_RORQ.getMessage());
+        }
+    }
+
+    private static boolean isRorQ(String input) {
+        return input != null && input.length() == 1 && (input.contains("U") || input.contains("D"));
+    }
 }
