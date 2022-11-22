@@ -5,8 +5,8 @@ import bridge.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-        final InputView inputView = new InputView();
-        Controller controller = new Controller(inputView);
+        InputView inputView = new InputView();
+        Controller controller = new Controller();
 
             controller.game();
     }

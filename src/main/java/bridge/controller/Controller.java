@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
+    private static InputView inputview = new InputView();
     private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
@@ -21,11 +22,11 @@ public class Controller {
     private int tryNumbers;
     private boolean pass;
 
-    public Controller(InputView inputView) {
+    public Controller() {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeGame = new BridgeGame();
-        inputController = new InputController(inputView);
+        inputController = new InputController(inputview);
     }
 
     public void game() throws IllegalArgumentException{
