@@ -20,7 +20,7 @@ public class Application {
             bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         } catch (NumberFormatException e) {
             System.out.println(numberFormatException);
-            throw new IllegalArgumentException();
+            return;
         }
         bridgeController.validateMove(bridge);
         outputView.printResult();
