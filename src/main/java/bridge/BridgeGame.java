@@ -23,10 +23,14 @@ public class BridgeGame {
         return tryCount;
     }
 
-    public BridgeGame(int size) {
+    private BridgeGame(int size) {
         this.answerBridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
         this.guessBridge = new ArrayList<>();
         this.tryCount = 1;
+    }
+
+    public static BridgeGame initNewGame(int size) {
+        return new BridgeGame(size);
     }
 
     /**

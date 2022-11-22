@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameExecutor {
+
     private static final BridgeGameExecutor instance = new BridgeGameExecutor();
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
@@ -20,7 +21,7 @@ public class BridgeGameExecutor {
     }
 
     public void start() {
-        BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
+        BridgeGame bridgeGame = BridgeGame.initNewGame(inputView.readBridgeSize());
 
         while (startNewRound(bridgeGame) == RoundResult.FAIL) {
             if (inputView.readGameCommand() == SystemOperation.QUIT) {
