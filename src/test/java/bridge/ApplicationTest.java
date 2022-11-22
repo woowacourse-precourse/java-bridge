@@ -5,9 +5,14 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.*;
 
 class ApplicationTest extends NsTest {
 
@@ -63,6 +68,85 @@ class ApplicationTest extends NsTest {
         @Override
         public int generate() {
             return numbers.remove(0);
+        }
+    }
+
+    /**
+     * custom test
+     */
+    @Nested
+    @DisplayName("입력 예외 테스트")
+    class InputExceptionTest {
+        @Test
+        @DisplayName("길이 2")
+        void bridgeSizeShort() {
+            assertSimpleTest(() -> {
+                runException("2");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("길이 25")
+        void bridgeSizeLong() {
+            assertSimpleTest(() -> {
+                runException("25");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("정수가 아닌 길이")
+        void bridgeSizeDouble() {
+            assertSimpleTest(() -> {
+                runException("3.1");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("문자열 입력")
+        void bridgeSizeString() {
+            assertSimpleTest(() -> {
+                runException("HI");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("다리 이동 오류")
+        void moveNotUD() {
+            assertSimpleTest(() -> {
+                runException("3", "Q");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("다리 이동 소문자")
+        void moveLowerUD() {
+            assertSimpleTest(() -> {
+                runException("3", "u");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("재시작 소문자")
+        void retryLowerRQ() {
+            assertRandomNumberInRangeTest(() -> {
+                run("3", "D", "r");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }, 1);
+        }
+
+        @Test
+        @DisplayName("재시작 오류")
+        void retryNotRQ() {
+            assertRandomNumberInRangeTest(() -> {
+                run("3", "D", "W");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }, 1);
         }
     }
 }
