@@ -6,6 +6,12 @@ import static bridge.util.Constant.*;
 
 public class Validation {
 
+    public static void checkBridgeSizeInput(String bridgeLength) {
+        checkBridgeLengthConsistOfNum(bridgeLength);
+        checkBridgeLengthStartZero(bridgeLength);
+        checkBridgeLengthRange3To20(bridgeLength);
+    }
+
     // 다리의 길이 입력값이 숫자인지 검증하는 기능
     public static void checkBridgeLengthConsistOfNum(String bridgeLength) {
         if (bridgeLength.isEmpty() || bridgeLength.isBlank()) {

@@ -6,6 +6,9 @@ public class Constant {
     public static final int BRIDGE_LENGTH_MIN = 3;
     public static final int BRIDGE_LENGTH_MAX = 20;
     public static final int FIRST_ROUND = 0;
+    public static final int BRIDGE_LENGTH_INPUT_ERROR = -1;
+    public static final String BRIDGE_MOVE_INPUT_ERROR = "fail";
+    public static final String GAME_COMMAND_INPUT_ERROR = "fail";
     public static final char ZERO = '0';
     public static final String BLANK = " ";
     public static final String FIRST_ROUND_CORRECT = " O ";

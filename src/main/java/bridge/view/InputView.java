@@ -15,10 +15,22 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(BRIDGE_INPUT_MSG);
-        String bridgeLengthInput = Console.readLine();
-        Validation.checkBridgeLengthConsistOfNum(bridgeLengthInput);
-        Validation.checkBridgeLengthRange3To20(bridgeLengthInput);
-        return Integer.parseInt(bridgeLengthInput);
+        int result = BRIDGE_LENGTH_INPUT_ERROR;
+        while (result == BRIDGE_LENGTH_INPUT_ERROR) {
+            result = tryBridgeSizeInput();
+        }
+        return result;
+    }
+
+    private int tryBridgeSizeInput() {
+        try {
+            String bridgeLengthInput = Console.readLine();
+            Validation.checkBridgeSizeInput(bridgeLengthInput);
+            return Integer.parseInt(bridgeLengthInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return BRIDGE_LENGTH_INPUT_ERROR;
     }
 
     /**
@@ -26,9 +38,22 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(MOVE_INPUT_MSG);
-        String moveCommandInput = Console.readLine();
-        Validation.checkMoveCommand(moveCommandInput);
-        return moveCommandInput;
+        String result = BRIDGE_MOVE_INPUT_ERROR;
+        while (result.equals(BRIDGE_MOVE_INPUT_ERROR)) {
+            result = tryMoveInput();
+        }
+        return result;
+    }
+
+    private String tryMoveInput() {
+        try {
+            String moveCommandInput = Console.readLine();
+            Validation.checkMoveCommand(moveCommandInput);
+            return moveCommandInput;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return BRIDGE_MOVE_INPUT_ERROR;
     }
 
     /**
@@ -36,8 +61,21 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(GAME_RESTART_MSG);
-        String gameCommandInput = Console.readLine();
-        Validation.checkGameCommand(gameCommandInput);
-        return gameCommandInput;
+        String result = GAME_COMMAND_INPUT_ERROR;
+        while (result.equals(GAME_COMMAND_INPUT_ERROR)) {
+            result = tryGameCommandInput();
+        }
+        return result;
+    }
+
+    private String tryGameCommandInput() {
+        try {
+            String gameCommandInput = Console.readLine();
+            Validation.checkGameCommand(gameCommandInput);
+            return gameCommandInput;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return GAME_COMMAND_INPUT_ERROR;
     }
 }
