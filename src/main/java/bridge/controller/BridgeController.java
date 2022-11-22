@@ -30,13 +30,13 @@ public class BridgeController {
 
         this.inputView = new InputView(bridgeInput, bridgeValidator);
         this.outputView = new OutputView();
-        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator, bridgeValidator);
+        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
     public BridgeController(BridgeInput bridgeInput, BridgeNumberGenerator bridgeNumberGenerator, BridgeValidator bridgeValidator) {
         this.inputView = new InputView(bridgeInput, bridgeValidator);
         this.outputView = new OutputView();
-        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator, bridgeValidator);
+        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
     public void start() {

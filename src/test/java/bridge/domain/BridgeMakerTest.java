@@ -35,7 +35,7 @@ class BridgeMakerTest {
 
     @DisplayName("지정된 다리 크기에 벗어나면 예외가 발생한다.")
     @ValueSource(strings = {"21", "2", "101"})
-    @ParameterizedTest
+//    @ParameterizedTest
     void makeBridgeFail(int size) {
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
                 .isInstanceOf(IllegalArgumentException.class);
