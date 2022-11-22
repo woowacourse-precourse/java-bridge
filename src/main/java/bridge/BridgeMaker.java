@@ -50,7 +50,7 @@ public class BridgeMaker {
             System.out.println(Arrays.toString(a));
         }
 
-        return change(bridgeStr);
+        return changeStrToBridge(bridgeStr);
     }
 
     // 10110 같은 형태를 가지고 사용자가 하나씩 입력하는 값과 비교해준다.
@@ -62,7 +62,7 @@ public class BridgeMaker {
 
     // String 00111010101  => List<String> 형태로 바꾼다.
     // 10101x 이면?
-    public  List<String> change(String inputBridgeStr) {
+    public  List<String> changeStrToBridge(String inputBridgeStr) {
 
         List<String> result = new ArrayList<>();
         String up = "[";
@@ -92,13 +92,15 @@ public class BridgeMaker {
                 up += "   |";
 
             } else if (inputBridgeStr.charAt(i) == 'x') {        // x, y => 매치 되지 않는 상황인 경우
-                down += " X ";
-                up += "   ";
+
+                down += "   ";
+                up += " X ";
                 break;      //여기서 더이상 다리 만들기를 끝내야한다.
 
             } else if (inputBridgeStr.charAt(i) == 'y') {       // 밑에가 x인 경우
-                    down += "   ";
-                    up += " X ";
+
+                    down += " X ";
+                    up += "   ";
                     break;      //여기서 더이상 다리 만들기를 끝내야한다.
                 }
             }
