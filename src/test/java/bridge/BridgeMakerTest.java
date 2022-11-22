@@ -4,6 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class BridgeMakerTest {
@@ -20,6 +23,13 @@ class BridgeMakerTest {
     @ValueSource(strings = {"10", "3", "100", "123", "999", "1000", "10000"})
     @ParameterizedTest
     void makeBridge_U_D_만_포함하는지_확인(Integer size) {
-        assertThat(bridgeMaker.makeBridge(size)).contains("U", "D");
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        List<String> answer = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            if (bridge.get(i).equals("U") || bridge.get(i).equals("D")){
+                answer.add(bridge.get(i));
+            }
+        }
+        assertThat(answer.size()).isEqualTo(size);
     }
 }
