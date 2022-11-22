@@ -40,6 +40,16 @@ public class Controller {
         outputView.printResult(bridgeGame);
     }
 
+    public boolean isQuit() {
+        String command = getCommand();
+        if (command.equals("Q")) {
+            return true;
+        }
+        bridgeGame.retry();
+        outputView.removeRecentBridge();
+        return false;
+    }
+
     public int getBridgeSize() {
         outputView.inputBridgeSize();
         while (true) {
@@ -62,13 +72,14 @@ public class Controller {
         }
     }
 
-    public boolean isQuit() {
+    public String getCommand() {
         outputView.inputCommand();
-        if (inputView.readGameCommand().equals("Q")) {
-            return true;
+        while (true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
         }
-        bridgeGame.retry();
-        outputView.removeRecentBridge();
-        return false;
     }
 }
