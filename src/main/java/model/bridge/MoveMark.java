@@ -1,7 +1,5 @@
 package model.bridge;
 
-import java.util.Objects;
-
 import static model.bridge.PositionType.D;
 import static model.bridge.PositionType.U;
 
@@ -29,19 +27,6 @@ public class MoveMark {
 
     public boolean canMove(PositionType mark) {
         return this.mark.equals(mark);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MoveMark moveMark = (MoveMark) o;
-        return mark.equals(moveMark.mark);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mark);
     }
 
     @Override
