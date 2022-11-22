@@ -16,6 +16,16 @@ public class InputView {
         return input;
     }
 
+    private String checkMethod(int method) {
+        if (BRIDGE_SIZE == method) {
+            return readBridgeSize();
+        }
+        if (MOVING == method) {
+            return readMoving();
+        }
+        return readGameCommand();
+    }
+
     private String repeatForValid(int methodType) {
         try {
             input = Console.readLine();
