@@ -13,8 +13,8 @@ public class Result {
         this.answer = answer;
         results = new ArrayList[PATH_COUNT];
 
-        for (List<String> result : results) {
-            result = new ArrayList<>();
+        for (int index = 0; index < PATH_COUNT; index++) {
+            results[index] = new ArrayList<>();
         }
     }
 }
