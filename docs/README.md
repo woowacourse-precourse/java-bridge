@@ -43,3 +43,15 @@
     - [x] 게임 재시작
     - [x] 게임 종료
 - [x] Application main 메서드 구현
+
+# 리팩토링 목록
+- [ ] BridgeGame 클래스를 Service화 시키기
+    - [ ] BridgeGame의 필드와 관련 메서드를 User 클래스로 분리하기
+        - [ ] User 클래스 생성
+        - [ ] BridgeGame의 User 요소 삭제
+    - [ ] BridgeGame의 비지니스 로직을 담당하는 메서드는 user를 파라미터로 받도록 수정
+    - [ ] BridgeGame 싱글톤으로 구현
+    - [ ] 다리 생성 메서드 추가
+- [ ] UserController 생성
+    - [ ] User 생성
+    - [ ] main 메서드 수정
