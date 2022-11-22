@@ -1,5 +1,6 @@
-package bridge.utils.game;
+package bridge.domain.game;
 
+import bridge.utils.game.GameStatus;
 import bridge.utils.message.ExceptionMessageUtils;
 import java.util.Arrays;
 

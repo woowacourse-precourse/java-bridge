@@ -8,7 +8,6 @@ import bridge.dto.controller.RetryDto;
 import bridge.dto.input.ReadGameCommandDto;
 import bridge.dto.input.ReadMovingDto;
 import bridge.dto.output.PrintMapDto;
-import bridge.utils.game.GameCommand;
 import bridge.utils.game.GameStatus;
 
 public class BridgeGame {
