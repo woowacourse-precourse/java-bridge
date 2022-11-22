@@ -36,7 +36,7 @@ class ApplicationTest extends NsTest {
     void 움직임_테스트(){
         BridgeGame bridgeGame = new BridgeGame();
         String move = bridgeGame.move(List.of("U"), "U", 1);
-        assertThat(move).isEqualTo("O");
+        assertThat(move).isEqualTo(" O ");
     }
 
     @Test
