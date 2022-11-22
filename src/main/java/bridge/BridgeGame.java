@@ -1,6 +1,9 @@
-package bridge.domain;
+package bridge;
 
 import bridge.controller.InputController;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeResult;
+import bridge.domain.Move;
 import java.util.ArrayList;
 import java.util.List;
 

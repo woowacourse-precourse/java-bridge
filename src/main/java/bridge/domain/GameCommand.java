@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.BridgeGame;
 import bridge.utils.validator.GameCommandValidator;
 
 public class GameCommand {

@@ -2,7 +2,6 @@ package bridge;
 
 import static bridge.utils.Constant.*;
 
-import bridge.domain.BridgeGame;
 import bridge.domain.BridgeResult;
 import java.util.List;
 import java.util.StringJoiner;
