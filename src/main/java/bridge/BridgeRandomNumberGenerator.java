@@ -12,4 +12,6 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
 
         return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
     }
+
+
 }
