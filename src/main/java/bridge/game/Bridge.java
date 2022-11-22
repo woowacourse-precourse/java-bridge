@@ -1,5 +1,6 @@
 package bridge.game;
 
+import bridge.etc.GameState;
 import java.util.List;
 
 public class Bridge {
@@ -24,16 +25,20 @@ public class Bridge {
         return bridge.get(index);
     }
 
-    public Boolean pass(String choice) {
+    public GameState pass(String choice) {
         if (getBlock(distance).equals(choice)) {
             distance += 1;
-            return isClear();
+            if (isClear()) {
+                return GameState.CLEAR;
+            }
+
+            return GameState.CONTINUE;
         }
 
-        return isClear();
+        return GameState.FAIL;
     }
 
-    public Boolean isClear() {
+    private Boolean isClear() {
         return bridge.size() == distance;
     }
 

@@ -22,6 +22,16 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         checkBridgeSize(size);
 
+        List<String> bridge = fillBridge(size);
+
+        return bridge;
+    }
+
+    /**
+     * @param size 다리의 길이
+     * @return 값을 채운 다리를 반환
+     */
+    private List<String> fillBridge(int size) {
         String[] state = {"D", "U"};
         List<String> bridge = new ArrayList<>();
 
