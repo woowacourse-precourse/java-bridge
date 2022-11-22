@@ -25,13 +25,8 @@ public class ConcreteControllerMediator implements ControllerMediator, ViewMedia
 
     @Override
     public void generateBridge(int size) {
-        try {
-            Runnable runnable = controller.generateBridge(size);
-            runnable.run();
-        } catch (IllegalArgumentException e) {
-            new ErrorView().printErrorMessage(e.getMessage());
-            start();
-        }
+        Runnable runnable = controller.generateBridge(size);
+        runnable.run();
     }
 
     @Override
