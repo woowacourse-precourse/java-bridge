@@ -44,7 +44,23 @@ class BridgeTest {
     }
 
     @Test
+    @DisplayName("index 가 초기화되어 반환되는 resultType 이 moveType 이 같으면 같아야한다")
     void retry() {
+        //given
+        bridge = new Bridge(getTestBridgeMaker(Lists.newArrayList(1, 0, 1, 0, 1)));
+        bridge.create(5);
+
+        ResultType expected = bridge.move(DOWN);
+
+        //when
+        bridge.retry();
+        ResultType actual1 = bridge.move(DOWN); //X
+        bridge.retry();
+        ResultType actual2 = bridge.move(UP); //O
+        //then
+        assertThat(expected).isEqualTo(actual1);
+        assertThat(expected).isNotEqualTo(actual2);
+
     }
 
 
