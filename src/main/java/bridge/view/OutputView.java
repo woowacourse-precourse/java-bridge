@@ -1,7 +1,8 @@
 package bridge.view;
 
 import static bridge.view.MessageMaker.NEW_LINE;
-import static bridge.view.OutputMessage.*;
+import static bridge.view.OutputMessage.getFinalMessage;
+import static bridge.view.OutputMessage.getStepMessage;
 
 import bridge.dto.StepResponseDto;
 
