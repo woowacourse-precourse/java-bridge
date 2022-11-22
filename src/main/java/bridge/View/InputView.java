@@ -27,6 +27,7 @@ public class InputView {
         try{
             validator.validate(input);
         } catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 입력값이 올바르지 않습니다.");
             return readBridgeSize();
         }
         return Integer.parseInt(input);
@@ -42,6 +43,7 @@ public class InputView {
         try{
             validator.validate(input);
         }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 입력값이 올바르지 않습니다.");
             return readMoving();
         }
         return input;
@@ -57,6 +59,7 @@ public class InputView {
         try{
             validator.validate(input);
         }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 입력값이 올바르지 않습니다.");
             return readGameCommand();
         }
         return input;
