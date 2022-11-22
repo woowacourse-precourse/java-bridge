@@ -4,6 +4,7 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final int ZERO_COUNT = 0;
     private int tryCount;
     private final Bridge bridge;
     private CurrentBridgeMap currentBridgeMap;
@@ -45,8 +46,11 @@ public class BridgeGame {
         if (isEndBridge()) {
             return true;
         }
+        if (playerMovement.getMovementCount() == ZERO_COUNT) {
+            return false;
+        }
 
-        return isAllEqualSoFar();
+        return !isAllEqualSoFar();
     }
 
     private boolean isEndBridge() {
