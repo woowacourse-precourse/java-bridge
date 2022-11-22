@@ -38,6 +38,19 @@ public class Application {
         }
         return answerMove;
     }
+    public String askToRetry(){
+        String answerRetry = "";
+        outputView.printRetry();
+        try {
+            answerRetry = input.readGameCommand();
+            errorCheck.retryError(answerRetry);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return askToRetry();
+        }
+        return answerRetry;
+    }
+
 
 
 }
