@@ -50,7 +50,7 @@ public class BridgeGameController {
     }
 
     private void checkRetry(GameRetryRequestDto requestDto) {
-        if(bridgeGame.retry(requestDto)) {
+        if(bridgeGame.canRetry(requestDto)) {
             playGame();
         }
     }
