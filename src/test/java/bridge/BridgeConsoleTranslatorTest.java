@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BridgeConsolePrinterTest {
+public class BridgeConsoleTranslatorTest {
 
     @DisplayName("지금까지 칸을 건너는데 성공한 상태일 때 출력 테스트")
     @Test
