@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.enums;
 
 import java.util.Arrays;
 import static bridge.utils.ErrorMessage.*;
@@ -8,25 +8,32 @@ public enum MovingType {
     DOWN("D", 0);
 
     private String initial;
-    private final int value;
+    private final int code;
 
-    MovingType(String initial, int value) {
+    MovingType(String initial, int code) {
         this.initial = initial;
-        this.value = value;
+        this.code = code;
     }
 
-    public static MovingType selectMovingType(int value) {
+    public static MovingType selectMovingTypeByCode(int code) {
         return Arrays.stream(MovingType.values())
-                .filter(moving -> moving.value == value)
+                .filter(moving -> moving.code == code)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(RANDOM_NUMBER_NOT_OPTIONS));
+                .orElseThrow(() -> new IllegalArgumentException(NUMBER_NOT_OPTIONS));
+    }
+
+    public static MovingType selectMovingTypeByInitial(String initial) {
+        return Arrays.stream(MovingType.values())
+                .filter(moving -> moving.initial.equals(initial))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(MOVING_NOT_OPTIONS));
     }
 
     public String getInitial() {
         return initial;
     }
 
-    public int getValue() {
-        return value;
+    public int getCode() {
+        return code;
     }
 }
