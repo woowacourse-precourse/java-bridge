@@ -10,7 +10,6 @@ import bridge.validator.RetryInputValidator;
 import bridge.validator.SpaceToMoveValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import camp.nextstep.edu.missionutils.Console;
 
 public class BridgeGameController {
 
@@ -37,7 +36,7 @@ public class BridgeGameController {
     }
 
     public void start() {
-        makeBridge(getBridgeLength());
+        makeBridge(getBridgeLengthUntilQualifiedInput());
         outputView.printStart();
         while (isFinish) {
             boolean check = crossTheBridge();
@@ -69,7 +68,7 @@ public class BridgeGameController {
     private String askToRetryIfFailed(boolean check) {
         String retry = RETRY;
         if (!check) {
-            retry = getWhetherToRetry();
+            retry = getWhetherToRetryUntilQualifiedInput();
             if (retry.equals(RETRY)) {
                 bridgeGame.retry(gameStatus);
                 copyBridge = new Bridge(bridge.copyBridge());
@@ -79,7 +78,7 @@ public class BridgeGameController {
     }
 
     private boolean crossTheBridge() {
-        String moving = getSpaceToMove();
+        String moving = getSpaceToMoveUntilQualifiedInput();
         return bridgeGame.move(gameStatus, copyBridge, moving);
     }
 
@@ -88,43 +87,55 @@ public class BridgeGameController {
         copyBridge = new Bridge(bridge.copyBridge());
     }
 
-    private String getWhetherToRetry() {
+    private String getWhetherToRetryUntilQualifiedInput() {
         outputView.askWhetherToRetry();
         while (true) {
             try {
-                String input = inputView.readGameCommand();
-                RetryInputValidator.validateRetryInput(input);
-                return input;
+                return getWhetherToRetryAndValidate();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
 
-    private String getSpaceToMove() {
+    private String getWhetherToRetryAndValidate() {
+        String input = inputView.readGameCommand();
+        RetryInputValidator.validateRetryInput(input);
+        return input;
+    }
+
+    private String getSpaceToMoveUntilQualifiedInput() {
         outputView.askSpaceToMove();
         while (true) {
             try {
-                String input = inputView.readMoving();
-                SpaceToMoveValidator.validateSpaceToMove(input);
-                return input;
+                return getSpaceToMoveAndValidate();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
 
-    private int getBridgeLength() {
+    private String getSpaceToMoveAndValidate() {
+        String input = inputView.readMoving();
+        SpaceToMoveValidator.validateSpaceToMove(input);
+        return input;
+    }
+
+    private int getBridgeLengthUntilQualifiedInput() {
         outputView.askBridgeSize();
         while (true) {
             try {
-                String input = inputView.readBridgeSize();
-                BridgeLengthValidator.validateNaturalNumber(input);
-                BridgeLengthValidator.validateRange(input);
-                return Integer.parseInt(input);
+                return getBridgeLengthAndValidate();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private int getBridgeLengthAndValidate() {
+        String input = inputView.readBridgeSize();
+        BridgeLengthValidator.validateNaturalNumber(input);
+        BridgeLengthValidator.validateRange(input);
+        return Integer.parseInt(input);
     }
 }
