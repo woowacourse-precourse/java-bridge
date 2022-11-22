@@ -27,7 +27,7 @@ public enum BridgeMoveCommand {
 				.anyMatch(bridgeMoveCommand -> bridgeMoveCommand.command.equals(input));
 
 	}
-	public static int getNumber(String input){
+	public static int findStoreIndex(String input){
 		return Arrays.stream(values())
 				.filter(bridgeMoveCommand -> bridgeMoveCommand.command.equals(input))
 				.findAny()
