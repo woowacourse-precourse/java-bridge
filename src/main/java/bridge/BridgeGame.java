@@ -2,21 +2,26 @@ package bridge;
 
 import java.util.List;
 
-import bridge.domain.BridgeNumber;
+import bridge.domain.BridgeColumn;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private List<String> bridgeColumns;
-    private int gamePlayCount = 0;
-    private int moveCount = 0;
+    private int gamePlayCount;
+    private int moveCount;
+
+    public BridgeGame() {
+        gamePlayCount = 1;
+        moveCount = 0;
+    }
 
     public void make() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int size = bridgeMaker.inputBridgeSize();
         bridgeColumns = bridgeMaker.makeBridge(size);
-        System.out.println(bridgeColumns);
+        System.out.println(bridgeColumns); //TODO: 지우기
     }
 
     /**
@@ -30,16 +35,21 @@ public class BridgeGame {
         do {
             String markToMove = bridgeMover.inputBridgeMarkToMove();
             movable = bridgeColumns.get(moveCount++).equals(markToMove);
-            BridgeNumber.addResultToMap(markToMove, movable);
+            BridgeColumn.addResultToMap(markToMove, movable);
             bridgeMover.printBridgeResultMap();
         } while(!isGameSuccess(movable));
     }
 
     private boolean isGameSuccess(boolean movable) {
         if(!movable) {
-            return false;
+            return !retry();
         }
-        return moveCount == bridgeColumns.size();
+        boolean success = moveCount == bridgeColumns.size();
+        if(success) {
+            quit(true);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -47,11 +57,20 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
-     * @return
      */
-    public void retry() {
-        // BridgeMover bridgeMover = new BridgeMover();
-        // gamePlayCount++;
-        // moveCount = 0;
+    public boolean retry() {
+        BridgeMover bridgeMover = new BridgeMover();
+        if(bridgeMover.askRetry()) {
+            gamePlayCount++;
+            moveCount = 0;
+            BridgeColumn.clearAllResultMap();
+            return true;
+        }
+        quit(false);
+        return false;
+    }
+    public void quit(boolean gameSuccess) {
+        BridgeGameResult bridgeGameResult = new BridgeGameResult();
+        bridgeGameResult.printGameResult(gameSuccess, gamePlayCount);
     }
 }

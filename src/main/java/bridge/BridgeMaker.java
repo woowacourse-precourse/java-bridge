@@ -5,7 +5,7 @@ import static bridge.constant.Constant.MIN_BRIDGE_SIZE;
 import static bridge.constant.ErrorMessage.BRIDGE_SIZE_IS_NOT_IN_RANGE;
 import static bridge.constant.ErrorMessage.BRIDGE_SIZE_IS_NOT_NUMBER;
 
-import bridge.domain.BridgeNumber;
+import bridge.domain.BridgeColumn;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class BridgeMaker {
         List<String> bridgeColumns = new ArrayList<>();
         while (bridgeColumns.size() < size) {
             int randomValue = bridgeNumberGenerator.generate();
-            bridgeColumns.add(BridgeNumber.getMark(randomValue));
+            bridgeColumns.add(BridgeColumn.getMark(randomValue));
         }
         return bridgeColumns;
     }

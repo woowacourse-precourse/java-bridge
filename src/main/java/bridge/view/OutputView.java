@@ -2,7 +2,7 @@ package bridge.view;
 
 import static bridge.constant.InformationMessage.*;
 
-import java.util.List;
+import bridge.constant.InformationMessage;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -39,6 +39,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String resultMap, boolean success, int gamePlayCount) {
+        System.out.println(GAME_RESULT_HEADER);
+        printMap(resultMap);
+        String resultMessage = "실패";
+        if(success) {
+            resultMessage = "성공";
+        }
+        System.out.printf(GAME_RESULT_IS_SUCCESS_GAME, resultMessage);
+        System.out.printf(GAME_RESULT_PLAY_COUNT, gamePlayCount);
     }
 }

@@ -1,16 +1,15 @@
 package bridge;
 
-import static bridge.constant.ErrorMessage.BRIDGE_MARK_TO_MOVE_IS_NOT_IN_RANGE;
+import static bridge.constant.ErrorMessage.*;
 
-import bridge.domain.BridgeNumber;
+import bridge.domain.BridgeColumn;
+import bridge.domain.GameState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
 public class BridgeMover {
 
-	private static OutputView outputView;
+	private final OutputView outputView;
 
 	public BridgeMover() {
 		outputView = new OutputView();
@@ -30,16 +29,31 @@ public class BridgeMover {
 	}
 
 	private void validateMarkIsInRange(String markToMove) throws IllegalArgumentException {
-		if (!BridgeNumber.isExistedMark(markToMove)) {
+		if (!BridgeColumn.isExistedMark(markToMove)) {
 			throw new IllegalArgumentException(BRIDGE_MARK_TO_MOVE_IS_NOT_IN_RANGE);
 		}
 	}
 
 	public void printBridgeResultMap() {
-		outputView.printMap(BridgeNumber.getResultMapAsString());
+		outputView.printMap(BridgeColumn.getResultMapAsString());
 	}
 
-	private void validateRetryCommand() {
+	public boolean askRetry() {
+		outputView.printRequestRetryCommand();
+		while(true) {
+			String command = new InputView().readGameCommand();
+			try {
+				validateRetryCommand(command);
+				return GameState.isRetryCommand(command);
+			} catch (IllegalArgumentException exception) {
+				outputView.printErrorMessage(exception);
+			}
+		}
+	}
 
+	private void validateRetryCommand(String command) {
+		if(!GameState.isExistedCommand(command)) {
+			throw new IllegalArgumentException(RETRY_COMMAND_IS_NOT_IN_RANGE);
+		}
 	}
 }
