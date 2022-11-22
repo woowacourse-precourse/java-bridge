@@ -1,4 +1,4 @@
-package bridge.domain.bridgeGame.gameStatics;
+package bridge.domain.bridgeGame.gameStatus.gameStatics;
 
 public class AttemptCount {
     private final static int INIT_ATTEMPT_COUNT = 1;
