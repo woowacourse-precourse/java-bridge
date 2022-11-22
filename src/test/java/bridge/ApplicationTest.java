@@ -17,14 +17,17 @@ import org.junit.jupiter.params.provider.*;
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private static final String INPUT_WRONG_BRIDGE_LENGTH_MESSAGE = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String INPUT_WRONG_BRIDGE_LENGTH_MESSAGE =
+            "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String INPUT_WRONG_BRIDGE_MOVEMENT_MESSAGE =
             "위 칸으로 이동할 시 'U', 아래 칸으로 이동할 시 'D'를 입력해 주셔야 합니다.";
-    private static final String INPUT_WRONG_RETRY_ANSWER_MESSAGE = "게임 재시도 시 'R', 종료 시 'Q'를 입력해 주셔야 합니다.";
+    private static final String INPUT_WRONG_RETRY_ANSWER_MESSAGE =
+            "게임 재시도 시 'R', 종료 시 'Q'를 입력해 주셔야 합니다.";
 
     @Test
     void 다리_생성_테스트() {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeNumberGenerator numberGenerator =
+                new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
