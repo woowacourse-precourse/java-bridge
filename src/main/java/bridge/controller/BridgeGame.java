@@ -17,6 +17,8 @@ public class BridgeGame {
     private int bridgeSize;
     private List<String> bridge;
     private int attemptCount = 0;
+    boolean isCross;
+    int round;
     InputView inputView = new InputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     OutputView outputView = new OutputView();
@@ -28,9 +30,9 @@ public class BridgeGame {
      */
     public boolean move(int round, String moveKey) {
         String crossablePosition = bridge.get(round);
-        if (moveKey == "U" && Integer.parseInt(crossablePosition) == 0)
+        if (moveKey.equals("U") && Integer.parseInt(crossablePosition) == 0)
             return true;
-        if (moveKey == "D" && Integer.parseInt(crossablePosition) == 1)
+        if (moveKey.equals("D") && Integer.parseInt(crossablePosition) == 1)
             return true;
         return false;
     }
@@ -40,15 +42,23 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String command = inputView.readGameCommand();
+        Validator.checkValueOfReadGameCommand(command);
+        if (command.equals("R"))
+            return true;
+        return false;
     }
 
     public void playGame(List<String> bridge) {
         this.bridge = bridge;
-        moveBridge();
-
-        // if 종료 선택시 결과값 리폿
-        // 클리어시 결과값 리폿
+        while (true) {
+            if (!moveBridge())
+                break;
+            if (!retry())
+                break;
+        }
+        printResult(round, isCross, attemptCount);
     }
 
     public List<String> makeBridge() {
@@ -56,33 +66,30 @@ public class BridgeGame {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public void moveBridge() {
-        int round = 0;
+    public boolean moveBridge() {
+        round = 0;
         attemptCount++;
-        while (true) {
-            boolean isCross = move(round, readBridgeMove());
+        while (round != bridge.size()) {
+            isCross = move(round, readBridgeMove());
             printMap(round, isCross);
-            // round = nextRound;
-
-            // 지도 출력해주기.
-            round++;
             if (!isCross)
                 break;
+            round++;
         }
-        // 게임 결과 출력 및 계속 진행 여부
+        if (round == bridge.size())
+            return false;
+        return true;
+    }
+
+    public void printResult(int round, boolean isCross, int attemptCount) {
+        List<String> usedMap = new ArrayList<>(bridge.subList(0, round));
+        outputView.printResult(usedMap, isCross, attemptCount);
     }
 
     public void printMap(int round, boolean isCross) {
-        List<String> usedMap = new ArrayList<>(bridge.subList(0, round));
-        usedMap.add(addLastCross(round, isCross));
+        List<String> usedMap = new ArrayList<>(bridge.subList(0, round + 1));
 
-        outputView.printMap(usedMap);
-    }
-
-    public String addLastCross(int round, boolean isCross) {
-        if (isCross)
-            return bridge.get(round);
-        return "-1";
+        outputView.printMap(usedMap, isCross);
     }
 
     public int readBridgeSize() {
