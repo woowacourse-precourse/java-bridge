@@ -30,4 +30,17 @@ public class ExceptionController {
         }
     }
 
+    private boolean isValidMoving(final String input) {
+        if (input.equals(Message.GO_UP) || input.equals(Message.GO_DOWN)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void checkRetryCommand(final String input) {
+        if (!(input.equals(Message.RE_START.getMessage()) || input.equals(Message.QUIT.getMessage()))) {
+            String message = ErrorMessage.ERROR_PREFIX.getErrorMessage() + ErrorMessage.ERROR_RETRY.getErrorMessage();
+            throw new IllegalArgumentException(message);
+        }
+    }
 }
