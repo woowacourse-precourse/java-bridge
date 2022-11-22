@@ -29,3 +29,11 @@
 ---
 
 ## 클래스 구성(필요한 클래스 구현 가능)
+- BridgeGameController: 게임을 진행을 총괄하는 클래스. 게임 진행 중에 발생하는 데이터를 view 클래스에 넘겨줌.
+- Command, Error, Game, Moving, Pass: 게임 진행에 필요한 상수 값을 관리하는 클래스.
+- InputValidator: 입력 값이 올바른 값인지 검사하는 클래스.
+- BridgeGame: 다리 건너기 게임을 관리하는 클래스
+- InputView, OutputView: 화면에 그려지는 입출력을 담당하는 클래스.
+- BridgeMaker: 다리를 생성하는 클래스
+- BridgeNumberGenerator: 다리 생성에 필요한 값 생성에 관한 인터페이스
+- BridgeRandomNumberGenerator: 다리 생성에 필요한 값을 랜덤으로 발생시키는 클래스
