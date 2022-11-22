@@ -1,6 +1,7 @@
 package view;
 
 import static camp.nextstep.edu.missionutils.Console.*;
+
 import static view.InputViewConstants.*;
 
 import validator.BridgeSizeInputValidator;

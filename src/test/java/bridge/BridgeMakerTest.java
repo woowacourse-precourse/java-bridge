@@ -1,17 +1,16 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.util.Lists.newArrayList;
 
-@Nested
-@DisplayName("다리 만들기 기능 테스트 클래스")
-class MakeBridgeTest {
+public class BridgeMakerTest {
 
 	@Nested
 	@DisplayName("성공 테스트 클래스")

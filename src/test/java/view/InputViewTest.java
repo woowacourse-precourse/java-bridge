@@ -1,6 +1,7 @@
 package view;
 
 import static org.assertj.core.api.Assertions.*;
+
 import static view.InputViewConstants.*;
 
 import java.io.ByteArrayInputStream;
@@ -238,7 +239,8 @@ public class InputViewTest {
 				for (String gameCommand : gameCommands) {
 					// when, then
 //					readLine(gameCommand);
-					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand)).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand))
+							.isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -251,7 +253,8 @@ public class InputViewTest {
 				for (String gameCommand : gameCommands) {
 					// when, then
 //					readLine(gameCommand);
-					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand)).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand))
+							.isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -264,7 +267,8 @@ public class InputViewTest {
 				for (String gameCommand : gameCommands) {
 					// when, then
 //					readLine(gameCommand);
-					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand)).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand))
+							.isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -277,7 +281,8 @@ public class InputViewTest {
 				for (String gameCommand : gameCommands) {
 					// when, then
 //					readLine(gameCommand);
-					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand)).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand))
+							.isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -290,7 +295,8 @@ public class InputViewTest {
 				for (String gameCommand : gameCommands) {
 					// when, then
 //					readLine(gameCommand);
-					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand)).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand))
+							.isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -303,7 +309,8 @@ public class InputViewTest {
 				for (String gameCommand : gameCommands) {
 					// when, then
 //					readLine(gameCommand);
-					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand)).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> gameCommandInputValidator.validateGameCommand(gameCommand))
+							.isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 		}

@@ -5,7 +5,7 @@ import static view.InputViewConstants.GAME_COMMAND_QUIT;
 import static view.InputViewConstants.GAME_COMMAND_RESTART;
 
 public class GameCommandInputValidator {
-	
+
 	public String validateGameCommand(String gameCommand) {
 		if (gameCommand.equals(GAME_COMMAND_RESTART) || gameCommand.equals(GAME_COMMAND_QUIT)) {
 			return gameCommand;

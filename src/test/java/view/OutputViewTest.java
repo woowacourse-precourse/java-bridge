@@ -3,11 +3,8 @@ package view;
 import static org.assertj.core.api.Assertions.*;
 
 import static model.BridgeGameConstants.*;
-import static view.OutputViewConstants.*;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 
 import java.util.List;
@@ -15,10 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import model.BridgeGame;
 
 public class OutputViewTest {
 

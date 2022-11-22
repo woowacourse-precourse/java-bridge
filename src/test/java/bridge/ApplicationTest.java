@@ -2,6 +2,7 @@ package bridge;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -9,7 +10,9 @@ import static model.BridgeGameConstants.MOVING_FAIL_WRONG_MOVING;
 import static model.BridgeGameConstants.MOVING_SUCCESS_GAME_END;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import model.BridgeGame;
+
 import view.InputView;
 import view.OutputView;
 
@@ -17,6 +20,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
