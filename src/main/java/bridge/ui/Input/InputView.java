@@ -23,6 +23,7 @@ public class InputView {
         Repetitor receiver = new BridgeLength();
 
         int bridgeLength = Integer.parseInt(receiver.getResult(INITIATION_NOTIFICATION));
+        System.out.println();
 
         return bridgeLength;
     }
