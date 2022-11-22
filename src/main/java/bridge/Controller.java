@@ -14,7 +14,7 @@ public class Controller {
         try {
             outputView.printStartGame();
             setUpBridge(requestBridgeSize());
-            requestMoving();
+            boolean moveSuccess = bridgeGame.move(requestMoving());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
