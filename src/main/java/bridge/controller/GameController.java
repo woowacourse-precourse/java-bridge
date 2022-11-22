@@ -31,7 +31,7 @@ public class GameController {
     }
 
     public boolean isFlagTrue(){
-        if ((Referee.succeed && !referee.isClear()) || bridgeGame.retry(getCommand(),player, referee)) {
+        if ((Referee.succeed && !referee.isClear()) || bridgeGame.retry(retryCommand(),player, referee)) {
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public class GameController {
     public void printResult() {
         outputView.printEndGame();
         outputView.printMap(referee.getUpSideBridgeResult(), referee.getDownSideBridgeResult());
-        outputView.printResult(bridgeGame.holeGameCount);
+        outputView.printResult(bridgeGame.totalGameCount);
     }
 
     public void generateBridge() {
@@ -60,7 +60,7 @@ public class GameController {
         referee.addProgressCount();
     }
 
-    public String getCommand() {
+    public String retryCommand() {
         String command = inputView.readGameCommand();
         return command;
     }

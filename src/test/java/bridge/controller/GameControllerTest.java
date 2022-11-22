@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.Application;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -25,7 +24,7 @@ class GameControllerTest extends NsTest {
         InputStream inputStream = generateUserInput(input);
         System.setIn(inputStream);
         assertSimpleTest(() -> {
-            gameController.getCommand();
+            gameController.retryCommand();
             assertThat(output()).doesNotContain(ERROR_MESSAGE);
         });
     }

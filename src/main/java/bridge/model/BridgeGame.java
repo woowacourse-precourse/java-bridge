@@ -5,7 +5,7 @@ package bridge.model;
  */
 public class BridgeGame {
 
-    public static int holeGameCount = 1;
+    public static int totalGameCount = 1;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -32,6 +32,6 @@ public class BridgeGame {
     private void resetGame(Player player, Referee referee) {
         player.resetChoices();
         referee.resetHole();
-        holeGameCount++;
+        totalGameCount++;
     }
 }
