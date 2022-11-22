@@ -21,7 +21,7 @@ public class Application {
 
     public static void main(String[] args) {
         inputView.printStartMessage();
-        Bridge bridge = bridgeGame.getBridge(bridgeMaker, inputView.readBridgeSize());
+        Bridge bridge = bridgeGame.createBridge(bridgeMaker, inputView.readBridgeSize());
         GameResult gameResult = playBridgeGame(bridge);
         outputView.printResult(gameResult);
     }

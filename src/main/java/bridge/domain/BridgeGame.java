@@ -16,8 +16,8 @@ public class BridgeGame {
         this.bridgeGameRepository = bridgeGameRepository;
     }
 
-    public Bridge getBridge(BridgeMaker bridgeMaker,
-                            BridgeSize bridgeSize) {
+    public Bridge createBridge(BridgeMaker bridgeMaker,
+                               BridgeSize bridgeSize) {
         int size = bridgeSize.getSize();
         bridgeGameRepository.init(size);
         List<String> blocks = bridgeMaker.makeBridge(size);
