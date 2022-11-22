@@ -29,6 +29,14 @@ public class BridgeStatusTest {
         assertThat(bridgeStatus.toString()).isEqualTo(expectedBridgeStatus);
     }
 
+    @DisplayName("이동 결과에 맞는 블록을 반환하는지 확인한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"PLAYING:O", "FAIL:X", "SUCCESS:EMPTY"}, delimiter = ':')
+    void checkGetBlockByStatus(PlayerStatus status, BridgeBlock expectedBlock) {
+        BridgeBlock block = bridgeStatus.getBlockByStatus(status);
+        assertThat(block).isEqualTo(expectedBlock);
+    }
+
     static Stream<Arguments> BridgeStatusData() {
         return Stream.of(
                 Arguments.of(Direction.of("U"), PlayerStatus.PLAYING, "[ O ]\n[   ]\n"),
