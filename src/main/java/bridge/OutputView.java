@@ -6,9 +6,15 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private final String startGameMessage = "다리 건너기 게임을 시작합니다.";
     private final String lastGameResultMessage = "최종 게임 결과";
     private final String resultTypeMessage = "게임 성공 여부: ";
     private final String totalNumberOfTryMessage = "총 시도한 횟수: ";
+
+    public void printGameStart() {
+        System.out.println(startGameMessage);
+        System.out.println();
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -21,6 +27,7 @@ public class OutputView {
         for (String row : map) {
             System.out.println(row);
         }
+        System.out.println();
     }
 
     /**
@@ -31,7 +38,7 @@ public class OutputView {
     public void printResult(Result result) {
         System.out.println(lastGameResultMessage);
         printMap(result);
-        System.out.println(resultTypeMessage + result.getLastResultType());
+        System.out.println(resultTypeMessage + result.getLastResultType().toKoreanString());
         System.out.println(totalNumberOfTryMessage + result.getCount());
     }
 }

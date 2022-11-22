@@ -12,4 +12,14 @@ public enum ResultType {
     public String getValue() {
         return value;
     }
+
+    public String toKoreanString() {
+        if (this == SUCCESS) {
+            return "성공";
+        }
+        if (this == FAIL) {
+            return "실패";
+        }
+        return "";
+    }
 }
