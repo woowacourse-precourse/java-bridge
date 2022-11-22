@@ -10,8 +10,8 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public String get(int idx) {
-        return bridge.get(idx);
+    public String get(Integer index) {
+        return bridge.get(index);
     }
 
     @Override
