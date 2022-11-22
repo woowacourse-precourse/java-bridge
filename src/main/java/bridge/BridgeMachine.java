@@ -6,6 +6,12 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private void playBridgeGame(BridgeGame bridgeGame, Bridge bridge) {
+        while (true) {
+            if (userMove(bridgeGame, bridge, getUserCommand())) break;
+            if (checkLastIndex(bridge)) break;
+        }
+    }
     private BridgeGame bridgeGameStart() {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView.gameStart();
