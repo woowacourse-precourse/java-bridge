@@ -54,4 +54,15 @@ public class BridgeState {
             map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, OTHER_ROUND_CORRECT));
         }
     }
+
+    // 첫 라운드 이후에 사용자가 틀린 경우
+    private void convertWrongResultAfterFirstRound(String userInput) {
+        if (LocationCommand.isUpDirection(userInput)) {
+            map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, OTHER_ROUND_WRONG));
+            map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, OTHER_ROUND_END));
+        } else if (LocationCommand.isDownDirection(userInput)) {
+            map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, OTHER_ROUND_END));
+            map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, OTHER_ROUND_WRONG));
+        }
+    }
 }
