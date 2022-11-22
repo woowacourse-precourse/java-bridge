@@ -52,7 +52,7 @@ public class BridgeGame {
 
     private void judge() {
         if (user.isFinishedMove()) {
-            outputView.printResult();
+            outputView.printResult(bridgeResult);
         }
         if (!user.getMoveStatus()) {
             retry();
@@ -70,7 +70,8 @@ public class BridgeGame {
             move();
         }
         if (gameCommand.equals(BRIDGE_QUIT_COMMAND)) {
-            outputView.printResult();
+            outputView.printBlank();
+            outputView.printResult(bridgeResult);
         }
     }
 }
