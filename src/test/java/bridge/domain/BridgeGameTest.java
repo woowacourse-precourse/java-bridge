@@ -31,4 +31,19 @@ class BridgeGameTest {
         // then
         assertThat(result).isEqualTo(output);
     }
+
+    @DisplayName("사용자의 이동입력이 다리와 같고 라운드가 다리이 길이보다 작으면 true를 아니면 false를 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"D : true", "U : false"}, delimiter = ':')
+    void discriminateNextRound(String userInput, boolean output) {
+        // given
+        List<String> bridge = new ArrayList<>(List.of("D", "U", "U"));
+        round.plusRound();
+
+        // when
+        boolean result = bridgeGame.checkPlayNextRound(userInput, bridge);
+
+        // then
+        assertThat(result).isEqualTo(output);
+    }
 }
