@@ -40,6 +40,7 @@ public class BridgeGame {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * @param moving 움직일 방향 (U 또는 D)
+     * @return "O", "X", " " 로 이루어진 upperLines, bottomLines
      */
     public Map<String,List<String>> move(String moving) {
         this.answerPath.add(moving);
@@ -48,6 +49,7 @@ public class BridgeGame {
 
     /**
      * 현재까지 이동 경로에 대한 정보를 가진 맵을 생성하는 메서드
+     * @return "O", "X", " " 로 이루어진 upperLines, bottomLines
      */
     public Map<String, List<String>> generateResultMap() {
         Map<String, List<String>> resultMap = new HashMap<>();
@@ -85,6 +87,7 @@ public class BridgeGame {
 
     /**
      * 게임이 실패했는지 체크하는 메소드
+     * @return 게임이 실패했으면 true, 게임이 실패하지 않았으면 false
      */
     public boolean checkFail() {
         int index = answerPath.size() - 1;
@@ -96,6 +99,7 @@ public class BridgeGame {
 
     /**
      * 게임이 성공했는지 체크하는 메소드
+     * @return 게임이 성공했으면 true, 성공하지 않았으면 false
      */
     public boolean checkSuccess(){
         if (bridge.size() == answerPath.size()) {
@@ -108,6 +112,7 @@ public class BridgeGame {
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * @param command 게임을 재시작 할지 여부  (R 또는 Q)
+     * @return 게임을 재시작하면 true, 재시작하지 않고 종료하면 false
      */
     public boolean retry(String command) {
         if ("Q".equals(command)) {
@@ -120,6 +125,7 @@ public class BridgeGame {
 
     /**
      * 사용자의 시도 횟수를 받아오는 메서드
+     * @return 사용자의 시도 횟수
      */
     public int getAttempts() {
         return attempts;
