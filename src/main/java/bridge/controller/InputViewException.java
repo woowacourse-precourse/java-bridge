@@ -57,4 +57,12 @@ public class InputViewException {
     }
 
 
+
+    public void readBridgeSizeException(String input) {
+        error01Check(input);
+        error02Check(input);
+        error03Check(input);
+    }
+
+
 }
