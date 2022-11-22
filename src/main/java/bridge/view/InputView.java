@@ -14,8 +14,8 @@ public class InputView {
 
     private static final int VALID_BRIDGE_SIZE_LOWER_BOUND = 3;
     private static final int VALID_BRIDGE_SIZE_UPPER_BOUND = 20;
-    private static List<String> VALID_MOVING = List.of("U", "D");
-    private static List<String> VALID_GAME_COMMAND = List.of("R", "Q");
+    private static final List<String> VALID_MOVING = List.of("U", "D");
+    private static final List<String> VALID_GAME_COMMAND = List.of("R", "Q");
 
     /**
      * 다리의 길이를 입력받는다.
@@ -76,7 +76,6 @@ public class InputView {
     private void validateGameCommand(String command) {
         if (!VALID_GAME_COMMAND.contains(command)) {
             throw new IllegalArgumentException(ErrorMessage.isInvalidGameCommand());
-
         }
     }
 }
