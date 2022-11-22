@@ -8,7 +8,7 @@ public class GameController {
     BridgeGame bridgeGame = new BridgeGame();
 
     public List<String> makeBridge() {
-        int bridgeSize = inputView.readBridgeSize(inputView.userInput());
+        int bridgeSize = inputView.readBridgeSize();
         return bridgeGame.makeBridge(bridgeSize);
     }
 

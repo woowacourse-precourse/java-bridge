@@ -16,9 +16,19 @@ public class InputView {
         return readLine();
     }
 
-    public int readBridgeSize(String userInput) {
-        validateError.validIsNumber(userInput);
-        validateError.validIsInRange(userInput);
+    public int readBridgeSize() {
+        String userInput;
+        while (true) {
+            System.out.println(printOutput.INPUT_BRIDGE_SIZE.getGameOutput());
+            try {
+                userInput = readLine();
+                validateError.validIsNumber(userInput);
+                validateError.validIsInRange(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return Integer.parseInt(userInput);
     }
 
