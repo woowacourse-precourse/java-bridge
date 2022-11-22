@@ -22,6 +22,6 @@ public class Application {
                 bridgeGame.retry();
             }
         }
-        bridgeGame.challengeCount();
+        bridgeGame.getResult();
     }
 }

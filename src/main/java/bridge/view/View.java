@@ -40,4 +40,9 @@ public class View {
         System.out.println(FAILURE_RESULT_MESSAGE);
         System.out.println(CHALLENGE_COUNT + challenge);
     }
+
+    public static void successResult(int challenge) {
+        System.out.println(SUCCESS_RESULT_MESSAGE);
+        System.out.println(CHALLENGE_COUNT + challenge);
+    }
 }

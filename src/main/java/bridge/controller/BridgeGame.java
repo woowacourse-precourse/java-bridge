@@ -133,4 +133,13 @@ public class BridgeGame {
     public void challengeCount() {
         View.showChallengeCount(challenge);
     }
+
+    public void getResult() {
+        outputView.printResult();
+        if(mark.size()==bridge.size() && mark.get(bridge.size()-1).equals("O")){
+            View.successResult(challenge);
+            return;
+        }
+        View.failResult(challenge);
+    }
 }
