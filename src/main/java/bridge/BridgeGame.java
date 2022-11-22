@@ -10,6 +10,12 @@ public class BridgeGame {
 
     private static final String GAME_CLEAR = "성공";
     private static final String GAME_OVER = "실패";
+    private static final int ZERO = 0;
+    private static final int BRIDGE_UP_SIDE = 0;
+    private static final int BRIDGE_BOTTOM_SIDE = 1;
+    private static final String GAME_RETRY = "R";
+    private static final String UP_SIDE = "U";
+    private static final String BOTTOM_SIDE = "D";
 
     private final List<String> bridge;
     private final InputView inputView = new InputView();
@@ -20,7 +26,7 @@ public class BridgeGame {
     }
 
     public void playGame() {
-        int countGame = 0;
+        int countGame = ZERO;
         List<List<String>> side = new ArrayList<>();
         while (true) {
             initBridgeStatus(side);
@@ -30,7 +36,7 @@ public class BridgeGame {
     }
 
     public boolean checkFinalState(List<List<String>> sideState, int countGame) {
-        if (sideState.get(0).contains("X") || sideState.get(1).contains("X")) {
+        if (sideState.get(BRIDGE_UP_SIDE).contains("X") || sideState.get(BRIDGE_BOTTOM_SIDE).contains("X")) {
             if (!retry(inputView.readGameCommand())) {
                 outputView.printResult(sideState, countGame, GAME_OVER);
                 return false;
@@ -78,10 +84,10 @@ public class BridgeGame {
     }
 
     private void stepNotCorrectDirection(String direction, List<List<String>> side) {
-        if (direction.equals("U")) {
+        if (direction.equals(UP_SIDE)) {
             step("X", " ", side);
         }
-        if (direction.equals("D")) {
+        if (direction.equals(BOTTOM_SIDE)) {
             step(" ", "X", side);
         }
     }
@@ -96,17 +102,17 @@ public class BridgeGame {
     }
 
     private void stepCorrectDirection(String direction, List<List<String>> side) {
-        if (direction.equals("U")) {
+        if (direction.equals(UP_SIDE)) {
             step("O", " ", side);
         }
-        if (direction.equals("D")) {
+        if (direction.equals(BOTTOM_SIDE)) {
             step(" ", "O", side);
         }
     }
 
     private void step(String topSideStatus, String bottomSideStatus, List<List<String>> side) {
-        side.get(0).add(topSideStatus);
-        side.get(1).add(bottomSideStatus);
+        side.get(BRIDGE_UP_SIDE).add(topSideStatus);
+        side.get(BRIDGE_BOTTOM_SIDE).add(bottomSideStatus);
     }
 
     /**
@@ -116,7 +122,7 @@ public class BridgeGame {
      * @return
      */
     public boolean retry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(GAME_RETRY)) {
             return true;
         }
         return false;

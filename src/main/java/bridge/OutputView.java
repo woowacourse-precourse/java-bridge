@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final int GAME_FAIL = 0;
-    private static final int GAME_SUCCESS = 1;
+    private static final int BRIDGE_UP_SIDE = 0;
+    private static final int BRIDGE_BOTTOM_SIDE = 1;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -17,8 +17,8 @@ public class OutputView {
      * @param side
      */
     public void printMap(List<List<String>> side) {
-        System.out.println("[ " + String.join(" | ", side.get(0)) + " ]");
-        System.out.println("[ " + String.join(" | ", side.get(1)) + " ]");
+        System.out.println("[ " + String.join(" | ", side.get(BRIDGE_UP_SIDE)) + " ]");
+        System.out.println("[ " + String.join(" | ", side.get(BRIDGE_BOTTOM_SIDE)) + " ]");
         System.out.println();
     }
 
@@ -32,8 +32,8 @@ public class OutputView {
      */
     public void printResult(List<List<String>> finalState, int countGame, String gameResult) {
         System.out.println("최종 게임 결과");
-        System.out.println("[ " + String.join(" | ", finalState.get(0)) + " ]");
-        System.out.println("[ " + String.join(" | ", finalState.get(1)) + " ]");
+        System.out.println("[ " + String.join(" | ", finalState.get(BRIDGE_UP_SIDE)) + " ]");
+        System.out.println("[ " + String.join(" | ", finalState.get(BRIDGE_BOTTOM_SIDE)) + " ]");
         printGameResultAndGameCount(countGame, gameResult);
     }
 
