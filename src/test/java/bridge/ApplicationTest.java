@@ -60,7 +60,7 @@ class ApplicationTest extends NsTest {
         @ValueSource(strings = {"1","22",""})
         void wrongBridgeLengthInput(String input) {
             assertSimpleTest(() -> {
-                new InputController(new InputView()).init();
+                new InputController().init();
                 runException(input);
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
@@ -71,7 +71,7 @@ class ApplicationTest extends NsTest {
         @ValueSource(strings = {"1","H",""})
         void wrongInput(String input) {
             assertSimpleTest(() -> {
-                new InputController(new InputView()).init();
+                new InputController().init();
                 runException("3", input);
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
@@ -82,7 +82,7 @@ class ApplicationTest extends NsTest {
         @ValueSource(strings = {"1","H",""})
         void wrongRestartInput(String input) {
             assertRandomNumberInRangeTest(() -> {
-                new InputController(new InputView()).init();
+                new InputController().init();
                 runException("D","U","D", input);
                 assertThat(output()).contains(ERROR_MESSAGE);
             }, 0,1,1);
