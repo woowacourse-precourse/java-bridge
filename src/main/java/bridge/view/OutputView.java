@@ -22,15 +22,15 @@ public class OutputView {
     }
 
     public String bridgeToMap(List<String> bridge) {
-        String str = "";
+        StringBuilder str = new StringBuilder();
 
         for (int i = 0; i < bridge.size() - 1; i++) {
-            str += bridge.get(i);
-            str += BRIDGE_DIVISION;
+            str.append(bridge.get(i));
+            str.append(BRIDGE_DIVISION);
         }
 
-        str += bridge.get(bridge.size() - 1);
-        return str;
+        str.append(bridge.get(bridge.size() - 1));
+        return str.toString();
     }
 
     public void askBridgeSize() {
