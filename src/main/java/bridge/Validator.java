@@ -29,4 +29,13 @@ public class Validator {
         }
         throw new IllegalArgumentException(Message.ERROR_MOVING_COMMAND.getMessage());
     }
+
+    public static void isGameCommand(String input) {
+        for (String mark : Token.getRetryMark()) {
+            if (input.equals(mark)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(Message.ERROR_GAME_COMMAND.getMessage());
+    }
 }
