@@ -45,8 +45,12 @@ public class OutputView {
 
     private void printBridge(List<String> bridge) {
         System.out.print("[ ");
-        for (String spot : bridge) {
-            System.out.print(spot);
+        for (int i=0; i<bridge.size(); i++) {
+            System.out.print(bridge.get(i));
+            if(i==bridge.size()-1){
+                break;
+            }
+            System.out.print(" | ");
         }
         System.out.println(" ]");
     }
@@ -54,26 +58,22 @@ public class OutputView {
     private void setImpassable(List<String> upperBridge, List<String> lowerBridge) {
         int size = upperBridge.size();
 
-        if (upperBridge.get(size - 1).equals("O")) { // upper 가 마지막 O
-            upperBridge.set(size - 1, "X");
+        if (upperBridge.get(size -1 ).equals("O")) {
+            upperBridge.set(size -1 , "X");
             return;
         }
-        lowerBridge.set(size - 1, "X");
+        lowerBridge.set(size -1 , "X");
     }
 
     private void setBridge(List<String> bridge, List<String> mark, String which) {
         for (String i : mark) {
             if (i.equals(which)) {
                 bridge.add("O");
-                bridge.add(" | ");
                 continue;
             }
             bridge.add(" ");
-            bridge.add(" | ");
         }
-        bridge.remove(bridge.size() - 1);
     }
-
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

@@ -24,12 +24,11 @@ public class BridgeGame {
      */
     public boolean move(String movePlace) {
         mark.add(movePlace);
-        boolean passable = bridge.checkPassable(mark);
 
         if(gameComplete()){
             return false;
         }
-        return passable;
+        return bridge.checkPassable(mark);
     }
 
     public boolean gameComplete() {
