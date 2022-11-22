@@ -8,6 +8,7 @@
 2) 플레이어로부터 움직이려는 방향을 입력 받는다.
 3) 게임이 종료되면 사용자로부터 게임의 재시작 여부를 입력 받는다.
 
+
 ### 발생할 수 있는 예외 사항
 1) 다리의 크기를 입력받을 때, 숫자가 아닌 경우
 2) 다리의 크기를 입력받을 때, 3부터 20 사이의 숫자가 아닌 경우
@@ -32,7 +33,7 @@
 
 
 - Enum
-  - ValidateType : 사용자 입력에 대한 유효성 검사를 구분지어 하기 위해 사용하는 Enum Class이다. SIZE, MOVE, COMMAND를 값으로 가질 수 있다.
+  - ValidateType : 플레이어 입력에 대한 유효성 검사를 구분짓기 위해 사용하는 Enum Class이다. SIZE, MOVE, COMMAND를 값으로 가질 수 있다.
 
 
 ### 2. 플레이어에게 출력 하기
@@ -44,18 +45,19 @@
 ### 구현 내용
 < Class - OutputView >
 - Attribute 
-  - List<String> bridge : <br>
-  - StringBuilder top : <br>
-  - StringBuilder bottom : <br>
+  - List<String> bridge : 게임에서 사용되는 다리이다. <br>
+  - StringBuilder top : 현재 게임에서 다리의 위쪽을 나타낸다. 'O' 이면 갈 수 있는 길이고, 'X' 이면 갈 수 없는 길이다. <br>
+  - StringBuilder bottom : 현재 게임에서 다리의 아래쪽을 나타낸다. 'O' 이면 갈 수 있는 길이고, 'X' 이면 갈 수 없는 길이다. <br>
+
 
 - Method
-  - OutputView() : <br>
-  - boolean printMap() : <br>
-  - void printResult() : <br>
-  - boolean compareTop() : <br>
-  - boolean compareBottom() : <br>
-  - void clear() : <br>
-  - String formattingBridge() : 
+  - OutputView(List<String> bridge) : 생성자이다. bridge를 매개 인자로 받아서 멤버 변수에 초기화하고, 멤버 변수 top, bottom에 StringBuilder를 할당한다. <br>
+  - boolean printMap(int currentLocation, String move) : 현재까지 이동한 다리의 상태를 위, 아래로 나누어 출력한다. 이 때, 주어진 양식에 맞게 출력하기 위한 메서드를 추가로 호출한다. 또, 다리를 성공적으로 이동했는 지에 대한 여부를 boolean 형으로 반환한다. <br>
+  - void printResult(boolean flag, int count) : 게임의 최종적인 결과(다리 건너기에 성공했는 지와 총 시도한 횟수, 이동한 경로)를 출력한다. <br>
+  - boolean compareTop(int location) : 플레이어가 윗쪽 길을 선택했을 때, 그 길이 올바른 길인 지를 비교하고 그 결과를 top에 저장하는 메서드이다. <br>
+  - boolean compareBottom(int location) : 플레이어가 아랫쪽 길을 선택했을 때, 그 길이 올바른 길인 지를 비교하고 그 결과를 bottom에 저장하는 메서드이다. <br>
+  - void clear() : 게임이 재시작되는 경우에, 이전 게임에서 사용하던 top과 bottom의 이동 내역이 남아있으므로 이를 초기화하는 메서드이다. <br>
+  - String formattingBridge(StringBuilder bridgeSide) : top과 bottom을 양식에 맞춰 출력하기 위해 매개 인자로 받은 StringBuilder에 중괄호와 공백, 바(|)를 넣고 String으로 반환하는 메서드이다. <br> 
 
 
 ### 3. 이동, 재도전 처리
