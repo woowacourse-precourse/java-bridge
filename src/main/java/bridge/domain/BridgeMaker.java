@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.enums.MovingType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public class BridgeMaker {
 
     public void addBridgeMoving(List<String> bridge, int number) {
         try {
-            MovingType moving = MovingType.selectMovingType(number);
+            MovingType moving = MovingType.selectMovingTypeByCode(number);
             bridge.add(moving.getInitial());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
