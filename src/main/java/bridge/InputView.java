@@ -34,8 +34,17 @@ public class InputView {
      */
     public String readMoving() {
         String playerMove = Console.readLine();
+        validateMove(playerMove);
+        return playerMove;
+    }
 
-        return null;
+    private static void validateMove(String playerMove) {
+        if(playerMove.length()!=1){
+            throw new IllegalArgumentException("[ERROR] 이동은 U, 또는 R로 입력하셔야 합니다.");
+        }
+        if(!playerMove.equals("U")||!playerMove.equals("R")){
+            throw new IllegalArgumentException("[ERROR] 이동은 U, 또는 R로 입력하셔야 합니다.");
+        }
     }
 
     /**
