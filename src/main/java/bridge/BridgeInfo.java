@@ -1,9 +1,9 @@
 package bridge;
 
 public enum BridgeInfo {
-    Correct("O"),
-    Wrong("X"),
-    Empty(" ");
+    CORRECT("O"),
+    WRONG("X"),
+    EMPTY(" ");
 
     private final String mark;
 
