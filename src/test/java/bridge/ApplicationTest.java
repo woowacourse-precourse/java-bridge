@@ -54,6 +54,15 @@ class ApplicationTest extends NsTest {
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
         }
+        @DisplayName("다리 사이즈 입력 예외처리 -> 3 ~ 20 범위 내 숫자가 아니면 예외")
+        @ParameterizedTest
+        @CsvSource({"1", "2", "21", "-123"})
+        void wrongBridgeSize(String input) {
+            assertSimpleTest(() -> {
+                runException(input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
     }
 
     @Override
