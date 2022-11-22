@@ -11,17 +11,8 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다");
         BridgeGame game = makeGame();
-        playGame(game);
-    }
-
-    private static void playGame(final BridgeGame game) {
-        boolean resultMoving = true;
-        while (resultMoving && !game.isSuccessEndGame()) {
-            String line = input.readMoving();
-            PropertyMove moving = convertPropertyMoveByLine(line);
-            resultMoving = game.move(moving);
-            output.printMap(game);
-        }
+        playGames(game);
+        output.printResult();
     }
 
     private static BridgeGame makeGame() {
@@ -35,6 +26,25 @@ public class Application {
         }
     }
 
+    private static void playGames(final BridgeGame game) {
+        while (!game.isSuccessEndGame()) {
+            playGame(game);
+            if (game.isSuccessEndGame() || !checkRetry(game)) {
+                break;
+            }
+        }
+    }
+
+    private static void playGame(final BridgeGame game) {
+        boolean resultMoving = true;
+        while (resultMoving && !game.isSuccessEndGame()) {
+            String line = input.readMoving();
+            PropertyMove moving = convertPropertyMoveByLine(line);
+            resultMoving = game.move(moving);
+            output.printMap(game);
+        }
+    }
+
     private static PropertyMove convertPropertyMoveByLine(String line) {
         if (line.equals("U")) {
             return PropertyMove.UP;
@@ -43,5 +53,14 @@ public class Application {
             return PropertyMove.DOWN;
         }
         throw new IllegalStateException();
+    }
+
+    private static boolean checkRetry(BridgeGame game) {
+        String command = input.readGameCommand();
+        if (command.equals("Q")) {
+            return false;
+        }
+        game.retry();
+        return true;
     }
 }

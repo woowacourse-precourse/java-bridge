@@ -13,14 +13,15 @@ public class OutputView {
     public void printMap(final BridgeGame game) {
         System.out.println(game);
         StringBuilder builder = new StringBuilder();
+        builder.append("[");
         addMap(game, PropertyMove.UP, builder);
+        builder.append("[");
         addMap(game, PropertyMove.DOWN, builder);
         System.out.println(builder);
     }
 
     private void addMap(final BridgeGame game, final PropertyMove move,
         final StringBuilder builder) {
-        builder.append("[");
         if (game.isGameOver()) {
             addMapGameOverUntilCurrentBridge(game, move, builder);
             addMapGameOverCurrentBridge(game, move, builder);
