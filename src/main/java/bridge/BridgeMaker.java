@@ -12,8 +12,8 @@ public class BridgeMaker {
 
 
     /**
-     BridgeMaker 생성자
-     BridgeNumberGenerator(Interface)를 주입받음.
+     * BridgeMaker 생성자
+     * BridgeNumberGenerator(Interface)를 주입받음.
      */
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -25,7 +25,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             bridge.add(UpDown.numberToLetter(bridgeNumberGenerator.generate()));
         }
         return bridge;

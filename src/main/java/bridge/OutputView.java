@@ -13,13 +13,13 @@ public class OutputView {
 
     }
 
-    public void printResult(boolean isSuccess, BridgeGame bridgeGame) {
+    public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
-        if(isSuccess){
+        if (bridgeGame.getMoveResult() == 1) {
             System.out.println("게임 성공 여부: " + "성공");
         }
-        if(!isSuccess){
+        if (bridgeGame.getMoveResult() != 1) {
             System.out.println("게임 성공 여부: " + "실패");
         }
         System.out.println("총 시도한 횟수: " + bridgeGame.getTryNumber());
@@ -40,7 +40,8 @@ public class OutputView {
     public void printRetry() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
-    public void printException(Exception e){
-        System.out.println("[ERROR] "+e.getMessage());
+
+    public void printException(Exception e) {
+        System.out.println("[ERROR] " + e.getMessage());
     }
 }

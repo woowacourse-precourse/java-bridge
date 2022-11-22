@@ -20,6 +20,10 @@ public class BridgeGame {
         return tryNumber;
     }
 
+    public int getMoveResult() {
+        return moveResult;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -46,7 +50,8 @@ public class BridgeGame {
         this.nowPosition = -1;
         tryNumber++;
     }
-    private void toStringBodyBuilder(StringBuilder upBridge, StringBuilder downBridge){
+
+    private void toStringBodyBuilder(StringBuilder upBridge, StringBuilder downBridge) {
         for (int i = 0; i < this.nowPosition; i++) {
             if (this.bridge.get(i).equals("U")) {
                 upBridge.append("O | ");
@@ -57,15 +62,16 @@ public class BridgeGame {
             downBridge.append("O | ");
         }
     }
-    private void toStringTailBuilder(StringBuilder upBridge, StringBuilder downBridge,String lastResult){
+
+    private void toStringTailBuilder(StringBuilder upBridge, StringBuilder downBridge, String lastResult) {
 
         if (this.bridge.get(this.nowPosition).equals("U")) {
             upBridge.append(lastResult).append(" ]");
             downBridge.append("  ]");
             return;
         }
-            upBridge.append("  ]");
-            downBridge.append(lastResult).append(" ]");
+        upBridge.append("  ]");
+        downBridge.append(lastResult).append(" ]");
     }
 
     @Override
@@ -74,10 +80,10 @@ public class BridgeGame {
         StringBuilder downBridge = new StringBuilder("[ ");
         toStringBodyBuilder(upBridge, downBridge);
         String lastResult = "O";
-        if(this.moveResult == -1){
+        if (this.moveResult == -1) {
             lastResult = "X";
         }
-        toStringTailBuilder(upBridge,downBridge,lastResult);
+        toStringTailBuilder(upBridge, downBridge, lastResult);
         return upBridge.toString() + System.lineSeparator() + downBridge.toString();
     }
 }
