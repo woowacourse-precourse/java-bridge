@@ -2,7 +2,7 @@
 
 우아한테크코스 과정의 4주차 백엔드 미션으로, 다리 건너기 게임을 구현했다.
 
-![예시화면](./img/bridge_game_img.JPG)
+![bridge_game_img](https://user-images.githubusercontent.com/55419868/203311483-8b8256be-1855-4ae7-98a2-278332050f99.JPG)
 
 ---
 ## :rocket: 구현기능
@@ -29,8 +29,7 @@
 ---
 ## :blue_book: 시스템 구조
 
-![시스템 구조](./img/bridge_architecture.png)
-
+![bridge_architecture](https://user-images.githubusercontent.com/55419868/203311449-489e2da2-17db-45a5-96c1-7a48b12d8fd8.png)
 
 ---
 ## :dart: 실행 환경
