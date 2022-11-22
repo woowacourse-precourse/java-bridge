@@ -1,7 +1,7 @@
 # 미션 - 다리 건너기
 
 ## 기능 구현 목록
-- 통합 기능(Appliaction)
+- 통합 기능(Application)
   - 게임 초기화
     - 게임 시작 출력
     - 다리 길이 입력 
@@ -38,7 +38,8 @@
   - 재시작 혹은 종료 입력
 - BridgeMaker Class
   - 다리 생성 기능
-## 기능 구체화
+
+## 기능 구체화 준수 사항 (요약)
 - 메인 클래스
 - InputView Class 입력받는 클래스
   - 제한 사항 (메서드 추가 가능 인자 이름 반환 타입 변경 가능)
@@ -77,7 +78,7 @@
   - 사용법 : int number = bridgeNumberGenerator.generate();
 - 그외 자주 상기해야 하는 사항
   - Console.readLine() 사용하기 - (InputView Class only)
-  - 규칙(필생메) 지키기
+  - 규칙(필드 생성자 메소드) 지키기
   - 10줄 넘기지 말기
   - 메서드 파라미터 개수 최대 3개
   - BridgeGame 클래스에서 InputView OutputView 클래스 활용 불가
