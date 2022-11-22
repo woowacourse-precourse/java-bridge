@@ -49,12 +49,16 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        int size = user_bridge.size();
-        if (size == answer_bridge.size())
-            return true;    //유저의 입력수와 다리의 길이가 같으면 종료
-        if (!user_bridge.get(size - 1).equals(answer_bridge.get(size - 1)))
-            return true;    //유저의 입력이 틀리면 종료
-        return false;   //다리의 길이도 다르고, 틀리지 않았으면 아직 종료x
+        try {
+            int size = user_bridge.size();
+            if (size == answer_bridge.size())
+                return true;    //유저의 입력수와 다리의 길이가 같으면 종료
+            if (!user_bridge.get(size - 1).equals(answer_bridge.get(size - 1)))
+                return true;    //유저의 입력이 틀리면 종료
+            return false;   //다리의 길이도 다르고, 틀리지 않았으면 아직 종료x
+        }catch (ArrayIndexOutOfBoundsException e){
+            return true;
+        }
     }
 
     public boolean isSuccess() {
