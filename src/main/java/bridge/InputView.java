@@ -31,7 +31,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        validGameCommand(command);
+        return command;
     }
     private int strToInt(String input){
         try{
@@ -53,6 +55,12 @@ public class InputView {
     private void validMoveInput(String input){
         if(!input.equals("D") && !input.equals("U")){
             throw new IllegalArgumentException(Messages.ERROR_INPUT_MOVE_MESSAGE.getMessage());
+        }
+    }
+
+    private void validGameCommand(String input){
+        if(!input.equals("R") && !input.equals("Q")){
+            throw new IllegalArgumentException(Messages.ERROR_RETRY_MESSAGE.getMessage());
         }
     }
 }
