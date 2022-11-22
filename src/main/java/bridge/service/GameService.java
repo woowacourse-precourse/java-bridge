@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.domain.Game;
+import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameService {
@@ -13,5 +14,6 @@ public class GameService {
 
     public void pauseGame() {
         OutputView.messageRetryInput();
+        InputView.readGameCommand();
     }
 }
