@@ -98,6 +98,7 @@
 
 ### 8. 잘못된 입력시
 + [X] IllegalArgumentException의 메세지를 받아서 "[ERROR]+message"를 출력한다.
++ [X] 이후 그위치에서 다시 실행한다.
 
 ### 구현 주의 사항
 + [X] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다. 
