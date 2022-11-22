@@ -29,4 +29,14 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("게임 재시작 시 사용자 입력값 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"q", "r", "hihi", "안녕"})
+    void readGameCommandExceptionTest(String input) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
