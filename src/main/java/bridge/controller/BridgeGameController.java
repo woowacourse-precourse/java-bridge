@@ -58,4 +58,27 @@ public class BridgeGameController {
             outputView.printMap(BridgeGameLocationDto.of(bridgeGame.printMoveInfo()));
         }
     }
+
+    private BridgeGamePosition askMove() {
+        try {
+            outputView.printMove();
+            return BridgeGamePosition.checkBridgePosition(inputView.readMoving());
+        } catch (final IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return askMove();
+        }
+    }
+
+    private BridgeGameCommand askRetry(final BridgeGame bridgeGame) {
+        if (bridgeGame.result() == BridgeGameResult.SUCCESS) {
+            return BridgeGameCommand.QUIT;
+        }
+        try {
+            outputView.printAskRetry();
+            return BridgeGameCommand.checkGameCommand(inputView.readGameCommand());
+        } catch (final IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return askRetry(bridgeGame);
+        }
+    }
 }
