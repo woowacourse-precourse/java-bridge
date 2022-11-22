@@ -18,7 +18,6 @@ class BridgeGameTest {
 
     @Test
     void 칸을_이동하는_메서드_테스트() {
-
         assertThat(bridgeGame.move(4, "U", Arrays.asList("U", "D", "U"))).isFalse();
 
         assertThat(bridgeGame.move(2, "U", Arrays.asList("U", "D", "U"))).isTrue();

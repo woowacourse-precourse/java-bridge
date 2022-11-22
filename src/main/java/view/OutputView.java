@@ -29,9 +29,7 @@ public class OutputView {
      */
     public void printMap(int movedPosition, String moving, List<String> bridge) {
         goUpDown(movedPosition, moving, bridge);
-
         NotGoUpDown(movedPosition, moving, bridge);
-
         System.out.println();
     }
 
@@ -70,123 +68,153 @@ public class OutputView {
     }
 
     private void printWhenNotGoDown() {
-        upOutputBoard.remove("]");
-        upOutputBoard.add("|");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add("]");
+        removeFirstElementAndAddBlankUpOutputBoard();
+        removeFirstElementAndAddXDownOutputBoard();
+        printBoard();
+    }
+
+    private void removeFirstElementAndAddXDownOutputBoard() {
         downOutputBoard.remove("]");
         downOutputBoard.add("|");
         downOutputBoard.add(" ");
         downOutputBoard.add("X");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
-        printBoard();
+    }
+
+    private void removeFirstElementAndAddBlankUpOutputBoard() {
+        upOutputBoard.remove("]");
+        upOutputBoard.add("|");
+        upOutputBoard.add(" ");
+        upOutputBoard.add(" ");
+        upOutputBoard.add(" ");
+        upOutputBoard.add("]");
     }
 
     private void printWhenFirstNotGoDown() {
-        upOutputBoard.add("[");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add("]");
+        addBlankUpOutputBoard();
+        addXDownOutputBoard();
+        printBoard();
+    }
+
+    private void addXDownOutputBoard() {
         downOutputBoard.add("[");
         downOutputBoard.add(" ");
         downOutputBoard.add("X");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
-        printBoard();
+    }
+
+    private void addBlankUpOutputBoard() {
+        upOutputBoard.add("[");
+        upOutputBoard.add(" ");
+        upOutputBoard.add(" ");
+        upOutputBoard.add(" ");
+        upOutputBoard.add("]");
     }
 
     private void printWhenNotGoUp() {
-        upOutputBoard.remove("]");
-        upOutputBoard.add("|");
-        upOutputBoard.add(" ");
-        upOutputBoard.add("X");
-        upOutputBoard.add(" ");
-        upOutputBoard.add("]");
+        removeFirstElementAndAddXUpOutputBoard();
+        removeFirstElementAndAddBlankDownOutputBoard();
+        printBoard();
+    }
+
+    private void removeFirstElementAndAddBlankDownOutputBoard() {
         downOutputBoard.remove("]");
         downOutputBoard.add("|");
         downOutputBoard.add(" ");
         downOutputBoard.add(" ");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
-        printBoard();
+    }
+
+    private void removeFirstElementAndAddXUpOutputBoard() {
+        upOutputBoard.remove("]");
+        upOutputBoard.add("|");
+        upOutputBoard.add(" ");
+        upOutputBoard.add("X");
+        upOutputBoard.add(" ");
+        upOutputBoard.add("]");
     }
 
     private void printWhenFirstNotGoUp() {
+        addXUpOutputBoard();
+        addBlankDownOutputBoard();
+        printBoard();
+    }
+
+    private void addBlankDownOutputBoard() {
+        downOutputBoard.add("[");
+        downOutputBoard.add(" ");
+        downOutputBoard.add(" ");
+        downOutputBoard.add(" ");
+        downOutputBoard.add("]");
+    }
+
+    private void addXUpOutputBoard() {
         upOutputBoard.add("[");
         upOutputBoard.add(" ");
         upOutputBoard.add("X");
         upOutputBoard.add(" ");
         upOutputBoard.add("]");
-        downOutputBoard.add("[");
-        downOutputBoard.add(" ");
-        downOutputBoard.add(" ");
-        downOutputBoard.add(" ");
-        downOutputBoard.add("]");
-        printBoard();
     }
 
     private void printWhenGoDown() {
-        upOutputBoard.remove("]");
-        upOutputBoard.add("|");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add("]");
+        removeFirstElementAndAddBlankUpOutputBoard();
+        removeFirstElementAndAddODownOutputBoard();
+        printBoard();
+    }
+
+    private void removeFirstElementAndAddODownOutputBoard() {
         downOutputBoard.remove("]");
         downOutputBoard.add("|");
         downOutputBoard.add(" ");
         downOutputBoard.add("O");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
-        printBoard();
     }
 
     private void printWhenFirstGoDown() {
-        upOutputBoard.add("[");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add(" ");
-        upOutputBoard.add("]");
+        addBlankUpOutputBoard();
+        addODownOutputBoard();
+        printBoard();
+    }
+
+    private void addODownOutputBoard() {
         downOutputBoard.add("[");
         downOutputBoard.add(" ");
         downOutputBoard.add("O");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
-        printBoard();
     }
 
     private void printWhenGoUp() {
+        removeFirstElementAndAddOUpOutputBoard();
+        removeFirstElementAndAddBlankDownOutputBoard();
+        printBoard();
+    }
+
+    private void removeFirstElementAndAddOUpOutputBoard() {
         upOutputBoard.remove("]");
         upOutputBoard.add("|");
         upOutputBoard.add(" ");
         upOutputBoard.add("O");
         upOutputBoard.add(" ");
         upOutputBoard.add("]");
-        downOutputBoard.remove("]");
-        downOutputBoard.add("|");
-        downOutputBoard.add(" ");
-        downOutputBoard.add(" ");
-        downOutputBoard.add(" ");
-        downOutputBoard.add("]");
-        printBoard();
     }
 
     private void printWhenFirstGoUp() {
+        addOUpOutputBoard();
+        addBlankDownOutputBoard();
+        printBoard();
+    }
+
+    private void addOUpOutputBoard() {
         upOutputBoard.add("[");
         upOutputBoard.add(" ");
         upOutputBoard.add("O");
         upOutputBoard.add(" ");
         upOutputBoard.add("]");
-        downOutputBoard.add("[");
-        downOutputBoard.add(" ");
-        downOutputBoard.add(" ");
-        downOutputBoard.add(" ");
-        downOutputBoard.add("]");
-        printBoard();
     }
 
     private void printBoard() {

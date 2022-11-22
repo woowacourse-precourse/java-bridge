@@ -8,7 +8,6 @@ import exception.Exception;
  */
 public class InputView {
 
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -23,7 +22,6 @@ public class InputView {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
     }
 
@@ -31,13 +29,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-
         while (true) {
             try {
                 System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
                 String moving = Console.readLine();
                 Exception.readMoveValidation(moving);
-
                 return moving;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -54,12 +50,10 @@ public class InputView {
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String command = Console.readLine();
                 Exception.readGameCommandValidation(command);
-
                 return command;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
     }
 }
