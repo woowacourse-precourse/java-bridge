@@ -6,9 +6,10 @@ import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
+ * 출력은 어차피 한번만 진행되므로, 굳이 스태틱 메서드로 분리하지 않고
+ * 그냥 출력하도록 만들었다.
  */
 public class OutputView {
-
     public void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
