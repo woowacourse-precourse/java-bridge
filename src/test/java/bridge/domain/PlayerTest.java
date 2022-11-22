@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
     @Nested
-    class MoveTest {
+    class MoveErrorTest {
         @DisplayName("이동 명령어로 소문자 u를 입력했을 때 예외 발생")
         @Test
         void testLowerU() {
@@ -28,37 +29,24 @@ class PlayerTest {
         }
     }
 
-//    @Nested
-//    class CompareTest {
-//        @DisplayName("3번 정답 1번 오답인 경우")
-//        @Test
-//        void right3Wrong1() {
-//            Player player = new Player();
-//            List<String> inputDirections = new ArrayList<>(List.of("U", "D", "U", "D"));
-//            List<String> bridge = new ArrayList<>(List.of("U", "D", "U", "U"));
-//            List<Boolean> compareResult = new ArrayList<>();
-//            for (int i = 0; i < inputDirections.size(); i++) {
-//                player.move(inputDirections.get(i), bridge.get(i));
-//                compareResult.add(player.compareWith(bridge));
-//            }
-//            List<Boolean> answers = new ArrayList<>(List.of(true, true, true, false));
-//            assertThat(compareResult).isEqualTo(answers
-//            );
-//        }
-//
-//        @DisplayName("4번 입력 모두 정답인 경우")
-//        @Test
-//        void right4() {
-//            Player player = new Player();
-//            List<String> inputDirections = new ArrayList<>(List.of("U", "D", "U", "U"));
-//            List<String> bridge = new ArrayList<>(List.of("U", "D", "U", "U"));
-//            List<Boolean> compareResult = new ArrayList<>();
-//            for (int i = 0; i < inputDirections.size(); i++) {
-//                player.move(inputDirections.get(i), bridge.get(i));
-//                compareResult.add(player.compareWith(bridge));
-//            }
-//            List<Boolean> answers = new ArrayList<>(List.of(true, true, true, true));
-//            assertThat(compareResult).isEqualTo(answers);
-//        }
-//    }
+    @Nested
+    class AliveTest {
+        @DisplayName("정답 입력")
+        @Test
+        void right3Wrong1() {
+            Player player = new Player(new Map());
+            player.move("U", "U");
+            assertThat(player.isAlive()).isEqualTo(true);
+        }
+
+        @DisplayName("오답 입력")
+        @Test
+        void right4() {
+            Player player = new Player(new Map());
+            player.move("U", "D");
+            assertThat(player.isAlive()).isEqualTo(false);
+        }
+    }
+
+
 }
