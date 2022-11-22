@@ -26,4 +26,11 @@ public class BridgeGameController {
         }
     }
 
+    public void runGame() {
+        outputView.printStartMessage();
+        BridgeGame bridgeGame = new BridgeGame(
+                bridgeMaker.makeBridge(inputView.getBridgeSize()));
+        runPhase(bridgeGame);
+        outputView.printResult(bridgeGame);
+    }
 }
