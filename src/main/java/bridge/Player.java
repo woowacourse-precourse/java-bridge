@@ -51,7 +51,18 @@ public class Player {
     }
 
     public String getNextSpot(){
-        return inputView.readMoving();
+        String nextSpot = inputView.readMoving();
+        if(!isValidSpot(nextSpot)){
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
+        }
+        return nextSpot;
+    }
+
+    private boolean isValidSpot(String nextSpot) {
+        if(nextSpot.equals("U") || nextSpot.equals("D"))
+            return true;
+
+        return false;
     }
 
     public int getCurrentPosition() {
