@@ -2,26 +2,23 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.TestNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Lists.newArrayList;
 
 public class BridgeTest {
-    @DisplayName("다리 길이가 3 이상 20이하가 아니라면 예외가 발생한다.")
-    @ValueSource(strings = {"-3", "2", "21"})
-    @ParameterizedTest
-    void makeBridgeByOutOfRange(Integer size) {
-        assertThatThrownBy(() -> {
-            BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-
-            List<String> bridge = bridgeMaker.makeBridge(size);
-        })
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("다리가 성공적으로 생성된다.")
+    @Test
+    void 다리_생성_테스트() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).containsExactly("U", "D", "D");
     }
+
 }
