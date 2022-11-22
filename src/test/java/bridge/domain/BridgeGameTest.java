@@ -3,13 +3,10 @@ package bridge.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
@@ -29,8 +26,8 @@ class BridgeGameTest {
     void moveAbleTest(){
         //Given
         //When
-        bridgeGame.move("U", 0);
-        bridgeGame.move("D", 1);
+        bridgeGame.move("U");
+        bridgeGame.move("D");
 
         //Then
         RoundResult roundResult = results.getResults().get(0);
@@ -49,8 +46,8 @@ class BridgeGameTest {
     void moveUnableTest(){
         //Given
         //When
-        bridgeGame.move("U", 0);
-        bridgeGame.move("U", 1);
+        bridgeGame.move("U");
+        bridgeGame.move("U");
 
         //Then
         RoundResult roundResult = results.getResults().get(0);

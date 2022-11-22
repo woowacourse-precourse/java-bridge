@@ -12,6 +12,8 @@ public class BridgeGame {
     private int trial = 1;
     private String successOrFail;
 
+    private boolean isAlive;
+
     public BridgeGame(List<String> bridge, Results results) {
         this.bridge = bridge;
         this.results = results;
@@ -29,6 +31,9 @@ public class BridgeGame {
     public String getSuccessOrFail() {
         return successOrFail;
     }
+    public boolean isAlive() {
+        return isAlive;
+    }
 
     public void setSuccessOrFail(String successOrFail) {
         this.successOrFail = successOrFail;
@@ -40,13 +45,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String userCommand, int round) {
-        if (userCommand.equals(bridge.get(round))) {
+    public void move(String userCommand) {
+        if (userCommand.equals(bridge.get(getRound()))) {
             this.results.addCurrentResult(new RoundResult(userCommand, "O"));
-            return true;
+            this.isAlive = true;
+            return;
         }
         this.results.addCurrentResult(new RoundResult(userCommand, "X"));
-        return false;
+        this.isAlive = false;
     }
 
     /**
@@ -58,6 +64,14 @@ public class BridgeGame {
         trial++;
         //results초기화
         this.results.deleteAll();
+    }
+
+    public boolean isProcessing(){
+        return this.results.getResults().size() < bridge.size();
+    }
+
+    public int getRound(){
+        return this.results.getResults().size();
     }
 
 }
