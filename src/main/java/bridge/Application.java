@@ -17,8 +17,8 @@ public class Application {
     public static void main(String[] args) {
         outputView.printGameStart();
 
-        BridgeGame bridgeGame = new BridgeGame(createBridge(), new Player());
         GameMap gameMap = new GameMap();
+        BridgeGame bridgeGame = new BridgeGame(createBridge(), new Player(), gameMap);
         while (!bridgeGame.quit()) {
             playGame(bridgeGame, gameMap);
         }
@@ -31,7 +31,7 @@ public class Application {
         gameMap.draw(moveResult);
         outputView.printMap(gameMap);
         if (bridgeGame.end()) {
-            bridgeGame.retry(inputGameCommand(), gameMap);
+            bridgeGame.retry(inputGameCommand());
         }
     }
 
