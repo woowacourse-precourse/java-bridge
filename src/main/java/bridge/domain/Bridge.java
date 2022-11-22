@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Bridge {
 
     private static final Integer START_SUBLIST = 0;
+
     private final List<String> squares;
 
     public Bridge(List<String> squares) {
