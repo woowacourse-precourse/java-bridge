@@ -24,6 +24,10 @@
 
 ### BridgeGameController & BridgeGameHandler 
 - [x] 기능 통합
+- [ ] 잘못된 입력이 들어오면 해당 로직을 다시 수행
+  - [x] 다리 길이 입력할 때
+  - [ ] 이동할 칸 선택할 때
+  - [ ] 재시작 or 종료 선택할 때
 
 ### Exception
 - [x] 다리 길이에 대한 예외 처리

@@ -11,7 +11,11 @@ import static bridge.view.InputView.readSelectedBridgeBlock;
 public class BridgeGameHandler {
 
     public static BridgeGame initGame() {
-        return BridgeGame.initBridgeGame(InputView.readBridgeLength());
+        BridgeGame bridgeGame;
+        do {
+            bridgeGame = BridgeGame.initBridgeGame(InputView.readBridgeLength());
+        } while (bridgeGame == null);
+        return bridgeGame;
     }
 
     public static ProcessCondition executeGame(ProcessCondition processCondition, BridgeGame bridgeGame) {
@@ -34,7 +38,7 @@ public class BridgeGameHandler {
     }
 
     public static ProcessCondition executeFailCondition(BridgeGame bridgeGame) {
-        GameStatus selectGameProcess = GameStatus.getGameStatus(readGameCommand());
+        GameStatus selectGameProcess = GameStatus.getGameStatusByGameCommand(readGameCommand());
         if (selectGameProcess.equals(GameStatus.RESTART)) {
             ProcessCondition processCondition = bridgeGame.retry();
             return executeGame(processCondition, bridgeGame);
