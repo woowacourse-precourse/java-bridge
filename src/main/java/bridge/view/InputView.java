@@ -18,4 +18,15 @@ public class InputView {
             return readBridgeSize();
         }
     }
+
+    public String readMoving() {
+        try {
+            String moveInput = Console.readLine();
+            bridgeException.checkCorrectUpOrDownException(moveInput);
+            return moveInput;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + "위쪽으로 이동하길 원하신다면 U, 아래쪽으로 이동하길 원하신다면 D를 입력해주세요.");
+            return readMoving();
+        }
+    }
 }
