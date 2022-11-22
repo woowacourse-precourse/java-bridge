@@ -47,12 +47,10 @@ public class BridgeGame {
         final int LAST_INDEX = matchingResult.size()-1;
 
         if(matchingResult.get(LAST_INDEX).equals(BlockExpression.DIFF.getMark())) {
-            gameProgress.gameOver();
             gameProgress.gameFailed();
             return;
         }
         if(bridge.size()==userInput.size()) {
-            gameProgress.gameOver();
             gameProgress.gameSuccess();
         }
     }
