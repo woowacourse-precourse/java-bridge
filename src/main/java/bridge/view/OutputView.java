@@ -10,7 +10,7 @@ import static bridge.Constants.ROUND_RESULT;
 import static bridge.Constants.ROUND_RESULT_IS_SUCCESS;
 import static bridge.Constants.ROUND_RESULT_NUMBER_OF_ATTEMPTS;
 
-import bridge.Direction;
+import bridge.domain.Direction;
 import bridge.GameResult;
 import java.util.ArrayList;
 import java.util.Arrays;

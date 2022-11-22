@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import bridge.Direction;
+import bridge.domain.Direction;
 import bridge.ErrorMessage;
 
 public class DirectionValidator {
