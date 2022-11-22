@@ -18,21 +18,25 @@
   - [ ] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 - [ ] Application
-  - [ ] 필요 인스턴스들을 초기화한다.
+  - [x] 필요 인스턴스들을 초기화한다.
+  - [ ] OutputView와 협력하여 게임 시작 메시지를 출력한다.
+  - [ ] OutputView와 협력하여 다리의 길이를 입력받는 메시지를 출력한다.
+  - [ ] InputView와 협력하여 다리의 길이를 입력받는다.
+  - [ ] BridgeMaker
+    - [ ] 다리의 길이 만큼 BridgeNumberGenerator 와 협력하여 정답배열을 생성한다.
+  - [ ] Bridge
+    - [ ] 생성된 문자열로 생성한다.
   - [ ] BridgeGame
-    - [ ] OutputView와 협력하여 게임 시작 메시지를 출력한다.
-    - [ ] InputView와 협력하여 다리의 길이를 입력받는다.
-    - [ ] 시도한 횟수를 저장한다.
-    - [ ] BridgeMaker
-      - [ ] 다리의 길이 만큼 BridgeNumberGenerator 와 협력하여 정답배열을 생성한다.
+    - [ ] Bridge를 입력받아 생성된다.
+  - [ ] OutputView와 협력하여 다음 칸을 입력받는 메시지를 출력한다.
+  - [ ] InputView와 협력하여 다음 칸을 입력받는다.
+    - [ ] Player
+      - [ ] 정답유무 배열과 현재 칸을 저장함
+  - [ ] BridgeGame
     - [ ] Bridge
-      - [ ] 생성된 정답 배열을 저장
-      - [ ] 사용자가 입력한 방향을 배열에 저장
-      - [ ] 입력한 방향이 정답배열과 맞는지 체크
-    - [ ] 다리의 길이 만큼 OutputView와 협력하여 이동할 칸을 입력받는다는 메세지를 출력한다.
-    - [ ] InputView와 협력하여 이동할 방향을 입력받는다.
-      - [ ] Player에 입력된 방향을 저장한다.
-      - [ ] protected메소드를 통해 Bridge와 Player를 비교해 결과를 반환한다.
-    - [ ] OutputView와 협력하여 현재 다리의 현황을 출력합니다.
-      - [ ] 맞춘 부분 O 틀린부분 X
-    
+      - [ ] Player를 입력받아 Bridge 클래스에서 정답과 비교 후 boolean 반환
+  - [ ] OutputView와 협력하여 현재 다리의 현황을 출력합니다.
+    - [ ] 맞춘 부분 O 틀린부분 X
+  - [ ] 틀렸을 때 재시도를 요청하는 메세지를 출력합니다.
+  - [ ] 재시도시 결과를 출력하고 새로운 Player를 생성하고 시도횟수를 +1 합니다.
+  - [ ] 전부 맞췄을 때 결과를 출력합니다.
