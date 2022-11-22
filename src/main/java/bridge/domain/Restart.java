@@ -21,7 +21,7 @@ public enum Restart {
         throw new InvalidRestartFormatException();
     }
 
-    private String getStatus() {
+    public String getStatus() {
         return status;
     }
 }
