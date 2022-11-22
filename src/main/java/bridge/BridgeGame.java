@@ -54,5 +54,15 @@ public class BridgeGame {
         finishedBridge = Bridge.makeBridge(size);
         moveUpDown();
     }
-
+    public void moveUpDown(){
+        count++;
+        boolean answer = true;
+        for(int i = 0 ; i < size ; i++) {
+            String userMoveUD = app.moveCheck();
+            answer =  move(userMoveUD);
+            if(answer == false) break;
+        }
+        if(answer == true) app.printResult(Bridge_out,true,count);
+        if(answer == false) retry();
+    }
 }
