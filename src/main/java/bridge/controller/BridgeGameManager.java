@@ -77,7 +77,7 @@ public class BridgeGameManager {
             try {
                 return InputView.readBridgeSize();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -87,7 +87,7 @@ public class BridgeGameManager {
             try {
                 return InputView.readMoving();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -97,7 +97,7 @@ public class BridgeGameManager {
             try {
                 return InputView.readGameCommand();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 재시작/종료는 Q 또는 R이어야 합니다.");
+                System.out.println(e.getMessage());
             }
         }
     }

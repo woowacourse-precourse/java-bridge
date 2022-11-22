@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 import bridge.constant.BridgeGameInfo;
 
@@ -17,7 +18,7 @@ public class InputView {
         // 숫자 형태가 아니면 예외
         for (int i = 0; i < input.length(); i++) {
             if ((int) input.charAt(i) < 48 || (int) input.charAt(i) > 57) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.IS_NUMBER.message);
             }
         }
 
@@ -37,7 +38,7 @@ public class InputView {
         String input = input();
 
         if (!(input.equals("U") || input.equals("D"))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_UP_DOWN.message);
         }
 
         return input;
@@ -49,7 +50,7 @@ public class InputView {
         String input = input();
 
         if (!(input.equals("Q") || input.equals("R"))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_QUIT_RESTART.message);
         }
 
         return input;
