@@ -106,6 +106,7 @@ public class BridgeGame {
         rowIndex = 0;
         columnIndex = -1;
         tryCount += 1;
+        track.clear();
     }
 
     public List<Direction> getBridgeMap() {

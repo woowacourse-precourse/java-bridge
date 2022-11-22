@@ -63,15 +63,20 @@ public class BridgeGameApplication {
     }
 
     private boolean playAgain() {
+        printResultMap();
         if (game.getGameResult() == GameResult.USER_WIN) {
             return false;
         }
         if (readGameCommand().equals("R")) {
-            outputView.printMap(game);
             game.retry();
             return true;
         }
         return false;
+    }
+
+    private void printResultMap(){
+        System.out.println("최종 게임 결과");
+        outputView.printMap(game);
     }
 
     private Direction readMoving() {
@@ -95,8 +100,7 @@ public class BridgeGameApplication {
     }
 
     private void printGameResult() {
-        System.out.println("최종 게임 결과");
-        outputView.printMap(game);
+//        printResultMap();
         outputView.printResult(game);
     }
 }
