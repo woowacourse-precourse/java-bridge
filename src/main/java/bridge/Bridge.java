@@ -16,6 +16,10 @@ public class Bridge {
         return false;
     }
 
+    public List<String> getBridge() {
+        return blocks;
+    }
+
     public int getBridgeSize() {
         return blocks.size();
     }

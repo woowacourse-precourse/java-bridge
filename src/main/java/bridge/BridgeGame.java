@@ -23,19 +23,24 @@ public class BridgeGame {
         int bridgeSize = inputView.readBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         while (!gameEndChecker.getEnd()) {
+            System.out.println(bridge.getBridge());
             crossBridge(bridge);
         }
     }
 
     private void crossBridge(Bridge bridge) {
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
-            String moving = move();
+            String moving = move(bridge, i);
             outputView.printMap();
+            if (!bridge.canMove(i, moving)) {
+                retry();
+                return;
+            }
         }
         gameEndChecker.setEnd(true);
     }
 
-    public String move() {
+    public String move(Bridge bridge, int index) {
         System.out.println("이동 입력");
         String moving = inputView.readMoving();
         return moving;

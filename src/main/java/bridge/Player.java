@@ -2,18 +2,21 @@ package bridge;
 
 public class Player {
     private int gameCount;
-    private boolean GameClear;
+    private boolean gameClear;
 
     public Player() {
         this.gameCount = 1;
-        this.GameClear = false;
+        this.gameClear = false;
     }
 
     public void addGameCount() {
         this.gameCount++;
     }
 
+    public boolean isGameClear() {
+        return gameClear;
+    }
     public void setGameClear(boolean isClear) {
-        this.GameClear = isClear;
+        this.gameClear = isClear;
     }
 }
