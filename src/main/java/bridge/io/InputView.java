@@ -14,20 +14,28 @@ public class InputView {
         this.inputValidator = inputValidator;
     }
 
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        String input = Console.readLine();
+
+        inputValidator.validateBridgeSize(input);
+
+        return Integer.parseInt(input);
+    }
+
+    public int readBridgeSizeUntilSuccess() {
         int bridgeSize;
 
-        try {
-            bridgeSize = Integer.parseInt(Console.readLine());
-            inputValidator.validateBridgeSize(bridgeSize);
-        }catch(IllegalArgumentException e) {
-            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            bridgeSize = Integer.parseInt(Console.readLine());
-            inputValidator.validateBridgeSize(bridgeSize);
+        while(true) {
+            try {
+                bridgeSize = readBridgeSize();
+                break;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
         }
 
         return bridgeSize;
