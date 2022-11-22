@@ -45,5 +45,11 @@ public class OutputView {
         System.out.println(sb.append('\n').append(sb2));
         return result;
     }
+    public void printSuccess(List<String> Bridge, List<String> nextStep){
+        if(nextStep.size()==Bridge.size()){
+            System.out.print("성공");
+            System.out.println();
+        }
+    }
 
 }
