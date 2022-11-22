@@ -21,17 +21,25 @@ public class Controller {
     }
 
     void init() {
-        initialSet();
+        initialSet(); // 초기 정답 세팅
+        while(userStatus == RUNNING) {
+
+        }
     }
 
     void initialSet() {
-        String size = input.readBridgeSize();
-
+        String sizeInput = input.readBridgeSize();
+        game.setBridgeLen(getSize(sizeInput)); // game의 bridge len 설정
+        game.setAnswerBridge(); // game의 bridge 설정
     }
 
-
-
-    void throwError(boolean condition, String message) {
-
+    int getSize(String input) {
+        int ans = 0;
+        for(int i = 0; i < input.length(); ++i) {
+            ans *= 10;
+            ans += input.charAt(i) - '0';
+        }
+        return ans;
     }
+
 }

@@ -12,11 +12,13 @@ public class BridgeGame {
     private List<String> answerBridge;
     private int tries; // 시도
     private int bridgeLen; // 다리 길이
+    private BridgeMaker constructor;
 
     BridgeGame() {
         answerBridge = new ArrayList<>();
         tries = 0;
         bridgeLen = 0;
+        constructor = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public int getTries() {
@@ -35,10 +37,8 @@ public class BridgeGame {
         return answerBridge;
     }
 
-    public void setAnswerBridge(List<String> input) {
-        for(int i = 0; i < input.size(); ++i) {
-            this.answerBridge.add(input.get(i));
-        }
+    public void setAnswerBridge() {
+        constructor.makeBridge(bridgeLen);
     }
 
 
