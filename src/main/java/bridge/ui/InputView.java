@@ -18,7 +18,7 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.println(InputMessage.CHOOSE_UPDOWN);
+        System.out.println(InputMessage.CHOOSE_UP_DOWN);
         String result = Console.readLine();
         validationMoving(result);
         return result;

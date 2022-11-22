@@ -15,7 +15,7 @@ public class MatchConst {
     }
 
     public class InputMessage{
-        public static final String CHOOSE_UPDOWN = "이동할 칸을 선택해주세요. (위: "+Button.UP_BUTTON +", 아래: "+Button.DOWN_BUTTON +")";
+        public static final String CHOOSE_UP_DOWN = "이동할 칸을 선택해주세요. (위: "+Button.UP_BUTTON +", 아래: "+Button.DOWN_BUTTON +")";
         public static final String CHOOSE_RETRY =  "게임을 다시 시도할지 여부를 입력해주세요. (재시도: "+Button.RETRY_BUTTON +", 종료: "+Button.END_BUTTON +")";
     }
 
