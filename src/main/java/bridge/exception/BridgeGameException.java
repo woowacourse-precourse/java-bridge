@@ -15,4 +15,10 @@ public class BridgeGameException {
             throw new IllegalArgumentException();
         }
     }
+
+    public void checkCorrectUpOrDownException(String str) {
+        if (!str.equals("U") && !str.equals("D")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
