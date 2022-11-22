@@ -5,31 +5,37 @@ package bridge.domain;
  */
 public class BridgeGame {
 
-    private Bridge bridge;
-    private BridgePlayer player;
+    private final Bridge bridge;
+    private final BridgePlayer player;
+    private final BridgeMap bridgeMap;
+    private boolean isPlayerAlive;
+
     public BridgeGame(Bridge bridge, BridgePlayer player){
         this.bridge = bridge;
         this.player = player;
+        this.bridgeMap = new BridgeMap(bridge);
+        this.isPlayerAlive = true;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public boolean move(String route) {
         player.goFront();
-        return bridge.isMoveAble(player.getCurrentBridgePosition(), route);
+        isPlayerAlive = bridge.isMoveAble(player.getCurrentBridgePosition(), route);
+        bridgeMap.updateCurrentMap(player.getCurrentBridgePosition(), isPlayerAlive);
+        return isPlayerAlive;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void retry() {
         player.increaseAttemptCount();
         player.goBack();
+        changePlayerAliveState();
+        bridgeMap.updateCurrentMap(player.getCurrentBridgePosition(), isPlayerAlive);
     }
 
+    private void changePlayerAliveState(){
+        isPlayerAlive = !isPlayerAlive;
+    }
+
+    public BridgeMap getBridgeMap(){
+        return this.bridgeMap;
+    }
 }
