@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -35,6 +37,22 @@ public class BridgeGame {
     public void retry() {
         moving.clear();
         count++;
+    }
+
+    public String makeSymbol(int index, String position) {
+        if (moving.get(index).equals(position)) {
+            if (moving.get(index).equals(bridge.get(index))) {
+                return BridgeConstant.SUCCESS;
+            }
+            return BridgeConstant.FAIL;
+        }
+        return BridgeConstant.NOTHING;
+    }
+
+    private List<String> makeRow(String position) {
+        return IntStream.range(0, moving.size())
+                .mapToObj(index -> makeSymbol(index, position))
+                .collect(Collectors.toList());
     }
 
     private void validateSize(int size) {
