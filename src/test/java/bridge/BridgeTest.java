@@ -8,18 +8,17 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BridgeGameTest {
+class BridgeTest {
 
     @Test
     @DisplayName("만약 사용자의 답이 맞으면 성공이다.")
     void isTrueIfPlayerAnswerIsCorrect() {
-        // U U U U
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             bridge.add("U");
         }
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        Bridge testBridge = new Bridge(bridge);
 
-        assertThat(bridgeGame.move("U", 0)).isEqualTo(true);
+        assertThat(testBridge.canMove("U", 0)).isEqualTo(true);
     }
 }
