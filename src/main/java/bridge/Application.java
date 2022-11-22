@@ -6,6 +6,10 @@ import bridge.view.OutputView;
 
 public class Application {
 
+    /**
+     * 메인스레드에서 생성한 {@link BridgeMaker}, {@link InputView}, {@link OutputView}를 주입하여 컨트롤러 동작
+     * @param args
+     */
     public static void main(String[] args) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         InputView inputView = new InputView();
