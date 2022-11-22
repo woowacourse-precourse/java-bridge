@@ -45,6 +45,7 @@ public class BridgeGameTest {
     @Test
     void getResultDtoTest() {
         ResultDto resultDto = bridgeGame.getResultDto();
+
         assertThat(resultDto.getTryCount()).isEqualTo(1);
         assertThat(resultDto.getIsComplete()).isEqualTo(false);
         assertThat(resultDto.getBridgeRouteDto().getBridge()).containsExactly("U","U","D");
