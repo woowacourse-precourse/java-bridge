@@ -58,6 +58,18 @@ public class ApplicationTest2 extends NsTest {
             );
         }, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0);
         
+        assertRandomNumberInRangeTest(() -> {
+            run("8", "D", "R", "U", "D", "D", "R", "U", "D", "U", "D", 
+            			"U", "R", "U", "D", "U", "D", "D", "U", "U", "Q");
+            assertThat(output()).contains(
+            	"최종 게임 결과",
+                "[ O |   | O |   |   | O | X ]",
+                "[   | O |   | O | O |   |   ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 4"
+            );
+        }, 1, 0, 1, 0, 0, 1, 0, 1);
+        
     }
     @Override
     protected void runMain() {
