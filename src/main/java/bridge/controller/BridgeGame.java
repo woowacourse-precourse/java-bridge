@@ -13,6 +13,8 @@ import global.config.AppConfig;
  */
 public class BridgeGame {
 
+    public static final boolean FAIL = false;
+    public static final boolean SUCCESS = true;
     private final Bridge bridge;
     private final Score score;
 
@@ -29,12 +31,12 @@ public class BridgeGame {
      */
     public StepResponseDto move(final InputRequestDto movingDto) {
         if (!score.goOneStep(this.bridge, movingDto.getInput())) {
-            return new StepResponseDto(score, false);
+            return new StepResponseDto(score, FAIL);
         }
         if (score.isCrossing(this.bridge)) {
             return new StepResponseDto(score);
         }
-        return new StepResponseDto(score, true);
+        return new StepResponseDto(score, SUCCESS);
     }
 
     /**
