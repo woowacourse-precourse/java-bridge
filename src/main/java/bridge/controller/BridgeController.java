@@ -30,7 +30,7 @@ public class BridgeController {
 
     public void startGame() {
         outputView.printStartGame();
-        Length length = createLengthLoop();
+        Length length = getLengthLoop();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
         Bridge bridge = createBridge(bridgeNumbers);
         PassingPositions passingPositions = createPassingPositions(bridge);
@@ -80,7 +80,7 @@ public class BridgeController {
         return result;
     }
 
-    private Length createLengthLoop() {
+    private Length getLengthLoop() {
         Length length;
         do {
             length = createLength();
