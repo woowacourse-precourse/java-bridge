@@ -41,4 +41,8 @@ public class BridgeService {
 
         return BridgeGameStatus.INCORRECT.getGameStatus();
     }
+
+    public boolean isSuccess(int bridgeSize, int playerLocation) {
+        return bridgeSize == playerLocation;
+    }
 }

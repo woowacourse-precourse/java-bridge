@@ -20,6 +20,7 @@ public class OutputView {
      */
     public void printMap(Player player) {
         printInfo(makePrintMapMsg(player));
+        printInfo(OutputPharses.EMPTY_LINE.getMsg());
     }
 
     /**

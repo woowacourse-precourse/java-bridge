@@ -4,6 +4,7 @@ import bridge.model.Bridge;
 import bridge.model.BridgeMaker;
 import bridge.model.Player;
 import bridge.service.BridgeService;
+import bridge.util.BridgeGameStatus;
 import bridge.util.OutputPharses;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -48,13 +49,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move() {
         while(!isRoundOver) {
             setPlayerMove();
-            boolean canMove = eachMove();
+            isRoundOver = !eachMove();
             outputView.printMap(player);
-            isRoundOver = !canMove;
+            if(isGameSuccess()) {
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean eachMove() {
@@ -75,6 +79,7 @@ public class BridgeGame {
     public void startGame() {
         initGame();
         startRond();
+        printEnd();
     }
 
     public void initGame() {
@@ -86,10 +91,28 @@ public class BridgeGame {
     public void startRond() {
         while (!isGameOver) {
             retry();
-            move();
+            if (move()){
+                return;
+            }
             setGameStatus();
+            isGameOver = isQuit();
         }
+    }
 
+    public void printEnd() {
+
+    }
+
+    public boolean isQuit() {
+        return gameCommand.equals(BridgeGameStatus.QUIT.getGameStatus());
+    }
+
+    /**
+     * 게임을 성공하였을때 : 플레이어가 완주한 상태로, 마지막 칸은 O로 끝나야 한다.
+     * @return
+     */
+    public boolean isGameSuccess() {
+        return bridgeService.isSuccess(bridge.getBridgeSize(), player.getCurrentLocation()) && !isRoundOver;
     }
 
     /**
