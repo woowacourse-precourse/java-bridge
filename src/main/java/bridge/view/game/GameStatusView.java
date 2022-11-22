@@ -8,6 +8,7 @@ import bridge.value.BridgeCharacter;
 import bridge.view.bridge.BridgeLineView;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class GameStatusView {
@@ -19,17 +20,26 @@ public class GameStatusView {
     }
 
     public static GameStatusView makeGameStatusView(BridgeAndPasser bridgeAndPasser) {
-        List<BridgeLineView> lineViews = Arrays.stream(BridgeCharacter.values())
-                .map((bridgeCharacter -> makeBridgeLineView(bridgeAndPasser, bridgeCharacter))).collect(
-                        Collectors.toList());
-        return new GameStatusView(lineViews);
+        return makeGameStatusView(makeLine(bridgeAndPasser));
     }
 
     public static GameStatusView makeGameResultStatusView(BridgeAndPasser bridgeAndPasser) {
-        List<BridgeLineView> lineViews = Arrays.stream(BridgeCharacter.values())
-                .map((bridgeCharacter -> makeBridgeResultLineView(bridgeAndPasser, bridgeCharacter))).collect(
-                        Collectors.toList());
+        return makeGameStatusView(makeResultLine(bridgeAndPasser));
+    }
+
+    private static GameStatusView makeGameStatusView(Function<BridgeCharacter, BridgeLineView> mapper) {
+        List<BridgeLineView> lineViews = Arrays.stream(BridgeCharacter.values()).map(mapper)
+                .collect(Collectors.toList());
+
         return new GameStatusView(lineViews);
+    }
+
+    private static Function<BridgeCharacter, BridgeLineView> makeLine(BridgeAndPasser bridgeAndPasser) {
+        return bridgeCharacter -> makeBridgeLineView(bridgeAndPasser, bridgeCharacter);
+    }
+
+    private static Function<BridgeCharacter, BridgeLineView> makeResultLine(BridgeAndPasser bridgeAndPasser) {
+        return bridgeCharacter -> makeBridgeResultLineView(bridgeAndPasser, bridgeCharacter);
     }
 
     public String renderStatus() {
