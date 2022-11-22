@@ -26,14 +26,10 @@ public class BridgeController {
     }
 
     public void playBridgeGame(){
-        try{
-            List<String> bridge = startGame();
-            GameOverStatus gameOverStatus = playGame(bridge);
-            endGame( gameOverStatus.getBridge(),
-                    gameOverStatus.isSuccess(),gameOverStatus.getPlayCount());
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
+        List<String> bridge = startGame();
+        GameOverStatus gameOverStatus = playGame(bridge);
+        endGame( gameOverStatus.getBridge(),
+                gameOverStatus.isSuccess(),gameOverStatus.getPlayCount());
     }
 
     private void endGame(List<CorrectInfo> bridge, boolean success, int playCount) {
@@ -63,8 +59,14 @@ public class BridgeController {
     }
 
     private boolean isContinue(){
-        String playContinue = inputView.readGameCommand();
-        return bridgeService.makeContinueMessage(playContinue);
+        while(true) {
+            try {
+                String playContinue = inputView.readGameCommand();
+                return bridgeService.makeContinueMessage(playContinue);
+            } catch(IllegalArgumentException e){
+                System.out.println(e);
+            }
+        }
     }
 
     private List<CorrectInfo> userGuess(List<String> bridge) {
@@ -81,14 +83,25 @@ public class BridgeController {
     }
 
     private CorrectInfo getCorrectInfo(String block) {
-        String userInput = inputView.readMoving();
-        CorrectInfo correctInfo = bridgeService.makeCorrectInfo(block, userInput);
-        return correctInfo;
+        while(true) {
+            try {
+                String userInput = inputView.readMoving();
+                return bridgeService.makeCorrectInfo(block, userInput);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<String> startGame(){
-        System.out.println(GAME_START.getMessage()+"\n");
-        return makeBridge();
+        while(true) {
+            try {
+                System.out.println(GAME_START.getMessage() + "\n");
+                return makeBridge();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<String> makeBridge(){
