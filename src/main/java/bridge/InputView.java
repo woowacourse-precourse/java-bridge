@@ -21,7 +21,7 @@ public class InputView {
      */
     public String readMoving() {
         String space = readLine();
-        return checkEmptyInput(space);
+        return checkSpaceToMove(checkEmptyInput(space));
     }
 
     /**

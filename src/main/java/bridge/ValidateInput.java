@@ -25,4 +25,11 @@ public class ValidateInput {
         }
         return input;
     }
+
+    public static String checkSpaceToMove(String space) {
+        if (space.equals("U") || space.equals("D")) {
+            return space;
+        }
+        throw new IllegalArgumentException(ERROR_MESSAGE + SPACE_TO_MOVE_ERROR_MESSAGE);
+    }
 }
