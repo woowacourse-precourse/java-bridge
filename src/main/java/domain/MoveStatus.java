@@ -1,22 +1,24 @@
 package domain;
 
 public enum MoveStatus {
-    UP(0,"D"),
-    DOWN(1,"U");
+    UP_O("O, ", false),
+    UP_X("X, ", true),
+    DOWN_O(" ,O", false),
+    DOWN_X(" ,X", true);
 
-    private final int commandNumber;
-    private final String commandString;
+    private final String result;
+    private final boolean moveStatus;
 
-    MoveStatus(int commandNumber, String commandString) {
-        this.commandNumber = commandNumber;
-        this.commandString = commandString;
+    MoveStatus(String result, boolean moveStatus) {
+        this.result = result;
+        this.moveStatus = moveStatus;
     }
 
-    public int getCommandNumber() {
-        return commandNumber;
+    public String toString() {
+        return result;
     }
 
-    public String getCommandString() {
-        return commandString;
+    public boolean isMoveStatus() {
+        return moveStatus;
     }
 }
