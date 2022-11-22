@@ -8,4 +8,8 @@ public enum Move {
     Move(String move) {
         this.move = move;
     }
+
+    public String getMove() {
+        return move;
+    }
 }

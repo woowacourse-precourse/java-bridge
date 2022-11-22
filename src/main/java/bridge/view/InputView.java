@@ -15,41 +15,51 @@ public class InputView {
     public int readBridgeSize() {
         String readSize = Console.readLine();
 
-        while (hasErrorInSize(readSize)) {
-            validForSize(readSize);
+        while (!validForSize(readSize)) {
             readSize = Console.readLine();
         }
         return Integer.parseInt(readSize);
     }
 
-    private void validForSize(String readSize) {
+    private boolean validForSize(String readSize) {
         try {
-            if (hasErrorInSize(readSize)) {
-                throw new IllegalArgumentException();
-            }
+            checkErrorInSize(readSize);
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            return false;
         }
     }
 
-    private boolean hasErrorInSize(String readSize) {
+    private void checkErrorInSize(String readSize) {
         if (!Pattern.matches(Regex.RANGE.getPattern(), readSize)) {
-            return true;
+            throw new IllegalArgumentException();
         }
-        return false;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public Move readMoving(String move) {
-        validForMove(move);
+    public Move readMoving() {
+        String move = Console.readLine();
+
+        while (!validForMove(move)) {
+            move = Console.readLine();
+        }
         return Move.valueOf(move);
     }
 
-    private void validForMove(String move) {
-        if (!Pattern.matches(Regex.MOVE.getPattern(), move)) {
+    private boolean validForMove(String move) {
+        try {
+            checkErrorInMove(move);
+            return true;
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 이동 명령은 U 혹은 D 중 하나를 입력해야만 합니다.");
+            return false;
+        }
+    }
+    private void checkErrorInMove(String move) {
+        if (!Pattern.matches(Regex.MOVE.getPattern(), move)) {
             throw new IllegalArgumentException();
         }
     }
@@ -57,14 +67,27 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public Continue readGameCommand(String command) {
-        validForGameCommand(command);
+    public Continue readGameCommand() {
+        String command = Console.readLine();
+
+        while (!validForGameCommand(command)) {
+            command = Console.readLine();
+        }
         return Continue.getEnum(command);
     }
 
-    private void validForGameCommand(String command) {
-        if (!Pattern.matches(Regex.CONTINUE.getPattern(), command)) {
+    private boolean validForGameCommand(String command) {
+        try {
+            checkErrorInCommand(command);
+            return true;
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 게임 재시작/종료 명령은 R 혹은 Q중 하나를 입력해야만 합니다.");
+            return false;
+        }
+    }
+
+    private void checkErrorInCommand(String command) {
+        if (!Pattern.matches(Regex.CONTINUE.getPattern(), command)) {
             throw new IllegalArgumentException();
         }
     }
