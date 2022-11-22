@@ -9,17 +9,16 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameSystem {
-    private String state = "C";
-    private int count = 0;
-    private int attempt = 1;
-    private int saveSize;
-
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
     private final BridgeMaker make = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final BridgeGame game  = new BridgeGame();
     private final InputValid inputvalid = new InputValid();
 
+    private int count = 0;
+    private int attempt = 1;
+    private int saveSize;
+    private String state = "C";
     private String input;
     private String userChoice;
     private String repeat;
@@ -43,7 +42,7 @@ public class GameSystem {
 
     public void calculate() {
         while (!state.equals("Q") && count < saveSize) {
-            if( state.equals("R")) {
+            if (state.equals("R")) {
                 attempt += game.retry();
             }
             printBridgeState(game.move(count,choiceMove()));
@@ -75,7 +74,7 @@ public class GameSystem {
 
     private String updateState() {
         count += game.getCorrect();
-        if(game.getCorrect() == 0) {
+        if (game.getCorrect() == 0) {
             count = 0;
             return inputState();
         }
@@ -85,7 +84,7 @@ public class GameSystem {
     private String inputState() {
         outputView.printContinue();
         repeat = inputView.readGameCommand();
-        if(inputvalid.checkCommand(repeat) == false){
+        if (inputvalid.checkCommand(repeat) == false){
             inputState();
         }
         return repeat;
