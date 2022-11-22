@@ -31,6 +31,7 @@ public class OutputView {
         writeBridgeFinish();
         System.out.println(upRow);
         System.out.println(downRow);
+        System.out.println();
     }
 
     /**

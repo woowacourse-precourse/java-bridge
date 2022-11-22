@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.BridgeValidator;
+import bridge.model.Command;
 import bridge.model.Direction;
 import bridge.utils.InputUtil;
 import camp.nextstep.edu.missionutils.Console;
@@ -24,7 +25,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public Direction readMoving() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String direction = InputUtil.readAndTrim();
         return Direction.find(direction);
     }
@@ -32,9 +33,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public Command readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String command = InputUtil.readAndTrim();
+        return Command.find(command);
     }
-
-
 }

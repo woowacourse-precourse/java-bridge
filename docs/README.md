@@ -61,7 +61,7 @@
 - [x] 사용자가 이동할 칸을 입력한다. - InputView#readMoving
   - 예외) 문자 하나를 입력하지 않은 경우 
   - 예외) U와 D 외의 문자를 입력한 경우
-- [ ] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. - InputView#readGameCommand
+- [x] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. - InputView#readGameCommand
   - 예외) 문자 하나를 입력하지 않은 경우
   - 예외) R과 Q 외의 문자를 입력한 경우
 ### 출력

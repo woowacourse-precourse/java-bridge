@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
+import bridge.model.Command;
 import bridge.model.Direction;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -37,7 +38,11 @@ public class BridgeGameManager {
             bridgeGame.move(chooseDirection());
             outputView.printRoute(bridgeGame);
             if (bridgeGame.isFailed()) {
-                bridgeGame.retry();
+                if (inputGameCommand() == Command.RETRY) {
+                    bridgeGame.retry();
+                    continue;
+                }
+                return;
             }
         }
     }
@@ -48,6 +53,15 @@ public class BridgeGameManager {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return chooseDirection();
+        }
+    }
+
+    private Command inputGameCommand() {
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputGameCommand();
         }
     }
 
