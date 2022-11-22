@@ -8,19 +8,20 @@ import bridge.view.View;
 public class BridgeGame {
 
     static int bridgeSize;
+    InputView inputView = new InputView();
     public void setGame() {
         View.gameStartMessage();
-        int startNumber = 1;
+        int retryCheckNumber = 1;
 
-        while (startNumber != 0) {
+        while (retryCheckNumber != 0) {
             View.requestBridgeLengthMessage();
             try {
                 InputView inputView = new InputView();
                 bridgeSize = inputView.readBridgeSize();
-                startNumber = 0;
+                retryCheckNumber = 0;
             } catch (IllegalArgumentException e) {
                 View.exceptionMessage(e);
-                startNumber = 1;
+                retryCheckNumber = 1;
             }
         }
     }
@@ -39,6 +40,19 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+
+        int retryCheckNumber = 1;
+
+        while (retryCheckNumber != 0) {
+            View.requestPickAPartOfBridgeMessage();
+            try {
+                String userInput = inputView.readMoving();
+                retryCheckNumber = 0;
+            } catch (IllegalArgumentException e) {
+                View.exceptionMessage(e);
+                retryCheckNumber = 1;
+            }
+        }
     }
 
     /**

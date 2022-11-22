@@ -8,5 +8,6 @@ public class Application {
 
         bridgeGame.setGame();
         bridgeGame.make();
+        bridgeGame.move();
     }
 }

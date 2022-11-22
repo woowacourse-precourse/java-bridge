@@ -10,11 +10,16 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    public String getUserInput() {
+        String userInput = Console.readLine().trim();
+        return userInput;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() throws IllegalArgumentException {
-        String userInput = Console.readLine().trim();
+        String userInput = getUserInput();
         isNumber(userInput);
         int bridgeSize = Integer.parseInt(userInput);
         checkNumberRange(bridgeSize);
@@ -40,7 +45,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+
+        String pickPart = getUserInput();
+        isUorD(pickPart);
+
+        return pickPart;
+    }
+
+    private void isUorD(String pickPart) {
+        if (!pickPart.equals("U") && !pickPart.equals("D")) {
+            throw new IllegalArgumentException(ExceptionCode.NOT_U_OR_D.getMessage());
+        }
     }
 
     /**
