@@ -36,4 +36,12 @@ public class BridgeGame {
         this.usersRoute = new UsersRoute();
     }
 
+    public boolean isFail() {
+        List<String> route = usersRoute.getRoute();
+        return !route.get(route.size() - 1).equals(bridge.getBridge().get(route.size() - 1));
+    }
+
+    public boolean isSameLength() {
+        return (usersRoute.getRoute().size() == bridge.getBridge().size());
+    }
 }
