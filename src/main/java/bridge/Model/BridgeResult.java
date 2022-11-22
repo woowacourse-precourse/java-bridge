@@ -50,7 +50,7 @@ public class BridgeResult {
             sb.append(" | ");
         }
         sb.setLength(sb.length() - " | ".length());
-        sb.append(" ]");
+        sb.append(" ]\n");
         return sb.toString();
     }
 }

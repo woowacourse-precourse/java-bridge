@@ -7,7 +7,7 @@ public class OutputView {
 
     private static final String MESSAGE_PRINT_RESULT =
             "최종 게임 결과\n" +
-                    "%s\n\n" +
+                    "%s\n" +
                     "게임 성공 여부: %s\n" +
                     "총 시도한 횟수: %d\n";
 
