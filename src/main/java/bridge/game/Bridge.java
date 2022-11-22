@@ -27,10 +27,14 @@ public class Bridge {
     public Boolean pass(String choice) {
         if (getBlock(distance).equals(choice)) {
             distance += 1;
-            return true;
+            return isClear();
         }
 
-        return false;
+        return isClear();
+    }
+
+    public Boolean isClear() {
+        return bridge.size() == distance;
     }
 
 }

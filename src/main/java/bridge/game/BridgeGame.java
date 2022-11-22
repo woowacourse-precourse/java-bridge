@@ -18,11 +18,17 @@ public class BridgeGame {
      *
      * @param input 사용자가 입력한 입력값
      */
-    public void move(String input) {
+    public Integer move(String input) {
         checkInputLength(input);
         checkMoveInput(input);
 
         bridge.pass(input);
+
+        if(bridge.isClear()) {
+            return count;
+        }
+
+        return 0;
     }
 
     /**
