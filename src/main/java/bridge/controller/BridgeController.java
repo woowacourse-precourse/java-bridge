@@ -23,7 +23,7 @@ public class BridgeController {
         game = makeBridgeGame();
     }
 
-    public BridgeGame makeBridgeGame() {
+    private BridgeGame makeBridgeGame() {
         outputView.printStartStatement();
         BridgeBluePrint bluePrint = makeBridgeBluePrint();
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -36,6 +36,7 @@ public class BridgeController {
             outputView.printBridgeSizeStatement();
             bluePrint = makeBridgeBluePrintOrNull();
         }
+        outputView.printEmptyLine();
         return bluePrint;
     }
 
@@ -56,7 +57,6 @@ public class BridgeController {
     }
 
     public boolean move() {
-        outputView.printMovingStatement();
         String moving = inputMoving();
         Boolean block = game.move(moving);
         outputView.printMap(game.getMap());
@@ -66,6 +66,7 @@ public class BridgeController {
     private String inputMoving() {
         String moving = null;
         while (moving == null) {
+            outputView.printMovingStatement();
             moving = inputMovingOrNull();
         }
         return moving;

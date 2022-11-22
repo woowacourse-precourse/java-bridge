@@ -20,6 +20,7 @@ public class OutputView {
                     .collect(Collectors.joining(" | ", "[ ", " ]"));
             System.out.println(map);
         }
+        printEmptyLine();
     }
 
     /**
@@ -30,7 +31,6 @@ public class OutputView {
     public void printResult(List<String>[] map, boolean success, int count) {
         System.out.println("최종 게임 결과");
         printMap(map);
-        System.out.println();
         String state = BridgeDisplay.getState(success);
         System.out.println("게임 성공 여부: " + state);
         System.out.println("총 시도한 횟수: " + count);
@@ -38,6 +38,7 @@ public class OutputView {
 
     public void printStartStatement() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        printEmptyLine();
     }
 
     public void printBridgeSizeStatement() {
@@ -54,5 +55,9 @@ public class OutputView {
 
     public void printGameCommandStatement() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    public void printEmptyLine() {
+        System.out.println();
     }
 }
