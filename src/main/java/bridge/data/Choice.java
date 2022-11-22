@@ -3,7 +3,7 @@ package bridge.data;
 import java.util.ArrayList;
 import java.util.List;
 
-enum Choice {
+public enum Choice {
     DOWN(0, "D"), UP(1, "U");
 
     private int value;
