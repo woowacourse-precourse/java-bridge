@@ -1,6 +1,8 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.domain.Result;
+import bridge.domain.Status;
 import bridge.validation.InputValidation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -50,21 +52,37 @@ public class BridgeMaker {
         return bridges;
     }
 
-    public void moveBridge(List<String> bridges) {
-        OutputView outputView = new OutputView();
-        outputView.printMoveDirectionSelectMessage();
+    public List<Result> getCrossResults(List<String> bridges, List<Result> crossResults, int position) {
+        boolean crossed = crossBridge(bridges, position);
+        List<Integer> movedDirection = getMovedDirection(bridges, position);
+        crossResults.get(movedDirection.get(0)).addResult(Status.getStatusByCrossed(crossed));
+        crossResults.get(movedDirection.get(1)).addResult(Status.NOT_MOVED);
+        return crossResults;
     }
 
-    public String getDirectionFromInput(){
+    public boolean crossBridge(List<String> bridges, int position) {
+        OutputView outputView = new OutputView();
+        outputView.printMoveDirectionSelectMessage();
+        String direction = getDirectionFromInput();
+        return new BridgeGame().move(bridges, position, direction);
+    }
+
+    public String getDirectionFromInput() {
         InputView inputView = new InputView();
         InputValidation inputValidation = new InputValidation();
-        while(true) {
+        while (true) {
             try {
-                String input = inputView.readMoving();
-                return inputValidation.getDirections(input);
+                return inputValidation.getDirections(inputView.readMoving());
             } catch (IllegalArgumentException exception) {
                 new OutputView().printErrorMessage(exception.getMessage());
             }
         }
+    }
+
+    public List<Integer> getMovedDirection(List<String> bridges, int position) {
+        if (bridges.get(position).equals(Bridge.DOWN.getDirection())) {
+            return List.of(0, 1);
+        }
+        return List.of(1, 0);
     }
 }
