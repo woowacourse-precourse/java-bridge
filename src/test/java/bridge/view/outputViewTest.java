@@ -77,4 +77,36 @@ public class outputViewTest {
                 , outputMessage.toString().trim().replace("\r",""));
 
     }
+
+    @DisplayName("다리 길이 3, 유저가 이동한 인덱스 3, 이동을 끝까지 성공했을 때 최종 게임 결과 출력문이 일치하는지 확인")
+    @Test
+    void givenBridgesThreeIndexThreeIsSuccessTrue_whenPrintResult_thenReturnPrintResult(){
+        // Given
+        List<String> bridges = List.of("D","U","U");
+        int index = 3;
+        boolean isRunning = true;
+
+        // When
+        outputView.printResult(bridges, index, isRunning);
+
+        // Then
+        assertEquals("최종 게임 결과\n\n[   | O | O ]\n[ O |   |   ]\n\n게임 성공 여부: 성공\n"
+                , outputMessage.toString().replace("\r", ""));
+    }
+
+    @DisplayName("다리 길이 3, 유저가 이동한 인덱스 3, 이동을 실패해서 중간에 종료했을 때 최종 게임 결과 출력문이 일치하는지 확인")
+    @Test
+    void givenBridgesThreeIndexThreeIsSuccessFalse_whenPrintResult_thenReturnPrintResult(){
+        // Given
+        List<String> bridges = List.of("D","U","U");
+        int index = 3;
+        boolean isRunning = false;
+
+        // When
+        outputView.printResult(bridges, index, isRunning);
+
+        // Then
+        assertEquals("최종 게임 결과\n\n[   | O |   ]\n[ O |   | X ]\n\n게임 성공 여부: 실패\n"
+                , outputMessage.toString().replace("\r", ""));
+    }
 }
