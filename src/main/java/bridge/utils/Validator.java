@@ -15,6 +15,7 @@ public class Validator {
             return Integer.parseInt(bridgeLength);
         } catch (IllegalArgumentException e) {
             logger.warning(getErrorSupplier(e));
+            System.out.println("다시 입력해주세요");
             return InputView.readBridgeSize();
         }
     }
@@ -25,12 +26,20 @@ public class Validator {
             return userInput;
         } catch (IllegalArgumentException e) {
             logger.warning(getErrorSupplier(e));
+            System.out.println("다시 입력해주세요");
             return InputView.readMoving();
         }
     }
 
     public static String validateRestartOrQuit(String userInput) {
-        return Exception.checkRestartOrQuit(userInput);
+        try {
+            Exception.checkRestartOrQuit(userInput);
+            return userInput;
+        } catch (IllegalArgumentException e) {
+            logger.warning(getErrorSupplier(e));
+            System.out.println("다시 입력해주세요");
+            return InputView.readGameCommand();
+        }
     }
 
     private static Supplier<String> getErrorSupplier(IllegalArgumentException e) {

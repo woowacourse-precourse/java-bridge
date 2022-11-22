@@ -77,29 +77,6 @@ class ApplicationTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력 받은 문자열이 R혹은 Q일 시 입력 값을 반환 한다.")
-    @Test
-    void 문자_테스트_RQ반환(){
-        String input = "R";
-        assertThat(Exception.checkRestartOrQuit(input).equals(input));
-    }
-
-
-    @DisplayName("입력 받은 값이 올바르지 않다면 예외를 발생시킨다.")
-    @Test
-    void 다리_이동_예외(){
-        assertThatThrownBy(() -> Validator.validateMove("R"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("입력 받은 게임 재시작 문자가 올바르지 않다면 예외를 발생시킨다.")
-    @Test
-    void 게임_재시작_예외(){
-        assertThatThrownBy(() -> Validator.validateRestartOrQuit("D"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-
 
     @Override
     protected void runMain() {

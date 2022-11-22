@@ -18,7 +18,6 @@ public class Exception {
     public static final String IS_NUMBER = "[0-9]*";
 
     public enum ErrorMessage {
-        //DEFAULT_ERROR("ERROR"),
         STRING_EXCEPTION("입력값에 문자열이 들어올 수 없습니다."),
         AMOUNT_BOUNDS("범위를 벗어난 입력값입니다."),
         WRONG_INPUT("잘못된 입력값입니다.");
@@ -44,15 +43,13 @@ public class Exception {
          throw new IllegalArgumentException("[ERROR]" + ErrorMessage.AMOUNT_BOUNDS.getError());
     }
 
-
     public static void checkMove(String userInput) throws IllegalArgumentException {
         if (!userInput.equals(UP) && !userInput.equals(DOWN))
         throw new IllegalArgumentException("[ERROR]" + ErrorMessage.WRONG_INPUT.error);
     }
 
-    public static String checkRestartOrQuit(String userInput) throws IllegalArgumentException {
-        if (userInput.equals(RESTART) || userInput.equals(QUIT))
-            return userInput;
+    public static void checkRestartOrQuit(String userInput) throws IllegalArgumentException {
+        if (!userInput.equals(RESTART) && !userInput.equals(QUIT))
         throw new IllegalArgumentException("[ERROR]" + ErrorMessage.WRONG_INPUT.error);
     }
 }
