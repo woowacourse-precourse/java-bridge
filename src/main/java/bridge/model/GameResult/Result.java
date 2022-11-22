@@ -4,18 +4,14 @@ import bridge.constant.Score;
 
 import java.util.List;
 
-
 public class Result {
 
-    private Score score;
-    private Record record = new Record();
+    private int tryCount;
+    private Record record;
 
-    public void setScore(Score score) {
-        this.score = score;
-    }
-
-    public String getScoreMessage() {
-        return score.getMessage();
+    public Result() {
+        tryCount = 1;
+        record = new Record();
     }
 
     public List<List<String>> getBridgeRecord() {
@@ -28,5 +24,13 @@ public class Result {
 
     public void deleteBridgeRecord() {
         record.deleteBridgeRecord();
+    }
+
+    public void addTryCount() {
+        tryCount +=1;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
