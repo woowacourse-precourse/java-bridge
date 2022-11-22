@@ -42,4 +42,13 @@ public class InputViewTest {
                 .hasMessageContaining(ErrorType.OVER_SIZE.getError());
     }
 
+    @Test
+    void 이동할_칸이_U_또는_D가_아니면_예외() {
+        String input = "L";
+
+        assertThatThrownBy(() -> inputView.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorType.NOT_MOVING_INPUT.getError());
+    }
+
 }
