@@ -37,4 +37,12 @@ public class BridgeGameStatus {
 
         return playerChoice.isValid(bridgeAnswer);
     }
+
+    public String getUpBridgeString() {
+        return playerChoice.toStringWith(bridgeAnswer, Direction.UP);
+    }
+
+    public String getDownBridgeString() {
+        return playerChoice.toStringWith(bridgeAnswer, Direction.DOWN);
+    }
 }
