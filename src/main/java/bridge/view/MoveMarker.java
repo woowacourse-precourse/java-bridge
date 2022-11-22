@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.view;
 
 public enum MoveMarker {
     CORRECT("O"),

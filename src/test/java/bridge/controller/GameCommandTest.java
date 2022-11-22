@@ -1,12 +1,13 @@
 package bridge.controller;
 
+import bridge.domain.GameCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static bridge.controller.GameCommand.QUIT;
-import static bridge.controller.GameCommand.RESTART;
+import static bridge.domain.GameCommand.QUIT;
+import static bridge.domain.GameCommand.RESTART;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

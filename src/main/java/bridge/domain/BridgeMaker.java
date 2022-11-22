@@ -1,8 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
-import bridge.controller.MoveCommand;
-import bridge.input.BasicBridgeValidator;
+import bridge.controller.BasicBridgeValidator;
 import bridge.input.BridgeValidator;
 
 import java.util.ArrayList;

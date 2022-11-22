@@ -1,7 +1,8 @@
 package bridge.input;
 
-import bridge.controller.GameCommand;
-import bridge.controller.MoveCommand;
+import bridge.controller.BasicBridgeValidator;
+import bridge.domain.GameCommand;
+import bridge.domain.MoveCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
