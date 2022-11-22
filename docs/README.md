@@ -37,6 +37,7 @@ BridgeGame
     field
         List<String> curbridge : 현재 게임이 진행되고 있는 다리 정보  
         int curidx : 현재 유저가 위치하고 있는 인덱스
+        ArrayList<String> curmov : 현재 움직임들 기록
     method
         생성자
             다리를 만들고(BridgeMaker) 사용 // curidx를 0으로 초기화한다.
