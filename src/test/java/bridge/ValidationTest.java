@@ -25,4 +25,12 @@ class ValidationTest {
                         validation.validationNumber(21))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("위 아래 움직임 값 검증")
+    void movingValueValidation_fault1() {
+        Assertions.assertThatThrownBy(() ->
+                        validation.validationMoving("Q"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
