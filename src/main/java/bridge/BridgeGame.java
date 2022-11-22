@@ -31,8 +31,8 @@ public class BridgeGame {
      */
     public HashMap<String, Integer> retry(HashMap<String, Integer> gameData) {
 
-        gameData.put("gameCount",gameData.get("gameCount")+1);
-        gameData.put("index",0);
+        gameData.put("gameCount", gameData.get("gameCount")+1);
+        gameData.put("index", 0);
 
         return gameData;
     }

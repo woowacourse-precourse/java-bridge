@@ -1,14 +1,14 @@
 package bridge;
 
-import org.assertj.core.api.AbstractOptionalAssert;
-
 import java.util.HashMap;
 import java.util.List;
 
 public class BridgeGameSplit {
     List<String> bridge;
     HashMap<String, String> moveMap = new HashMap<>();
-    HashMap<String, Integer> numData = new HashMap<>();
+    HashMap<String, Integer> numData = new HashMap<>() {{
+        put("gameCount", 0);
+    }};
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();

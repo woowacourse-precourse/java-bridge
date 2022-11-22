@@ -7,7 +7,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-     /**
+    /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
@@ -70,28 +70,28 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String result, int gameCount) {
-        if(result.equals("X")){
+        if (result.equals("X")) {
             result = "실패";
         }
 
-        if(result.equals("O")){
+        if (result.equals("O")) {
             result = "성공";
         }
         System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + gameCount);
     }
 
-    public void printFinalBridge(List<String> bridge, HashMap<String,String> moveMap){
+    public void printFinalBridge(List<String> bridge, HashMap<String, String> moveMap) {
         System.out.println("최종 게임 결과");
-        printMap(bridge,moveMap);
+        printMap(bridge, moveMap);
     }
 
-    public void printFinish(HashMap<String, String> moveMap, HashMap<String, Integer> gameData, List<String> bridge){
-        printFinalBridge(bridge.subList(0,gameData.get("index")-1),moveMap);
-        printResult(moveMap.get("moving"),gameData.get("gameCount"));
+    public void printFinish(HashMap<String, String> moveMap, HashMap<String, Integer> gameData, List<String> bridge) {
+        printFinalBridge(bridge.subList(0, gameData.get("index") - 1), moveMap);
+        printResult(moveMap.get("moving"), gameData.get("gameCount"));
     }
 
-    public void printStart(){
+    public void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리의 길이를 입력해주세요.");
     }

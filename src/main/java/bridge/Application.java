@@ -10,7 +10,7 @@ public class Application {
         BridgeGameSplit bridgeGameSplit = new BridgeGameSplit();
 
         List<String> bridge = bridgeGameSplit.bridgeStart();
-
+        System.out.println(bridge);
         bridgeGameSplit.gameMain(bridge);
     }
 }
