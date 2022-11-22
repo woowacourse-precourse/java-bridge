@@ -1,5 +1,11 @@
 package bridge;
 
+import bridge.BridgeNumberGenerator;
+import bridge.model.Bridge;
+import bridge.view.MessageView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,6 +24,28 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<String>(size);
+
+        makeAnswerRoad(bridge, randomGenerateNumber(size));
+
+        return bridge;
+    }
+
+    private List<Integer> randomGenerateNumber(int size) {
+        List<Integer> numbers = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            numbers.add(bridgeNumberGenerator.generate());
+        }
+        return numbers;
+    }
+
+    public void makeAnswerRoad(List<String> bridge, List<Integer> generateNumbers) {
+        for (Integer generateNumber : generateNumbers) {
+            if (generateNumber == 0) {
+                bridge.add(MessageView.DOWN.getMessage());
+            } else if (generateNumber == 1) {
+                bridge.add(MessageView.UP.getMessage());
+            }
+        }
     }
 }
