@@ -9,4 +9,11 @@ public class Error {
         return bridegeLen;
     }
 
+    public static void validUOrD(String input) {
+        if(!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D만 입력하세요.");
+        }
+    }
+
+
 }
