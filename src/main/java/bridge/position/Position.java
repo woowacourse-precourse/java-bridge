@@ -1,5 +1,7 @@
 package bridge.position;
 
+import java.util.Objects;
+
 public class Position {
     private int longitude;
     private Latitude latitude;
@@ -14,10 +16,17 @@ public class Position {
         this.latitude = latitude;
     }
 
-    public boolean equals(Position other) {
+    @Override
+    public boolean equals(Object other) {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
-        return longitude == other.longitude && latitude.equals(other.latitude);
+        Position position = (Position) other;
+        return longitude == position.longitude && latitude == position.latitude;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(longitude, latitude);
     }
 
     public int addLongitude() {
