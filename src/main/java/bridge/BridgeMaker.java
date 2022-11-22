@@ -22,15 +22,8 @@ public class BridgeMaker {
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
 		for (int index = 0; index < size; index++) {
-			addUpOrDownCell(bridge);
+			bridge.add(Cell.convertToPosition(bridgeNumberGenerator.generate()));
 		}
 		return bridge;
-	}
-
-	/**
-	 * bridge에 생성된 숫자에 해당하는 칸을 추가한다.
-	 */
-	private void addUpOrDownCell(List<String> bridge) {
-		bridge.add(Cell.convertToPosition(bridgeNumberGenerator.generate()));
 	}
 }
