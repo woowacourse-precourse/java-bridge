@@ -46,4 +46,11 @@ public class BridgeController {
         }
         wrongCase(moveInput, bridgeGame, user);
     }
+
+    private void correctCase(String moveInput, BridgeGame bridgeGame) {
+        correctPrintMap(moveInput);
+        printBuilder();
+        bridgeGame.move();
+        editBuilder(bridgeGame);
+    }
 }
