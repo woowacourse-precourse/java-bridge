@@ -20,6 +20,10 @@ public class Bridge {
         return blocks;
     }
 
+    public List<String> getSubBridge(int index) {
+        return blocks.subList(0, index);
+    }
+
     public int getBridgeSize() {
         return blocks.size();
     }

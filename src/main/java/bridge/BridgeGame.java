@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 import bridge.domain.Bridge;
+import bridge.domain.BridgePassed;
 import bridge.enumeration.GameCommand;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
@@ -42,9 +43,8 @@ public class BridgeGame {
     private void crossBridge(Bridge bridge) {
         // TODO: 함수길이 초과 리팩토링 요망
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
-            String moving = move();
-            outputView.printMap(bridge, i, moving);
-            if (!bridge.canMove(i, moving)) {
+            BridgePassed bridgePassed = move(bridge, i);
+            if (!bridgePassed.canMove()) {
                 gameStatus.addGameCount();
                 retry();
                 return;
@@ -54,10 +54,10 @@ public class BridgeGame {
         gameStatus.setGameClear(true);
     }
 
-    public String move() {
+    public BridgePassed move(Bridge bridge, int index) {
         outputView.printMoving();
         String moving = inputView.readMoving();
-        return moving;
+        return bridgeGameController.showBridgePassed(bridge, index, moving);
     }
 
     public void retry() {
