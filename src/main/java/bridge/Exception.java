@@ -23,4 +23,10 @@ public class Exception {
 		}
 	}
 
+	public void checkMoveInput(String moving) throws IllegalArgumentException {
+		if (!moving.equals(Constants.ALPHABET_U) && !moving.equals(Constants.ALPHABET_D)) {
+			throw new IllegalArgumentException(Constants.ERROR_U_D_INPUT);
+		}
+	}
+
 }
