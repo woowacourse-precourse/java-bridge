@@ -5,26 +5,26 @@ import java.util.List;
 public class Player {
     private int position;
     private int tryCount;
-    private boolean lastSuccess;
+    private boolean lastCrossSuccess;
 
     public Player() {
         position = 0;       // bridge에서의 현재 위치
         tryCount = 1;
-        lastSuccess = true;
+        lastCrossSuccess = true;
     }
 
     public boolean move(List<String> bridge, String command){
         if (bridge.get(position).equals(command)){
             position++;
-            return lastSuccess = true;
+            return lastCrossSuccess = true;
         }
-        return lastSuccess = false;
+        return lastCrossSuccess = false;
     }
 
     public void retry(){
         position = 0;
         tryCount++;
-        lastSuccess = true;
+        lastCrossSuccess = true;
     }
 
     public int getPosition() {
@@ -34,7 +34,7 @@ public class Player {
         return tryCount;
     }
 
-    public boolean isLastSuccess() {
-        return lastSuccess;
+    public boolean isLastCrossSuccess() {
+        return lastCrossSuccess;
     }
 }

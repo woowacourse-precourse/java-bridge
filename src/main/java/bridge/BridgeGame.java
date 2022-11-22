@@ -40,6 +40,10 @@ public class BridgeGame {
         player.retry();
     }
 
+    public boolean isGameSuccess(){
+        return bridge.size() == player.getPosition();
+    }
+
     public int getTryCount(){
         return player.getTryCount();
     }
@@ -62,7 +66,7 @@ public class BridgeGame {
         StringBuilder ret = new StringBuilder("[");
 
         ret.append(getSuccessOrWhitespace(key));
-        if (!player.isLastSuccess()) {
+        if (!player.isLastCrossSuccess()) {
             ret.append(getFailOrWhitespace(key));
         }
 
