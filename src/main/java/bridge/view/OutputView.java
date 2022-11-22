@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.constants.BlockSymbol;
 import bridge.domain.constants.ErrorMessage;
 import bridge.view.text.OutputText;
 
@@ -10,10 +11,13 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printMap(List<String> bridgeMap) {
-        for (String blocks : bridgeMap){
-            System.out.println(OutputText.MAP_START.getMessage() + blocks + OutputText.MAP_END.getMessage());
-        }
+    public void printMap(List<String> upperBlocks, List<String> lowerBlocks) {
+        System.out.println(OutputText.MAP_START.getMessage()+
+                String.join(OutputText.BLOCK_BORDER.getMessage(), upperBlocks) +
+                OutputText.MAP_END.getMessage());
+        System.out.println(OutputText.MAP_START.getMessage()+
+                String.join(OutputText.BLOCK_BORDER.getMessage(), lowerBlocks) +
+                OutputText.MAP_END.getMessage());
     }
 
     public void printResult(String gameClear, int trialCount) {

@@ -1,17 +1,15 @@
 package bridge.domain;
 
-import bridge.domain.constants.BlockSymbol;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeProgress {
-    private final List<String> upperBlock;
-    private final List<String> lowerBlock;
+    private final List<String> upperBlocks;
+    private final List<String> lowerBlocks;
 
     public BridgeProgress(){
-        upperBlock = new ArrayList<>();
-        lowerBlock = new ArrayList<>();
+        upperBlocks = new ArrayList<>();
+        lowerBlocks = new ArrayList<>();
     }
 
     /**
@@ -19,7 +17,7 @@ public class BridgeProgress {
      * @return 현재 몇 번째 블럭에 있는지를 반환
      */
     public Integer size(){
-        return upperBlock.size();
+        return upperBlocks.size();
     }
 
     /**
@@ -29,25 +27,31 @@ public class BridgeProgress {
      * 현재 진행 상황에 추가
      */
     public void put(String upperSymbol, String lowerSymbol){
-        upperBlock.add(upperSymbol);
-        lowerBlock.add(lowerSymbol);
+        upperBlocks.add(upperSymbol);
+        lowerBlocks.add(lowerSymbol);
     }
 
     /**
      * 진행 상황을 초기화
      */
     public void clear(){
-        upperBlock.clear();
-        lowerBlock.clear();
+        upperBlocks.clear();
+        lowerBlocks.clear();
     }
 
     /**
      *
-     * @return 현재까지의 진행 상황을 형식화해 문자열 리스트로 반환
+     * @return 위쪽 블럭들
      */
-    public List<String> asMap(){
-        return List.of(String.join(BlockSymbol.BORDER.getSymbol(), upperBlock),
-                String.join(BlockSymbol.BORDER.getSymbol(), lowerBlock));
+    public List<String> getUpperBlocks(){
+        return upperBlocks;
     }
 
+    /**
+     *
+     * @return 아래쪽 블럭들
+     */
+    public List<String> getLowerBlocks() {
+        return lowerBlocks;
+    }
 }

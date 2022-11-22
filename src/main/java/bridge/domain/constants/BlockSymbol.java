@@ -5,8 +5,7 @@ public enum BlockSymbol {
     DOWN("D"),
     CORRECT("O"),
     WRONG("X"),
-    BLANK(" "),
-    BORDER(" | ");
+    BLANK(" ");
 
     private String symbol;
     BlockSymbol(String symbol){

@@ -11,6 +11,7 @@ public enum OutputText {
 
     MAP_START("[ "),
     MAP_END(" ]"),
+    BLOCK_BORDER(" | "),
     CLEAR("성공"),
     FAIL("실패");
 

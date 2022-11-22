@@ -107,6 +107,6 @@ public class Controller {
      * 현재 진행 상황의 지도를 출력
      */
     private void showMap(){
-        outputView.printMap(bridgeGame.getProgress().asMap());
+        outputView.printMap(bridgeGame.getProgress().getUpperBlocks(), bridgeGame.getProgress().getLowerBlocks());
     }
 }
