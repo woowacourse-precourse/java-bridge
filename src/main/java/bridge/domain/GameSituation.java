@@ -12,4 +12,12 @@ public enum GameSituation {
 	public String getStatus() {
 		return status;
 	}
+
+	public boolean isFail() {
+		return this.equals(FAIL);
+	}
+
+	public boolean isSuccess() {
+		return this.equals(SUCCESS);
+	}
 }
