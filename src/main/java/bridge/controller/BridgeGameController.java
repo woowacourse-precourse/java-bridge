@@ -10,7 +10,7 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private static final String INITIAL_START_COMMAND = "R";
+    private static final String START_COMMAND = "R";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -38,39 +38,65 @@ public class BridgeGameController {
     }
 
     private BridgeGame createBridgeGame() {
-        BridgeGameFactory bridgeGameFactory = new BridgeGameFactory();
-        return bridgeGameFactory.createBridgeGame(inputView.readBridgeSize());
+        while(true) {
+            try {
+                BridgeGameFactory bridgeGameFactory = new BridgeGameFactory();
+                return bridgeGameFactory.createBridgeGame(inputView.readBridgeSize());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private void play(BridgeGame bridgeGame, Pedestrian pedestrian) {
-        Command command = initializeCommand();
-        while (!bridgeGame.isEndLocation(pedestrian) && isPlayingStatus(command)) {
+        Command command = initializeStartCommand();
+        while (!bridgeGame.isEndLocation(pedestrian) && isPlaying(command)) {
             executeMove(bridgeGame, pedestrian);
 
             if (pedestrian.hasIncorrectDirection()) {
-                command = new Command(inputView.readGameCommand());
+                command = inputCommand();
                 executeRetry(bridgeGame, pedestrian, command);
             }
         }
     }
 
+    private Command inputCommand() {
+        while(true) {
+            try {
+                return new Command(inputView.readGameCommand());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
     private void executeMove(BridgeGame bridgeGame, Pedestrian pedestrian) {
-        Direction direction = new Direction(inputView.readMoving());
+        Direction direction = inputDirection();
         bridgeGame.move(pedestrian, direction);
         outputView.printMap(pedestrian.createMovingRecord());
     }
 
+    private Direction inputDirection() {
+        while(true) {
+            try {
+                return new Direction(inputView.readMoving());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
     private void executeRetry(BridgeGame bridgeGame, Pedestrian pedestrian, Command command) {
-        if (isPlayingStatus(command)) {
+        if (isPlaying(command)) {
             bridgeGame.retry(pedestrian);
         };
     }
 
-    private boolean isPlayingStatus(Command command) {
+    private boolean isPlaying(Command command) {
         return command.isToRetryGame();
     }
 
-    private Command initializeCommand() {
-        return new Command(INITIAL_START_COMMAND);
+    private Command initializeStartCommand() {
+        return new Command(START_COMMAND);
     }
 }

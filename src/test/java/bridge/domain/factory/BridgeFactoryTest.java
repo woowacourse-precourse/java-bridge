@@ -19,7 +19,7 @@ class BridgeFactoryTest {
 
     @DisplayName("createBridge 메소드에 숫자를 입력하였을 때 Bridge 객체를 반환하는지 확인")
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6})
+    @ValueSource(ints = {3, 4, 5, 6, 19, 20})
     void createBridge_test(int size) {
         Bridge bridge = bridgeFactory.createBridge(size);
 
