@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameControl {
+    
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
