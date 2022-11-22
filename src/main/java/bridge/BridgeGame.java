@@ -36,18 +36,19 @@ public class BridgeGame {
     public boolean move(String moveInput) {
         if (bridge.get(currentIndex).equals(moveInput)) {
             currentIndex++;
-            saveUpBridgeMemory(moveInput,true);
-            saveDownBridgeMemory(moveInput,true);
+            saveUpBridgeMemory(moveInput, true);
+            saveDownBridgeMemory(moveInput, true);
             return true;
         }
-        saveUpBridgeMemory(moveInput,false);
-        saveDownBridgeMemory(moveInput,false);
+        saveUpBridgeMemory(moveInput, false);
+        saveDownBridgeMemory(moveInput, false);
         currentIndex = 0;
         return false;
     }
 
     /**
      * 진행 사항을 각각 위 아래로 저장하는 메소드
+     *
      * @param moveInput
      */
     public void saveUpBridgeMemory(String moveInput, boolean isSuccess) {
@@ -80,8 +81,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommandInput) {
-        if (gameCommandInput.equals("Q"))
-            return false;
+        if (gameCommandInput.equals("Q")) return false;
 
         bridgeUpMemory = new ArrayList<>();
         bridgeDownMemory = new ArrayList<>();
@@ -95,8 +95,7 @@ public class BridgeGame {
      * @return true 이면 종료, false 이면 진행 중
      */
     public boolean isEnd() {
-        if (bridge.size() == currentIndex)
-            return true;
+        if (bridge.size() == currentIndex) return true;
         return false;
     }
 

@@ -1,6 +1,5 @@
 package bridge;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridge, boolean isEnd, int gameTryCount) {
         System.out.println("최종 게임 결과");
-        printMap(bridge.getBridgeUpMemory(),bridge.getBridgeDownMemory());
+        printMap(bridge.getBridgeUpMemory(), bridge.getBridgeDownMemory());
         if (isEnd) {
             System.out.println("게임 성공 여부: 성공");
             System.out.println("총 시도한 횟수: " + gameTryCount);
