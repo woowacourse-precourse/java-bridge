@@ -22,10 +22,12 @@ public class Application {
         outputView.printResult(tryNumber, successFail);
     }
 
+
     private static void initalBridgeListGenerate(){
         int inputNumber = inputView.readBridgeSize();
         bridgeList = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(inputNumber);
     }
+
 
     private static void mainBridgeGame(){
         do{
