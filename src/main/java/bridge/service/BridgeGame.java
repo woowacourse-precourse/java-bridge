@@ -70,4 +70,8 @@ public class BridgeGame {
         return false;
     }
 
+    private void crossAllBridge() {
+        crossAllBridge = true;
+    }
+
 }
