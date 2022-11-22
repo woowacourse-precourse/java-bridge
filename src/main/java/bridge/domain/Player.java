@@ -1,11 +1,15 @@
 package bridge.domain;
 
 public class Player {
-    private final int roundCount;
-    private final int gamePlayingCount;
+    private static final int FIRST_GAME_COUNT = 1;
 
-    public Player(int roundCount, int gamePlayingCount) {
-        this.roundCount = roundCount;
-        this.gamePlayingCount = gamePlayingCount;
+    private final Round round;
+    private final BridgeGameResult gameResult;
+    private int gamePlayCount;
+
+    public Player() {
+        this.round = Round.firstRound();
+        this.gameResult = new BridgeGameResult();
+        this.gamePlayCount = FIRST_GAME_COUNT;
     }
 }
