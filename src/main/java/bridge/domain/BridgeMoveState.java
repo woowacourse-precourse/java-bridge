@@ -16,6 +16,10 @@ public class BridgeMoveState {
     private final List<String> downState = new ArrayList<>();
     private final List<Boolean> state = new ArrayList<>();
 
+    public void update(boolean canMove) {
+        state.add(canMove);
+    }
+
     public void update(String moving, boolean canMove) {
         String state = makeState(canMove);
         if (moving.equals(UP)) {
