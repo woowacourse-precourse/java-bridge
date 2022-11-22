@@ -1,5 +1,5 @@
 ## 📝 기능 명세 & 예외 상황
-- [ ] 다리 생성 (BridgeMaker#makeBridge)
+- [x] 다리 생성 (BridgeMaker#makeBridge)
   - [x] 다리 길이 입력
   - [x] 다리 길이 유효성 검증 (정수, 범위)
   - [x] 길이에 맞게 "U", "D"로 이뤄진 다리 생성
@@ -63,7 +63,6 @@
 ### OutputView
 - 게임 시작 메시지 출력
 - 에러 메시지 출력
-
 
 ### Code
 - 최종 게임 결과 Code (SUCCESS("성공"), FAILURE("실패"))
