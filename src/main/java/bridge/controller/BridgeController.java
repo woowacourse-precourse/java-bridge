@@ -104,4 +104,14 @@ public class BridgeController {
     private void printBuilder() {
         outputView.printMap(upBridge, downBridge);
     }
+
+    private void gameRetry(String retryInput, BridgeGame bridgeGame, User user) {
+        if (userRetry(retryInput)) {
+            bridgeGame.retry();
+            initBuilder();
+            user.addPlayCount();
+            return;
+        }
+        user.setQuit();
+    }
 }
