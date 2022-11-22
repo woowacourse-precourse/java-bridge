@@ -4,7 +4,7 @@
 
 ### 기능 구현 리스트
 
-- [ ] 다리의 길이 입력 받기  (InputView)
+- [X] 다리의 길이 입력 받기  (InputView)
     - 예외 발생 상황
     - [X] 3이상 20이하의 정수가 아닐시 예외 발생
     - [X] 문자를 입력했을 경우 예외 발생
@@ -12,7 +12,7 @@
 
     다리의 길이를 입력해주세요. 
 
-- [ ] 입력 받은 값으로 다리 생성
+- [X] 입력 받은 값으로 다리 생성
     - (BridgeMaker <- BridgeNumberGenerator <- BridgeRandomNumberGenerator)
 
 - [ ] 이동할 칸 입력 받기 (InputView)
