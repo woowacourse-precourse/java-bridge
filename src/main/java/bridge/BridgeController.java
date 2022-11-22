@@ -21,21 +21,35 @@ public class BridgeController {
     }
 
     public void run() {
+        try {
+            gameProcess();
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            outputView.printError(e.getMessage());
+        }
+    }
+
+    private void gameProcess() {
         outputView.printStart();
-        outputView.printEmptyLine();
         create();
         while (true) {
             BridgeStatus bridgeStatus = move();
             GameStatus gameStatus = bridgeStatus.getGameStatus();
-            if (gameStatus.equals(GameStatus.SUCCESS)) {
-                outputView.printResult(bridgeStatus);
-                return;
-            }
-            if (!retry(gameStatus)) {
-                outputView.printResult(bridgeStatus);
+            if (isQuitCondition(bridgeStatus, gameStatus)) {
                 return;
             }
         }
+    }
+
+    private boolean isQuitCondition(BridgeStatus bridgeStatus, GameStatus gameStatus) {
+        if (gameStatus.equals(GameStatus.SUCCESS)) {
+            outputView.printResult(bridgeStatus);
+            return true;
+        }
+        if (!retry(gameStatus)) {
+            outputView.printResult(bridgeStatus);
+            return true;
+        }
+        return false;
     }
 
     private void create() {
