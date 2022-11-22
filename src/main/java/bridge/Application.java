@@ -22,16 +22,21 @@ class Bridge {
     }
 
     public void gamePlay(List<String> bridgeShape) {
-        List<Integer> playerMove = new ArrayList<>();
+        List<Integer> moveOutcome = new ArrayList<>();
+        List<String> playerMoving = new ArrayList<>();
         for (int i = 0; i < bridgeShape.size(); i++) {
-            movingPlayer(bridgeShape.get(i), playerMove);
+            movingPlayer(playerMoving);
+            compareMove(bridgeShape.get(i), playerMoving.get(i), moveOutcome);
         }
     }
 
-    public void movingPlayer(String bridgeShape, List<Integer> playerMove) {
-        BridgeGame bridgeGame = new BridgeGame();
+    public void movingPlayer(List<String> playerMoving) {
         gameUI.moving();
-        String moving = inputView.readMoving();
-        playerMove.add(bridgeGame.move(moving, bridgeShape));
+        playerMoving.add(inputView.readMoving());
+    }
+
+    public void compareMove(String bridgeShape, String playerMoving, List<Integer> moveOutcome) {
+        BridgeGame bridgeGame = new BridgeGame();
+        moveOutcome.add(bridgeGame.move(playerMoving, bridgeShape));
     }
 }
