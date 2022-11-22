@@ -42,7 +42,7 @@ public class BridgeGameController {
         try {
             return new BridgeSize(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e);
             return getBridgeSize();
         }
     }
@@ -64,7 +64,7 @@ public class BridgeGameController {
         try {
             return new MoveMark(inputView.readMoving());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e);
             return getMoveMark();
         }
     }
@@ -90,7 +90,7 @@ public class BridgeGameController {
         try {
             return new GameCommand(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e);
             return getGameCommand();
         }
     }

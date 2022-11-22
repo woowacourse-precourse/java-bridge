@@ -1,11 +1,9 @@
 package model.bridge;
 
-import static constant.Config.ERROR;
-
 public class BridgeSize {
     private static final int MIN_RANGE = 3;
     private static final int MAX_RANGE = 20;
-    private static final String RANGE_ERROR = ERROR + String.format("다리 길이는 %d부터 %d 사이여야 합니다.", MIN_RANGE, MAX_RANGE);
+    private static final String RANGE_ERROR = String.format("다리 길이는 %d부터 %d 사이여야 합니다.", MIN_RANGE, MAX_RANGE);
     private final int size;
 
     public BridgeSize(int size) {

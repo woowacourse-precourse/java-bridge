@@ -19,7 +19,7 @@ class GameCommandTest {
         assertThatThrownBy(() ->
                 new GameCommand(command)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 재시도/종료 여부는 R 또는 Q여야 합니다.");
+                .hasMessage("재시도/종료 여부는 R 또는 Q여야 합니다.");
     }
 
     @DisplayName("재시도/종료 여부가 R 또는 Q일 때 통과")

@@ -16,7 +16,7 @@ class MoveMarkTest {
         assertThatThrownBy(() ->
                 new MoveMark(mark)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
+                .hasMessage("이동할 칸은 U 또는 D여야 합니다.");
     }
 
     @DisplayName("이동할 칸이 U 또는 D일 때 통과")

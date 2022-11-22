@@ -2,8 +2,6 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static constant.Config.ERROR;
-import static constant.Config.NEW_LINE;
 import static model.bridge.BridgeType.D;
 import static model.bridge.BridgeType.U;
 import static model.command.CommandType.Q;
@@ -13,8 +11,9 @@ import static model.command.CommandType.R;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String NEW_LINE = System.lineSeparator();
     private static final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String BRIDGE_SIZE_ERROR = ERROR + "다리 길이는 숫자여야 합니다.";
+    private static final String BRIDGE_SIZE_ERROR = "다리 길이는 숫자여야 합니다.";
     private static final String MOVING_MESSAGE = NEW_LINE + String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", U, D);
     private static final String GAME_COMMAND_MESSAGE = NEW_LINE + String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", R, Q);
 

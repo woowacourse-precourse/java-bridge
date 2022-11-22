@@ -2,13 +2,11 @@ package model.game;
 
 import java.util.Arrays;
 
-import static constant.Config.ERROR;
-
 public enum ResultType {
     WIN(true, "성공"),
     LOSE(false, "실패");
 
-    private static final String VALUE_ERROR = ERROR + String.format("%s 또는 %s가 아닙니다.", WIN.run, LOSE.run);
+    private static final String VALUE_ERROR = String.format("%s 또는 %s가 아닙니다.", WIN.run, LOSE.run);
     private final boolean run;
     private final String message;
 

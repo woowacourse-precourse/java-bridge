@@ -16,7 +16,7 @@ class BridgeSizeTest {
         assertThatThrownBy(() ->
                 new BridgeSize(size)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이여야 합니다.");
+                .hasMessage("다리 길이는 3부터 20 사이여야 합니다.");
     }
 
     @DisplayName("다리 길이가 20보다 클 때 예외 처리")
@@ -26,7 +26,7 @@ class BridgeSizeTest {
         assertThatThrownBy(() ->
                 new BridgeSize(size)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이여야 합니다.");
+                .hasMessage("다리 길이는 3부터 20 사이여야 합니다.");
     }
 
     @DisplayName("다리 길이가 3~20 범위일 때 통과")

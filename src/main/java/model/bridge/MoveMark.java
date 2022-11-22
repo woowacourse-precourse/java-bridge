@@ -2,12 +2,11 @@ package model.bridge;
 
 import java.util.Objects;
 
-import static constant.Config.ERROR;
 import static model.bridge.BridgeType.D;
 import static model.bridge.BridgeType.U;
 
 public class MoveMark {
-    private static final String VALUE_ERROR = ERROR + String.format("이동할 칸은 %s 또는 %s여야 합니다.", U, D);
+    private static final String VALUE_ERROR = String.format("이동할 칸은 %s 또는 %s여야 합니다.", U, D);
     private final BridgeType mark;
 
     public MoveMark(String mark) {

@@ -6,7 +6,6 @@ import model.game.ResultType;
 import java.util.List;
 import java.util.Map;
 
-import static constant.Config.NEW_LINE;
 import static model.bridge.BridgeType.D;
 import static model.bridge.BridgeType.U;
 
@@ -14,6 +13,8 @@ import static model.bridge.BridgeType.U;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final String ERROR = "[ERROR] ";
     private static final String BRIDGE_START = "[ ";
     private static final String BRIDGE_CONNECT = " | ";
     private static final String BRIDGE_END = " ]";
@@ -54,5 +55,9 @@ public class OutputView {
         printMap(maps);
         System.out.println(GAME_STATUS_MESSAGE + result.getMessage());
         System.out.println(TOTAL_COUNT_MESSAGE + count);
+    }
+
+    public void printErrorMessage(IllegalArgumentException exception) {
+        System.out.println(ERROR + exception.getMessage());
     }
 }

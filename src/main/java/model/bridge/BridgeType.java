@@ -4,13 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static constant.Config.ERROR;
-
 public enum BridgeType {
     U(1),
     D(0);
 
-    private static final String VALUE_ERROR = ERROR + String.format("%d 또는 %d이 아닙니다.", U.getNumber(), D.getNumber());
+    private static final String VALUE_ERROR = String.format("%d 또는 %d이 아닙니다.", U.getNumber(), D.getNumber());
     private final int number;
 
     BridgeType(int number) {

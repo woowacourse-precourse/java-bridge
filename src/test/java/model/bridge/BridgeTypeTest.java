@@ -26,6 +26,6 @@ class BridgeTypeTest {
         assertThatThrownBy(() ->
                 BridgeType.getStringByNumber(number)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1 또는 0이 아닙니다.");
+                .hasMessage("1 또는 0이 아닙니다.");
     }
 }
