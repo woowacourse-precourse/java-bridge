@@ -34,7 +34,8 @@ class BridgeGameTest {
     @ParameterizedTest
     @CsvSource({"R,true", "Q,false"})
     public void quitTest(String cmd, boolean expected) {
-        assertThat(bridgeGame.retry(cmd)).isEqualTo(expected);
+        bridgeGame.retry(cmd);
+        assertThat(bridgeGame.isRetryGame()).isEqualTo(expected);
     }
 
     @Test
