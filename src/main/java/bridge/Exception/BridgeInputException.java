@@ -32,4 +32,10 @@ public class BridgeInputException {
         }
     }
 
+    private void validInputFormMove(String direction){
+        String regexInput = "^[UD]*$";
+        if (!Pattern.matches(regexInput, direction)) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D만 입력하세요.");
+        }
+    }
 }
