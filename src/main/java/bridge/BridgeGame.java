@@ -9,10 +9,12 @@ import java.util.List;
 public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private Bridge bridge;
-    private List<String> userList ; //
+    private List<String> userUpNumbers ;
+    private List<String> userDownNumbers ;
     private int bridgeSize;
     public BridgeGame() {
-        this.userList = new ArrayList<>(List.of());
+        this.userUpNumbers = new ArrayList<>(List.of());
+        this.userDownNumbers = new ArrayList<>(List.of());
         this.bridgeSize = 0;
     }
 
@@ -21,12 +23,33 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(boolean result) {
+    public boolean move(boolean result,String moveCommand) {
         if(result) {
-            userList.add("O");
+            if(moveCommand.equals("U"))
+            {
+                userUpNumbers.add(" O ");
+                userDownNumbers.add("   ");
             return true;
+            }
+            if(moveCommand.equals("D"))
+            {
+                userUpNumbers.add("   ");
+                userDownNumbers.add(" O ");
+                return true;
+            }
         }
-        userList.add("X");
+        if(moveCommand.equals("U"))
+        {
+            userUpNumbers.add(" X ");
+            userDownNumbers.add("   ");
+            return false;
+        }
+        if(moveCommand.equals("D"))
+        {
+            userUpNumbers.add("   ");
+            userDownNumbers.add(" X ");
+            return false;
+        }
         return false;
     }
 
@@ -61,8 +84,11 @@ public class BridgeGame {
     public void setBridgeSize(int bridgeLength){
         this.bridgeSize = bridgeLength;
     }
-    public List<String> getUserList(){
-        return userList;
+    public List<String> getUserUpNumbers(){
+        return userUpNumbers;
+    }
+    public List<String> getUserDownNumbers(){
+        return userDownNumbers;
     }
     public Bridge getBridgeInstance(){
         setBridgeSize(bridge.getTargetBridge().size());
@@ -70,6 +96,7 @@ public class BridgeGame {
     }
 
     public void resetUserList() {
-        this.userList = new ArrayList<>(List.of());
+        this.userUpNumbers = new ArrayList<>(List.of());
+        this.userDownNumbers = new ArrayList<>(List.of());
     }
 }

@@ -30,15 +30,16 @@ public class UserConsole {
     public void startGame() {
         bridge = bridgeGame.getBridgeInstance();
         while (round < bridgeGame.getBridgeSize()) {
-            boolean result = bridge.getComparison(round, inputView.readMoving());
+            String moveCommand = inputView.readMoving();
+            boolean result = bridge.getComparison(round,moveCommand);
             round++;
-            move(result);
+            move(result,moveCommand);
         }
     }
 
-    public void move(boolean result) {
-        bridgeGame.move(result);
-        outputView.printMap(bridgeGame.getUserList(),bridge.getTargetBridge());
+    public void move(boolean result,String moveCommand) {
+        bridgeGame.move(result,moveCommand);
+        outputView.printMap(bridgeGame.getUserUpNumbers(),bridgeGame.getUserDownNumbers());
         if (!result) {
             round--;
             retry(inputView.readGameCommand());
@@ -46,7 +47,7 @@ public class UserConsole {
     }
 
     public void endGame() {
-        outputView.printResultTotalMap(bridgeGame.getUserList(),bridge.getTargetBridge());
+        outputView.printResultTotalMap(bridgeGame.getUserUpNumbers(),bridgeGame.getUserDownNumbers());
         outputView.printResultSuccess(round, bridgeGame.getBridgeSize());
         outputView.printResultTotalNumber(totalNumber);
     }
@@ -59,7 +60,7 @@ public class UserConsole {
             startGame();
         }
         if (!bridgeGame.retry(userInput)) {
-            endGame();
+            round=bridgeGame.getBridgeSize()+1;
         }
     }
 }
