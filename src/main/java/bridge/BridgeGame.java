@@ -59,4 +59,14 @@ public class BridgeGame {
         }
         return true;
     }
+    public boolean restartOrQuit(String input) {
+
+        if (input.contains("R")) {
+            return true;
+        }
+        if (input.contains("Q")) {
+            return false;
+        }
+        return true;
+    }
 }
