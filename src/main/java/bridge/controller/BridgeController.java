@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.model.OutputMessage;
 import bridge.model.UserKeySet;
 import bridge.service.BridgeGame;
-import bridge.service.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
