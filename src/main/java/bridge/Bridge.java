@@ -84,26 +84,26 @@ public class Bridge {
 
     private String createMovingResult(String successOrNot, String inputUpOrDown) {
         if (inputUpOrDown.equals(UP)) {
-            return getUpperMovableResultBeforeCurrent(getCurrentIndex())
+            return getUpperMovableResultBeforeCurrent()
                     .concat(getUpperMovableResult(successOrNot, getCurrentIndex()));
         }
 
-        return getLowerMovableResultBeforeCurrent(getCurrentIndex())
+        return getLowerMovableResultBeforeCurrent()
                 .concat(getLowerMovableResult(successOrNot, getCurrentIndex()));
     }
 
-    private String getUpperMovableResultBeforeCurrent(int current) {
+    private String getUpperMovableResultBeforeCurrent() {
         StringBuilder movingResult = new StringBuilder();
-        for (int index = 0; index < current; index++) {
+        for (int index = 0; index < getCurrentIndex(); index++) {
             movingResult.append(getUpperMovableResult(SUCCESS, index))
                     .append(BRIDGE_DIVIDING_LINE);
         }
         return movingResult.toString();
     }
 
-    private String getLowerMovableResultBeforeCurrent(int current) {
+    private String getLowerMovableResultBeforeCurrent() {
         StringBuilder movingResult = new StringBuilder();
-        for (int index = 0; index < current; index++) {
+        for (int index = 0; index < getCurrentIndex(); index++) {
             movingResult.append(getLowerMovableResult(SUCCESS, index))
                     .append(BRIDGE_DIVIDING_LINE);
         }
