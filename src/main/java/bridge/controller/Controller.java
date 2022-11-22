@@ -51,6 +51,9 @@ public class Controller {
         while (game != true) {
             String inputRetry = InputView.readGameCommand();
             playGame = bridgeGame.retry(inputRetry);
+            if(playGame){
+                OutputView.reset();
+            }
             break;
         }
     }

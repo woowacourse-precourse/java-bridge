@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.view.OutputView;
 import java.util.List;
 
 /**
@@ -105,7 +104,6 @@ public class BridgeGame {
     private void resetScore() {
         count = 0;
         retryCount++;
-        OutputView.reset();
         loss = false;
     }
 
