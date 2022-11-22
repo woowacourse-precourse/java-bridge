@@ -1,4 +1,4 @@
-package bridge;
+package bridge.unit;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import bridge.Application;
 import bridge.service.BridgeGame;
 import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
