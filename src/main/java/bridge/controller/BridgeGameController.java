@@ -25,6 +25,7 @@ public class BridgeGameController {
             outputView.printMap(bridgeStatus);
         }
         retryOrQuit();
+        outputView.printResult(bridgeGame.getGameStatus());
     }
 
     public void retryOrQuit() {
@@ -33,5 +34,4 @@ public class BridgeGameController {
             playGame();
         }
     }
-
 }

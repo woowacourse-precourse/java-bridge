@@ -58,6 +58,11 @@ public class BridgeGame {
         return new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
+    public PlayerStatus getGameStatus() {
+        PlayerStatus status = player.getStatus();
+        return status;
+    }
+
     public boolean isPlaying() {
         return player.getStatus() == PlayerStatus.PLAYING;
     }
