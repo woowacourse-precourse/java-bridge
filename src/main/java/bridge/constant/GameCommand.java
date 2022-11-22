@@ -22,4 +22,8 @@ public enum GameCommand {
     private boolean isSameCharacterWith(String command) {
         return character.equals(command);
     }
+
+    public String getCharacter() {
+        return character;
+    }
 }
