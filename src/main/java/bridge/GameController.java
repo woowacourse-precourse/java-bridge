@@ -1,7 +1,7 @@
 package bridge;
 
 public class GameController {
-    private final InputView inputView; //final 붙여야 하나? 왜?
+    private final InputView inputView;
     private final OutputView outputView;
 
     public GameController(InputView inputView, OutputView outputView) {

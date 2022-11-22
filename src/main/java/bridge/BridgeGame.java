@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static int numberOfTry = 0;
-    private static List<String> bridge = new ArrayList<>(); //static 맞나? //꼭 초기화 안 시켜주어도 되나?
+    private int numberOfTry = 0;
+    private List<String> bridge;
     private List<String> playerCommand = new ArrayList<>();
     private String status = "진행중";
 
@@ -57,15 +57,15 @@ public class BridgeGame {
         return false;
     }
 
-    public static int getNumberOfTry() {
+    public int getNumberOfTry() {
         return numberOfTry;
     }
 
-    public static void setNumberOfTry(int numberOfTry) {
-        BridgeGame.numberOfTry = numberOfTry;
+    public void setNumberOfTry(int numberOfTry) {
+        this.numberOfTry = numberOfTry;
     }
 
-    public static List<String> getBridge() {
+    public List<String> getBridge() {
         return bridge;
     }
 
