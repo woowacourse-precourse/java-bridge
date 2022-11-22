@@ -34,7 +34,11 @@ public class BridgeController {
     public void playBridgeGame(int blockNumber){
         boolean isSuccess = bridgeGame.move(inputView.readMoving());
         if(!isSuccess){
+            outputView.printResult(bridge, blockNumber, false, player);
             restartBridgeGame(blockNumber);
+        }
+        if(isSuccess){
+            outputView.printMap(bridge, blockNumber);
         }
         if(isSuccess && blockNumber + 1 == bridgeSize){
             outputView.printResult(bridge, blockNumber, true, player);;

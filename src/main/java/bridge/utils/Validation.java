@@ -19,7 +19,7 @@ public class Validation {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_NOT_IN_RANGE);
         }
     }
-    
+
     public void validatePlayerMove(String playerMove){
         if(playerMove.charAt(0) != UP_BLOCK.charAt(0) && playerMove.charAt(0) != DOWN_BLOCK.charAt(0)){
             throw new IllegalArgumentException(ERROR_PLAYER_MOVE_IS_NOT_U_OR_D);
