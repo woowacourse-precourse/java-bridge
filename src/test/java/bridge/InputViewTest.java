@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +29,19 @@ class InputViewTest {
         scanner = new Scanner(System.in);
 
         assertThatThrownBy(() -> inputView.readBridgeSize())
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    @DisplayName("사용자의 이동 방향 입력값이 적절하지 않다면 에러를 발생시킨다.")
+    void inputDirectionTypeImproperly() {
+        InputView inputView = new InputView();
+        String direction = "A";
+        InputStream in = generateUserInput(direction);
+        System.setIn(in);
+        scanner = new Scanner(System.in);
+
+        assertThatThrownBy(() -> inputView.readMoving())
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage(INPUT_TYPE_IS_NOT_PROPER);
     }
