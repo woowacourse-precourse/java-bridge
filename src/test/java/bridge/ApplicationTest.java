@@ -8,6 +8,8 @@ import static org.assertj.core.util.Lists.newArrayList;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ApplicationTest extends NsTest {
 
@@ -39,12 +41,31 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @Test
-    void 예외_테스트() {
+    @ParameterizedTest
+    @CsvSource({"a", "-1", "0", "2", "21"})
+    void bridgeSize_예외_테스트(String bridgeSize) {
         assertSimpleTest(() -> {
-            runException("a");
+            runException(bridgeSize);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @ParameterizedTest
+    @CsvSource({"R", "Q", "UU", "DD"})
+    void moving_예외_테스트(String moving) {
+        assertSimpleTest(() -> {
+            runException("3", moving);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @CsvSource({"U", "D", "RR", "QQ"})
+    void gameCommand_예외_테스트(String gameCommand) {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "D", gameCommand);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
     }
 
     @Override
