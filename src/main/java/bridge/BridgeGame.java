@@ -50,7 +50,7 @@ public class BridgeGame {
     }
 
     public boolean winTheGame() {
-        return bridge.equals(movement);
+        return !bridge.isEmpty() && bridge.equals(movement);
     }
 
     public int getTried() {
