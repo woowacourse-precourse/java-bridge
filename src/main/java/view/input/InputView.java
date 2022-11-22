@@ -1,10 +1,10 @@
 package view.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import bridge.clientValidation.ClientValidation;
+import bridge.validation.Validation;
 
 public class InputView {
-    private static final ClientValidation validation = new ClientValidation();
+    private static final Validation validation = new Validation();
 
     public String repeat(InputMessage inputMessage) {
         while(true) {

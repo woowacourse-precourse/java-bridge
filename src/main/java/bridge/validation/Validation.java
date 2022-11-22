@@ -1,8 +1,8 @@
-package bridge.clientValidation;
+package bridge.validation;
 
 import view.input.InputMessage;
 
-public class ClientValidation {
+public class Validation {
     private static final String NUMBER_REGEX = "^\\d*$";
 
     public String validate(String input, InputMessage inputMessage) {
