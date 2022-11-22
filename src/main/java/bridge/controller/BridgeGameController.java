@@ -23,6 +23,7 @@ public class BridgeGameController {
         this.result = new Result();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
+
     public void start() {
         outputView.printStartMessage();
         int size = inputView.readBridgeSize();
@@ -32,6 +33,7 @@ public class BridgeGameController {
         run();
         makeTotalResult();
     }
+
     public void run() {
         result.plusTryCount();
         while(result.isKeeping()&&moving.isRight() && moving.getCount()<bridge.getBridge().size()){
@@ -42,6 +44,7 @@ public class BridgeGameController {
         if(!moving.isRight())
             checkRetry();
     }
+
     public void checkRetry(){
         String restart = inputView.readGameCommand();
         if(bridgeGame.retry(restart)) {
@@ -50,18 +53,15 @@ public class BridgeGameController {
             moving.resetUpDown();
             run();
         }
-        }
-
-
+    }
     public void combineUpDown(){
         result.resetAllResult();
         result.combineResult(moving.getUp(),moving.getDown());
         outputView.printMap(result.getAllResults());
     }
+
     public void makeTotalResult(){
         bridgeGame.judgeResult();
         outputView.printResult(result.getAllResults(),result.getResultType().getName(),result.getTryCount());
     }
-
-
 }

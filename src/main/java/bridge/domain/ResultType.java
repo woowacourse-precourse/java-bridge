@@ -9,6 +9,7 @@ public enum ResultType {
     ResultType(String name){
         this.name = name;
     }
+
     public String getName(){
         return name;
     }

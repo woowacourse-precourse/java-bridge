@@ -8,14 +8,15 @@ public enum BridgeComponent {
     private final int componentNumber;
     private final String componentLetter;
 
-
     BridgeComponent(int componentNumber, String componentLetter) {
         this.componentNumber = componentNumber;
         this.componentLetter = componentLetter;
     }
+
     public int getComponentNumber(){
         return componentNumber;
     }
+
     public String getComponentLetter(){
         return componentLetter;
     }

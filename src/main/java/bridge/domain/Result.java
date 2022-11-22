@@ -33,27 +33,30 @@ public class Result {
     public int getTryCount() {
         return tryCount;
     }
+
     public void plusTryCount(){
         this.tryCount = getTryCount()+1;
     }
 
     public void checkKeeping(String restart){
-        if(restart.equals(RESTART)){
+        if(restart.equals(RESTART))
             keeping = true;
-        }
         if(restart.equals(QUIT))
             keeping = false;
     }
+
     public void combineResult(List<String> up, List<String> down){
         allResults.add(up);
         allResults.add(down);
     }
+
     public void judgeResult(boolean right){
         if(right)
             resultType = ResultType.SUCCESS;
         if(!right)
             resultType = ResultType.FAIL;
     }
+
     public void resetAllResult(){
         allResults.clear();
     }

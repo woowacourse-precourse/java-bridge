@@ -14,6 +14,7 @@ public class BridgeException {
             throw new IllegalArgumentException(SIZE_FORMAT_ERROR);
         }
     }
+
     public void validateBridgeSizeLange(String size) {
         if(Integer.parseInt(size) < 3 || Integer.parseInt(size) > 20){
             throw new IllegalArgumentException(SIZE_LANGE_ERROR);
@@ -25,6 +26,7 @@ public class BridgeException {
             throw new IllegalArgumentException(MOVING_ERROR);
         }
     }
+
     public void validateRestart(String restart){
         if(!restart.matches(REGEX_RESTART)){
             throw new IllegalArgumentException(RESTART_ERROR);

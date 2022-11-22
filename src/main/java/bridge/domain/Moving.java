@@ -21,10 +21,10 @@ public class Moving {
         this.count = 0;
         this.right = true;
     }
-
     public List<String> getUp(){
         return up;
     }
+
     public List<String> getDown(){
         return down;
     }
@@ -32,9 +32,11 @@ public class Moving {
     public int getCount() {
         return count;
     }
+
     public void plusCount(){
         this.count = getCount()+1;
     }
+
     public void resetCount(){
         this.count = 0;
     }
@@ -46,6 +48,7 @@ public class Moving {
     public void setRight(boolean right){
         this.right = right;
     }
+
     public void resetUpDown(){
         up.clear();
         down.clear();
@@ -57,6 +60,7 @@ public class Moving {
         if(!bridgeComponent.equals(moving))
             right = false;
     }
+
     public void checkUp(String inputMoving){
         if(right && inputMoving.equals(UP_SIDE)) {
             up.add(MATCH);
@@ -67,6 +71,7 @@ public class Moving {
             down.add(BLANK);
         }
     }
+
     public void checkDown(String inputMoving){
         if(right && inputMoving.equals(DOWN_SIDE)) {
             down.add(MATCH);
@@ -77,5 +82,4 @@ public class Moving {
             up.add(BLANK);
         }
     }
-
 }
