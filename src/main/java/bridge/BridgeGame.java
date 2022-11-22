@@ -30,7 +30,6 @@ public class BridgeGame {
     public void retry() {
         gameInfo.addTrial();
         gameInfo.setPosition(-1);
+        gameInfo.setPlayer("");
     }
-
-
 }
