@@ -7,6 +7,11 @@ import controller.MapConverter;
 import model.GameResult;
 
 public class OutputView {
+    private static final String FIRST_CHARACTER = "[";
+    private static final String DELIMITER = "|";
+    private static final String LAST_CHARACTER = "]";
+
+
     public static void printRunGameText() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("");
@@ -32,11 +37,11 @@ public class OutputView {
 
     public static void printMap(String[][] userMap) {
         for (int row = BridgeConstant.BRIDGE_WIDTH - 1; row >= 0; row--) {
-            System.out.print("[ ");
+            System.out.print(String.format("%s ", FIRST_CHARACTER));
             for (int column = 0; column < userMap[0].length - 1; column++) {
-                System.out.print(String.format("%s | ", userMap[row][column]));
+                System.out.print(String.format("%s %s ", userMap[row][column], DELIMITER));
             }
-            System.out.println(String.format("%s ]", userMap[row][userMap[0].length - 1]));
+            System.out.println(String.format("%s %s", userMap[row][userMap[0].length - 1], LAST_CHARACTER));
         }
         System.out.println("");
     }

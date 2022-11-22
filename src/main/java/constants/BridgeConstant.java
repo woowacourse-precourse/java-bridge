@@ -11,6 +11,5 @@ public class BridgeConstant {
     public static int MAX_SIZE_INPUT_LENGTH = 2;
 
     public static int MAX_COUNT_OF_ATTEMPT = 99;
-
 }
 

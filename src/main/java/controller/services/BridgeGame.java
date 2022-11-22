@@ -22,7 +22,6 @@ public class BridgeGame {
             user.markPosition(direction);
             return false;
         }
-
         user.markPosition(BridgeConstant.WRONG_DIRECTION_INITIAL + direction);
         return true;
     }

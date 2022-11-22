@@ -12,10 +12,12 @@ public enum IllegalArgument {
     NOT_COMMAND_INPUT(String.format("진행 여부를 결정하려면 %s, %s 중에서 하나를 입력해야 합니다."
             , CommandTable.RETRY.getInitial(), CommandTable.QUIT.getInitial()));
 
+    private static final String ERROR_MESSAGE_NOTICE_TEXT = "[ERROR] ";
+
     private final String message;
 
     IllegalArgument(String message) {
-        this.message = "[ERROR] " + message;
+        this.message = ERROR_MESSAGE_NOTICE_TEXT + message;
     }
 
     public String getMessage() {
