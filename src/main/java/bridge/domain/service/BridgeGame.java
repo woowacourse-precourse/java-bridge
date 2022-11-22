@@ -45,7 +45,7 @@ public class BridgeGame {
         return bridgeMap.getInputCount();
     }
 
-    public boolean checkFlag() {
+    public boolean isSuccess() {
         return bridgeMap.getFlag();
     }
 

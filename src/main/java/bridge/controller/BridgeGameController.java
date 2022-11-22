@@ -40,6 +40,10 @@ public class BridgeGameController {
         printTotalAttempts(bridgeGame);
     }
 
+    private Bridge makeBridge(final BridgeMaker bridgeMaker, final BridgeSize bridgeSize) {
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
+    }
+
     private BridgeMaker setBridgeMaker() {
         outputView.print(BridgePhrase.START_GAME_PHRASE);
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -50,15 +54,11 @@ public class BridgeGameController {
         return inputView.readBridgeSize();
     }
 
-    private Bridge makeBridge(final BridgeMaker bridgeMaker, final BridgeSize bridgeSize) {
-        return new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
-    }
-
     private void gameProcess(final BridgeSize bridgeSize, final Bridge bridge, final BridgeGame bridgeGame) {
         do {
             escape = moveUpOrDown(bridgeGame, bridge, bridgeSize);
             button = retryOrQuit(bridgeGame);
-            if (escape && bridgeGame.checkFlag()) {
+            if (escape && bridgeGame.isSuccess()) {
                 break;
             }
             bridgeGame.isRetry(button);
@@ -67,7 +67,7 @@ public class BridgeGameController {
 
     private boolean moveUpOrDown(final BridgeGame bridgeGame, final Bridge bridge, final BridgeSize bridgeSize) {
         bridgeGame.incrementTotalAttempts();
-        while (bridgeGame.checkFlag() && untilTheEnd(bridgeGame, bridgeSize)) {
+        while (bridgeGame.isSuccess() && untilTheEnd(bridgeGame, bridgeSize)) {
             move(bridgeGame, bridge);
             printMap(bridgeGame);
         }
@@ -92,7 +92,7 @@ public class BridgeGameController {
     }
 
     private boolean retryOrQuit(final BridgeGame bridgeGame) {
-        if (!bridgeGame.checkFlag()) {
+        if (!bridgeGame.isSuccess()) {
             GameCommand gameCommand = readGameCommand();
             return bridgeGame.retry(gameCommand);
         }
@@ -109,9 +109,9 @@ public class BridgeGameController {
     }
 
     private void printSuccessOrNot(final BridgeGame bridgeGame) {
-        if (bridgeGame.checkFlag()) {
+        if (bridgeGame.isSuccess()) {
             outputView.print(BridgePhrase.GAME_SUCCESS);
-        } else if (!bridgeGame.checkFlag()) {
+        } else if (!bridgeGame.isSuccess()) {
             outputView.print(BridgePhrase.GAME_FAIL);
         }
     }
