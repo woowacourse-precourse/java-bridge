@@ -21,13 +21,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return Stream.iterate(0, index -> index < size, index -> index + 1)
-                .map(number -> bridgeNumberGenerator.generate())
-                .map(this::intToString)
+                .map(number -> {
+                    if (bridgeNumberGenerator.generate() == 0) {
+                        return "D";
+                    }
+                    return "U";
+                })
                 .collect(Collectors.toList());
-    }
-
-    private String intToString(int number) {
-        if (number == 0) return "D";
-        return "U";
     }
 }

@@ -19,7 +19,7 @@ public class BridgeMakerTest {
     @DisplayName("U, D로만 이뤄진 다리를 생성한다.")
     @Test
     void createBridgeByUOrD() {
-        int size = 3;
+        int size = 5;
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         Assertions.assertThat(bridge.stream()
