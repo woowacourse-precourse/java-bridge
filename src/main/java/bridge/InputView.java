@@ -1,4 +1,5 @@
 package bridge;
+
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,7 +14,7 @@ public class InputView {
     private static final String REGEX_NUMBER = "\\d{1,2}";
     private static final String MESSAGE_INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String UP = "U";
-    private static final String DOWN  = "D";
+    private static final String DOWN = "D";
     private static final String MESSAGE_ERROR_INPUT_MOVING = "[ERROR] 이동할 칸은 U 아니면 D인 1자리 문자열이어야 합니다.";
     private static final String MESSAGE_INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String RESTART = "R";
@@ -23,11 +24,14 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
-        OutputView.printMessage(MESSAGE_INPUT_BRIDGE_SIZE);
+    public int readBridgeSize() {
+        System.out.println(MESSAGE_INPUT_BRIDGE_SIZE);
         String inputSize = Console.readLine();
+        if (!inputSize.matches(REGEX_NUMBER)) {
+            throw new IllegalArgumentException(MESSAGE_ERROR_INPUT_BRIDGE_SIZE);
+        }
         int size = Integer.parseInt(inputSize);
-        if(!inputSize.matches(REGEX_NUMBER) || size < BRIDGE_SIZE_MIN || size > BRIDGE_SIZE_MAX) {
+        if (size < BRIDGE_SIZE_MIN || size > BRIDGE_SIZE_MAX) {
             throw new IllegalArgumentException(MESSAGE_ERROR_INPUT_BRIDGE_SIZE);
         }
         return size;
@@ -36,10 +40,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
-        OutputView.printMessage(MESSAGE_INPUT_MOVING);
+    public String readMoving() {
+        System.out.println(MESSAGE_INPUT_MOVING);
         String moving = Console.readLine();
-        if(!moving.matches(UP) && !moving.matches(DOWN)) {
+        if (!moving.matches(UP) && !moving.matches(DOWN)) {
             throw new IllegalArgumentException(MESSAGE_ERROR_INPUT_MOVING);
         }
         return moving;
@@ -48,10 +52,10 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
-        OutputView.printMessage(MESSAGE_INPUT_GAME_COMMAND);
+    public String readGameCommand() {
+        System.out.println(MESSAGE_INPUT_GAME_COMMAND);
         String gameCommand = Console.readLine();
-        if(!gameCommand.matches(RESTART) && !gameCommand.matches(QUIT)) {
+        if (!gameCommand.matches(RESTART) && !gameCommand.matches(QUIT)) {
             throw new IllegalArgumentException(MESSAGE_ERROR_INPUT_GAME_COMMAND);
         }
         return gameCommand;
