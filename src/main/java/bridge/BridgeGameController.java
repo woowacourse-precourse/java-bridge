@@ -2,7 +2,7 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.enums.Sentence.*;
+import static bridge.Sentence.*;
 
 
 public class BridgeGameController {

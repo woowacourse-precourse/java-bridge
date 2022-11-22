@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.BridgeGame.move;
-import static bridge.enums.DorU.UP;
+import static bridge.DorU.UP;
 
 
 public class Move {

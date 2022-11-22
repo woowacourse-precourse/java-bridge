@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 
 import java.io.*;
 
-import static bridge.enums.ErrorMessage.*;
+import static bridge.ErrorMessage.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {

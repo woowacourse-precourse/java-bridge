@@ -3,9 +3,9 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.OutputView.printStartGame;
-import static bridge.enums.DorU.*;
-import static bridge.enums.ErrorMessage.*;
-import static bridge.enums.Sentence.*;
+import static bridge.DorU.*;
+import static bridge.ErrorMessage.*;
+import static bridge.Sentence.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
