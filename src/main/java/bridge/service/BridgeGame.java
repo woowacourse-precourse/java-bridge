@@ -104,6 +104,13 @@ public class BridgeGame {
         return bridge.getBridgeByIndex(position);
     }
 
+    public List<List<String>> getBridgeMap() {
+        List<List<String>> bridgeMap = new ArrayList<>();
+        bridgeMap.add(upperBridge);
+        bridgeMap.add(lowerBridge);
+        return bridgeMap;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
