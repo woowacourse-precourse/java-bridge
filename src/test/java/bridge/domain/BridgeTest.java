@@ -51,4 +51,35 @@ class BridgeTest {
         // then
         assertThat(bridge.getCurrentBlock()).isEqualTo(1);
     }
+
+    @DisplayName("isLastBlock 테스트")
+    @Test
+    public void isLastBlockTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D", "U", "U"));
+        bridge.move();
+        bridge.move();
+        bridge.move();
+        bridge.move();
+
+        // when
+        boolean lastBlock = bridge.isLastBlock();
+
+        // then
+        assertThat(lastBlock).isEqualTo(true);
+    }
+
+    @DisplayName("isCorrectMovement 테스트")
+    @Test
+    public void isCorrectMovementTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        String movement = "U";
+
+        // when
+        boolean result = bridge.isCorrectMovement(movement);
+
+        // then
+        assertThat(result).isEqualTo(true);
+    }
 }
