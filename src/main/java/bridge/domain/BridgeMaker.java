@@ -27,4 +27,4 @@ public class BridgeMaker {
                 .findFirst().get()
                 .getValue();
     }
-}G
+}
