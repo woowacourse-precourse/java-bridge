@@ -1,5 +1,4 @@
 package bridge.view;
-import bridge.exception.BridgeGameError;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -14,27 +13,37 @@ public class InputView {
     }
 
     private static int inputBridgeSize() {
-        try {
-            return Integer.parseInt(Console.readLine());
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException(BridgeGameError.BRIDGE_SIZE_NOT_NUMBER.getErrorMessage());
-        }
+        String input = Console.readLine();
+
+        int bridgeSize = Integer.parseInt(input);
+
+        return bridgeSize;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
 
+    public Integer readInitialMoving() {
+        return inputInitialMoving();
+    }
+
+    private static Integer inputInitialMoving() {
+        String input = Console.readLine();
+
+        int initialMoving = Integer.parseInt(input);
+
+        return initialMoving;
+    }
+
     public String readMoving() {
         return inputMoving();
     }
 
     private static String inputMoving() {
-        try {
-            return String.valueOf(Console.readLine());
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException(BridgeGameError.INVALID_TYPE_MOVE_COMMAND.getErrorMessage());
-        }
+        String moving = Console.readLine();
+
+        return moving;
     }
 
     /**
@@ -45,10 +54,8 @@ public class InputView {
     }
 
     private static String inputGameCommand() {
-        try {
-            return String.valueOf(Console.readLine());
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException(BridgeGameError.INVALID_TYPE_GAME_COMMAND.getErrorMessage());
-        }
+        String gameCommand = Console.readLine();
+
+        return gameCommand;
     }
 }
