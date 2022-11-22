@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BridgeMap {
 
-    private static final int INSERT_PIVOT = 1;
+    private static final int PIVOT_GAP = 1;
     private static final int INIT_SIZE = 2;
 
     private final List<BridgeShape> upStair = new ArrayList<>();
@@ -26,12 +26,12 @@ public class BridgeMap {
     public void moveSuccess(Command command) {
         inputDivision();
         if (command.equals(Command.UP)) {
-            upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
-            downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+            upStair.add(getInsertPivot(upStair), BridgeShape.ALLOW_MOVE);
+            downStair.add(getInsertPivot(downStair), BridgeShape.BLANK);
             return;
         }
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
-        downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
+        upStair.add(getInsertPivot(upStair), BridgeShape.BLANK);
+        downStair.add(getInsertPivot(downStair), BridgeShape.ALLOW_MOVE);
     }
 
     public void reset() {
@@ -43,20 +43,24 @@ public class BridgeMap {
     public void moveFail(Command command) {
         inputDivision();
         if (command.equals(Command.UP)) {
-            upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
-            downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+            upStair.add(getInsertPivot(upStair), BridgeShape.REFUSE_MOVE);
+            downStair.add(getInsertPivot(downStair), BridgeShape.BLANK);
             return;
         }
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
-        downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
+        upStair.add(getInsertPivot(upStair), BridgeShape.BLANK);
+        downStair.add(getInsertPivot(downStair), BridgeShape.REFUSE_MOVE);
     }
 
     private void inputDivision() {
         if (upStair.size() == INIT_SIZE) {
             return;
         }
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+        upStair.add(getInsertPivot(upStair), BridgeShape.DIVISION);
+        downStair.add(getInsertPivot(downStair), BridgeShape.DIVISION);
+    }
+
+    private int getInsertPivot(List<BridgeShape> upStair) {
+        return upStair.size() - PIVOT_GAP;
     }
 
     @Override
