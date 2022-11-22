@@ -1,10 +1,33 @@
-package bridge;
+package bridge.domain;
+
+import bridge.exception.ExceptionInput;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+    private Bridge bridge;
+    private List<String> results;
+
+    public void start() {
+        OutputView.printStart();
+        makeBridge();
+    }
+
+    public void makeBridge() {
+        try {
+            int size = ExceptionInput.validateInputLength(InputView.readBridgeSize());
+            this.bridge = new Bridge(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            makeBridge();
+        }
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
