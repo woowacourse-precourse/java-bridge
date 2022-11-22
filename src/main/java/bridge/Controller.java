@@ -39,7 +39,7 @@ public class Controller {
 
     private void tryGame(int bridgeSize, BridgeGame bridgeGame) {
         while (bridgeGame.getIndex() < bridgeSize && !bridgeGame.getIsQuit()) {
-            String direction = inputView.readMoving();
+            String direction = inputView.getReadMoving();
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
             if (!bridgeGame.isFailed()) continue;

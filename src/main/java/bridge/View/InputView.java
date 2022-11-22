@@ -52,4 +52,13 @@ public class InputView {
         }
     }
 
+    public String getReadMoving(){
+        try {
+            return readMoving();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return getReadMoving();
+        }
+    }
+
 }
