@@ -9,7 +9,7 @@ public class BridgeChecker {
         List<String> matchingResult = new ArrayList<>();
 
         for(int i=0; i<userInput.size(); i++) {
-            if(bridge.get(i)==userInput.get(i)) {
+            if(bridge.get(i).equals(userInput.get(i))) {
                 matchingResult.add(BlockExpression.Same.getMark());
                 continue;
             }
@@ -23,9 +23,9 @@ public class BridgeChecker {
         List<String> upperBlocks = new ArrayList<>();
 
         for(int i=0; i<matchingResult.size(); i++) {
-            if(bridge.get(i)==MovingDirection.Upper.getDirection()) {
+            if(bridge.get(i).equals(MovingDirection.Upper.getDirection())) {
                 upperBlocks.add(matchingResult.get(i));
-            }else if(bridge.get(i)==MovingDirection.Lower.getDirection()) {
+            }else if(bridge.get(i).equals(MovingDirection.Lower.getDirection())) {
                 upperBlocks.add(BlockExpression.Empty.getMark());
             }
         }
@@ -37,9 +37,9 @@ public class BridgeChecker {
         List<String> lowerBlocks = new ArrayList<>();
 
         for(int i=0; i<matchingResult.size(); i++) {
-            if(bridge.get(i)==MovingDirection.Lower.getDirection()) {
+            if(bridge.get(i).equals(MovingDirection.Lower.getDirection())) {
                 lowerBlocks.add(matchingResult.get(i));
-            }else if(bridge.get(i)==MovingDirection.Upper.getDirection()) {
+            }else if(bridge.get(i).equals(MovingDirection.Upper.getDirection())) {
                 lowerBlocks.add(BlockExpression.Empty.getMark());
             }
         }
