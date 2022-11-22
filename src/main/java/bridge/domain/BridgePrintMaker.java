@@ -28,7 +28,7 @@ public class BridgePrintMaker {
     }
 
     public String getBridgePrint() {
-        return upStringJoiner.toString() + "\n" + downStringJoiner.toString();
+        return upStringJoiner.toString() + "\n" + downStringJoiner.toString() + "\n";
     }
 
     private void updateContinueGame(String upMoveResult, String downMoveResult) {
