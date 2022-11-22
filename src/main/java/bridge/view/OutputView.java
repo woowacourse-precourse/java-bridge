@@ -8,6 +8,10 @@ import static bridge.utils.ViewMessage.*;
 
 public class OutputView {
 
+    public void printGameStartMessage() {
+        System.out.println(GAME_START);
+    }
+
     public void printMap(GameResult gameResult) {
         printCurrentBridgeMap(gameResult.getUpSideResult());
         printCurrentBridgeMap(gameResult.getDownSideResult());
