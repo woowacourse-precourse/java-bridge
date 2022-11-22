@@ -18,18 +18,32 @@ public class BridgeGame {
         return movedResult;
     }
     public String resultOfPhrase(List<String> movedResult, List<String> bridge) {
+        StringBuilder up = resultOfUpper(movedResult, bridge);
+        StringBuilder down = resultOfLower(movedResult, bridge);
+        gameResult = up.toString() + "]" + System.lineSeparator() + down.toString() + "]";
+        return gameResult;
+    }
+
+    private StringBuilder resultOfUpper(List<String> movedResult, List<String> bridge) {
         StringBuilder up = new StringBuilder("[");
-        StringBuilder down = new StringBuilder("[");
         for(int idx=0; idx<movedResult.size(); idx++){
             up = UpperString(movedResult.get(idx), bridge.get(idx), up);
-            down = LowerString(movedResult.get(idx), bridge.get(idx), down);
             if (!(idx==(movedResult.size())-1)) {
                 up.append("|");
+            }
+        }
+        return up;
+    }
+
+    private StringBuilder resultOfLower(List<String> movedResult, List<String> bridge) {
+        StringBuilder down = new StringBuilder("[");
+        for(int idx=0; idx<movedResult.size(); idx++){
+            down = LowerString(movedResult.get(idx), bridge.get(idx), down);
+            if (!(idx==(movedResult.size())-1)) {
                 down.append("|");
             }
         }
-        gameResult = up.toString() + "]" + System.lineSeparator() + down.toString() + "]";
-        return gameResult;
+        return down;
     }
 
     private StringBuilder UpperString (String moving, String bridgeSpace, StringBuilder up) {
