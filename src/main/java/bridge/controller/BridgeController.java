@@ -7,8 +7,6 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import domain.BridgeGame;
 
-import java.util.List;
-
 public class BridgeController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -16,27 +14,27 @@ public class BridgeController {
 
     public void run() {
         outputView.outputGameStart();
-        bridgeGame = gameStart();
+        bridgeGame = createBridge();
         movesBridge();
         endGame();
     }
 
-    private BridgeGame gameStart() {
+    private BridgeGame createBridge() {
         try {
-            return new BridgeGame(makeBridge());
-        } catch (IndexOutOfBoundsException e) {
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            return new BridgeGame(bridgeMaker.makeBridge(inputBridgeSize()));
+        } catch (IllegalArgumentException e) {
             outputView.outputException(ExceptionMessage.ERROR_NOT_RANGE_SIZE.getErrorMessage());
-            return gameStart();
+            return createBridge();
         }
     }
 
-    private List<String> makeBridge() {
+    private int inputBridgeSize() {
         try {
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            return bridgeMaker.makeBridge(inputView.readBridgeSize());
+            return inputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
             outputView.outputException(ExceptionMessage.ERROR_NOT_NUMBER.getErrorMessage());
-            return makeBridge();
+            return inputBridgeSize();
         }
     }
 
