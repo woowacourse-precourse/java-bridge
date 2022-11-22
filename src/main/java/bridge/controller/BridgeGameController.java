@@ -82,5 +82,4 @@ public class BridgeGameController {
         return inputView.readGameCommand();
     }
 
-
 }
