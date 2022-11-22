@@ -11,14 +11,14 @@ import java.util.List;
  */
 public class OutputView {
 
-    private final List<String> upDownMark = List.of("U", "D");
+    private static final List<String> upDownMark = List.of("U", "D");
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgePassed bridge) {
+    public static void printMap(BridgePassed bridge) {
         for (String mark : upDownMark) {
             System.out.print(Map.BRIDGE_START.getMark());
             printRow(bridge, mark);
@@ -26,7 +26,7 @@ public class OutputView {
         }
     }
 
-    public void printRow(BridgePassed bridge, String mark) {
+    public static void printRow(BridgePassed bridge, String mark) {
         List<String> blocks = bridge.getBlocks();
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
             printSection(i);
@@ -38,13 +38,13 @@ public class OutputView {
         }
     }
 
-    private void printSection(int index) {
+    private static void printSection(int index) {
         if (index >= 1) {
             System.out.print(Map.BLOCK_SECTION.getMark());
         }
     }
 
-    public void printBlock(String block, String mark) {
+    public static void printBlock(String block, String mark) {
         if (block.equals(mark)) {
             System.out.print(Map.BLOCK_CAN_MOVE.getMark());
         }
@@ -53,7 +53,7 @@ public class OutputView {
         }
     }
 
-    public void printX(String block, String mark) {
+    public static void printX(String block, String mark) {
         if (block.equals(mark)) {
             System.out.print(Map.BLOCK_BLANK.getMark());
         }
@@ -67,7 +67,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameStatus gameStatus) {
+    public static void printResult(GameStatus gameStatus) {
         String gameClearResult = "";
         if (gameStatus.isGameClear()) {
             gameClearResult = GuideMessage.SUCCESS.getMessage();
@@ -79,23 +79,23 @@ public class OutputView {
         System.out.println(GuideMessage.WHOLE_TRY.getMessage() + gameStatus.getGameCount());
     }
 
-    public void printStart() {
+    public static void printStart() {
         System.out.println(GuideMessage.START.getMessage());
     }
 
-    public void printBridgeSize() {
+    public static void printBridgeSize() {
         System.out.println(GuideMessage.INPUT_BRIDGE_SIZE.getMessage());
     }
 
-    public void printMoving() {
+    public static void printMoving() {
         System.out.println(GuideMessage.INPUT_MOVING.getMessage());
     }
 
-    public void printRetry() {
+    public static void printRetry() {
         System.out.println(GuideMessage.INPUT_RETRY.getMessage());
     }
 
-    public void printFinalMap(BridgePassed bridgePassed) {
+    public static void printFinalMap(BridgePassed bridgePassed) {
         System.out.println(GuideMessage.RESULT.getMessage());
         printMap(bridgePassed);
     }

@@ -11,13 +11,13 @@ import java.util.regex.Pattern;
  */
 public class InputView {
 
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String inputBridgeSize = Console.readLine();
         validBridgeSize(inputBridgeSize);
         return Integer.parseInt(inputBridgeSize);
     }
 
-    private void validBridgeSize(String inputBridgeSize) {
+    private static void validBridgeSize(String inputBridgeSize) {
         if (!Pattern.matches("^[0-9]*$", inputBridgeSize)) {
             System.out.println(ErrorMessage.NOT_NUMBER.getErrorMessage());
             throw new NoSuchElementException(ErrorMessage.NOT_NUMBER.getErrorMessage());
@@ -27,13 +27,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String inputMoving = Console.readLine();
         validMoving(inputMoving);
         return inputMoving;
     }
 
-    private void validMoving(String inputMoving) {
+    private static void validMoving(String inputMoving) {
         if (!inputMoving.contains(GameCommand.UP.getCommand()) && !inputMoving.contains(
             GameCommand.DOWN.getCommand())) {
             System.out.println(ErrorMessage.NOT_U_OR_D.getErrorMessage());
@@ -48,13 +48,13 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         String inputGameCommand = Console.readLine();
         validGameCommand(inputGameCommand);
         return inputGameCommand;
     }
 
-    private void validGameCommand(String inputGameCommand) {
+    private static void validGameCommand(String inputGameCommand) {
         if (!inputGameCommand.contains(GameCommand.RESTART.getCommand())
             && !inputGameCommand.contains(GameCommand.QUIT.getCommand())) {
             System.out.println(ErrorMessage.NOT_R_OR_Q.getErrorMessage());
