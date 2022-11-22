@@ -21,10 +21,11 @@ public class BridgeGame {
         this.bridge = new Bridge(inputSize);
     }
 
-    public boolean move(int moveCount, String moving) {
+    public boolean move(String moving) {
         checkMoving(moving);
-        boolean canMove = bridge.canMove(moveCount, moving);
-        bridgeGameResult.updateMoveState(moving, canMove);
+        boolean canMove = bridge.canMove(bridgeGameResult.getMoveCount(), moving);
+        bridgeGameResult.updateMoveState(canMove);
+        bridgeGameResult.updateResult(bridge.getSize());
         return canMove;
     }
 
