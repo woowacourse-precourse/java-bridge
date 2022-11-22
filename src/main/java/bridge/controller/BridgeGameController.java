@@ -67,6 +67,7 @@ public class BridgeGameController {
     }
 
     private boolean isRetrying() {
+        outputView.printGameCommandMsg();
         while (true) {
             try {
                 return bridgeGame.retry(inputView.readGameCommand());
