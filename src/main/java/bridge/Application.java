@@ -13,7 +13,7 @@ public class Application {
         BridgeGame game = new BridgeGame(inputView.readBridgeLength());
         while (game.isGameContinue()) {
             game.move(inputView.readMoving());
-            if (game.getGameStatus() == GameStatus.FAILED) {
+            if (game.isGameFailed()) {
                 game.retry(inputView.readGameCommand());
             }
             outputView.handleOutput(game.bridgeData.copyBridgeByUser(),

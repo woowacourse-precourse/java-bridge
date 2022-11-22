@@ -60,6 +60,10 @@ public class BridgeGame {
         return this.gameStatus == GameStatus.PROGRESSING || this.gameStatus == GameStatus.RETRY;
     }
 
+    public boolean isGameFailed() {
+        return gameStatus == GameStatus.FAILED;
+    }
+
     public BridgeGame(int bridgeLength) {
         gameStatus = GameStatus.PROGRESSING;
         bridgeData.setBridge(bridgeMaker.makeBridge(bridgeLength));
