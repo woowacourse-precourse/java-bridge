@@ -4,11 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.constant.BridgeDirection;
-import bridge.domain.constant.CrossingState;
-import bridge.domain.model.GameRecordGenerator;
-import bridge.domain.model.GameRecordMaker;
-import bridge.domain.model.GameAgent;
-import org.junit.jupiter.api.Test;
+import bridge.domain.constant.CrossedState;
 
 import java.util.List;
 
@@ -22,7 +18,7 @@ public class BridgeGame {
     private final GameRecordGenerator gameRecordGenerator;
     private GameRecordMaker gameRecordMaker;
     private int numberOfTrial;
-    private int currentBridgeLocation;
+    private int trial;
     private boolean gameState;
     private int bridgeLength;
 
@@ -33,33 +29,36 @@ public class BridgeGame {
         gameAgent = new GameAgent();
         gameRecordGenerator = new GameRecordGenerator();
         this.numberOfTrial = ZERO;
+        this.gameRecordMaker = new GameRecordMaker();
     }
 
     public void prepare() {
         this.restartState = false;
         this.gameState = true;
-        this.currentBridgeLocation = ZERO;
-        this.gameRecordMaker = new GameRecordMaker();
+        this.trial = ZERO;
     }
 
     public void constructBridge(int bridgeLength) {
         this.bridgeLength = bridgeLength;
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
         List<String> bridgeMade = bridgeMaker.makeBridge(bridgeLength);
 
         gameAgent.initialize(bridgeMade);
     }
 
     public void move(String playerWantToGo) {
-        gameState &= gameAgent.checkPossibleToCross(playerWantToGo, currentBridgeLocation);
-        ++currentBridgeLocation;
+        gameState &= gameAgent.checkPossibleToCross(playerWantToGo, trial);
+        ++trial;
     }
 
     public String makeReport(BridgeDirection playerDirection) {
-        List<String> currentCrossedResult = gameRecordGenerator.generate(gameState, playerDirection);
-        gameRecordMaker.updateCurrentRecord(currentCrossedResult);
-        gameRecordMaker.updateResult();
+
+        gameRecordGenerator.generate(gameState, playerDirection);
+        gameRecordGenerator.updateCurrentRecord(trial);
+        gameRecordMaker.updateResult(gameRecordGenerator.getCurrentGameRecord());
+
         return gameRecordMaker.getRecord();
     }
 
@@ -81,6 +80,7 @@ public class BridgeGame {
 
     public void Restart(boolean restartState) {
         this.restartState = restartState;
+        gameRecordMaker.reset();
     }
 
     public boolean getRestartState() {
@@ -88,11 +88,11 @@ public class BridgeGame {
     }
 
     public String getBridgeGameState() {
-        return CrossingState.getSuccessOrNot(gameState);
+        return CrossedState.getSuccessOrNot(gameState);
     }
 
     public boolean isGameEnd() {
-        return currentBridgeLocation < bridgeLength;
+        return trial < bridgeLength;
     }
 
 
