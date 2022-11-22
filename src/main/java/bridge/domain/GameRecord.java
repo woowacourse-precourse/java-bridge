@@ -49,8 +49,12 @@ public class GameRecord {
     }
 
     public void recordRetry() {
-        tryCount += 1;
+        increaseTryCount();
         clearCrossedRecord();
+    }
+
+    private void increaseTryCount() {
+        tryCount += 1;
     }
 
     private void clearCrossedRecord() {
