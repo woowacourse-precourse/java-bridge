@@ -17,8 +17,9 @@ public class PlayerSetting {
 
     public static void setBridgeSizeToPlayer(String readBridgeSize) {
         int bridgeSize = bridgeSizeToInt(readBridgeSize);
-        player = new Player(new PlayerBridgeSizeDto(bridgeSize),
-                new BridgeDto(bridgeMaker.makeBridge(bridgeSize)));
+//        player = new Player(new PlayerBridgeSizeDto(bridgeSize),
+//                new BridgeDto(bridgeMaker.makeBridge(bridgeSize)));
+        player = new Player(bridgeSize, bridgeMaker.makeBridge(bridgeSize));
     }
 
     private static int bridgeSizeToInt(String readBridgeSize) {
@@ -27,7 +28,8 @@ public class PlayerSetting {
     }
 
     public int getPlayerBridgeSize() {
-        return PlayerBridgeSizeDto.from(player).getBridgeSize();
+//        return PlayerBridgeSizeDto.from(player).getBridgeSize();
+        return player.getBridgeSize();
     }
 
     public List<String> getPlayerBridge() {
@@ -35,6 +37,7 @@ public class PlayerSetting {
     }
 
     public String getBridgeCorrectLocation(int location) {
-        return BridgeCorrectLocationDto.from(player, location).getBridgeCorrectLocation();
+//        return BridgeCorrectLocationDto.from(player, location).getBridgeCorrectLocation();
+        return player.getBridgeCorrectLocation(location);
     }
 }
