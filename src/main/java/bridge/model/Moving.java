@@ -18,6 +18,12 @@ public class Moving {
     private final String WRONG = " X ";
     private final String BLANK = "   ";
 
+
+    public void moving(String computer, String userInput) {
+        upLine.add(addRightOrWrong(computer, userInput).get(0));
+        downLine.add(addRightOrWrong(computer, userInput).get(1));
+    }
+
     public static void clearMoving() {
         upLine.clear();
         downLine.clear();
@@ -26,6 +32,7 @@ public class Moving {
     public boolean checkWrong() {
         return upLine.contains(WRONG) || downLine.contains(WRONG);
     }
+
     public static void printMoving() {
         OutputView.printMap(upLine, downLine);
     }
