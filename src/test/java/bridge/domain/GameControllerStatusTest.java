@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.domain;
 
 import bridge.domain.GameStatus;
 import org.junit.jupiter.api.DisplayName;

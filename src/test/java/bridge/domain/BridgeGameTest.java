@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BridgeGameTestControll {
+class BridgeGameTest {
 
     private final BridgeGame bridgeGame = new BridgeGame();
     private final List<String> bridge = List.of("U", "D", "U");
