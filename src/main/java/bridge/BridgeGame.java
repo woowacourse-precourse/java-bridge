@@ -6,18 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static bridge.Dto.BridgeGameConst.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private final String UP_BRIDGN_SIGN = "U";
-    private final String EMPTY_SIGN = " ";
-    private final String DELIMITER_VERTICAL_BAR = " | ";
-    private final String PREFIX_BACKET = "[ ";
-    private final String SUFFIX_BACKET = " ]";
-    private final String GAME_STAATUS_MESSAGE = "게임 성공 여부: ";
-    private final String GAME_COUNT_MESSAGE = "총 시도한 횟수: ";
     private final List<String> upBridge;
     private final List<String> downBridge;
     private int moveCount;
