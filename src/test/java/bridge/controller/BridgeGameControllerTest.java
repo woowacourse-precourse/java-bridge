@@ -19,12 +19,13 @@ class BridgeGameControllerTest {
         Bridge bridge = new Bridge(List.of("U", "U", "D"));
         User user = new User();
         boolean pass = true;
+        int moveLocation = 1;
 
         //when
         bridgeGameController.runPassOrFailCase(pass, bridge, user);
 
         //then
-        assertThat(bridge.getLocation()).isEqualTo(1);
+        assertThat(bridge.getLocation()).isEqualTo(moveLocation);
     }
 
     @DisplayName("통과 테스트")
@@ -67,12 +68,13 @@ class BridgeGameControllerTest {
         Bridge bridge = new Bridge(List.of("U", "U", "D"));
         User user = new User();
         String gameCommand = "R";
+        int startLocation = 0;
         bridge.increaseLocation();
 
         //when
         bridgeGameController.runFailCase(bridge, user, gameCommand);
 
         //then
-        assertThat(bridge.getLocation()).isEqualTo(0);
+        assertThat(bridge.getLocation()).isEqualTo(startLocation);
     }
 }
