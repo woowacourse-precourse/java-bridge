@@ -23,6 +23,7 @@ public class OutputView {
     public void printMap(String map) {
         // X가 틀린 곳에 있어야함..
         System.out.println(map);
+        this.str = map;
     }
 private enum sf{
         SUCCESS(true, "성공"),
