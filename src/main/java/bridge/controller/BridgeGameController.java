@@ -1,33 +1,27 @@
-package bridge.controlloer;
+package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
 import bridge.domain.BridgeRecord;
 import bridge.domain.Command;
 import bridge.domain.Result;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameController {
     private final BridgeGame bridgeGame;
     private BridgeRecord bridgeRecord;
-    private InputView inputView;
-    private OutputView outputView;
-    private int attempts;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public BridgeGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
 
         outputView.printStart();
-        final int bridgeSize = readBridgeSize();
-        Bridge.setBridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize));
+        Bridge.setBridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(readBridgeSize()));
         this.bridgeGame = new BridgeGame();
-        this.bridgeRecord = new BridgeRecord();
-        this.attempts = 1;
     }
 
     private int readBridgeSize() {
@@ -62,13 +56,15 @@ public class BridgeGameController {
 
     public void play() {
         Result result = Result.SUCCESS;
-        while (Result.SUCCESS.equals(result)) {
+        int attempts;
+        for (attempts = 0; Result.SUCCESS.equals(result); attempts++) {
+            this.bridgeRecord = new BridgeRecord();
             result = playOneGame();
             if (result.equals(Result.FAIL)) {
                 result = retryOrEnd();
             }
         }
-        end(result);
+        end(result, attempts);
     }
 
     private Result playOneGame() {
@@ -84,8 +80,7 @@ public class BridgeGameController {
 
     private Result retryOrEnd() {
         if (chooseRetryOrEnd().equals(Result.SUCCESS)) {
-            bridgeGame.retry();
-            attempts++;
+            this.bridgeRecord = bridgeGame.retry();
             return Result.SUCCESS;
         }
         return Result.FAIL;
@@ -99,7 +94,7 @@ public class BridgeGameController {
         return Result.FAIL;
     }
 
-    private void end(Result result) {
+    private void end(Result result, int attempts) {
         outputView.printResult(bridgeRecord.getBridgeRecord(), attempts, result);
     }
 }
