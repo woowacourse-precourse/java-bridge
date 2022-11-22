@@ -31,13 +31,11 @@ public class GameController {
     private GameResultDto doGame() {
         GameResultDto gameResultDto = new GameResultDto();
         GameResult gameResult;
-
         do {
             gameResultDto.counting();
             MatchResult matchResult = doRound();
             gameResult = doRetryOrQuit(matchResult);
         } while (isReGame(gameResult));
-
         gameResultDto.setGameResult(gameResult);
         return gameResultDto;
     }

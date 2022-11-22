@@ -24,6 +24,7 @@ public class ViewService {
     public int askBridgeLength() {
         Optional<Integer> size;
         do {
+            inputView.printBridgeLengthInputMessage();
             size = inputView.readBridgeSize();
         } while (size.isEmpty());
 
@@ -33,6 +34,7 @@ public class ViewService {
     public String askMove() {
         Optional<String> move;
         do {
+            inputView.printMoveUpOrDownMessage();
             move = inputView.readMoving();
         } while (move.isEmpty());
 
@@ -46,6 +48,7 @@ public class ViewService {
     public String askReGame() {
         Optional<String> cmd;
         do {
+            inputView.printRetryOrQuitInputMessage();
             cmd = inputView.readGameCommand();
         } while (cmd.isEmpty());
 

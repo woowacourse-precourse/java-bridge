@@ -25,12 +25,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public Optional<Integer> readBridgeSize() {
-        System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
         try {
             String input = Console.readLine().trim();
             System.out.println();
             inputConfig.checkBridgeLength(input);
-
             return Optional.of(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -42,11 +40,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public Optional<String> readMoving() {
-        printMoveUpOrDown();
         try {
             String input = Console.readLine().trim();
             inputConfig.checkMovingInput(input);
-
             return Optional.of(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -58,11 +54,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public Optional<String> readGameCommand() {
-        printRetryOrQuit();
         try {
             String input = Console.readLine().trim();
             inputConfig.checkAskReGameInput(input);
-
             return Optional.of(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -70,12 +64,16 @@ public class InputView {
         }
     }
 
-    private void printRetryOrQuit() {
+    public void printBridgeLengthInputMessage() {
+        System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
+    }
+
+    public void printRetryOrQuitInputMessage() {
         String tmp = printTwoChoice(Command.RETRY, Command.QUIT);
         System.out.println(String.format(RETRY_OR_QUIT_INPUT_MESSAGE, tmp));
     }
 
-    private void printMoveUpOrDown() {
+    public void printMoveUpOrDownMessage() {
         String tmp = printTwoChoice(Command.UP, Command.DOWN);
         System.out.println(String.format(MOVING_INPUT_MESSAGE, tmp));
     }
