@@ -13,15 +13,10 @@ public class Application {
         printStartMessage();
         InputView inputView = new InputView();
         BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
-
         List<String> answer_list = bm.makeBridge(inputView.readBridgeSize());
-
         System.out.println(answer_list);
-
         BridgeGame bridgeGame = new BridgeGame();
-        int rslt = bridgeGame.move(inputView, answer_list);
-
-
+        bridgeGame.move(inputView, answer_list);
     }
 
     public static void printStartMessage(){
