@@ -68,8 +68,8 @@
 - [X] 위 아래로 번갈아가며 2번 씩 이동 후 마지막 위로 이동 실패시
 - [X] 위 아래로 번갈아가며 2번 씩 이동 후 마지막 아래로 이동 실패시
 
-## GameRecorder
-- [ ] gameClear 호출 전 isGameClear 값
+## GameResult
+- [X] gameClear 호출 전 isGameClear 값
 - [ ] gameClear 호출 후 isGameClear 값
 - [ ] retry() 여러번 호출 후 tryCount 값
 
