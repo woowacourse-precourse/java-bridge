@@ -22,13 +22,13 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            String uOrd = numberToString(number);
+            String uOrd = create_pass_UorD(number);
             bridge.add(uOrd);
         }
         return bridge;
     }
 
-    private String numberToString(int number) {
+    private String create_pass_UorD(int number) {
         String U = "U";
         String D = "D";
         if (number == 1) {
