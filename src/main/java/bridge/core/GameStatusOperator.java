@@ -29,6 +29,8 @@ public class GameStatusOperator {
 
     public void changePosition() { currentPosition++; }
 
+    public void turnBackPosition() { currentPosition--; }
+
     public void toOngoing() { gameStatus = GameStatus.ONGOING; }
 
     public void toQuit() { gameStatus = GameStatus.QUIT; }

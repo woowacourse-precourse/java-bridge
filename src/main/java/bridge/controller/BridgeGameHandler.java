@@ -29,7 +29,10 @@ public class BridgeGameHandler {
     }
 
     public ProcessCondition executePassCondition(BridgeGame bridgeGame) {
-        ProcessCondition passCondition = bridgeGame.move(readSelectedBridgeBlock());
+        ProcessCondition passCondition;
+        do {
+            passCondition = bridgeGame.move(readSelectedBridgeBlock());
+        } while (passCondition == null);
         OutputView.printMap(passCondition, bridgeGame);
         FinishCondition finishCondition = bridgeGame.checkWhetherFinished(passCondition);
         if (finishCondition.equals(FinishCondition.FINISHED)) return bridgeGame.quit(FinishCondition.FINISHED);

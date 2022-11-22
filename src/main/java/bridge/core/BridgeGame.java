@@ -39,12 +39,18 @@ public class BridgeGame {
     }
 
     public ProcessCondition move(String selectBlock) {
-        gameStatusOperator.changePosition();
-        Integer currentPosition = gameStatusOperator.getCurrentPosition();
-        if (bridge.checkPassableBlock(currentPosition, selectBlock)) {
-            return PassCondition.PASS;
+        try {
+            gameStatusOperator.changePosition();
+            Integer currentPosition = gameStatusOperator.getCurrentPosition();
+            if (bridge.checkPassableBlock(currentPosition, selectBlock)) return PassCondition.PASS;
+            return PassCondition.FAIL;
+        } catch (InvalidInputException e) {
+            gameStatusOperator.turnBackPosition();
+            ExceptionHandler.handle(e);
+            return null;
+        } catch (Exception e) {
+            throw new CommonException(Error.FAIL, "플레이어 이동");
         }
-        return PassCondition.FAIL;
     }
 
     public ProcessCondition retry() {
