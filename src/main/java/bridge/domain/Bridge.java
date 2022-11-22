@@ -1,14 +1,18 @@
 package bridge.domain;
 
+import java.util.List;
+
 public enum Bridge {
-    DOWN("D", 0), UP("U", 1);
+    DOWN("D", 0, List.of(0, 1)), UP("U", 1, List.of(1, 0));
 
     private final String direction;
     private final int number;
+    private final List<Integer> directionIndex;
 
-    Bridge(String direction, int number) {
+    Bridge(String direction, int number, List<Integer> directionIndex) {
         this.direction = direction;
         this.number = number;
+        this.directionIndex = directionIndex;
     }
 
     public boolean isSameDirection(String direction) {
@@ -25,6 +29,10 @@ public enum Bridge {
 
     public int getNumber() {
         return number;
+    }
+
+    public List<Integer> getDirectionIndex() {
+        return directionIndex;
     }
 
     public static Bridge getBridgeByDirection(String direction) {

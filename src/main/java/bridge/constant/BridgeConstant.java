@@ -9,6 +9,7 @@ public class BridgeConstant {
     public static final String BRIDGE_START_LETTER = "[ ";
     public static final String BRIDGE_MIDDLE_LETTER = " | ";
     public static final String BRIDGE_END_LETTER = " ]";
+    public static final String GAME_RETRY_LETTER = "R";
 
     private BridgeConstant() {
     }

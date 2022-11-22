@@ -19,6 +19,10 @@ public class Result {
         crossResult.add(status);
     }
 
+    public void removeResult(int position) {
+        crossResult.remove(position);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(BRIDGE_START_LETTER);
