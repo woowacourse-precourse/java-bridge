@@ -30,7 +30,7 @@ public class BridgeGameController {
             outputView.printNowMap(bridge.getNowIndex(), userMove, bridge.isSameValueOfComputerAndUser(userMove));
             determineUserValueIsEqualToComputerValue(bridge, game, userMove);
         }
-        outputView.printResult(game);
+        outputView.printFinalResult(game);
     }
 
     public void determineUserValueIsEqualToComputerValue(Bridge bridge, Game game, String userInputMove) {
