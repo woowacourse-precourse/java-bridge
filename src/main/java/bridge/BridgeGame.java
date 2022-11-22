@@ -40,6 +40,10 @@ public class BridgeGame {
         player.retry();
     }
 
+    public int getTryCount(){
+        return player.getTryCount();
+    }
+
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder();
