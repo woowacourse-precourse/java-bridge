@@ -8,7 +8,7 @@ import java.util.List;
 public class Application {
     private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
-    private static final BridgeMaker maker = new BridgeMaker();
+    private static final BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static final BridgeGame game = new BridgeGame();
 
     private static GameState state = GameState.START;
