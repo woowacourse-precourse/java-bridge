@@ -1,6 +1,5 @@
-package bridge.domain.game;
+package bridge.domain;
 
-import bridge.domain.bridge.Bridge;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 

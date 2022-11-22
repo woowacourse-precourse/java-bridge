@@ -1,10 +1,8 @@
-package bridge.domain.game;
+package bridge.domain;
 
-import bridge.domain.bridge.Bridge;
-
-import static bridge.domain.game.GameStatus.FAILED;
-import static bridge.domain.game.GameStatus.PLAYING;
-import static bridge.domain.game.GameStatus.SUCCESS;
+import static bridge.domain.GameStatus.FAILED;
+import static bridge.domain.GameStatus.PLAYING;
+import static bridge.domain.GameStatus.SUCCESS;
 
 public class BridgeGame {
 

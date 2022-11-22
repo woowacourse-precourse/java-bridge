@@ -1,5 +1,6 @@
-package bridge.domain.game;
+package bridge.domain;
 
+import bridge.domain.Attempt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AttemptTest {

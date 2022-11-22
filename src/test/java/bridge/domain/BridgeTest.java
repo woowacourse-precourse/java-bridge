@@ -1,5 +1,6 @@
-package bridge.domain.bridge;
+package bridge.domain;
 
+import bridge.domain.Bridge;
 import bridge.domain.Move;
 import bridge.BridgeMaker;
 import bridge.support.FakeBridgeNumberGenerator;

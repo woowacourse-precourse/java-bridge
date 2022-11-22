@@ -1,11 +1,11 @@
 package bridge.service;
 
 import bridge.domain.Command;
-import bridge.domain.game.GameStatus;
-import bridge.domain.bridge.Bridge;
+import bridge.domain.GameStatus;
+import bridge.domain.Bridge;
 import bridge.BridgeMaker;
-import bridge.domain.game.BridgeGame;
-import bridge.domain.game.GameProgress;
+import bridge.domain.BridgeGame;
+import bridge.domain.GameProgress;
 import bridge.dto.MapDto;
 import bridge.dto.ResultDto;
 import bridge.support.FakeBridgeNumberGenerator;
@@ -23,9 +23,9 @@ import java.util.List;
 
 import static bridge.domain.Command.QUIT;
 import static bridge.domain.Command.RETRY;
-import static bridge.domain.game.GameStatus.FAILED;
-import static bridge.domain.game.GameStatus.PLAYING;
-import static bridge.domain.game.GameStatus.SUCCESS;
+import static bridge.domain.GameStatus.FAILED;
+import static bridge.domain.GameStatus.PLAYING;
+import static bridge.domain.GameStatus.SUCCESS;
 import static bridge.domain.Move.DOWN;
 import static bridge.domain.Move.UP;
 import static org.assertj.core.api.Assertions.assertThat;

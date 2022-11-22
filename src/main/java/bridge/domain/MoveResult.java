@@ -1,4 +1,4 @@
-package bridge.domain.game;
+package bridge.domain;
 
 import bridge.domain.Move;
 

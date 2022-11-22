@@ -1,4 +1,4 @@
-package bridge.domain.game;
+package bridge.domain;
 
 import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 
