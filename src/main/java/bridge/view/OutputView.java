@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.domain.GameResult;
-
 import java.util.List;
 
 public class OutputView {
@@ -19,6 +17,7 @@ public class OutputView {
         for (String bridge : map) {
             System.out.println(bridge);
         }
+        System.out.println();
     }
 
     public void printResult(List<String> maps, List<String> result) {

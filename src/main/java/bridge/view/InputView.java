@@ -9,17 +9,17 @@ public class InputView {
 
     public String readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
-        return Console.readLine();
+        String size = Console.readLine();
+        System.out.println();
+        return size;
     }
 
     public String readMoving() {
-        System.out.println();
         System.out.println(INPUT_MOVING);
         return Console.readLine();
     }
 
     public String readGameCommand() {
-        System.out.println();
         System.out.println(INPUT_COMMAND);
         return Console.readLine();
     }
