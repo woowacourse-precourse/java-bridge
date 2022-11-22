@@ -12,12 +12,15 @@ public class BridgeGame {
     private Bridge bridge;
     private PlayerPath playerPath;
 
+    private boolean isTerminated;
+
     public BridgeGame() {}
 
     public void initComponents(BridgeNumberGenerator bridgeNumberGenerator, int bridgeLength) {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeLength));
         playerPath = new PlayerPath();
+        isTerminated = false;
     }
 
     /**
@@ -48,9 +51,17 @@ public class BridgeGame {
         return bridge.isCompletedWith(playerPath);
     }
 
-    public boolean isOver(){
+    public boolean isGameOver(){
         if(!playerPath.getIsAlive())
             return true;
         return false;
+    }
+
+    public void setTerminated(){
+        isTerminated = true;
+    }
+
+    public boolean isTerminated(){
+        return isTerminated;
     }
 }
