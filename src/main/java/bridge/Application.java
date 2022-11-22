@@ -1,10 +1,5 @@
 package bridge;
 
-import bridge.maker.BridgeMaker;
-import bridge.maker.BridgeRandomNumberGenerator;
-import bridge.ui.InputView;
-import bridge.ui.OutputView;
-
 import java.util.List;
 
 public class Application {

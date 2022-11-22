@@ -1,4 +1,4 @@
-package bridge.ui;
+package bridge;
 
 import bridge.BridgeGame;
 
