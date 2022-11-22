@@ -9,6 +9,11 @@ import java.util.List;
 public class BridgeGame {
     final private BridgeMaker bridgeMaker;
     private List<String> bridge;
+
+    public List<List<String>> getPlayerBridge() {
+        return playerBridge;
+    }
+
     private List<List<String>> playerBridge;
 
     private int tryCount;
@@ -59,25 +64,6 @@ public class BridgeGame {
     }
 
     /**
-     * 지금까지 사용자 입력을 통해 만들어진 다리 형태 만들기
-     *
-     * @return result.get(UP)
-     * result.get(DOWN)
-     */
-    public List<List<String>> makeResult() {
-        List<List<String>> result = new ArrayList<>();
-        result.add(new ArrayList<>());
-        result.add(new ArrayList<>());
-        for (int i = 0; i < playerBridge.size(); i++) {
-            if (playerBridge.get(i).equals(bridge.get(i)) && playerBridge.get(i).equals("U")) result.get(0).add("O");
-            if (playerBridge.get(i).equals(bridge.get(i)) && playerBridge.get(i).equals("D")) result.get(0).add("O");
-            if (!playerBridge.get(i).equals(bridge.get(i)) && playerBridge.get(i).equals("D")) result.get(0).add("O");
-        }
-
-        return result;
-    }
-
-    /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
@@ -103,7 +89,7 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public void start() {
+    public boolean checkGameWin() {
 
     }
 }
