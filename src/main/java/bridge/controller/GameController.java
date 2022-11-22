@@ -91,6 +91,5 @@ public class GameController {
 	private void printResultStatus() {
 		status = OutputView.printResult();
 		OutputView.printStatus(status);
-		OutputView.printNewLine();
 	}
 }
