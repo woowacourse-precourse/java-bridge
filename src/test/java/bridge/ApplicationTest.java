@@ -57,7 +57,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 재입력_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("*","3", "D", "R", "U", "K", "U", "R", "U", "D", "U");
+            run("*", "3", "D", "R", "U", "K", "U", "R", "U", "D", "U");
             assertThat(output()).contains(
                     "[ERROR]",
                     "최종 게임 결과",
