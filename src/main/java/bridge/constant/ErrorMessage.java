@@ -1,5 +1,6 @@
 package bridge.constant;
 
+import bridge.domain.constant.Directions;
 import bridge.view.constant.RetryOptions;
 
 public enum ErrorMessage {

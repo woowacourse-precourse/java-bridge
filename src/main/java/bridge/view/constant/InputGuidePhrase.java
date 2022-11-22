@@ -1,6 +1,6 @@
 package bridge.view.constant;
 
-import bridge.constant.Directions;
+import bridge.domain.constant.Directions;
 
 public enum InputGuidePhrase {
     BRIDGE_LENGTH("다리의 길이를 입력해주세요."),

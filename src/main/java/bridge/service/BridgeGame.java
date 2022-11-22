@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.constant.Directions;
+import bridge.domain.constant.Directions;
 import bridge.domain.Bridge;
 import bridge.domain.User;
 import bridge.service.constant.ChoiceResult;

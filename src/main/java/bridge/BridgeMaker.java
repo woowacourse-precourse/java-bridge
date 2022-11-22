@@ -1,7 +1,6 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
-import bridge.constant.Directions;
+import bridge.domain.constant.Directions;
 
 import java.util.List;
 import java.util.stream.Collectors;
