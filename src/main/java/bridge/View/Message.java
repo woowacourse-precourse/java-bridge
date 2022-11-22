@@ -9,7 +9,7 @@ public enum Message {
     SUCCESS_OR_FAILURE_MESSAGE("게임 성공 여부: "),
     SUCCESS_MESSAGE("성공"),
     FAILURE_MESSAGE("실패"),
-    TOTAL_ROUND_MESSAGE("총 시도한 횟수:"),
+    TOTAL_ROUND_MESSAGE("총 시도한 횟수: "),
     OPEN_BRACKET("[ "),
     CLOSED_BRACKET(" ]");
 
