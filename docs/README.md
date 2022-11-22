@@ -1,5 +1,26 @@
 ## 기능 구현 내용
 
+    │       └── bridge
+    │           ├── Application.java
+    │           ├── BridgeGameProgram.java
+    │           ├── BridgeNumberGenerator.java
+    │           ├── BridgeRandomNumberGenerator.java
+    │           ├── io
+    │           │   ├── InputView.java
+    │           │   ├── Message.java
+    │           │   └── OutputView.java
+    │           ├── model
+    │           │   ├── Bridge.java
+    │           │   ├── BridgeGame.java
+    │           │   └── BridgeMaker.java
+    │           └── utils
+    │               ├── BridgeDirection.java
+    │               ├── GameCommand.java
+    │               ├── GameStatus.java
+    │               ├── Mark.java
+    │               └── Validator.java
+
+
 ### 입출력
 | 기능              | 구현여부 |
 |-----------------|------|
