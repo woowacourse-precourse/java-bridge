@@ -16,6 +16,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
+        printUpMap();
+        System.out.println("");
+        printDownMap();
     }
 
     /**
@@ -29,6 +32,17 @@ public class OutputView {
 
     public void printUpMap() {
         List<Integer> upPosition = result.extractUpPosition();
+        System.out.print("[ ");
+        for (int i = 0; i < result.movingResultSize(); i++) {
+            if (upPosition.contains(i))
+                System.out.print(result.getResultAt(i));
+            System.out.print("| ");
+        }
+        System.out.print(" ]");
+    }
+
+    public void printDownMap(){
+        List<Integer> upPosition = result.extractDownPosition();
         System.out.print("[ ");
         for (int i = 0; i < result.movingResultSize(); i++) {
             if (upPosition.contains(i))
