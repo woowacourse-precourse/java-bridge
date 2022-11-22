@@ -19,13 +19,6 @@ public class GameData {
         return this.totalTry;
     }
 
-    public String restartGame() {
-        clearStatus();
-        increaseTotalTry();
-
-        return "restart";
-    }
-
     public void clearStatus() {
         this.topStatus.clear();
         this.bottomStatus.clear();

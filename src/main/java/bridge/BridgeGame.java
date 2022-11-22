@@ -39,7 +39,8 @@ public class BridgeGame {
     public boolean retry(String retryFlag) {
         if (retryFlag.equals("R")) {
             resetBridgeIndex();
-            gameData.restartGame();
+            gameData.clearStatus();
+            gameData.increaseTotalTry();
             return false;
         }
         return true;
