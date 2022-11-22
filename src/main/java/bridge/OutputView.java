@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -13,15 +14,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> currentPath) {
-        int sz = currentPath.size()*4;
+    public void printMap(List<String> currentPath, List<String> answerPath) {
+        int sz = currentPath.size() * 4;
 
-        System.out.println("["+makePath(currentPath, ("U")).substring(0, sz-1)+"]");
-        System.out.println("["+makePath(currentPath, ("D")).substring(0, sz-1)+"]");
+        System.out.println("[" + makePath(currentPath, answerPath, "U").substring(0, sz - 1) + "]");
+        System.out.println("[" + makePath(currentPath, answerPath, "D").substring(0, sz - 1) + "]");
     }
 
-    private String makePath(List<String> currentPath, String keyString) {
-        return currentPath.stream().map((String s) -> (s.equals(keyString)) ? " O |" : "   |").collect(Collectors.joining());
+    private String makePath(List<String> currentPath, List<String> answerPath, String keyString) {
+
+        return IntStream.range(0, currentPath.size()).boxed()
+                .map((idx) -> (currentPath.get(idx).equals(keyString) ? (currentPath.get(idx).equals(answerPath.get(idx)) ? " O |" : " X |") : "   |")).collect(Collectors.joining());
     }
 
     /**
@@ -29,6 +32,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int tryNumber) {
+
     }
 }

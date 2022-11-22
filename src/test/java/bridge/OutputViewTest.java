@@ -15,7 +15,7 @@ class OutputViewTest {
     @DisplayName("paint_map_test")
     void print_map_test(){
 
-        outputView.printMap(Arrays.asList("U","U","D"));
+        outputView.printMap(Arrays.asList("U","U","D"), Arrays.asList("U", "D", "D"));
     }
 
 
