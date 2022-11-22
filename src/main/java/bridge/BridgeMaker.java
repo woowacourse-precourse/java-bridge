@@ -30,6 +30,10 @@ public class BridgeMaker {
         return bridge;
     }
 
+    /**
+     * @param block 랜덤으로 생성된 1 or 0
+     * @return block 값이 1이라면 "U", 0이라면 "D" 반환
+     */
     private String addBlock(int block) {
         if (block == UP) {
             return "U";
