@@ -18,7 +18,6 @@ public class BridgeGame {
     public BridgeCase move(String bridgeToMove, int index) {
         if (index == 0) countUp();
         return Arrays.stream(BridgeCase.values())
-                .filter(bridgeCase -> isAnswer(bridgeToMove, index) == bridgeCase.isAnswer())
                 .filter(bridgeCase -> isFirst(index) == bridgeCase.isFirst())
                 .filter(bridgeCase -> bridgeToMove.equals(bridgeCase.getMark()))
                 .findFirst().orElse(BridgeCase.NOTHING);

@@ -31,14 +31,14 @@ class BridgeGameTest extends NsTest {
     void 일치하는_열거_타입을_찾는_테스트1() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(
                 new TestNumberGenerator(newArrayList(1, 0, 0))).makeBridge(3),0);
-        assertThat(bridgeGame.move("U", 0).name()).isEqualTo(BridgeCase.TRUE_ZERO_UP.name());
+        assertThat(bridgeGame.move("U", 0).name()).isEqualTo(BridgeCase.FIRST_UP.name());
     }
 
     @Test
     void 일치하는_열거_타입을_찾는_테스트2() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(
                 new TestNumberGenerator(newArrayList(1, 1, 0))).makeBridge(3),0);
-        assertThat(bridgeGame.move("U", 2).name()).isEqualTo(BridgeCase.FALSE_POSITIVE_UP.name());
+        assertThat(bridgeGame.move("D", 2).name()).isEqualTo(BridgeCase.NOT_FIRST_DOWN.name());
     }
 
     @Test

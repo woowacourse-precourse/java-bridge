@@ -1,6 +1,8 @@
 package bridge.combinator;
 
-public class BridgeCombinator {
+import java.util.Arrays;
+
+public class BridgeDrawer {
 
     private static StringBuilder upSideBridge;
     private static StringBuilder downSideBridge;
@@ -10,8 +12,11 @@ public class BridgeCombinator {
         downSideBridge = new StringBuilder("[  ]");
     }
 
-    public void drawBridge(BridgeCase bridgeCase) {
-        bridgeCase.add(upSideBridge, downSideBridge);
+    public void drawBridge(BridgeCase bridgeCase, boolean isAnswer) {
+        bridgeCase.add(upSideBridge, downSideBridge,
+                Arrays.stream(BridgeState.values())
+                        .filter(bridgeState -> isAnswer == bridgeState.isState())
+                        .findFirst().orElse(BridgeState.NOTHING).getShape());
     }
 
     public String combineBridge() {
