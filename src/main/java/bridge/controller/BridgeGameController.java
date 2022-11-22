@@ -1,9 +1,6 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.domain.Bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -12,14 +9,7 @@ public class BridgeGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final BridgeMaker bridgeMaker;
-
-    private BridgeGame bridgeGame;
-    private boolean isPlaying;
-
-    public BridgeGameController(BridgeNumberGenerator generator) {
-        bridgeMaker = new BridgeMaker(generator);
-    }
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void play() {
         start();
