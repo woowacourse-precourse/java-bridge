@@ -10,6 +10,7 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final List<String> moving = new ArrayList<>();
+    private int count = 0;
 
     public BridgeGame(int size) {
         validateSize(size);
@@ -33,6 +34,7 @@ public class BridgeGame {
      */
     public void retry() {
         moving.clear();
+        count++;
     }
 
     private void validateSize(int size) {
