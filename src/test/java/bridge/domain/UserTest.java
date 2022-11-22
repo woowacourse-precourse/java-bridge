@@ -12,12 +12,13 @@ class UserTest {
     @Test
     public void getTryCountTest() {
         //given
+        int initialTryCount = 1;
 
         //when
         User user = new User();
 
         //then
-        assertThat(user.getTryCount()).isEqualTo(1);
+        assertThat(user.getTryCount()).isEqualTo(initialTryCount);
     }
 
     @DisplayName("시도 횟수 증가 테스트")
@@ -25,12 +26,13 @@ class UserTest {
     public void increaseTryCountTest() {
         //given
         User user = new User();
+        int increaseTryCount = 2;
 
         //when
         user.increaseTryCount();
 
         //then
-        assertThat(user.getTryCount()).isEqualTo(2);
+        assertThat(user.getTryCount()).isEqualTo(increaseTryCount);
     }
 
     @DisplayName("게임 종료 및 성공 테스트")
