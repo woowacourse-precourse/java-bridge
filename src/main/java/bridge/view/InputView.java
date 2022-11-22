@@ -23,7 +23,7 @@ public class InputView {
             String inputValue = Console.readLine();
             validateBridgeSize(inputValue);
             return Integer.parseInt(inputValue);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
@@ -41,7 +41,7 @@ public class InputView {
             String inputValue = Console.readLine();
             validateMoving(inputValue);
             return inputValue;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
@@ -59,7 +59,7 @@ public class InputView {
             String inputValue = Console.readLine();
             validateGameCommand(inputValue);
             return inputValue;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
