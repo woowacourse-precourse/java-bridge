@@ -10,7 +10,8 @@ public class InputView {
     public static final int MAX_BRIDGE_SIZE_RANGE = 20;
 
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    
+
+    private static final String ERR_MOVING_COMMAND_IS_U_OR_D = "[ERROR] 이동할 칸은 U 또는 D를 입력해야합니다.";
     private static final String ERR_BRIDGE_SIZE_IS_NUMBER = "[ERROR] 다리의 길이는 숫자여야 합니다.";
     public static final String ERR_BRIDGE_SIZE_RANGE = "[ERROR] 다리의 길이는 최소 3이상 최대 20이하입니다.";
 
@@ -47,6 +48,13 @@ public class InputView {
             throw new IllegalArgumentException(ERR_BRIDGE_SIZE_RANGE);
         }
         return bridgeSize;
+    }
+
+    private String validateUpOrDown(String moving) {
+        if (UpAndDown.isUpOrDown(moving)) {
+            return moving;
+        }
+        throw new IllegalArgumentException(ERR_MOVING_COMMAND_IS_U_OR_D);
     }
 
     private int convertStringToInt(String number) {
