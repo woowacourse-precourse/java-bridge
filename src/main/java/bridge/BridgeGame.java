@@ -18,6 +18,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> BRIDGE_ANSWER) {
         this.BRIDGE_ANSWER = BRIDGE_ANSWER;
+        System.out.println(BRIDGE_ANSWER);
 
         Boolean keepPlay = true;
         Boolean retry = true;
@@ -29,6 +30,7 @@ public class BridgeGame {
                 break;
             }
             retry = retry();
+            keepPlay = retry;
         }
 
         printResult(success, tryCount);
@@ -37,6 +39,7 @@ public class BridgeGame {
 
     private Boolean Play() {
         count = 0;
+        playerList.clear();
         Boolean repeat = true;
 
         while (repeat && (count < BRIDGE_ANSWER.size())) {
