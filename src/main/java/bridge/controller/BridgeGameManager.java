@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Command;
 import bridge.model.Direction;
