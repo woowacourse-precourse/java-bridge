@@ -1,15 +1,12 @@
 package ui;
 
-public enum MapImage {
+public class MapImage {
 
-    START("[ "),
-    END(" ]"),
-    SEPARATE(" | "),
-    CORRECT("O"),
-    WRONG("X"),
-    NOT_SELECTED(" ");
-
-    MapImage(String s) {
-    }
+    public final static String prefix = "[ ";
+    public final static String postfix = " ]";
+    public final static String separation = " | ";
+    public final static String space = " ";
+    public final static String correctAnswer = "O";
+    public final static String wrongAnswer = "X";
 
 }
