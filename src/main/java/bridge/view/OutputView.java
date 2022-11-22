@@ -30,12 +30,20 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         builder.append("이동할 칸을 선택해주세요. (");
 
+        String moveExample = getMoveExample();
+        builder.append(moveExample);
+
+        String message = builder.append(")").toString();
+        System.out.println(message);
+    }
+
+    private String getMoveExample() {
+        StringBuilder builder = new StringBuilder();
         final MoveCommand[] MOVE_COMMANDS = MoveCommand.values();
         for (MoveCommand command : MOVE_COMMANDS) {
             builder.append(String.format(", %s: %s", command.getWord(), command.getCommand()));
         }
-        String message = builder.append(")").toString().replaceFirst(", ", "");
-        System.out.println(message);
+        return builder.toString().replaceFirst(", ", "");
     }
 
     public void printMap(final BridgeGame bridgeGame) {
@@ -50,7 +58,9 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < playerMoves.size(); i++) {
             builder.append(BETWEEN + " ");
-            String mark = marker(marker.getCommand(), playerMoves.get(i), bridgeRoutes.get(i));
+            String playerMove = playerMoves.get(i);
+            String bridgeRoute = bridgeRoutes.get(i);
+            String mark = marker(marker.getCommand(), playerMove, bridgeRoute);
             builder.append(mark).append(" ");
         }
         return builder.toString().replaceFirst("\\|", "");
@@ -70,12 +80,20 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         builder.append("게임을 다시 시도할지 여부를 입력해주세요. (");
 
+        String commandExample = getGameCommandExample();
+        builder.append(commandExample);
+
+        String message = builder.append(")").toString();
+        System.out.println(message);
+    }
+
+    private String getGameCommandExample() {
+        StringBuilder builder = new StringBuilder();
         final GameCommand[] GAME_COMMANDS = GameCommand.values();
         for (GameCommand command : GAME_COMMANDS) {
             builder.append(String.format(", %s: %s", command.getWord(), command.getCommand()));
         }
-        String message = builder.append(")").toString().replaceFirst(", ", "");
-        System.out.println(message);
+        return builder.toString().replaceFirst(", ", "");
     }
 
     public void printResult(final String result, final BridgeGame bridgeGame) {
