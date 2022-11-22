@@ -1,7 +1,7 @@
 package bridge.model;
 
 import bridge.constant.Command;
-import bridge.constant.ExceptionMessage;
+import bridge.constant.ErrorMessage;
 
 public class BridgeCommand {
 
@@ -28,7 +28,7 @@ public class BridgeCommand {
         if (isRetryFormatCorrect(command)) {
             return;
         }
-        throw new IllegalArgumentException(ExceptionMessage.RETRY_NON_FORMAT_ERROR_MESSAGE.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.RETRY_NON_FORMAT_ERROR_MESSAGE.getMessage());
     }
 
     private static boolean isRetryFormatCorrect(String command) {
