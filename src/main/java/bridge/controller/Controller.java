@@ -21,5 +21,9 @@ public class Controller {
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-
+    public void game() {
+        BridgeGame bridgeGame = create();
+        User user = new User();
+        Go(bridgeGame, user);
+    }
 }
