@@ -30,15 +30,11 @@ public class BridgeGameController {
     }
 
     public void start() {
-        try {
-            System.out.println(Message.START_GAME.getMessage());
-            System.out.println(Message.INPUT_SIZE.getMessage());
-            inputSize = inputView.inputBridgeSize();
-            bridges = bridgeMaker.makeBridge(inputSize);
-            runGame();
-        } catch (RuntimeException error) {
-            System.out.println(error.getMessage());
-        }
+        System.out.println(Message.START_GAME.getMessage());
+        System.out.println(Message.INPUT_SIZE.getMessage());
+        inputSize = inputView.inputBridgeSize();
+        bridges = bridgeMaker.makeBridge(inputSize);
+        runGame();
         outputView.printResult();
     }
 
