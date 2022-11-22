@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.Model.BridgeGame.count;
 import static bridge.Constant.Constant.*;
+import static bridge.Controller.BridgeGameController.count;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
