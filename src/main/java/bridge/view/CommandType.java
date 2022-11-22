@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.config.ErrorMessageConstant;
-import bridge.domain.model.Direction;
 
 import java.util.Collections;
 import java.util.Map;
