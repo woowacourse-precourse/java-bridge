@@ -5,6 +5,7 @@ import static bridge.exception.GameCommandException.validate;
 public class Retry {
 
     public static final String RETRY = "R";
+
     private int count;
 
     public Retry() {
