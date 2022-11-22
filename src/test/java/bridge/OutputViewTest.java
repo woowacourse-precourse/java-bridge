@@ -50,7 +50,15 @@ class OutputViewTest {
         );
     }
 
+    @DisplayName("게임 시도가 성공하고 시도한 횟수가 1회 출력된다.")
     @Test
     void printResult() {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        new OutputView().printResult();
+        assertThat(out.toString()).contains(
+                "게임 성공 여부: ", "성공",
+                "총 시도한 횟수: ", "1"
+        );
     }
 }
