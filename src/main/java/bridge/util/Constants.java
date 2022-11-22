@@ -39,7 +39,7 @@ public class Constants {
                     MovingType.MOVING_UP.getEngNotation(),
                     MovingType.MOVING_DOWN.getEngNotation());
     public static final String INPUT_RESTART_OPTION_GUIDE =
-            String.format("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s",
+            String.format("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)",
                     RESTART_OPTION,
                     QUIT_OPTION);
     public static final String RETRY_GUIDE = "[ERROR] 다시 입력해주십시오. (현재 %d번 시도)\n";

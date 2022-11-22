@@ -70,13 +70,10 @@
 
 # 🦴 스켈레톤
 - __controller__
-  -- BridgeGameController (다리 건너기 게임을 시작하는 컨트롤러)
+  - BridgeGameController (다리 건너기 게임을 시작하는 컨트롤러)
 - __domain__
   - __bridge__ 
     - Bridge (다리)
-    - BridgeMaker (다리 생성)
-    - BridgeNumberGenerator (다리 생성 전략 인터페이스)
-    - BridgeRandomNumberGenerator (다리 랜덤 생성 전략)
   - __game__
     - BridgeGame (다리 건너기 게임)
     - BridgeGameResult (다리 건너기 게임 결과)
@@ -88,3 +85,6 @@
   - Validator (검증 로직)
   - Constants (상수)
 - Application (메인 클래스)
+- BridgeNumberGenerator (다리 생성 전략 인터페이스)
+- BridgeRandomNumberGenerator (다리 랜덤 생성 전략)
+- BridgeMaker (다리 생성)
