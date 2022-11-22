@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.BridgeValue;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -35,7 +34,6 @@ public class InputView {
         return 0;
     }
 
-    // TODO: 타입을 어떻게 검사할 것인가
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -45,7 +43,7 @@ public class InputView {
     }
 
     private String validateDirectionType(String direction) {
-        if (!direction.equals(BridgeValue.LOWER_BRIDGE.getDirection()) && !direction.equals(BridgeValue.UPPER_BRIDGE.getDirection())) {
+        if (!(direction instanceof String)) {
             throw new RuntimeException(INPUT_TYPE_IS_NOT_PROPER);
         }
         return direction;
@@ -59,8 +57,10 @@ public class InputView {
         return validateCommandType(Console.readLine());
     }
 
-    // TODO: 검증 방식 고민
     private String validateCommandType(String command) {
+        if (!(command instanceof String)) {
+            throw new RuntimeException(INPUT_TYPE_IS_NOT_PROPER);
+        }
         return command;
     }
 }

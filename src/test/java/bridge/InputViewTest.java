@@ -11,8 +11,6 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
-    private static final String INPUT_TYPE_IS_NOT_PROPER = "[ERROR] 잘못된 입력 형식입니다.";
-
     Scanner scanner;
 
     private InputStream generateUserInput(String input) {
@@ -28,21 +26,7 @@ class InputViewTest {
         System.setIn(in);
         scanner = new Scanner(System.in);
 
-        assertThatThrownBy(() -> inputView.readBridgeSize())
+        assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    @DisplayName("사용자의 이동 방향 입력값이 적절하지 않다면 에러를 발생시킨다.")
-    void inputDirectionTypeImproperly() {
-        InputView inputView = new InputView();
-        String direction = "A";
-        InputStream in = generateUserInput(direction);
-        System.setIn(in);
-        scanner = new Scanner(System.in);
-
-        assertThatThrownBy(() -> inputView.readMoving())
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage(INPUT_TYPE_IS_NOT_PROPER);
     }
 }
