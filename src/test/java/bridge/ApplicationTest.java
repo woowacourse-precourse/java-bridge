@@ -18,7 +18,8 @@ class ApplicationTest extends NsTest {
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        Bridge bridge = bridgeMaker.makeBridge(3);
+        List<String> bridgeShape = bridgeMaker.makeBridge(3);
+        Bridge bridge = new Bridge(bridgeShape);
         List<String> result = bridge.getBridgeShape();
         System.out.println(result + "test");
         assertThat(result).containsExactly("U", "D", "D");

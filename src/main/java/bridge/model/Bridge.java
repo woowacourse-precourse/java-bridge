@@ -7,9 +7,12 @@ public class Bridge {
     private final List<String> bridgeShape;
     private int size;
 
-    public Bridge() {
+    public Bridge(List<String> bridgeShape) {
         this.size = 0;
         this.bridgeShape = new ArrayList<>();
+        for (String value : bridgeShape) {
+            add(value);
+        }
     }
 
     public int getSize() {
@@ -24,9 +27,9 @@ public class Bridge {
         return bridgeShape.get(index).equals(upDown);
     }
 
-    public void add(int number) {
+    public void add(String number) {
         sizeUp();
-        if (number == 1) {
+        if (number.equals("1")) {
             bridgeShape.add("U");
             return;
         }

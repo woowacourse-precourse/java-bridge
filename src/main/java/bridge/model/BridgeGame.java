@@ -3,6 +3,8 @@ package bridge.model;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
+import java.util.List;
+
 public class BridgeGame {
     private final Status preStatus;
 
@@ -12,7 +14,8 @@ public class BridgeGame {
 
     public Bridge makeTargetBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return bridgeMaker.makeBridge(bridgeSize);
+        List<String> newBridge = bridgeMaker.makeBridge(bridgeSize);
+        return new Bridge(newBridge);
     }
 
     public void move(String whereMoving) {

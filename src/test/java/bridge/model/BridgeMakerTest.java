@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeMakerTest {
@@ -21,7 +23,8 @@ class BridgeMakerTest {
     @DisplayName("다리가 잘 생성되었나 확인")
     @Test
     void 사이즈에_맞는_다리_생성_확인1() {
-        Bridge result = bridgeMaker.makeBridge(5);
+        List<String> bridgeShape = bridgeMaker.makeBridge(5);
+        Bridge result = new Bridge(bridgeShape);
         System.out.println(result);
         assertThat(result.getSize()).isEqualTo(5);
     }
@@ -29,7 +32,8 @@ class BridgeMakerTest {
     @DisplayName("다리가 잘 생성되었나 확인")
     @Test
     void 사이즈에_맞는_다리_생성_확인2() {
-        Bridge result = bridgeMaker.makeBridge(10);
+        List<String> bridgeShape = bridgeMaker.makeBridge(10);
+        Bridge result = new Bridge(bridgeShape);
         System.out.println(result);
         assertThat(result.getSize()).isEqualTo(10);
     }
