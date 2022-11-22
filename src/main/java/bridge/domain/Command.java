@@ -1,6 +1,8 @@
 package bridge.domain;
 
-import static bridge.view.SystemMessage.*;
+import static bridge.SystemMessage.*;
+
+import bridge.BridgeGame;
 
 public class Command {
 

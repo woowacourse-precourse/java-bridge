@@ -1,6 +1,4 @@
-package bridge.view;
-
-import static bridge.view.SystemMessage.*;
+package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 

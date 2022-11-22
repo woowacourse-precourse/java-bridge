@@ -1,7 +1,10 @@
-package bridge.domain;
+package bridge;
 
 import bridge.controller.BridgeGameController;
 import bridge.controller.InputController;
+import bridge.domain.Bridge;
+import bridge.domain.MoveResult;
+import bridge.domain.MoveSpace;
 import java.util.ArrayList;
 import java.util.List;
 

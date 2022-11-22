@@ -1,10 +1,9 @@
-package bridge.view;
+package bridge;
 
-import static bridge.view.SystemMessage.FINAL_GAME_RESULTS_MESSAGE;
-import static bridge.view.SystemMessage.GAME_SUCCESS_MESSAGE;
-import static bridge.view.SystemMessage.TOTAL_NUMBER_OF_ATTEMPTS;
+import static bridge.SystemMessage.FINAL_GAME_RESULTS_MESSAGE;
+import static bridge.SystemMessage.GAME_SUCCESS_MESSAGE;
+import static bridge.SystemMessage.TOTAL_NUMBER_OF_ATTEMPTS;
 
-import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
 import java.util.List;
 import java.util.StringJoiner;

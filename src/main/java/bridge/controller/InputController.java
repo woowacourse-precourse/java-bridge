@@ -1,10 +1,8 @@
 package bridge.controller;
 
-import static bridge.view.SystemMessage.*;
-
 import bridge.domain.Bridge;
 import bridge.domain.MoveSpace;
-import bridge.view.InputView;
+import bridge.InputView;
 
 public class InputController {
 

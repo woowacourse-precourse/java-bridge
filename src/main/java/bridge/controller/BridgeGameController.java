@@ -1,12 +1,12 @@
 package bridge.controller;
 
-import static bridge.view.SystemMessage.*;
+import static bridge.SystemMessage.*;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
+import bridge.BridgeGame;
 import bridge.domain.Command;
 import bridge.domain.MoveResult;
-import bridge.view.OutputView;
+import bridge.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
