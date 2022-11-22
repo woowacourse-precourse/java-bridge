@@ -32,7 +32,8 @@
 - [x] "Q"를 입력한 경우 게임을 종료한다.`GameController#printResult`
 - [x] 게임을 종료한 경우, 최종 게임 결과 다이어그램, 게임 성공 여부, 총 시도 회수를 출력한다. `OutputView#printResult`
 
-- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.`OutputView#printErrorMessage` 
+- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시
+  받는다.`OutputView#printErrorMessage`
 - [x] 재시작해도 처음에 만든 다리로 재사용한다.
 
 ## MVC 패턴 적용 시 유의사항
@@ -66,11 +67,11 @@
 ## 3주차 피어리뷰 피드백 사항
 
 - [x] 메소드 이름을 지을 때 사용자의 관점과 프로그램의 관점을 섞어서 작성하지 않는다.
-- [ ] `static` 메소드는 `Util` 패키지를 제외하고는 지양한다.
+- [x] `static` 메소드는 `Util` 패키지를 제외하고는 지양한다.
 - [ ] `List` 안에 객체를 넣는 연습을 한다.
 - [x] `Enum`은 연관된 상수의 집합이므로 변수를 포함시키지 않는다.
 - [x] 인스턴스, 클래스 변수를 최대한 줄이도록 노력한다.
-- [ ] `static` 변수는 꼭 필요한 경우(상수)를 제외하고는 지양한다.
+- [x] `static` 변수는 꼭 필요한 경우(상수)를 제외하고는 지양한다.
 - [x] getter를 두기보다는 데이터를 보내서 클래스 안에서 해결하도록 한다.
 - [x] 예외를 모두 `IllegalArgumentException`로 두지 않고 상황에 따라 `NumberFormatException` 등을 적절하게 사용한다.
 - [x] stream을 이용해 반복문을 개선한다.
@@ -105,3 +106,102 @@
 - [x] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
 - [x] `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
 
+## ✅ 게임 플로우차트
+
+```mermaid
+graph TD
+A(Create Bridge) --> B(Attempt)
+B --> C{Move}
+C --> |survive|D{Last Bridge?}
+D --> |YES|G[SUCCESS]
+D --> |NO|C
+C --> |die|E{Retry?}
+E --> |QUIT|F[FAIL]
+E --> |RETRY|B
+G --> I(Print Result)
+F --> I
+```
+
+## 📄 MVC 모델을 적용한 기능 설명
+
+> 아래 규칙을 지키며 **MVC 패턴**을 적용하려 노력했습니다.
+>- Model 내부에 Controller와 View에 관련된 코드가 있으면 안 된다. ✅
+>- View는 내부에 Model의 코드만 있을 수 있고, Controller의 코드가 있으면 안 된다. ✅
+>- View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여줘야 하는 데이터에 대해서만 받아야 한다. ✅
+>- Controller 내부에는 Model과 View의 코드가 있어도 된다. ✅
+>- View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다. ✅
+
+---
+
+### 1. Model ✅
+
+#### `Bridge`
+
+- 다리를 리스트 형태로 관리한다.
+- `index`와 사용자가 선택한 `position`을 받아, 사용자의 생존 여부를 `boolean` 형태로 반환한다. `isSamePosition`
+- 다리의 길이를 반환한다. `size`
+
+#### `BridgeGame`
+
+- 전체 게임을 관리한다.
+- 게임의 중요한 변수인 시도 회수`attempts`, 최종 성공 여부`successAndFail`, 다이어그램`diagram`을 관리한다.
+- 다리 한 칸 이동 시에 생존 여부에 따라 다이어그램을 업데이트하고 결과를 반환한다. `move`
+- 사용자가 `DIE` 후에 재시작을 선택한 경우 다이어그램을 초기화하고 시도 회수를 +1 하여 재시작을 설정한다. `retry`
+- 게임의 중요 변수를 설정하고 반환한다. `getAttempts` `getSuccessOrFail` `getDiagram` `setSuccess`
+- 다리의 길이를 반환한다. `getBridgeSize`
+
+#### `Position`
+
+- 다리 생성 시와 한 칸 이동 시에 다리의 "U", "D"와 같은 축약어를 관리한다.
+- `BridgeMaker` 객체에서 0과 1의 숫자로부터 다리를 생성할 때, 숫자를 입력하면 해당하는 축약어`abbreviation`를 반환한다. `getAbbreviation`
+- 사용자의 이동 방향 입력값이 해당 포지션의 축약어`abbreviation`와 동일한지 비교한다. `isSame`
+- 다이어그램을 업데이트할 때, 다이어그램의 포지션이 사용자가 선택한 포지션과 동일한지 비교한다. `isRightPlace`
+
+#### `SurviveAndDie`
+
+- 다리 한 칸 이동의 결과를 `SURVIVE`와 `DIE`로 나누어 관리한다.
+- 생존 여부를 비교하여 반환한다. `isDie`
+- 다이어그램을 업데이트할 때, 추가할 내용을 반환한다. `getDisplay`
+
+#### `SuccessAndFail`
+
+- 게임 전체의 성공과 실패를 관리한다.
+- 결과 출력 시 보여줄 부분을 반환한다. `getKoreanDisplay`
+
+#### `RetryAndQuit`
+
+- 사용자의 한 칸 이동 중 `DIE`한 경우 입력받는 `GameCommand`를 관리한다.
+
+#### `Diagram`
+
+- 매 이동 시와 최종 결과 출력 시에 함께 출력되는 `Map`을 관리한다.
+- 매 이동 시에 다이어그램을 업데이트한다. `updateDiagrams`
+- 다이어그램을 출력 형식에 맞게 다듬는다. `formatDiagram`
+- 다이어그램을 리스트에 넣어 함께 반환한다. `getFormattedDiagrams`
+
+### 2. View ✅
+
+#### `InputView`
+
+- 다리 길이를 입력받는다. `readBridgeSize`
+- 사용자가 이동할 칸을 입력받는다. `readMoving`
+- 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. `readGameCommand`
+
+#### `OutputView`
+
+- 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. `printMap`
+- 게임의 최종 결과를 정해진 형식에 맞춰 출력한다. `printResult`
+- 에러 메세지를 출력한다. `printErrorMessage`
+- 상황에 맞는 문구를 출력한다. `printStartGame` `printBridgeSizeInput` `printMoveInput` `printGameCommandInput`
+
+### 3. Controller ✅
+
+#### `GameController`
+
+- 다리를 생성한다. `createBridge`
+- 한 칸의 이동을 통해 생존 여부를 결정한다. `moveToDecideSurviveOrDie`
+- 다리에서 최종적으로 성공`SUCCESS`하거나, 생존하지 못할 때`DIE`까지 반복한다. `moveUntilSuccessOrFail`
+- 최종 성공`SUCCESS`을 처리한다. `handleSuccess`
+- 생존하지 못한 경우`DIE`에 처리한다. `handleDie`
+- 생존 실패`DIE` 후 재도전`RESTART` 선택 시 처리한다. `handleRetryAfterDie`
+- 최종 성공 또는 실패 시 결과를 출력한다. `printResult`
