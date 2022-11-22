@@ -5,16 +5,15 @@
 ```mermaid
 graph TD
 A(Create Bridge) --> B(Attempt)
-B --> C{Move Until Success Or Fail}
-C ==> D{Move To Decide Survive Or Die}
-D --> |survive|D
-D ==> |die=FAIL or SUCCESS|C
-C --> |SUCCESS|G(Print Result)
-C --> |FAIL|E{Handle Retry After Fail}
-E --> |RETRY|F(BridgeGame#retry)
-F ==> |add attempts & initialize diagram|B
-E ==> |QUIT|G
-
+B --> C{Move}
+C --> |survive|D{Last Bridge?}
+D --> |YES|G[SUCCESS]
+D --> |NO|C
+C --> |die|E{Retry?}
+E --> |QUIT|F[FAIL]
+E --> |RETRY|B
+G --> I(Print Result)
+F --> I
 ```
 
 ## 🔍 진행 방식
