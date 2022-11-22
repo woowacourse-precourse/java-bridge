@@ -12,24 +12,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
     @Test
-    void 다리길이_입력받기(){
-//        String good = "6";
-//        String notNumeric = "a";
-//        String notLengthRange = "30";
-//        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-//        List<String> resultBridge = bridgeMaker.makeBridge(bridgeLength);
-//
-//        Bridge bridge = new Bridge();
-//
-//
-//        bridge.inputBridgeLength(good);
-//        assertThat(6).isEqualTo(bridge.getBridgeLength());
-//
-//        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> bridge.inputBridgeLength(notNumeric));
-//        assertThat(exception.getMessage()).isEqualTo(BridgeException.NOT_NUMERIC.getErrorMessage());
-//
-//        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, ()-> bridge.inputBridgeLength(notLengthRange));
-//        assertThat(exception1.getMessage()).isEqualTo(BridgeException.INVALID_LENGTH_RANGE.getErrorMessage());
+    void 다리_생성(){
+        String good = "6";
+        String notNumeric = "a";
+        String notLengthRange = "30";
 
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> resultBridge = bridgeMaker.makeBridge(4);
+        Bridge bridge = new Bridge(4,resultBridge);
+
+        assertThat(4).isEqualTo(bridge.getBridgeLength());
     }
 }

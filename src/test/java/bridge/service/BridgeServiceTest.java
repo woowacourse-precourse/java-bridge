@@ -25,21 +25,15 @@ class BridgeServiceTest {
 
     @Test
     void 이동칸_입력검증(){
-        String good = "D";
         String invalidMove = "a";
-
-        assertThat("D").isEqualTo(BridgeService.validateMove(good));
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> BridgeService.validateMove(invalidMove));
         assertThat(exception.getMessage()).isEqualTo(BridgeException.INVALID_MOVE.getErrorMessage());
     }
 
     @Test
-    void 재시작_입력검증(){
-        String good = "Q";
+    void 잘못된_시작_입력검증(){
         String invalidRestartStatus = "a";
-
-        assertThat("Q").isEqualTo(BridgeService.validateRestartStatus(good));
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()-> BridgeService.validateRestartStatus(invalidRestartStatus));
         assertThat(exception.getMessage()).isEqualTo(BridgeException.INVALID_RESTART_STATUS.getErrorMessage());

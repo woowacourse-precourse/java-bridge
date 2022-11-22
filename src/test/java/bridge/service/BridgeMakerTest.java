@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class BridgeMakerTest {
     @Test
     void 다리만들기(){
@@ -14,5 +16,6 @@ class BridgeMakerTest {
         List<String> resultBridge = bridgeMaker.makeBridge(bridgeSize);
 
         System.out.println("resultBridge = " + resultBridge);
+        assertThat(3).isEqualTo(resultBridge.size());
     }
 }
