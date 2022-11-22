@@ -8,7 +8,6 @@ public class Constant {
     public static final int INITIAL_RETRY_COUNT = 1;
     public static final int BRIDGE_SIZE_MIN = 3;
     public static final int BRIDGE_SIZE_MAX = 20;
-    public static final int NOTHING = 0;
 
     public static final String BRIDGE_SIZE_REGEX = "^[0-9]+$";
     public static final String RESTART_GAME = "R";

@@ -24,8 +24,7 @@ public enum Bridge {
 
     public static boolean contains(String sign) {
         return Arrays.stream(Bridge.values())
-                .filter(bridge -> bridge.sign.equals(sign))
-                .count() != Constant.NOTHING;
+                .anyMatch(bridge -> bridge.sign.equals(sign));
     }
 
     public String getSign() {
