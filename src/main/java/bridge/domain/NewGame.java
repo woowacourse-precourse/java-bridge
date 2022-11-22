@@ -7,11 +7,12 @@ import bridge.domain.user.UserMaker;
 import bridge.domain.utils.BridgeGame;
 import bridge.domain.ui.InputView;
 import bridge.domain.ui.OutputView;
+import bridge.domain.utils.GameEndingHandler;
 
 import java.util.List;
 
 import static bridge.domain.user.CurrentBridgeElement.*;
-import static bridge.domain.ui.RetryOrQuit.RETRY;
+import static bridge.domain.utils.GameEndingStatus.RETRY;
 
 public class NewGame {
     private static final OutputView outputView = new OutputView();
@@ -21,11 +22,12 @@ public class NewGame {
     private final BridgeGame bridgeGame;
     private List<String> answerBridge;
     private User user;
+    private final int BRIDGE_SIZE;
 
     public NewGame() {
-        int brideSize = getSizeInput();
-        makeBridge(brideSize);
-        makeUser(brideSize);
+        BRIDGE_SIZE = getSizeInput();
+        makeBridge();
+        makeUser();
         bridgeGame = new BridgeGame(user, answerBridge);
 
         play();
@@ -36,50 +38,29 @@ public class NewGame {
         return inputView.readBridgeSize();
     }
 
-    private void makeBridge(int bridgeSize) {
-        answerBridge = bridgeMaker.makeBridge(bridgeSize);
-        user = userMaker.makeUser(bridgeSize);
+    private void makeBridge() {
+        answerBridge = bridgeMaker.makeBridge(BRIDGE_SIZE);
+        user = userMaker.makeUser(BRIDGE_SIZE);
     }
 
-    private void makeUser(int bridgeSize) {
-        this.user = userMaker.makeUser(bridgeSize);
+    private void makeUser() {
+        this.user = userMaker.makeUser(BRIDGE_SIZE);
     }
 
     private void play() {
         String movingResult = "O";
-        int bridgeSize = user.getBridgeSize();
-        for (int round = 1; round <= bridgeSize && movingResult.equals(CROSS_SUCCEEDED.getElement()); round++) {
+        for (int round = 1; round <= BRIDGE_SIZE && movingResult.equals(CROSS_SUCCEEDED.getElement()); round++) {
             outputView.printMessageToGetSpaceToMove();
             movingResult = bridgeGame.processEachRound(round, inputView.readMoving());
             outputView.printMap(user);
         } // 건널 수 없는 길을 선택해 movingResult가 "X"가 되거나, 모든 다리를 건너 게임을 성공한 경우 반복 중단(-> 게임 중단).
-        processTasksAfterGameEnds(movingResult);
+
+        retryOrQuit(new GameEndingHandler(user, bridgeGame), movingResult);
     }
 
-    private void processTasksAfterGameEnds(String movingResult) {
-        // 모든 다리를 건너 게임을 성공한 경우.
-        if (movingResult.equals(CROSS_SUCCEEDED.getElement())) {
-            handleSucceededSituation();
-            return;
-        }
-        // 건널 수 없는 길을 선택해 movingResult가 "X"가 된 경우.
-        handleFailedSituation();
-    }
-
-    private void handleSucceededSituation() {
-        user.setSucceeded();
-        outputView.printResult(user);
-    }
-
-    private void handleFailedSituation() {
-        outputView.printMessageAfterFailure();
-        String response = inputView.readGameCommand();
-        if (response.equals(RETRY.getValue())) {
-            bridgeGame.retry();
+    private void retryOrQuit(GameEndingHandler gameEndingHandler, String movingResult) {
+        if (gameEndingHandler.getGameEndingStatus(movingResult).equals(RETRY)) {
             play();
-            return;
         }
-        outputView.printResult(user);
     }
-
 }

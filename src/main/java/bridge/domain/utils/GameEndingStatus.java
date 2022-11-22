@@ -1,13 +1,14 @@
-package bridge.domain.ui;
+package bridge.domain.utils;
 
-public enum RetryOrQuit {
+public enum GameEndingStatus {
 
+    CLEAR(""),
     RETRY("R"),
     QUIT("Q");
 
     private final String value;
 
-    RetryOrQuit(String value) {
+    GameEndingStatus(String value) {
         this.value = value;
     }
 

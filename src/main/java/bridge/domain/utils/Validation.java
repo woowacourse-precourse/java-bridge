@@ -1,6 +1,6 @@
 package bridge.domain.utils;
 
-import static bridge.domain.ui.RetryOrQuit.*;
+import static bridge.domain.utils.GameEndingStatus.*;
 import static bridge.domain.ui.ReservedMessage.*;
 import static bridge.domain.utils.Space.*;
 
