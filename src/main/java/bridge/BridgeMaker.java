@@ -1,6 +1,5 @@
 package bridge;
 
-import utils.Direction;
 import java.util.ArrayList;
 import java.util.List;
 

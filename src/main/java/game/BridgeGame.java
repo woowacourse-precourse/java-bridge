@@ -1,8 +1,6 @@
 package game;
 
 import inMemoryDB.GameData;
-import utils.GameResult;
-import utils.Restart;
 
 public class BridgeGame {
 

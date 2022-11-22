@@ -1,8 +1,8 @@
 package view;
 
 import inMemoryDB.GameData;
-import utils.Direction;
-import utils.GameResult;
+import bridge.Direction;
+import game.GameResult;
 import java.util.List;
 
 public class OutputView {

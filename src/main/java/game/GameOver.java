@@ -1,7 +1,5 @@
 package game;
 
-import utils.GameResult;
-
 public class GameOver {
 
     public static int isGameOver(String passData, int stage, int bridgeSize) {

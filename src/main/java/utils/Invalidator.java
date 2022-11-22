@@ -1,6 +1,8 @@
 package utils;
 
+import bridge.Direction;
 import exception.UserInputException;
+import game.Restart;
 
 public class Invalidator {
 
