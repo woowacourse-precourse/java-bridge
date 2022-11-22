@@ -36,7 +36,7 @@
 * 아래쪽 다리의 출력을 위한 정보를 반환하는 기능
 * 재게임을 위한 입력 정보 초기화 기능
 
-### Info enum
+### BridgeInfo enum
 1) 값
 * 'O'를 나타내는 Correct
 * 'X'를 나타내는 Wrong
