@@ -12,15 +12,15 @@ public class GameSimulation {
     public GameSimulation() {
         this.bridge = new ArrayList<>();
         this.location = 0;
-        List<String> up = new ArrayList<>();
+        List<String> upside = new ArrayList<>();
         List<String> down = new ArrayList<>();
-        bridge.add(up);
+        bridge.add(upside);
         bridge.add(down);
         this.success = "실패";
     }
 
-    public void print(String direction, String answer) {
-        if (direction.equals("U")) {
+    public void print(String userInput, String answer) {
+        if (userInput.equals("U")) {
             bridge.get(0).add(answer);
             bridge.get(1).add(" ");
             return;

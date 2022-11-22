@@ -30,10 +30,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String direction) {
+    public String move(String userInput) {
         int location = gameSimulation.getLocation();
-        String compare = compare(direction, bridge.get(location));
-        gameSimulation.print(direction, compare);
+        String compare = compare(userInput, bridge.get(location));
+        gameSimulation.print(userInput, compare);
         if (compare.equals(SUCCESS)) {
             gameSimulation.addLocation();
         }
@@ -65,8 +65,8 @@ public class BridgeGame {
         return true;
     }
 
-    private String compare(String user, String answer) {
-        if (!user.equals(answer)) {
+    private String compare(String userInput, String answer) {
+        if (!userInput.equals(answer)) {
             return FAIL;
         }
         return SUCCESS;
