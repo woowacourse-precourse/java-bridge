@@ -8,8 +8,8 @@ import java.util.List;
 public class InputController {
     private InputView inputView ;
 
-    public InputController() {
-        this.inputView = new InputView();
+    public InputController(InputView view) {
+        this.inputView = view;
     }
 
     private static List<Integer> recursions = Arrays.asList(1, 1, 1);
