@@ -15,6 +15,16 @@ public class InputView {
         return size;
     }
 
+    public static int readBridgeSizeUntilSuccess() {
+        while (true) {
+            try {
+                return readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -25,6 +35,16 @@ public class InputView {
         return direction;
     }
 
+    public static String readMovingUntilSuccess() {
+        while (true) {
+            try {
+                return readMoving();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
@@ -33,5 +53,15 @@ public class InputView {
         String retryOrQuit = Console.readLine();
         ValidCheck.retryOrQuit(retryOrQuit);
         return retryOrQuit;
+    }
+
+    public static String readGameCommandUntilSuccess() {
+        while (true) {
+            try {
+                return readGameCommand();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
     }
 }
