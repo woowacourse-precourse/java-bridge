@@ -4,7 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.bridge.Bridge;
-import bridge.domain.game.BridgeGame;
 import bridge.domain.player.Player;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
