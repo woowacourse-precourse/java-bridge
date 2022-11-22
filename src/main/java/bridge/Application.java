@@ -24,6 +24,62 @@ public class Application {
         askUntilDone(answer, trial);
     }
 
+    // 게임의 전체적인 흐름
+    private static void askUntilDone(List<String> answer, int trial) {
+        while (true) {
+            userOneMove(answer);
+            if (checkConditions(answer, trial)) {
+                break;
+            }
+            if (restart) {
+                trial += 1;
+                restart = false;
+            }
+        }
+    }
+
+    private static void userOneMove(List<String> answer) {
+        user = askUserMove();
+        compareAndPrint(answer);
+    }
+
+    private static boolean checkConditions(List<String> answer, int trial) {
+        if (checkSucceed(bg.move(answer, user), answer.size(), trial)) {
+            return true;
+        }
+        if (checkGameOver(bg.move(answer, user))) {
+            if (askAgain(trial, answer) == null) {
+                return true;
+            }
+            restart = true;
+        }
+        return false;
+    }
+
+    private static User askAgain(int trial, List<String> answer) {
+        if (tryAgain()) {
+            return user = new User();
+        }
+        // Termination condition: 종료(Q)
+        outputView.printResult(bg.move(answer, user), "실패", trial + 1);
+        return null;
+    }
+
+    private static void compareAndPrint(List<String> answer) {
+        List<List<String>> comparedResult = bg.move(answer, user);
+        outputView.printMap(comparedResult);
+    }
+
+    private static User askUserMove() {
+        try {
+            String dir = inputView.readMoving();
+            user.saveChoice(dir);
+            return user;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askUserMove();
+        }
+    }
 
     private static void initBridge() {
         bm = new BridgeMaker(new BridgeRandomNumberGenerator());
