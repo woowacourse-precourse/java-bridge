@@ -27,17 +27,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> answer = new ArrayList<>();
-        for(int i = 0; i < size; i++){
-            answer.add(createDirection());
+        for (int i = 0; i < size; i++) {
+            answer.add(getDirection(bridgeNumberGenerator.generate()));
         }
         return answer;
-    }
-    private String createDirection(){
-        try {
-            return getDirection(bridgeNumberGenerator.generate());
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return createDirection();
-        }
     }
 }
