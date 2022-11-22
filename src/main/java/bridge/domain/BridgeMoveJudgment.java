@@ -3,7 +3,7 @@ package bridge.domain;
 public enum BridgeMoveJudgment {
     CORRECT("O"), WRONG("X"), EMPTY(" ");
 
-    String shape;
+    private final String shape;
 
     BridgeMoveJudgment(String shape) {
         this.shape = shape;

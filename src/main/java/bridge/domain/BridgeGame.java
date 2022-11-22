@@ -113,8 +113,8 @@ public class BridgeGame {
     private List<BridgeMoveJudgment> choiceCorrectOrWrong(
             boolean correctSpace, BridgeMove correct, BridgeMove wrong) {
         if (correctSpace) {
-            return correct.moveJudgments;
+            return correct.getMoveJudgments();
         }
-        return wrong.moveJudgments;
+        return wrong.getMoveJudgments();
     }
 }

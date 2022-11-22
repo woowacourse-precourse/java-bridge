@@ -11,9 +11,13 @@ public enum BridgeMove {
     LOWER_CORRECT(List.of(EMPTY, CORRECT)),
     LOWER_WRONG(List.of(EMPTY, WRONG));
 
-    List<BridgeMoveJudgment> moveJudgments;
+    private final List<BridgeMoveJudgment> moveJudgments;
 
     BridgeMove(List<BridgeMoveJudgment> moveJudgments) {
         this.moveJudgments = moveJudgments;
+    }
+
+    public List<BridgeMoveJudgment> getMoveJudgments() {
+        return moveJudgments;
     }
 }
