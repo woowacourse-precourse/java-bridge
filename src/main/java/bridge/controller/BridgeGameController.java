@@ -21,19 +21,20 @@ public class BridgeGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeGame bridgeGame;
+    private final MovingHistory movingHistory;
 
     public BridgeGameController() {
         inputView = new InputView();
         outputView = new OutputView();
+        bridgeGame = new BridgeGame(makeBridge());
+        movingHistory = new MovingHistory();
     }
 
     public void run() {
         outputView.printGameIntro();
 
-        BridgeGame bridgeGame = new BridgeGame(makeBridge());
-        MovingHistory movingHistory = new MovingHistory();
-
-        progressGame(bridgeGame, movingHistory);
+        progressGame();
 
         outputView.printResult(movingHistory, bridgeGame);
     }
@@ -68,15 +69,15 @@ public class BridgeGameController {
         return new BridgeMaker(numberGenerator);
     }
 
-    private void progressGame(BridgeGame bridgeGame, MovingHistory movingHistory) {
+    private void progressGame() {
         boolean inProgress = IN_PROGRESS;
         while (inProgress) {
-            MovingResult movingResult = move(bridgeGame, movingHistory);
-            inProgress = updateGameStatus(bridgeGame, movingResult, movingHistory);
+            MovingResult movingResult = move();
+            inProgress = updateGameStatus(movingResult);
         }
     }
 
-    private MovingResult move(BridgeGame bridgeGame, MovingHistory movingHistory) {
+    private MovingResult move() {
         Moving moving = readMoving();
         MovingResult movingResult = bridgeGame.move(moving);
         movingHistory.save(movingResult);
@@ -98,18 +99,18 @@ public class BridgeGameController {
         return moving;
     }
 
-    private boolean updateGameStatus(BridgeGame bridgeGame, MovingResult movingResult, MovingHistory movingHistory) {
+    private boolean updateGameStatus(MovingResult movingResult) {
         if (movingResult.isFail()) {
-            return askRestart(bridgeGame, movingHistory);
+            return askRestart();
         }
-        if (isCompleted(bridgeGame)) {
+        if (isCompleted()) {
             return GAME_OVER;
         }
         return IN_PROGRESS;
     }
 
 
-    private boolean askRestart(BridgeGame bridgeGame, MovingHistory movingHistory) {
+    private boolean askRestart() {
         GameCommand command = inputView.readGameCommand();
 
         if (command.isRestart()) {
@@ -120,7 +121,7 @@ public class BridgeGameController {
         return GAME_OVER;
     }
 
-    private boolean isCompleted(BridgeGame bridgeGame) {
+    private boolean isCompleted() {
         return bridgeGame.getGameResult().isSuccess();
     }
 }
