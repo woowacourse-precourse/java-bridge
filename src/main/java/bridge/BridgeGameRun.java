@@ -1,9 +1,12 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
+import bridge.ui.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.InputTry.*;
+import static bridge.ui.InputTry.*;
 
 public class BridgeGameRun {
     private static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.";

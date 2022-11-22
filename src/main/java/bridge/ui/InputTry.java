@@ -1,4 +1,4 @@
-package bridge;
+package bridge.ui;
 
 public class InputTry {
     private static final InputView input = new InputView();

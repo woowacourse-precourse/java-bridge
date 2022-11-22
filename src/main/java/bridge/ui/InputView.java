@@ -1,6 +1,6 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.InputErrorCheck.*;
+import static bridge.domain.InputErrorCheck.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
