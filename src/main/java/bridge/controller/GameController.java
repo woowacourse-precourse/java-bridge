@@ -63,7 +63,8 @@ public class GameController {
         if (bridgeGame.isPass()) {
             return false;
         }
-        return isRestartOrQuit();
+        isRestartOrQuit();
+        return true;
     }
 
     private boolean isRestartOrQuit() {
