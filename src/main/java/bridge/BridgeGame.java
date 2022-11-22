@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.constant.Error;
 import bridge.constant.State;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,15 +13,22 @@ public class BridgeGame {
     private int position = 0;
     private int time = 1;
     private State state = State.Progress;
+    private List<String> input = new ArrayList<>();
+    private final List<String> answer;
+
+    public BridgeGame(List<String> answer) {
+        this.answer = answer;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(final List<String> answer, final String direction) {
+    public boolean move(final String direction) {
         require(isNotUpOrDown(direction), Error.MOVE);
         require(isNotProgress(), Error.STATE);
+        input.add(direction);
         if (isSame(answer.get(position), direction)) {
             state = State.Loss;
             return false;
@@ -59,13 +67,10 @@ public class BridgeGame {
         state = State.Progress;
         position = 0;
         time++;
+        input.clear();
     }
 
-    public State getGameState() {
-        return state;
-    }
-
-    public int getTime() {
-        return time;
+    public Result getResult() {
+        return new Result(input, answer, time, state);
     }
 }

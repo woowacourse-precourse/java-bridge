@@ -2,7 +2,6 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.constant.Error;
 import bridge.constant.State;
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,10 +25,11 @@ class BridgeGameTest {
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("param1")
     @DisplayName("다리 게임에서 성공하는 케이스 테스트")
-    void test1(String description, List<String> result, List<String> directions) {
-        BridgeGame game = new BridgeGame();
-        directions.forEach(i -> game.move(result, i));
-        Assertions.assertEquals(State.Win, game.getGameState());
+    void test1(String description, List<String> answer, List<String> directions) {
+        BridgeGame game = new BridgeGame(answer);
+        directions.forEach(i -> game.move(i));
+        Result result = game.getResult();
+        Assertions.assertEquals(State.Win, result.getState());
     }
 
     private static Collection<Arguments> param2() {
@@ -45,10 +45,11 @@ class BridgeGameTest {
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("param2")
     @DisplayName("다리 게임에서 실패하는 케이스 테스트")
-    void test2(String description, List<String> result, List<String> directions) {
-        BridgeGame game = new BridgeGame();
-        directions.forEach(i -> game.move(result, i));
-        Assertions.assertEquals(State.Loss, game.getGameState());
+    void test2(String description, List<String> answer, List<String> directions) {
+        BridgeGame game = new BridgeGame(answer);
+        directions.forEach(i -> game.move(i));
+        Result result = game.getResult();
+        Assertions.assertEquals(State.Loss, result.getState());
     }
 
     private static Collection<Arguments> param3() {
@@ -64,10 +65,11 @@ class BridgeGameTest {
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("param3")
     @DisplayName("다리 게임에서 아직 게임중인 케이스 테스트")
-    void test3(String description, List<String> result, List<String> directions) {
-        BridgeGame game = new BridgeGame();
-        directions.forEach(i -> game.move(result, i));
-        Assertions.assertEquals(State.Progress, game.getGameState());
+    void test3(String description, List<String> answer, List<String> directions) {
+        BridgeGame game = new BridgeGame(answer);
+        directions.forEach(i -> game.move(i));
+        Result result = game.getResult();
+        Assertions.assertEquals(State.Progress, result.getState());
     }
 
     private static Collection<Arguments> param4() {
@@ -81,9 +83,9 @@ class BridgeGameTest {
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("param4")
     @DisplayName("이상한 방향으로 움직이면 익셉션")
-    void test4(String description, List<String> result, List<String> directions) {
-        BridgeGame game = new BridgeGame();
-        assertThatThrownBy(() -> directions.forEach(i -> game.move(result, i))).isInstanceOf(
+    void test4(String description, List<String> answer, List<String> directions) {
+        BridgeGame game = new BridgeGame(answer);
+        assertThatThrownBy(() -> directions.forEach(i -> game.move(i))).isInstanceOf(
             IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 }

@@ -1,10 +1,10 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.Result;
+import bridge.constant.State;
 import bridge.service.BridgeGameService;
 import bridge.InputView;
 import bridge.OutputView;
-import java.util.List;
 
 public class Controller {
     private final BridgeGameService service;
@@ -26,21 +26,19 @@ public class Controller {
         while (true) {
             String moving = inputView.readMoving();
             service.move(moving);
-            List<String> bridge = service.getBridge();
-            List<String> input = service.getInput();
-            outputView.printMap(input, bridge);
-            if (service.isEnd()) {
-                if (service.isWin()) break;
-                // 처음부터 다시할건지 물어보기 끝낼거야 계속 할거야
+            Result result = service.getResult();
+            outputView.printMap(result);
+            if (result.getState() == State.Win) {
+                break;
+            }
+            if (result.getState() == State.Loss) {
                 String s = inputView.readGameCommand();
                 if ("Q".equals(s)) break;
                 service.retry();
             }
         }
         // 끝난거면 결과 출력
-        List<String> bridge = service.getBridge();
-        List<String> input = service.getInput();
-        BridgeGame game = service.getGame();
-        outputView.printResult(input, bridge, game.getGameState(), game.getTime());
+        Result result = service.getResult();
+        outputView.printResult(result);
     }
 }

@@ -1,0 +1,34 @@
+package bridge;
+
+import bridge.constant.State;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+class ResultTest {
+
+    private static Collection<Arguments> param1() {
+        return Arrays.asList(
+            Arguments.of("3번 이동 후 성공", List.of("U", "U", "U"), List.of("U", "U", "U"), 3, State.Win,
+                "[ O | O | O ]", "[   |   |   ]"),
+            Arguments.of("2번 이동 후 실패", List.of("U", "D"), List.of("U", "U", "U"), 3, State.Loss,
+                "[ O |   ]", "[   | X ]")
+        );
+    }
+
+    @ParameterizedTest(name = "{index}: {0}")
+    @MethodSource("param1")
+    @DisplayName("정상적으로 데이터가 들어있는지 테스트")
+    void test1(String description, List<String> input, List<String> answer, int time, State state,
+        String top, String bottom) {
+        Result result = new Result(input, answer, time, state);
+        Assertions.assertEquals(top, result.getTop());
+        Assertions.assertEquals(bottom, result.getBottom());
+    }
+
+}
