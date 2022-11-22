@@ -23,7 +23,7 @@ public class TotalResult {
     public boolean winGame() {
         List<String> bridge = bridgeGame.getBridge();
         BridgeMapMaker bridgeMapMaker = new BridgeMapMaker(bridge);
-        PlayerMap successBridgeMap = bridgeMapMaker.getSuccessBridgeMap();
+        PlayerMap successBridgeMap = bridgeMapMaker.makeSuccessBridgeMap();
 
         return playerMap.equals(successBridgeMap);
     }

@@ -15,14 +15,14 @@ public class BridgeMapMaker {
         this.bridge = bridge;
     }
 
-    public PlayerMap getSuccessBridgeMap() {
+    public PlayerMap makeSuccessBridgeMap() {
         List<String> upSideMap = convertSideToMovingMap(BridgeSides.up(), MapStates.moveSuccess());
         List<String> downSideMap = convertSideToMovingMap(BridgeSides.down(), MapStates.moveSuccess());
 
         return new PlayerMap(upSideMap, downSideMap);
     }
 
-    public PlayerMap getFailureBridgeMap() {
+    public PlayerMap makeFailureBridgeMap() {
         List<String> upSideMap = convertSideToMovingMap(BridgeSides.down(), MapStates.moveFailure());
         List<String> downSideMap = convertSideToMovingMap(BridgeSides.up(), MapStates.moveFailure());
 

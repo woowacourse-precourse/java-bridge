@@ -8,8 +8,8 @@ public class PlayerMapMaker {
     private final PlayerMap failureMap;
 
     public PlayerMapMaker(BridgeMapMaker bridgeMapMaker) {
-        successMap = bridgeMapMaker.getSuccessBridgeMap();
-        failureMap = bridgeMapMaker.getFailureBridgeMap();
+        successMap = bridgeMapMaker.makeSuccessBridgeMap();
+        failureMap = bridgeMapMaker.makeFailureBridgeMap();
     }
 
     public PlayerMap makeSuccessPlayerMapTo(int distance) {

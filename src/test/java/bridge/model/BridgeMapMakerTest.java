@@ -18,7 +18,7 @@ public class BridgeMapMakerTest {
                 List.of("O", " ", " "),
                 List.of(" ", "O", "O")
         );
-        assertThat(bridgeMapMaker.getSuccessBridgeMap())
+        assertThat(bridgeMapMaker.makeSuccessBridgeMap())
                 .isEqualTo(expected);
     }
 
@@ -29,7 +29,7 @@ public class BridgeMapMakerTest {
                 List.of(" ", "X", "X"),
                 List.of("X", " ", " ")
         );
-        assertThat(bridgeMapMaker.getFailureBridgeMap())
+        assertThat(bridgeMapMaker.makeFailureBridgeMap())
                 .isEqualTo(expected);
     }
 }
