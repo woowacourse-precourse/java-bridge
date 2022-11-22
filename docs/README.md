@@ -11,7 +11,6 @@
 
 *[x] 움직인다. #move()
 *[x] 재시도한다. #retry()
-*[x] 로그를 추가한다. #addLog(command)
 *[x] 움직 일수 있는지 확인한다. #isMove(String command)
 
 ### BridgeMaker
@@ -22,7 +21,9 @@
 ### BridgeRouter
 
 * [x] List<Bridge>에서 value가 같은 브릿지반환 #getMatchBridge(int value)
+    *[x] 없으면 예외반환 #NotFoundBridgeExcetion
 * [x] List<Bridge>에서 방향이 같은 브릿지반환 #getMatchBridge(String direction)
+    *[x] 없으면 예외반환 #NotFoundBridgeExcetion
 
 ### InputView
 
@@ -43,6 +44,7 @@
 ### BridgeGameLog
 
 *[x] 로그를 추가한다 #(boolean isMove, String command)
+    *[x] command가 올바르지않으면 예외 반환 #NotFoundBridgeExcetion
 
 ## 🚀 기능 요구 사항
 
