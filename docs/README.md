@@ -1,0 +1,88 @@
+## A. 프로그램 기능 흐름도
+<hr>
+
+1. 자동으로 생성할 다리 길이를 입력 받는다.
+   1. 다리 길이는 3 이상 20 이하의 정수형 숫자여야 한다.
+      * 잘못된 값인 경우 IllegalArgumentException 을 발생시킨다.
+
+
+2. 프로그램은 자동으로 다리를 생성한다.
+   1. 구현된 BrideMaker Class 를 활용해 구현해야 한다.
+   2. 다리의 길이는 __A.1__ 에서 입력받은 값을 따른다.
+   3. 다리는 문자로 이루어진 리스트로 구현하며, 원소는 아래 규칙을 따라 생성한다.
+      * 각각의 원소는 'U' 혹은 'D' 인 문자이며, 다리를 건너기 위한 정답을 구현한 것이다.
+      * 만약 값이 'U' 이면 위 쪽을, 'D' 이면 아래 쪽을 건널 수 있다고 정의한다.
+      * 이미 구현된 BridgeRandomNumberGenerator 를 활용해 구현한다.
+        - 해당 클래스는 임의의 0 부터 1 까지의 정수형 숫자를 반환한다.
+        - 만약 반환값이 0이면 'D', 1이면 'U'로 변환하여 리스트에 삽입한다.
+      
+
+
+3. 사용자는 매 턴당 다리를 한칸씩 이동한다.
+   1. 사용자는 다리를 건너기 위해 문자를 입력한다.
+      * 대문자 U, D 중에 하나를 입력해야 하며, 위 칸을 가는 경우는 U, 아래칸을 가는 경우는 D를 입력한다.
+      * 잘못된 값을 입력할 경우 IllegalArgumentException 을 발생시킨다.
+   2. 프로그램은 사용자의 입력에 따라 상태를 출력한다.
+      * __A.3.1__ 의 사용자의 답과 __A.2__ 에서 생성한 다리의 정답을 비교한다.
+      * 만약 정답일 경우 O, 오답일 경우 X를 출력한다.
+   3. 프로그램은 사용자의 정답 여부에 따라 아래와 같이 처리한다.
+      1. 만약 정답일 경우 턴을 넘기고, 정답을 모두 마칠 경우 __A.5__ 를 실행한다.
+      2. 만약 오답일 경우 바로 __A.4__ 를 실행한다.
+
+
+4. 프로그램 재시작 여부를 묻는다.
+   1. 사용자에게 재시작 여부를 물어보고, 입력을 받는다.
+      * 재시도인 경우 대문자 글자 R, 종료인 경우 대문자 글자 Q를 입력한다.
+      * 만약 잘못된 갑일 경우 IllegalArgumentException 을 발생시킨다.
+   2. 사용자가 재시작을 입력한 경우, __A.3__ 을 다시 실행한다.
+   3. 사용자가 종료를 입력한 경우, __A.5__ 를 실행한다.
+
+
+5. 프로그램을 종료한다.
+   1. 프로그램은 게임의 결과를 표시하고 프로세스를 종료한다.
+      * 프로그램은 게임의 승/패를 출력한다.
+        - 만약 __A.3.3.1__ 일 경우, 문자열 '성공'을 출력한다.
+        - 만약 __A.4.3__ 일 경우, 문자열 '실패'를 출력한다.
+      * 프로그램은 총 시도한 횟수를 출력한다.
+        - 시도한 횟수는 __A.3__ 프로세스가 실행된 횟수이다.
+        - 만약 한 번에 정답을 모두 맞출 경우, __A.3__ 프로세스는 1번 실행될 것이다.
+
+
+## B. 프로그램 기능 목록도
+<hr>
+
+1. input bridge size
+   * input view 구현
+   * Message enum 구현
+   * BridgeSize domain 구현
+   * domain 내 숫자, 범위 테스트 구현
+2. make bridge
+   * makeBridge() 구현
+   * Direction enum 구현
+3. move bridge
+   * BridgeGame 내 move() 로직 구현
+   * BridgeMove domain 구현
+   * domain 내 범위 테스트 구현 (D, U)
+4. input user answer
+   * input view 구현
+5. check user's submitted answer
+   * controller 에 BridgeMove를 선언하는 로직 구현
+6. print turn's result
+   * processBridgeGame() 구현
+   * 결과 출력을 위한 bridgeMap domain 구현
+   * OutputView의 printMap() 구현
+7. ask retry
+   * Command 입력을 위한 InputView 구현
+   * BridgeCommand domain 구현
+   * Message enum 구현
+8. retry game
+   * askRetry() 로직 구현
+   * BridgeGame 내 retry 구현
+9. end game
+   * checkEnd 로직 구현
+   * processBridgeGame 내 end 조건 구현
+10. print whole game result
+   * 메세지 출력을 위한 OutputView 구현
+11. print count of game tried
+   * 브릿지 게임 getTries() 구현
+   * retry 로직 재구성
