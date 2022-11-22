@@ -33,6 +33,16 @@ public class InputView {
     }
 
     /**
+     * 입력 받은 다리 길이가 3~20 사이의 숫자인지 판별한다.
+     */
+    public boolean isBetween3To20(int num) {
+        if (num >= 3 && num <= 20) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
