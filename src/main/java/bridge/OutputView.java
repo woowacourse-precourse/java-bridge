@@ -25,6 +25,12 @@ public class OutputView {
         System.out.println(CHOOSE_SPACE_TO_MOVE_MESSAGE);
     }
 
+    public void printChooseRestartGameMessage() {
+        System.out.print(ENTER);
+        System.out.println(CHOOSE_RESTART_GAME_MESSAGE);
+    }
+
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

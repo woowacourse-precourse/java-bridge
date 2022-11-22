@@ -32,6 +32,8 @@ public class Application {
                 }
             }
 
+            outputView.printChooseRestartGameMessage();
+
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
