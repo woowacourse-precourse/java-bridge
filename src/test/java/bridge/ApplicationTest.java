@@ -7,6 +7,8 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -64,5 +66,12 @@ class ApplicationTest extends NsTest {
         public int generate() {
             return numbers.remove(0);
         }
+    }
+
+    @DisplayName("각 위치가 담긴 리스트를 요구사항의 결과값과 같은지 테스트")
+    @Test
+    void utilsTest(){
+        String str=Utils.change_delimter(List.of("U","D","U","U"));
+        assertThat(str).isEqualTo("[ U | D | U | U ]");
     }
 }
