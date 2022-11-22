@@ -1,8 +1,15 @@
 package bridge;
 
+import bridge.controller.GameSystem;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        GameSystem system = new GameSystem();
+        system.welcome();
+        system.inputBridgeLength();
+        system.makeBridge();
+        system.calculate();
+        system.result();
     }
 }
