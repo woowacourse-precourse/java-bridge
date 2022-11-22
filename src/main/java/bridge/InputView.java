@@ -14,6 +14,8 @@ import static bridge.enums.Sentence.*;
 public class InputView {
 
     private final static ValidityCheck validityCheck = new ValidityCheck();
+    private final static String EXIT = "Q";
+    private final static String RESTART = "R";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -43,7 +45,12 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String getExitOrRestart() {
+        System.out.println(RESTART_OF_END.getValue());
+        String exitOrRestart = Console.readLine();
+        if (!(exitOrRestart.equals(EXIT) || exitOrRestart.equals(RESTART))) {
+            throw new IllegalArgumentException(ER_NOT_Q_OR_R.getMessage());
+        }
+        return exitOrRestart;
     }
 }
