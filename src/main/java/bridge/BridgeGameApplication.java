@@ -32,11 +32,10 @@ public class BridgeGameApplication {
         while (true) {
             try {
                 bridgeSize = inputView.readBridgeSize();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            break;
         }
     }
 
@@ -48,16 +47,19 @@ public class BridgeGameApplication {
 
     private void playGame() {
         while (true) {
-            game.move(readMoving());
-            if (game.getGameResult() == GameResult.NOTHING_HAPPENED) {
-                outputView.printMap(game);
-                continue;
+            if (!playTurn()) {
+                break;
             }
-            if (playAgain()) {
-                continue;
-            }
-            break;
         }
+    }
+
+    private boolean playTurn() {
+        game.move(readMoving());
+        if (game.getGameResult() == GameResult.NOTHING_HAPPENED) {
+            outputView.printMap(game);
+            return true;
+        }
+        return playAgain();
     }
 
     private boolean playAgain() {
@@ -65,6 +67,7 @@ public class BridgeGameApplication {
             return false;
         }
         if (readGameCommand().equals("R")) {
+            outputView.printMap(game);
             game.retry();
             return true;
         }
@@ -72,28 +75,22 @@ public class BridgeGameApplication {
     }
 
     private Direction readMoving() {
-        Direction direction;
         while (true) {
             try {
-                direction = Direction.getInstance(inputView.readMoving());
+                return Direction.getInstance(inputView.readMoving());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            return direction;
         }
     }
 
     private String readGameCommand() {
-        String gameCommand;
         while (true) {
             try {
-                gameCommand = inputView.readGameCommand();
+                return inputView.readGameCommand();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            return gameCommand;
         }
     }
 

@@ -43,15 +43,16 @@ public class BridgeGame {
      */
     public void move(Direction direction) {
         move_in_direction(direction);
+        gameResult = GameResult.NOTHING_HAPPENED;
+        checkGameResult();
+    }
+
+    private void checkGameResult() {
         if (checkIfUserLose()) {
             gameResult = GameResult.USER_LOSE;
-            return;
-        }
-        if (checkIfUserWin()) {
+        } else if (checkIfUserWin()) {
             gameResult = GameResult.USER_WIN;
-            return;
         }
-        gameResult = GameResult.NOTHING_HAPPENED;
     }
 
 
