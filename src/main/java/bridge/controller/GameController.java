@@ -32,7 +32,7 @@ public class GameController {
         endGame(bridgeGame);
     }
 
-    public void runGame(BridgeGame bridgeGame) {
+    private void runGame(BridgeGame bridgeGame) {
         do {
             do {
                 bridgeGame.move(getNextMove());
@@ -41,13 +41,13 @@ public class GameController {
         } while (checkRetry(bridgeGame));
     }
 
-    public void endGame(BridgeGame bridgeGame) {
+    private void endGame(BridgeGame bridgeGame) {
         outputView.printGameMessage(GameMessage.RESULT_HEADER);
         outputView.printMap(bridgeGame.getUpperMap(), bridgeGame.getLowerMap());
         outputView.printResult(bridgeGame.hasReachedEnd(), bridgeGame.getNumberOfAttempts());
     }
 
-    public BridgeGame createNewGame() {
+    private BridgeGame createNewGame() {
         int bridgeSize = getBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -57,7 +57,7 @@ public class GameController {
         return bridgeGame;
     }
 
-    public boolean checkRetry(BridgeGame bridgeGame) {
+    private boolean checkRetry(BridgeGame bridgeGame) {
         if (bridgeGame.hasReachedEnd() || getGameCommand().equals(GameCommand.QUIT.getValue())) {
             return false;
         }
@@ -65,7 +65,7 @@ public class GameController {
         return true;
     }
 
-    public int getBridgeSize() {
+    private int getBridgeSize() {
         String input;
         do {
             outputView.printGameMessage(GameMessage.ASK_BRIDGE_SIZE);
@@ -75,7 +75,7 @@ public class GameController {
         return Integer.parseInt(input);
     }
 
-    public String getNextMove() {
+    private String getNextMove() {
         String input;
         do {
             outputView.printGameMessage(GameMessage.ASK_NEXT_MOVE);
@@ -84,7 +84,7 @@ public class GameController {
         return input;
     }
 
-    public String getGameCommand() {
+    private String getGameCommand() {
         String input;
         do {
             outputView.printGameMessage(GameMessage.ASK_RETRY);
@@ -93,7 +93,7 @@ public class GameController {
         return input;
     }
 
-    public boolean isInvalidInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
+    private boolean isInvalidInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
         try {
             inputValidator.validateInput(input);
             return false;
