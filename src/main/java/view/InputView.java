@@ -12,9 +12,9 @@ public class InputView {
     public static int readBridgeSize() {
         String input = Console.readLine();
         System.out.println("");
-        int size = Exception.input_error(input);
-        size = Exception.valid_number(size);
-        return size;
+        while(Exception.input_error(input) || Exception.valid_number(input))
+            input = Console.readLine();
+        return Integer.parseInt(input);
     }
 
     /**
@@ -22,7 +22,8 @@ public class InputView {
      */
     public static String readMoving() {
         String move_location = Console.readLine();
-        move_location = Exception.valid_bridge(move_location);
+        while(Exception.valid_bridge(move_location))
+            move_location = Console.readLine();
         return move_location;
     }
 
@@ -31,7 +32,8 @@ public class InputView {
      */
     public static String readGameCommand() {
         String re_game = Console.readLine();
-        re_game = Exception.valid_restart(re_game);
+        while(Exception.valid_restart(re_game))
+            re_game = Console.readLine();
         return re_game;
     }
 }
