@@ -28,22 +28,22 @@ public class InputTest extends NsTest {
 		});
 	}
 
-	@Test
-	void 방향_입력_예외_테스트_잘못된_문자_입력() {
-		assertSimpleTest(() -> {
-			runException("3", "a");
-			assertThat(output()).contains(ERROR_MESSAGE + NOT_UP_OR_DOWN_EXCEPTION_MESSAGE);
-		});
-	}
-
-	@Test
-	void 재시도_테스트_잘못된_문자_입력() {
-		assertRandomNumberInRangeTest(() -> {
-			runException("3", "D", "W");
-			assertThat(output()).contains(ERROR_MESSAGE + NOT_RESTART_OR_QUIT_EXCEPTION_MESSAGE);
-
-		}, 1, 0, 1);
-	}
+	// @Test
+	// void 방향_입력_예외_테스트_잘못된_문자_입력() {
+	// 	assertSimpleTest(() -> {
+	// 		runException("3", "a");
+	// 		assertThat(output()).contains(ERROR_MESSAGE + NOT_UP_OR_DOWN_EXCEPTION_MESSAGE);
+	// 	});
+	// }
+	//
+	// @Test
+	// void 재시도_테스트_잘못된_문자_입력() {
+	// 	assertRandomNumberInRangeTest(() -> {
+	// 		runException("3", "D", "W");
+	// 		assertThat(output()).contains(ERROR_MESSAGE + NOT_RESTART_OR_QUIT_EXCEPTION_MESSAGE);
+	//
+	// 	}, 1, 0, 1);
+	// }
 
 	@Override
 	protected void runMain() {
