@@ -33,7 +33,7 @@ public class BridgeGameController {
     }
 
     private void gameMovement() {
-        while (true) {
+        while (!bridgeGame.isFinish()) {
             outputView.printMap(bridgeGame.move(inputView.readMoving()));
         }
     }
