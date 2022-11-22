@@ -8,7 +8,6 @@ import java.util.List;
 public class Bridge {
     private final List<String> madeBridge;
     private final BridgeSize bridgeSize;
-
     private BridgeIndex bridgeIndex;
 
     public Bridge(BridgeMaker bridgeMaker, BridgeSize bridgeSize) {
