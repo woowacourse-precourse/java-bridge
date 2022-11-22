@@ -5,7 +5,6 @@ import static bridge.constants.ErrorConstant.SIZE_EXCEPTION;
 import static bridge.constants.ErrorConstant.UPDOWN_ERROR;
 import static bridge.validator.Validate.*;
 
-import bridge.constants.ErrorConstant;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -21,7 +20,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
         try {
-            validateBridgeSize(bridgeSizeInput);
+            validateBridgeSizeNumber(bridgeSizeInput);
         } catch (IllegalArgumentException e) {
             SIZE_EXCEPTION.printException();
             return readBridgeSize();
