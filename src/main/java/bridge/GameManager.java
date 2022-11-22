@@ -25,6 +25,7 @@ public class GameManager {
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             String command = inputView.readMoving();
             commands.add(command);
+            outputView.commandChecker(bridge, commands, i);
             if (!(bridge.get(i).equals(command))) break;
             gameResult = "성공";
         }
