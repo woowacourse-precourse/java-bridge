@@ -8,7 +8,7 @@ public enum MapType {
     CAN_STEP(" O "),
     CAN_NOT_STEP(" X ");
 
-    private String type;
+    private final String type;
 
     MapType(String type) {
         this.type = type;
