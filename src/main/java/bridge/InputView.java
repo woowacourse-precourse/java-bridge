@@ -12,7 +12,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String bridgesSize = readLine();
         bridgesSize = notNumber(bridgesSize);
-        int bridgeLength = Integer.valueOf(bridgesSize);
+        int bridgeLength = Integer.parseInt(bridgesSize);
         bridgeLength = validateBridgeSize(bridgeLength);
         return bridgeLength;
     }
@@ -29,7 +29,7 @@ public class InputView {
 
     private void checkNumber(String bridgesSize) {
         bridgesSize=bridgesSize.replaceAll("[0-9]", "");
-        if (bridgesSize != "") {
+        if (!bridgesSize.equals("")) {
             throw new IllegalArgumentException();
         }
     }
