@@ -22,8 +22,9 @@ public class Application {
             CURRENT_LOCATION = BRIDGE_LENGTH;
             List<String> bridge = bridgeMaker.makeBridge(BRIDGE_LENGTH);
             while (CURRENT_LOCATION-- > 0) {
-                String nextMove = bridgeGame.move();
-                boolean successOrFail = outputView.printMap(idx++, bridge, nextMove);
+                String nextMove = inputView.readMoving();
+                boolean successOrFail = bridgeGame.move(idx++, bridge, nextMove);
+                outputView.printMap();
                 outputView.printResult(gameCnt, CURRENT_LOCATION, successOrFail);
                 canYouRetry(successOrFail);
             }
@@ -34,8 +35,8 @@ public class Application {
         if(!successOrFail){
             CURRENT_LOCATION = inputView.readGameCommand(gameCnt, BRIDGE_LENGTH);
             idx = INITIALIZE;
-            outputView.bridgeInitialize();
-            outputView.getSuccessOrFail();;
+            bridgeGame.bridgeInitialize();
+            bridgeGame.getSuccessOrFail();;
             if(CURRENT_LOCATION != 0) gameCnt++;
         }
     }
