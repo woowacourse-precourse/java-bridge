@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.constant.message.InputMessage.ENTER_LENGTH_OF_BRIDGE;
 import static bridge.constant.message.OutputMessage.START_OF_GAME;
 
 import bridge.Map;
@@ -15,5 +16,10 @@ public class OutputView {
 
     public void printStartOfGame() {
         System.out.println(START_OF_GAME.getMessage());
+    }
+
+    public void printBridgeSizeInput() {
+        System.out.println();
+        System.out.println(ENTER_LENGTH_OF_BRIDGE.getMessage());
     }
 }
