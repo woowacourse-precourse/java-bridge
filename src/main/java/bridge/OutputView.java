@@ -7,65 +7,66 @@ import java.util.List;
  */
 public class OutputView {
 
+    public static int failCheck = 0; // 게임 실패 시 1
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> moving) {
-        printUpperBridge(moving);
-        printUpperBridgeLast(moving);
-        printLowerBridge(moving);
-        printLowerBridgeLast(moving);
+    public static void printMap(List<String> bridge, List<String> userMoving) {
+        printUpperBridge(bridge,userMoving);
+        printLowerBridge(bridge,userMoving);
     }
 
-    public static void printUpperBridge(List<String> moving) {
-        System.out.print("[ ");
-        for (int i = 0; i < moving.size() - 1; i++){
-            if (moving.get(i).equals("U")) {
-                System.out.print("O ");
-                System.out.print("| ");
-            }
-            if (moving.get(i).equals("D")) {
-                System.out.print("  ");
-                System.out.print("| ");
-            }
+    public static void printUpperBridge(List<String> bridge, List<String> userMoving) {
+        System.out.print("[");
+        for (int turn = 0 ; turn < userMoving.size(); turn++) {
+            printUpperMoveResult(bridge, userMoving, turn);
+            printSeparateOrEndBridge(userMoving, turn);
         }
     }
 
-    public static void printUpperBridgeLast(List<String> moving) {
-        if (moving.get(moving.size() - 1).equals("U")) {
-            System.out.print("O ");
-            System.out.println("]");
-        }
-        if (moving.get(moving.size() - 1).equals("D")) {
-            System.out.print("  ");
-            System.out.println("]");
+    public static void printLowerBridge(List<String> bridge, List<String> userMoving){
+        System.out.print("[");
+        for (int turn = 0 ; turn < userMoving.size(); turn++) {
+            printLowerMoveResult(bridge, userMoving, turn);
+            printSeparateOrEndBridge(userMoving, turn);
         }
     }
 
-    public static void printLowerBridge(List<String> moving) {
-        System.out.print("[ ");
-        for (int i = 0; i < moving.size() - 1; i++){
-            if (moving.get(i).equals("D")) {
-                System.out.print("O ");
-                System.out.print("| ");
+    public static void printUpperMoveResult(List<String> bridge, List<String> userMoving, int turn) {
+        if (userMoving.get(turn).equals("U")) {
+            if(userMoving.get(turn).equals(bridge.get(turn))){
+                System.out.print(" O");
             }
-            if (moving.get(i).equals("U")) {
-                System.out.print("  ");
-                System.out.print("| ");
+            if (!userMoving.get(turn).equals(bridge.get(turn))) {
+                System.out.print(" X");
             }
+        }
+        if (userMoving.get(turn).equals("D")) {
+            System.out.print(" ");
         }
     }
-
-    public static void printLowerBridgeLast(List<String> moving) {
-        if (moving.get(moving.size()-1).equals("D")) {
-            System.out.print("O ");
-            System.out.println("]");
+    public static void printLowerMoveResult(List<String> bridge, List<String> userMoving, int turn) {
+        if (userMoving.get(turn).equals("D")) {
+            if(userMoving.get(turn).equals(bridge.get(turn))){
+                System.out.print(" O");
+            }
+            if (!userMoving.get(turn).equals(bridge.get(turn))) {
+                System.out.print(" X");
+            }
         }
-        if (moving.get(moving.size()-1).equals("U")) {
-            System.out.print("  ");
-            System.out.println("]");
+        if (userMoving.get(turn).equals("U")) {
+            System.out.print(" ");
+        }
+    }
+    public static void printSeparateOrEndBridge(List<String> userMoving, int turn){
+        if (turn == userMoving.size()-1) {
+            System.out.println(" ]");
+        }
+        if (turn != userMoving.size()-1) {
+            System.out.print(" |");
         }
     }
 
