@@ -25,12 +25,14 @@ public class InputView {
                 validBridgeSize(n);
                 return n;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");}}
+                System.out.println("[ERROR] 문자대신 숫자를 입력해주세요");
+            }
+        }
     }
 
     private void validBridgeSize(int size) {
         if (!(size >= 3 && size <= 20)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
@@ -46,14 +48,11 @@ public class InputView {
                 return moving;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 이동할 칸 입력은 U 또는 D 로만 가능합니다.");
+                throw new IllegalArgumentException();
             }
         }
     }
-    private void validMoving(String moving) {
-        if (!(moving.equals("U") || moving.equals("D"))) {
-            throw new IllegalArgumentException("[ERROR] 이동 입력은 U 또는 D로만 가능합니다");
-        }
-    }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -67,14 +66,20 @@ public class InputView {
                 return restart;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 커맨드 입력은 (재시도) R 또는 (종료) Q 로만 가능합니다.");
+                throw new IllegalArgumentException();
             }
         }
     }
 
+    private void validMoving(String moving) {
+        if (!(moving.equals("U") || moving.equals("D"))) {
+            System.out.println("[ERROR] 이동 입력은 U 또는 D로만 가능합니다");
+        }
+    }
 
     private void validCommand(String restart) {
         if (!(restart.equals("R") || restart.equals("Q"))) {
-            throw new IllegalArgumentException("[ERROR] 게임 재시작은 R, 종료는 Q로만 입력 가능합니다.");
+            System.out.println("[ERROR] 게임 재시작은 R, 종료는 Q로만 입력 가능합니다.");
         }
     }
 }
