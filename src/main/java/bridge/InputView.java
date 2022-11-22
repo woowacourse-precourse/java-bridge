@@ -80,6 +80,12 @@ public class InputView {
         throw new IllegalArgumentException("[ERROR]U,D 중 하나의 알파벳만 허용됩니다.");
     }
 
+    public boolean checkInputCommand(String inputCommand){
+        if(checkStringSize(inputCommand) && checkFinishString(inputCommand)){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
