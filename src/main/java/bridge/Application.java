@@ -1,8 +1,9 @@
 package bridge;
 
-import bridge.domain.BridgeGame;
+import bridge.model.BridgeGame;
 import bridge.io.InputView;
 import bridge.io.OutputView;
+import bridge.model.BridgeMaker;
 
 public class Application {
 

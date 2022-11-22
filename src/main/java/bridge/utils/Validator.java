@@ -1,6 +1,6 @@
 package bridge.utils;
 
-import bridge.domain.Bridge;
+import bridge.model.Bridge;
 
 import java.util.regex.Pattern;
 

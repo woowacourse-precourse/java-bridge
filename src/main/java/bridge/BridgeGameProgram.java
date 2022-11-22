@@ -1,10 +1,11 @@
 package bridge;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
+import bridge.model.Bridge;
+import bridge.model.BridgeGame;
 import bridge.io.InputView;
 import bridge.io.Message;
 import bridge.io.OutputView;
+import bridge.model.BridgeMaker;
 import bridge.utils.GameCommand;
 import bridge.utils.GameStatus;
 import bridge.utils.Mark;
