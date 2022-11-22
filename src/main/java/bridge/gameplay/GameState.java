@@ -1,4 +1,4 @@
-package bridge;
+package bridge.gameplay;
 
 public enum GameState {
     MOVABLE,

@@ -1,6 +1,6 @@
-package bridge;
+package bridge.input;
 
-import static bridge.InputError.*;
+import static bridge.input.InputError.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.NoSuchElementException;

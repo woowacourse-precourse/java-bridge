@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.gameplay.GamePlay;
+
 public class Application {
 
     public static void main(String[] args) {

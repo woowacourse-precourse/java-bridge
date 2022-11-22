@@ -1,8 +1,12 @@
-package bridge;
+package bridge.gameplay;
 
-import static bridge.GameState.*;
-import static bridge.MessageForOutput.*;
+import static bridge.gameplay.GameState.*;
+import static bridge.output.MessageForOutput.*;
 
+import bridge.input.InputView;
+import bridge.bridgemaker.BridgeMaker;
+import bridge.bridgemaker.BridgeRandomNumberGenerator;
+import bridge.output.OutputView;
 import java.util.List;
 
 public class GamePlay {

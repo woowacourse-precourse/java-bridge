@@ -1,6 +1,8 @@
-package bridge;
+package bridge.input;
 
-import static bridge.BridgeState.*;
+import static bridge.bridgemaker.BridgeState.*;
+
+import bridge.gameplay.GameState;
 
 public enum InputError {
     OUT_OF_BOUND("다리 길이는 3부터 20 사이의 숫자여야 합니다."),
