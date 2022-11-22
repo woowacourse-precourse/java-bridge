@@ -34,7 +34,7 @@ class BridgeLocationStatusTest {
         BridgeLocationStatus up = BridgeLocationStatus.UP;
 
         //when
-        boolean result = up.checkBridgeLocation("U");
+        boolean result = up.compareBridge("U");
 
         //then
         Assertions.assertThat(result).isTrue();

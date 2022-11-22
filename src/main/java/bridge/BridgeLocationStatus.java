@@ -21,7 +21,7 @@ public enum BridgeLocationStatus {
                 .orElseThrow(() -> new IllegalArgumentException(INPUT_BRIDGE_LOCATION_EXCEPTION_MESSAGE));
     }
 
-    public boolean checkBridgeLocation(String up) {
+    public boolean compareBridge(String up) {
         return this.location.equals(up);
     }
 }
