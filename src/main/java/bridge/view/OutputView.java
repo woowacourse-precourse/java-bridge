@@ -14,10 +14,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridgeUpMap, List<String> bridgeDownMap, int location) {
-        printMapElement(bridgeUpMap, location);
+    public void printMap(List<List<String>> bridgeMap, int location) {
+        printMapElement(bridgeMap.get(0), location);
         System.out.println();
-        printMapElement(bridgeDownMap, location);
+        printMapElement(bridgeMap.get(1), location);
         System.out.println();
         System.out.println();
     }
@@ -57,9 +57,9 @@ public class OutputView {
         printRetryCount(retryCount);
     }
 
-    public void printFinalMap(List<String> bridgeUpMap, List<String> bridgeDownMap, int location) {
+    public void printFinalMap(List<List<String>> bridgeMap, int location) {
         System.out.println(OutputViewMessage.FINAL_GAME_RESULT_MESSAGE.getMessage());
-        printMap(bridgeUpMap, bridgeDownMap, location);
+        printMap(bridgeMap, location);
     }
 
     private static void printRetryCount(int retryCount) {

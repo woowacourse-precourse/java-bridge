@@ -26,7 +26,7 @@ public class BridgeGameController {
                 break;
             }
             play();
-            outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), bridgeGame.getLocation());
+            outputView.printMap(bridgeGame.getMap(), bridgeGame.getLocation());
         } while (retryGame(bridgeSize));
         end();
     }
@@ -97,7 +97,7 @@ public class BridgeGameController {
     }
 
     private void end() {
-        outputView.printFinalMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), bridgeGame.getLocation());
+        outputView.printFinalMap(bridgeGame.getMap(), bridgeGame.getLocation());
         outputView.printResult(bridgeGame.getRetryCount(), !bridgeGame.isFail());
     }
 }
