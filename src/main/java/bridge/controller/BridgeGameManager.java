@@ -52,7 +52,6 @@ public class BridgeGameManager {
             return inputView.readMoving();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
-
             return chooseDirection();
         }
     }

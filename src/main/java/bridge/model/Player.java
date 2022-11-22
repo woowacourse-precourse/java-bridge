@@ -10,7 +10,7 @@ public class Player {
 
     public void move(List<String> bridge, Direction direction) {
         route.add(direction);
-        if (direction.correct(bridge.get(route.size() - 1))) {
+        if (!direction.correct(bridge.get(route.size() - 1))) {
             inWater = true;
         }
     }
