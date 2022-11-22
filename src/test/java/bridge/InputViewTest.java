@@ -1,7 +1,5 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -30,6 +28,14 @@ public class InputViewTest {
     void movingIsNotUpOrDown() {
         InputView input = new InputView();
         assertThatThrownBy(() -> input.validateUpOrDown("S"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 값이 R이나 Q가 아닐 때 예외 발생")
+    @Test
+    void gameCommandIsNotRetryOrQuit() {
+        InputView input = new InputView();
+        assertThatThrownBy(() -> input.validateRetryOrQuit(" "))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }
