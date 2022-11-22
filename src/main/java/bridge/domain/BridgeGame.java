@@ -61,6 +61,7 @@ public class BridgeGame {
     public boolean isGameSuccess() {
         if (!isEnd && bridge.isLastTile(stage)) {
             isSuccess = true;
+            totalTryCount++;
             return true;
         }
         return false;
