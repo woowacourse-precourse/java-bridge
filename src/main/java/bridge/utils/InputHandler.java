@@ -9,6 +9,7 @@ import bridge.view.OutputView;
 public class InputHandler {
 
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public int getBridgeSize() {
         try {
@@ -16,7 +17,7 @@ public class InputHandler {
             new BridgeSizeValidator(size);
             return Integer.parseInt(size);
         } catch (IllegalArgumentException e) {
-            new OutputView().printError(e.getMessage());
+            outputView.printError(e.getMessage());
             return getBridgeSize();
         }
     }
@@ -27,7 +28,7 @@ public class InputHandler {
             new MovingValidator(moving);
             return moving;
         } catch (IllegalArgumentException e) {
-            new OutputView().printError(e.getMessage());
+            outputView.printError(e.getMessage());
             return getMoving();
         }
     }
@@ -38,7 +39,7 @@ public class InputHandler {
             new GameCommandValidator(gameCommand);
             return gameCommand;
         } catch (IllegalArgumentException e) {
-            new OutputView().printError(e.getMessage());
+            outputView.printError(e.getMessage());
             return getGameCommand();
         }
     }
