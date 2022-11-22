@@ -36,22 +36,12 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static Boolean readGameCommand() {
-        Boolean repeat = true;
-        Boolean result = true;
+    public static String readGameCommand() {
         String("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String string = Console.readLine().toUpperCase();
         if (!(string.equals("R") || string.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");
         }
-        if (string.equals("R")) {
-            result = true;
-            repeat = false;
-        }
-        if (string.equals("Q")) {
-            result = false;
-            repeat = false;
-        }
-        return result;
+        return string;
     }
 }

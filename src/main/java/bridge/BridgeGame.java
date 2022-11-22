@@ -29,21 +29,20 @@ public class BridgeGame {
         Boolean keepPlay = true;
         Boolean retry = true;
         while (retry) {
-            while (keepPlay) { keepPlay = Play(); }
+            Play();
             if (playerList.equals(BRIDGE_ANSWER)) { break; }
             retry = retry();
             keepPlay = retry;
         }
     }
 
-    private Boolean Play() {
+    private void Play() {
         moveCount = 0;
         playerList.clear();
         Boolean repeat = true;
         while (repeat && (moveCount < BRIDGE_ANSWER.size())) { repeat = Proceed(); }
         if (playerList.equals(BRIDGE_ANSWER)) { success = true; }
         tryCount ++;
-        return false;
     }
 
     private Boolean Proceed() {
@@ -54,10 +53,10 @@ public class BridgeGame {
                 break;
             } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 유효한 값이 아닙니다."); }
         }
-        return AnalyzeInput(playerInput);
+        return AnalyzeBridgeInput(playerInput);
     }
 
-    private Boolean AnalyzeInput(String playerInput) {
+    private Boolean AnalyzeBridgeInput(String playerInput) {
         if (BRIDGE_ANSWER.get(moveCount).equals(playerInput)) {
             move(playerInput);
             return true;
@@ -90,10 +89,17 @@ public class BridgeGame {
         Boolean result;
         while (true) {
             try {
-                result = readGameCommand();
+                String string = readGameCommand();
+                result = AnalyzeRetryInput(string);
                 break;
             } catch (IllegalArgumentException e) { OutputView.String("[ERROR] 유효한 값이 아닙니다."); }
         }
         return result;
+    }
+
+    private Boolean AnalyzeRetryInput(String string) {
+        if (string.equals("R")) { return true; }
+        if (string.equals("Q")) { return false; }
+        return false;
     }
 }
