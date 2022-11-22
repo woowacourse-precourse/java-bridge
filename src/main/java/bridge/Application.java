@@ -11,7 +11,7 @@ public class Application {
         Status status;
         do {
             status = bridgeGame.move();
-        } while (status != Status.SUCCESS && bridgeGame.retry() != Command.QUIT);
+        } while (status == Status.FAIL && bridgeGame.retry() == Command.RESTART);
         bridgeGame.finish(status);
     }
 }
