@@ -38,7 +38,6 @@ public class BridgeMaker {
     }
 
     public List<String> transmitBridge() {
-        OutputView.requestReadBridgeSizeMessage();
         InputView inputView = new InputView();
         int size = inputView.readBridgeSize();
         return makeBridge(size);
