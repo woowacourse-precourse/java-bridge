@@ -42,11 +42,15 @@ public class BridgeController {
             Answer answer = bridgeGame.move(direction);
             bridgeResult.putResult(direction, answer);
             outputView.printMap(bridgeResult);
-            if (bridgeGame.isFail()) {
-                retry(bridgeResult);
-            }
+            isFail(bridgeResult);
         }
         return bridgeResult;
+    }
+
+    private void isFail(BridgeResult bridgeResult) {
+        if (bridgeGame.isFail()) {
+            retry(bridgeResult);
+        }
     }
 
     private void retry(BridgeResult bridgeResult) {
