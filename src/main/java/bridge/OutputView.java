@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -55,5 +58,8 @@ public class OutputView {
         System.out.print("총 시도한 횟수: " + Number_of_Attempts);
     }
 
+    public void printSuccessEnd(Integer Number_of_Attempts) {
+        System.out.println("게임 성공 여부: 성공");
+        System.out.print("총 시도한 횟수: " + Number_of_Attempts);
     }
 }
