@@ -12,7 +12,34 @@ public class Application {
     private static boolean gameCommand = true;
 
     public static void main(String[] args) {
+        startGame();
+        while (gameCommand && !allCorrect) {
+            moving();
+            outputView.printMap();
+            checkGaming();
+        }
+        outputView.printResult();
+    }
 
+    public static void checkGaming(){
+        while(true){
+            try {
+                checkGame();
+            } catch (IllegalArgumentException e){
+                continue;
+            }
+            break;
+        }
+    }
+    public static void checkGame(){
+        if (!isCorrect) {
+            gameCommand = inputView.readGameCommand();
+        } if (isCorrect){
+            allCorrect = inputView.checkAllCorrect();
+        }
+    }
+
+    public static void startGame(){
         while(true) {
             try {
                 inputView.readBridgeSize();
@@ -21,36 +48,17 @@ public class Application {
             }
             break;
         }
-
-        while (gameCommand && !allCorrect) {
-            while (true) {
-                try {
-                    isCorrect = inputView.readMoving();
-                } catch (IllegalArgumentException e){
-                    continue;
-                }
-                break;
-            }
-
-            outputView.printMap();
-            while(true){
-                try {
-                    checkGame();
-                } catch (IllegalArgumentException e){
-                    continue;
-                }
-                break;
-            }
-
-        }
-        outputView.printResult();
     }
 
-    public static void checkGame(){
-        if (!isCorrect) {
-            gameCommand = inputView.readGameCommand();
-        } if (isCorrect){
-            allCorrect = inputView.checkAllCorrect();
+    public static void moving(){
+        while (true) {
+            try {
+                isCorrect = inputView.readMoving();
+            } catch (IllegalArgumentException e){
+                continue;
+            }
+            break;
         }
     }
+
 }
