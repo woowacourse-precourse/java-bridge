@@ -1,10 +1,10 @@
 package bridge.domain;
 
 public class Count {
-    public static int tryCount;
-    public static int passCount;
+    public static int tryCount = 0;
+    public static int passCount = 0;
 
-    public static int crossCount;
+    public static int crossCount = 0;
 
     public static int getTryCount() {
         return tryCount;
