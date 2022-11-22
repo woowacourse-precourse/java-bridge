@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.domain.CommandConstant;
-import bridge.domain.ErrorMessageConstant;
+import bridge.Constants.CommandConstant;
+import bridge.Constants.ErrorMessageConstant;
 import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;

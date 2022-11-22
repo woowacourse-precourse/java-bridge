@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.Constants;
 
 public class CommandConstant {
     private CommandConstant() {

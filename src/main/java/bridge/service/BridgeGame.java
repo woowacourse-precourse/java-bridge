@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.domain.BridgeGameService;
-import bridge.domain.CommandConstant;
+import bridge.Constants.CommandConstant;
 import bridge.util.BridgeNumberGenerator;
 import bridge.util.BridgeRandomNumberGenerator;
 

@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.domain.ErrorMessageConstant;
+import bridge.Constants.ErrorMessageConstant;
 import bridge.domain.InputHandler;
 
 public class InputHandlerImpl implements InputHandler {
