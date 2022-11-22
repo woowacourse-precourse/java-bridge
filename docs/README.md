@@ -3,6 +3,7 @@
 [폴더 구조]
 - Application.java
 - run.java (게임 진행)
+- Judge.java (다리 끝까지 갔는지, 다리건너기에 성공했는지를 판단)
 - BridgeGame.java (게임 진행에 필요한 기능)
 - BridgeMaker.java (입력받은 길이만큼의 다리를 생성)
 - BridgeNumberGenerator.java (인터페이스)
@@ -50,6 +51,10 @@
 * [x] 성공인지 실패인지 판단 (isSuccess() 메서드)
 * [x] 다리 끝까지 갔는지 판단 (isFinish() 메서드)
 * [x] 올바른 다리를 선택했는지 판단 (isAlive() 메서드)
+
+## Judge
+* [x] 다리 끝까지 갔는지 (isFinish())
+* [x] 다리 건너기에 성공했는지 (isSuccess())
 
 ## Run
 * [x] 인스턴스 변수: 총 시도한 횟수
