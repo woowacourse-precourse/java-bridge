@@ -1,9 +1,5 @@
 package bridge.exception;// @ author ninaaano
 
-import bridge.utils.Validator;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
 public class Exception {
 
     private static final int MIN_LENGTH = 3;
