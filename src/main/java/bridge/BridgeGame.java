@@ -11,6 +11,7 @@ public class BridgeGame {
     private BridgeGameResult bridgeGameResult;
 
     public void start() {
+        bridgeGameResult = new BridgeGameResult();
         bridgeGameResult.increaseTryCount();
     }
 
