@@ -7,6 +7,8 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -43,6 +45,15 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("위 칸(U) 또는 아래 칸(D)으로만 이동 가능")
+    void 이동_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "E");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
