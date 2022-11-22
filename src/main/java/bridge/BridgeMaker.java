@@ -10,9 +10,17 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
-    private static final int UP = 1;
-    private static final String UP_DIRECTION = "U";
-    private static final String DOWN_DIRECTION = "D";
+    private enum Direction {
+        UP(1, "U"),
+        DOWN(0, "D");
+
+        private  int num;
+        private String word;
+        Direction(int num, String word) {
+            this.num = num;
+            this.word = word;
+        }
+    }
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -34,9 +42,9 @@ public class BridgeMaker {
     private String checkUpOrDown() {
         int number;
         number = bridgeNumberGenerator.generate();
-        if (number == UP) {
-            return UP_DIRECTION;
+        if (number == Direction.UP.num) {
+            return Direction.UP.word;
         }
-        return DOWN_DIRECTION;
+        return Direction.DOWN.word;
     }
 }
