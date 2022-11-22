@@ -21,6 +21,7 @@ public class BridgeGame {
         this.exit = false;
         this.gameCount = 1;
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -30,6 +31,7 @@ public class BridgeGame {
     public List<MoveResult> getMoveResults() {
         return moveResults;
     }
+
     public void move() {
         MoveSpace moveSpace = InputController.getMoving();
         this.moveResults.add(this.bridge.createMoveResult(moveSpace));

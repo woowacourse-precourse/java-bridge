@@ -15,7 +15,8 @@ public class Bridge {
         makeBridgeBySize(this.size);
 
         this.stepCount = 0;
-;    }
+        ;
+    }
 
     private void makeBridgeBySize(int size) {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
@@ -24,18 +25,18 @@ public class Bridge {
         System.out.println(bridge);
     }
 
-    public MoveResult createMoveResult(MoveSpace moveSpace){
+    public MoveResult createMoveResult(MoveSpace moveSpace) {
         String currentStep = this.bridge.get(this.stepCount);
         boolean currentResult = false;
         String currentMove = moveSpace.getMove();
-        if(moveSpace.isItMovable(currentStep)){
+        if (moveSpace.isItMovable(currentStep)) {
             currentResult = true;
         }
         return new MoveResult(currentResult, currentMove);
     }
 
-    public void nextStep(){
-        this.stepCount +=1;
+    public void nextStep() {
+        this.stepCount += 1;
     }
 
     public boolean isCurrentMovable(List<MoveResult> moveResults) {

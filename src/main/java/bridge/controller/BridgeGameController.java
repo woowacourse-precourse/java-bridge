@@ -1,11 +1,8 @@
 package bridge.controller;
-import static bridge.controller.InputController.getBridge;
-import static bridge.view.SystemMessage.FINAL_GAME_RESULTS_MESSAGE;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +13,12 @@ public class BridgeGameController {
         playGame();
     }
 
-    public  void playGame(){
+    public void playGame() {
         Bridge bridge = startGame();
 
         runGame(bridge);
     }
+
     public Bridge startGame() {
         Bridge bridge = InputController.getBridge();
         return bridge;
@@ -32,29 +30,33 @@ public class BridgeGameController {
         BridgeGame bridgeGame = new BridgeGame(moveResults, bridge);
         while (bridge.crossingBridgeSuccess() && bridgeGame.notExit()) {
             abilityToMove(bridgeGame);
-            if(retryOrOver(bridgeGame)){
+            if (retryOrOver(bridgeGame)) {
                 moveResults = new ArrayList<>();
                 continue;
             }
             bridge.nextStep();
-        }gameOver(bridgeGame, moveResults);
+        }
+        gameOver(bridgeGame, moveResults);
     }
-    private static void abilityToMove(BridgeGame bridgeGame){
+
+    private static void abilityToMove(BridgeGame bridgeGame) {
         bridgeGame.move();
         OutputView.printMap(bridgeGame.getMoveResults());
     }
+
     private static boolean retryOrOver(BridgeGame bridgeGame) {
         if (bridgeGame.isFailedGame()) {
             boolean command = InputController.retryOrGameOver();
-            if(command){
+            if (command) {
                 bridgeGame.retry();
                 return true;
             }
             bridgeGame.exit();
-        } return false;
+        }
+        return false;
     }
 
-    private static void gameOver(BridgeGame bridgeGame, List<MoveResult> moveResults){
+    private static void gameOver(BridgeGame bridgeGame, List<MoveResult> moveResults) {
         OutputView.printResult(bridgeGame, moveResults);
     }
 

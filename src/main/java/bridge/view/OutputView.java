@@ -24,9 +24,9 @@ public class OutputView {
         printDownMap(moveResult);
     }
 
-    public static void printUpMap(List<MoveResult> moveResults){
+    public static void printUpMap(List<MoveResult> moveResults) {
         StringJoiner upResult = new StringJoiner(" | ", "[ ", " ]");
-        for(int i = 0; i<moveResults.size(); i++){
+        for (int i = 0; i < moveResults.size(); i++) {
             upResult.add(createUpMap(moveResults.get(i)));
         }
 
@@ -34,9 +34,9 @@ public class OutputView {
         System.out.println(upMap);
     }
 
-    public static void printDownMap(List<MoveResult> moveResults){
+    public static void printDownMap(List<MoveResult> moveResults) {
         StringJoiner downResult = new StringJoiner(" | ", "[ ", " ]");
-        for(int i = 0; i<moveResults.size(); i++){
+        for (int i = 0; i < moveResults.size(); i++) {
             downResult.add(createDownMap(moveResults.get(i)));
         }
 
@@ -44,21 +44,21 @@ public class OutputView {
         System.out.println(downMap);
     }
 
-    private static String createUpMap(MoveResult moveResult){
-        if(moveResult.isUpMove() && moveResult.isSuccessMove()){
+    private static String createUpMap(MoveResult moveResult) {
+        if (moveResult.isUpMove() && moveResult.isSuccessMove()) {
             return "O";
         }
-        if(moveResult.isUpMove() && !moveResult.isSuccessMove()){
+        if (moveResult.isUpMove() && !moveResult.isSuccessMove()) {
             return "X";
         }
         return " ";
     }
 
-    private static String createDownMap(MoveResult moveResult){
-        if(!moveResult.isUpMove() && moveResult.isSuccessMove()){
+    private static String createDownMap(MoveResult moveResult) {
+        if (!moveResult.isUpMove() && moveResult.isSuccessMove()) {
             return "O";
         }
-        if(!moveResult.isUpMove() && !moveResult.isSuccessMove()){
+        if (!moveResult.isUpMove() && !moveResult.isSuccessMove()) {
             return "X";
         }
         return " ";
@@ -73,9 +73,10 @@ public class OutputView {
         System.out.println(FINAL_GAME_RESULTS_MESSAGE);
         printUpMap(moveResults);
         printDownMap(moveResults);
-        System.out.println(GAME_SUCCESS_MESSAGE+ getPrintIsSuccess(bridgeGame));
-        System.out.println(TOTAL_NUMBER_OF_ATTEMPTS+ bridgeGame.getCount());
+        System.out.println(GAME_SUCCESS_MESSAGE + getPrintIsSuccess(bridgeGame));
+        System.out.println(TOTAL_NUMBER_OF_ATTEMPTS + bridgeGame.getCount());
     }
+
     public static String getPrintIsSuccess(BridgeGame bridgeGame) {
         if (bridgeGame.notExit()) {
             return "성공";

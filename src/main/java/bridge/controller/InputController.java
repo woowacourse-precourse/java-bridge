@@ -6,15 +6,16 @@ import bridge.view.InputView;
 
 public class InputController {
 
-    public static Bridge getBridge(){
+    public static Bridge getBridge() {
         return new Bridge(InputView.readBridgeSize());
     }
-    public static MoveSpace getMoving(){
+
+    public static MoveSpace getMoving() {
         return new MoveSpace(InputView.readMoving());
     }
 
-    public static boolean retryOrGameOver(){
-        if(InputView.readGameCommand().equals("R")){
+    public static boolean retryOrGameOver() {
+        if (InputView.readGameCommand().equals("R")) {
             return true;
         }
         return false;
