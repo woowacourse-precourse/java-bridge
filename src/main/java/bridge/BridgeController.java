@@ -5,7 +5,6 @@ import bridge.enums.GameMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
@@ -38,9 +37,9 @@ public class BridgeController {
     }
 
     public void playGame() {
-        for (int count = 0; count < bridgeSize.getBridgeSize(); count++) {
+        for (int index = 0; index < bridgeSize.getBridgeSize(); index++) {
             enterMoving();
-            String check = bridgeGame.move(bridge.get(count), Moving.getMoving());
+            String check = bridgeGame.move(bridge.get(index), Moving.getMoving());
             makeMap(check);
             showMap();
             if (isMismatch(check)) {
@@ -71,24 +70,23 @@ public class BridgeController {
         return check.equals(bridgeGame.MISMATCH);
     }
 
+    public void reGame() {
+        enterGameCommand();
+        attempt += bridgeGame.retry(GameCommand.getGameCommand());
+        if (GameCommand.getGameCommand().equals(GameCommandResult.QUIT.getGameCommand())) {
+            result = GameCommandResult.QUIT.getResult();
+            return;
+        }
+        map.resetMap();
+        playGame();
+    }
+
     public void enterGameCommand() {
         try {
             GameCommand.validateInput(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             enterGameCommand();
-        }
-    }
-
-    public void reGame() {
-        enterGameCommand();
-        attempt += bridgeGame.retry(GameCommand.getGameCommand());
-        if (GameCommand.getGameCommand().equals(GameCommandResult.QUIT.getGameCommand())) {
-            result = GameCommandResult.QUIT.getResult();
-        }
-        if (GameCommand.getGameCommand().equals(GameCommandResult.RETRY.getGameCommand())) {
-            map.resetMap();
-            playGame();
         }
     }
 
