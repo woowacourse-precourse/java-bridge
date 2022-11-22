@@ -8,8 +8,10 @@ import java.util.List;
 public class OutputView {
 
     InputView inputView = new InputView();
-    String upResult = "";
-    String downResult = "";
+    public static String upResult = "";
+    public static String downResult = "";
+    public static String tempUpResult = "";
+    public static String tempDownResult = "";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -17,52 +19,48 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String alphabet, List<String> bridge, int bridgeCount) {
-        if (bridgeCount == 0) {
-            firstResult(alphabet);
-        }
-        if (bridgeCount > 0) {
-            otherResult(bridge, bridgeCount);
-        }
+        insertLeftBracket(bridgeCount);
+        correctOrWrongResult(alphabet, bridge, bridgeCount);
+        makeTempResult();
         printResult();
     }
 
-    public void firstResult(String alphabet){
-        if (alphabet.equals("U")) {
-            upResult += "[ O ]";
-            downResult += "[   ]";}
-        if (alphabet.equals("D")) {
-            upResult += "[   ]";
-            downResult += "[ O ]";}
-    }
-
-    public void otherResult(List<String> bridge, int bridgeCount) {
-        insertLeftBracket();
-        for (int i = 0; i < bridgeCount + 1; i++) {
-            insertAlphabet(bridge.get(i));
-            if (i != bridgeCount) {
-                insertLineShape();
-            }
+    public void correctOrWrongResult(String alphabet, List<String> bridge, int bridgeCount) {
+        if (bridgeCount != 0) {
+            insertLineShape();
         }
-        insertRightBracket();
+        insertCorrect(alphabet, bridgeCount, bridge);
+        insertWrong(alphabet, bridgeCount, bridge);
     }
 
-    public void insertLeftBracket(){
-        upResult = "[";
-        downResult = "[";
+    public void insertLeftBracket(int bridgeCount){
+        if (bridgeCount == 0){
+            upResult += "[";
+            downResult += "[";
+        }
     }
 
-    public void insertRightBracket(){
-        upResult += "]";
-        downResult += "]";
+    public void makeTempResult(){
+        tempUpResult = upResult + "]";
+        tempDownResult = downResult + "]";
     }
 
-    public void insertAlphabet(String alphabet) {
-        if (alphabet.equals("U")) {
+    public void insertCorrect(String alphabet, int index, List<String> bridge) {
+        if (alphabet.equals("U") && alphabet.equals(bridge.get(index))) {
             upResult += " O ";
             downResult += "   ";}
-        if (alphabet.equals("D")) {
+        if (alphabet.equals("D") && alphabet.equals(bridge.get(index))) {
             upResult += "   ";
             downResult += " O ";}
+    }
+
+    public void insertWrong(String alphabet, int index, List<String> bridge) {
+        if (alphabet.equals("U") && !alphabet.equals(bridge.get(index))) {
+            upResult += " X ";
+            downResult += "   ";}
+        if (alphabet.equals("D") && !alphabet.equals(bridge.get(index))) {
+            upResult += "   ";
+            downResult += " X ";}
     }
 
     public void insertLineShape() {
@@ -71,8 +69,8 @@ public class OutputView {
     }
 
     public void printResult() {
-        System.out.println(upResult);
-        System.out.println(downResult);
+        System.out.println(tempUpResult);
+        System.out.println(tempDownResult);
     }
 
     public void clearResult() {
@@ -87,12 +85,24 @@ public class OutputView {
      */
     public void printResult(boolean wrongMovement, int count) {
         if (wrongMovement == true) {
-            System.out.println("게임 성공 여부: 실패");
-            System.out.println(String.format("총 시도한 횟수: %d", count));
+            printFail(count);
         }
         if (wrongMovement == false) {
-            System.out.println("게임 성공 여부: 성공");
-            System.out.println(String.format("총 시도한 횟수: %d", count));
+            printSuccess(count);
         }
+    }
+
+    public void printFail(int count) {
+        System.out.println("게임 성공 여부: 실패");
+        System.out.println(String.format("총 시도한 횟수: %d", count));
+    }
+
+    public void printSuccess(int count) {
+        System.out.println("게임 성공 여부: 성공");
+        System.out.println(String.format("총 시도한 횟수: %d", count));
+    }
+
+    public void printFinal() {
+        System.out.println("최종 게임 결과");
     }
 }
