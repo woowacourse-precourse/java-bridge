@@ -33,6 +33,14 @@ public class BridgeGame {
         return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
+    private void moveUntilFailOrSuccess() {
+        initializeGame();
+
+        while (isPlaying()) {
+            move();
+        }
+    }
+
     private boolean isPlaying() {
         return onMovableCompartment && position < bridgeSize;
     }
