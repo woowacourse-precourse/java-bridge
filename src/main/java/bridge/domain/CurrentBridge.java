@@ -17,4 +17,8 @@ public class CurrentBridge {
     public void setCurrentCommand(String command) {
         currentCommand.add(command);
     }
+
+    public int getCurrentPhase() {
+        return currentCommand.size();
+    }
 }
