@@ -7,7 +7,7 @@ public class InputViewTest {
 
     @Test
     void 다리길이_예외() {
-        String Input = "30";
+        String input = "30";
         assertThatThrownBy(() -> InputView.checkLengthValidate(Input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Constant.Length_Restrict());
