@@ -1,6 +1,9 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+
+import static bridge.Code.ErrorCode.*;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -11,6 +14,12 @@ public class InputView {
      */
     public int readBridgeSize() {
         String singleInput = Console.readLine();
+        try {
+            return Integer.parseInt(singleInput);
+        } catch (IllegalArgumentException e){
+            System.out.println(NO_INTEGER.getMessage());
+            readBridgeSize();
+        }
         return 0;
     }
 
