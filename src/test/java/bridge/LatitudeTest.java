@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LatitudeTest {
 
     @ParameterizedTest
@@ -21,5 +24,22 @@ public class LatitudeTest {
     void containsByInvalidDirection() {
         String direction = "L";
         Assertions.assertThat(Latitude.contains(direction)).isEqualTo(false);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    @DisplayName("필드 값으로 enum 객체를 조회했을 때 enum 객체가 반환되는지 확인한다.")
+    void valueOfDirection(String direction) {
+        Map<String, Latitude> map = new HashMap<>();
+        map.put("U", Latitude.UP);
+        map.put("D", Latitude.DOWN);
+        Assertions.assertThat(Latitude.valueOfDirection(direction)).isEqualTo(map.get(direction));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"L", "K"})
+    @DisplayName("필드 값으로 enum 객체 조회에 실패했을 때 null 이 반환되는지 확인한다.")
+    void valueOfInvalidDirection(String direction) {
+        Assertions.assertThat(Latitude.valueOfDirection(direction)).isEqualTo(null);
     }
 }
