@@ -28,7 +28,7 @@ class BridgeGameTest {
         List<String> bridge = List.of("U", "D", "U");
         int turn = 1;
 
-        boolean result = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
+        boolean result = bridgeGame.move(bridge, moveCommand, turn);
 
         assertThat(result).isEqualTo(expected);
     }
