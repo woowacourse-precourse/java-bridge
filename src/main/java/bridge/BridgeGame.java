@@ -47,6 +47,13 @@ public class BridgeGame {
         return retry;
     }
 
+    public void gameStart() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int size = bridgeMaker.gameStart();
+        List<String> bridges = bridgeMaker.makeBridge(size);
+        crossBridge(bridges, size);
+    }
+
     public boolean getRetry() {
         BridgeCommand bridgeCommand = new BridgeCommand();
         return bridgeCommand.getRetry().equals(GAME_RETRY_LETTER);
@@ -62,6 +69,7 @@ public class BridgeGame {
             }
             position++;
         }
+        gameSet(canMove);
     }
 
     public void gameSet(boolean isCleared) {
