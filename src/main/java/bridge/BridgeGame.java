@@ -18,11 +18,9 @@ public class BridgeGame {
         if (log != null) {
             lengthOfLog = log[0].length;
         }
-
         char[][] tempLog = new char[2][lengthOfLog + 1];
         copyLog(lengthOfLog, tempLog);
         recordNow(submit, lengthOfLog, tempLog);
-
         log = tempLog;
     }
 
@@ -52,21 +50,25 @@ public class BridgeGame {
     public void checkTheEndByBrideSize(int bridgeSize) {
         if (survival) {
             if (log[0].length == bridgeSize) {
-                checkTheEnd =1;
+                checkTheEnd = 1;
                 return;
             }
             checkTheEnd = 0;
             return;
+
         }
         checkTheEnd = -1;
+
+
     }
 }
+
 enum Restart {
     RESTART("R", true),
     END("Q", false);
 
-    String  restartOrEnd;
-    boolean survival;
+    final String restartOrEnd;
+    final boolean survival;
 
 
     Restart(String restartOrEnd, boolean survival) {
@@ -85,8 +87,8 @@ enum Restart {
 enum Life {
     Alive('O', true),
     Dead('X', false);
-    char deadOrAlive;
-    boolean survival;
+    final char deadOrAlive;
+    final boolean survival;
 
 
     Life(char deadOrAlive, boolean survival) {
