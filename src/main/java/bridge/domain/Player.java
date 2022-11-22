@@ -29,6 +29,11 @@ public class Player {
         return this.map.get(position);
     }
 
+    public String getLastMovedResult() {
+        int lastMovedPosition = getLastMovedPosition();
+        return getMovedResultByPosition(lastMovedPosition);
+    }
+
     private void increaseGameAttempts() {
         gameAttempts++;
     }
