@@ -27,6 +27,7 @@ public class OutputView {
     public void printMap(List<BridgeResult> resultTopBridge, List<BridgeResult> resultBottomBridge) {
         System.out.println(START_SQUARE_BRACKET + getBridgeResult(resultTopBridge) +  END_SQUARE_BRACKET);
         System.out.println(START_SQUARE_BRACKET + getBridgeResult(resultBottomBridge) +  END_SQUARE_BRACKET);
+        System.out.println();
     }
 
     public String getBridgeResult(List<BridgeResult> resultBridge){
@@ -50,6 +51,7 @@ public class OutputView {
     public void printResult(List<BridgeResult> resultTopBridge, List<BridgeResult> resultBottomBridge, GameResult isSuccess, int totalPlayCnt) {
         System.out.println(END_GAME_MESSAGE);
         printMap(resultTopBridge, resultBottomBridge);
+        System.out.println();
         System.out.println(SUCCESS_OR_FAILURE_MESSAGE + isSuccess.getValue());
         System.out.println(TOTAL_PLAY_COUNT_MESSAGE + totalPlayCnt);
     }

@@ -10,7 +10,7 @@ public class BridgeGame {
     private final List<String> bridge;
     private List<BridgeResult> topResult;
     private List<BridgeResult> bottomResult;
-    int totalPlayCnt;
+    private int totalPlayCnt;
 
 
     public BridgeGame(List<String> bridge) {
@@ -20,12 +20,20 @@ public class BridgeGame {
         this.totalPlayCnt = 1;
     }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     public List<BridgeResult> getTopResult() {
         return topResult;
     }
 
     public List<BridgeResult> getBottomResult() {
         return bottomResult;
+    }
+
+    public int getTotalPlayCnt() {
+        return totalPlayCnt;
     }
 
     /**
@@ -77,5 +85,16 @@ public class BridgeGame {
         topResult.clear();
         bottomResult.clear();
         totalPlayCnt++;
+    }
+
+    public GameResult successOrFailure() {
+        int topBridgeCnt = (int) topResult.stream()
+                .filter(v -> v.equals(BridgeResult.SUCCESS)).count();
+        int bottomBridgeCnt = (int) bottomResult.stream()
+                .filter(v -> v.equals(BridgeResult.SUCCESS)).count();
+        if(topBridgeCnt + bottomBridgeCnt == bridge.size()){
+            return GameResult.SUCCESS;
+        }
+        return GameResult.FAIL;
     }
 }
