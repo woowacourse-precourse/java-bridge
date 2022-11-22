@@ -9,16 +9,20 @@ public class Player {
     }
 
     public void initialize() {
-        position = 0;
+        position = -1;
         tryCount++;
     }
 
-    public boolean move(Bridge bridge, Direction direction) {
-        return bridge.isMovable(position++, direction);
+    public void move() {
+        position++;
     }
 
-    public boolean moveToEnd(Bridge bridge) {
-        return bridge.end(position);
+    public boolean die(Bridge bridge, Direction direction) {
+        return bridge.isBroken(position, direction);
+    }
+
+    public boolean isBridgePassed(Bridge bridge) {
+        return bridge.isEnded(position);
     }
 
     public int getTryCount() {

@@ -14,11 +14,11 @@ public class Bridge {
         return bridge.stream().map(Direction::valueOf).collect(Collectors.toList());
     }
 
-    public boolean isMovable(int position, Direction direction) {
-        return bridge.get(position) == direction;
+    public boolean isBroken(int position, Direction direction) {
+        return bridge.get(position) != direction;
     }
 
-    public boolean end(int position) {
-        return bridge.size() == position;
+    public boolean isEnded(int position) {
+        return bridge.size() - 1 == position;
     }
 }

@@ -30,24 +30,25 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(Direction direction) {
-        boolean moveResult = player.move(bridge, direction);
-        changeStatusByMoveResult(moveResult);
-        drawGameMapByMoveResult(moveResult, direction);
+        player.move();
+        changeStatus(player.die(bridge, direction));
+        drawGameMap(player.die(bridge, direction), direction);
     }
 
-    private void drawGameMapByMoveResult(boolean moveResult, Direction direction) {
-        if (moveResult) {
-            gameMap.draw(direction, DrawType.SUCCESS);
+    private void drawGameMap(boolean playerDie, Direction direction) {
+        if (playerDie) {
+            gameMap.draw(direction, DrawType.FAIL);
             return;
         }
-        gameMap.draw(direction, DrawType.FAIL);
+        gameMap.draw(direction, DrawType.SUCCESS);
     }
 
-    private void changeStatusByMoveResult(boolean moveResult) {
-        if (!moveResult) {
+    private void changeStatus(boolean playerDie) {
+        if (playerDie) {
             setStatus(GameStatus.FAIL);
+            return;
         }
-        if (player.moveToEnd(bridge)) {
+        if (player.isBridgePassed(bridge)) {
             setStatus(GameStatus.COMPLETE);
         }
     }
