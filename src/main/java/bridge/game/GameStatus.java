@@ -6,12 +6,12 @@ public class GameStatus {
 
     private static final String O = "O";
     private static final String X = "X";
-    private static final String EMPTY = " ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String OPENER = "[ ";
     private static final String CLOSER = " ]";
     private static final String SEPARATOR = " | ";
+    private static final String EMPTY = " ";
 
     private boolean isStart;
     private boolean isFail;

@@ -50,6 +50,7 @@ class BridgeGameTest {
 
         assertThat(bridgeGame).extracting("bridge")
                               .extracting("location").isEqualTo(1);
+
         then(mockBridge).should(times(1)).get(anyInt());
         then(gameStatus).should(times(1)).move(UP);
     }

@@ -39,7 +39,7 @@ public class GameManager {
         while (true) {
             GameCommand gameCommand = play();
             if (gameCommand.isFinish()) {
-                break;
+                return;
             }
             if (gameCommand.isRetry()) {
                 bridgeGame.restart();
