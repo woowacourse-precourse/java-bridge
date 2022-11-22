@@ -35,7 +35,6 @@ public class OutputView {
     public static void printMap(Player player, boolean isPass, int start) {
         DrawType.PASS.draw(player.currentPosition(start), isPass, draw);
         DrawType.MISS.draw(player.currentPosition(start), isPass, draw);
-
         System.out.printf("[ %s ]\n", String.join(" | ", draw.getUpBridges()));
         System.out.printf("[ %s ]\n\n", String.join(" | ", draw.getDownBridges()));
     }
