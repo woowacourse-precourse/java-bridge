@@ -13,10 +13,11 @@ public class OutputView {
 
     private static List<String> result = new ArrayList<String>();
 
+    public static final String VALID_NUMERIC_FORMAT = "[1-2]?\\d";
     private static final String Retry = "Retry";
     private static final String SuccessSignal = "S";
     private static final String Move = "Move";
-    private static final String error = "[ERROR]";
+    private static final String error = "[ERROR] ";
     private static final String LenError = "다리 길이는 3부터 20사이의 숫자여야 합니다.";
     private static final String MovingCheck = "UD";
     private static final String MovingError = "U 또는 D로만 다리를 건널 수 있습니다.";
@@ -55,11 +56,10 @@ public class OutputView {
     }
 
     private static int toInt(String val) throws IllegalArgumentException {
-        try {
-            return Integer.parseInt(val);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(error + e);
+        if (!val.matches(VALID_NUMERIC_FORMAT)) {
+            throw new IllegalArgumentException(error);
         }
+        return Integer.parseInt(val);
     }
 
     public static String MovingCheck(String moving) throws IllegalArgumentException {
