@@ -32,7 +32,6 @@ public class BridgeGame {
             connector.setGameClear(true);
             return false;
         }
-
         return true;
     }
 
