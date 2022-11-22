@@ -3,6 +3,7 @@ package bridge.game;
 import bridge.bridge.Bridge;
 import bridge.config.BridgeStatus;
 import bridge.config.GameResultStatus;
+import bridge.config.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.SystemView;
@@ -10,6 +11,7 @@ import bridge.view.SystemView;
 import java.util.List;
 
 import static bridge.config.BaseException.INVALID_INPUT;
+import static bridge.config.GameResultStatus.X;
 
 public class GameController {
 
@@ -20,19 +22,18 @@ public class GameController {
 
     private Game game;
 
-    public boolean runGame() {
+    public Game runGame() {
 
-            systemView.printStartGame();
-            game = new Game();
-            return game.getRunStatus().isStatus();
+        systemView.printStartGame();
+        game = new Game();
+        return game;
 
     }
 
-    public boolean retryGame() {
+    public void retryGame() {
         try {
             game.setRunStatus(inputView.readGameCommand());
             bridgeGame.retry(game);
-            return game.getRunStatus().isStatus();
         } catch (Exception e) {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
@@ -47,10 +48,20 @@ public class GameController {
         outputView.printGameResultMap(bridge);
     }
 
-    public void printResultAndCount() {
+    public void printGameResult() {
         outputView.printGameResultAndCount(game);
     }
 
 
+    public void checkSuccess(Game game, Bridge bridge) {
 
+        if (bridge.getPosition() >= bridge.getSize()) {
+            if (!bridge.getBridge().contains(X)) {
+                game.setGameStatus(GameStatus.SUCCESS);
+            }
+            game.setRunStatus("Q");
+            outputView.printGameResultAndCount(game);
+        }
+
+    }
 }

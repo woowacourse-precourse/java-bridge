@@ -27,7 +27,7 @@ public class BridgeGame {
         BridgeStatus status = bridge.getBridge().get(bridge.getPosition());
 
         if (status.getPosition().equals(result)) {
-            bridge.getGameResultStatuses().add(O);
+            bridge.getGameResultStatuses().set(bridge.getPosition(), O);
         }
 
         bridge.movePosition();

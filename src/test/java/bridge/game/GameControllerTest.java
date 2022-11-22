@@ -12,12 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameControllerTest {
 
     private static GameController gameController = new GameController();
+    private static Game game;
 
     @BeforeAll
     @Test
     static void 게임_실행() {
-
-        assertTrue(gameController.runGame());
+        game = gameController.runGame();
+        assertTrue(game.getRunStatus().isStatus());
 
     }
 
@@ -28,7 +29,9 @@ class GameControllerTest {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        assertTrue(gameController.retryGame());
+        gameController.retryGame();
+
+        assertTrue(game.getRunStatus().isStatus());
 
     }
 
@@ -39,7 +42,9 @@ class GameControllerTest {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        assertFalse(gameController.retryGame());
+        gameController.retryGame();
+
+        assertFalse(game.getRunStatus().isStatus());
 
     }
 

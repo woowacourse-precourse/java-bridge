@@ -12,6 +12,9 @@ import static bridge.config.Message.*;
  */
 public class InputView {
 
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -36,7 +39,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(SELECT_GAME_RETRY);
         String result = Console.readLine();
-        if (!(result.equals(RETRY)) | !(result.equals(QUIT))) {
+        if (!(result.equals(RETRY)) && !(result.equals(QUIT))) {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
         return result;

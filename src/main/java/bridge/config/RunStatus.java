@@ -5,8 +5,6 @@ public enum RunStatus {
     ON(true),
     OFF(false);
 
-    private final String RETRY = "R";
-
     private boolean status;
 
     private RunStatus(boolean status) {
@@ -14,7 +12,7 @@ public enum RunStatus {
     }
 
     public RunStatus getStatus(String result) {
-        if (result.equals(RETRY)) {
+        if (result.equals("R")) {
             return ON;
         }
         return OFF;
