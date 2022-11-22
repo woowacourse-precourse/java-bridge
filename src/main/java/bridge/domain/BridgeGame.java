@@ -11,13 +11,7 @@ public class BridgeGame {
 
     private int challenge;
     private List<String> mark;
-    private final Bridge bridge;
     private boolean complete;
-
-    public BridgeGame(Bridge bridge) {
-        this.bridge = bridge;
-        mark = new ArrayList<>();
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -27,11 +21,11 @@ public class BridgeGame {
     public boolean move(String movePlace, Bridge bridge) {
         boolean passable = bridge.checkPassable(movePlace, mark.size());
         mark.add(movePlace);
-        this.complete = gameComplete(passable);
+        this.complete = gameComplete(bridge, passable);
         return passable;
     }
 
-    private boolean gameComplete(boolean passable) {
+    private boolean gameComplete(Bridge bridge, boolean passable) {
         return mark.size() == bridge.getSize() && passable;
     }
 

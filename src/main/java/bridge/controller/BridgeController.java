@@ -23,7 +23,7 @@ public class BridgeController {
 
     public void setGame(int size) {
         bridge = new Bridge(size);
-        bridgeGame = new BridgeGame(bridge);
+        bridgeGame = new BridgeGame();
     }
 
     public String requestMovingPoint() {
