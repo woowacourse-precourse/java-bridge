@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.MoveResult;
 import bridge.service.BridgeGame;
 
 import java.util.List;
@@ -24,9 +25,9 @@ public class OutputView {
         System.out.println(str);
     }
 
-    public void printBridge(List<String> upBridge, List<String> downBridge){
-        printMap(upBridge);
-        printMap(downBridge);
+    public void printBridge(){
+        printMap(MoveResult.getUpBridge());
+        printMap(MoveResult.getDownBridge());
         System.out.println();
     }
     /**
@@ -36,7 +37,7 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         printResultPrefixMessage();
-        printBridge(bridgeGame.getUpBridge(),bridgeGame.getDownBridge());
+        printBridge();
         printGameSuccessOrNot(bridgeGame.gameSuccess());
         printNumberOfAttempts(bridgeGame.gameCount());
     }
