@@ -74,6 +74,52 @@ public class AllTest extends NsTest {
         }, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0);
     }
 
+    @DisplayName("기능 테스트 4 : 다리 수 10개, 시도 3회")
+    @Test
+    void 기능_테스트4() {
+        assertRandomNumberInRangeTest(() -> {
+            run("10", "D", "R",
+                    "U", "U", "R",
+                    "U", "D", "U", "D", "U",
+                    "D", "U", "D", "U", "D");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O |   | O |   | O |   | O |   ]",
+                    "[   | O |   | O |   | O |   | O |   | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O |   | O |   | O |   | O |   | O |   ]");
+            int downSideIndex = output().indexOf(
+                    "[   | O |   | O |   | O |   | O |   | O ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0);
+    }
+
+    @DisplayName("기능 실패 테스트 5 : 다리 수 10개, 시도 2회")
+    @Test
+    void 기능_테스트5() {
+        assertRandomNumberInRangeTest(() -> {
+            run("10", "D", "R",
+                    "U", "U", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O | X ]");
+            int downSideIndex = output().indexOf(
+                    "[   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
