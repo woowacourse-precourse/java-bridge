@@ -20,6 +20,9 @@ public class Constants {
 	public static final String ALPHABET_Q = "Q";
 	public static final String ALPHABET_U = "U";
 	public static final String ALPHABET_D = "D";
+	public static final String ALPHABET_X = " X ";
+	public static final String BLANK = "   ";
+	public static final String ALPHABET_O = " O ";
 
 	public static final int NUMBER_THREE = 3;
 	public static final int NUMBER_TWENTY = 20;
