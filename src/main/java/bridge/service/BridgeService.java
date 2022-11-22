@@ -5,7 +5,7 @@ import static bridge.domain.ResultMessageStatus.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.domain.BridgeGame;
+import bridge.BridgeGame;
 import bridge.domain.ResultMessageStatus;
 import bridge.domain.ResultStatus;
 
