@@ -55,7 +55,7 @@ public class OutputView {
         printMap(user.getPathOfUpperBridge());
         printMap(user.getPathOfLowerBridge());
         System.out.println();
-        System.out.println(checkSuccess(bridgeGame.isSuccess()));
+        System.out.println(checkSuccess(bridgeGame.getSuccess()));
         System.out.println(TOTAL_OF_ATTEMPT + bridgeGame.getAttempt());
     }
 }

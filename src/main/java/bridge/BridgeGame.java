@@ -33,7 +33,7 @@ public class BridgeGame {
         return resultOfStep;
     }
 
-    public void checkSuccess() {
+    public void isSuccess() {
         if (bridge.size() == user.getRound()) {
             success = true;
         }
@@ -69,7 +69,7 @@ public class BridgeGame {
         return this.attempt;
     }
 
-    public boolean isSuccess() {
+    public boolean getSuccess() {
         return this.success;
     }
 
