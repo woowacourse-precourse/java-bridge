@@ -36,7 +36,6 @@ public class GameController {
         String direction = inputView.readMoving();
         int correctStep = bridgeGame.move(direction);
         outputView.printMap(bridgeGame.getGameResult());
-        System.out.println(correctStep);
         return correctStep;
     }
 

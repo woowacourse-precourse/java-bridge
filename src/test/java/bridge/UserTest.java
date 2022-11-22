@@ -13,24 +13,24 @@ public class UserTest {
         String correctDirection = "U";
         String unCorrectDirection = "D";
         User player = new User();
-        assertThat(player.move(bridge, unCorrectDirection)).isEqualTo(false);
-        assertThat(player.move(bridge, correctDirection)).isEqualTo(true);
+        assertThat(player.move(bridge, unCorrectDirection)).isEqualTo(0);
+        assertThat(player.move(bridge, correctDirection)).isEqualTo(1);
     }
 
     @Test
     void 플레이어가_이동_2번_성공하고_3번쨰_방향이_맞는지_테스트() {
         User player = new User();
-        assertThat(player.move(bridge, "U")).isEqualTo(true);
-        assertThat(player.move(bridge, "D")).isEqualTo(true);
-        assertThat(player.move(bridge, "U")).isEqualTo(true);
+        assertThat(player.move(bridge, "U")).isEqualTo(1);
+        assertThat(player.move(bridge, "D")).isEqualTo(2);
+        assertThat(player.move(bridge, "U")).isEqualTo(3);
     }
 
     @Test
     void 플레이어가_이동_2번_성공하고_3번쨰_방향이_틀린지_테스트() {
         User player = new User();
-        assertThat(player.move(bridge, "U")).isEqualTo(true);
-        assertThat(player.move(bridge, "D")).isEqualTo(true);
-        assertThat(player.move(bridge, "D")).isEqualTo(false);
+        assertThat(player.move(bridge, "U")).isEqualTo(1);
+        assertThat(player.move(bridge, "D")).isEqualTo(2);
+        assertThat(player.move(bridge, "D")).isEqualTo(2);
     }
 
     @Test

@@ -25,4 +25,12 @@ public class InputViewTest {
         System.setIn(in);
         assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ValueSource(strings = {"W", "AB", "123", "A11abc"})
+    @ParameterizedTest
+    void 재시도_입력값_유효성_검사(String input){
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+    }
 }
