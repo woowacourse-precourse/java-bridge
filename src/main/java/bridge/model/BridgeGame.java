@@ -10,9 +10,11 @@ import java.util.List;
  */
 public class BridgeGame {
     private final int DEFAULT_VALUE = 0;
+    private final int GAME_COUNT_INIT = 1;
     private final List<String> bridge;
     private final Progress progress;
     private int pointer = DEFAULT_VALUE;
+    private int counter = GAME_COUNT_INIT;
 
     public BridgeGame(List<String> bridge, Progress progress) {
         this.bridge = bridge;
@@ -42,7 +44,7 @@ public class BridgeGame {
     }
 
     private GameCondition isGoalSuccess(GameCondition gameCondition) {
-        if (pointer == bridge.size() && gameCondition == GameCondition.GOAL) {
+        if (pointer == bridge.size() && gameCondition == GameCondition.IN_PROGRESS) {
             return GameCondition.GOAL;
         }
 
@@ -59,5 +61,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        counter++;
+        pointer = DEFAULT_VALUE;
+        progress.clearProgress();
     }
 }
