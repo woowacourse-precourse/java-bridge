@@ -10,26 +10,46 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeSystem {
+    private final InputView inputView;
+    private final OutputView outputView;
 
+    public BridgeSystem() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+    }
 
-    public void run(){
+    public void run() {
         System.out.println("다리 건너기 게임을 시작합니다.");
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
         int bridgeSize = inputView.readBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(bridge);
-        Results results = new Results();
-        BridgeGame bridgeGame = new BridgeGame(bridge, results);
-        for (int round = 0; round < bridgeSize; round++) {
-            String userCommand = inputView.readMoving();
-            bridgeGame.move(userCommand, round);
-            outputView.printMap(results);
-        }
-
+        BridgeGame bridgeGame = new BridgeGame(bridge, new Results());
+        play(bridgeSize, bridgeGame);
+        outputView.printResult(bridgeGame);
 
     }
 
+    public void play(int bridgeSize, BridgeGame bridgeGame) {
+        for (int round = 0; round < bridgeSize; round++) {
+            String userCommand = inputView.readMoving();
+            boolean isAlive = bridgeGame.move(userCommand, round);
+            outputView.printMap(bridgeGame.getResults());
+            if(!isAlive){
+                String gameCommand = inputView.readGameCommand();
+                if(gameCommand.equals("Q")){
+                    bridgeGame.setSuccessOrFail("실패");
+                    return;
+                }else{
+                    bridgeGame.retry();
+                    round = -1;
+                }
+            }
+        }
+        bridgeGame.setSuccessOrFail("성공");
+    }
+    /*
+
+ */
 }

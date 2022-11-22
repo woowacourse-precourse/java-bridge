@@ -1,8 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.Results;
-import bridge.domain.RoundResult;
-
 import java.util.List;
 
 /**
@@ -13,6 +10,7 @@ public class BridgeGame {
     private final List<String> bridge;
     private final Results results;
     private int trial = 1;
+    private String successOrFail;
 
     public BridgeGame(List<String> bridge, Results results) {
         this.bridge = bridge;
@@ -22,18 +20,33 @@ public class BridgeGame {
     public int getTrial() {
         return trial;
     }
+    public Results getResults() {
+        return results;
+    }
+    public List<String> getBridge() {
+        return bridge;
+    }
+    public String getSuccessOrFail() {
+        return successOrFail;
+    }
+
+    public void setSuccessOrFail(String successOrFail) {
+        this.successOrFail = successOrFail;
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String userCommand, int round) {
+    public boolean move(String userCommand, int round) {
         if (userCommand.equals(bridge.get(round))) {
             this.results.addCurrentResult(new RoundResult(userCommand, "O"));
-            return;
+            return true;
         }
         this.results.addCurrentResult(new RoundResult(userCommand, "X"));
+        return false;
     }
 
     /**
@@ -43,5 +56,8 @@ public class BridgeGame {
      */
     public void retry() {
         trial++;
+        //results초기화
+        this.results.deleteAll();
     }
+
 }

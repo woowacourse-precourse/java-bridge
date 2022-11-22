@@ -25,6 +25,12 @@ public class Results {
         return results;
     }
 
+    public void deleteAll(){
+        this.results.clear();
+        this.up = new StringBuilder("[ ");
+        this.down = new StringBuilder("[ ");
+    }
+
     public void addCurrentResult(RoundResult roundResult) {
         this.results.add(roundResult);
         Map<String, String> upandDown = roundResult.setUpandDown();
