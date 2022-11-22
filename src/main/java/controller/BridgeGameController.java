@@ -9,14 +9,27 @@ public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
     private final BridgeGame bridgeGame;
+    private boolean choice = true;
 
     public BridgeGameController(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
     }
 
-    public void startGame() {
+    public void play() {
         outputView.printMessage(Message.START_GAME);
         generateBridge();
+        start();
+    }
+
+    private void start() {
+        while (choice) {
+            crossBridge();
+
+            if (bridgeGame.isWin()) {
+                break;
+            }
+            retryOrEnd();
+        }
     }
 
     private void crossBridge() {
@@ -47,8 +60,21 @@ public class BridgeGameController {
         }
     }
 
+    private void getCommand() {
+        try {
+            outputView.printMessage(Message.REQUEST_RETRY_OR_END);
+            choice = bridgeGame.retryOrEnd(inputView.readGameCommand());
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            getCommand();
+        }
+    }
+
     private void retryOrEnd() {
-        outputView.printMessage(Message.REQUEST_RETRY_OR_END);
-        bridgeGame.retryOrEnd(inputView.readGameCommand());
+        getCommand();
+
+        if (choice) {
+            bridgeGame.retry();
+        }
     }
 }

@@ -42,4 +42,8 @@ public class BridgeRepository {
     public Map<String, List<String>> getResult() {
         return this.result;
     }
+
+    public void resetProgress() {
+        this.progress.clear();
+    }
 }
