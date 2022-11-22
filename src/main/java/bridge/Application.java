@@ -11,6 +11,7 @@ public class Application {
     }
 
     private static void play() {
+        InputView.guideStart();
         int size = InputController.checkSize(new InputView());
         BridgeGame game = new BridgeGame(size);
         game.play();

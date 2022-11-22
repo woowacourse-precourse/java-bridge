@@ -16,6 +16,7 @@ public class InputView {
      */
     public static void guideStart() {
         OutputView.printGuide(START_MESSAGE);
+        OutputView.printGuide("");
     }
     /**
      * 다리의 길이를 입력받는다.
@@ -23,9 +24,7 @@ public class InputView {
     /**
      * size를 입력 받는다.
      */
-    public int readBridgeSize() {
-        OutputView.printGuide(START_MESSAGE);
-        OutputView.printGuide("");
+    public static int readBridgeSize() {
         OutputView.printGuide(PUT_SIZE);
         String command = Console.readLine();
         validateNumber(command);
@@ -33,7 +32,7 @@ public class InputView {
         return Integer.parseInt(command);
     }
 
-    private void validateNumber(String command) {
+    private static void validateNumber(String command) {
         try {
             Integer.parseInt(command);
         } catch (NumberFormatException e) {
@@ -41,7 +40,7 @@ public class InputView {
         }
     }
 
-    private void validateRange(int size) {
+    private static void validateRange(int size) {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
@@ -50,7 +49,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         OutputView.printGuide(PUT_MOVING);
         //TODO: 예외 처리 고려 - 파라미터를 잘정의하면 readGameCommand랑 에러 처리 동일하게 나타낼 수 있을 듯
         return Console.readLine();
@@ -59,7 +58,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         OutputView.printGuide(PUT_GAME_COMMAND);
         String gameCommand = Console.readLine();
         //TODO: 예외 처리 고려
