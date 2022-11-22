@@ -8,12 +8,7 @@ import utils.BridgePrintTool;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeDrawer {
-    private static List<String> directionTypeUP = new ArrayList<>();
-    private static List<String> directionTypeDOWN = new ArrayList<>();
-    public static List<List<String>> directionTypeLists = new ArrayList<>();
-    ResultServiceImpl resultService = new ResultServiceImpl();
-
+public class BridgeDrawer extends AbstractBridgeDrawer{
 
     public void initializeLists() {
         directionTypeUP.clear();
