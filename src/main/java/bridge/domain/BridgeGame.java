@@ -29,6 +29,12 @@ public class BridgeGame {
         bridge.nextIndex();
     }
 
+    public void endGameWithWin(Game game) {
+        game.winGame();
+        game.GameDone();
+    }
+
+
 
 
 
