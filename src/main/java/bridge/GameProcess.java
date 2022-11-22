@@ -29,6 +29,7 @@ public class GameProcess {
             gameCnt++;
             if (!gameRunning(bridge,size)) break;
         }
+        gameEnd();
     }
 
     public static int getSize() {
@@ -49,6 +50,9 @@ public class GameProcess {
         makingBridge = new ArrayList<>(Arrays.asList("[ ]","[ ]"));
         for (int i = 0; i < size; i++) {
             String status = getStatus(bridge,i);
+            if(status.equals(wrong)){
+                return bridgeGame.retry(inputView.readGameCommand());
+            }
         }
         return false;
     }

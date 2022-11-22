@@ -20,9 +20,9 @@ public class OutputView {
      */
     public void printMap(List<String> makingBridge) {
         System.out.println(makingBridge.get(0));
-        System.out.println(makingBridge.get(1));
+        System.out.println(makingBridge.get(1)+"\n");
     }
-
+O
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
