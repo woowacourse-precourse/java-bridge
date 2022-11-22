@@ -17,4 +17,8 @@ public class Actor {
     public Path move(final Bridge bridge) {
         return Path.of(bridge.getPossibleMovements(), movements);
     }
+
+    public int numMoves() {
+        return movements.size();
+    }
 }

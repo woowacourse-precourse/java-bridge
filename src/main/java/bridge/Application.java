@@ -19,14 +19,20 @@ public class Application {
         printTitle();
         final BridgeSize bridgeSize = askBridgeSize();
         final BridgeGame bridgeGame = createBridgeGame(bridgeSize);
-        run(bridgeGame);
+        final Path path = run(bridgeGame);
     }
 
-    private static void run(final BridgeGame bridgeGame) {
-        final Movement movement = askMoving();
-        final Path path = bridgeGame.onMove(movement);
-        printMap(path);
-        boolean retries = retries(bridgeGame);
+    private static Path run(final BridgeGame bridgeGame) {
+        Path path;
+        do {
+            final Movement movement = askMoving();
+            path = bridgeGame.onMove(movement);
+            printMap(path);
+            if (path.searchesFailed() && !retries(bridgeGame)) {
+                return path;
+            }
+        } while (!bridgeGame.completes());
+        return path;
     }
 
     private static boolean retries(final BridgeGame bridgeGame) {

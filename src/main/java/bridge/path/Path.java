@@ -80,4 +80,10 @@ public class Path {
                                                 format.get(Result.SUFFIX)))),
                         movementToString -> String.join("\n", movementToString.values())));
     }
+
+    public boolean searchesFailed() {
+        return evaluations.stream()
+                .anyMatch(stages -> stages.stream()
+                        .anyMatch(stage -> stage.value == Result.X));
+    }
 }

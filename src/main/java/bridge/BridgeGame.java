@@ -26,4 +26,8 @@ public class BridgeGame {
         actor = new Actor();
         numTry++;
     }
+
+    public boolean completes() {
+        return bridge.getPossibleMovements().size() == actor.numMoves();
+    }
 }
