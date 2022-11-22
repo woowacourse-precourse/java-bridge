@@ -49,4 +49,25 @@ class BridgeRuleTest {
 				.isThrownBy(()-> bridgeRule.isNumber(input))
 				.withMessageContaining("[ERROR]");
 	}
+
+	@DisplayName("재시작 명령어 통과 테스트")
+	@ParameterizedTest
+	@ValueSource(strings = {"R","Q"})
+	void 재시작명령어는_R_Q_만가능합니다(String input) {
+		BridgeRule bridgeRule = new BridgeRule();
+		assertThatCode(() -> bridgeRule.isRetryCommand(input))
+				.doesNotThrowAnyException();
+	}
+
+	@DisplayName("재시작 명령어 예외 테스트")
+	@ParameterizedTest
+	@ValueSource(strings = {"1","ㅁ"})
+	void 재시작명령어는_R_Q이외에_입력되면안됩니다(String input) {
+		BridgeRule bridgeRule = new BridgeRule();
+		assertThatIllegalArgumentException()
+				.isThrownBy(()-> bridgeRule.isRetryCommand(input))
+				.withMessageContaining("[ERROR]");
+	}
+
+
 }
