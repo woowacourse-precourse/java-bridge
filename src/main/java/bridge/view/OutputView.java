@@ -87,7 +87,7 @@ public class OutputView {
     }
 
     private void printUpAndDownBridge() {
-        bridge.replaceBridge();
+        bridge.replaceUnnecessaryBridge();
         System.out.println(bridge.getUpBridge());
         System.out.println(bridge.getDownBridge() + "\n");
     }

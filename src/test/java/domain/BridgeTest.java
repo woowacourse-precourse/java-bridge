@@ -21,7 +21,7 @@ public class BridgeTest {
     @Test
     void createSuccessUpBridge() {
         bridge.succeedUpMovement();
-        bridge.replaceBridge();
+        bridge.replaceUnnecessaryBridge();
         String upBridge = bridge.getUpBridge();
         assertThat(upBridge).isEqualTo("[ O ]");
     }
@@ -30,7 +30,7 @@ public class BridgeTest {
     @Test
     void createSuccessDownBridge() {
         bridge.succeedDownMovement();
-        bridge.replaceBridge();
+        bridge.replaceUnnecessaryBridge();
         String downBridge = bridge.getDownBridge();
         assertThat(downBridge).isEqualTo("[ O ]");
     }
@@ -39,7 +39,7 @@ public class BridgeTest {
     @Test
     void createFailUpBridge() {
         bridge.failUpMovement();
-        bridge.replaceBridge();
+        bridge.replaceUnnecessaryBridge();
         String upBridge = bridge.getUpBridge();
         assertThat(upBridge).isEqualTo("[ X ]");
     }
@@ -48,7 +48,7 @@ public class BridgeTest {
     @Test
     void createFailDownBridge() {
         bridge.failDownMovement();
-        bridge.replaceBridge();
+        bridge.replaceUnnecessaryBridge();
         String downBridge = bridge.getDownBridge();
         assertThat(downBridge).isEqualTo("[ X ]");
     }

@@ -29,7 +29,7 @@ public class Bridge {
         downBridge = downBridge.replace(END_POINT, FAILURE.getNowCondition());
     }
 
-    public void replaceBridge() {
+    public void replaceUnnecessaryBridge() {
         upBridge = upBridge.replace(CHANGE_POINT, FIRST_POINT);
         downBridge = downBridge.replace(CHANGE_POINT, FIRST_POINT);
     }
