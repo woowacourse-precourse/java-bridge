@@ -14,6 +14,7 @@ public class InputView {
     printLengthInputMessage();
     String input = Console.readLine();
     NumberInputValidator.validate(input);
+    printBlankLine();
     return Integer.parseInt(input);
   }
 

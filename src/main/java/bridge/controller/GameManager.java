@@ -27,7 +27,6 @@ public class GameManager {
 
   private void gameStart() {
     int length = readBridgeSize();
-    printBlankLine();
     do {
       bridgeGame.gameInit(length);
       tryMove(); // 시도가 끝날 때 까지 이동
