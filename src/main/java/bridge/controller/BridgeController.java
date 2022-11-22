@@ -18,7 +18,7 @@ public class BridgeController {
     private List<String> bridge = new ArrayList<>();
 
     public void run() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
         gameStart();
         while (bridgeGame.isGameContinue() && bridgeGame.getCurrentCount() < bridge.size()) {
             moveBridge();
@@ -32,6 +32,7 @@ public class BridgeController {
     public void gameStart() {
         try {
             int size = inputView.readBridgeSize();
+            System.out.println();
             BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
             bridge = bridgeMaker.makeBridge(size);
