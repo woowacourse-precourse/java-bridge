@@ -17,10 +17,16 @@ public class DrawMap {
         this.lowerSideOfMap = new StringBuilder();
     }
 
+    public void reset() {
+        upperLog = new ArrayList<>();
+        lowerLog = new ArrayList<>();
+    }
+
     /**
      * 다리 전체를 String 값으로 반환하는 메서드
      */
     public String returnMapToPrint(List<String> bridge, List<String> playerInput) {
+        reset();
         setUpperLog(bridge, playerInput);
         setLowerLog(bridge, playerInput);
         setUpperSideOfMap();
