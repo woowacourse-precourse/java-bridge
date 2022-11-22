@@ -21,6 +21,12 @@ public class BridgeGame {
         return moveCount;
     }
 
+    public int getReGameCount() { return reGameCount; }
+
+    public BridgeGameResult renderBridgeMap() {
+        return bridgeGameResult;
+    }
+
     public boolean isSameDirection(String moveDirection) {
         return moveDirection.equals(answerGameBridge.get(moveCount));
     }
@@ -67,3 +73,4 @@ public class BridgeGame {
         bridgeGameResult.retryResultUpDown();
     }
 }
+
