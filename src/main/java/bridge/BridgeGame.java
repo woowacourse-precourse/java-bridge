@@ -12,9 +12,9 @@ public class BridgeGame {
      */
     public int move(String num, String aaa) {
         if (num.equals(aaa)) {
-            return 1;    //살아남음
+            return 1;
         }
-        return 0;  //추락
+        return 0;
     }
 
     /**

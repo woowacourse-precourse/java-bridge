@@ -28,7 +28,7 @@ public class InputView {
     public void sizeError() {
         try {
             throw new IllegalArgumentException("[ERROR]");
-        } catch (IllegalArgumentException e) {   //이거 Exception 하면 안되고 명확히 해야함
+        } catch (IllegalArgumentException e) {
             System.out.println(e);
         } catch (IllegalStateException e) {
             System.out.println(e);
@@ -53,7 +53,7 @@ public class InputView {
     public  void moveError() {
         try {
             throw new IllegalArgumentException("[ERROR] 움직일 칸이 올바르지 않습니다");
-        } catch (Exception e) {   //이거 Exception 하면 안되고 명확히 해야함
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -75,7 +75,7 @@ public class InputView {
     public void commandError(){
         try {
             throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력하세요");
-        } catch (Exception e) {   //이거 Exception 하면 안되고 명확히 해야함
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

@@ -12,15 +12,15 @@ public class BridgeGameManage {
     public void playGame (List<String> bridge, int bSize, List<String> moveInfo){
         for (int idx = 0; idx < bSize; idx++) {
             String userMove = getUserMove();
-            moveInfo.add(userMove);  //
-            out.printMap(moveInfo, bridge);  //매 게임마다 다리 출력
-            if (bGame.move(userMove, bridge.get(idx)) == 0) // 올바른 다리 건넌지 체크
+            moveInfo.add(userMove);
+            out.printMap(moveInfo, bridge);
+            if (bGame.move(userMove, bridge.get(idx)) == 0)
                 break;
         }
     }
     public String[] manage(List<String> bridge,int bSize) {
         while(true) {
-            List<String> moveInfo = new ArrayList<>();//이건 무조건 안에
+            List<String> moveInfo = new ArrayList<>();
             playGame(bridge,bSize,moveInfo);
             String flag = out.getCheckFlag();
             if(control(flag)==1)
@@ -49,8 +49,8 @@ public class BridgeGameManage {
         result[0]="실패";
         result[1]=String.valueOf(cnt);
     }
-    public String getUserMove(){  //사용자가 움직일 위치 가져옴
-        String move = input.readMoving();  //사용자가 움직일 위치 입력
+    public String getUserMove(){
+        String move = input.readMoving();
         return move;
     }
 }

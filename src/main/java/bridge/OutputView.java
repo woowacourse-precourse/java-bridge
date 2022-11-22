@@ -82,7 +82,7 @@ public class OutputView {
         System.out.println(up);
         System.out.println(down);
         System.out.println("");
-        System.out.println("게임 성공 여부: "+flag);//성공 or 실패 변수
+        System.out.println("게임 성공 여부: "+flag);
         System.out.println("총 시도한 횟수: "+R);
     }
 }

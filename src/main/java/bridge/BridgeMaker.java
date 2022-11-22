@@ -20,7 +20,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridgeLoc = new ArrayList<>();
-        for (int idx =0;idx<size;idx++) {//(0은 아래칸 D) (1은 위칸 U)
+        for (int idx =0;idx<size;idx++) {
             int temp = bridgeNumberGenerator.generate();
             if (temp==1)
                 bridgeLoc.add("U");
