@@ -12,8 +12,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    static List<String> upBridgeMap = new ArrayList<>();
-    static List<String> downBridgeMap = new ArrayList<>();
+
+    // static 선언하면 new 새로운 객체를 생성해도 값이 그대로 남는다.
+    List<String> upBridgeMap = new ArrayList<>();
+    List<String> downBridgeMap = new ArrayList<>();
 
     public boolean printMap(int count,String command,List<String> Bridge) {
         String mark=checkMap(command,count,Bridge);

@@ -9,7 +9,6 @@ public class BridgeGame {
     private int gameStepCount = 0;
     private int bridgeSize = 0;
     private final List<String>Bridge;
-    private boolean retry = false;
 
     BridgeGame(int bridgeSize, List<String> Bridge){
         this.bridgeSize = bridgeSize;
@@ -30,6 +29,7 @@ public class BridgeGame {
             }
             gameStepCount++;
         }
+        System.out.println("--------끝---------");
         return true;
     }
 
