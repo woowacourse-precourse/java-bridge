@@ -6,10 +6,10 @@ import bridge.InputControl.UserInput;
 import java.util.List;
 
 public class Application {
-    static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    static BridgeGame bridgeGame = new BridgeGame();
-    static OutputView outputView = new OutputView();
-    static UserInput userInput;
+    private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private static BridgeGame bridgeGame = new BridgeGame();
+    private static OutputView outputView = new OutputView();
+    private static UserInput userInput;
 
     private static int tryNumber = Constant.ZERO;
     private static boolean retryJudge;
@@ -27,7 +27,7 @@ public class Application {
     private static void initalBridgeListGenerate() {
         BridgeInputControl bridgeInputControl = new BridgeInputControl();
         bridgeInputControl.setBridgeSize();
-        int inputNumber = userInput.userInputBridgeSize;
+        int inputNumber = userInput.getUserInputBridgeSize();
         bridgeList = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(inputNumber);
     }
 

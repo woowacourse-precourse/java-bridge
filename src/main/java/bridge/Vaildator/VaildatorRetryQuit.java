@@ -4,7 +4,7 @@ import bridge.Constant;
 
 public class VaildatorRetryQuit {
 
-    public static String userInputRetryQuit;
+    private static String userInputRetryQuit;
 
     public VaildatorRetryQuit(String userInputRetryQuit) {
         this.userInputRetryQuit = userInputRetryQuit;
@@ -21,5 +21,9 @@ public class VaildatorRetryQuit {
             throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_WRONG_RETRY_SELECT);
         }
 
+    }
+
+    public static String getUserInputRetryQuit(){
+        return userInputRetryQuit;
     }
 }

@@ -13,8 +13,8 @@ public class BridgeGame {
     private static StringBuilder mapUp = new StringBuilder(Constant.EMPTY_BLOCK);
     private static StringBuilder mapDown = new StringBuilder(Constant.EMPTY_BLOCK);
     private static String ox;
-    String addOxContour;
-    String emptyContour;
+    private String addOxContour;
+    private String emptyContour;
 
 
     /**
@@ -24,7 +24,7 @@ public class BridgeGame {
      */
     public void move(String bridgeAnswer, int order) {
         BridgeInputControl.setUpDown();
-        String upDownUserInput = VaildatorUpDown.userInputUpDown;
+        String upDownUserInput = VaildatorUpDown.getUserInputUpDown();
         ox = compare(bridgeAnswer, upDownUserInput);
         makeAddWord(order);
         makeMap(upDownUserInput);
@@ -88,7 +88,7 @@ public class BridgeGame {
             return false;
         }
         BridgeInputControl.setRetryQuit();
-        if (VaildatorRetryQuit.userInputRetryQuit.equals(Constant.QUIT)) {
+        if (VaildatorRetryQuit.getUserInputRetryQuit().equals(Constant.QUIT)) {
             return false;
         }
         return true;

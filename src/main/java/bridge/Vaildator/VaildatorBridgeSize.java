@@ -5,7 +5,7 @@ import bridge.Constant;
 public class VaildatorBridgeSize {
 
     private static String userInputBridgeString;
-    public static int userInputBridgeSize;
+    private static int userInputBridgeSize;
 
 
     public VaildatorBridgeSize(String userInputBridgeString) {
@@ -32,6 +32,10 @@ public class VaildatorBridgeSize {
             throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_BRIDGE_SIZE_WRONG_RANGE);
         }
 
+    }
+
+    public static int getUserInputBridgeSize(){
+        return userInputBridgeSize;
     }
 
 

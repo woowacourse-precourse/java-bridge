@@ -4,7 +4,7 @@ import bridge.Constant;
 
 public class VaildatorUpDown {
 
-    public static String userInputUpDown;
+    private static String userInputUpDown;
 
     public VaildatorUpDown(String userInputUpDown) {
         this.userInputUpDown = userInputUpDown;
@@ -21,5 +21,9 @@ public class VaildatorUpDown {
             throw new IllegalArgumentException(Constant.ERROR + Constant.INPUT_WRONG_UP_DOWN_SELECT);
         }
 
+    }
+
+    public static String getUserInputUpDown(){
+        return userInputUpDown;
     }
 }

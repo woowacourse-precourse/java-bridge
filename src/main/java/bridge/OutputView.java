@@ -6,7 +6,7 @@ package bridge;
  */
 public class OutputView {
 
-    BridgeGame bridgeGame = new BridgeGame();
+    private BridgeGame bridgeGame = new BridgeGame();
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
