@@ -3,7 +3,7 @@ package bridge;
 public class BridgeController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private BridgeGame bridgeGame = new BridgeGame();
+    private BridgeGame bridgeGame;
 
     public void run() {
         outputView.printStart();
