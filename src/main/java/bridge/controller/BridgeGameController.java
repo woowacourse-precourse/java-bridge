@@ -23,6 +23,7 @@ public class BridgeGameController {
         try {
             startBrideGame();
             System.out.println(correctBridge);
+            crossBridge();
         } catch (IllegalArgumentException illegalArgumentException) {
 
         }
@@ -35,5 +36,20 @@ public class BridgeGameController {
 
     private List<String> makeBridge() {
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
+    }
+
+    private void crossBridge() {
+        BridgeGame bridgeGame = new BridgeGame();
+        boolean retryCheck;
+        for (String bridgeValue : correctBridge) {
+            retryCheck = bridgeGame.move(inputView.readMoving(), bridgeValue);
+            outputView.printMap(bridgeGame.getBridges());
+            if (retryCheck) {
+                retry();
+            }
+        }
+    }
+    private void retry() {
+
     }
 }
