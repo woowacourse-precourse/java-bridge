@@ -48,7 +48,6 @@ public class Application {
     private static void initBridge() {
         bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge);
         bridgeGame = new BridgeGame(new BridgeStatus(bridge));
     }
 
