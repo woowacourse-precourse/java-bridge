@@ -6,7 +6,6 @@ public enum MovingRandomNumber {
 
     private String moving;
     private int randomNumber;
-    private String choice;
 
     MovingRandomNumber(String moving, int randomNumber) {
         this.moving = moving;
