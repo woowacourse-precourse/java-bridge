@@ -31,7 +31,7 @@ public class GameResult {
         index++;
     }
 
-    public void resetGameResult() {
+    private void resetGameResult() {
         this.index = 0;
         this.resultMap = initMap();
     }
