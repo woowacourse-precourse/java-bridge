@@ -34,7 +34,6 @@ public class InputView {
         String input = Console.readLine();
 
         System.out.println(input);
-        System.out.println();
 
 
 

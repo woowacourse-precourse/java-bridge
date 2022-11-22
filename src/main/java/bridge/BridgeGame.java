@@ -26,23 +26,21 @@ public class BridgeGame {
 
     List<String> bridgeUpList = new ArrayList<>();
     List<String> bridgeDownList = new ArrayList<>();
+
+    List<String> tempUpList = new ArrayList<>();
+    List<String> tempDownList = new ArrayList<>();
+
     boolean success = true;
 
     public void move(List<String> bridge, String input, int cnt) {
         List<String> bridgeResultUp = new ArrayList<>();
         List<String> bridgeResultDown = new ArrayList<>();
 
-//        System.out.println("bridge:"+bridge);
-
         bridgeResultUp = getBridgeUpList(bridge, input, cnt);
-
-//        System.out.println();
-
-        System.out.println(bridgeResultUp);
+        tempUpList = bridgeResultUp;
 
         bridgeResultDown = getBridgeDownList(bridge, input, cnt);
-
-        System.out.println(bridgeResultDown);
+        tempDownList = bridgeResultDown;
 
         if(bridge.size() == cnt+1){
             bridgeUpList = bridgeResultUp;
@@ -56,11 +54,19 @@ public class BridgeGame {
         return this.success;
     }
 
-    public List<String> upList() {
-        return this.bridgeUpList;
+    public List<String> getTempUpList() {
+        return this.tempUpList;
     }
 
-    public List<String> downList() {
+    public List<String> getTempDownList() {
+        return this.tempDownList;
+    }
+
+    public List<String> finalUpList() {
+        return this.tempDownList;
+    }
+
+    public List<String> finalDownList() {
         return this.bridgeDownList;
     }
 
@@ -81,7 +87,6 @@ public class BridgeGame {
             if(i != cnt){
                 bridgeResultUp.add("|");
             }
-//            System.out.println("cnt:"+bridge.get(i));
         }
         bridgeResultUp.add("]");
 

@@ -22,9 +22,10 @@ public class Application {
 
                 bridgeGame.move(bridge, inputView.readMoving(), i);
                 i++;
+                outputView.printMap(bridgeGame.getTempUpList(), bridgeGame.getTempDownList());
             }
             count++;
-            outputView.printMap(bridgeGame.isSuccess(), bridgeGame.upList(), bridgeGame.downList(), count);
+            outputView.printResult(bridgeGame.isSuccess(), bridgeGame.finalUpList(), bridgeGame.finalDownList(), count);
 
         } catch (IllegalArgumentException e){
         }
