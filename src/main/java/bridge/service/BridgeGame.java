@@ -6,13 +6,15 @@ import bridge.dto.RetryCountDto;
 import bridge.model.entity.*;
 import bridge.model.entity.Bridge;
 import bridge.model.entity.Move;
+import bridge.model.value.BridgeIngredient;
+import bridge.model.value.PlayerMessage;
 
 import java.util.List;
 
 import static bridge.model.value.BridgeIngredient.*;
 import static bridge.model.value.MatchMessage.*;
-import static bridge.model.value.PlayerMessage.QUIT;
-import static bridge.model.value.PlayerMessage.RETRY;
+import static bridge.model.value.PlayerMessage.*;
+import static bridge.model.value.PlayerMessage.BLANK;
 
 public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한다.
 
@@ -71,19 +73,19 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
     }
 
     public void addMatchMap(String move){
-        if(move.equals("U")){ // TODO: Refactoring else 없애고 간결하게 적성할것
-            bridgeMap.add(MATCH.getIngredient(), BLANK.getIngredient());
-        }else{
-            bridgeMap.add(BLANK.getIngredient(), MATCH.getIngredient());
+        if(move.equals(UP)){ // TODO: Refactoring else 없애고 간결하게 적성할것
+            bridgeMap.add(Match, BLANK);
+            return;
         }
+        bridgeMap.add(BLANK, Match);
     }
 
     public void addNotMatchMap(String move){
-        if(move.equals("U")){
-            bridgeMap.add(NOT_MATCH.getIngredient(), BLANK.getIngredient());
-        }else{
-            bridgeMap.add(BLANK.getIngredient(),  NOT_MATCH.getIngredient());
+        if(move.equals(UP)){
+            bridgeMap.add(NotMatch, BLANK);
+            return;
         }
+        bridgeMap.add(BLANK,  NotMatch);
     }
     public Boolean checkResult() { //둘다 X가 없을 때 true 반환
         return !bridgeMap.getUpMap().contains(NotMatch) && !bridgeMap.getDownMap().contains(NotMatch);

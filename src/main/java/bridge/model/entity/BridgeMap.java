@@ -1,11 +1,14 @@
 package bridge.model.entity;
 
 import bridge.model.value.BridgeIngredient;
+import bridge.model.value.PlayerMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.model.value.BridgeIngredient.*;
+import static bridge.model.value.PlayerMessage.*;
+import static bridge.model.value.PlayerMessage.BLANK;
 
 public class BridgeMap {
     private final List<String> upMap = new ArrayList<>();
@@ -25,13 +28,11 @@ public class BridgeMap {
         this.upMap.add(upMap);
         this.downMap.add(downMap);
     }
-    public Boolean validate(String map){
-        for(BridgeIngredient ingredient : BridgeIngredient.values()){
-            if(ingredient.getIngredient().equals(map)){ // TODO: 추후에 변경 예정
-                return true;
-            }
+    public void validate(String map){
+        if(!UP.equals(map) && !DOWN.equals(map) && !BLANK.equals(map)){
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 값이 들어왔습니다. 다시 입력해주세요 : "+ map);
         }
-        return false;
+        return;
     }
 
     public List<String> getUpMap() {
