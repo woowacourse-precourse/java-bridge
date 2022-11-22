@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.viewer.InputView;
-
 import java.util.List;
 
 public class Bridge {

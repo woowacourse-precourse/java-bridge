@@ -1,11 +1,11 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static bridge.viewer.ErrorMessage.BRIDGE_LENGTH_ERROR;
 import static bridge.viewer.MoveCommand.DOWN;
 import static bridge.viewer.MoveCommand.UP;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeMaker {
     private static final int NUMBER_UP = 1;

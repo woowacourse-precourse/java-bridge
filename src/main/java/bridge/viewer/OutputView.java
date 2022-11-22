@@ -3,7 +3,6 @@ package bridge.viewer;
 import bridge.domain.GameResult;
 import bridge.domain.Position;
 import bridge.domain.PositionTable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
