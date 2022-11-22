@@ -33,7 +33,7 @@
 > - [x] 이동 : BridgeGame.move()
 > - [x] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력 : OutputView.printMap()
 > - [x] 게임 R(재시작)과 Q(종료) 중 하나의 문자 입력 가능. 그외에 예외 처리
-> - [ ] 게임 재시작 : BridgeGame.retry()
+> - [x] 게임 재시작 : BridgeGame.retry()
 > - [x] 게임 1회 플레이 내 다리를 건너기 진행 횟수 static으로 저장
 > - [x] 게임 재시도(retry) 횟수 static으로 저장
 > - [x] 결과 출력 : OutputView.printResult()

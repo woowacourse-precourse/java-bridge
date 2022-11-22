@@ -4,6 +4,7 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.enumtype.BridgeGameRule;
 import bridge.constant.enumtype.UIMessage;
 import bridge.dto.bridge.Bridge;
 import bridge.view.InputView;
@@ -16,8 +17,8 @@ public class BridgeGameInputService {
     private Bridge bridge;
     private BridgeGame bridgeGame;
     private Boolean isPassedMoving;
-
     private List<String> movedBridge;
+    private static String readRetryGameCommand = "";
 
     public BridgeGameInputService() {
         this.bridgeGameInputView = new InputView();
@@ -74,6 +75,10 @@ public class BridgeGameInputService {
     }
 
     private void bridgeGameRetry(Boolean isPassedMoving) {
+//        readRetryGameCommand = readGameCommand();
+        if (readRetryGameCommand.equals(BridgeGameRule.QUIT.getValue())) {
+            return;
+        }
         if ((!isPassedMoving) && bridgeGame.retry(readGameCommand())) {
             moveBridge();
         }

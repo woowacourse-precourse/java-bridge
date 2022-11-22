@@ -10,7 +10,6 @@ public class Bridge {
     }
 
     public List<String> getBridge() {
-//        System.out.println(bridge); // @TODO: 삭제
         return bridge;
     }
 }
