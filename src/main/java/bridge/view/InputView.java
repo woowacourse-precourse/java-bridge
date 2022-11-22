@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.domain.Command;
-
 import static camp.nextstep.edu.missionutils.Console.*;
 
 /**
@@ -46,6 +44,10 @@ public class InputView {
         return moving;
     }
 
+    /**
+     * 건너기 옵션에 대한 예외처리를 하는 메서드
+     * @param moving U 또는 D
+     */
     private static void validateMoving(String moving) {
         if (!(moving.equals("D") || moving.equals("U")))
             throw new IllegalArgumentException("[ERROR] 이동할 칸에 대한 입력이 잘못되었습니다.");
@@ -54,17 +56,18 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static Command readGameCommand() {
+    public static String readGameCommand() {
         String command = readLine();
 
         validateCommand(command);
 
-        if (command.equals("R"))
-            return Command.RESTART;
-
-        return Command.QUIT;
+        return command;
     }
 
+    /**
+     * 재시작 옵션에 대한 예외처리를 하는 메서드
+     * @param command R 또는 Q
+     */
     private static void validateCommand(String command) {
         if (!(command.equals("R") || command.equals("Q")))
             throw new IllegalArgumentException("[ERROR] 재시작 옵션 대한 입력이 잘못되었습니다.");
