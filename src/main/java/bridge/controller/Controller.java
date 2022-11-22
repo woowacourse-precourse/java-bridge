@@ -93,4 +93,14 @@ public class Controller {
         outputView.printSuccessOrFailure(bridgeGame.comparePositionLength());
         outputView.printPlayerTryCount(user.getPlayingCount());
     }
+
+    public void correctPrintMap(String userInputValue) {
+        if (userInputValue.equals(MOVE_UP)) {
+            upBuilder.append(correctBridge);
+            downBuilder.append(emptyBridge);
+            return;
+        }
+        downBuilder.append(correctBridge);
+        upBuilder.append(emptyBridge);
+    }
 }
