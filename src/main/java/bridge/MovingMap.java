@@ -32,4 +32,10 @@ public class MovingMap {
         }
         return NOT_SELECTED;
     }
+
+    public String getLastStep(String upAndDown) {
+        List<String> stateList = movingMap.get(upAndDown);
+        return stateList.get(stateList.size() - 1);
+    }
+
 }
