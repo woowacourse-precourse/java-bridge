@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
     InputView inputView;
@@ -38,9 +39,9 @@ class InputViewTest {
         String input = "300";
         inputStream = new ByteArrayInputStream(input.getBytes());
         setIn(input);
-        int size = inputView.readBridgeSize();
-        int result = 300;
-        assertThat(size).isEqualTo(result);
+        assertThatThrownBy(() -> {
+            inputView.readBridgeSize();
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -57,9 +58,9 @@ class InputViewTest {
         String input = "F";
         inputStream = new ByteArrayInputStream(input.getBytes());
         setIn(input);
-        String size = inputView.readMoving();
-        String result = "F";
-        assertThat(size).isEqualTo(result);
+        assertThatThrownBy(() -> {
+            inputView.readMoving();
+        }).isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     void 재시작_종료_입력_테스트() {
@@ -75,8 +76,8 @@ class InputViewTest {
         String input = "E";
         inputStream = new ByteArrayInputStream(input.getBytes());
         setIn(input);
-        String size = inputView.readGameCommand();
-        String result = "E";
-        assertThat(size).isEqualTo(result);
+        assertThatThrownBy(() -> {
+            inputView.readGameCommand();
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
