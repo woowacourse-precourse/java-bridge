@@ -22,14 +22,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String direction) {
-        moveCount += 1;
+    public void move(String direction) {
         if (randomBridge.get(moveCount).equals(direction)) {
             result.appendResult(ResultType.SUCCESS, Direction.getDirection(direction));
-            return true;
+            moveCount += 1;
+            return;
         }
         result.appendResult(ResultType.FAIL, Direction.getDirection(direction));
-        return false;
     }
 
     /**
@@ -41,4 +40,17 @@ public class BridgeGame {
         result = new Result();
         moveCount = 0;
     }
+
+    public Result getGameResult() {
+        return result;
+    }
+
+    public boolean isGameFailed() {
+        return result.getLastResultType() == ResultType.FAIL;
+    }
+
+    public boolean isGameFinished() {
+        return moveCount == randomBridge.size();
+    }
+
 }
