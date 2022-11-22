@@ -1,10 +1,18 @@
 ## 기능 사항
 
+### Application
+
+*[x] 게임을 만들고, 진행하고, 결과를 출력한다 run(String[]args)
+    *[x] 게임을 만든다 #makeGame()
+    *[x] 게임을 진행한다 #playGame(BridgeGame game)
+    *[x] 게임결과를 출력한다. 17번째 writeView.printResult(Game game);
+
 ### BridgeGame
 
-*[x] game을 플레이 한다 #play()
-    *[x] 움직인다. #move()
-    *[x] 재시도한다. #retry()
+*[x] 움직인다. #move()
+*[x] 재시도한다. #retry()
+*[x] 로그를 추가한다. #addLog(command)
+*[x] 움직 일수 있는지 확인한다. #isMove(String command)
 
 ### BridgeMaker
 
