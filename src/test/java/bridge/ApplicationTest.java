@@ -67,8 +67,8 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 다리_길이_정상_테스트() {
-        assertThat(new BridgeGame().checkGameCommand("3")).isEqualTo(3);
-        assertThat(new BridgeGame().checkGameCommand("20")).isEqualTo(20);
+        assertThat(new BridgeGame().checkBridgeLenCommand("3")).isEqualTo(3);
+        assertThat(new BridgeGame().checkBridgeLenCommand("20")).isEqualTo(20);
     }
 
     @DisplayName("Q, R 이외의 재시작 입력에 대한 예외 처리")

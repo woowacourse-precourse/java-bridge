@@ -78,8 +78,22 @@ public class BridgeGame {
     }
 
     int checkBridgeLenCommand(String input) {
-        // implement
-        return 0;
+        int len = input.length();
+        catchErrors(len >= 1 && len <= 2, ErrorCodes.ANSWER_ILLEGAL_LENGTH.getMessage());
+
+        int ans = 0;
+        char c;
+        for(int i = 0; i < len; ++i) {
+            ans *= 10;
+            c = input.charAt(i);
+            catchErrors(c >= '0' && c <= '9', ErrorCodes.ANSWER_ILLEGAL_INPUT.getMessage());
+            if(i == 0) {
+                catchErrors(c >= '1' && c <= '9', ErrorCodes.ANSWER_ILLEGAL_INPUT.getMessage());
+            }
+            ans += (c - '0');
+        }
+        catchErrors(ans >= 3 && ans <= 20, ErrorCodes.ANSWER_ILLEGAL_RANGE.getMessage());
+        return ans;
     }
 
     /**
