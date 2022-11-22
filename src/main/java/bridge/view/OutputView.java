@@ -89,4 +89,11 @@ public class OutputView {
     public void nextLine() {
         System.out.println();
     }
+
+    /**
+     * 인자로 주어지는 메세지를 출력한다.
+     */
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
 }
