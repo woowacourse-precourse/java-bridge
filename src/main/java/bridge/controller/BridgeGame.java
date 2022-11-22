@@ -18,23 +18,14 @@ public class BridgeGame {
     private Bridge bridge;
     private User user;
 
-    public BridgeGame() {
+    public BridgeGame(int size) {
+        this.bridge = new Bridge(size);
+        this.user = new User();
     }
 
     public void start() {
-        makeBridge();
         attemptAcross();
         showResult();
-    }
-
-    public void makeBridge() {
-        OutputView.printLine(MessageOutput.INTRO);
-        OutputView.printLine("");
-        OutputView.printLine(MessageOutput.INQUIRE_BRIDGE_LENGTH);
-        int size = InputView.readBridgeSize();
-        this.bridge = new Bridge(size);
-        this.user = new User();
-        OutputView.printLine("");
     }
 
     public void attemptAcross() {

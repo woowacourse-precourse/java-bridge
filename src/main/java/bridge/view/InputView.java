@@ -1,7 +1,7 @@
 package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static bridge.util.InputValidater.*;
+import static bridge.util.BridgeValidator.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -9,27 +9,28 @@ import static bridge.util.InputValidater.*;
  * 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
-    public static String readMessage() {
-        String message = readLine().trim();
-        return message;
+    public static String readInput() {
+        String input = readLine().trim();
+        return input;
     }
 
 
     // 다리의 길이를 입력받는다.
     public static int readBridgeSize() {
-        int num;
-        String beforeChangeNum = readMessage();
-        if(isNumber(beforeChangeNum) && isInteger(beforeChangeNum)) {
-            num = Integer.parseInt(beforeChangeNum);
-            if(possibleBridgeSize(num)) return num;
+        int num = 0;
+        String input = readInput();
+        try {
+            if(possibleBridgeSize(input)) num = Integer.parseInt(input);
+        } catch(IllegalArgumentException e) {
+            return readBridgeSize();
         }
-        return 0;
+        return num;
     }
 
 
     // 사용자가 이동할 칸을 입력받는다.
     public static String readMoving() {
-        String select = readMessage();
+        String select = readInput();
         if(possibleMovingSelect(select)) {
             return select;
         }
@@ -39,7 +40,7 @@ public class InputView {
 
     // 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
     public static String readGameCommand() {
-        String decision = readMessage();
+        String decision = readInput();
         if(possibleRetryDecision(decision)) {
             return decision;
         }

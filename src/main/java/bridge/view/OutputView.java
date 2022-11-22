@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.constant.BridgeOutput;
+import bridge.constant.BridgeStructure;
 import bridge.constant.GameProgressKeyword;
 import bridge.constant.MessageOutput;
 import bridge.domain.Bridge;
@@ -22,21 +22,21 @@ public class OutputView {
     }
 
     public static void printMapEachLine(String line, Bridge bridge, User user) {
-        print(BridgeOutput.LEFT_BRACKET);
+        print(BridgeStructure.LEFT_BRACKET);
         for(int i=0 ; i< user.getPosition() ; i++) {
             print(" " + printSuccessOrFail(line, bridge.getIndexResult(i), user.getIndexSelect(i)) + " ");
-            if(i < user.getPosition()-1) print(BridgeOutput.SPLIT);
+            if(i < user.getPosition()-1) print(BridgeStructure.SPLIT);
         }
-        print(BridgeOutput.RIGHT_BRACKET);
+        print(BridgeStructure.RIGHT_BRACKET);
     }
 
     public static String printSuccessOrFail(String line, String bridge, String user) {
         if(line.equals(bridge)) {
-            if(bridge.equals(user)) return BridgeOutput.CORRECT_SYMBOL;
-            if(!bridge.equals(user)) return BridgeOutput.FAIL_SYMBOL;
+            if(bridge.equals(user)) return BridgeStructure.CORRECT_SYMBOL;
+            if(!bridge.equals(user)) return BridgeStructure.FAIL_SYMBOL;
         }
 
-        return BridgeOutput.BLANK_SYMBOL;
+        return BridgeStructure.BLANK_SYMBOL;
     }
 
     /**
