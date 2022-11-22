@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.controller.BridgeGameController;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +13,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest extends NsTest{
+    BridgeGameController bridgeGameController = new BridgeGameController();
     @DisplayName("입력된 이동값과 다리정보가 같다면 true를 리턴")
     @Test
     void 입력된_이동값과_다리정보의_값이_같음(){
@@ -80,7 +82,7 @@ class BridgeGameTest extends NsTest{
     }
     @Override
     protected void runMain() {
-        Application.main(new String[]{});
+       bridgeGameController.run();
     }
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
