@@ -5,16 +5,16 @@ public enum Movement {
     UP("U", 1),
     DOWN("D", 0);
 
-    private final String upAndDownSide;
+    private final String upAndDownMovement;
     private final int upAndDown;
 
-    Movement(String upAndDownSide, int upAndDown) {
-        this.upAndDownSide = upAndDownSide;
+    Movement(String upAndDownMovement, int upAndDown) {
+        this.upAndDownMovement = upAndDownMovement;
         this.upAndDown = upAndDown;
     }
 
-    public String getUpAndDownSide() {
-        return upAndDownSide;
+    public String getUpAndDownMovement() {
+        return upAndDownMovement;
     }
 
     public int getUpAndDown() {

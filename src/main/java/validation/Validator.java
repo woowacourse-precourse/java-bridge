@@ -18,7 +18,7 @@ public class Validator {
     }
 
     public void validateMovement(String movement) {
-        if (!movement.equals(UP.getUpAndDownSide()) && !movement.equals(DOWN.getUpAndDownSide())) {
+        if (!movement.equals(UP.getUpAndDownMovement()) && !movement.equals(DOWN.getUpAndDownMovement())) {
             throw new IllegalArgumentException(INPUT_U_OR_D);
         }
     }

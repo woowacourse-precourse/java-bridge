@@ -93,11 +93,11 @@ public class OutputView {
     }
 
     private boolean isU(String movement) {
-        return movement.equals(UP.getUpAndDownSide());
+        return movement.equals(UP.getUpAndDownMovement());
     }
 
     private boolean isD(String movement) {
-        return movement.equals(DOWN.getUpAndDownSide());
+        return movement.equals(DOWN.getUpAndDownMovement());
     }
 
     /**

@@ -36,13 +36,13 @@ public class BridgeMaker {
 
     private void isDownSide(int generateNumber) {
         if (generateNumber == DOWN.getUpAndDown()) {
-            bridges.add(DOWN.getUpAndDownSide());
+            bridges.add(DOWN.getUpAndDownMovement());
         }
     }
 
     private void isUpSide(int generateNumber) {
         if (generateNumber == Movement.UP.getUpAndDown()) {
-            bridges.add(Movement.UP.getUpAndDownSide());
+            bridges.add(Movement.UP.getUpAndDownMovement());
         }
     }
 }
