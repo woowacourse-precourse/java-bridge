@@ -59,8 +59,9 @@ public class BridgeGameController {
     }
 
     private void failProcess() {
-        GameStatusView gameStatusView = makeGameResultStatusView(bridgeGame.status());
-        proceedFor(userIOView.inputGameCommandProcedure(gameStatusView));
+        userIOView.outputGameStatus(makeGameResultStatusView(bridgeGame.status()));
+
+        proceedFor(userIOView.inputGameCommandProcedure());
     }
 
     private void proceedFor(GameCommand gameCommand) {

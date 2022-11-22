@@ -25,10 +25,7 @@ public class UserIOView {
         outputView.printMessage(INPUT_MOVING);
         return inputValidReadMoving();
     }
-
-    public GameCommand inputGameCommandProcedure(GameStatusView gameStatusView) {
-        outputView.printMap(gameStatusView);
-
+    public GameCommand inputGameCommandProcedure() {
         outputView.printMessage(RETRY);
         return inputValidGameCommand();
     }
