@@ -23,6 +23,7 @@ public class InputView {
         blank();
         return inputNum;
     }
+
     public String readMoving() {
         out(InputMessage.INPUT_MOVING);
         String input = Console.readLine();
