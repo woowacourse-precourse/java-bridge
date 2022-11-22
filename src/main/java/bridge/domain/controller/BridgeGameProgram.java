@@ -55,4 +55,14 @@ public class BridgeGameProgram {
             restart();
         }
     }
+
+    public void oneGame() {
+        crossBridge.setNewGame();
+        while (!crossBridge.isEnd()) {
+            String moving = move();
+            if (!crossBridge.isCurrentValid(moving)) {
+                break;
+            }
+        }
+    }
 }
