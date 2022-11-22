@@ -1,4 +1,4 @@
-package bridge.model.domain;
+package bridge.constant;
 
 public enum SuccessOrFail {
     SUCCESS("성공", true),

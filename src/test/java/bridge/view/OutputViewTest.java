@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.model.domain.SuccessOrFail;
+import bridge.constant.SuccessOrFail;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;

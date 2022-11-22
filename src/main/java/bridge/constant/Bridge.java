@@ -1,6 +1,5 @@
-package bridge.model.domain;
+package bridge.constant;
 
-import bridge.constant.Constant;
 import java.util.Arrays;
 
 public enum Bridge {

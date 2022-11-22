@@ -1,6 +1,6 @@
 package bridge.model.dto;
 
-import bridge.model.domain.SuccessOrFail;
+import bridge.constant.SuccessOrFail;
 
 public class GameResultDto {
 

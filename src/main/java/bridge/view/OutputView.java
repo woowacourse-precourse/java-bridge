@@ -1,10 +1,10 @@
 package bridge.view;
 
+import bridge.constant.Bridge;
+import bridge.constant.BridgeSign;
 import bridge.constant.Constant;
 import bridge.constant.Message;
-import bridge.model.domain.Bridge;
-import bridge.model.domain.BridgeSign;
-import bridge.model.domain.SuccessOrFail;
+import bridge.constant.SuccessOrFail;
 import java.util.ArrayList;
 import java.util.List;
 
