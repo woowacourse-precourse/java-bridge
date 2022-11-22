@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 import static bridge.ValidateBridge.validateBridgeSize;
 import static bridge.ValidateBridge.validateMovement;
 
@@ -21,8 +23,22 @@ public class Controller {
     public void run() {
         String beforeValidateSize = inputView.readBridgeSize();
         int size = validateBridgeSize(beforeValidateSize);
-        bridgeMaker.makeBridge(size);
-        String BeforeMovement = inputView.readMoving();
-        String movement = validateMovement(BeforeMovement);
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        int tryCount = 1;
+        int index = 0;
+        while(index < bridge.size()) {
+            String BeforeMovement = inputView.readMoving();
+            String movement = validateMovement(BeforeMovement);
+            bridgeGame = new BridgeGame(bridge);
+            boolean isContinue = bridgeGame.move(movement, index);
+            outputView.printMap(bridgeGame);
+            if (isContinue == false) {
+                inputView.readGameCommand();
+                bridgeGame.retry();
+                tryCount++;
+                continue;
+            }
+            index++;
+        }
     }
 }
