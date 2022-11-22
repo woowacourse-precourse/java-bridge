@@ -19,8 +19,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class BridgeGameTest {
 
+class BridgeGameTest {
     private final InputStream standardIn = System.in;
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -55,5 +55,13 @@ public class BridgeGameTest {
     }
 
     static Stream<Arguments> bridge_len3_lose_param() {
+        return Stream.of(
+                Arguments.of("D\nD\nD\nQ",
+                        Arrays.asList("최종 게임 결과",
+                                "[   |   |   ]",
+                                "[ O | O | X ]",
+                                "게임 성공 여부: 실패",
+                                "총 시도한 횟수: 1"))
+        );
     }
 }
