@@ -31,6 +31,12 @@ public class Progress {
         });
     }
 
+    public void clearProgress() {
+        for (List<String> stage : progress.values()) {
+            stage.clear();
+        }
+    }
+
     public String inspectSymbol(BridgePattern inputPattern, BridgePattern bridgePattern, String symbol) {
         if (inputPattern == bridgePattern) {
             return symbol;
