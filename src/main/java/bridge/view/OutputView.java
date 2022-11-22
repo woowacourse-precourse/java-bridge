@@ -27,11 +27,11 @@ public class OutputView {
      * @param bridgeGameResultDto 게임 결과 Dto
      */
     public void printResult(BridgeGameResultDto bridgeGameResultDto) {
-        System.out.println("최종 게임 결과");
+        System.out.println(Constant.finalResultOutput);
         printMap(bridgeGameResultDto.getGradingBoard());
 
-        System.out.println("게임 성공 여부: " + bridgeGameResultDto.getGameStatus().label());
-        System.out.println("총 시도한 횟수: " + bridgeGameResultDto.getTotalAttemptNum());
+        System.out.println(Constant.gameSuccessOutput + bridgeGameResultDto.getGameStatus().label());
+        System.out.println(Constant.totalAttemptOutput + bridgeGameResultDto.getTotalAttemptNum());
     }
 
     /**
@@ -42,13 +42,13 @@ public class OutputView {
      */
     private String boardStringBuilder(UpDown upDown, List<StepStatus> gradingBoard) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
+        stringBuilder.append(Constant.startRangeOutput);
 
         for (StepStatus stepStatus : gradingBoard) {
             stringBuilder.append(divergeStepStatus(stepStatus,upDown));
         }
         stringBuilder.deleteCharAt(stringBuilder.length()-1);
-        stringBuilder.append("]");
+        stringBuilder.append(Constant.endRangeOutput);
         return stringBuilder.toString();
     }
 

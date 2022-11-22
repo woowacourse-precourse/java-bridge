@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.constant.Constant;
+import bridge.enums.UpDown;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +48,7 @@ public class Validation {
      * @param input 사용자에게 입력받는 이동할 칸
      */
     public static void validateMoveValid(String input) {
-        if (!(input.equals("U") || input.equals("D"))) {
+        if (!(input.equals(UpDown.UP.label()) || input.equals(UpDown.DOWN.label()))) {
             System.out.println("[ERROR] 입력한 칸이 유효하지 않습니다.");
             throw new IllegalArgumentException();
         }
@@ -58,7 +59,7 @@ public class Validation {
      * @param input 사용자에게 입력받는 재시도 여부
      */
     public static void validateRetryValid(String input) {
-        if (!(input.equals("R") || input.equals("Q"))) {
+        if (!(input.equals(Constant.retryCommand) || input.equals(Constant.quitCommand))) {
             System.out.println("[ERROR] 유효하지 않은 명령어 입니다.");
             throw new IllegalArgumentException();
         }
