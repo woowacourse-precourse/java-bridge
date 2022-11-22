@@ -41,4 +41,13 @@ public class BridgeGameTest {
         game.move("U");
         assertThat(bridge.getDistance()).isEqualTo(1);
     }
+
+    @DisplayName("다리를 끝까진 건너면 게임이 종료된다.")
+    @Test
+    void clearGame() {
+        game.move("U");
+        game.move("U");
+
+        assertThat(game.move("U")).isEqualTo(1);
+    }
 }
