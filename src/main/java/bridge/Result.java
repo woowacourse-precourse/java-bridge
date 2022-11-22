@@ -27,4 +27,14 @@ public class Result {
             bottomBridgeResult += (SUCCESS + SEPARATOR);
         }
     }
+
+    public boolean findFail(List<String> bridge, List<String> moves) {
+        for (int findIndex = 0; findIndex < moves.size(); findIndex++) {
+            if (!bridge.get(findIndex).equals(moves.get(findIndex))) {
+                return true;
+            }
+            compareMoveCommand(moves.get(findIndex));
+        }
+        return false;
+    }
 }
