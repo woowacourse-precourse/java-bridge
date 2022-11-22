@@ -97,7 +97,8 @@
     - [x]  getEnum: 실패 갯수를 입력받아 인스턴스를 반환
     - [x]  isVictory: 최종 승리 여부 확인
     - [x]  getMessage: 성공 또는 실패 문자열을 반환
-- [x]  PlayerMove: 사용자의 이동 방향과 결과를 표현하는 클래스
+- [x]  PlayerMove: 사용자의 이동 방향과 결과를 표현하는 enum
+    - [x]  getEnum: 방향과 결과를 입력받아 enum 반환
     - [x]  isNotSameDirection: 입력 방향과 비교하여 같은 방향이 아닌지 확인
     - [x]  isFail: 이동 결과가 실패인지 확인
 
