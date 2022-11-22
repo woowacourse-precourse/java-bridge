@@ -7,9 +7,10 @@ import bridge.view.OutputView;
 public class Controller {
     private boolean playGame = true;
 
-    private BridgeGame bridgeGame = new BridgeGame();
+    private BridgeGame bridgeGame;
 
     public void setUp() {
+        bridgeGame = new BridgeGame();
         OutputView.reset();
         System.out.printf(OutputView.START_MESSAGE);
         bridgeInput();
