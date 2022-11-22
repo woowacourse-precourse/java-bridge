@@ -25,8 +25,7 @@ public class Application {
                 String space = inputView.readMoving();
 
                 List<String> bridges = bridgeGame.move(space, i, randomBridge.get(i));
-                System.out.println(bridges.get(0));
-                System.out.println(bridges.get(1));
+                outputView.printMap(bridges);
 
                 if (bridges.get(2).equals(FAIL)) {
                     break;
