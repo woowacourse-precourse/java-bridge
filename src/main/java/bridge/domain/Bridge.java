@@ -14,4 +14,7 @@ public class Bridge {
         return bridge.get(index);
     }
 
+    public Integer size() {
+        return bridge.size();
+    }
 }
