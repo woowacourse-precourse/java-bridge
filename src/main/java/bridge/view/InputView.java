@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.view.validation.InputValidation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -7,12 +8,20 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private InputValidation validation = new InputValidation();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        String readLine = Console.readLine();
+        boolean isDigit = false;
+        String readLine = "";
+        while (true) {
+            System.out.println("다리의 길이를 입력해주세요.");
+            isDigit = validation.test(Console.readLine(), isDigit);
+
+            if (isDigit) break;
+        }
         return Integer.parseInt(readLine);
     }
 
