@@ -16,7 +16,6 @@ public class GameController {
             if (!bridgeGame.canMove(inputView.readMoving())) {
                 break;
             }
-            bridgeGame.move();
             outputView.printMap(bridgeGame.bridgeMap.getBridgeMap());
         }
         outputView.printMap(bridgeGame.bridgeMap.getBridgeMap());
