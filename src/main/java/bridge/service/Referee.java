@@ -12,7 +12,7 @@ public class Referee {
     private static final String RESULT_WIN = "성공";
     private static final String RESULT_FAIL = "실패";
 
-    public String makeResult(List<String> myPaths, List<String> bridgePaths){
+    public static String makeResult(List<String> myPaths, List<String> bridgePaths){
         for (int i = 0; i < myPaths.size(); i++) {
             if(!myPaths.get(i).equals(bridgePaths.get(i))){
                 return RESULT_FAIL;

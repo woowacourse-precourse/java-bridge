@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.service.BridgeGame;
 import bridge.service.Referee;
 
 import java.util.List;
@@ -29,7 +30,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        String resultMessage = Referee.makeResult(bridgeGame.getMovePath(), bridgeGame.getBridge());
+        int totalCount = bridgeGame.getTotalCount();
+
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame.getMovePath(), bridgeGame.getBridge());
+        System.out.print("게임 성공 여부: " + resultMessage);
+        System.out.print("총 시도한 횟수: " + totalCount);
+
     }
 
     public String toStringWithPath(String[] compareOnePath) {

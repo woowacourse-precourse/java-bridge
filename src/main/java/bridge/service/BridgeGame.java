@@ -37,4 +37,16 @@ public class BridgeGame {
     private void addTotalCount(){
         this.totalCount++;
     }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public List<String> getMovePath() {
+        return movePath;
+    }
 }
