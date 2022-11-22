@@ -15,7 +15,11 @@ public enum Latitude {
     }
 
     public static String getDirectionByOrdinal(int ordinal) {
-        return Latitude.values()[ordinal].direction;
+        Latitude[] values = Latitude.values();
+        if (0 <= ordinal && ordinal < values.length) {
+            return values[ordinal].direction;
+        }
+        return null;
     }
 
     public static Latitude valueOfDirection(String direction) {
