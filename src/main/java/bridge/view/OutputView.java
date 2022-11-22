@@ -26,4 +26,12 @@ public class OutputView {
         System.out.println("\n최종 게임 결과");
         printMap(upBridge, downBridge);
     }
+
+    public void printSuccessOrFailure(boolean successOrDefeat) {
+        if (successOrDefeat) {
+            System.out.println("\n게임 성공 여부: " + "성공");
+            return;
+        }
+        System.out.println("\n게임 성공 여부: " + "실패");
+    }
 }
