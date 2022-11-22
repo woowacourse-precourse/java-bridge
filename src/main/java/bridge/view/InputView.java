@@ -10,7 +10,6 @@ public class InputView {
     private final String MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private BridgeGame bridgeGame = new BridgeGame();
-    private boolean allCorrect = false;
 
     public void readBridgeSize() {
         System.out.println(START_MESSAGE);
@@ -48,7 +47,6 @@ public class InputView {
 
     private void verificationCommand(String command){
         if (!command.equals("R") && !command.equals("Q")){
-            System.out.println("[ERROR]");
             throw new IllegalArgumentException(inputError.RESTART.getMessage());
 
         }
@@ -56,7 +54,6 @@ public class InputView {
 
     private void verificationMove(String moving){
         if (!moving.equals("U") && !moving.equals("D")){
-            System.out.println("[ERROR]");
             throw new IllegalArgumentException(inputError.INPUT_UP_DOWN.getMessage());
         }
     }
@@ -65,7 +62,6 @@ public class InputView {
         int returnSize = Integer.parseInt(size);
 
         if(returnSize < 3 || 20 < returnSize) {
-            System.out.println("[ERROR]");
             throw new IllegalArgumentException(inputError.NUMBER_RANGE.getMessage());
         }
         return returnSize;
@@ -75,7 +71,6 @@ public class InputView {
         try{
             Integer.parseInt(size);
         } catch (NumberFormatException numberFormatException){
-            System.out.println("[ERROR]");
             throw new IllegalArgumentException(inputError.IS_NUMBER.getMessage());
 
         }

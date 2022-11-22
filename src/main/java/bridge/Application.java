@@ -26,6 +26,7 @@ public class Application {
             try {
                 checkGame();
             } catch (IllegalArgumentException e){
+                System.out.println("[ERROR]");
                 continue;
             }
             break;
@@ -44,6 +45,7 @@ public class Application {
             try {
                 inputView.readBridgeSize();
             } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
                 continue;
             }
             break;
@@ -55,6 +57,7 @@ public class Application {
             try {
                 isCorrect = inputView.readMoving();
             } catch (IllegalArgumentException e){
+                System.out.println("[ERROR]");
                 continue;
             }
             break;
