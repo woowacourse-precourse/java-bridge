@@ -26,7 +26,7 @@ public class InputValidator {
     }
 
     public void isDirectionValid(String direction) {
-        if (!direction.equals(PlayerInput.DOWN) && !direction.equals(PlayerInput.DOWN)) {
+        if (!direction.equals(PlayerInput.UP) && !direction.equals(PlayerInput.DOWN)) {
             throw new IllegalArgumentException(Error.INPUT_DIRECTION.getMessage());
         }
     }
