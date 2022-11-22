@@ -7,4 +7,8 @@ public class Utility {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 입력 값입니다.");
         }
     }
+
+    public static boolean StringEquals(String s1, String s2) {
+        return s1.equals(s2);
+    }
 }
