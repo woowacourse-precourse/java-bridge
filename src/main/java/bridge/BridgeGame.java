@@ -75,8 +75,14 @@ public class BridgeGame {
         if (userMove.equals("D")) {
             makeList2(check);
         }
-        opv.printMap(String.join("|", up), String.join("|", down));
+       // opv.printMap(String.join("|", up), String.join("|", down));
 
+    }
+    public String stringUp(){
+        return String.join("|", up);
+    }
+    public String stringDown(){
+        return String.join("|", down);
     }
 
     /**

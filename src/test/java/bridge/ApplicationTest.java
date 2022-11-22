@@ -20,6 +20,13 @@ class ApplicationTest extends NsTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
+    @Test
+    void 다리_생성_테스트2() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0,1));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(4);
+        assertThat(bridge).containsExactly("U", "D", "D", "U");
+    }
 
     @Test
     void 기능_테스트() {
@@ -38,6 +45,8 @@ class ApplicationTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
+
+ 
 
     @Test
     void 예외_테스트() {

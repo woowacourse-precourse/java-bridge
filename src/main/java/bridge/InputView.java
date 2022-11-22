@@ -27,8 +27,6 @@ public class InputView {
     public String readMoving() {
         try {
             String temp = camp.nextstep.edu.missionutils.Console.readLine();
-            System.out.println(temp.equals("D"));
-            System.out.println(temp.equals("U"));
             if ( !temp.equals("D") && !temp.equals("U")) throw new IllegalArgumentException("[ERROR]");
             return temp;
 
