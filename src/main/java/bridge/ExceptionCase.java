@@ -19,4 +19,13 @@ public class ExceptionCase {
         return bridgeSize;
     }
 
+    public String validateMoves(String moves) {
+        if (!moves.equals("U") && !moves.equals("D")) {
+            System.out.println("[ERROR] 움직임은 \"U\" 와 \"D\" 한 글자만 입력이 가능합니다.\n");
+            return new InputView().readMoving();
+        }
+        return moves;
+    }
+
+
 }
