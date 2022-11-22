@@ -61,4 +61,10 @@ public class BridgeMonitor {
         return picture;
     }
 
+    public void turnBackOnce() {
+        int lastIndexOfLine = this.upperLine.length() - 1;
+        this.upperLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
+        this.lowerLine.delete(lastIndexOfLine - 5, lastIndexOfLine - 1);
+    }
+
 }
