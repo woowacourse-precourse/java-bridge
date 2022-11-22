@@ -1,34 +1,31 @@
 package bridge;
 
 import bridge.enums.ControlKey;
+import bridge.enums.InGameMessage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeGame {
 
     private Bridge bridge;
     private MapMaker mapMaker;
+    private int gameCount = 1;
+    private boolean crossed = true;
+    private List<String> directions = new ArrayList<>();
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.mapMaker = new MapMaker();
     }
 
-    public boolean move(String inputKey, int index) {
-        return bridge.canCross(inputKey, index);
+    public void play(String input) {
+        move(input);
     }
 
-    public boolean retry(String inputKey) {
-        return inputKey.equals(ControlKey.RETRY.getKey());
-    }
-
-    public String getMap(int index, String move) {
-        return mapMaker.makeMap(bridge, index, move);
-    }
-
-    public String getResultMap() {
-        return mapMaker.makeResultMap();
-    }
-
-    public void initMap() {
-        mapMaker.initBridge();
+    private void move(String inputKey) {
+        directions.add(inputKey);
+        int index = directions.size() - 1;
+        mapMaker.updateMap(bridge, index, inputKey);
     }
 }
