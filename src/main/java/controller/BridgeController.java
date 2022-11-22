@@ -4,8 +4,6 @@ import bridge.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class BridgeController {
 
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -13,26 +11,26 @@ public class BridgeController {
     private final InputView inputView = new InputView();
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
-    private List<String> bridge;
+    private Bridge bridge;
 
     public void startGame() {
         bridgeGame.addGameCount();
-        for (int i = 0; i < bridge.size(); i++) {
+        for (int i = 0; i < bridge.getBridgeSize(); i++) {
             outputView.printMovingSelect();
             moveOneStep(i,inputView.readMoving(),bridge);
             if (BridgeGame.getIsPlayerFailed()) {
-                askRetryGame();
+                askRetryGame(inputView.readGameCommand());
                 return;
             }
         }
         outputView.printResult();
     }
 
-    public void moveOneStep(int bridgeIndex,String move,List<String> bridge) {
-        if(bridge.get(bridgeIndex).equals(move)){
+    public void moveOneStep(int bridgeIndex,String move,Bridge bridge) {
+        if(bridge.correctStep(bridgeIndex, move)){
             bridgeGame.move(move);
         }
-        if(!bridge.get(bridgeIndex).equals(move)){
+        if(!bridge.correctStep(bridgeIndex, move)){
             bridgeGame.moveFailed(move);
             bridgeGame.switchResult();
         }
@@ -41,12 +39,12 @@ public class BridgeController {
 
     public void makeBridge() {
         outputView.printStartMessage();
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
     }
 
-    public void askRetryGame() {
+    public void askRetryGame(String selectRetry) {
         outputView.printRetryMessage();
-        boolean retry = bridgeGame.retry(inputView.readGameCommand());
+        boolean retry = bridgeGame.retry(selectRetry);
 
         if (retry) {
             bridgeGame.switchResult();
