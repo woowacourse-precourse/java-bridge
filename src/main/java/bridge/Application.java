@@ -11,9 +11,9 @@ public class Application {
         GameController gameController = new GameController(bridgeGame);
         OutputView outputView = new OutputView();
 
-        do {
-            gameController.executeMoving();
-        } while (gameController.doesPlayerWantRetrial && bridgeGame.getPlayerLocation() < bridgeGame.getBridge().size()-1);
-        outputView.printResult(bridgeGame.getTrial(), bridgeGame.getPlayerLocation(), bridgeGame.getBridge());
+        gameController.runGame();
+        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getPlayerLocation(),
+                gameController.getIsMovingAvailable());
+        outputView.printTrialNumber(bridgeGame.getTrialCount());
     }
 }
