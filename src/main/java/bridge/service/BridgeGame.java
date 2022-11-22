@@ -51,6 +51,14 @@ public class BridgeGame {
         lowerBridge = new ArrayList<>();
     }
 
+    private void makeBridgeMap() {
+        for (int position = 0; position < player.getNumberOfChoice(); position++) {
+            String choice = getChoiceByPosition(position);
+            makeUpperBridgeOfPart(position, choice);
+            makeLowerBridgeOfPart(position, choice);
+        }
+    }
+
     private void makeUpperBridgeOfPart(int position, String choice) {
         if (!choice.equals(UP)) {
             upperBridge.add(SPACE);

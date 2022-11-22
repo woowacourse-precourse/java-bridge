@@ -53,7 +53,7 @@
 - [x] 사용자 위치를 초기화 한다. #initPlayer()
 - [ ] 사용자가 칸을 이동한다. #move()
 - [x] 사용자의 칸 이동 현황을 초기화 한다. #initBridgeMap()
-- [ ] 사용자 위치 현황을 만든다. #makeBridgeMap()
+- [x] 사용자 위치 현황을 만든다. #makeBridgeMap()
 - [x] 사용자 위치현황 중 윗줄을 만든다. #makeUpperBridgeOfPart()
 - [x] 사용자 위치현황 중 아랫줄을 만든다. #makeLowerBridgeOfPart()
 - [x] 위치에 따른 사용자의 칸 정보를 가져온다. #getChoiceByPosition()
