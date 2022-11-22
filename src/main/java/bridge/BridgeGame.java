@@ -1,16 +1,14 @@
 package bridge;
 
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final Bridge bridge;
+    private final BridgeStatus bridgeStatus;
     private int count;
 
-    public BridgeGame(Bridge bridge) {
-        this.bridge = bridge;
+    public BridgeGame(BridgeStatus bridgeStatus) {
+        this.bridgeStatus = bridgeStatus;
         count = 1;
     }
     /**
@@ -20,7 +18,7 @@ public class BridgeGame {
      */
     public boolean move(String moving) {
         Validation.validateMoving(moving);
-        return bridge.move(moving);
+        return bridgeStatus.move(moving);
     }
 
     public int getCount() {
@@ -28,7 +26,7 @@ public class BridgeGame {
     }
 
     public String getMap() {
-        return bridge.toString();
+        return bridgeStatus.toString();
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -37,6 +35,6 @@ public class BridgeGame {
      */
     public void retry() {
         count++;
-        bridge.initStatus();
+        bridgeStatus.initStatus();
     }
 }
