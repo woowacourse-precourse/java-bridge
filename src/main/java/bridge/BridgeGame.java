@@ -57,6 +57,10 @@ public class BridgeGame {
         return validatorProcessor.validateBridgeSizeInput(sizeInput);
     }
 
+    public List<String> makeBridge(int bridgeSize) {
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
     private void checkMoveMatch(List<String> bridge, List<String> command, List<List<String>> result) {
         for (int i=0; i<command.size(); i++) {
             if (command.get(i).equals(bridge.get(i))) {
@@ -77,9 +81,5 @@ public class BridgeGame {
             result.get(upSide).add(BLANK_STRING);
             result.get(downSide).add(check);
         }
-    }
-
-    public List<String> makeBridge(int bridgeSize) {
-        return bridgeMaker.makeBridge(bridgeSize);
     }
 }

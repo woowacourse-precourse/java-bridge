@@ -10,6 +10,8 @@ import java.util.stream.IntStream;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static final int upSide = 1;
+    private static final int downSide = 0;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -27,7 +29,7 @@ public class BridgeMaker {
 
     private void addBridge(List<String> bridge) {
         int randomNum = bridgeNumberGenerator.generate();
-        if (randomNum==0) bridge.add("D");
-        if (randomNum==1) bridge.add("U");
+        if (randomNum==downSide) bridge.add("D");
+        if (randomNum==upSide) bridge.add("U");
     }
 }
