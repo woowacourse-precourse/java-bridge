@@ -77,6 +77,7 @@ public class BridgeGameController {
                 bridgeGameService.getGameCount(),
                 movingResult.getMovingResultStatus());
     }
+
     private void requestBlockAgain() {
         bridgeGameService.retry();
         requestBlock();
