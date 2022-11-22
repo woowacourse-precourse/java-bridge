@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import bridge.domain.GameState;
 import bridge.domain.InputValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -8,6 +11,24 @@ public class BridgeController {
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
     private final InputValidator inputValidator = new InputValidator();
+
+    public void run() {
+        outputView.printGameStart();
+        BridgeGame bridgeGame = new BridgeGame(Bridge.generateBridge(getInputBridgeSize()));
+        playGame(bridgeGame);
+    }
+
+    public void playGame(BridgeGame bridgeGame) {
+        GameState gameState;
+        do {
+            gameState = bridgeGame.move(getInputMoving());
+            outputView.printMap(gameState.getMoves(), gameState.isFall());
+            if (gameState.isFall() && isInputGameCommandRetry()) {
+                bridgeGame.retry();
+            }
+        } while (gameState.isCrossing());
+        outputView.printResult(gameState.getMoves(), gameState.isFall(), gameState.getAttempt());
+    }
 
     private int getInputBridgeSize() {
         try {
