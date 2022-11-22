@@ -52,4 +52,13 @@ public class GameStart {
     }
 
 
+    public String Success(int size) {
+        int so = bridgeGame.getProgress1().size();
+        if ((bridgeGame.getProgress1().size() == size && (bridgeGame.getProgress1().get(so - 1) != " X ") && (bridgeGame.getProgress2().get(so - 1) != " X "))) {
+            return "성공";
+        }
+        return "실패";
+    }
+
+
 }
