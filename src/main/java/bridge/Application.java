@@ -1,8 +1,11 @@
 package bridge;
 
+import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Game game = new Game();
+        int ReturnValue = game.MakeBoard();
+        if (ReturnValue!=-1) game.GameStart();
     }
 }
