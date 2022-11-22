@@ -25,6 +25,21 @@ public class MainTest extends NsTest {
         }, 1, 0, 1, 1);
     }
 
+    @Test
+    @DisplayName("통합 테스트, 성공 여부 : 실패")
+    void integrateFailTest() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "R", "D", "U", "R", "D", "D", "U", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[   |   | X ]",
+                    "[ O | O |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 3"
+            );
+        }, 0, 0, 0);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
