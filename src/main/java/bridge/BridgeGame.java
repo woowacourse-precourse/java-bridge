@@ -15,7 +15,7 @@ import java.util.List;
 // InputView, OutputView 사용 불가
 public class BridgeGame {
 
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public Bridge make(int bridgeSize) {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));

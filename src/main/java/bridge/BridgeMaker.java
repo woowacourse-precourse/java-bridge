@@ -33,7 +33,8 @@ public class BridgeMaker {
     private void addBridge(List<String> bridge, int randomNumber) {
         if (randomNumber == 0) {
             bridge.add("D");
-        } else if (randomNumber == 1) {
+        }
+        if (randomNumber == 1) {
             bridge.add("U");
         }
     }

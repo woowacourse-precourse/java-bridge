@@ -2,9 +2,9 @@ package bridge;
 
 public class BridgeGameController {
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    BridgeGame bridgeGame = new BridgeGame();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
         Bridge bridge = createBridge();
@@ -17,7 +17,6 @@ public class BridgeGameController {
         int bridgeSize = inputView.receiveBridgeSize();
         return bridgeGame.make(bridgeSize);
     }
-
 
     private void doBridge(Bridge bridge) {
         moveAndCheck(bridge);

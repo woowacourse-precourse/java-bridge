@@ -13,7 +13,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    ValidateInput validateInput = new ValidateInput();
+    private final ValidateInput validateInput = new ValidateInput();
 
     public int receiveBridgeSize() {
         int bridgeSize = 0;
