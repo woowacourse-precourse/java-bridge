@@ -14,7 +14,6 @@ public class BridgeGameController {
     private List<String> correctBridge;
     private int tryCount = 0;
 
-
     public BridgeGameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -42,6 +41,7 @@ public class BridgeGameController {
 
     private void crossBridge() {
         BridgeGame bridgeGame = new BridgeGame();
+        tryCount += 1;
         for (String bridgeValue : correctBridge) {
             boolean correctAnswerCheck = bridgeGame.move(inputView.readMoving(), bridgeValue);
             outputView.printMap(bridgeGame.getBridges());
@@ -50,12 +50,17 @@ public class BridgeGameController {
                 return;
             }
         }
+        endGame(bridgeGame);
     }
     private void chooseRetryGameOrEndGame(BridgeGame bridgeGame) {
         if (bridgeGame.retry(inputView.readGameCommand())) {
             crossBridge();
             return;
         }
-        endGame();
+        endGame(bridgeGame);
+    }
+
+    private void endGame(BridgeGame bridgeGame) {
+        outputView.printResult(bridgeGame.getBridges(), bridgeGame.getGameResult(), tryCount);
     }
 }
