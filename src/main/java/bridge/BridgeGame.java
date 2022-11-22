@@ -11,6 +11,7 @@ import java.util.List;
 public class BridgeGame {
 
     boolean isSuccess=false;
+    int bridgeLength;
      int trialCount=0;
      List<String> bridgePosion;
      List<String> playerPosion = new ArrayList<>();
