@@ -31,7 +31,10 @@ public class OutputView {
 
     public void printException(ErrorType errorType){
         System.out.println(errorType.getErrorMessage());
+    }
 
+    public void printMoving(){
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
 

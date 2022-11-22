@@ -15,10 +15,12 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        System.out.println(bridgeSize);
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge.toString());
+
+        outputView.printMoving();
+
+        inputView.readMoving();
 
     }
 }
