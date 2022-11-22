@@ -16,6 +16,12 @@ public class BridgeGameException {
         }
     }
 
+    public void checkInputSizeException(String str) {
+        if (str.length() != 1) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public void checkCorrectUpOrDownException(String str) {
         if (!str.equals("U") && !str.equals("D")) {
             throw new IllegalArgumentException();
