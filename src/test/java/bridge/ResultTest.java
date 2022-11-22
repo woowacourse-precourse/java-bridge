@@ -16,10 +16,10 @@ class ResultTest {
         return Arrays.asList(
             Arguments.of("3번 이동 후 성공", List.of("U", "U", "U"),
                 new UserInfo(List.of("U", "U", "U"), 3, State.Win),
-                "[ O | O | O ]", "[   |   |   ]"),
+                "[ O | O | O ]\n", "[   |   |   ]\n"),
             Arguments.of("2번 이동 후 실패", List.of("U", "U", "U"),
                 new UserInfo(List.of("U", "D"), 3, State.Loss),
-                "[ O |   ]", "[   | X ]")
+                "[ O |   ]\n", "[   | X ]\n")
         );
     }
 

@@ -15,7 +15,7 @@ public class OutputView {
         print(result.getBottom());
     }
     private void print(String s) {
-        System.out.println(s);
+        System.out.print(s);
     }
 
     /**
@@ -28,6 +28,6 @@ public class OutputView {
         printMap(result);
         System.out.println();
         System.out.println("게임 성공 여부: "+result.getState().getMsg());
-        System.out.println("총 시도한 횟수: "+result.getTime());
+        System.out.print("총 시도한 횟수: "+result.getTime());
     }
 }

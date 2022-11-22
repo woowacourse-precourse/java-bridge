@@ -75,7 +75,7 @@ class OutputViewTest {
                     + "[   |   |   ]\n"
                     + "\n"
                     + "게임 성공 여부: 성공\n"
-                    + "총 시도한 횟수: 1\n"),
+                    + "총 시도한 횟수: 1"),
             Arguments.of("1번에 실패",
                 new Result(answerA, new UserInfo(Arrays.asList("U", "U", "D"), 1, State.Loss)),
                     "최종 게임 결과\n"
@@ -83,7 +83,7 @@ class OutputViewTest {
                     + "[   |   | X ]\n"
                     + "\n"
                     + "게임 성공 여부: 실패\n"
-                    + "총 시도한 횟수: 1\n"),
+                    + "총 시도한 횟수: 1"),
             Arguments.of("1번에 실패",
                 new Result(answerA, new UserInfo(Arrays.asList("D"), 1, State.Loss)),
                 "최종 게임 결과\n"
@@ -91,7 +91,7 @@ class OutputViewTest {
                 + "[ X ]\n"
                 + "\n"
                 + "게임 성공 여부: 실패\n"
-                + "총 시도한 횟수: 1\n")
+                + "총 시도한 횟수: 1")
         );
     }
 

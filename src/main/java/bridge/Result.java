@@ -25,7 +25,7 @@ public class Result {
         map.clear();
         map.put(word.correct, " O ");
         map.put(word.wrong, " X ");
-        return  "["+setContent(input, answer, word.correct)+"]";
+        return  "["+setContent(input, answer, word.correct)+"]\n";
     }
 
     private String setContent(List<String> input, List<String> answer, String correct) {
