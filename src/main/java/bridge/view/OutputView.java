@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.enums.Commands;
 import java.util.HashMap;
 import java.util.List;
 

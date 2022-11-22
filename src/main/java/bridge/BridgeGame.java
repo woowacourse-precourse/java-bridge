@@ -1,7 +1,8 @@
 package bridge;
 
 import bridge.model.BridgeMaker;
-import java.util.HashMap;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class BridgeGame {
     public void initGame() {
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
-        bridgeMaker.makeBridges(bridgeSize);
+//        bridgeMaker.makeBridges(bridgeSize);
         setGameIndex(0);
         setGameResult(true);
     }
