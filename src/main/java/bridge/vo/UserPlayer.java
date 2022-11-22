@@ -4,21 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserPlayer {
-	// private static UserPlayer userPlayer = null;
 	private final List<String> moveRecord;
 	private int totalAttempt;
 
 	public UserPlayer() {
 		moveRecord = new ArrayList<>();
-		totalAttempt = 0;
+		totalAttempt = 1;
 	}
-
-	/*public static UserPlayer getInstance() {
-		if (userPlayer == null) {
-			userPlayer = new UserPlayer();
-		}
-		return userPlayer;
-	}*/
 
 	public void setMovingDirection(String move) {
 		moveRecord.add(move);
