@@ -6,7 +6,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -26,17 +28,89 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+    }
+
+    @Test
+    void 기능_테스트2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R", "U", "D", "D");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   |   ]");
+            int downSideIndex = output().indexOf("[   | O | O ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 0);
+    }
+
+    @Test
+    void 기능_테스트3() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+
+            int upSideIndex = output().indexOf("[ O |  ]");
+            int downSideIndex = output().indexOf("[   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0);
+    }
+
+    @Test
+    void 기능_테스트4() {
+        assertRandomNumberInRangeTest(() -> {
+            run("7", "U", "U", "R", "U", "D", "D", "R", "U", "D", "U", "U", "U", "U", "U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O | O | O | O | O ]",
+                    "[   | O |   |   |   |   |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O | O | O | O | O ]");
+            int downSideIndex = output().indexOf("[   | O |   |   |   |   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 1, 1, 1, 1);
+    }
+
+    @Test
+    void 기능_테스트5() {
+        assertRandomNumberInRangeTest(() -> {
+            run("2", "-1", "0","21", "7", "U","", " ", "U", "?", "r", "R", "U", "D", "D", "R", "U", "D", "U", "U", "U", "U", "U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O | O | O | O | O ]",
+                    "[   | O |   |   |   |   |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf("[ O |   | O | O | O | O | O ]");
+            int downSideIndex = output().indexOf("[   | O |   |   |   |   |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 1, 1, 1, 1);
     }
 
     @Test
