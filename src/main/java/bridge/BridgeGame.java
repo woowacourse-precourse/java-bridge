@@ -38,6 +38,14 @@ public class BridgeGame {
         }
     }
 
+    public List<String> getTopMap() {
+        return topMap;
+    }
+
+    public List<String> getDownMap() {
+        return downMap;
+    }
+
     private void moveDown(String userInput, List<String> bridge, int cnt) {
         if (isAbleCross(bridge, cnt, userInput)) {
             ableMoveDown();

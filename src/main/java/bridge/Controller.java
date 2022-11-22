@@ -18,6 +18,7 @@ public class Controller {
         List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
         tryInputBridgeUpOrDown();
         bridgeGame.move(command, bridge, bridgeCount);
+        outputView.printMap();
     }
 
     private void tryInputBridgeUpOrDown() {
