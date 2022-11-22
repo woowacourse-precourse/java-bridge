@@ -5,6 +5,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.view.OutputView.WRONG_WAY;
+
 public class GameController {
 
     public void start() {
@@ -35,7 +37,7 @@ public class GameController {
             bridgeGame.move(rightBridgeWay, inputMoveValue);
             printMap(bridgeGame.upperBridge, bridgeGame.lowerBridge);
 
-            if (bridgeGame.upperBridge.contains(OutputView.WRONG_WAY_SIGN) || bridgeGame.lowerBridge.contains(OutputView.WRONG_WAY_SIGN)) {
+            if (bridgeGame.upperBridge.contains(WRONG_WAY) || bridgeGame.lowerBridge.contains(WRONG_WAY)) {
                 keepGoing = retryGame(bridgeGame);
             }
         }
