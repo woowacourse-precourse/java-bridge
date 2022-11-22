@@ -9,7 +9,8 @@ import java.util.List;
 public class PlayerPath {
 
     private static int ordinalNumber = 0;
-    private List<Direction> currentPath = new ArrayList<>();
+    private final List<Direction> currentPath = new ArrayList<>();
+    private boolean isAlive = true;
 
     public PlayerPath(){
         ++ordinalNumber;
@@ -24,5 +25,13 @@ public class PlayerPath {
     }
     public int getOrdinalNumber(){
         return ordinalNumber;
+    }
+
+    public boolean getIsAlive(){
+        return isAlive;
+    }
+
+    public void die(){
+        isAlive = false;
     }
 }
