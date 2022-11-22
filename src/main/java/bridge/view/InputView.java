@@ -4,6 +4,7 @@ import static bridge.Validator.validateIsDigit;
 import static bridge.Validator.validateIsMovingValue;
 import static bridge.Validator.validateIsRetryValue;
 import static bridge.Validator.validateSizeRange;
+import static bridge.view.OutputView.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -21,7 +22,7 @@ public class InputView {
             int size = validateIsDigit(length);
             validateSizeRange(size);
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            printExceptionMessage(e.getMessage());
             readBridgeSize();
         }
         return Integer.parseInt(length);
@@ -35,7 +36,7 @@ public class InputView {
         try {
             movingValue = validateIsMovingValue(movingValue);
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            printExceptionMessage(e.getMessage());
             readMoving();
         }
         return movingValue;
@@ -49,7 +50,7 @@ public class InputView {
         try {
             retryValue = validateIsRetryValue(retryValue);
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            printExceptionMessage(e.getMessage());
             readGameCommand();
         }
         return retryValue;
