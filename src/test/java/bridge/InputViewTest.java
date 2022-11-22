@@ -10,8 +10,6 @@ import utils.InputValidation;
 
 public class InputViewTest {
 
-    InputValidation inputValidation = new InputValidation();
-
     @DisplayName("입력받은 수가 3미만 20초과 일떄 에러가 발생한다.")
     @Test
     void 다리길이_입력값_범위_예외처리() {
