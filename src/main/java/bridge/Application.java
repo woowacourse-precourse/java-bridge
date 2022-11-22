@@ -1,9 +1,11 @@
 package bridge;
 
+import bridge.controller.BridgeController;
+
 public class Application {
 
     public static void main(String[] args) {
-        BridgeManager bridgeManager = new BridgeManager();
-        bridgeManager.play();
+        BridgeController bridgeController = new BridgeController();
+        bridgeController.play();
     }
 }
