@@ -87,7 +87,7 @@ public class BridgeGame {
     }
 
     public String isSuccess() {
-        if (location == bridgeSize - 1) {
+        if (!up.toString().contains("X") && !down.toString().contains("X")) {
             return "성공";
         }
         return "실패";
