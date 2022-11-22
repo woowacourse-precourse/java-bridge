@@ -12,7 +12,7 @@ public class BridgeController {
     public void run() {
         try {
             runControllers();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             outputView.printException(e.getMessage());
         }
