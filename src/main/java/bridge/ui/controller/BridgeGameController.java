@@ -20,6 +20,8 @@ public class BridgeGameController {
 
     /**
      * 게임 시작시 게임을 초기화 하는 메서드
+     *
+     * @return 초기화한 게임 반환
      */
     public BridgeGame initGame() {
         int bridgeSize = inputView.readBridgeSize();
@@ -45,35 +47,6 @@ public class BridgeGameController {
         return bridgeGame.isCorrectMove();
     }
 
-
-    /**
-     * 게임을 종료하고 결과를 출력하는 메서드
-     */
-    public void endGame() {
-        List<String> bridge = bridgeGame.getBridge();
-        List<String> userRoute = bridgeGame.getUserRoute();
-        int count = bridgeGame.getGameCount();
-        outputView.printResult(bridge, userRoute, count);
-    }
-
-
-    /**
-     * 게임을 재실행 하는 메서드(재실행 할 경우에 맞게 값 초기화 및 게임 시작)
-     */
-    public void retry() {
-        bridgeGame.retry();
-        play();
-    }
-
-    /**
-     * 사용자가 재실행을 원하는지 입력 받는 메서드
-     */
-    private boolean wantRetry() {
-        GameCommand gameCommand = inputView.readGameCommand();
-        return GameCommand.RETRY.equals(gameCommand);
-    }
-
-
     /**
      * 게임을 진행하는 메서드
      */
@@ -87,4 +60,31 @@ public class BridgeGameController {
         }
     }
 
+    /**
+     * 게임을 재실행 하는 메서드(재실행 할 경우에 맞게 값 초기화 및 게임 시작)
+     */
+    public void retry() {
+        bridgeGame.retry();
+        play();
+    }
+
+    /**
+     * 사용자가 재실행을 원하는지 입력 받는 메서드
+     *
+     * @return 사용자가 게임을 다시 하길 원할 경우 true, 원하지 않을 경우 false 반환
+     */
+    private boolean wantRetry() {
+        GameCommand gameCommand = inputView.readGameCommand();
+        return GameCommand.RETRY.equals(gameCommand);
+    }
+
+    /**
+     * 게임을 종료하고 결과를 출력하는 메서드
+     */
+    public void endGame() {
+        List<String> bridge = bridgeGame.getBridge();
+        List<String> userRoute = bridgeGame.getUserRoute();
+        int count = bridgeGame.getGameCount();
+        outputView.printResult(bridge, userRoute, count);
+    }
 }
