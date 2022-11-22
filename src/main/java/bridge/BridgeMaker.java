@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.BridgeGameConstants.ASCII_U;
+import static bridge.BridgeGameConstants.ASCII_D;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +22,10 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        final char asciiU = 'U';
-        final char asciiD = 'D';
-        final char difference = asciiU - asciiD;
+        final char difference = ASCII_U - ASCII_D;
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridge.add(Character.toString(asciiD + difference * bridgeNumberGenerator.generate()));
+            bridge.add(Character.toString(ASCII_D + difference * bridgeNumberGenerator.generate()));
         }
         return (bridge);
     }

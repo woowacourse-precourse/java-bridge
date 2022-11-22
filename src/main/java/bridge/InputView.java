@@ -2,6 +2,13 @@ package bridge;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import static bridge.BridgeGameConstants.MIN_BRIDGE_LENGTH;
+import static bridge.BridgeGameConstants.MAX_BRIDGE_LENGTH;
+import static bridge.BridgeGameConstants.UPPER;
+import static bridge.BridgeGameConstants.LOWER;
+import static bridge.BridgeGameConstants.RESTART;
+import static bridge.BridgeGameConstants.QUIT;
+
 import static bridge.ExceptionMessage.BRIDGE_LENGTH_ERROR_MESSAGE;
 import static bridge.ExceptionMessage.INVALID_MOVING_ERROR_MESSAGE;
 import static bridge.ExceptionMessage.INVALID_STATUS_ERROR_MESSAGE;
@@ -22,10 +29,8 @@ public class InputView {
     }
 
     private int parseBridgeSize(String userInput) {
-        int minLength = 3;
-        int maxLength = 20;
         int parsed = Integer.parseInt(userInput);
-        if (parsed < minLength || maxLength < parsed) {
+        if (parsed < MIN_BRIDGE_LENGTH || MAX_BRIDGE_LENGTH < parsed) {
             throw (new NumberFormatException());
         }
         return (parsed);
@@ -35,7 +40,7 @@ public class InputView {
      */
     public String readMoving() {
         String userInput = readLine();
-        if ("U".equals(userInput) || "D".equals(userInput)) {
+        if (UPPER.equals(userInput) || LOWER.equals(userInput)) {
             return (userInput);
         }
         throw (new IllegalArgumentException(INVALID_MOVING_ERROR_MESSAGE.toString()));
@@ -46,7 +51,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String userInput = readLine();
-        if ("R".equals(userInput) || "Q".equals(userInput)) {
+        if (RESTART.equals(userInput) || QUIT.equals(userInput)) {
             return (userInput);
         }
         throw (new IllegalArgumentException(INVALID_STATUS_ERROR_MESSAGE.toString()));

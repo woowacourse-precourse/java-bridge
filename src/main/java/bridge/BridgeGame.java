@@ -1,14 +1,26 @@
 package bridge;
 
+import static bridge.BridgeGameConstants.EMPTY;
+import static bridge.BridgeGameConstants.NEW_LINE;
+import static bridge.BridgeGameConstants.SPACE;
+import static bridge.BridgeGameConstants.FAIL;
+import static bridge.BridgeGameConstants.SUCCESS;
+import static bridge.BridgeGameConstants.UPPER;
+import static bridge.BridgeGameConstants.LOWER;
+import static bridge.BridgeGameConstants.LEFT_SQUARE_BRACKET;
+import static bridge.BridgeGameConstants.MAP_DELIMITER;
+import static bridge.BridgeGameConstants.RIGHT_SQUARE_BRACKET;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> bridge;
-    private List<String> selectedPath;
+    private final List<String> bridge;
+    private final List<String> selectedPath;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -49,9 +61,9 @@ public class BridgeGame {
 
     public String generateMap() {
         if (selectedPath.isEmpty()) {
-            return ("");
+            return (EMPTY);
         }
-        return (generateRow("U") + "\n" + generateRow("D"));
+        return (generateRow(UPPER) + NEW_LINE + generateRow(LOWER));
     }
 
     private String generateRow(String rowIdentifier) {
@@ -60,18 +72,18 @@ public class BridgeGame {
         for (int i = 0; i < size; i++) {
             row.add(chooseAppropriateOne(rowIdentifier, i));
         }
-        return ("[ " + String.join(" | ", row) + " ]");
+        return (LEFT_SQUARE_BRACKET + String.join(MAP_DELIMITER, row) + RIGHT_SQUARE_BRACKET);
     }
 
     private String chooseAppropriateOne(String rowIdentifier, int index) {
         String bridgeOne = bridge.get(index);
         String selectedOne = selectedPath.get(index);
         if (!selectedOne.equals(rowIdentifier)) {
-            return (" ");
+            return (SPACE);
         }
         if (!selectedOne.equals(bridgeOne)) {
-            return ("X");
+            return (FAIL);
         }
-        return ("O");
+        return (SUCCESS);
     }
 }
