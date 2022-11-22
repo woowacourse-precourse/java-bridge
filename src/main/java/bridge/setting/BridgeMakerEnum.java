@@ -21,10 +21,21 @@ public enum BridgeMakerEnum {
         return this.randomNumber;
     }
 
+    public Character bridge() {
+        return this.bridge;
+    }
+
     private static final Map<Integer, BridgeMakerEnum> BY_RANDOM_NUMBER =
             Stream.of(values()).collect(Collectors.toMap(BridgeMakerEnum::randomNumber, Function.identity()));
 
+    private static final Map<Character, BridgeMakerEnum> BY_MOVE_CODE =
+            Stream.of(values()).collect(Collectors.toMap(BridgeMakerEnum::bridge, Function.identity()));
+
     public static char valuesOfBridge(int randomNumber) {
         return BY_RANDOM_NUMBER.get(randomNumber).bridge;
+    }
+
+    public static int valuesOfRandomNumber(Character bridge) {
+        return BY_MOVE_CODE.get(bridge).randomNumber;
     }
 }

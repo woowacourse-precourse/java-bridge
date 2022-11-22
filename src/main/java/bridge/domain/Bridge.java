@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.setting.BridgeMakerEnum;
 import bridge.setting.Setting;
 
 import java.util.ArrayList;
@@ -29,9 +30,7 @@ public class Bridge {
             List<String> tmpOX = new ArrayList<>();
 
             tmpOX.addAll(oxBeforeLast(nth, i));
-            System.out.println(tmpOX);
             tmpOX.add(getCanvas(isWin, nth-1, i));
-            System.out.println(tmpOX);
 
             ox.add(String.join(" | ", tmpOX));
         }
@@ -43,6 +42,7 @@ public class Bridge {
         List<String> line = new ArrayList<>();
 
         for (int j = 0; j < nth-1; j++) {
+            System.out.println(j+" "+row);
             line.add(getCanvas(true, j, row));
         }
 
@@ -51,12 +51,12 @@ public class Bridge {
 
     private String getCanvas(boolean isRight, int index, int row) {
         if (isRight) {
-            if (index == row)
+            if (BridgeMakerEnum.valuesOfRandomNumber(bridge.get(index).charAt(0)) == row)
                 return "O";
             return " ";
         }
 
-        if (index != row)
+        if (BridgeMakerEnum.valuesOfRandomNumber(bridge.get(index).charAt(0)) != row)
             return "X";
         return " ";
     }
