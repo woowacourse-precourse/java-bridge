@@ -96,7 +96,7 @@ class BridgeGameTest {
             void it_returns_moveDto(String validInput, GameStatus expected) {
                 ReadMovingDto readMovingDto = new ReadMovingDto(validInput);
 
-                MoveDto move = bridgeGame.move(readMovingDto);
+                MoveDto move = movePlayer(bridgeGame, readMovingDto, 1);
 
                 assertThat(move.getNextGameStatus()).isSameAs(expected);
             }
@@ -110,10 +110,8 @@ class BridgeGameTest {
             @DisplayName("입력한 다리로 플레이어가 이동할 수 있는지를 계산해 MoveDto로 반환한다")
             void it_returns_moveDto() {
                 ReadMovingDto readMovingDto = new ReadMovingDto("D");
-                bridgeGame.move(readMovingDto);
-                bridgeGame.move(readMovingDto);
 
-                MoveDto move = bridgeGame.move(readMovingDto);
+                MoveDto move = movePlayer(bridgeGame, readMovingDto, 3);
                 PrintMapDto printMapDto = move.getPrintMapDto();
 
                 assertThat(move.getNextGameStatus()).isSameAs(GameStatus.GAME_EXIT);
@@ -135,6 +133,13 @@ class BridgeGameTest {
                 assertThatThrownBy(() -> bridgeGame.move(readMovingDto))
                         .isInstanceOf(IllegalArgumentException.class);
             }
+        }
+
+        private MoveDto movePlayer(final BridgeGame bridgeGame, final ReadMovingDto dto, int count) {
+            for (int i = 0; i < count - 1; i++) {
+                bridgeGame.move(dto);
+            }
+            return bridgeGame.move(dto);
         }
     }
 
