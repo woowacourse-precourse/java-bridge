@@ -28,7 +28,7 @@ public class BridgeGameException {
     }
 
     public void validateBlank(String readLine) {
-        if(readLine.equals("")){
+        if (readLine.equals("")) {
             System.out.println(RANGE_ERROR);
             throw new IllegalArgumentException();
         }

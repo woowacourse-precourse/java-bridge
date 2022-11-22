@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.domain.BridgeEnum;
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.StringJoiner;
 
