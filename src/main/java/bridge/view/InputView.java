@@ -1,6 +1,8 @@
 package bridge.view;
-import bridge.valid.BridgeValidator;
-import bridge.valid.InputValidator;
+import bridge.command.GameCommand;
+import bridge.command.MoveCommand;
+import bridge.valid.BridgeSizeLengthValidator;
+import bridge.valid.BridgeSizeTypeValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -10,58 +12,41 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         return inputBridgeSize();
     }
 
     private static int inputBridgeSize() {
         String size = Console.readLine();
 
-        try {
-            InputValidator.validateType(size);
-        } catch (IllegalArgumentException e) {
-            System.out.println(OutputView.SYSTEM_MESSAGE_INPUT_BRIDGE_SIZE);
-            return inputBridgeSize();
-        }
-        return Integer.parseInt(size);
+        BridgeSizeTypeValidator.validateType(size);
+        int bridgeSize = Integer.parseInt(size);
+        BridgeSizeLengthValidator.validateSize(bridgeSize);
+
+        return bridgeSize;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
 
-    public Integer readInitialMoving() {
-        return inputInitialMoving();
-    }
-
-    private static Integer inputInitialMoving() {
+    public static MoveCommand readInitialMoving() {
         String input = Console.readLine();
+        int adapt = Integer.parseInt(input);
 
-        int initialMoving = Integer.parseInt(input);
-
-        return initialMoving;
+        return MoveCommand.setCommandByNumber(adapt);
     }
 
-    public String readMoving() {
-        return inputMoving();
-    }
+    public static MoveCommand readMoving() {
+        String command = Console.readLine();
 
-    private static String inputMoving() {
-        String moving = Console.readLine();
-
-        return moving;
+        return MoveCommand.setMoveCommand(command);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return inputGameCommand();
-    }
-
-    private static String inputGameCommand() {
-        String gameCommand = Console.readLine();
-
-        return gameCommand;
+        return null;
     }
 }

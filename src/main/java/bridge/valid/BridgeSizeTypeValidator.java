@@ -4,10 +4,10 @@ import bridge.exception.BridgeGameError;
 
 import java.util.regex.Pattern;
 
-public class InputValidator {
+public class BridgeSizeTypeValidator {
     public static final String ONLY_NUMBER = "^[0-9]*$";
 
-    private InputValidator() {
+    private BridgeSizeTypeValidator() {
     }
 
     public static void validateType(String size) {
