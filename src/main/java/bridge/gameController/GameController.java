@@ -26,7 +26,7 @@ public class GameController {
             }
             flag = retryCheck();
         }
-        outputView.printResult(false,cnt);
+        outputView.printResult(false, cnt);
     }
 
     private void makeBridge() {
@@ -37,7 +37,7 @@ public class GameController {
     private boolean moveBridge() {
         boolean moveCheck = true;
         while (moveCheck) {
-            moveCheck =isMoveCheck(moveCheck);
+            moveCheck = isMoveCheck(moveCheck);
             if (builtBridge.size() - 1 == location && moveCheck == true) {
                 outputView.printResult(true, cnt);
                 return true;
@@ -50,12 +50,17 @@ public class GameController {
     private String moveChoice() {
         outputView.choiceUpDown();
         String userMove = inputView.readMoving();
-        System.out.println(userMove);
         return userMove;
     }
 
-    private boolean retryCheck() {
+    private boolean isMoveCheck(boolean moveCheck) {
+        String userMove = moveChoice();
+        moveCheck = bridgeGame.move(userMove, location, builtBridge);
+        outputView.printMap(moveCheck, userMove, location);
+        return moveCheck;
+    }
 
+    private boolean retryCheck() {
         outputView.restartMessage();
         String command = inputView.readGameCommand();
         boolean checkCommand = bridgeGame.retry(command);
@@ -65,13 +70,6 @@ public class GameController {
             return true;
         }
         return false;
-    }
-
-    private boolean isMoveCheck(boolean moveCheck){
-        String userMove = moveChoice();
-        moveCheck = bridgeGame.move(userMove, location, builtBridge);
-        outputView.printMap(moveCheck, userMove, location);
-        return moveCheck;
     }
 }
 
