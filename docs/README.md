@@ -54,15 +54,23 @@
 
 ### 테스트
 
-- [ ] 단위 테스트
-  - [ ] Bridge
-    - [ ] 다리 생성 테스트
-  - [ ] Player
-    - [ ] 다리 건너기를 성공한다.
-    - [ ] 다리 건너기를 실패한다.
-    - [ ] 재시도한다.
+- [x] 단위 테스트
+  - [x] Bridge
+    - [x] 다리 생성 테스트
+  - [x] Player
+    - [x] 다리 건너기를 성공한다.
+    - [x] 다리 건너기를 실패한다.
+    - [x] 재시도한다.
 
+- [x] 통합 테스트
 
+  - [x] 프로그램이 성공적으로 작동한다.
+  - [x] 입력 테스트
+    - [x] 다리 길이가 숫자가 아니면 예외가 발생한다.
+    - [x] 이동하는 칸이 U, D가 아니면 예외가 발생한다.
+    - [x] 재시도로 주어진 입력이 R, Q가 아니면 예외가 발생한다.
+
+  
 
 # 구조
 
@@ -93,16 +101,11 @@
 
 사용자 입력을 받는다.
 
-- readBridgeSize() - BridgeSizeValidator
-- readMoving() - MovingValidator
-- readGameCommand() - GameCommandValidator
-
 ### OutputView
 
 게임 진행 상황과 결과를 출력한다.
 
-- printMap
-- printResult
+
 
 
 
