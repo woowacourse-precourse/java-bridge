@@ -26,6 +26,15 @@ class OutputViewTest {
         assertThat(check).isEqualTo("[   | O |   | O ]");
     }
 
+    @DisplayName("다리 출력 시 나누는 것 출력 테스트")
+    @Test
+    void getPartitionTest() {
+        String check= outputView.getPartition(1, answer);
+        assertThat(check).isEqualTo("| ");
+        check=outputView.getPartition(2,List.of("U","D"));
+        assertThat(check).isEqualTo("");
+    }
+
     @DisplayName("다리의 해당 위치가 U인지 D인지 테스트")
     @Test
     void checkSameLocationTest() {
@@ -54,4 +63,5 @@ class OutputViewTest {
         check=outputView.checkSuccess(List.of("U","D"),answer);
         assertThat(check).isEqualTo(false);
     }
+
 }
