@@ -31,6 +31,8 @@ public class BridgeGameController {
             restartRoundStart();
         }
 
+         outputView.printFinalResult(bridgeGame, isSuccess);
+     }
         outputView.printResult(bridgeGame.getGameRoundCount(), isSuccess);
     }
 
@@ -64,7 +66,7 @@ public class BridgeGameController {
 
     private boolean getRoundResultAndPrintMap() {
         boolean isSuccessMove;
-        do {
+        do{
             outputView.printInputMovingGuide();
             String moving = readMoving();
             isSuccessMove = bridgeGame.move(moving);

@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeGameResult;
 
 import java.util.List;
@@ -14,9 +15,10 @@ public class OutputView {
         System.out.println(bridgeStatus);
     }
 
-    public void printResult(int count, boolean isCorrect) {
+    public void printFinalResult(BridgeGame bridgeGame, boolean isCorrect) {
         printFinalResultGuide();
-        System.out.println(getResultString(count, isCorrect));
+        printMap(bridgeGame.getGameResult());
+        System.out.println(getResultString(bridgeGame.getGameRoundCount(), isCorrect));
     }
 
     public void printStartGuide() {
