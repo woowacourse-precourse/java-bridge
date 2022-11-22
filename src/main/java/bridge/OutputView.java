@@ -47,4 +47,8 @@ public class OutputView {
     public static String getErrorMessageInputTry() {
         return ERROR_MESSAGE + " 재시작은 R과 Q로만 입력 가능합니다.";
     }
+
+    public static String getErrorMessageAllNumber() {
+        return ERROR_MESSAGE + " 3과 20 사이의 자연수를 입력해주세요.";
+    }
 }
