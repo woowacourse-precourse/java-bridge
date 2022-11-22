@@ -1,15 +1,13 @@
 package bridge.view;
 
-import bridge.constant.Directions;
 import bridge.service.constant.ChoiceResult;
 import bridge.view.constant.BridgeStyle;
 import bridge.view.constant.ChoiceResultStyle;
+import bridge.view.constant.GameResultExpressions;
+import bridge.view.constant.ResultPhrase;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -46,6 +44,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<List<ChoiceResult>> gameLog, boolean isGameCleared, int attemptCount) {
+        System.out.println(ResultPhrase.TITLE.get());
+        printMap(gameLog);
+        insertLineBreak();
+        System.out.println(createGameResultDisplay(isGameCleared));
+        System.out.println(createAttemptCountDisplay(attemptCount));
+    }
+
+    private String createGameResultDisplay (boolean isGameCleared) {
+        return String.format(
+                ResultPhrase.RESULT.get(),
+                GameResultExpressions.findExpressionByBooleanValue(isGameCleared)
+        );
+    }
+
+    private String createAttemptCountDisplay (int attemptCount) {
+        return String.format(ResultPhrase.ATTEMPT_COUNT.get(), attemptCount);
+    }
+
+    public static void insertLineBreak() {
+        System.out.println();
     }
 }
