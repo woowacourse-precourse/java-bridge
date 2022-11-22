@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum BridgeLocationStatus {
     UP("U"),
@@ -15,10 +14,6 @@ public enum BridgeLocationStatus {
         this.location = location;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
     public static BridgeLocationStatus getBridgeLocationStatus(String bridgeLocation) {
         return Arrays.stream(values())
                 .filter(b -> b.location.equals(bridgeLocation))
@@ -26,11 +21,7 @@ public enum BridgeLocationStatus {
                 .orElseThrow(() -> new IllegalArgumentException(INPUT_BRIDGE_LOCATION_EXCEPTION_MESSAGE));
     }
 
-    public boolean compareBridgeLocation(List<String> randomBridge, BridgeIndex index) {
-        return this.location.equals(randomBridge.get(index.getBridgeIndex()));
-    }
-
-    public boolean findBridgeLocation(String up){
+    public boolean checkBridgeLocation(String up) {
         return this.location.equals(up);
     }
 }
