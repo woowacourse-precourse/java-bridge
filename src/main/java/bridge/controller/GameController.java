@@ -72,6 +72,7 @@ public class GameController {
 
             if (!retry) {
                 OutputView.printEndResult();
+                OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
                 OutputView.printResult(FAIL);
                 OutputView.printTotalAttempts(countTry);
             }
