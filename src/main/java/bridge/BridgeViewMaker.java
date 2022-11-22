@@ -13,6 +13,20 @@ public class BridgeViewMaker {
         this.bridgeType = bridgeType;
     }
 
+    public void resultBridge(List<String> answer, String userUpDown, int blankNumber) {
+        String gather = resultBridgeCondition(answer, userUpDown, blankNumber);
+        System.out.println("[ " + gather + " ]");
+    }
+
+    private String resultBridgeCondition(List<String> answer, String userUpDown, int blankNumber) {
+        if (blankNumber == 0) {
+            return blankStep(viewBlank(answer.get(blankNumber), userUpDown), blankNumber);
+        }
+        return gatherBlank(untilBlank(answer, blankNumber),
+                blankStep(viewBlank(answer.get(blankNumber), userUpDown), blankNumber));
+    }
+
+
     private String untilBlank(List<String> answer, int blankNumber) {
         String gather = "";
         for (int i = 0; i < blankNumber; i++) {
