@@ -16,7 +16,6 @@ public class BridgeApplication {
         outputView.printGameStartMessage();
 
         Bridge bridge = new Bridge(inputView.readBridgeSize());
-        System.out.println(bridge.getBridge());
 
         gameProcess(new BridgeGame(bridge.getBridge()));
     }
