@@ -1,7 +1,8 @@
 package bridge.exception;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -12,49 +13,85 @@ public class InputExceptionTest {
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
 
-    InputException inputException = new InputException();
+    void exceptionTest(InputException inputException, String input) {
+        assertThatThrownBy(() -> {
+            inputException.exception(input);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 
     @Test
+    @DisplayName("input이 null일 때 예외처리하는 기능 테스트")
     void test_inputNullException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputException.inputNullException("");
-        });
+        String input = "";
+
+        InputException inputException = new InputException() {
+            @Override
+            public void exception(String input) {
+                InputException.super.exception(input);
+            }
+        };
     }
 
     @Test
+    @DisplayName("input이 숫자가 아닐 때 예외처리하는 기능 테스트")
     void test_inputNoNumberException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputException.inputNoNumberException("x");
-            inputException.inputNoNumberException(",");
-        });
+        String input = "x";
+
+        InputException inputException = new InputException() {
+            @Override
+            public void exception(String input) {
+                InputException.super.exception(input);
+            }
+        };
     }
 
     @Test
+    @DisplayName("input의 범위가 맞지 않을 때 예외처리하는 기능 테스트")
     void test_inputNoRangeException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputException.inputNoRangeException(2);
-            inputException.inputNoRangeException(22);
-        });
+        int input = 2;
+
+        InputException inputException = new InputException() {
+            @Override
+            public void exception(int input) {
+                InputException.super.exception(input);
+            }
+        };
     }
 
     @Test
+    @DisplayName("input이 1개의 글자가 아닐 때 예외처리하는 기능 테스트")
     void test_inputNoOneCharException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputException.inputNoOneCharException("");
-            inputException.inputNoOneCharException("he");
-        });
+        String input = "he";
+
+        InputException inputException = new InputException() {
+            @Override
+            public void exception(String input) {
+                InputException.super.exception(input);
+            }
+        };
     }
 
     @Test
+    @DisplayName("input이 유효하지 않은 글자일 때 예외처리하는 기능 테스트")
     void test_inputInvalidCharException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputException.inputInvalidCharException("u", UP, DOWN);
-            inputException.inputInvalidCharException("d", UP, DOWN);
-            inputException.inputInvalidCharException("q", UP, DOWN);
-            inputException.inputInvalidCharException("r", RESTART, QUIT);
-            inputException.inputInvalidCharException("q", RESTART, QUIT);
-            inputException.inputInvalidCharException("u", RESTART, QUIT);
-        });
+        String u = "u";
+        String d = "d";
+        String q = "q";
+        String r = "r";
+
+        InputException inputException = new InputException() {
+            @Override
+            public void exception(String input, String term1, String term2) {
+                InputException.super.exception(u, UP, DOWN);
+                InputException.super.exception(d, UP, DOWN);
+                InputException.super.exception(q, UP, DOWN);
+                InputException.super.exception(r, RESTART, QUIT);
+                InputException.super.exception(q, RESTART, QUIT);
+                InputException.super.exception(u, RESTART, QUIT);
+            }
+        };
     }
 
 }
