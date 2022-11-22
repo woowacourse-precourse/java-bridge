@@ -3,6 +3,8 @@ package exception;
 import message.ErrorMessage;
 import view.OutputView;
 
+import java.util.NoSuchElementException;
+
 public class BridgeException {
     private final int bridgeSize;
     OutputView outputView = new OutputView();
@@ -16,7 +18,7 @@ public class BridgeException {
             Integer.parseInt(bridgeSize);
         } catch(NumberFormatException e) {
             outputView.printError(ErrorMessage.Bridge_Size.getMessage());
-            throw new IllegalArgumentException();
+            throw new NoSuchElementException();
         }
 
         return Integer.parseInt(bridgeSize);

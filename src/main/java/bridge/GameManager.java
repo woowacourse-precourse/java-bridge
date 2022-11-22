@@ -13,36 +13,33 @@ public class GameManager {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     BridgeGame bridgeGame;
     List<String> bridge;
-    List<List<String>> bridgeMap;
     String movingPosition;
+    int totalTry = 0;
+    boolean isSuccess = true;
 
     void play() {
         System.out.println(Starting.getMessage());
         makeBridge();
         run();
+        outputView.printResult(bridgeGame.getBridgeMap(), totalTry, isSuccess);
     }
 
     void makeBridge() {
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         bridgeGame = new BridgeGame(bridge);
-        init();
-    }
-
-    private void init() {
-        List<String> initial = List.of("[","]");
-        bridgeMap.add(0, initial);
-        bridgeMap.add(1, initial);
     }
 
     void run() {
         while(true) {
+            totalTry++;
             if(moving())
                 break;
-            if(inputView.readGameCommand().equals("Q"))
+            if(inputView.readGameCommand().equals("Q")) {
+                isSuccess = false;
                 break;
+            }
             bridgeGame.retry();
         }
-        outputView.printResult();
     }
 
     boolean moving() {
