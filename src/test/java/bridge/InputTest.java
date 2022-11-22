@@ -17,11 +17,19 @@ public class InputTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Moving 이 U 또는 D 가 아닌 경우 예외 처리")
+    @DisplayName("moving 이 U 또는 D 가 아닌 경우 예외 처리")
     @ValueSource(strings = {"A", "UD", "123", "abcdefghijk"})
     @ParameterizedTest
     void invalidMoving(String moving) {
         assertThatThrownBy(() -> Validator.validateMoving(moving))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("gameCommand 가 R 또는 Q 가 아닌 경우 예외 처리")
+    @ValueSource(strings = {"U", "D", "1234", "qwerty"})
+    @ParameterizedTest
+    void invalidGameCommand(String gameCommand) {
+        assertThatThrownBy(() -> Validator.validateGameCommand(gameCommand))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
