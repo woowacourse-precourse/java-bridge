@@ -21,7 +21,7 @@ class BridgeGameTest extends NsTest {
         //when
         Bridges bridges = game.getGameBridges();
         //then
-        assertThat(bridges).isEqualTo(new Bridges(Arrays.asList("D", "D", "U", "D")));
+        assertThat(bridges.getBridges()).isEqualTo(new Bridges(Arrays.asList("D", "D", "U", "D")).getBridges());
     }
 
     @Test
