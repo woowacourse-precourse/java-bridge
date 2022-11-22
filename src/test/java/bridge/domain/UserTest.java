@@ -101,6 +101,4 @@ public class UserTest {
         assertThat(user.getRound()).isEqualTo(round);
         assertThat(user.getAttemptCount()).isEqualTo(attemptCount);
     }
-
-
 }
