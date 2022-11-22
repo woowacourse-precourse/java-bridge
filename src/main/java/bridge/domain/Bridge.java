@@ -7,7 +7,7 @@ import org.assertj.core.util.Lists;
 public class Bridge {
     private final List<BridgeState> bridge;
 
-    Bridge(List<String> bridge) {
+    public Bridge(List<String> bridge) {
         this.bridge = new ArrayList<>();
         makeBridge(bridge);
     }
