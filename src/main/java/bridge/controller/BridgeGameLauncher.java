@@ -23,15 +23,20 @@ public class BridgeGameLauncher {
     }
 
     public void game(){
+        giveBridge();
+
+        List<String> result = bridgeGame.startGame();
+
+        outputView.printResult(result);
+    }
+
+    private void giveBridge(){
         outputView.printStart();
         int size = inputView.getBridgeSize();
 
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         bridgeGame.setBridge(bridge);
-        List<String> result = bridgeGame.startGame();
-
-        outputView.printResult(result);
     }
 
 }
