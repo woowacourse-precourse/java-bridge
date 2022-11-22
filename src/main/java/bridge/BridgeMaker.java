@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.utils.enums.MoveFormat;
 import bridge.utils.Validator;
