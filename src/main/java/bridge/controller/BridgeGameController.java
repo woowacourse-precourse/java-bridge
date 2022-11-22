@@ -51,6 +51,15 @@ public class BridgeGameController {
         return false;
     }
 
+    private String getReadGameCommand() {
+        String input;
+        do {
+            input = inputView.readGameCommand();
+        } while (isDisallowInputGameCommand(input));
+
+        return input;
+    }
+
     private boolean isDisallowInputGameCommand(String input) {
         try {
             bridgeGame.validateInputGameCommand(input);
