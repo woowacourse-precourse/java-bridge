@@ -32,8 +32,14 @@ public class BridgeGame {
         return false;
     }
 
+    public void resetGame(){
+        this.tryTimes = 0;
+        this.nowIdx = 0;
+    }
+
     public boolean retry(String userInput) {
         if(userInput.equals("R")){
+            resetGame();
             return true;
         }
         return false;
