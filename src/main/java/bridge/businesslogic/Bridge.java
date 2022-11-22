@@ -8,8 +8,7 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridge;
     private final List<String> currentlyCrossedBridge;
-    private BridgeCrossingStatus status;
-
+    private final BridgeCrossingStatus status;
 
     public Bridge(BridgeMaker bridgeMaker, int size) {
         this.bridge = bridgeMaker.makeBridge(size);
