@@ -1,21 +1,17 @@
 package bridge.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private static final int DEFAULT_TRY_COUNT = 1;
-    private static final String DEFAULT_MAP_BRIDGE = "";
 
-    private int tryCount;
-    private String mapUpperBridge;
-    private String mapLowerBridge;
-
-    public User() {
-        this.tryCount = DEFAULT_TRY_COUNT;
-        this.mapUpperBridge = DEFAULT_MAP_BRIDGE;
-        this.mapLowerBridge = DEFAULT_MAP_BRIDGE;
-    }
+    private int tryCount = DEFAULT_TRY_COUNT;
+    private List<String> mapUpperBridge = new ArrayList<>();
+    private List<String> mapLowerBridge = new ArrayList<>();
 
     public void updateTryCount(){
-        this.tryCount++;
+        tryCount++;
     }
 
     public void updateMapBridge(String move, boolean isSuccess){
@@ -26,24 +22,24 @@ public class User {
     }
 
     private void updateMapBridgeFalse(String move){
-        if(move == "U"){
-            mapUpperBridge += " | X";
-            mapLowerBridge += " |  ";
+        if(move.equals("U")){
+            this.mapUpperBridge.add("X");
+            this.mapLowerBridge.add(" ");
         }
-        if(move == "D"){
-            mapUpperBridge += " |  ";
-            mapLowerBridge += " | X";
+        if(move.equals("D")){
+            this.mapUpperBridge.add(" ");
+            this.mapLowerBridge.add("X");
         }
     }
 
     private void updateMapBridgeTrue(String move){
-        if(move == "U"){
-            mapUpperBridge += " | O";
-            mapLowerBridge += " |  ";
+        if(move.equals("U")){
+            this.mapUpperBridge.add("O");
+            this.mapLowerBridge.add(" ");
         }
-        if(move == "D"){
-            mapUpperBridge += " |  ";
-            mapLowerBridge += " | O";
+        if(move.equals("D")){
+            this.mapUpperBridge.add(" ");
+            this.mapLowerBridge.add("O");
         }
     }
 
@@ -51,11 +47,11 @@ public class User {
         return tryCount;
     }
 
-    public String getMapUpperBridge() {
-        return mapUpperBridge;
+    public List<String> getMapUpperBridge() {
+        return this.mapUpperBridge;
     }
 
-    public String getMapLowerBridge() {
-        return mapLowerBridge;
+    public List<String> getMapLowerBridge() {
+        return this.mapLowerBridge;
     }
 }
