@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.Command;
 import bridge.util.ConstantIntegerBridge;
 import bridge.util.IllegalArgumentExceptionMessage;
 import camp.nextstep.edu.missionutils.Console;
@@ -51,13 +52,13 @@ public class InputView {
     private String inputBridgeSizeCommand() {
         String bridgeSize = Console.readLine();
         validateStringSize(bridgeSize);
-
         return bridgeSize;
     }
 
     private String inputMoveCommand() {
-
-        return Console.readLine();
+        String moveCommand = Console.readLine();
+        validateMoveCommand(moveCommand);
+        return moveCommand;
     }
 
     /**
@@ -72,6 +73,12 @@ public class InputView {
     private void validateIntegerSize(int size) {
         if (ConstantIntegerBridge.LENGTH_LOWER_BRIDGE.getConstant() > size || size > ConstantIntegerBridge.LENGTH_UPPER_BRIDGE.getConstant()) {
             throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_BRIDGE_LENGTH.getMessage());
+        }
+    }
+
+    private void validateMoveCommand(String moveCommand) {
+        if (!moveCommand.matches("[" + Command.MOVE_UPPER_LETTER.getCommand() + Command.MOVE_LOWER_LETTER.getCommand() + "]")) {
+            throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_MOVE_COMMAND_FORM.getMessage());
         }
     }
 }
