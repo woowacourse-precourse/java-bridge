@@ -43,4 +43,8 @@ public class BridgeGame {
     public PlayerPath getPlayerPath(){
         return playerPath;
     }
+
+    public boolean getIsSuccess(){
+        return bridge.isCompletedWith(playerPath);
+    }
 }
