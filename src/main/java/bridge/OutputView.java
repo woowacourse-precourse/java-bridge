@@ -5,12 +5,15 @@ package bridge;
  */
 public class OutputView {
 
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(Bridge computerBridge, Bridge userBridge) {
+        String map = computerBridge.getMapToString(userBridge);
+        printMessage(map);
     }
 
     /**
@@ -18,6 +21,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(Bridge computerBridge, Bridge userBridge, int tryCounts) {
+        String result = GameMessage.getResultTitle();
+        result += GameMessage.LINE_BREAK;
+        result += computerBridge.getMapToString(userBridge);
+        result += GameMessage.LINE_BREAK + GameMessage.LINE_BREAK;
+
+        boolean success = computerBridge.checkSuccess(userBridge);
+        result += GameMessage.getSuccessOrNot(success);
+        result += GameMessage.LINE_BREAK;
+        result += GameMessage.getTotalTry(tryCounts);
+
+        printMessage(result);
+    }
+
+    public static void printEnterMessage(String message, String contents) {
+        System.out.println(message + GameMessage.LINE_BREAK
+                + contents);
+    }
+
+    public static void printMessage(String message) {
+        System.out.println(message + GameMessage.LINE_BREAK);
     }
 }
