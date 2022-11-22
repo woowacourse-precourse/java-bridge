@@ -27,16 +27,6 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame.getMovingMap(), bridgeGame.allPass(), bridgeGame.getTryCount());
     }
 
-    private int getBridgeSize() {
-        while (true) {
-            try {
-                return inputView.readBridgeSize();
-            } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
-            }
-        }
-    }
-
     private void crossBridge(BridgeGame bridgeGame) {
         boolean keepGoing;
         do {
@@ -54,6 +44,25 @@ public class BridgeGameController {
         return bridgeGame.move(moving);
     }
 
+    private boolean retryGame(BridgeGame bridgeGame) {
+        outputView.printMessage(Game.RETRY_MESSAGE.getMessage());
+        if (getGameCommand().equals(Command.RETRY.getLabel())) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
+    }
+
+    private int getBridgeSize() {
+        while (true) {
+            try {
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
+    }
+
     private String getMovingCommand() {
         while (true) {
             try {
@@ -62,15 +71,6 @@ public class BridgeGameController {
                 outputView.printMessage(e.getMessage());
             }
         }
-    }
-
-    private boolean retryGame(BridgeGame bridgeGame) {
-        outputView.printMessage(Game.RETRY_MESSAGE.getMessage());
-        if (getGameCommand().equals(Command.RETRY.getLabel())) {
-            bridgeGame.retry();
-            return true;
-        }
-        return false;
     }
 
     private String getGameCommand() {
