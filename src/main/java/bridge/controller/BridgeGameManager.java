@@ -52,7 +52,8 @@ public class BridgeGameManager {
 
     public void restartGame() {
         String playerInput = InputView.readGameCommand();
-        if (bridgeGame.retry(playerInput)) {
+        boolean restart = bridgeGame.retry(playerInput);
+        if (restart) {
             gamePlayCount++;
             crossBridge();
             return;
@@ -63,7 +64,7 @@ public class BridgeGameManager {
     public boolean crossSuccess() {
         List<Status> statuses = new ArrayList<>();
         for (String currSection : bridge) {
-            if (currSectionWrong(statuses, currSection)) {
+            if (!currSectionWrong(statuses, currSection)) {
                 return false;
             }
         }
