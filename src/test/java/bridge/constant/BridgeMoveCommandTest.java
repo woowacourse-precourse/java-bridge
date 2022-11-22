@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 public class BridgeMoveCommandTest {
     @Test
     void getByOrderTest(){
-        assertThat(BridgeMoveCommand.getByOrder(0)).isEqualTo(
+        assertThat(BridgeMoveCommand.getByOrder(1)).isEqualTo(
                 BridgeMoveCommand.MOVE_UP
         );
-        assertThat(BridgeMoveCommand.getByOrder(1)).isEqualTo(
+        assertThat(BridgeMoveCommand.getByOrder(0)).isEqualTo(
                 BridgeMoveCommand.MOVE_DOWN
         );
     }
