@@ -24,10 +24,20 @@ public class BridgeGame {
     public void play() {
         ++gameTryCount;
         while (!this.isCleared()) {
-            boolean isMoveSuccess = move(inputView.readMoving());
+            boolean isMoveSuccess = move(readMove());
             outputView.printMap(gameBridges);
             if (!isMoveSuccess) {
                 return;
+            }
+        }
+    }
+
+    private BridgeMove readMove() {
+        while(true) {
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

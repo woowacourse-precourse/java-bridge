@@ -22,9 +22,15 @@ public class GameController {
 
     public void initGame() {
         outputView.printGameStart();
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridges = bridgeMaker.makeBridge(bridgeSize);
-        this.game = new BridgeGame(bridges);
+        while(true) {
+            try {
+                List<String> bridges = bridgeMaker.makeBridge(inputView.readBridgeSize());
+                this.game = new BridgeGame(bridges);
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void run() {
@@ -36,7 +42,13 @@ public class GameController {
     }
 
     private boolean isWantRestart() {
-        GameCommand gameCommand = inputView.readGameCommand();
-        return gameCommand.isGameRestart();
+        while(true) {
+            try {
+                GameCommand gameCommand = inputView.readGameCommand();
+                return gameCommand.isGameRestart();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

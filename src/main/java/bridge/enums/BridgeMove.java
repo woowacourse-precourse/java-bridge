@@ -20,7 +20,7 @@ public enum BridgeMove {
         return Arrays.stream(values())
                 .filter(bridgeMove -> isMoveEqual(bridgeMove, inputMove))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()->new IllegalArgumentException("[ERROR] 이동은 U나 D만 가능합니다."));
     }
 
     public static boolean isMoveEqual(BridgeMove bridgeMove, String inputMove) {

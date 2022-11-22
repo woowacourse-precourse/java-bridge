@@ -17,7 +17,7 @@ public enum GameCommand {
         return Arrays.stream(values())
                 .filter(gameCommand -> isCommandEqual(gameCommand, inputCommand))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()->new IllegalArgumentException("[ERROR] 게임 재시도 여부는 R이나 Q만 입력가능합니다."));
     }
 
     private static boolean isCommandEqual(GameCommand gameCommand, String inputCommand) {
