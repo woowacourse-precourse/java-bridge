@@ -4,7 +4,6 @@ package bridge.domain;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
     private final Bridge bridge;
     private final BridgePlayer player;
     private final BridgeMap bridgeMap;
@@ -26,9 +25,9 @@ public class BridgeGame {
 
     public void retry() {
         player.increaseAttemptCount();
-        player.goBack();
+        player.initializePlayerPosition();
         changePlayerAliveState();
-        bridgeMap.updateCurrentMap(player.getCurrentBridgePosition(), isPlayerAlive);
+        bridgeMap.initializeCurrentMap();
     }
 
     private void changePlayerAliveState(){
@@ -37,5 +36,13 @@ public class BridgeGame {
 
     public BridgeMap getBridgeMap(){
         return this.bridgeMap;
+    }
+
+    public int bridgeSize(){
+        return this.bridge.getBridgeSize();
+    }
+
+    public boolean isCompletedGame(){
+        return (bridge.getBridgeSize() == player.getCurrentBridgePosition()+1) && isPlayerAlive;
     }
 }
