@@ -14,7 +14,7 @@ public class BridgeMap {
 	private BridgeMap() {
 	}
 
-	public static BridgeMap constructedBy(CrossingDecision crossingDecision, MovementCommand movementCommand){
+	public static BridgeMap constructedBy(CrossingDecision crossingDecision, MovementCommand movementCommand) {
 		buildMapDescription(crossingDecision, movementCommand);
 		return new BridgeMap();
 	}
@@ -52,7 +52,7 @@ public class BridgeMap {
 		side.set(prevElementIdx, preElement.substring(0, idxToLastCharacter));
 	}
 
-	public static void clearBridgeDescription(){
+	public static void clearBridgeDescription() {
 		upperBridgeDescription.clear();
 		underBridgeDescription.clear();
 	}
