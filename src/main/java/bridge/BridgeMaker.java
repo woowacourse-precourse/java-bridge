@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.domain.vo.BridgeStatus;
 import java.util.ArrayList;

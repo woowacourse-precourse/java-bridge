@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
