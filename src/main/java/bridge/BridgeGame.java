@@ -6,6 +6,7 @@ import bridge.exception.GameExceptionHandler;
 import bridge.input.getter.BridgeSizeGetter;
 import bridge.input.getter.GameCommandGetter;
 import bridge.input.getter.MoveGetter;
+import bridge.output.ResultDemonstrator;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final MoveGetter moveGetter;
     private final GameCommandGetter gameCommandGetter;
+    private final ResultDemonstrator resultDemonstrator;
     private final GameExceptionHandler exceptionHandler;
 
     private BridgeGame() {
@@ -25,6 +27,7 @@ public class BridgeGame {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.moveGetter = MoveGetter.getMoveGetter();
         this.gameCommandGetter = GameCommandGetter.getGameCommandGetter();
+        this.resultDemonstrator = ResultDemonstrator.getResultDemonstrator();
         this.exceptionHandler = GameExceptionHandler.getGameExceptionHandler();
     }
 
@@ -73,6 +76,19 @@ public class BridgeGame {
             gameCommand = retry();
         }
         return gameCommand;
+    }
+
+    public int runAttempt(List<String> bridge, List<MoveResult> moveResults) {
+        int count = -1;
+        boolean isCorrectMove = true;
+        while (isCorrectMove && ++count < bridge.size()) {
+            String correctMove = bridge.get(count);
+            isCorrectMove = isUserMoveCorrect(correctMove, move());
+            updateMoveResults(moveResults, correctMove, isCorrectMove);
+            resultDemonstrator.printCurrentResult(moveResults);
+        }
+
+        return count;
     }
 
     public boolean isUserMoveCorrect(String correctMove, String userMove) {
