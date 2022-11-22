@@ -7,7 +7,12 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public BridgeGame() {
+    private List<String> bridge;
+    private BridgeMatcher bridgeMatcher;
+
+    public BridgeGame(List<String> bridge, BridgeMatcher bridgeMatcher) {
+        this.bridge = bridge;
+        this.bridgeMatcher = bridgeMatcher;
     }
 
     /**
@@ -15,8 +20,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(List<String> bridege, String input, BridgeMatcher bridgeMatcher) {
-        return isMatchMoving(bridege, input, bridgeMatcher);
+    public boolean move(String input) {
+        int size = bridgeMatcher.calculateSize();
+        String oneOftheBridge = bridge.get(size);
+        return oneOftheBridge.equals(input);
     }
 
     /**
@@ -25,12 +32,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-    }
-
-    private static boolean isMatchMoving(List<String> bridege, String input, BridgeMatcher bridgeMatcher) {
-        int size = bridgeMatcher.calculateSize();
-        String oneOftheBridge = bridege.get(size);
-        return oneOftheBridge.equals(input);
+        bridgeMatcher.tryAgain();
+        bridgeMatcher.clearBridgeMatcher();
     }
 }
 

@@ -15,19 +15,29 @@ class BridgeGameTest {
 
     @BeforeEach
     void setUp() {
-        bridgeGame = new BridgeGame();
+        List<String> bridege = newArrayList("U", "U", "D");
+        List<Boolean> boolBridge = newArrayList();
+        BridgeMatcher bridgeMatcher = new BridgeMatcher(boolBridge, 1);
+        bridgeGame = new BridgeGame(bridege, bridgeMatcher);
     }
 
     @Test
     @DisplayName("사용자가 칸을 이동할 때 사용하는 기능 테스트")
-    void move() {
-        List<String> bridege = newArrayList("U", "U", "D");
+    void move_test1() {
         String input = Validator.MOVE_UP;
-        List<Boolean> boolBridge = newArrayList();
-        BridgeMatcher bridgeMatcher = new BridgeMatcher(boolBridge);
 
         boolean expected = true;
-        boolean actual = bridgeGame.move(bridege, input, bridgeMatcher);
+        boolean actual = bridgeGame.move(input);
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("사용자가 칸을 이동할 때 사용하는 기능 테스트")
+    void move_test2() {
+        String input = Validator.MOVE_DOWN;
+
+        boolean expected = false;
+        boolean actual = bridgeGame.move(input);
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 }
