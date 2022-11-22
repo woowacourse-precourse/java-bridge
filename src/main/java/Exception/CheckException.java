@@ -11,6 +11,9 @@ public class CheckException {
     private static final String OUTOFSIZERANGE_ERRORMESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String NOTNUMBER_ERRORMESSAGE = "[ERROR] 숫자만 입력해주세요.";
     private static final String INVALIDMOVING_ERRORMESSAGE = "[ERROR] U와 D 중에서 하나를 입력해주세요.";
+    private static final String GAMERESTART = "R";
+    private static final String GAMEQUIT = "D";
+    private static final String INVALIDCOMMAND_ERRORMESSAGE = "[ERROR] R과 Q중에서 하나를 입력해주세요.";
 
     public static void bridgeSizeException(String size) {
         if (!Pattern.matches(NUMERICAL_REGULAREXPRESSION, size)) {
@@ -24,6 +27,12 @@ public class CheckException {
     public static void movingException(String moving) {
         if (!moving.equals(BridgeDirection.UP.getDirection()) && !moving.equals(BridgeDirection.DOWN.getDirection())) {
             throw new IllegalArgumentException(INVALIDMOVING_ERRORMESSAGE);
+        }
+    }
+
+    public static void gameCommandException(String command) {
+        if (!command.equals(GAMERESTART) && !command.equals(GAMEQUIT)) {
+            throw new IllegalArgumentException(INVALIDCOMMAND_ERRORMESSAGE);
         }
     }
 }
