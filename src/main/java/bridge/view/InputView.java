@@ -20,6 +20,7 @@ public class InputView {
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println();
         return Integer.parseInt(input);
     }
 
