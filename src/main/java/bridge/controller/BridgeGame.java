@@ -8,6 +8,12 @@ import bridge.domain.UserState;
  */
 public class BridgeGame {
 
+    private boolean quit;
+
+    public BridgeGame() {
+        this.quit = false;
+    }
+
     public void move(UserState userState, boolean isSafe, String userChoice) {
         if (userChoice.equals(Command.UP.getCommand())) {
             userState.moveToUp(moveOrFall(isSafe));
@@ -26,5 +32,13 @@ public class BridgeGame {
     public void retry(UserState userState) {
         userState.resetMove();
         userState.tryCountIncrease();
+    }
+
+    public boolean isQuit() {
+        return quit;
+    }
+
+    public void quitChange(boolean retry) {
+        quit = retry;
     }
 }

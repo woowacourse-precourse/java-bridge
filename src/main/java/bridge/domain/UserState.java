@@ -7,11 +7,9 @@ public class UserState {
 
     private final List<String> upLine;
     private final List<String> downLine;
-    private boolean quit;
     private int tryCount;
 
     public UserState() {
-        this.quit = false;
         this.tryCount = 0;
         this.upLine = new ArrayList<>();
         this.downLine = new ArrayList<>();
@@ -38,16 +36,8 @@ public class UserState {
         downLine.clear();
     }
 
-    public void quitChange(boolean isRetry) {
-        quit = isRetry;
-    }
-
     public void tryCountIncrease() {
         tryCount++;
-    }
-
-    public boolean isQuit() {
-        return quit;
     }
 
     public int getTryCount() {

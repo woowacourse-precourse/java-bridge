@@ -15,6 +15,9 @@ public class GamePlay {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
+    public GamePlay() {
+    }
+
     public void bridgeGameStart() {
         outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
@@ -25,13 +28,13 @@ public class GamePlay {
     }
 
     private void bridgeGameTry(Bridge bridge, UserState userState) {
-        while (!userState.isQuit()) {
+        while (!bridgeGame.isQuit()) {
             bridgeGame.retry(userState);
             bridgeCross(bridge, userState);
             if (userState.isSuccessOrFail(bridge.getSize())) {
                 return;
             }
-            userState.quitChange(inputView.readGameCommand().equals(Command.QUIT.getCommand()));
+            bridgeGame.quitChange(inputView.readGameCommand().equals(Command.QUIT.getCommand()));
         }
     }
 
