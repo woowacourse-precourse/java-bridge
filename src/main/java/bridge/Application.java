@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -9,6 +10,7 @@ public class Application {
         BridgeException bridgeException = new BridgeException();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        BridgeGame bridgeGame = new BridgeGame();
 
 
         System.out.print("다리 건너기 게임을 시작합니다.");
@@ -25,6 +27,9 @@ public class Application {
         bridgeException.UserInput(direction);
 
         // 입력받은 값에 따라 이동 -> BridgeGame 클래스의 move()
+        List<List<String>> resultBridge = new ArrayList<>();
+        resultBridge = bridgeGame.move(bridge,direction,0);
+
         // 이동한 후 다리 출력 -> OutputView 클래스의 printMap()
         // 성공 시 -> OutputView 클래스의 printResult() -> 종료
         // 실패 시 재시작 여부 입력 받음-> InputView 클래스의 readGameCommand()
