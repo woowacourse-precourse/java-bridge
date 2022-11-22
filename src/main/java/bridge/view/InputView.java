@@ -15,22 +15,33 @@ public class InputView {
         System.out.println(GAME_START_MESSAGE);
         System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
         String input = Console.readLine();
-        validateBridgeSize(input);
-        System.out.println();
+        try {
+            validateBridgeSize(input);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return Integer.parseInt(input);
     }
 
     public String readMoving() {
         System.out.println(MOVE_INPUT_MESSAGE);
         String input = Console.readLine();
-        validateMoveInput(input);
+        try{
+            validateMoveInput(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return input;
     }
 
     public String readGameCommand() {
         System.out.println(RETRY_INPUT_MESSAGE);
         String input = Console.readLine();
-        validateCommand(input);
+        try {
+            validateCommand(input);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return input;
     }
 
