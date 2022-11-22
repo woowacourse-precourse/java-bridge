@@ -1,6 +1,7 @@
 package bridge.game;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.Model;
 
 import java.util.List;
 
@@ -14,14 +15,24 @@ public class BridgeGame {
     public int indexOfBridge;
 
     public BridgeGame(int bridgeSize) {
-        bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+        Model.bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
         indexOfBridge = 0;
         tryCount = 1;
     }
 
-
+    /**
+     * about the input command, compare with created bridge(at correspond position in rounds).
+     * then, add the game result map to Model(upperBridgeMap and lowerBridgeMap respectively).
+     * then, return game state.
+     *
+     * @param moveCommand
+     * @return
+     * 0 : the state code represent 'On game'<br>
+     * 1 : the state code represent "Game over'<br>
+     * 2 : the state code represent 'Game clear(success)'
+     */
     public int move(String moveCommand) {
-        String bridgeStateAtIndex = bridge.get(indexOfBridge);
+        String bridgeStateAtIndex = Model.bridge.get(indexOfBridge);
         addBridgeMapForTrue(bridgeStateAtIndex, moveCommand);
         addBridgeMapForFalse(bridgeStateAtIndex, moveCommand);
         indexOfBridge++;
@@ -29,25 +40,24 @@ public class BridgeGame {
     }
     private void addBridgeMapForTrue(String bridgeEachRound, String moveCommand) {
         if (moveCommand.equals(U.msg) && bridgeEachRound.equals(moveCommand)) {
-            upperBridgeMap.add(O.msg);
-            lowerBridgeMap.add(BLANK.msg);
+            Model.upperBridgeMap.add(O.msg);
+            Model.lowerBridgeMap.add(BLANK.msg);
         }
         if (moveCommand.equals(D.msg) && bridgeEachRound.equals(moveCommand)) {
-            upperBridgeMap.add(BLANK.msg);
-            lowerBridgeMap.add(O.msg);
+            Model.upperBridgeMap.add(BLANK.msg);
+            Model.lowerBridgeMap.add(O.msg);
         }
     }
     private void addBridgeMapForFalse(String bridgeEachRound, String moveCommand) {
         if (moveCommand.equals(U.msg) && !bridgeEachRound.equals(moveCommand)) {
-            upperBridgeMap.add(X.msg);
-            lowerBridgeMap.add(BLANK.msg);
+            Model.upperBridgeMap.add(X.msg);
+            Model.lowerBridgeMap.add(BLANK.msg);
         }
         if (moveCommand.equals(D.msg) && !bridgeEachRound.equals(moveCommand)) {
-            upperBridgeMap.add(BLANK.msg);
-            lowerBridgeMap.add(X.msg);
+            Model.upperBridgeMap.add(BLANK.msg);
+            Model.lowerBridgeMap.add(X.msg);
         }
     }
-
 
     public int gameState() {
         String upperLastElement = lastElementOfList(upperBridgeMap);
@@ -67,7 +77,13 @@ public class BridgeGame {
         return list.get(list.size()-1);
     }
 
-
+    /**
+     * if the bridge game is over, decide the game state through input game command "R" or "Q".
+     * if the input command is "R", initialize the related variables.
+     *
+     * @param gameCommand
+     * @return decided game state
+     */
     public int retry(String gameCommand) {
         if (gameCommand.equals(R.msg)) {
             operateRetry();
