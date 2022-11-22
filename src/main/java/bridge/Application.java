@@ -9,7 +9,11 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         BridgeRandomNumberGenerator  bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        Controller controller = new Controller(inputView, outputView, bridgeRandomNumberGenerator);
-        controller.startGame();
+        try {
+            Controller controller = new Controller(inputView, outputView, bridgeRandomNumberGenerator);
+            controller.startGame();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 }
