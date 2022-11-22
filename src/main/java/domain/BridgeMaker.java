@@ -3,8 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.BridgeNumberGenerator;
-
 public class BridgeMaker {
 
 	private final BridgeNumberGenerator bridgeNumberGenerator;

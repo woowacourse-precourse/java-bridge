@@ -2,7 +2,6 @@ package domain;
 
 import java.util.List;
 
-import bridge.BridgeRandomNumberGenerator;
 import service.ViewController;
 
 public class BridgeGame {
