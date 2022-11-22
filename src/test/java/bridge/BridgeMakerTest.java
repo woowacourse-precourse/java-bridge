@@ -13,6 +13,6 @@ class BridgeMakerTest {
         int size = 3;
         List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
         assertThat(bridge.size()).isEqualTo(size);
-        assertThat(bridge.stream().allMatch(e -> e.equals(Constant.Up) || e.equals(Constant.Down))).isTrue();
+        assertThat(bridge.stream().allMatch(e -> e.equals(Constant.UP) || e.equals(Constant.DOWN))).isTrue();
     }
 }
