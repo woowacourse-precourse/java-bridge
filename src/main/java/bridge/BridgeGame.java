@@ -3,7 +3,7 @@ package bridge;
 import domain.Bridge;
 import domain.Result;
 import enums.BridgeEnum;
-import enums.InputEnum;
+import enums.PrintEnum;
 import enums.ResultMessage;
 import view.InputView;
 import view.OutputView;
@@ -18,13 +18,12 @@ public class BridgeGame {
     final InputView inputView = new InputView();
     final OutputView outputView = new OutputView();
     static final Result result = new Result();
-    Bridge bridge = new Bridge();
-
+    static final Bridge bridge = new Bridge();
     static int trial = 1;
-    int position = 0;
+    static int position = 0;
     static List<String> bridgeAnswer;
     public BridgeGame(){
-        System.out.println(InputEnum.START_BRIDGE_GAME.getValue() );
+        System.out.println(PrintEnum.START_BRIDGE_GAME.getValue() );
     }
 
     /**
@@ -53,28 +52,27 @@ public class BridgeGame {
     private boolean showWhenCorrect(String moving){
         insertMovingWhenSuccess(moving, position);
         if ( bridgeAnswer.get(position).equals(moving) ) {
-            outputView.printMap(bridge, position);
             position++;
-            System.out.println("++됨: "+ position );
+            outputView.printMap(bridge, position);
             return true;
         } return false;
     }
 
     private void insertMovingWhenSuccess(String moving, int position){
         if(moving.equals(BridgeEnum.U.name())) {
-            bridge.getUp().add(position,"O");
+            bridge.getUp().add(position,PrintEnum.O.getValue());
         }
         if(moving.equals(BridgeEnum.D.name())) {
-            bridge.getDown().add(position,"O");
+            bridge.getDown().add(position,PrintEnum.O.getValue());
         }
     }
 
     private void insertMovingWhenFail(String moving, int position){
         if(moving.equals(BridgeEnum.U.name())){
-            bridge.getUp().add(position,"X");
+            bridge.getUp().add(position,PrintEnum.X.getValue());
         }
         if(moving.equals(BridgeEnum.D.name())) {
-            bridge.getDown().add(position,"X");
+            bridge.getDown().add(position,PrintEnum.X.getValue());
         }
     }
 

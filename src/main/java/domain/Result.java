@@ -1,6 +1,5 @@
 package domain;
 
-import enums.InputEnum;
 import enums.ResultMessage;
 
 public class Result {

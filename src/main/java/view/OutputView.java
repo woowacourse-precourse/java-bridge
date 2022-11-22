@@ -3,17 +3,16 @@ package view;
 import bridge.BridgeMaker;
 import domain.Bridge;
 import domain.Result;
+import enums.PrintEnum;
 import enums.ResultMessage;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    static final String divider = " | ";
-    static final String start = "[ ";
-    static final String end = " ]";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -23,9 +22,9 @@ public class OutputView {
     public void printMap(
             Bridge bridge, int position
     ) {
-        StringBuilder upStringBuilder = new StringBuilder().append(start);
-        StringBuilder downStringBuilder = new StringBuilder().append(start);
-        for(int i=0; i < position ; i++){
+        StringBuilder upStringBuilder = new StringBuilder().append(PrintEnum.START.getValue());
+        StringBuilder downStringBuilder = new StringBuilder().append(PrintEnum.START.getValue());
+        for(int i=0 ; i < position ; i++){
             buildMap(bridge.getUp(), bridge.getDown(), position, i , upStringBuilder, downStringBuilder);
         }
         System.out.println(upStringBuilder.toString());
@@ -49,8 +48,8 @@ public class OutputView {
     }
 
     public void printMapWhenFail(Bridge bridge, int position){
-        StringBuilder upStringBuilder = new StringBuilder().append(start);
-        StringBuilder downStringBuilder = new StringBuilder().append(start);
+        StringBuilder upStringBuilder = new StringBuilder().append(PrintEnum.START.getValue());
+        StringBuilder downStringBuilder = new StringBuilder().append(PrintEnum.START.getValue());
         for(int i = 0 ; i < position ; i++){
             replaceX(bridge.getUp(), bridge.getDown(), i);
             buildMap(bridge.getUp(), bridge.getDown(), position, i, upStringBuilder, downStringBuilder);
@@ -60,18 +59,17 @@ public class OutputView {
     }
 
     public void buildMap(List<String> up , List<String> down, int position, int i, StringBuilder upStringBuilder, StringBuilder downStringBuilder){
-        if(i == position-1 ) {
-            upStringBuilder.append(up.get(i)).append(end);
-            downStringBuilder.append(down.get(i)).append(end);
+        if(i == position - 1 ) {
+            upStringBuilder.append(up.get(i)).append(PrintEnum.END.getValue());
+            downStringBuilder.append(down.get(i)).append(PrintEnum.END.getValue());
+            return;
         }
-        if(i < position){
-            upStringBuilder.append(up.get(i)).append(divider);
-            downStringBuilder.append(down.get(i)).append(divider);
-        }
+        upStringBuilder.append(up.get(i)).append(PrintEnum.DIVIDER.getValue());
+        downStringBuilder.append(down.get(i)).append(PrintEnum.DIVIDER.getValue());
     }
 
     public void replaceX(List<String> up, List<String> down, int i){
-        if( up.get(i) == "X") up.add(i, " ");
-        if( down.get(i) == "X") up.add(i , " ");
+        if(Objects.equals(up.get(i), PrintEnum.X.getValue())) up.add(i, " ");
+        if(Objects.equals(down.get(i), PrintEnum.X.getValue())) up.add(i , " ");
     }
 }
