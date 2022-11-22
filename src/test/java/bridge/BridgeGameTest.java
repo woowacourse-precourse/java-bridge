@@ -31,4 +31,17 @@ public class BridgeGameTest {
         game.move("U");
         assertThat(game.checkIfWin()).isTrue();
     }
+
+    @DisplayName("다리 한 칸을 이동했을 때 결과를 생성하는 기능에 대한 테스트")
+    @Test
+    public void getStatusTest() {
+        BridgeGame game = new BridgeGame(List.of("U", "D", "U"));
+        assertThat(game.generateMap()).isEqualTo("");
+        game.move("U");
+        assertThat(game.generateMap()).isEqualTo("[ O ]\n[   ]");
+        game.move("U");
+        assertThat(game.generateMap()).isEqualTo("[ O | X ]\n[   |   ]");
+        game.move("U");
+        assertThat(game.generateMap()).isEqualTo("[ O | X | O ]\n[   |   |   ]");
+    }
 }
