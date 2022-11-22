@@ -34,4 +34,11 @@ class CheckExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("재시작 여부 입력이 대문자 Q와 R이 아니면 예외 발생")
+    @ValueSource(strings = {"q", "r", "2"})
+    @ParameterizedTest
+    void inputGameCommandByInvaidValue(String gameCommand) {
+        assertThatThrownBy(() -> CheckException.gameCommandException(gameCommand))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
