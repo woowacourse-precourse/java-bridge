@@ -19,8 +19,8 @@ public class OutputView {
     
     public void printResult(boolean stop, int count) {
         System.out.println(Constant.Result_of_game);
-        System.out.println(Constant.Front + up.substring(0, up.length() - 1) + " " + Constant.Back);
-        System.out.println(Constant.Front + down.substring(0, up.length() - 1) + " " + Constant.Back);
+        System.out.println(Constant.Front + up.substring(0, up.length() - 1) + Constant.Back);
+        System.out.println(Constant.Front + down.substring(0, up.length() - 1) + Constant.Back);
         if (!stop) System.out.println(Constant.Result_of_try + Constant.Win);
         if (stop) System.out.println(Constant.Result_of_try + Constant.Lose);
         System.out.println(Constant.Total_Try + count);
