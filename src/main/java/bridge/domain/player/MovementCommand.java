@@ -15,7 +15,7 @@ public class MovementCommand implements InputValidator {
 		this.movement = movement;
 	}
 
-	public static MovementCommand valueOf(String movement) {
+	public static MovementCommand valueOf(String movement) {        //TODO : VALIDATION과 "U" or "D" 리턴을 getter 없이 할 수 있는 방법에 대해 고민
 		return new MovementCommand(movement);
 	}
 

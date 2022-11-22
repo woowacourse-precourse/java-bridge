@@ -18,7 +18,7 @@ public class BridgeMaker {
 
 		for (int bridgeSpace = 0; bridgeSpace < size; bridgeSpace++) {
 			BridgeChannel bridgeChannel = BridgeChannel.of(channelShape());
-			bridge.add(bridgeChannel.Shape());
+			bridge.add(bridgeChannel.toString());
 		}
 
 		return bridge;

@@ -11,7 +11,7 @@ public class Bridge {
 	private final List<String> bridge;
 
 	public Bridge(BridgeSizeCommand bridgeSizeCommand, BridgeMaker bridgeMaker) {
-		this.bridge = bridgeMaker.makeBridge(bridgeSizeCommand.bridgeSize());
+		this.bridge = bridgeMaker.makeBridge(bridgeSizeCommand.toNumber());
 	}
 
 	public List<String> getBridge() {

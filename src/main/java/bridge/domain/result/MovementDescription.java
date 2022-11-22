@@ -1,4 +1,4 @@
-package bridge.domain.map;
+package bridge.domain.result;
 
 import bridge.domain.game.CrossingDecision;
 

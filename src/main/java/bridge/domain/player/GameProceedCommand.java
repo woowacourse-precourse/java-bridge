@@ -30,7 +30,7 @@ public class GameProceedCommand implements InputValidator {
 		}
 	}
 
-	public String gameCommand() {
+	public String getGameCommand() {
 		return gameCommand;
 	}
 

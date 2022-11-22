@@ -21,7 +21,6 @@ public class BridgeSizeCommand implements InputValidator {
 	}
 
 	public static BridgeSizeCommand valueOf(String inputBridgeSize) {
-
 		try {
 			return new BridgeSizeCommand(Integer.parseInt(inputBridgeSize));
 		} catch (NumberFormatException e) {
@@ -35,7 +34,7 @@ public class BridgeSizeCommand implements InputValidator {
 		}
 	}
 
-	public int bridgeSize() {
+	public int toNumber() {
 		return bridgeSize;
 	}
 

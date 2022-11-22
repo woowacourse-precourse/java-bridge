@@ -11,7 +11,7 @@ public class Application {
 		try {
 			Controller controller = new Controller();
 			controller.run();
-		} catch (IllegalArgumentException ie) {
+		} catch (IllegalArgumentException ignored) {
 		} finally {
 			OutputView.withContentOf(EXIT_MESSAGE, true, false).ConsoleMessage();
 		}
