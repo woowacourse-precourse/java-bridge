@@ -1,9 +1,10 @@
-package bridge.bridgeMaker.bridge;
+package bridge.bridgeRouter.bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.bridgeMaker.exception.NotFoundBridgeException;
+import bridge.bridgeRouter.BridgeRouter;
+import bridge.bridgeRouter.exception.NotFoundBridgeException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

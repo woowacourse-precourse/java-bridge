@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.bridgeGame.BridgeGame;
-import bridge.bridgeMaker.BridgeMaker;
 import bridge.inputView.InputView;
 import bridge.outputView.OutputView;
 import java.util.List;

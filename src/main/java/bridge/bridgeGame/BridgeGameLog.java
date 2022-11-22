@@ -1,6 +1,6 @@
 package bridge.bridgeGame;
 
-import bridge.bridgeMaker.bridge.BridgeRouter;
+import bridge.bridgeRouter.BridgeRouter;
 import java.util.ArrayList;
 import java.util.List;
 

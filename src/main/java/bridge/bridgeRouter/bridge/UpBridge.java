@@ -1,4 +1,4 @@
-package bridge.bridgeMaker.bridge;
+package bridge.bridgeRouter.bridge;
 
 public class UpBridge implements Bridge {
     @Override

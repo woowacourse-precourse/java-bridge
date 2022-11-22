@@ -1,7 +1,6 @@
-package bridge.bridgeMaker;
+package bridge;
 
-import bridge.BridgeNumberGenerator;
-import bridge.bridgeMaker.bridge.BridgeRouter;
+import bridge.bridgeRouter.BridgeRouter;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

@@ -1,10 +1,11 @@
-package bridge.bridgeMaker;
+package bridge.bridgeRouter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.bridgeMaker.exception.NotFoundBridgeException;
+import bridge.bridgeRouter.exception.NotFoundBridgeException;
 import bridge.common.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Arrays;

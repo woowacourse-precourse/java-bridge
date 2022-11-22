@@ -1,6 +1,9 @@
-package bridge.bridgeMaker.bridge;
+package bridge.bridgeRouter;
 
-import bridge.bridgeMaker.exception.NotFoundBridgeException;
+import bridge.bridgeRouter.bridge.Bridge;
+import bridge.bridgeRouter.bridge.DownBridge;
+import bridge.bridgeRouter.bridge.UpBridge;
+import bridge.bridgeRouter.exception.NotFoundBridgeException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;

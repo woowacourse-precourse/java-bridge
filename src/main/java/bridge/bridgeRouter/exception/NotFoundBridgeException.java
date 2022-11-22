@@ -1,4 +1,4 @@
-package bridge.bridgeMaker.exception;
+package bridge.bridgeRouter.exception;
 
 import bridge.common.ErrorMessage;
 

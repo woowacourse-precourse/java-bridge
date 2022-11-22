@@ -1,4 +1,4 @@
-package bridge.bridgeMaker.bridge;
+package bridge.bridgeRouter.bridge;
 
 public interface Bridge {
     String getDirection();
