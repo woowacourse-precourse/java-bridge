@@ -66,11 +66,7 @@ public class Bridge {
         return gameCount;
     }
 
-
-    /**
-     *  비즈니스 로직과 UI 로직을 분리하기 위해
-     */
-    public int updateMovingResultAndReturnNextMovingPossible(String inputUpOrDown) {
+    public int updateMovingResultAndReturnMovingResult(String inputUpOrDown) {
         int result = isNextMovingPossible(inputUpOrDown);
         if (result == CAN_CROSS_NEXT) {
             if (whetherFollowingEndOrNot()) {
@@ -82,9 +78,7 @@ public class Bridge {
     }
 
 
-    /**
-     *  비즈니스 로직과 UI 로직을 분리하기 위해
-     */
+
     public String movingResultToString(String successOrNot) {
         return lineToString(successOrNot, UP).concat(NEWLINE)
                 .concat(lineToString(successOrNot, DOWN));
@@ -105,7 +99,6 @@ public class Bridge {
                 .concat(getLowerMovableResult(successOrNot, getCurrentIndex()));
     }
 
-    // success 라는 가정하에 range만 인자로 전달
     private String getUpperMovableResultBeforeCurrent(int current) {
         StringBuilder movingResult = new StringBuilder();
         for (int index = 0; index < current; index++) {
