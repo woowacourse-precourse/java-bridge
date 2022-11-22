@@ -20,15 +20,13 @@ public class Game {
 
   public void play() {
     int i;
-    while (true) {
+    do {
       player = new Player();
       for (i = 0; i < answerBridge.getBridgeSize(); i++) {
         if (!bridgeGame.move(player, answerBridge))
           break;
       }
-      if (!keepGame(i, player))
-        break;
-    }
+    } while (keepGame(i, player));
   }
 
   private boolean keepGame(int i, Player player) {

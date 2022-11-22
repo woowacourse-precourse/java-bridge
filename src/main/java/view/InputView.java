@@ -1,6 +1,7 @@
 package view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static constant.Message.*;
 import static exception.InputException.*;
 
 /**
@@ -16,11 +17,10 @@ public class InputView {
     try {
       size = Integer.parseInt(readLine());
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요!");
+      throw new IllegalArgumentException(PUT_NUM);
     }
-    if (!isRightBridgeSize(size)) {
-      throw new IllegalArgumentException("[ERROR] 다리 길이는 3이상 20이하입니다.");
-    }
+    if (!isRightBridgeSize(size))
+      throw new IllegalArgumentException(BRIDGE_SIZE);
     return size;
   }
 
@@ -32,11 +32,10 @@ public class InputView {
     try {
       move = readLine();
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("[ERROR] 문자를 입력하세요!");
+      throw new IllegalArgumentException(PUT_STR);
     }
-    if (!isRightBridgeMove(move)) {
-      throw new IllegalArgumentException("[ERROR] U 와 D 중 입력하세요.");
-    }
+    if (!isRightBridgeMove(move))
+      throw new IllegalArgumentException(PUT_UD);
     return move;
   }
 
@@ -48,11 +47,10 @@ public class InputView {
     try {
       play = readLine();
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("[ERROR] 문자를 입력하세요!");
+      throw new IllegalArgumentException(PUT_STR);
     }
-    if (!isRightBridgePlay(play)) {
-      throw new IllegalArgumentException("[ERROR] Q 와 R 중 입력하세요.");
-    }
+    if (!isRightBridgePlay(play))
+      throw new IllegalArgumentException(PUT_QR);
     return play;
   }
 }
