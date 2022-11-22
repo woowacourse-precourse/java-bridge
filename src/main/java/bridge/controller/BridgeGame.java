@@ -42,72 +42,74 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
-        if (move.equals("U")) {
-            isMoveEqualsU(move, inputMove, resultMap);
-            isMoveNotEqualsU(move, inputMove, resultMap);
+        if (move.equals("U")){
+            checkMoveEqualsU(move, inputMove, resultMap);
         }
         if (move.equals("D")){
-            isMoveEqualsD(move, inputMove, resultMap);
-            isMoveNotEqualsD(move, inputMove, resultMap);
+            checkMoveEqualsD(move, inputMove, resultMap);
         }
     }
 
-    public void isMoveEqualsU(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
-        String resultUp="";
-        String resultDown="";
-        List<String> results = new ArrayList<>();
+    public void checkMoveEqualsU(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
         if (move.equals(inputMove)){
-            resultUp="O";
-            resultDown="E";
-            addToResultList(resultUp, resultDown, results);
-            addToResultMap(results, resultMap);
-            bridgeGameInput.getBridgePrint(resultMap);
-            currentIndex += 1;
+            isMoveEqualsU(resultMap);
         }
-    }
-
-    public void isMoveNotEqualsU(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
-        String resultUp="";
-        String resultDown="";
-        List<String> results = new ArrayList<>();
         if (!move.equals(inputMove)){
-            resultUp="E";
-            resultDown="X";
-            addToResultList(resultUp, resultDown, results);
-            addToResultMap(results, resultMap);
-            bridgeGameInput.getBridgePrint(resultMap);
-            retry("실패", resultMap);
+            isMoveNotEqualsU(resultMap);
         }
     }
 
-    public void isMoveEqualsD(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
-        String resultUp="";
-        String resultDown="";
-        List<String> results = new ArrayList<>();
-        if (move.equals(inputMove)){
-            resultUp="E";
-            resultDown="O";
-            results.add(resultUp);
-            results.add(resultDown);
-            resultMap.put(currentIndex, results);
-            bridgeGameInput.getBridgePrint(resultMap);
-            currentIndex += 1;
+    public void checkMoveEqualsD(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
+        if (move.equals("D")) {
+            if (move.equals(inputMove)){
+                isMoveEqualsD(resultMap);
+            }
+            if (!move.equals(inputMove)){
+                isMoveNotEqualsD(resultMap);
+            }
         }
     }
 
-    public void isMoveNotEqualsD(String move, String inputMove, HashMap<Integer, List<String>> resultMap) {
-        String resultUp="";
-        String resultDown="";
+    public void isMoveEqualsU(HashMap<Integer, List<String>> resultMap) {
         List<String> results = new ArrayList<>();
-        if (!move.equals(inputMove)){
-            resultUp="X";
-            resultDown="E";
-            results.add(resultUp);
-            results.add(resultDown);
-            resultMap.put(currentIndex, results);
-            bridgeGameInput.getBridgePrint(resultMap);
-            retry("실패", resultMap);
-        }
+        String resultUp="O";
+        String resultDown="E";
+        addToResultList(resultUp, resultDown, results);
+        addToResultMap(results, resultMap);
+        bridgeGameInput.getBridgePrint(resultMap);
+        currentIndex += 1;
+    }
+
+    public void isMoveNotEqualsU(HashMap<Integer, List<String>> resultMap) {
+        List<String> results = new ArrayList<>();
+        String resultUp="E";
+        String resultDown="X";
+        addToResultList(resultUp, resultDown, results);
+        addToResultMap(results, resultMap);
+        bridgeGameInput.getBridgePrint(resultMap);
+        retry("실패", resultMap);
+    }
+
+    public void isMoveEqualsD(HashMap<Integer, List<String>> resultMap) {
+        List<String> results = new ArrayList<>();
+        String resultUp="E";
+        String resultDown="O";
+        results.add(resultUp);
+        results.add(resultDown);
+        resultMap.put(currentIndex, results);
+        bridgeGameInput.getBridgePrint(resultMap);
+        currentIndex += 1;
+    }
+
+    public void isMoveNotEqualsD(HashMap<Integer, List<String>> resultMap) {
+        List<String> results = new ArrayList<>();
+        String resultUp="X";
+        String resultDown="E";
+        results.add(resultUp);
+        results.add(resultDown);
+        resultMap.put(currentIndex, results);
+        bridgeGameInput.getBridgePrint(resultMap);
+        retry("실패", resultMap);
     }
 
     public void addToResultList(String resultUp, String resultDown, List<String> results) {
