@@ -3,14 +3,22 @@ package bridge;
 import java.util.List;
 
 public class BridgeController {
+    private final InputView inputView;
+    private final BridgeResults bridgeResults;
+    private final OutputView outputView;
+    private final BridgeIndex index;
 
-    public void run(InputView inputView, int bridgeSize, List<String> randomBridge) {
-        BridgeIndex index = new BridgeIndex(); //
+    public BridgeController(InputView inputView) {
+        this.inputView = inputView;
+        this.bridgeResults = new BridgeResults();
+        this.outputView = new OutputView();
+        this.index = new BridgeIndex();
+    }
+
+    public void run(int bridgeSize, List<String> randomBridge) {
         int gameCount = 1;
         boolean gameEndButton = false;
-        BridgeResults bridgeResults = new BridgeResults();
         BridgeGame bridgeGame = new BridgeGame(randomBridge, bridgeResults);
-        OutputView outputView = new OutputView(); //
         while (!index.endGame(bridgeSize) && !gameEndButton) {
             boolean compareBridgeLocationResult = bridgeGame.move(inputView.readMoving(), bridgeResults, index);
             outputView.printMap(bridgeResults);

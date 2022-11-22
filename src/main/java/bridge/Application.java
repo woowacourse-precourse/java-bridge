@@ -9,11 +9,11 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println(BRIDGE_GAME_START_MESSAGE);
-        InputView inputView = new InputView();
-        int bridgeSize = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        final InputView inputView = new InputView();
+        final int bridgeSize = inputView.readBridgeSize();
+        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> randomBridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeController bridgeController = new BridgeController();
-        bridgeController.run(inputView, bridgeSize, randomBridge);
+        BridgeController bridgeController = new BridgeController(inputView);
+        bridgeController.run(bridgeSize, randomBridge);
     }
 }
