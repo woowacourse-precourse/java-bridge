@@ -3,12 +3,14 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     final private BridgeMaker bridgeMaker;
     private List<String> bridge;
+
 
     public List<List<String>> getPlayerBridge() {
         return playerBridge;
@@ -40,15 +42,15 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String input) {
-        int select = 0;
-        if (input.equals("U")) select = 1;
-        if (input.equals("D")) select = 0;
-        playerBridge.get(Math.abs(1 - select)).add(" ");
+        int select = -1;
+        if (input.equals(MoveDirection.UP.getDirectionString())) select = MoveDirection.UP.getDirectionInteger();
+        if (input.equals(MoveDirection.DOWN.getDirectionString())) select = MoveDirection.DOWN.getDirectionInteger();
+        playerBridge.get(Math.abs(MoveDirection.UP.getDirectionInteger() - select)).add(BridgePassStatus.BLANK.getResult());
         if (input.equals(bridge.get(playerBridge.get(select).size()))) {
-            playerBridge.get(select).add("O");
+            playerBridge.get(select).add(BridgePassStatus.PASS.getResult());
             return;
         }
-        playerBridge.get(select).add("X");
+        playerBridge.get(select).add(BridgePassStatus.BLOCK.getResult());
     }
 
     /**
@@ -60,7 +62,7 @@ public class BridgeGame {
      */
     public boolean checkGameOver() {
         for (int i = 0; i < playerBridge.size(); i++) {
-            if (playerBridge.get(i).get(playerBridge.get(i).size() - 1).equals("X")) {
+            if (playerBridge.get(i).get(playerBridge.get(i).size() - 1).equals(BridgePassStatus.BLOCK.getResult())) {
                 return true;
             }
         }
@@ -77,13 +79,12 @@ public class BridgeGame {
      */
     public boolean retry(String input) {
         if (input.equals("R")) {
-            playerBridge.get(0).clear();
-            playerBridge.get(1).clear();
+            playerBridge.get(MoveDirection.UP.getDirectionInteger()).clear();
+            playerBridge.get(MoveDirection.DOWN.getDirectionInteger()).clear();
             tryCount++;
             return true;
         }
         if (input.equals("Q")) return false;
-        System.out.println("[ERROR] 입력 값은 \"R\" 또는 \"Q\"여야 합니다.");
         throw new IllegalArgumentException();
     }
 
@@ -101,9 +102,9 @@ public class BridgeGame {
      */
     public boolean checkGameWin() {
         if (playerBridge.get(0).size() == bridge.size()) {
-            if (!playerBridge.get(0).get(bridge.size() - 1).equals("X") && !playerBridge.get(0).get(bridge.size() - 1).equals("X")) {
-                return true;
-            }
+            if (playerBridge.get(0).get(bridge.size() - 1).equals(BridgePassStatus.BLOCK.getResult())) return false;
+            if (playerBridge.get(0).get(bridge.size() - 1).equals(BridgePassStatus.BLOCK.getResult())) return false;
+            return true;
         }
         return false;
     }
