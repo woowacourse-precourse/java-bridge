@@ -32,8 +32,7 @@ public class BridgeGame {
         answers = new BridgeMaker(bridgeNumberGenerator).makeBridge(size);
     }
 
-    public void play(List<String> answers) {
-        reset();
+    public void play() {
         for (String answer : answers) {
             String readMoving = inputView.readMoving();
             move(answer, readMoving);
