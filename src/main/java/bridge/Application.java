@@ -14,6 +14,7 @@ class Bridge {
     private GameUI gameUI;
     private InputView inputView;
     private BridgeMaker bridgeMaker;
+    private OutputView outputView;
     public List<String> gameStart() {
         gameUI.gameStart();
         gameUI.getBridgeSize();
@@ -27,6 +28,7 @@ class Bridge {
         for (int i = 0; i < bridgeShape.size(); i++) {
             movingPlayer(playerMoving);
             compareMove(bridgeShape.get(i), playerMoving.get(i), moveOutcome);
+            outputView.printMap(playerMoving, moveOutcome);
         }
     }
 
