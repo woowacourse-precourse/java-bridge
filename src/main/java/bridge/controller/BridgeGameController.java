@@ -33,6 +33,7 @@ public class BridgeGameController {
         this.inputView = new InputViewImpl();
         this.outputView = new OutputViewImpl();
         this.gameStateMap = mapGameStateType();
+        this.state = STATE_INIT;
     }
 
     private Map<GameStateType, Runnable> mapGameStateType() {
