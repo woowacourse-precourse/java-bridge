@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Result {
-    private final List<State> crossResult = new ArrayList<>();
+    private final List<State> crossResult;
 
     public Result() {
+        crossResult = new ArrayList<>();
     }
 
     public void addResult(State status) {
