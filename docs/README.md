@@ -7,11 +7,13 @@
 3. getBridge : 다리를 반환해준다. 
 
 ### Player
-1. 생성자 : 전역변수 List<String>을 생성한다. 
+1. 생성자 : 전역변수 List<String>을 생성한다. 전역변수 trialCount를 1로 초기화한다.
 2. addNewBridgeInput : 입력 문자열을 리스트에 저장한다. 
 3. getBridge : 문자열 리스트를 반환한다.
 4. isGameFinished : Bridge를 입력받아 리스트가 서로 같으면 참을 반환
 5. clearBridge : 리스트를 초기화시켜준다. 
+6. increaseTrialCount : trialCount를 1 증가시킨다. 
+7. getTrialCount : trialCount를 반환한다. 
 
 ## enum
 ### BridgeType
@@ -96,7 +98,7 @@ getSymbol을 통해 문자열을 출력받아 BridgeViewConstructor에서 출력
 1. 생성자 : InputView.readBridgeSize를 입력받아 Bridge를 생성하고 Player을 생성해준다. 전역변수 trialCount를 1로 초기화해준다. 
 2. moveAStep : Input.readMoving을 입력받아 Player.addNewBridgeInput해준다. constructBridge를 반환해 OutputView.printMap해준다. 
 3. resetGame : player.clearBridge 해주고 trialCount++해준다.
-4. concludeGame : OutputView.printResult에 trialCount와 constructBridge를 입력받아 출력해준다. 
+4. concludeGame : OutputView.printResult에 player.getTrialCOunt와 constructBridge를 입력받아 출력해준다. 
 5. isPaused : Bridge.isPlayerRightInput의 역을 반환한다.
 6. isSuccess : Player.isGameFinished를 출력해준다. 
 7. readFinalCommand : InputView.readGameCommand를 받아 반환한다. 

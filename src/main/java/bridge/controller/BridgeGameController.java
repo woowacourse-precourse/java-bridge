@@ -14,12 +14,10 @@ public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final Bridge bridge;
     private final Player player = new Player();
-    private int trialCount;
 
     public BridgeGameController(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        trialCount = 1;
     }
 
     public void moveAStep(){
@@ -29,11 +27,11 @@ public class BridgeGameController {
 
     public void resetGame(){
         player.clearBridge();
-        trialCount++;
+        player.increaseTrialCount();
     }
 
     public void concludeGame(){
-        outputView.printResult(constructBridge(), trialCount);
+        outputView.printResult(constructBridge(), player.getTrialCount());
     }
 
     private String constructBridge(){

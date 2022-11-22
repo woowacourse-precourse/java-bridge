@@ -6,9 +6,11 @@ import java.util.List;
 public class Player {
 
     private List<String> bridges;
+    private int trialCount;
 
     public Player(){
         bridges = new ArrayList<>();
+        trialCount = 1;
     }
 
     public void addNewBridgeInput(String newBridge){
@@ -25,5 +27,13 @@ public class Player {
 
     public void clearBridge(){
         bridges = new ArrayList<>();
+    }
+
+    public void increaseTrialCount(){
+        trialCount++;
+    }
+
+    public int getTrialCount(){
+        return trialCount;
     }
 }
