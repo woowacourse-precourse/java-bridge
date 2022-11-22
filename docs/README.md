@@ -44,7 +44,8 @@
 ### ScoreMap 
 - [x] User가 입력한 값에 따른 결과를 저장하는 기능  -> score
 - [x] 재시도로 인해 초기화 되는 기능 -> clear
-- [x] 요구사항에 맞는 형태로 변형하는 기능 -> toString
+- [x] 요구사항에 맞는 형태로 변형하는 기능 -> toString- ![Generic badge](https://img.shields.io/badge/test-passed-blue.svg)
+
 
 ### Game Result
 - [ ] 게임의 시도 횟수를 저장하는 기능 
