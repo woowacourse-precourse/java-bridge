@@ -3,8 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.constant.Constants.BridgeSign.DOWN;
-import static bridge.constant.Constants.BridgeSign.UP;
+import static bridge.constant.Constants.BridgeSign.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -29,8 +28,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+
         for (var i = 0; i < size; i++) {
-            if (bridgeNumberGenerator.generate() == 1) {
+            if (bridgeNumberGenerator.generate() == RANDOM_UPPER_INCLUSIVE) {
                 bridge.add(UP);
                 continue;
             }
