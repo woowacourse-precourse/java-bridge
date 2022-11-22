@@ -31,8 +31,8 @@ public class BridgeGameTest extends NsTest {
     void initialize() {
         inputView = new InputView();
         outputView = new OutputView();
-        bridgeGame = new BridgeGame(inputView, outputView);
         numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        bridgeGame = new BridgeGame(inputView, outputView, numberGenerator);
         bridgeMaker = new BridgeMaker(numberGenerator);
         bridge = bridgeMaker.makeBridge(3);
     }

@@ -13,15 +13,17 @@ public class BridgeGame {
 
     private InputView inputView;
     private OutputView outputView;
+    private final BridgeMaker bridgeMaker;
     private int tryCount = 0;
     private final int counting = 1;
     private final String quit = "Q";
     private final boolean terminated = true;
     private final boolean notTerminated = false;
 
-    public BridgeGame(InputView inputView, OutputView outputView) {
+    public BridgeGame(InputView inputView, OutputView outputView, BridgeNumberGenerator bridgeNumberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
     /**
      * 사용자가 게임을 시작할 때 사용하는 메서드
