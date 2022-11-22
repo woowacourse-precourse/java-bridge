@@ -9,5 +9,6 @@ public class Application {
         BridgeNumberGenerator BNG = new BridgeRandomNumberGenerator();
         BridgeMaker BM = new BridgeMaker(BNG);
         System.out.println(BM.makeBridge(IV.readBridgeSize()));
+        OV.moveGuidance();
     }
 }
