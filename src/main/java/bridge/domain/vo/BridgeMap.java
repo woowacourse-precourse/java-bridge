@@ -14,7 +14,7 @@ public class BridgeMap {
         return new BridgeMap(bridgeMap);
     }
 
-    public boolean isMove(PlayerMap playerMap, Moving moving) {
+    public boolean isMovingCompare(PlayerMap playerMap, Moving moving) {
         return moving.equals(bridgeMap.get(playerMap.getSize()));
     }
 
