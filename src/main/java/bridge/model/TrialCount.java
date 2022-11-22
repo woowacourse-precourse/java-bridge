@@ -3,6 +3,8 @@ package bridge.model;
 import java.util.Objects;
 
 public class TrialCount {
+    private static final int INITIAL_COUNT = 1;
+    private static final int INCREMENT = 1;
     private final int count;
 
     public TrialCount(int count) {
@@ -10,11 +12,11 @@ public class TrialCount {
     }
 
     public static TrialCount firstTrial() {
-        return new TrialCount(1);
+        return new TrialCount(INITIAL_COUNT);
     }
 
     public TrialCount increase() {
-        return new TrialCount(count + 1);
+        return new TrialCount(count + INCREMENT);
     }
 
     public int getCount() {
