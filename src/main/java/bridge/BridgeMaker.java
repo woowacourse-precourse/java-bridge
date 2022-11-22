@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.BridgeNumberGenerator;
 import bridge.enums.MovingType;
@@ -17,8 +17,9 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+        int randomNumber;
         for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeNumberGenerator.generate();
+            randomNumber = bridgeNumberGenerator.generate();
             addBridgeMoving(bridge, randomNumber);
         }
         return Collections.unmodifiableList(bridge);
