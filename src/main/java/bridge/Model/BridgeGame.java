@@ -1,9 +1,6 @@
-package bridge;
+package bridge.Model;
 
 import java.util.List;
-
-import static bridge.View.Constants.OutputConstants.RIGHT;
-import static bridge.View.Constants.OutputConstants.WRONG;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

@@ -1,7 +1,7 @@
 package bridge.View;
 
-import bridge.BridgeGame;
-import bridge.User;
+import bridge.Model.BridgeGame;
+import bridge.Model.User;
 
 import java.util.List;
 
