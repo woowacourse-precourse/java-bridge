@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
-    private int bridgeLength;
     private int playCount = 0;
     public List<String> makedBridge = new ArrayList<>();
 
