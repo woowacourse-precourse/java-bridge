@@ -15,13 +15,30 @@ public class BridgeGame {
      */
     private final List<String> bridge;
     private ArrayList<String> playerMove;
+    private ArrayList<String> oriPlayerMove;
     private int moveCount =0;
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public List<String> move(String input) {
+    public ArrayList<String> getOriPlayerMove() {
+        return oriPlayerMove;
+    }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public ArrayList<String> getPlayerMove() {
+        return playerMove;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
+    }
+
+    public List<String> move(String input) {
+        oriPlayerMove.add(input);
         if(input.equals(bridge.get(moveCount))){
             playerMove.add("O");
             moveCount++;
@@ -38,6 +55,7 @@ public class BridgeGame {
      */
     public void retry() {
         playerMove.clear();
+        oriPlayerMove.clear();
         moveCount = 0;
     }
 }
