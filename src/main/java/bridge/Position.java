@@ -9,4 +9,12 @@ public enum Position {
         this.code = code;
         this.value = value;
     }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }
