@@ -2,68 +2,61 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeMap;
 import bridge.utils.BridgeNumberGenerator;
 import bridge.utils.BridgeRandomNumberGenerator;
-import bridge.utils.ErrorMessage;
 import bridge.utils.Setting;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
+    private static BridgeGame bridgeGame;
+    private static BridgeMap bridgeMap;
 
-    public static BridgeGame startGame() {
-        System.out.printf("다리 건너기 게임을 시작합니다.%n%n");
-        int bridgeSize = requestBridgeSize();
+    public static void startGame() {
+        OutputView.printStartMessage();
+        int bridgeSize = InputController.requestBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        return new BridgeGame(bridgeMaker, bridgeSize);
+        bridgeGame = new BridgeGame(bridgeMaker, bridgeSize);
+        bridgeMap = new BridgeMap(bridgeGame);
     }
 
-    public static int requestBridgeSize() {
-        try {
-            return InputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            ErrorMessage.print(e.getMessage());
-            return requestBridgeSize();
-        }
-    }
-
-    public static void startRound(BridgeGame bridgeGame, OutputView outputView) {
-        do {
-            String direction = requestMovingDirection();
+    public static void startRound() {
+        while (bridgeGame.isGameContinue()) {
+            String direction = InputController.requestMovingDirection();
             bridgeGame.move(direction);
-            outputView.printMap(bridgeGame, direction);
-            if (!bridgeGame.isGameContinue()) {
+            printBridgeMap(direction);
+            if (checkIsGameFinish()) {
                 break;
             }
-        } while (bridgeGame.isGameSuccess());
-    }
-
-    public static String requestMovingDirection() {
-        while (true) {
-            try {
-                return InputView.readMoving();
-            } catch (IllegalArgumentException e) {
-                ErrorMessage.print(e.getMessage());
-            }
         }
     }
 
-    public static void restartOrQuitGame(BridgeGame bridgeGame, OutputView outputView) {
-        String gameCommand = requestGameCommand();
+    public static void restartOrQuitGame() {
+        String gameCommand = InputController.requestGameCommand();
         if (gameCommand.equals(Setting.GAME_RESTART)) {
             bridgeGame.retry();
+            bridgeMap = new BridgeMap(bridgeGame);
             return;
         }
-        outputView.printResult(bridgeGame);
+        OutputView.printResult(bridgeMap, bridgeGame);
     }
 
-    public static String requestGameCommand() {
-        try {
-            return InputView.readGameCommand();
-        } catch (IllegalArgumentException e) {
-            ErrorMessage.print(e.getMessage());
-            return requestGameCommand();
+    private static void printBridgeMap(String direction) {
+        bridgeMap.makeMap(direction);
+        if (bridgeGame.isGameContinue()) {
+            OutputView.printMap(bridgeMap);
         }
+        if (bridgeGame.isGameFinish()) {
+            OutputView.printResult(bridgeMap, bridgeGame);
+        }
+    }
+
+    public static boolean checkIsGameContinue() {
+        return bridgeGame.isGameContinue();
+    }
+
+    public static boolean checkIsGameFinish() {
+        return bridgeGame.isGameFinish();
     }
 }
