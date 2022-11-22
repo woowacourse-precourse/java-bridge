@@ -102,7 +102,7 @@ public final class BridgeGameController {
         try {
             outputView.printMoving();
             final ReadMovingCommand movingCommand = inputView.readMoving();
-            return Position.from(movingCommand.getMoving());
+            return Position.from(movingCommand);
         } catch (final IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return askMoving();
@@ -124,7 +124,7 @@ public final class BridgeGameController {
             return ControllerCommand.QUIT;
         }
         final RetryCommand retryCommand = inputView.readGameCommand();
-        return ControllerCommand.from(retryCommand.getRetry());
+        return ControllerCommand.from(retryCommand);
     }
 
     private boolean isGameCleared(final BridgeGame bridgeGame) {

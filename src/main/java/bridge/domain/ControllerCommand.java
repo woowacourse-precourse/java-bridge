@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.command.RetryCommand;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -16,9 +18,9 @@ enum ControllerCommand {
         this.key = key;
     }
 
-    public static ControllerCommand from(final String key) {
+    public static ControllerCommand from(final RetryCommand retryCommand) {
         return Arrays.stream(ControllerCommand.values())
-                .filter(it -> Objects.equals(it.key, key))
+                .filter(it -> Objects.equals(it.key, retryCommand.getRetry()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("R,Q 만 입력 가능합니다"));
     }
