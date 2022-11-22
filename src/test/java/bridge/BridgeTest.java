@@ -43,6 +43,18 @@ class BridgeTest {
     }
 
     @Test
+    void 다리를_초기화한다() {
+        Bridge bridge = new Bridge(newArrayList("U", "D", "D"));
+        bridge.visit(BlockPosition.U);
+        bridge.visit(BlockPosition.D);
+        bridge.visit(BlockPosition.D);
+
+        bridge.reset();
+
+        assertThat(bridge.isArrived()).isFalse();
+    }
+
+    @Test
     void 다리를_건너기_성공여부를_반환한다_true() {
         Bridge bridge = new Bridge(newArrayList("U", "D", "D"));
         bridge.visit(BlockPosition.U);

@@ -32,6 +32,17 @@ class LastBlockTest {
     }
 
     @Test
+    void 블럭을_초기화한다() {
+        NormalBlock firstBlock = NormalBlock.firstBlock("U");
+        LastBlock lastBlock = firstBlock.lastBlock("U");
+        lastBlock.visit(BlockPosition.D);
+
+        lastBlock.reset();
+
+        assertThat(lastBlock.isVisited()).isFalse();
+    }
+
+    @Test
     void 이미_방문한_블럭은_다시_방문할_수_없다() {
         NormalBlock firstBlock = NormalBlock.firstBlock("U");
         LastBlock lastBlock = firstBlock.lastBlock("U");
