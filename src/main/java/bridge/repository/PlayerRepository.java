@@ -6,12 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerRepository {
+    private static PlayerRepository playerRepository = new PlayerRepository();
     private Long id;
     private Map<Long, Player> repository;
 
-    public PlayerRepository() {
+    private PlayerRepository() {
         id = 1L;
         repository = new HashMap<>();
+    }
+
+    public static PlayerRepository getInstance() {
+        return playerRepository;
     }
 
     public Long insert(Player player) {

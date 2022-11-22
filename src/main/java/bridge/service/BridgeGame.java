@@ -18,7 +18,7 @@ public class BridgeGame {
     private final String QUIT = "Q";
 
     public BridgeGame() {
-        playerRepository = new PlayerRepository();
+        playerRepository = PlayerRepository.getInstance();
     }
 
     /**
