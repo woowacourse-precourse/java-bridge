@@ -23,4 +23,11 @@ public class ExceptionHandling {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void choiceChecking(String input){
+        if(!input.equals("R") && !input.equals("Q")){
+            System.out.println("[ERROR] 입력하는 문자는 'R' 혹은 'Q' 여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
 }
