@@ -7,26 +7,25 @@ import java.util.List;
 
 public class BridgeGame {
 
-    public int gameTryCount = 1;
-    public boolean gameSuccess = false;
-    public List<String> mySelectBridge = new ArrayList<>();
-    List<String> bridge;
+    private int gameTryCount = 1;
+    private boolean gameSuccess = false;
+    private List<String> myMovingChoices = new ArrayList<>();
+    private List<String> bridge;
 
     public BridgeGame(List<String> bridge){
         this.bridge = bridge;
     }
 
-    public boolean gamePlayOnce(String position) {
-        int len = mySelectBridge.size();
-        mySelectBridge.add(position);
-        if (mySelectBridge.get(len).equals(bridge.get(len))){
+    public boolean move(String movingChoice){
+        myMovingChoices.add(movingChoice);
+        int presentPosition = myMovingChoices.size() - 1;
+        if(myMovingChoices.get(presentPosition).equals(bridge.get(presentPosition)))
             return true;
-        }
         return false;
     }
 
-    public boolean move() {
-        int len = mySelectBridge.size();
+    public boolean reachEndPosition() {
+        int len = myMovingChoices.size();
         if(len == bridge.size()) {
             gameSuccess = true;
             return false;
@@ -37,11 +36,21 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         if(gameCommand.equals(Validation.GAME_RETRY)){
             gameTryCount += 1;
-            mySelectBridge = new ArrayList<>();
+            myMovingChoices = new ArrayList<>();
             return true;
         }
         return false;
     }
 
+    public int getGameTryCount() {
+        return gameTryCount;
+    }
 
+    public boolean getGameSuccess(){
+        return gameSuccess;
+    }
+
+    public List<String> getMyMovingChoices(){
+        return myMovingChoices;
+    }
 }

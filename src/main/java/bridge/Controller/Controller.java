@@ -9,11 +9,11 @@ import bridge.View.OutputView;
 import java.util.List;
 
 public class Controller {
-    public InputView inputView;
-    public BridgeNumberGenerator bridgeNumberGenerator;
-    public BridgeMaker bridgeMaker;
-    public OutputView outputView;
-    public BridgeGame bridgeGame;
+    private  InputView inputView;
+    private  BridgeNumberGenerator bridgeNumberGenerator;
+    private  BridgeMaker bridgeMaker;
+    private  OutputView outputView;
+    private  BridgeGame bridgeGame;
 
     public Controller(){
         inputView = new InputView();
@@ -26,47 +26,45 @@ public class Controller {
         bridgeGameInitialization();
         //게임 시작
         boolean gameContinue = true;
-        boolean gameStatus = true;
+        boolean movingSuccess = true;
         while(gameContinue){
-            String position = inputView.readMoving();
-            gameStatus = bridgeGame.gamePlayOnce(position);
-            printGameStatusMap(gameStatus);
-            gameContinue = askGame(gameStatus);
+            String movingChoice = inputView.readMoving();
+            movingSuccess = bridgeGame.move(movingChoice);
+            printMovingStatusMap(movingSuccess);
+            gameContinue = checkGameContinue(movingSuccess);
         }
-        finishBridgeGame(gameStatus);
+        finishBridgeGame(movingSuccess);
     }
 
-    public void bridgeGameInitialization(){
+    private void bridgeGameInitialization(){
         inputView.printGameStartMessage();
-        int bridgeLen = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeLen);
+        int bridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame = new BridgeGame(bridge);
     }
 
-
-
-    public void finishBridgeGame(boolean gameStatus){
-        System.out.println("최종 게임 결과");
-        outputView.printMap(bridgeGame.mySelectBridge, gameStatus, bridgeGame.mySelectBridge.size()-1);
-        outputView.printResult(bridgeGame.gameSuccess, bridgeGame.gameTryCount);
+    private void finishBridgeGame(boolean movingSuccess){
+        outputView.printGameEndMessage();
+        outputView.printMap(bridgeGame.getMyMovingChoices(), movingSuccess, bridgeGame.getMyMovingChoices().size()-1);
+        outputView.printResult(bridgeGame.getGameSuccess(), bridgeGame.getGameTryCount());
     }
 
-    public void printGameStatusMap(boolean gameStatus){
-        if(!gameStatus){
+    private void printMovingStatusMap(boolean movingSuccess){
+        if(!movingSuccess){
             //실패한 맵 표시
-            outputView.printMap(bridgeGame.mySelectBridge, false, bridgeGame.mySelectBridge.size()-1);
+            outputView.printMap(bridgeGame.getMyMovingChoices(), movingSuccess, bridgeGame.getMyMovingChoices().size()-1);
             return;
         }
         //성공한 맵 표시
-        outputView.printMap(bridgeGame.mySelectBridge, true, bridgeGame.mySelectBridge.size()-1);
+        outputView.printMap(bridgeGame.getMyMovingChoices(), movingSuccess, bridgeGame.getMyMovingChoices().size()-1);
     }
 
-    public boolean askGame(boolean gameStatus){
-        if(!gameStatus){
+    private boolean checkGameContinue(boolean movingSuccess){
+        if(!movingSuccess){
             String gameCommand = inputView.readGameCommand();
             return bridgeGame.retry(gameCommand);
         }
-        return bridgeGame.move();
+        return bridgeGame.reachEndPosition();
     }
 
 }

@@ -19,8 +19,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for(int repeat = 0; repeat < size; repeat++){
-            int random = bridgeNumberGenerator.generate();
-            bridge.add(BridgeRow.getRowUsingNumber(random));
+            int randomNumber = bridgeNumberGenerator.generate();
+            bridge.add(BridgeRow.getRowNameUsingRowNumber(randomNumber));
         }
         return bridge;
     }

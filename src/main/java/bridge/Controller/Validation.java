@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 public class Validation {
     public static final String GAME_RETRY = "R";
     public static final String GAME_QUIT = "Q";
-    static final String REGEX_NUMERIC = "^[0-9]*$";
-    static final String REGEX_ALPHABET = "^[a-zA-Z]*$";
-    static final int BRIDGE_SIZE_RANGE_START = 3;
-    static final int BRIDGE_SIZE_RANGE_END = 20;
+    private static final String REGEX_NUMERIC = "^[0-9]*$";
+    private static final String REGEX_ALPHABET = "^[a-zA-Z]*$";
+    private static final int BRIDGE_SIZE_RANGE_START = 3;
+    private static final int BRIDGE_SIZE_RANGE_END = 20;
 
     public static void validateReadBridgeSize(String bridgeSize){
         validateInputIsNumeric(bridgeSize);
@@ -43,7 +43,7 @@ public class Validation {
     }
 
     public static void validateInputIsValidMoving(String input){
-        if(!BridgeRow.getRowPositions().contains(input)){
+        if(!BridgeRow.getRowNames().contains(input)){
             throw new IllegalArgumentException("다리 건너기를 위한 올바른 입력이 아닙니다.");
         }
     }
