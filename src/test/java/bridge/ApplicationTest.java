@@ -7,6 +7,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -43,6 +44,23 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("다리 길이는 3미만의 수는 예외 처리된다")
+    void bridgeLengthTest1() {
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    @DisplayName("다리 길이는 20초과의 수는 예외 처리된다")
+    void bridgeLengthTest2() {
+        assertSimpleTest(() -> {
+            runException("21");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
