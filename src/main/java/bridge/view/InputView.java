@@ -16,7 +16,7 @@ public class InputView {
         System.out.println(BridgeGameInfo.INPUT_BRIDGE_SIZE.message);
         String input = input();
 
-        Exception.checkSizeException(input);
+        Exception.checkIsNumberException(input);
         Exception.checkRangeException(input);
 
         return Integer.parseInt(input);

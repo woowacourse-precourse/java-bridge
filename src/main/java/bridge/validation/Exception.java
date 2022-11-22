@@ -12,7 +12,7 @@ public class Exception {
     private static final String INPUT_QUIT_TO_JUDGE = "Q";
     private static final String INPUT_RESTART_TO_JUDGE = "R";
 
-    public static void checkSizeException(String input) {
+    public static void checkIsNumberException(String input) {
         for (int i = 0; i < input.length(); i++) {
             if ((int) input.charAt(i) < ASCII_MIN_NUMBER || (int) input.charAt(i) > ASCII_MAX_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessage.IS_NUMBER.message);
