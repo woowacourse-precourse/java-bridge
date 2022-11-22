@@ -17,12 +17,12 @@ public class InputViewTest {
     private static InputView inputView;
 
     @BeforeAll
-    static void before_test() {
+    static void beforeTest() {
         inputView = new InputView();
     }
 
     @Test
-    void null_input_test() {
+    void nullInputTest() {
         InputStream in = new ByteArrayInputStream("".getBytes());
         System.setIn(in);
         assertThatThrownBy(() -> inputView.readBridgeSize())
@@ -31,7 +31,7 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"-12", "sj", "34gg"})
-    void bridge_size_invalid_test(String input) {
+    void bridgeSizeInvalidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatThrownBy(() -> inputView.readBridgeSize())
@@ -40,7 +40,7 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1232", "1", "0"})
-    void bridge_size_valid_test(String input) {
+    void bridgeSizeValidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatCode(() -> inputView.readBridgeSize())
@@ -49,7 +49,7 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"-12", "d", "T", "UD"})
-    void moving_invalid_test(String input) {
+    void movingInvalidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatThrownBy(() -> inputView.readMoving())
@@ -58,7 +58,7 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
-    void moving_valid_test(String input) {
+    void movingValidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatCode(() -> inputView.readMoving())
@@ -67,7 +67,7 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"-12", "r", "Q1", "RQ"})
-    void game_command_invalid_test(String input) {
+    void gameCommandInvalidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatThrownBy(() -> inputView.readGameCommand())
@@ -76,7 +76,7 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"R", "Q"})
-    void game_command_valid_test(String input) {
+    void gameCommandValidTest(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatCode(() -> inputView.readGameCommand())
