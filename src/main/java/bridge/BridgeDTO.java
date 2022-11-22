@@ -34,7 +34,7 @@ public class BridgeDTO {
         }
     }
 
-    public void doNotMove(String movingCommand, int i) {
+    public void moveFailed(String movingCommand, int i) {
         if(InputCase.UP.getInput().equals(movingCommand)) {
             upCase[i] = BridgeCase.WRONG;
         }

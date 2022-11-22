@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeDTOTest {
 
@@ -34,9 +33,9 @@ class BridgeDTOTest {
     @DisplayName("정답이 아닐때 X를 대입하는 test")
     @Test
     void doNotMove() {
-       bridgeDTO.doNotMove("D", 0);
-       bridgeDTO.doNotMove("U", 1);
-       bridgeDTO.doNotMove("D", 2);
+       bridgeDTO.moveFailed("D", 0);
+       bridgeDTO.moveFailed("U", 1);
+       bridgeDTO.moveFailed("D", 2);
        assertThat(bridgeDTO.getUpCase()).containsExactly(BridgeCase.NOTHING, BridgeCase.WRONG, BridgeCase.NOTHING);
        assertThat(bridgeDTO.getDownCase()).containsExactly(BridgeCase.WRONG, BridgeCase.NOTHING, BridgeCase.WRONG);
     }
