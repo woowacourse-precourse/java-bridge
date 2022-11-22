@@ -2,18 +2,14 @@ package bridge.input;
 
 import bridge.Application;
 import bridge.validation.ValidationCheck;
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
+
 import java.io.InputStream;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class InputTestMovingStr extends NsTest {

@@ -25,7 +25,6 @@ public class BridgeMaker {
         for(int i = 0; i < size ; i++) {
             bridgeList.add(Direction.findByDirectionString(bridgeNumberGenerator.generate()));
         }
-        System.out.println("bridgeList = " + bridgeList);
         return bridgeList;
     }
 }

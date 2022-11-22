@@ -2,7 +2,6 @@ package bridge.input;
 
 import bridge.Application;
 import bridge.validation.ValidationCheck;
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +32,7 @@ class InputTestGameCommand {
         String input = " ";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
-        assertThatThrownBy(() -> new ValidationCheck().isBlank(Console.readLine()))
+        assertThatThrownBy(() -> new ValidationCheck().isBlank(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
