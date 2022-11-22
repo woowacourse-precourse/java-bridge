@@ -25,11 +25,14 @@ public class BridgeProgram {
     int movingCount = 0;
 
     boolean isRunning = true;
-    while (isRunning) {
+    while (GameStatus.isRunning) {
       Mark mark = bridge.matchRoute(getInputDirection(), movingCount++);
       List<List<String>> route = bridgeGame.move(mark);
 
       output.printMap(route);
+      if (!mark.isRight()) {
+        restartOrStop();
+      }
     }
   }
   private int getBridgeSize() {
@@ -40,5 +43,18 @@ public class BridgeProgram {
   private String getInputDirection() {
     output.printMessage(Message.REQUEST_DIRECTION);
     return input.readMoving();
+  }
+
+  private void restartOrStop() {
+    if (getGameCommand().equals("Q")) {
+      GameStatus.quitGame();
+      return;
+    }
+    bridgeGame.retry();
+  }
+
+  private String getGameCommand() {
+    output.printMessage(Message.RESTART_OR_EXIT);
+    return input.readGameCommand();
   }
 }
