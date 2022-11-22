@@ -31,7 +31,7 @@
 - [x] 다리 건너기 게임을 시작한다는 메시지를 출력한다. #printGameStart()
 - [x] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다. #printMap()
 - [x] 에러 메시지를 출력한다. #printErrorMessage()
-- [ ] 게임의 최종 결과를 정해진 형식에 맞춰 출력한다. #printResult()
+- [x] 게임의 최종 결과를 정해진 형식에 맞춰 출력한다. #printResult()
 - [x] 공백 라인을 출력한다. #printDivisionLine()
 
 ### BridgeGameController : 다리 건너기 게임의 흐름을 관리

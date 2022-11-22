@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.StringJoiner;
 
 import static bridge.message.OutputMessage.GAME_START;
+import static bridge.message.OutputMessage.FINAL_GAME_RESULT;
+import static bridge.message.OutputMessage.SUCCESS_OR_FAILURE;
+import static bridge.message.OutputMessage.TOTAL_NUMBER_OF_ATTEMPTS;
 import static bridge.util.View.DELIMITER;
 import static bridge.util.View.VIEW_PREFIX;
 import static bridge.util.View.VIEW_SUFFIX;
@@ -53,6 +56,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<List<String>> bridgeMap, String clearMessage, int tryCount) {
+        System.out.println(FINAL_GAME_RESULT);
+        printMap(bridgeMap);
+
+        printDivisionLine();
+
+        System.out.println(SUCCESS_OR_FAILURE + clearMessage);
+        System.out.println(TOTAL_NUMBER_OF_ATTEMPTS + tryCount);
     }
 }
