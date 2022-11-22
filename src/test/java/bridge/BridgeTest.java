@@ -37,7 +37,7 @@ public class BridgeTest {
     @DisplayName("마지막 칸인지 확인하는 테스트")
     @Test
     void isLastCountTest() {
-        assertThat(bridge.isLastCount(bridge.getBridge().size() - 1)).isTrue();
+        assertThat(bridge.isLastCount(bridge.getBridge().size())).isTrue();
     }
 
     @DisplayName("마지막 칸이 아닐경우 확인하는 테스트")

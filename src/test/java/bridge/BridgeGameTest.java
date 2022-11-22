@@ -16,8 +16,8 @@ public class BridgeGameTest {
     void setUp() {
         bridgeGame = new BridgeGame();
         bridgeMap = new BridgeMap();
-
         bridge = new Bridge();
+
         bridge.registerBridge(List.of("U", "D", "U", "U"));
     }
 
