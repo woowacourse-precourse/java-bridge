@@ -19,10 +19,6 @@ public class Player {
     }
 
     public boolean isMovable(int bridgeSize, String bridgeIndexOf){
-        if(moves.size() == 0){
-            return true;
-        }
-
         return moves.size() < bridgeSize && compare(bridgeIndexOf);
     }
 

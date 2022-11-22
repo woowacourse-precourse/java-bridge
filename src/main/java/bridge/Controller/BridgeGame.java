@@ -39,6 +39,7 @@ public class BridgeGame {
     public void makeBridge(){
         int size = inputView.readBridgeSize();
         bridge.makeBridge(size);
+        System.out.println();
     }
 
     public void crossBridge(){
@@ -58,10 +59,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        while(player.isMovable(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
+        while(player.getMovesCount()==0 || player.isMovable(bridge.getSize(), bridge.getIndexOf(player.getMovesLastIndex()))){
             String moveTo = inputView.readMoving();
             player.move(moveTo);
-            result.makeMap(bridge.getSpaces(), player.getMoves());
+            result.makeMap(bridge.getIndexOf(player.getMovesLastIndex()), moveTo);
             outputView.printMap(result);
         }
     }
@@ -81,7 +82,7 @@ public class BridgeGame {
      */
     public void retry() {
         player.clearMoves();
-        result.addTryCount();
+        result.retry();
         crossBridge();
     }
 
