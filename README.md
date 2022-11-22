@@ -193,7 +193,7 @@ Q
 - 아래 있는 `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
   - 각 클래스의 제약 사항은 아래 클래스별 세부 설명을 참고한다.
   - 이외 필요한 클래스(또는 객체)와 메서드는 자유롭게 구현할 수 있다.
-  - `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
+  - `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
   - `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
 
 ### InputView 클래스
@@ -279,8 +279,8 @@ int number = bridgeNumberGenerator.generate();
 
 ### 라이브러리
 
-- [`camp.nextstep.edu.missionutils`](https://github.com/woowacourse-projects/mission-utils)에서 제공하는 `Console` API를 사용하여 구현해야 한다.
-  - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+- [`camp.nextstep.edu.missionutils`](https://github.com/woowacourse-projects/mission-utils)에서 제공하는 `console` API를 사용하여 구현해야 한다.
+  - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.console`의 `readLine()`을 활용한다.
 
 ---
 
