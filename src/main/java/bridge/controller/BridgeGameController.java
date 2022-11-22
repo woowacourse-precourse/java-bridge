@@ -44,6 +44,17 @@ public class BridgeGameController {
         bridgeGame.initBridge(bridgeSize);
     }
 
+    private void gamePlay() {
+        do {
+            moveAndResult();
+            if (bridgeGame.isClearGame()) {
+                break;
+            }
+        } while (bridgeGame.isRestartGame(getReadGameCommand()));
+
+        getFinalResult();
+    }
+
     private void moveAndResult() {
         bridgeGame.initPlayer();
 
