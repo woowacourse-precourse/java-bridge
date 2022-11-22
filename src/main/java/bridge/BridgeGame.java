@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    boolean isSuccess=false;
      int trialCount=0;
      List<String> bridgePosion;
      List<String> playerPosion = new ArrayList<>();
@@ -21,16 +22,19 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String upDown){
+    public boolean move(String upDown, int location){
+        if(location==0){
+            playerPosion = new ArrayList<>();
+        }
         playerPosion.add(upDown);
-        if(bridgePosion.get(step).equals(upDown)){
+        if(!bridgePosion.get(step).equals(upDown)){
             outputView.printMap(step,bridgePosion,playerPosion);
             step=0;
-            retry();
-            return;
+            return false;
         }
         outputView.printMap(step,bridgePosion,playerPosion);
         step++;
+        return true;
     }
 
     /**
@@ -38,11 +42,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String retryCommand = Console.readLine();
-        if(!retryCommand.equals("R") && !retryCommand.equals("Q")){
-            throw new IllegalArgumentException("[ERROR] R 와 Q만 입력 할수 있습니다.");
+    public boolean retry(String restartOrQuit) {
+        if (restartOrQuit.equals("Q")) {
+            return true;
         }
+        return false;
     }
 }

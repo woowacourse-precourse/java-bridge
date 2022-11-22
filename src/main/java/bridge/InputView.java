@@ -16,7 +16,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String bridgeLength = Console.readLine();
-        int bridgeLengthNo = Integer.valueOf(bridgeLength);
+        int bridgeLengthNo = Integer.valueOf(Console.readLine());
         if(bridgeLengthNo < MIN_NUM) {
             throw new IllegalArgumentException("[ERROR] 3미만의 값은 사용할수 없습니다.");
         }
