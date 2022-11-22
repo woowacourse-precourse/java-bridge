@@ -29,7 +29,7 @@ public class BridgeGame {
         this.sessionId = UUID.randomUUID().toString();
         this.bridgeMap = Collections.unmodifiableList(bridgeMap);
         this.moves = new ArrayList<>();
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     private static void validateMap(List<String> bridgeMap) {
@@ -91,7 +91,10 @@ public class BridgeGame {
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
     public void retry(FailMenuCommandType command) {
-
+        if (command == FailMenuCommandType.RETRY) {
+            tryCount++;
+            moves.clear();
+        }
     }
 
     public String getSessionId() {

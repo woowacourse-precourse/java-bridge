@@ -3,6 +3,7 @@ package bridge.view;
 import static bridge.type.CommonConstantType.MAX_BRIDGE_SIZE;
 import static bridge.type.CommonConstantType.MIN_BRIDGE_SIZE;
 import static bridge.type.ErrorMessageUserType.INVALID_BRIDGE_SIZE;
+import static bridge.type.ErrorMessageUserType.INVALID_FAIL_MENU_COMMAND;
 import static bridge.type.ErrorMessageUserType.INVALID_IN_GAME_COMMAND;
 import static bridge.type.ErrorMessageUserType.INVALID_NUMBER_FORMAT;
 
@@ -52,6 +53,14 @@ public class InputViewImpl implements InputView {
 
     @Override
     public FailMenuCommandType readGameCommand() {
-        return null;
+        FailMenuCommandType command = FailMenuCommandType.find(InputReader.readLine());
+        checkFailMenuCommand(command);
+        return command;
+    }
+
+    private void checkFailMenuCommand(FailMenuCommandType command) {
+        if (command == null) {
+            throw new IllegalArgumentException(INVALID_FAIL_MENU_COMMAND.toString());
+        }
     }
 }

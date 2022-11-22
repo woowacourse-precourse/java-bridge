@@ -35,13 +35,15 @@ public class BridgeGameServiceImpl implements BridgeGameService {
         BridgeGame selectedBridgeGame = bridgeGameDao.selectBridgeGame(requestDto.getSessionId());
         selectedBridgeGame.move(requestDto.getCommand());
         BridgeGame savedBridgeGame = bridgeGameDao.insertBridgeGame(selectedBridgeGame);
-        return new InGameCommandResponseDto(savedBridgeGame.getBridgeMap(),
-                savedBridgeGame.getMoves());
+        return new InGameCommandResponseDto(savedBridgeGame.getBridgeMap(), savedBridgeGame.getMoves());
     }
 
     @Override
-    public FailMenuResponseDto askRestart(FailMenuRequestDto requestDto) {
-        return null;
+    public FailMenuResponseDto askRetry(FailMenuRequestDto requestDto) {
+        BridgeGame selectedBridgeGame = bridgeGameDao.selectBridgeGame(requestDto.getSessionId());
+        selectedBridgeGame.retry(requestDto.getCommand());
+        BridgeGame savedBridgeGame = bridgeGameDao.insertBridgeGame(selectedBridgeGame);
+        return new FailMenuResponseDto(requestDto.getCommand());
     }
 
     @Override

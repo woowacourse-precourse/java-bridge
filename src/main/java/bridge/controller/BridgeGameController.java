@@ -3,8 +3,10 @@ package bridge.controller;
 import static bridge.type.GameStateType.*;
 import static bridge.type.GameMessageType.*;
 
+import bridge.data.dto.requestDto.FailMenuRequestDto;
 import bridge.data.dto.requestDto.GameInitRequestDto;
 import bridge.data.dto.requestDto.InGameCommandRequestDto;
+import bridge.data.dto.responseDto.FailMenuResponseDto;
 import bridge.data.dto.responseDto.GameInitResponseDto;
 import bridge.data.dto.responseDto.InGameCommandResponseDto;
 import bridge.service.BridgeGameService;
@@ -71,11 +73,24 @@ public class BridgeGameController {
         if (responseDto.isGameCleared()) {
             state = STATE_RESULT;
         }
-
     }
 
     private void fail() {
-        state = state.getNextState();
+        outputView.printMessage(ASK_FAIL_MENU_COMMAND_MESSAGE);
+        FailMenuRequestDto requestDto = new FailMenuRequestDto(inputView.readGameCommand());
+        requestDto.setSessionId(sessionId);
+        FailMenuResponseDto responseDto = gameService.askRetry(requestDto);
+        changeFailState(responseDto);
+    }
+
+    private void changeFailState(FailMenuResponseDto responseDto) {
+        if (responseDto.isRetry()) {
+            state = STATE_PLAY;
+            return;
+        }
+        if (responseDto.isQuit()) {
+            state = STATE_RESULT;
+        }
     }
 
     private void result() {
