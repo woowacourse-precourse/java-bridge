@@ -4,7 +4,6 @@ import bridge.enums.ErrorMsg;
 import bridge.enums.Inputs;
 
 public class InputValidator {
-
 	private static final int MIN_BRIDGE_LENGTH = 3;
 	private static final int MAX_BRIDGE_LENGTH = 20;
 

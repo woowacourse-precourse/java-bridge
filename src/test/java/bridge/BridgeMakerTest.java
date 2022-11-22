@@ -1,16 +1,12 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
-
 	BridgeMaker bridgeMaker;
 
 	private static class BridgeOneNumberGenerator implements BridgeNumberGenerator {
