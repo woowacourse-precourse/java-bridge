@@ -13,7 +13,7 @@ public class OutputViewTest extends NsTest {
     @DisplayName("길이가 1인 map 출력")
     @Test
     void printShortMap() {
-        List<List<String>> sample = List.of(List.of("O"), List.of(""));
+        List<List<String>> sample = List.of(List.of("O"), List.of(" "));
         outputView.printMap(sample);
         assertThat(output()).contains(
                 "[ O ]",

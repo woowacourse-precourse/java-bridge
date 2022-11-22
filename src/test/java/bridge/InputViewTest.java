@@ -32,8 +32,10 @@ public class InputViewTest {
     @DisplayName("다리길이가 3~20 사이가 아닌 경우")
     @Test
     void wrongRangeBridgeSize() {
-        assertThatThrownBy(() -> inputView.validateSize("1"));
-        assertThatThrownBy(() -> inputView.validateSize("21"));
+        assertThatThrownBy(() -> inputView.validateSize("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputView.validateSize("21"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("이동할 칸의 입력이 정상인 경우 (U,D)")
