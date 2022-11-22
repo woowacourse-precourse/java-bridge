@@ -14,6 +14,8 @@ public class OutputView {
     private static final String MESSAGE_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String MESSAGE_MOVING = "이동할 칸을 선택해주세요. (위: %s, 아래: %s)";
     private static final String MESSAGE_RETRYING = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)";
+    private static final String MESSAGE_RESULT_HEADER = "최종 게임 결과";
+    private static final String MESSAGE_RESULT_FOOTER = "게임 성공 여부: %s\n총 시도한 횟수: %d";
 
     private static final EnumMap<Result, String> format = new EnumMap<>(
             Map.ofEntries(
@@ -50,6 +52,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult() {
+    public void printResult(
+            final Path path,
+            final int numTry
+    ) {
+        System.out.println(MESSAGE_RESULT_HEADER);
+        printMap(path);
+        System.out.printf(MESSAGE_RESULT_FOOTER, decision(path), numTry);
+    }
+
+    private String decision(Path path) {
+        if (path.searchesFailed()) {
+            return "실패";
+        }
+        return "성공";
     }
 }
