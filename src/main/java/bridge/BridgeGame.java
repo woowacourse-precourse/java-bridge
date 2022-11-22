@@ -60,7 +60,7 @@ public class BridgeGame {
         Application.totalResult = new Result();
         Application.launchGame(bridge);
     }
-    public void initializeValues() {
+    public static void initializeValues() {
         currentPosition = -1;
         direction = null;
     }

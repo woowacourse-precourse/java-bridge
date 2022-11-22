@@ -57,7 +57,7 @@ public class Application {
             if (!InputView.moveFormatError) {
                 bridgeGame.move(direction);
             }
-        } while (InputView.moveFormatError || bridgeGame.valueError);
+        } while (InputView.moveFormatError || BridgeGame.valueError);
     }
 
     public static boolean judgeMove(Bridge bridge) {
@@ -68,7 +68,7 @@ public class Application {
 
     public static void failGame(Bridge bridge) {
         String command;
-        bridgeGame.initializeValues();
+        BridgeGame.initializeValues();
         OutputView.rightAfterFail = true;
         do {
             outputView.printRestart();
@@ -76,7 +76,7 @@ public class Application {
             if (!InputView.commandFormatError) {
                 bridgeGame.retry(bridge, command);
             }
-        } while (InputView.commandFormatError || bridgeGame.valueError);
+        } while (InputView.commandFormatError || BridgeGame.valueError);
     }
 
     public static void endGame(Bridge bridge, Boolean successGame) {
