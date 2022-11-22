@@ -60,4 +60,16 @@ class BridgeGameTest {
     void getMovingCountTest() {
         assertThat(bridgeGame.getMovingCount()).isEqualTo(3);
     }
+
+    @DisplayName("다리 건널 칸이 남아 있을 때 테스트")
+    @Test
+    void hasMoreBlockTest() {
+        assertThat(bridgeGame.canMoveMoreBlock(5)).isTrue();
+    }
+
+    @DisplayName("다리는 다 건넜을 때 테스트")
+    @Test
+    void hasNotMoreBlockTest() {
+        assertThat(bridgeGame.canMoveMoreBlock(bridgeGame.getMovingCount())).isFalse();
+    }
 }
