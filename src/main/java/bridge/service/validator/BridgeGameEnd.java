@@ -6,10 +6,9 @@ import bridge.view.InputView;
 
 public class BridgeGameEnd {
 
-    private final InputView inputView;
+    private final InputView inputView = new InputView();
 
-    public BridgeGameEnd(InputView inputView) {
-        this.inputView = inputView;
+    public BridgeGameEnd() {
     }
 
     public boolean isEnd() {

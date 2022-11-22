@@ -6,16 +6,14 @@ import bridge.view.OutputView;
 
 public class GameRound {
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final BridgeMove bridgeMove;
 
     private final Bridge bridge;
     private int nth = 0; // n번째 칸
 
-    public GameRound(InputView inputView, OutputView outputView, Bridge bridge) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public GameRound(Bridge bridge) {
         this.bridgeMove = new BridgeMove(inputView);
         this.bridge = bridge;
     }

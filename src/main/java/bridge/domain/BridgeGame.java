@@ -9,24 +9,18 @@ import bridge.view.OutputView;
 
 public class BridgeGame {
 
-    private final InputView inputView;
-    private final OutputView outputView;
-
     private Bridge bridge;
     private boolean isEndGame = false;
 
     private GameRound gameRound;
     private int tryCount = 0;
 
-    public BridgeGame(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-
+    public BridgeGame() {
         setBridge(setBridgeLength());
     }
 
     private int setBridgeLength() {
-        BridgeLength bridgeLength = new BridgeLength(inputView);
+        BridgeLength bridgeLength = new BridgeLength();
         return bridgeLength.inputBridgeSize();
     }
 
@@ -38,7 +32,7 @@ public class BridgeGame {
     }
 
     public void playGame() {
-        this.gameRound = new GameRound(this.inputView, this.outputView, this.bridge);
+        this.gameRound = new GameRound(this.bridge);
         this.tryCount++;
 
         while (true) {
@@ -63,7 +57,7 @@ public class BridgeGame {
         if (this.isEndGame)
             return false;
 
-        BridgeGameEnd bridgeGameEnd = new BridgeGameEnd(inputView);
+        BridgeGameEnd bridgeGameEnd = new BridgeGameEnd();
         if (bridgeGameEnd.isEnd())
             return false;
 

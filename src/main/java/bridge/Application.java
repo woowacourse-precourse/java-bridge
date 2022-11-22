@@ -7,12 +7,11 @@ import bridge.view.OutputView;
 
 public class Application {
 
-    private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
             outputView.printGameStart();
-            BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
+            BridgeGame bridgeGame = new BridgeGame();
             do {
                 bridgeGame.playGame();
             } while (bridgeGame.retry());

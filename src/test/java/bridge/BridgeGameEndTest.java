@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BridgeGameEndTest extends NsTest {
 
-    BridgeGameEnd bridgeGameEnd = new BridgeGameEnd(new InputView());
+    BridgeGameEnd bridgeGameEnd = new BridgeGameEnd();
 
     @DisplayName("게임 종료 Q-true 반환")
     @Test

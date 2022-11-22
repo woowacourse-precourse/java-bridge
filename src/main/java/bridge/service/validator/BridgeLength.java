@@ -6,10 +6,9 @@ import bridge.view.InputView;
 
 public class BridgeLength {
 
-    private final InputView inputView;
+    private final InputView inputView = new InputView();
 
-    public BridgeLength(InputView inputView) {
-        this.inputView = inputView;
+    public BridgeLength() {
     }
 
     public int inputBridgeSize() {
