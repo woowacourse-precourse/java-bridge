@@ -17,37 +17,69 @@ public class Application {
     private static final OutputView output = new OutputView();
 
     public static void main(String[] args) {
-        try {
-            System.out.println(START);
-            int bridgeSize = input.readBridgeSize();
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(START);
+        List<String> bridge = requestBridge();
+        Player player = new Player(bridge);
 
-            Player player = new Player(bridge);
-            boolean isGameEnd = false;
-            while (true) {
-                String direction = input.readMoving();
+        playBridgeGame(player);
 
-                boolean isPossible = bridgeGame.move(player, direction);
-                output.printMap(player);
-                if (isPossible) {
-                    if (player.isGameEnd()) {
-                        isGameEnd = true;
-                        break;
-                    }
-                    continue;
-                }
+        output.printResult(player);
+    }
 
-                String command = input.readGameCommand();
-                if (command.equals(QUIT)) {
-                    break;
-                }
-                bridgeGame.retry(player);
+    private static void playBridgeGame(Player player) {
+        while (!player.isGameEnd()) {
+            boolean isPossible = requestMoving(player);
+
+            if (isPossible) {
+                continue;
             }
-
-            output.printResult(player, isGameEnd);
-        } catch (IllegalArgumentException e) {
-            output.printExceptionMessage(e);
+            if (isQuit(player)) {
+                break;
+            }
         }
+    }
 
+    private static boolean isQuit(Player player) {
+        String gameCommand = requestGameCommand();
+        if (gameCommand.equals(QUIT)) {
+            return true;
+        }
+        bridgeGame.retry(player);
+        return false;
+    }
+
+    private static String requestGameCommand() {
+        while (true) {
+            try {
+                return input.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                output.printExceptionMessage(e);
+            }
+        }
+    }
+
+    private static boolean requestMoving(Player player) {
+        while (true) {
+            try {
+                String direction = input.readMoving();
+                boolean isPossible = bridgeGame.move(player, direction);
+
+                output.printMap(player);
+                return isPossible;
+            } catch (IllegalArgumentException e) {
+                output.printExceptionMessage(e);
+            }
+        }
+    }
+
+    private static List<String> requestBridge() {
+        while (true) {
+            try {
+                int bridgeSize = input.readBridgeSize();
+                return bridgeMaker.makeBridge(bridgeSize);
+            } catch (IllegalArgumentException e) {
+                output.printExceptionMessage(e);
+            }
+        }
     }
 }
