@@ -17,4 +17,10 @@ public class Exception {
 		}
 	}
 
+	public void checkAlphabet(String moving) throws IllegalArgumentException {
+		if (!Pattern.matches("^[A-Z]*$", moving)) {
+			throw new IllegalArgumentException(Constants.ERROR_ALPHABET_INPUT);
+		}
+	}
+
 }
