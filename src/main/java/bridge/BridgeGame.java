@@ -72,4 +72,9 @@ public class BridgeGame {
         }
         return gameCommand;
     }
+
+    public boolean isUserMoveCorrect(String correctMove, String userMove) {
+        return correctMove.equals(userMove);
+    }
+
 }
