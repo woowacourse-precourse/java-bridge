@@ -43,8 +43,10 @@ public class BridgeController {
 	}
 
 	private String getUserMoving() {
-		OutputView.printInputMoving();
-		return InputView.readMoving();
+		return ExceptionHandler.getCorrectInput(() -> {
+			OutputView.printInputMoving();
+			return InputView.readMoving();
+		});
 	}
 
 	private void afterMoveProcess(BridgeGame bridgeGame) {
