@@ -12,6 +12,7 @@ public class BridgeController {
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
     private final InputValidator inputValidator = new InputValidator();
+    private final MapMaker mapMaker = new MapMaker();
 
     public void run() {
         outputView.printGameStart();
@@ -65,7 +66,6 @@ public class BridgeController {
     }
 
     private String map(GameState gameState) {
-        MapMaker mapMaker = new MapMaker();
         return mapMaker.makeMap(gameState.getMoves(), gameState.isFall());
     }
 }
