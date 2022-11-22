@@ -7,9 +7,7 @@ public enum Message {
     ASK_RESTART("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     PRINT_RESULT("최종 게임 결과"),
     WHETHER_SUCCESS("게임 성공 여부: "),
-    SUCCESS_RESULT("성공"),
-    FAIL_RESULT("실패"),
-    TOTAL_TRIAL("총 시도한 횟수:");
+    TOTAL_TRIAL("총 시도한 횟수: ");
 
     private final String message;
 
@@ -20,6 +18,5 @@ public enum Message {
     public String getMessage() {
         return message;
     }
-
 
 }

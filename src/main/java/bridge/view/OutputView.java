@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.game.SuccessStep;
 import bridge.message.Message;
 
 /**
@@ -24,10 +25,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    public void printResult(String map, boolean fail) {
+    public void printResult(String map, boolean success, int totalTrial) {
         System.out.println(Message.PRINT_RESULT.getMessage());
         printMap(map);
-        System.out.println(Message.WHETHER_SUCCESS.getMessage());
+        System.out.println(Message.WHETHER_SUCCESS.getMessage()+SuccessStep.getResultbyStatus(success));
+        System.out.println(Message.TOTAL_TRIAL.getMessage()+totalTrial);
     }
 
     public void askBridgeLen(){
