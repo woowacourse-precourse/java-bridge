@@ -40,6 +40,13 @@ public class GameController {
         printGameResult();
     }
 
+    private void createBridge(int bridgeSize) {
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> randomBridge = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame.createBridge(randomBridge);
+    }
+
     private void startBridgeGame() {
 
         do {
@@ -48,19 +55,8 @@ public class GameController {
         } while (isFinalRound());
     }
 
-    private void createBridge(int bridgeSize) {
-        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        List<String> randomBridge = bridgeMaker.makeBridge(bridgeSize);
-        bridgeGame.createBridge(randomBridge);
-    }
-
-    private String loadMoveDirection() {
-        return inputView.readMoving();
-    }
-
     private void playEachRound() {
-        String moveDirection = loadMoveDirection();
+        String moveDirection = inputView.readMoving();
         List<List<String>> bridgeRecord = bridgeGame.getRecordByMove(moveDirection);
         outputView.printMap(bridgeRecord);
     }
