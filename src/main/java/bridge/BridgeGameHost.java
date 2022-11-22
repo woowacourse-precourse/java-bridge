@@ -64,9 +64,9 @@ public class BridgeGameHost {
         if(gameProgress.getGameResult()==GameResult.FAILED) {
             printRetrialComment();
             String gameCommand = inputView.readGameCommand();
-            gameProgress.gameCommand = GameCommandMapper.getInstance().stringToGameCommand(gameCommand);
+            gameProgress.setGameCommand(GameCommandMapper.getInstance().stringToGameCommand(gameCommand));
 
-            if(gameProgress.gameCommand.equals(GameCommand.RETRIAL)) {
+            if(gameProgress.getGameCommand().equals(GameCommand.RETRIAL)) {
                 bridgeGame.retry(userInput, gameProgress);
             }
         }
