@@ -13,18 +13,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> crossed) {
-        System.out.println(getMap(bridge, crossed));
+    public void printMap(Bridge bridge) {
+        System.out.println(getMap(bridge.getFootholds(), bridge.getCrossed()));
     }
 
-    public String getMap(List<String> bridge, List<String> crossed) {
-        return getCrossedLine("U", bridge, crossed) + "\n" + getCrossedLine("D", bridge, crossed);
+    public String getMap(List<String> footholds, List<String> crossed) {
+        return getCrossedLine("U", footholds, crossed) + "\n" + getCrossedLine("D", footholds, crossed);
     }
 
-    public String getCrossedLine(String lineName, List<String> bridge, List<String> crossed) {
+    public String getCrossedLine(String lineName, List<String> footholds, List<String> crossed) {
         String line = "[";
         for (int i = 0; i < crossed.size(); i++) {
-            line += getStageStatus(lineName, bridge.get(i), crossed.get(i));
+            line += getStageStatus(lineName, footholds.get(i), crossed.get(i));
             if (i < crossed.size() - 1) {
                 line += "|";
             }
@@ -33,12 +33,12 @@ public class OutputView {
         return line;
     }
 
-    public String getStageStatus(String lineName, String bridgeElement, String input) {
-        if (!lineName.equals(bridgeElement)) {
+    public String getStageStatus(String lineName, String foothold, String input) {
+        if (!lineName.equals(foothold)) {
             return "   ";
         }
 
-        if (bridgeElement.equals(input)) {
+        if (foothold.equals(input)) {
             return " o ";
         }
 
