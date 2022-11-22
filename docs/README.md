@@ -1,0 +1,144 @@
+# 1. 요구사항 정리
+
+- 다리 건너기 게임 시작 메세지 출력
+- 다리의 길이를 입력해주세요 메세지 출력
+- 다리길이 숫자 받기
+    - 예외처리 함수 호출
+        - 숫자의 범위 3~20 예외처리
+        - 영어는 아닌지, 숫자인지 체크
+        - 빈칸은 아닌지 체크
+
+- 다리 생성
+    - 0 과 1중 랜덤 숫자하나 생성
+    - → 이넘 클래스로 int→String 으로 바꾸기
+    - bridgeMaker 의 list에 add 하기
+        - add가 끝나면 사이즈 확인
+        - 개별 원소가 → U or D 만 있는지 확인
+- 이동할 칸을 선택해주세요 메세지 출력
+- 이동할 칸 사용자 입력
+    - U, D 를 제외한 입력이 들어오는지 체크
+    - 빈칸은 아닌지 체크
+    - 사용자 입력 문자 리스트에 add
+- bridge Map 출력 ( 사용자 입력문자 리스트, 기존 다리 리스트 )
+    - printstart - “[ “
+    - printEnd - “ ]\n”
+    - print 중간개행 “ | “
+    - printResult 결과를 담는 함수 - “O” or “X” or “ “
+        - for문을 도는 횟수는 사용자 입력문자 리스트 만큼돈다.
+        - u /d 각각 리스트 따로 가지기 correct/fail/not choice
+        - u 이면 u에 출력
+        - u에 출력하는 것이 o인지 x 체크하는 함수
+    - **화이트 스페이스 출력 [ | ] 출력을 따로 구분해야하는지가 관건 → 10줄 issue**
+
+- 게임 다시 시도 여부 메세지 출력
+- 다시 시도 여부 사용자 입력
+    - 입력에 대한 예외체크
+        - 빈칸
+        - R or Q가 아닌경우
+    - 사용자 입력 문자리스트 초기화 필요
+- 최종 게임결과 메세지 출력
+- 최종 bridge Map 출력 → 기존 bridgeMap 출력 이용
+- 게임 성공 여부 메세지 출력
+- 총 시도횟수 출력
+
+# 2. 클래스 정의
+- BridgeController
+  - 게임 시작 전, 시작, 시작 후 필요한 함수들을 호출하는 클래스
+- BridgeGame
+  - 게임에 필요한 실제 로직들을 처리하는 클래스
+- BridgeNumberGenerator
+  - 다리를 구성하는 요소를 랜덤으로 생성해주는 클래스
+- BridgeMaker
+  - 다리 길이가 정해지면 길이만큼 반복적으로 BridgeNumberGenerator를 호출하여 list를 만들어내는 클래스
+- InputView
+  - 사용자에게 입력을 받고, 입력값에 대한 에러 체크를 하는 클래스
+- OutputView
+  - 사용자에게 안내 메시지를 출력하는 클래스
+- ValidationCheck
+  - 사용자 입력에 대해 예외처리하는 클래스
+
+# 3. 클래스의 함수 정의
+- BridgeController
+  - init()
+    - 게임 시작 전 초기 세팅을 도와주는 함수
+    - 게임 시작 메세지를 출력, 다리 길이를 사용자에게 받아 다리를 만드는 함수
+  - run()
+    - 메인 함수에서 호출하는 함수
+    - 게임 준비, 게임 시작, 게임 진행과정, 게임 종료 까지 전과정을 관리한다.
+  - game()
+    - 게임 진행과정을 관리하는 함수
+    - 게임이 종료되어야하는지 체크하고 아니라면 사용자에게 moveString 을 받아서 다리를 건넌다
+  - gameOver()
+    - 게임이 종료된 후에 작업
+    - 다리를 건너는데 성공했는지 체크 후, 다시 시도할지 물어보는 함수
+  - isRetry()
+    - 재시도의 여부를 체크하는 함수
+- BridgeGame
+  - Constructor
+    - 게임 시작 전에 변수 초기화 실행
+  - move
+    - 유저 인풋에 맞게 upBridge, downBridge 생성하고, moveCount 증가
+  - createBridgeResult
+    - move 결과에 따라 upBridge,downBridge에 결과를 추가하고
+    - 이동에 실패하였다면 progressStatus를 false 로 수정한다.
+  - isOver
+    - 게임 종료 여부 확인
+  - retry
+    - 재시도한다면 변수들 초기화 작업 후, true 반환
+  - initBeforeRestart
+    - 재시도 전에 변수 초기화
+  - gameSuccess
+    - 게임 결과에 따라 "성공","실패" 출력
+  - isSuccess
+    - 게임 성공 여부 확인
+  - gameCount
+    - 게임 재시도 횟수 체크
+    - 
+- BridgeNumberGenerator & BridgeMaker
+  - generate : 다리 생성
+- InputView
+  - readBridgeSize 
+    - 다리 길이 input
+  - readMoving 
+    - 다리 위,아래 선택 input
+  - readGameCommand 
+    - 게임 재시작 여부 input
+- Validation Check : 예외 처리
+  - toInts 
+    - 다리 길이 변수 숫자로 바꾸는 함수
+  - isBlank 
+    - input이 빈칸은 아닌지 확인하는 함수
+  - checkBridgeSizeRange
+    - 다리길이가 요구사항에 맞는지 확인하는 함수
+  - checkMovingEnum
+    - 위, 아래에 해당하는 input 만 입력했는지 확인하는 함수
+  - checkGameCommand
+    - 재시도, 종료에 해당하는 input 만 입력했는지 확인하는 함수
+- OutputView
+  - PrintMap
+    - 게임 결과 출력하는 함수
+  - printBridge
+    - printMap upBridge, downBridge에 대해 두 번 호출
+  - printResult
+    - 게임 종료 후 마지막 출력물들을 호출하는 함수
+  - printGameStartMessage
+    - 게임 시작 메세지
+  - printBridgeRequestMessage
+    - 다리 길이 입력 요구 메세지
+  - printMovingInputMessage
+    - 이동 칸 선택 요구 메세지
+  - printRetryMessage
+    - 재시도 여부 입력 요구 메세지
+  - printResultPrefixMessage
+    - 최종 게임 결과 출력 메세지
+  - printGameSuccessOrNot
+    - 다리 건너기 성공 여부 출력 메세지
+  - printNumberOfAttempts
+    - 게임 시도 횟수 출력 메세지
+
+- Enum Class
+  - Direction
+    - 랜덤으로 생성된 0과 1을 "D" 와 "U" 로 매치하기 위해 필요한 클래스
+  - MoveResult
+    - upBridge, downBridge 출력 결과 변수를 담고 있는 클래스
+    - 사용자의 입력에 따라 upBridge, downBridge 에 저장할 내용을 결정하는 함수를 담은 클래스
