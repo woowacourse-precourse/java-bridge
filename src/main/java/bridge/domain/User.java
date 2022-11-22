@@ -11,4 +11,8 @@ public class User {
     public void addPlayingCount() {
         this.playingCount += 1;
     }
+
+    public int getPlayingCount() {
+        return this.playingCount;
+    }
 }
