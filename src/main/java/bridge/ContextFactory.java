@@ -11,7 +11,7 @@ public class ContextFactory {
     }
 
     public BridgeMaker getBridgeMaker() {
-        return new BridgeMaker(getBridgeNumberGenerator(), getRandomNumberHandler());
+        return new BridgeMaker(getBridgeNumberGenerator());
     }
 
     public InputValidator getInputValidator() {

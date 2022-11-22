@@ -6,17 +6,22 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final RandomNumberHandler randomNumberHandler;
 
-    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator, RandomNumberHandler randomNumberHandler) {
+    public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-        this.randomNumberHandler = randomNumberHandler;
+    }
+
+    public String convertRandomNumber(int randomNumber) {
+        if (randomNumber == 0) {
+            return "D";
+        }
+        return "U";
     }
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridge.add(randomNumberHandler.convertRandomNumber(bridgeNumberGenerator.generate()));
+            bridge.add(convertRandomNumber(bridgeNumberGenerator.generate()));
         }
         return bridge;
     }

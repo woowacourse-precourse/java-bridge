@@ -15,9 +15,8 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 다리_생성_테스트() {
-        RandomNumberHandler randomNumberHandler = new RandomNumberHandlerImpl();
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator, randomNumberHandler);
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
     }
