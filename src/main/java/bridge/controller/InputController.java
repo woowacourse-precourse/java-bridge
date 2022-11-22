@@ -2,11 +2,12 @@ package bridge.controller;
 
 import bridge.Constants;
 import bridge.view.InputView;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class InputController {
-    private static List<Integer> recursions = Arrays.asList(1, 1, 1);;
+    private static List<Integer> recursions = Arrays.asList(1, 1, 1);
 
     public static int setBridgeSize() {
         try {
@@ -54,5 +55,9 @@ public class InputController {
             }
         }
         return false;
+    }
+
+    public static void Init() {
+        recursions = Arrays.asList(1, 1, 1);
     }
 }
