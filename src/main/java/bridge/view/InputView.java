@@ -13,8 +13,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSizeCommand = inputBridgeSizeCommand();
-        return toBridgeSize(bridgeSizeCommand);
+        int bridgeSize;
+        try {
+            String bridgeSizeCommand = inputBridgeSizeCommand();
+            bridgeSize = toBridgeSize(bridgeSizeCommand);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            bridgeSize = readBridgeSize();  // 에러 발생시 재귀로 다시 입력요청
+        }
+        return bridgeSize;
     }
 
     /**
