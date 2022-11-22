@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Controller.BridgeGameController;
 import bridge.Instances.EndType;
 import bridge.domain.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
@@ -14,17 +15,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class BridgeGameTest {
-
     static List<String> bridge = List.of("U", "D", "U");
-
 
     @DisplayName("움직였을 때 position 테스트")
     @Test
     void positionTest() {
         int position = 1;
         BridgeGame bridgeGame = new BridgeGame(1, position, bridge, "U");
-        input("D");
-        bridgeGame.move();
+        putCommand("D");
+        bridgeGame.move("D");
         assertThat(bridgeGame).extracting("position").isEqualTo(position + 1);
     }
 
@@ -33,9 +32,9 @@ public class BridgeGameTest {
     @Test
     void sameBridgeTest() {
         BridgeGame bridgeGame = new BridgeGame(1, 0, bridge, "");
-        input("U", "D", "D", "R", "U");
+        putCommand("U", "D", "D", "R", "U");
         playRoundEndType(bridgeGame);
-        bridgeGame.move();
+        bridgeGame.move("U");
         assertThat(bridgeGame).extracting("bridge").isEqualTo(bridge);
     }
 
@@ -43,7 +42,7 @@ public class BridgeGameTest {
     @DisplayName("게임 재시작 테스트")
     @Test
     void retryTest() {
-        input("U", "D", "D", "Q");
+        putCommand("U", "D", "D", "R");
         BridgeGame bridgeGame = new BridgeGame(1, 0, bridge, "");
         EndType type = playRoundEndType(bridgeGame);
         assertThat(type).isEqualTo(FAIL_RETRY);
@@ -54,22 +53,24 @@ public class BridgeGameTest {
     @DisplayName("게임 종료 테스트")
     @Test
     void quitTest() {
-        input("U", "D", "D", "Q");
+        putCommand("U", "D", "D", "Q");
         BridgeGame bridgeGame = new BridgeGame(1, 0, bridge, "");
         EndType type = playRoundEndType(bridgeGame);
         assertThat(type).isEqualTo(FAIL_QUIT);
     }
 
-    void input(String... command) {
+    void putCommand(String... command) {
         final byte[] buf = String.join("\n", command).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
     }
 
     EndType playRoundEndType(BridgeGame bridgeGame) {
-        bridgeGame.moveUntilGameOver();
-        EndType type = bridgeGame.gameEnded();
-        bridgeGame.successEndOrFailEnd(type);
+        BridgeGameController bridgeGameController = new BridgeGameController(bridgeGame);
+        bridgeGameController.moveUntilGameOver();
+        EndType type = bridgeGameController.gameEnded();
+        bridgeGameController.printResultCheckRetry(type);
         return type;
     }
+
 
 }

@@ -13,12 +13,18 @@ import static bridge.Instances.EndType.FAIL_QUIT;
 public class BridgeGameController {
     static InputView inputView;
     static OutputView outputView;
-    static BridgeGame bridgeGame;
+    BridgeGame bridgeGame;
 
     public BridgeGameController() {
         inputView = new InputView();
         outputView = new OutputView();
-        bridgeGame = new BridgeGame();
+        this.bridgeGame = new BridgeGame();
+    }
+
+    public BridgeGameController(BridgeGame bridgeGame) {
+        inputView = new InputView();
+        outputView = new OutputView();
+        this.bridgeGame = bridgeGame;
     }
 
 
