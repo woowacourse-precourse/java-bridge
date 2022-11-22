@@ -20,8 +20,7 @@ public class BridgeGameController {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         int playtime = 0;
         boolean retryflag = true;
@@ -30,19 +29,7 @@ public class BridgeGameController {
             GameRecord gameRecord = new GameRecord();
             playtime++;
 
-            for (int bridgeBlock = 0; bridgeBlock < bridgeSize; bridgeBlock++) {
-                OutputView.printUserMoveRequest();
-                String direction = InputView.readMoving();
-                boolean success = bridgeGame.move(direction, bridgeBlock, bridge);
-
-                gameRecord.addRecord(direction, success);
-
-                BridgeStatusModel bridgeStatusModel = new BridgeStatusModel(gameRecord.makeBridgeRecord());
-                OutputView.printMap(bridgeStatusModel);
-                if (!success) {
-                    break;
-                }
-            }
+            playGame(bridgeGame, gameRecord);
 
             OutputView.printGameRestartRequest();
             String s = InputView.readGameCommand();
@@ -55,5 +42,20 @@ public class BridgeGameController {
             }
         } while (retryflag);
 
+    }
+
+    private void playGame(BridgeGame bridgeGame, GameRecord gameRecord) {
+        for (int bridgeBlock = 0; bridgeGame.canExecute(bridgeBlock); bridgeBlock++) {
+            OutputView.printUserMoveRequest();
+            String direction = InputView.readMoving();
+            boolean success = bridgeGame.move(direction, bridgeBlock);
+            gameRecord.addRecord(direction, success);
+
+            BridgeStatusModel bridgeStatusModel = new BridgeStatusModel(gameRecord.makeBridgeRecord());
+            OutputView.printMap(bridgeStatusModel);
+            if (!success) {
+                break;
+            }
+        }
     }
 }
