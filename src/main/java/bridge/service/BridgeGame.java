@@ -19,10 +19,9 @@ public class BridgeGame {
      */
     public List<Integer> move(String moving) {
         List<Integer> userMoving = new ArrayList<>();
-        Bridge solution = Bridge.findTop(moving);
 
-        userMoving.add(solution.getFirst());
-        userMoving.add(solution.getSecond());
+        userMoving.add(Bridge.findTop(moving));
+        userMoving.add(Bridge.findBottom(moving));
 
         return userMoving;
     }
