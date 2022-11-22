@@ -84,7 +84,34 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public boolean readGameCommand() {
+        try {
+            System.out.println(GAME_COMMAND_INPUT_MESSAGE);
+            String gameCommand = Console.readLine();
+            validateGameCommand(gameCommand);
+            return convertGameCommand(gameCommand);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR_MESSAGE);
+        }
+    }
+    
+    /**
+     * R 또는 Q 문자열과 다르면 IllegalArgumentException을 발생시키는 메서드
+     */
+    private void validateGameCommand(String directcion) {
+        if (!"R".equals(directcion) && !"Q".equals(directcion)) {
+            throw new IllegalArgumentException();
+        }
+    }
+    
+    /**
+     * R 또는 Q 문자열을 boolean 타입으로 변환하는 메서드
+     */
+    private boolean convertGameCommand(String directcion) {
+        if (directcion.equals("Q")) {
+            return false;
+        }
+        
+        return true;
     }
 }
