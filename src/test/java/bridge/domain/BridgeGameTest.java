@@ -30,7 +30,7 @@ class BridgeGameTest {
     @DisplayName("게임이 끝나면 게임 상태를 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"SUCCESS,UP", "FAIL,DOWN"})
-    void gameStatus(GameStatus status,  BridgeDirection direction) {
+    void gameStatus(GameStatus status, BridgeDirection direction) {
         bridgeGame.move(direction);
 
         GameStatus result = bridgeGame.getStatus();

@@ -9,6 +9,7 @@ public class BridgeGameStatus {
         initGameStatus();
         initPosition();
     }
+
     private void initPosition() {
         position = 0;
     }

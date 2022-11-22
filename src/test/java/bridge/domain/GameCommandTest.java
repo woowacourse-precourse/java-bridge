@@ -11,7 +11,7 @@ class GameCommandTest {
 
     @DisplayName("입력 문자에 따라 Command를 반환한다.")
     @ParameterizedTest
-    @CsvSource(value = {"Q,QUIT","R,RETRY"})
+    @CsvSource(value = {"Q,QUIT", "R,RETRY"})
     void returnCommand(String input, GameCommand gameCommand) {
         GameCommand result = GameCommand.of(input);
 
