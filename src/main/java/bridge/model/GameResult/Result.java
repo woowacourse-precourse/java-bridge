@@ -7,7 +7,7 @@ import java.util.List;
 public class Result {
 
     private int tryCount;
-    private Record record;
+    private final Record record;
 
     public Result() {
         tryCount = 1;

@@ -12,8 +12,8 @@ public class BridgeGame {
 
     private Referee referee;
     private Bridge bridge;
-    private User user = new User();
-    private Result result = new Result();
+    private final User user = new User();
+    private final Result result = new Result();
 
     public void createBridge(List<String> bridgeInput) {
         bridge = new Bridge(bridgeInput);
