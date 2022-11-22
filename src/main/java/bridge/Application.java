@@ -18,7 +18,6 @@ public class Application {
 
         BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridge);
 
-        System.out.println(bridge);
         playGame(bridgeGame, inputView);
 
     }
@@ -54,7 +53,4 @@ public class Application {
         return false;
     }
 
-    public static void printCurrent() {
-
-    }
 }
