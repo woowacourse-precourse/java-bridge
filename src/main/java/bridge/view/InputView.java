@@ -6,13 +6,14 @@ import bridge.util.ExceptionHandler;
 
 public class InputView {
 
+    private final ExceptionHandler exceptionHandler = new ExceptionHandler();
     private final OutputView outputView = new OutputView();
 
     public int readBridgeSize() {
         while (true) {
             String input = readLine();
             try {
-                ExceptionHandler.checkBridgeSize(input);
+                exceptionHandler.checkBridgeSize(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException illegalArgumentException) {
                 outputView.printError(illegalArgumentException);
@@ -24,7 +25,7 @@ public class InputView {
         while (true) {
             String input = readLine();
             try {
-                ExceptionHandler.checkMoving(input);
+                exceptionHandler.checkMoving(input);
                 return input;
             } catch (IllegalArgumentException illegalArgumentException) {
                 outputView.printError(illegalArgumentException);
@@ -36,7 +37,7 @@ public class InputView {
         while (true) {
             try {
                 String input = readLine();
-                ExceptionHandler.checkRetryCommand(input);
+                exceptionHandler.checkRetryCommand(input);
                 return input;
             } catch (IllegalArgumentException illegalArgumentException) {
                 outputView.printError(illegalArgumentException);
