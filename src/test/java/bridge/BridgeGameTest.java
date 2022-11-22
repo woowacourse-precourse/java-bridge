@@ -28,6 +28,13 @@ public class BridgeGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("이동을 위해 길이가 1 이상인 입력이 발생하면 예외를 발생시킨다.")
+    @Test
+    void moveBridgeByLongInput() {
+        assertThatThrownBy(() -> game.move("UU"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("U 혹은 D를 입력하면 사용자는 다리를 이동한다.")
     @Test
     void moveBridge() {
