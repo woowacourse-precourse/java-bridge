@@ -1,9 +1,9 @@
 package bridge.bridgemodel;
 
 import bridge.*;
+import bridge.test.RandomBridgeMaker;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -26,7 +26,7 @@ public class bridgeMakerModelTest {
 
     @Test
     void 랜덤_세다리_생성_테스트() {
-        List<String> bridgesBySize = BridgeMaker.getAllBridgeBySizeToString(TEST_SIZE);
+        List<String> bridgesBySize = RandomBridgeMaker.getAllBridgeBySizeToString(TEST_SIZE);
         System.out.println(bridgesBySize);
 
         assertThat(bridgesBySize).contains("[D, D, D]",
@@ -37,8 +37,8 @@ public class bridgeMakerModelTest {
     @Test
     void 랜덤_네다리_생성_테스트() {
         int size = TEST_SIZE + 1;
-        List<String> firstRandomBridges = BridgeMaker.getAllBridgeBySizeToString(size);
-        List<String> secondRandomBridges = BridgeMaker.getAllBridgeBySizeToString(size);
+        List<String> firstRandomBridges = RandomBridgeMaker.getAllBridgeBySizeToString(size);
+        List<String> secondRandomBridges = RandomBridgeMaker.getAllBridgeBySizeToString(size);
 
         List<String> result = firstRandomBridges.stream()
                 .filter(target -> secondRandomBridges.stream()
@@ -51,7 +51,7 @@ public class bridgeMakerModelTest {
 
     @Test
     void 랜덤_세다리_그리기_생성_테스트() {
-        List<List<String>> randomBridges = BridgeMaker.getAllBridgeBySize(TEST_SIZE);
+        List<List<String>> randomBridges = RandomBridgeMaker.getAllBridgeBySize(TEST_SIZE);
         List<String> allMap = getThreeBridgeMaps();
         while (!randomBridges.isEmpty()) {
             int bridgeCounts = randomBridges.size();

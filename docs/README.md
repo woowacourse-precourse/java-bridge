@@ -131,14 +131,21 @@
 
 * makeBridge()
   - 다리 길이만큼 다리 만드는 메서드
+* makeState()
+  - 0,1 입력값을 D,U 로 반환
+
+
+<br/>
+
+    - RandomBridgeMaker (Class)
+        테스트를 위한 랜덤 다리 만들기 메서드를 가진 클래스
+
 * getAllBridgeBySizeToString()
   - 해당 사이즈를 random 으로 모든 경우의 수의 List<String> 형태를 String 값으로 반환
 * getAllBridgeBySize()
   - 해당 사이즈를 random 으로 모든 경우의 수의 List<String> 반환
 * getNumberOfCases()
   - 해당 사이즈로 구성할 때 나오는 경우의 수 반환
-* makeState()
-  - 0,1 입력값을 D,U 로 반환
 
 
 <br/>
