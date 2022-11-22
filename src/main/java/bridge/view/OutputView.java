@@ -52,7 +52,8 @@ public class OutputView {
         for (int userMovingIndex = 0; userMovingIndex < userMoving.size(); userMovingIndex++) {
             if (userMoving.get(userMovingIndex).equals(UP)) System.out.print(CROSSE_BRIDGE);
             if (userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            if (userMoving.get(userMovingIndex).equals(DOWN) || userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(SPACE);
+            if (userMoving.get(userMovingIndex).equals(DOWN) || userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_DOWN))
+                System.out.print(SPACE);
             if (userMovingIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
@@ -63,7 +64,8 @@ public class OutputView {
         for (int userMovingIndex = 0; userMovingIndex < userMoving.size(); userMovingIndex++) {
             if (userMoving.get(userMovingIndex).equals(DOWN)) System.out.print(CROSSE_BRIDGE);
             if (userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            if (userMoving.get(userMovingIndex).equals(UP) || userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(SPACE);
+            if (userMoving.get(userMovingIndex).equals(UP) || userMoving.get(userMovingIndex).equals(WRONG_WHEN_INPUT_UP))
+                System.out.print(SPACE);
             if (userMovingIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
@@ -84,11 +86,11 @@ public class OutputView {
         System.out.println(TOTAL_NUMBER_MSG + attemptCount);
     }
 
-    public void printExceptionMessage(IllegalArgumentException e){
+    public void printExceptionMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 
-    public void printSpace(){
+    public void printSpace() {
         System.out.println();
     }
 }

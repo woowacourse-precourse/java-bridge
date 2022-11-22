@@ -34,10 +34,10 @@ public class BridgeController {
         bridgeGame = new BridgeGame(bridge);
     }
 
-    public int inputBridgeSize(){
+    public int inputBridgeSize() {
         int bridgeSize;
-        while(true){
-            try{
+        while (true) {
+            try {
                 bridgeSize = inputView.readBridgeSize();
                 break;
             } catch (IllegalArgumentException e) {
@@ -71,13 +71,13 @@ public class BridgeController {
         return false;
     }
 
-    public String inputGameCommand(){
+    public String inputGameCommand() {
         String gameCommand;
-        while(true){
+        while (true) {
             try {
                 gameCommand = inputView.readGameCommand();
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e);
             }
         }
@@ -96,11 +96,11 @@ public class BridgeController {
 
     public boolean move() {
         String moving;
-        while(true){
-            try{
+        while (true) {
+            try {
                 moving = inputView.readMoving();
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e);
             }
         }
