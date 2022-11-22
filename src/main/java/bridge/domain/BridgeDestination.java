@@ -22,10 +22,10 @@ public class BridgeDestination {
     public void setQuit(int bridgeSize, int gameCount, BridgePrinting bridgePrinting) {
         int nowUserBridgeSize = bridgePrinting.getSize();
         if (bridgeSize == nowUserBridgeSize && !BridgePrinting.isMoveStop()) {
-            outputView.printResult(gameCount, bridgePrinting, true);
+            outputView.printResult(gameCount, true, bridgePrinting);
             return;
         }
-        outputView.printResult(gameCount, bridgePrinting, false);
+        outputView.printResult(gameCount, false, bridgePrinting);
     }
 
 
