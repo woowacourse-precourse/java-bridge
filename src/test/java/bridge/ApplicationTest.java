@@ -5,8 +5,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -37,7 +37,9 @@ class ApplicationTest extends NsTest {
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+     
     }
+
 
     @Test
     void 예외_테스트() {
