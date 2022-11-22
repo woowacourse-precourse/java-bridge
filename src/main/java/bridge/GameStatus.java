@@ -19,7 +19,7 @@ public class GameStatus {
 
     public void retry() {
         bridgeMatcher.init();
-        gameResult.retry();
+        gameResult.attempt();
         pivot = DEFAULT_POSITION;
     }
 

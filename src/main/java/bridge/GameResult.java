@@ -5,7 +5,7 @@ public class GameResult {
     private boolean isGameClear = false;
     private final BridgeMap bridgeMap = new BridgeMap();
 
-    public void retry() {
+    public void attempt() {
         countUp();
         bridgeMap.reset();
     }
