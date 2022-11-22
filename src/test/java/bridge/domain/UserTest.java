@@ -48,18 +48,6 @@ class UserTest {
         assertThat(user.isSuccessComplete()).isEqualTo(true);
     }
 
-    @DisplayName("게임 실패 테스트")
-    @Test
-    public void isNotSuccessCompleteTest() {
-        //given
-
-        //when
-        User user = new User();
-
-        //then
-        assertThat(user.isSuccessComplete()).isEqualTo(false);
-    }
-
     @DisplayName("게임 종료 및 실패 테스트")
     @Test
     public void isGameOverTest() {
