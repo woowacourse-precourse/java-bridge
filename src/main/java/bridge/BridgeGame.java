@@ -17,8 +17,12 @@ public class BridgeGame {
 
     public void gameStart(){
         outputView.printGameStart();
-        makeBridge();
-        //System.out.println(bridgeSize);
+        try{
+            makeBridge();
+        }catch (IllegalArgumentException e){
+            System.out.println(ErrorMessage.strError.getErrorMessage());
+        }
+
     }
 
     private void makeBridge(){
