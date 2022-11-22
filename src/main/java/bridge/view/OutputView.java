@@ -22,6 +22,9 @@ public class OutputView {
     private final static String GAME_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
     private final static String LINE_BREAK = System.lineSeparator();
 
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
     public void printStartMessage() {
         System.out.println(GAME_START_MESSAGE + LINE_BREAK);
     }
