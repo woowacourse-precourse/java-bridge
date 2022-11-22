@@ -38,4 +38,13 @@ public class BridgeMap {
         return false;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Bridge bridge1 : bridge) {
+            sb.append(bridge1);
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
