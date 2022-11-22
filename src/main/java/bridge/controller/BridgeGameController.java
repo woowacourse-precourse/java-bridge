@@ -7,7 +7,6 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMovingResult;
 import bridge.service.BridgeMakerService;
-import bridge.type.GameStatusType;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -26,7 +25,7 @@ public class BridgeGameController {
     }
 
     public void start() {
-        while (bridgeGame.getGameStatus().isPlaying()) {
+        while (bridgeGame.isPlaying()) {
             move();
             checkFailed();
             checkEnd();
@@ -58,7 +57,7 @@ public class BridgeGameController {
     }
 
     private void checkFailed() {
-        if (bridgeGame.getGameStatus() == GameStatusType.FAIL) {
+        if (bridgeGame.isFailed()) {
             requestRestartOrQuit();
         }
     }

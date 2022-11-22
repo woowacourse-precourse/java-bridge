@@ -20,7 +20,7 @@ public class BridgeGame {
 
     public void move(String moving) {
         movingRecord.add(moving);
-        if (isFailed(stageCount, moving)) {
+        if (!isPassed(stageCount, moving)) {
             fail();
         }
     }
@@ -39,14 +39,20 @@ public class BridgeGame {
         gameStatus = GameStatusType.END;
     }
 
+    public boolean isPlaying() {
+        return gameStatus == GameStatusType.PLAYING;
+    }
     public boolean isEnd() {
         return stageCount == bridgeInfo.size() && gameStatus != GameStatusType.FAIL;
     }
 
-    public boolean isFailed(int index, String moving) {
-        return !bridgeInfo.get(index).equals(moving);
+    public boolean isFailed() {
+        return gameStatus == GameStatusType.FAIL;
     }
 
+    public boolean isPassed(int index, String moving) {
+        return bridgeInfo.get(index).equals(moving);
+    }
     public void increaseStageCount() {
         stageCount++;
     }
