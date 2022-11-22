@@ -16,7 +16,7 @@ public class RepeatCount {
 
     public RepeatCount increment(final Integer plusCount) {
         validateRepeatCountOverFlow(count, plusCount);
-       
+
         return new RepeatCount(count + plusCount);
     }
 
