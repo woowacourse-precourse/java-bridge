@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.validation.BridgeValidation.bridgeValidation;
+
 public class GameController {
 
     private final InputView inputView;
@@ -12,7 +14,7 @@ public class GameController {
     }
 
     public void startGame() {
-        bridgeSize = Integer.parseInt(inputView.readBridgeSize());
+        bridgeSize = inputBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
         runGame(bridgeGame);
@@ -54,5 +56,13 @@ public class GameController {
             bridgeGame.changeToLoose();
         }
         return gameCommand;
+    }
+
+    private int inputBridgeSize() {
+        String input;
+        do {
+            input = inputView.readBridgeSize();
+        } while (!bridgeValidation(input));
+        return Integer.parseInt(input);
     }
 }
