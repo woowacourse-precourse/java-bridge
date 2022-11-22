@@ -28,4 +28,9 @@ public class Controller {
             }
         }
     }
+
+    public void afterMove() {
+        String mapStatus = model.toString();
+
+    }
 }
