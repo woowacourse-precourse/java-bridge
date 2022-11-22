@@ -7,10 +7,8 @@ import java.util.NoSuchElementException;
 
 public class ValidException {
     public void validInteger(String inputString){
-        boolean isCan = false;
         try{
             Integer.parseInt(inputString);
-            isCan = true;
         } catch (NumberFormatException e){
             System.out.println(ErrorMessage.ERROR_MESSAGE + ErrorMessage.INPUT_INTEGER);
             throw new NoSuchElementException();
