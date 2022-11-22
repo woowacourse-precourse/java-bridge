@@ -18,7 +18,7 @@ public class RetryProcessing {
      */
     public boolean readRetry() {
         while (true) {
-            OutputGameMessage.retryInputMessage.printMessage();
+            OutputGameMessage.RETRY_INPUT_MESSAGE.printMessage();
             String input = inputView.readGameCommand();
             if (input.length() == 0) {
                 continue;

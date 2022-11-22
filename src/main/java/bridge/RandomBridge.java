@@ -24,7 +24,7 @@ public class RandomBridge {
      */
     private int readBirdgeSize() {
         while (true) {
-            OutputGameMessage.rangeInputMessage.printMessage();
+            OutputGameMessage.RANGE_INPUT_MESSAGE.printMessage();
             int bridgeSize = inputView.readBridgeSize();
             if (bridgeSize != -1)
                 return bridgeSize;

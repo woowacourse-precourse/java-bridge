@@ -26,7 +26,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        OutputGameMessage.moveInputMessage.printMessage();
+        OutputGameMessage.MOVE_INPUT_MESSAGE.printMessage();
         String input = "";
         try {
             input = Console.readLine();
