@@ -8,9 +8,9 @@ public class BridgeGameRunner {
 
     public BridgeGameRunner() {
         input = new InputView();
-        output = new OutputView();
-        maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         game = new BridgeGame();
+        output = new OutputView(game);
+        maker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void run() {
@@ -23,7 +23,7 @@ public class BridgeGameRunner {
             }
             game.retry();
         }
-        output.printResult(game);
+        output.printResult();
     }
 
     private boolean askRetry() {
@@ -36,7 +36,7 @@ public class BridgeGameRunner {
     private void repeatMove() {
         while (game.isPlayerAlive() && !game.isSuccess()) {
             game.move(input.readMoving());
-            output.printMap(game);
+            output.printMap();
         }
     }
 }

@@ -10,35 +10,35 @@ public class BridgeGame {
 
     private List<String> bridge;
     private int tryCount;
-    private int position;
+    private int lastPosition;
     private String lastCommand;
 
     public BridgeGame() {
-        position = 0;
+        lastPosition = 0;
         bridge = null;
         tryCount = 1;
         lastCommand = null;
     }
 
     public void move(String command) {
-        position += 1;
+        lastPosition += 1;
         lastCommand = command;
     }
 
     public void retry() {
-        position = 0;
+        lastPosition = 0;
         tryCount++;
     }
 
     public boolean isPlayerAlive() {
-        if (getPosition() == 0 || bridge.get(getIndex()).equals(lastCommand)) {
+        if (getLastPosition() == 0 || bridge.get(getLastIndex()).equals(lastCommand)) {
             return true;
         }
         return false;
     }
 
     public boolean isSuccess() {
-        if (bridge.size() == getPosition() && bridge.get(getIndex()).equals(lastCommand)) {
+        if (bridge.size() == getLastPosition() && bridge.get(getLastIndex()).equals(lastCommand)) {
             return true;
         }
         return false;
@@ -63,12 +63,12 @@ public class BridgeGame {
         return bridge.get(i);
     }
 
-    public int getPosition() {
-        return position;
+    public int getLastPosition() {
+        return lastPosition;
     }
 
-    public int getIndex() {
-        return position - 1;
+    public int getLastIndex() {
+        return lastPosition - 1;
     }
 
     public String getLastCommand() {

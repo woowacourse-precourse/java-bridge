@@ -16,46 +16,54 @@ public class OutputView {
     private static final String WHETHER_GAME_RESULT_MESSAGE = "게임 성공 여부: ";
     private static final String TOTAL_TRY_MESSAGE = "총 시도한 횟수: ";
 
+    private final BridgeGame game;
+
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
     }
 
-    public void printMap(BridgeGame game) {
+    public OutputView(BridgeGame game) {
+        this.game = game;
+    }
+
+    public void printMap() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append(buildBridgeLine(Line.TOP, game).append("\n"));
-        builder.append(buildBridgeLine(Line.BOTTOM, game));
+        builder.append(buildBridgeLine(Line.TOP).append("\n"));
+        builder.append(buildBridgeLine(Line.BOTTOM));
 
         System.out.println(builder.toString());
     }
 
-    private StringBuilder buildBridgeLine(Line flag, BridgeGame game) {
+    private StringBuilder buildBridgeLine(Line flag) {
         StringBuilder builder = new StringBuilder();
 
-        buildInnerBridgeLine(flag, game, builder);
+        buildInnerBridgeLine(flag, builder);
         appendBracketBothSide(builder);
         return builder;
     }
 
-    private void buildInnerBridgeLine(Line flag, BridgeGame game, StringBuilder builder) {
-        for (int i = 0; i < game.getPosition(); ++i) {
-            builder.append(getCell(flag, i, game));
-            builder.append(getSeparator(game.getIndex(), i));
+    private void buildInnerBridgeLine(Line flag, StringBuilder builder) {
+        for (int i = 0; i < game.getLastPosition(); ++i) {
+            builder.append(getCell(flag, i));
+            if (!isLastCell(i)) {
+                builder.append(SEPARATOR);
+            }
         }
     }
 
-    private static String getSeparator(int nowIndex, int i) {
-        if (i != nowIndex) {
-            return SEPARATOR;
+    private boolean isLastCell(int i) {
+        if (game.getLastIndex() == i) {
+            return true;
         }
-        return "";
+        return false;
     }
 
-    private String getCell(Line flag, int index, BridgeGame game) {
-        if (index < game.getIndex() && isSameLine(flag, game.getBridgeCell(index))) {
+    private String getCell(Line flag, int index) {
+        if (index < game.getLastIndex() && isSameLine(flag, game.getBridgeCell(index))) {
             return CORRECT_CELL;
         }
-        if (index == game.getIndex() && isSameLine(flag, game.getLastCommand())) {
+        if (index == game.getLastIndex() && isSameLine(flag, game.getLastCommand())) {
             if (game.getLastCommand().equals(game.getBridgeCell(index))) {
                 return CORRECT_CELL;
             }
@@ -77,9 +85,9 @@ public class OutputView {
         builder.append(RIGHT_BRACKET);
     }
 
-    public void printResult(BridgeGame game) {
+    public void printResult() {
         System.out.println(GAME_RESULT_MESSAGE);
-        printMap(game);
+        printMap();
         System.out.println(WHETHER_GAME_RESULT_MESSAGE + game.getGameResultToString());
         System.out.println(TOTAL_TRY_MESSAGE + game.getTryCount());
     }

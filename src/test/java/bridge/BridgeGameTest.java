@@ -23,7 +23,7 @@ class BridgeGameTest {
     @Test
     void move() {
         game.move(BridgeGame.CMD_UP);
-        Assertions.assertThat(game.getPosition()).isEqualTo(1);
+        Assertions.assertThat(game.getLastPosition()).isEqualTo(1);
         Assertions.assertThat(game.getLastCommand()).isEqualTo(BridgeGame.CMD_UP);
     }
 
