@@ -14,18 +14,21 @@ public class BridgeGame {
     BridgeMaker bridgeMaker;
     public List<String> bridgeUsable = new ArrayList<>();
 
-    public HashMap<Integer, List<String>> result = new HashMap<Integer, List<String>>();
+    public HashMap<Integer, List<String>> resultMap = new HashMap<Integer, List<String>>();
 
     public int currentIndex = 0;
+    public int retrycount=0;
 
     public void startGame(int currentIndex) {
+        retrycount+=1;
         int bridgeSize = inputView.readBridgeSize();
         bridgeUsable = bridgeMaker.makeBridge(bridgeSize);
         for (int i=currentIndex; i<bridgeUsable.size(); i++) {
             String inputMove = inputView.readMoving();
             move(bridgeUsable.get(currentIndex), inputMove, currentIndex);
-            outputView.printMap(result);
+            outputView.printMap(resultMap);
         }
+        outputView.printResult("성공", retrycount, resultMap);
     }
 
     /**
@@ -43,13 +46,13 @@ public class BridgeGame {
                 resultDown="E";
                 results.add(resultUp);
                 results.add(resultDown);
-                result.put(currentIndex, results);
+                resultMap.put(currentIndex, results);
                 currentIndex += 1;
             }
             if (!move.equals(inputMove)){
                 resultUp="X";
                 resultDown="E";
-                retry();
+                retry("실패");
             }
         }
         if (move.equals("D")){
@@ -58,13 +61,13 @@ public class BridgeGame {
                 resultDown="O";
                 results.add(resultUp);
                 results.add(resultDown);
-                result.put(currentIndex, results);
+                resultMap.put(currentIndex, results);
                 currentIndex += 1;
             }
             if (!move.equals(inputMove)){
                 resultUp="E";
                 resultDown="X";
-                retry();
+                retry("실패");
             }
         }
     }
@@ -76,14 +79,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String result) {
         String gameCommand = inputView.readGameCommand();
         if (gameCommand.equals("R")) {
             startGame(currentIndex);
         }
         if (gameCommand.equals("Q")) {
-
-            return;
+            outputView.printResult(result, retrycount, resultMap);
         }
     }
 }
