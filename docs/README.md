@@ -30,9 +30,17 @@
 
 - BridgeApplication
   - [x] 전반적인 실행 과정 구현
-    - 다른 객체들을 이용하여 전반적인 진행 과정 구현
+    - 다른 객체(InputView, OutputView, BridgeGame)들을 이용하여 전반적인 진행 과정 구현
       - 다리 길이를 입력받아 BridgeGame을 만듦
       - 이동할 곳을 입력받아 이동함
       - 다리 끝까지 이동했거나 이동하는 데 실패할 경우 중단함
       - 이동에 실패했을 경우, 재시도 여부를 입력받음
       - 끝까지 이동했거나 실패했을 때 끝낸 경우, 게임 결과를 출력함
+
+- 최종 Class 구조
+  - 아무것도 적어지지 않은 화살표는 의존성을 나타냄
+  - 화살표를 2개 이상 지나간 객체들은 서로 의존하지 않도록 함 
+    - ex) BridgeGameApplication과 InputViewData의 인터페이스를 몰라도 되도록 함
+<p align="center">
+  <img width="400" src="./structure.png">
+</p>
