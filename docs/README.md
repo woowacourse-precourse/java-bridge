@@ -32,7 +32,7 @@
     - 제공된 BridgeNumberGenerator를 통해 Bridge 객체 리턴
     - 예외. 0 또는 1 이외의 값이 생성될 경우 예외 발생
 
-### 게임 진행 BrideGame
+### 게임 액션 BrideGame
 - [x] 게임 시작하기 BrideGame#BridegeGame(Bridge bridge)
   - 생성한 Bridge를 입력 받아 endIndex(마지막 칸)을 기록
   - 현재 칸과 현재 시도 횟수 세팅
