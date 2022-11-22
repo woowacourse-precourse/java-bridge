@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.constant.Updown;
+import bridge.constant.Moving;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +35,9 @@ public class BridgeMaker {
 
     private String toKey(int number) {
         if (number == 1)
-            return Updown.UP.getKey();
+            return Moving.UP.getKey();
         if (number == 0)
-            return Updown.DOWN.getKey();
+            return Moving.DOWN.getKey();
         return null;
     }
 }

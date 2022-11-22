@@ -1,12 +1,12 @@
 package bridge.constant;
 
-public enum Updown {
+public enum Moving {
     UP("U"),
     DOWN("D");
 
     private final String key;
 
-    Updown(String key) {
+    Moving(String key) {
         this.key = key;
     }
 

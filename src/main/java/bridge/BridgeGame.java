@@ -14,7 +14,7 @@ import java.util.List;
 
 import static bridge.constant.PrintMessage.*;
 import static bridge.constant.SuccessFail.*;
-import static bridge.constant.Updown.*;
+import static bridge.constant.Moving.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

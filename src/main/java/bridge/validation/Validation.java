@@ -2,7 +2,7 @@ package bridge.validation;
 
 import static bridge.constant.ErrorMessage.*;
 import static bridge.constant.GameCommand.*;
-import static bridge.constant.Updown.*;
+import static bridge.constant.Moving.*;
 
 public class Validation {
     public void validateBridgeSize(String bridgeSize) {
