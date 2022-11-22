@@ -54,6 +54,7 @@ public class BridgeGameController {
 
 
     public void combineUpDown(){
+        result.resetAllResult();
         result.combineResult(moving.getUp(),moving.getDown());
         outputView.printMap(result.getAllResults());
     }

@@ -45,7 +45,6 @@ public class Result {
             keeping = false;
     }
     public void combineResult(List<String> up, List<String> down){
-        allResults.clear();
         allResults.add(up);
         allResults.add(down);
     }
