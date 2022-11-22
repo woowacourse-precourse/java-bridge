@@ -24,14 +24,28 @@ public final class Constants {
     }
 
     public final class BridgeShape {
-        public static final String START_LINE = "[";
-        public static final String END_LINE = "]";
+        public static final String START_SYMBOL = "[";
+        public static final String END_SYMBOL = "]";
         public static final String SEPERATOR = "|";
         public static final String MOVABLE = " O ";
         public static final String UNMOVABLE = " X ";
-        public static final String BLANK = "   ";
+        public static final String BLOCK = "   ";
 
         private BridgeShape() {
+        }
+    }
+
+    //TODO enum으로 수정하기
+    public enum Direction {
+        UP("U", 1),
+        DOWN("D", 0);
+
+        private final String command;
+        private final int randomNumber;
+
+        Direction(String command, int randomNumber) {
+            this.command = command;
+            this.randomNumber = randomNumber;
         }
     }
 
