@@ -25,6 +25,12 @@ public class BridgeGameTest {
         BridgeGame.setBridge(bridge);
     }
 
+    @DisplayName("성공 여부에 대한 문자열을 리턴한다")
+    @Test
+    void resultToStringTest(){
+        assertThat(bridgeGame.resultToString()).isEqualTo("게임 성공 여부: 실패");
+    }
+
     @DisplayName("시도한 횟수를 나타내는 문자열을 리턴한다.")
     @Test
     void attemptCountToStringTest() {
