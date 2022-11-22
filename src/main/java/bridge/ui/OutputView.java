@@ -24,15 +24,15 @@ public class OutputView {
 	private void printUpMap(List<String> userBridge, List<String> userSelect) {
 		System.out.print(OutputMessage.LEFT.getMsg());
 		for (int i = 0; i < userSelect.size(); i++) {
-            if (Objects.equals(userSelect.get(i), BridgeSymbol.UP.getSymbol())) {
-                System.out.print(userBridge.get(i));
-            }
-            if (Objects.equals(userSelect.get(i), BridgeSymbol.DOWN.getSymbol())) {
-                System.out.print(OutputMessage.BLANK.getMsg());
-            }
-            if (i != userBridge.size() - 1) {
-                System.out.print(OutputMessage.MIDDLE.getMsg());
-            }
+			if (Objects.equals(userSelect.get(i), BridgeSymbol.UP.getSymbol())) {
+				System.out.print(userBridge.get(i));
+			}
+			if (Objects.equals(userSelect.get(i), BridgeSymbol.DOWN.getSymbol())) {
+				System.out.print(OutputMessage.BLANK.getMsg());
+			}
+			if (i != userBridge.size() - 1) {
+				System.out.print(OutputMessage.MIDDLE.getMsg());
+			}
 		}
 		System.out.println(OutputMessage.RIGHT.getMsg());
 	}
@@ -40,15 +40,15 @@ public class OutputView {
 	private void printDownMap(List<String> userBridge, List<String> userSelect) {
 		System.out.print(OutputMessage.LEFT.getMsg());
 		for (int i = 0; i < userBridge.size(); i++) {
-            if (Objects.equals(userSelect.get(i), BridgeSymbol.DOWN.getSymbol())) {
-                System.out.print(userBridge.get(i));
-            }
-            if (Objects.equals(userSelect.get(i), BridgeSymbol.UP.getSymbol())) {
-                System.out.print(OutputMessage.BLANK.getMsg());
-            }
-            if (i != userBridge.size() - 1) {
-                System.out.print(OutputMessage.MIDDLE.getMsg());
-            }
+			if (Objects.equals(userSelect.get(i), BridgeSymbol.DOWN.getSymbol())) {
+				System.out.print(userBridge.get(i));
+			}
+			if (Objects.equals(userSelect.get(i), BridgeSymbol.UP.getSymbol())) {
+				System.out.print(OutputMessage.BLANK.getMsg());
+			}
+			if (i != userBridge.size() - 1) {
+				System.out.print(OutputMessage.MIDDLE.getMsg());
+			}
 		}
 		System.out.println(OutputMessage.RIGHT.getMsg());
 	}

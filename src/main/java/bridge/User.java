@@ -12,7 +12,7 @@ public class User {
 	public int tryCount = 1;
 
 	public void addBridge(boolean movable) {
-		if(movable) {
+		if (movable) {
 			bridge.add(BridgeSymbol.MOVABLE.getSymbol());
 			return;
 		}
