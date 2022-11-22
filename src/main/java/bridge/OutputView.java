@@ -1,7 +1,7 @@
 package bridge;
 
 import static bridge.OutputMessage.START_MESSAGE;
-import static bridge.OutputMessage.BRIDGE_LENGTH_MESSAGE;
+import static bridge.OutputMessage.BRIDGE_SIZE_MESSAGE;
 import static bridge.OutputMessage.CHOICE_REQUEST_MESSAGE;
 import static bridge.OutputMessage.RESTART_OR_QUIT_MESSAGE;
 import static bridge.OutputMessage.RESULT_MESSAGE;
@@ -37,8 +37,8 @@ public class OutputView {
         System.out.println(START_MESSAGE);
     }
 
-    public void printBridgeLengthRequest() {
-        System.out.println(BRIDGE_LENGTH_MESSAGE);
+    public void printBridgeSizeRequest() {
+        System.out.println(BRIDGE_SIZE_MESSAGE);
     }
 
     public void printChoiceRequest() {
