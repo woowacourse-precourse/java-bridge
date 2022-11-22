@@ -17,7 +17,7 @@ public class InputController {
     public static int setBridgeSize() {
         try {
             System.out.println(Constants.GameProcessMessages.INPUT_BRIDGE_LENGTH);
-            return inputView.readBridgeSize();
+            return InputView.readBridgeSize();
         } catch (IllegalArgumentException ie) {
             if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_BRIDGE_SIZE)) return 0;
             System.out.println(ie.getMessage());
@@ -28,7 +28,7 @@ public class InputController {
     public static String setMoveChoice() {
         try{
             System.out.println(Constants.GameProcessMessages.INPUT_WHERETO_MOVE);
-            return inputView.readMoving();
+            return InputView.readMoving();
         } catch (IllegalArgumentException ie) {
             if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_MOVE_CHOICE)) return "end";
             System.out.println(ie.getMessage());
@@ -39,7 +39,7 @@ public class InputController {
     public static String setGameCommand() {
         try {
             System.out.println(Constants.GameProcessMessages.INPUT_RETRY_ORNOT);
-            return inputView.readGameCommand();
+            return InputView.readGameCommand();
         } catch (IllegalArgumentException ie) {
             if (checkMaxRecursion(Constants.GameElements.RECURSION_SET_GAME_COMMAND)) return "end";
             System.out.println(ie.getMessage());
