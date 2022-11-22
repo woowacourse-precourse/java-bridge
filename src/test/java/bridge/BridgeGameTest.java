@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.Result;
 import bridge.domain.User;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +23,8 @@ public class BridgeGameTest {
     void generateGame() {
         List<String> answerBridge = List.of("U", "D", "U");
         User user = new User();
-        game = new BridgeGame(answerBridge, user);
+        Result result = new Result();
+        game = new BridgeGame(answerBridge, user, result);
     }
 
     @DisplayName("moveInput 예외처리 테스트")
