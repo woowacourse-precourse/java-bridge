@@ -96,4 +96,16 @@ public class GamePlay {
 
         return canMove;
     }
+
+    public boolean isGameWon(List<String> bridge, PlayerMap playerMap) {
+        while (true) {
+            boolean canMove = createCanMove(bridge, playerMap);
+
+            if (bridgeGame.getPosition() == bridge.size() && canMove) {
+                return WON;
+            } else if (!canMove) {
+                return FAILURE;
+            }
+        }
+    }
 }
