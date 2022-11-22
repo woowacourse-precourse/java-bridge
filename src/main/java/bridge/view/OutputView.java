@@ -19,21 +19,25 @@ public class OutputView {
     private StringBuilder firstMap = new StringBuilder();
     private StringBuilder secondMap = new StringBuilder();
 
+    public void printError(String message) {
+        System.out.println(message);
+    }
+
     public void initMap(){
         firstMap = new StringBuilder();
         secondMap = new StringBuilder();
     }
 
     public void startBridgeGame(){
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
     public void askBridgeSize(){
-        System.out.println("다리의 길이를 입력해주세요");
+        System.out.println("\n다리의 길이를 입력해주세요");
     }
 
     public void askMovement(){
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D");
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
     public void askDecision(){
