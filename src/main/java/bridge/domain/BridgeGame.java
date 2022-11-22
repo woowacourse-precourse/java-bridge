@@ -17,8 +17,8 @@ public class BridgeGame {
     private List<String> bridge;
     private Integer trialCount;
     private GameState gameState;
-    private BridgeProgress progress;
-    private BridgeMaker bridgeMaker;
+    private final BridgeProgress progress;
+    private final BridgeMaker bridgeMaker;
 
     public BridgeGame(BridgeMaker bridgeMaker){
         this.bridge = new ArrayList<>();

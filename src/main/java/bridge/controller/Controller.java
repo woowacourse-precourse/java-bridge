@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
 import bridge.domain.BridgeGame;
 import bridge.domain.constants.Command;
 import bridge.domain.constants.GameState;

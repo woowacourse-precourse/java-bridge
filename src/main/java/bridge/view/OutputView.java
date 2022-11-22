@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.domain.constants.DomainError;
 import bridge.view.text.OutputText;
 
 import java.util.List;
