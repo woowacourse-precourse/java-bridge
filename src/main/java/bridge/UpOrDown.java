@@ -4,12 +4,12 @@ public enum UpOrDown {
     UP(2),
     DOWN(1)
     ;
-    private final int value;
-    UpOrDown(int value){
+    private final Integer value;
+    UpOrDown(Integer value){
         this.value = value;
     }
 
-    public int getValue() {
+    public Integer getValue() {
         return value;
     }
 }
