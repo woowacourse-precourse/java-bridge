@@ -9,6 +9,9 @@ import java.util.List;
 public class BridgeMaker {
     private static final int BRIDGE_UPPER = 1;
     private static final int BRIDGE_LOWER = 0;
+    private static final String UP_MARK = "U";
+    private static final String DOWN_MARK = "D";
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -34,11 +37,11 @@ public class BridgeMaker {
     private String convertBridgeNumberToString(int bridgeNumber) {
         String convertBridgeString = "";
         if (bridgeNumber == BRIDGE_UPPER) {
-            convertBridgeString = "U";
+            convertBridgeString = UP_MARK;
         }
 
         if (bridgeNumber == BRIDGE_LOWER) {
-            convertBridgeString = "D";
+            convertBridgeString = DOWN_MARK;
         }
 
         return convertBridgeString;
