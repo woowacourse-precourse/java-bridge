@@ -14,6 +14,7 @@ public class Controller {
         try {
             outputView.printStartGame();
             setUpBridge(requestBridgeSize());
+            requestMoving();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -33,5 +34,14 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.setBridge(bridge);
+    }
+
+    private String requestMoving() {
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestMoving();
+        }
     }
 }
