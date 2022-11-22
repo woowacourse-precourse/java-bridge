@@ -105,6 +105,7 @@ class BridgeGameTest {
     @Test
     void isSucceed_테스트() {
         bridgeGame = new BridgeGame(3);
+        bridgeGame.movingCount = 3;
         assertTrue(bridgeGame.isSucceed(3));
     }
 
