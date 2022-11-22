@@ -1,11 +1,11 @@
 package bridge.view;
 
-import static bridge.view.OutputView.*;
-
-import bridge.domain.Direction;
 import bridge.domain.GameCommand;
+import bridge.validator.domain.DirectionValidator;
 import bridge.validator.view.NumberInputValidator;
 import camp.nextstep.edu.missionutils.Console;
+
+import static bridge.view.OutputView.*;
 
 /** 사용자로부터 입력을 받는 역할을 한다. */
 public class InputView {
@@ -21,7 +21,7 @@ public class InputView {
   public static String readMoving() {
     printMoveDirInputMessage();
     String moveDirection = Console.readLine();
-    Direction.validateDirection(moveDirection);
+    DirectionValidator.validate(moveDirection);
     return moveDirection;
   }
 

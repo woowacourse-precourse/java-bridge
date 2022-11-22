@@ -1,7 +1,7 @@
 package bridge.validator.domain;
 
-import bridge.domain.Direction;
 import bridge.exception.LengthOutOfRangeException;
+
 import java.util.List;
 
 public class BridgeValidator {
@@ -16,7 +16,7 @@ public class BridgeValidator {
 
   public static void validateBridgeShape(final List<String> bridge) {
     for (String dir : bridge) {
-      Direction.validateDirection(dir);
+      DirectionValidator.validate(dir);
     }
   }
 
