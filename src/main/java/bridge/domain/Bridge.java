@@ -5,9 +5,9 @@ import bridge.domain.game.SuccessStep;
 import java.util.List;
 
 public class Bridge {
-    private List<String> answerBridge;
+    private final List<String> answerBridge;
     private int nowPosition;
-    private InputValidator inputValidator;
+    private final InputValidator inputValidator;
 
     public void initNowPosition() {
         nowPosition = 0;

@@ -21,7 +21,7 @@ public class InputValidator {
     }
 
     //다리 길이 입력 요청 시 숫자인지 아닌지 확인
-    public void checkNum(String inputNum){
+    private void checkNum(String inputNum){
         for (int i = 0; i < inputNum.length(); i++) {
             if (!Character.isDigit(inputNum.charAt(i))) {
                 throw new IllegalArgumentException(ErrorMessage.NUMBER_ERROR.get());

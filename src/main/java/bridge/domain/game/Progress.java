@@ -18,24 +18,24 @@ public class Progress {
         return finalBridge();
     }
 
-    public void makeBridge(SuccessStep successStep, String userStep) {
+    private void makeBridge(SuccessStep successStep, String userStep) {
         bridgeShape.forEach((updown, bridge) ->
                 bridge.add(decideStructure(userStep, successStep, updown)));
     }
 
-    public String decideStructure(String userStep, SuccessStep successStep, String updown) {
+    private String decideStructure(String userStep, SuccessStep successStep, String updown) {
         if (userStep.equals(updown)) {
             return successStep.getStep();
         }
         return BridgeStructure.BRIDGE_EMPTY.getShape();
     }
 
-    public String makeEachRow(List<String> row) {
+    private String makeEachRow(List<String> row) {
         String bridgeCell = row.stream().collect(Collectors.joining(BridgeStructure.BRIDGE_CELL.getShape()));
         return BridgeStructure.BRIDGE_START.getShape() + bridgeCell + BridgeStructure.BRIDGE_END.getShape();
     }
 
-    public String finalBridge() {
+    private String finalBridge() {
         StringBuilder sb = new StringBuilder();
         for (List<String> row : bridgeShape.values()) {
             sb.append(makeEachRow(row));
