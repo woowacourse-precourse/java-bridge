@@ -17,7 +17,7 @@ public class Result {
         return new Result(Code.SUCCESS, moveResult, playCount);
     }
 
-    public static Result createFailureResult(Code code, MoveResultDto moveResult, int playCount) {
+    public static Result createFailureResult(MoveResultDto moveResult, int playCount) {
         return new Result(Code.FAILURE, moveResult, playCount);
     }
 
