@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-public class UnitTest {
+class UnitTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream standardOut = System.out;
     private final OutputView outputView = new OutputView();
@@ -25,20 +25,6 @@ public class UnitTest {
     @AfterEach
     void tearDown() {
         System.setOut(standardOut);
-    }
-
-    static class TestNumberGenerator implements BridgeNumberGenerator {
-
-        private final List<Integer> numbers;
-
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
     }
 
     @Nested
