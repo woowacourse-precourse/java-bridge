@@ -51,7 +51,7 @@ public class BridgeGameController {
             System.out.println(Message.SELECT_DIRECTION.getMessage());
             String inputDirection = inputView.inputMovingDirection();
             String moveResult = bridgeGame.move(bridges.get(bridgeLocation), inputDirection);
-            setCurrentState(moveResult);
+            bridgeGame.retry(moveResult);
             outputView.printMap(inputDirection, moveResult);
             restartGame(moveResult);
             bridgeLocation++;
@@ -61,19 +61,11 @@ public class BridgeGameController {
     private static void restartGame(String moveResult) {
         if (moveResult.equals("X")) {
             System.out.println(Message.ASK_RESTART.getMessage());
-            String input = inputView.inputGameRestart();
-            if (input.equals(Message.RESTART.getMessage())) {
-                bridgeGame.retry();
+            String inputRestart = inputView.inputGameRestart();
+            if (inputRestart.equals(Message.RESTART.getMessage())) {
+                new BridgeGameController();
                 count++;
             }
-        }
-    }
-
-    private static void setCurrentState(String moveResult) {
-        if (moveResult.equals(Message.MOVE_FAIL.getMessage())) {
-            status = false;
-        } else if (moveResult.equals(Message.MOVE_SUCCESS.getMessage())) {
-            status = true;
         }
     }
 }
