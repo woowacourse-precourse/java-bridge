@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Application {
 
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final BridgeGame bridgeGame = new BridgeGame();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final Player player = new Player();
@@ -25,7 +27,7 @@ public class Application {
 
     private Bridge makeBridge() {
         System.out.println(Message.INPUT_BRIDGE_LENGTH);
-        int bridgeSize = InputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
         List<String> madeBridge = bridgeMaker.makeBridge(bridgeSize);
         return new Bridge(madeBridge);
     }
@@ -42,15 +44,15 @@ public class Application {
 
     private void move() {
         System.out.println(Message.INPUT_MOVING);
-        String choice = InputView.readChoice();
+        String choice = inputView.readChoice();
         bridgeGame.move(player, choice);
-        OutputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
+        outputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
     }
 
     private void checkCorrectChoice() {
         if (!isCorrectChoice()) {
             System.out.println(Message.INPUT_RETRY_COMMAND);
-            String retryCommand = InputView.readRetryCommand();
+            String retryCommand = inputView.readRetryCommand();
             if (isRestart(retryCommand)) {
                 bridgeGame.retry(player);
                 return;
@@ -85,7 +87,10 @@ public class Application {
     }
 
     private void finishGame() {
-        OutputView.printResult(player, bridge.compareTo(player.getChoices()));
+        System.out.println(Message.GAME_RESULT_MESSAGE);
+
+        outputView.printMap(player.getChoices(), bridge.compareTo(player.getChoices()));
+        outputView.printResult(player.getIsSuccess(), player.getTryCount());
     }
 
     public static void main(String[] args) {
