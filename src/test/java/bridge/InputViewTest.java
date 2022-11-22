@@ -51,4 +51,13 @@ public class InputViewTest {
                 .hasMessageContaining(ErrorType.NOT_MOVING_INPUT.getError());
     }
 
+    @Test
+    void 재시작_여부_입력이_R_또는_Q가_아니면_예외() {
+        String input = "K";
+
+        assertThatThrownBy(() -> inputView.validateCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorType.NOT_COMMAND_INPUT.getError());
+    }
+
 }
