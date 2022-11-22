@@ -72,4 +72,32 @@ class InputViewTest {
         }
     }
 
+    @DisplayName("종료(Q) , 재시작(R)이 아닌 값을 입력 받으면 예외가 발생한다.")
+    @Nested
+    class 종료_재시작_입력_예외 {
+        @Test
+        void case_1() {
+            String input = "재시작";
+            OutputStream out = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(out));
+            InputStream in = new ByteArrayInputStream(input.getBytes());
+            System.setIn(in);
+            IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
+                    inputView.getExitOrRestart());
+            assertEquals(ER_NOT_Q_OR_R.getMessage(), illegalArgumentException.getMessage());
+        }
+
+        @Test
+        void case_2() {
+            String input = "1";
+            OutputStream out = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(out));
+            InputStream in = new ByteArrayInputStream(input.getBytes());
+            System.setIn(in);
+            IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
+                    inputView.getExitOrRestart());
+            assertEquals(ER_NOT_Q_OR_R.getMessage(), illegalArgumentException.getMessage());
+        }
+    }
+
 }
