@@ -75,4 +75,12 @@ public class GamePlay {
 
         return bridgeSize;
     }
+
+    public String createMove() {
+        outputView.printInputMove();
+        String move = inputView.readMoving();
+
+        outputView.printMove(move);
+        return move;
+    }
 }
