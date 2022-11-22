@@ -24,5 +24,13 @@ public class Result {
         }
     }
 
+    public void removeLastResult() {
+        results.remove(results.size() - 1);
+    }
+
+    public void addTryCount() {
+        tryCount++;
+    }
+
 
 }
