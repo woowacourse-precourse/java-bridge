@@ -29,8 +29,6 @@ public class Validation {
     public int validBridgeSize(String bridgeSize) throws IllegalArgumentException {
         try {
             return validBridgeLengthRange(Long.parseLong(bridgeSize));
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException(String.format(ASK_INPUT_VALUE, ERROR_HEAD_MESSAGE));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_NUMBER, ERROR_HEAD_MESSAGE));
         }
