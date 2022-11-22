@@ -19,32 +19,37 @@ public class BridgeGameController implements Runnable {
 
     @Override
     public void run() {
-        Bridge bridge = makeNewBridge();
-
-        Crossing crossing = gameEngine.createCrossing();
-
-        crossBridge(crossing, bridge);
-        view.printGameResult(gameEngine.getTryCount(), crossing);
+        try {
+            Bridge bridge = makeNewBridge();
+            Crossing crossing = gameEngine.createCrossing();
+            crossBridge(crossing, bridge);
+            view.printGameResult(gameEngine.getTryCount(), crossing);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void crossBridge(Crossing crossing, Bridge bridge) {
         while (!crossing.isFinish(bridge.getBridgeSize())) {
-            UpOrDown upOrDown = new UpOrDown(view.requestDirection());
-            gameEngine.cross(crossing, bridge, upOrDown);
-            view.printCurrentMap(crossing);
-
+            inputAndCross(crossing, bridge);
             if (crossing.isPass()) {
                 continue;
             }
-
-            RetryOrQuit retryOrQuit = new RetryOrQuit(view.requestRetryOrQuit());
-
-            if (!retryOrQuit.isRetry()) {
+            if (!new RetryOrQuit(view.requestRetryOrQuit()).isRetry()) {
                 break;
             }
-
             gameEngine.retry(crossing);
         }
+    }
+
+    private void inputAndCross(Crossing crossing, Bridge bridge) {
+        UpOrDown upOrDown = new UpOrDown(view.requestDirection());
+        cross(crossing, bridge, upOrDown);
+    }
+
+    private void cross(Crossing crossing, Bridge bridge, UpOrDown upOrDown) {
+        gameEngine.cross(crossing, bridge, upOrDown);
+        view.printCurrentMap(crossing);
     }
 
     private Bridge makeNewBridge() {
