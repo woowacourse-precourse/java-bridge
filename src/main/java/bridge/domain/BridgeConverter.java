@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.constant.Constant;
 
 public enum BridgeConverter {
+
     CONVERT_UP(1, Constant.UP),
     CONVERT_DOWN(0,Constant.DOWN);
 
