@@ -37,4 +37,18 @@ public class Result {
         }
         return false;
     }
+
+    public String getTopBridgeResult() {
+        topBridgeResult = topBridgeResult.substring(0, topBridgeResult.length() - 1);
+        topBridgeResult += END_BRIDGE_CHARACTER;
+
+        return topBridgeResult;
+    }
+
+    public String getBottomBridgeResult() {
+        bottomBridgeResult = bottomBridgeResult.substring(0, bottomBridgeResult.length() - 1);
+        bottomBridgeResult += END_BRIDGE_CHARACTER;
+
+        return bottomBridgeResult;
+    }
 }
