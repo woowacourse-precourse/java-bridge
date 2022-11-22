@@ -8,7 +8,6 @@ public enum UpDown {
 	UP(1, "U"),
 	DOWN(0, "D");
 
-
 	private final int numValue;
 	private final String direction;
 
@@ -29,7 +28,7 @@ public enum UpDown {
 		return direction;
 	}
 
-	public static List<String> getStrValues() {
+	public static List<String> getDirectionValues() {
 		return Arrays.stream(values())
 				.map(UpDown::getDirection)
 				.collect(Collectors.toList());

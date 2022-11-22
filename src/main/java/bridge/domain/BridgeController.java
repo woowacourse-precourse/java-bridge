@@ -49,7 +49,7 @@ public class BridgeController {
 
 	private String inputDirection() {
 		InputStringValidator moveCommandValidator = new InputStringValidator(InputView.readMoving());
-		moveCommandValidator.isValidateAlphabet(UpDown.getStrValues());
+		moveCommandValidator.isValidateAlphabet(UpDown.getDirectionValues());
 		return moveCommandValidator.getInputValue();
 	}
 
