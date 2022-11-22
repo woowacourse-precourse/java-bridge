@@ -5,31 +5,61 @@ public class BridgeGameController {
     OutputView outputView = new OutputView();
     Result result = new Result();
 
+    int index;
+    boolean isCorrect;
+    boolean isRetry;
+
+    BridgeGameController() {
+        index = 0;
+        isRetry = false;
+    }
 
     public void start() {
         outputView.printStart();
         int bridgeSize = inputView.readBridgeSize();
-        int index = 0;
+        playGameSet(bridgeSize);
+        outputView.printResult(result);
+    }
 
+    public void playGameSet(int bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         while (index < bridgeSize) {
-            String inputMovingPosition = inputView.readMoving();
-            boolean isCorrect = bridgeGame.move(inputMovingPosition, index);
-            result.addResult(inputMovingPosition, isCorrect);
-            outputView.printMap(result);
-
-            if (!isCorrect) {
-                if (bridgeGame.retry(inputView.readGameCommand())) {
-                    result.addTryCount();
-                    result.removeLastResult();
-                    index--;
-                } else {
-                    result.setFail();
-                    break;
-                }
+            move(bridgeGame);
+            chooseRetryOrQuit(bridgeGame);
+            if(!isCorrect && !isRetry) {
+                break;
             }
             index++;
         }
-        outputView.printResult(result);
     }
+
+    public void move(BridgeGame bridgeGame) {
+        String inputMovingPosition = inputView.readMoving();
+        isCorrect = bridgeGame.move(inputMovingPosition, index);
+        result.addResult(inputMovingPosition, isCorrect);
+        outputView.printMap(result);
+    }
+
+    public boolean chooseRetryOrQuit(BridgeGame bridgeGame) {
+        if (!isCorrect) {
+            isRetry = bridgeGame.retry(inputView.readGameCommand());
+            quitSetUp();
+            retrySetUp();
+        }
+
+        return isRetry;
+    }
+
+    public void quitSetUp() {
+        if (!isRetry){
+            result.setFail();
+        }
+    }
+
+    public void retrySetUp() {
+        result.addTryCount();
+        result.removeLastResult();
+        index--;
+    }
+
 }
