@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.BridgeMaker;
 
@@ -10,8 +11,8 @@ import static bridge.model.BridgeGame.*;
 import static bridge.view.InputView.*;
 
 public class BridgeGameController {
-    private BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     static List<String> bridges = new ArrayList<>();
     static ArrayList<String> inputMove = new ArrayList<>();
     static ArrayList<Integer> input = new ArrayList<>();
@@ -24,6 +25,8 @@ public class BridgeGameController {
         int bridgeLen = readBridgeSize();
         System.out.println("len:" + bridgeLen);
 
+        //bridges = setBridgeBySize(bridgeLen);
+        System.out.println(bridgeMaker);
         bridges = bridgeMaker.makeBridge(bridgeLen);
 
         for(int count = 0; count < bridgeLen; count++){
@@ -50,11 +53,6 @@ public class BridgeGameController {
         }
 
     }
-    public List<String> setBridgeBySize(int size) {
-        bridges = bridgeMaker.makeBridge(size);
-        return bridges;
-    }
-
 
 
 }

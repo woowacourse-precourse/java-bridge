@@ -1,6 +1,7 @@
 package bridge.model;
 
 import bridge.BridgeMaker;
+import bridge.controller.BridgeGameController;
 import bridge.view.InputView;
 
 import java.util.ArrayList;
@@ -14,8 +15,7 @@ import static bridge.view.OutputView.printResult;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private InputView inputView;
-    private BridgeMaker bridgeMaker;
+    private static int bridgeSize;
     static ArrayList<String> equalsCheck = new ArrayList<>();
     public static ArrayList<String> resultFinal = new ArrayList<>();
     static int successCount = 0;
@@ -215,8 +215,6 @@ public class BridgeGame {
         }
 
     }
-
-
 
 
 }
