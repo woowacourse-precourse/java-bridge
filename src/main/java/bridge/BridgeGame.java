@@ -41,4 +41,16 @@ public class BridgeGame {
     public boolean retry(String inputKey) {
         return inputKey.equals(ControlKey.RETRY.getKey());
     }
+
+    public String getMap(int index, String move) {
+        return mapMaker.makeMap(bridge, index, move);
+    }
+
+    public String getResultMap() {
+        return mapMaker.makeResultMap();
+    }
+
+    public void initMap() {
+        mapMaker.initBridge();
+    }
 }
