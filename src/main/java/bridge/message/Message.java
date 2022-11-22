@@ -6,21 +6,12 @@ public enum Message {
     INPUT_MOVING("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     INPUT_GAME_COMMAND("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     RESULT("최종 게임 결과"),
-<<<<<<< HEAD
     GAME_SUCCESS("게임 성공 여부: 성공"),
     GAME_FAIL("게임 성공 여부: 실패"),
     TRY_NUMBER("총 시도한 횟수: "),
     START_MAP("[ "),
     END_MAP(" ]"),
     SPLIT_MAP(" | "),
-=======
-    GAME_SUCCESS("최종 게임 결과: 성공"),
-    GAME_FAIL("최종 게임 결과: 실패"),
-    TRY_NUMBER("총 시도한 횟수: "),
-    START_MAP("["),
-    END_MAP("]"),
-    SPLIT_MAP("|"),
->>>>>>> fd06ee3f78eb9a09f5c8da710f61261a391e0c38
     BLANK(" "),
     CORRECT("O"),
     WRONG("X"),
