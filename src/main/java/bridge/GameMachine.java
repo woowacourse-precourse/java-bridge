@@ -4,8 +4,8 @@ import java.util.List;
 import types.BridgeType;
 import types.MoveResult;
 import types.RetryCommand;
-import view.InputView;
-import view.OutputView;
+import views.InputView;
+import views.OutputView;
 
 
 public class GameMachine {
