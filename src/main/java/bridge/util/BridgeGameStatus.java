@@ -5,7 +5,10 @@ public enum BridgeGameStatus {
     INCORRECT("X"),
     SPACEBAR(" "),
     RESTART("R"),
-    QUIT("Q");
+    QUIT("Q"),
+
+    SUCCESS("성공"),
+    FAILED("실패");
 
     private final String gameStatus;
 

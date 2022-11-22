@@ -27,6 +27,7 @@ public class BridgeGame {
 
     private boolean isRoundOver;
     private boolean isGameOver;
+    private boolean isSuccess;
 
     public BridgeGame(BridgeService bridgeService) {
         this.bridgeService = bridgeService;
@@ -92,6 +93,7 @@ public class BridgeGame {
         while (!isGameOver) {
             retry();
             if (move()){
+                isSuccess = true;
                 return;
             }
             setGameStatus();
@@ -100,7 +102,9 @@ public class BridgeGame {
     }
 
     public void printEnd() {
-
+        outputView.printInfo(OutputPharses.GAME_RESULT_MSG.getMsg());
+        outputView.printMap(player);
+        outputView.printResult(isSuccess, totalGameCount);
     }
 
     public boolean isQuit() {
