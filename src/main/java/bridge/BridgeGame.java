@@ -7,26 +7,48 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge;
-    private int turn;
+    private int count;
+    private int location;
+    private Boolean result;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.turn = 0;
+        this.count = 0;
+        this.location = 0;
+        this.result = true;
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+    public int getCount() {
+        return this.count;
+    }
+    public int getLocation() {
+        return this.location;
+    }
+    public Boolean getResult() {
+        return this.result;
     }
 
     public void checkMovable(String moving) {
-        if (this.bridge.get(turn).equals(moving)) {
+        if (this.bridge.get(location).equals(moving)) {
+            OutputView.printMap(this);
             move();
         }
         else {
+            this.result = false;
+            OutputView.printMap(this);
             retry(InputView.readGameCommand());
         }
-
     }
 
     private void checkEnd() {
-        if (this.bridge.size() == turn) {
-            // 게임 결과 출력 (승리)
+        if (this.bridge.size() == location) {
+            OutputView.printResult(this);
+        }
+        else {
+            checkMovable(InputView.readMoving());
         }
     }
 
@@ -36,7 +58,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        this.turn++;
+        this.count++;
+        this.location++;
         checkEnd();
     }
 
@@ -47,10 +70,12 @@ public class BridgeGame {
      */
     public void retry(String gameCommand) {
         if(gameCommand.equals("R")){
+            this.result = true;
+            this.count++;
             checkMovable(InputView.readMoving());
         }
         else if (gameCommand.equals("Q")){
-            // 게임 결과 출력 (패배)
+            OutputView.printResult(this);
         }
     }
 }
