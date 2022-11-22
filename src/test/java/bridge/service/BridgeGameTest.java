@@ -42,13 +42,10 @@ class BridgeGameTest {
         bridgeGame.retry();
 
         // then
-        assertNotSame(currentBridge, bridgeGame.move("U"));
-
-        bridgeGame.retry();
         assertEquals(0, bridgeGame.getGameManager().size());
-
         Field currentSection = BridgeGame.class.getDeclaredField("currentSection");
         currentSection.setAccessible(true);
         assertEquals(1 , currentSection.getInt(bridgeGame));
+        assertNotSame(currentBridge, bridgeGame.move("U"));
     }
 }

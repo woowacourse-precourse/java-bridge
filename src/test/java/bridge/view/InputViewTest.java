@@ -12,7 +12,7 @@ class InputViewTest extends NsTest {
     InputView inputView = new InputView();
 
     @Test
-    @DisplayName("readBridgeSize는 3 ~ 20의 숫자만 입력받고 반환한다.")
+    @DisplayName("readBridgeSize는 3 ~ 20의 숫자를 입력받고 반환한다.")
     void readBridgeSize() {
         // given
         run("10");
@@ -43,7 +43,7 @@ class InputViewTest extends NsTest {
     }
 
     @Test
-    @DisplayName("readMoving는 U 또는 D만 입력받고 반환한다.")
+    @DisplayName("readMoving는 U 또는 D를 입력받고 반환한다.")
     void readMoving() {
         // given
         run("U");
@@ -73,7 +73,7 @@ class InputViewTest extends NsTest {
     }
 
     @Test
-    @DisplayName("readGameCommand는 R 또는 Q만 입력받고 반환한다.")
+    @DisplayName("readGameCommand는 R 또는 Q를 입력받고 반환한다.")
     void readGameCommand() {
         // given
         run("R");
