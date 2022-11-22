@@ -6,6 +6,17 @@ public class BridgeMachine {
     private boolean success = false;
 
 
+    private String getUserCommand() {
+        while (true) {
+            try {
+                OutputView.inputUserMoveCommand();
+                return InputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
     private boolean checkLastIndex(Bridge bridge) {
         if (index == bridge.getBridgeSize()) {
             success = true;
