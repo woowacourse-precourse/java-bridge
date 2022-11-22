@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.validation.Exception;
+
 import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 import bridge.constant.BridgeGameInfo;
@@ -10,48 +12,30 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static int readBridgeSize() throws IllegalArgumentException {
+    public static int readBridgeSize() {
         System.out.println(BridgeGameInfo.INPUT_BRIDGE_SIZE.message);
-        // 다리 길이 입력받기
         String input = input();
 
-        // 숫자 형태가 아니면 예외
-        for (int i = 0; i < input.length(); i++) {
-            if ((int) input.charAt(i) < 48 || (int) input.charAt(i) > 57) {
-                throw new IllegalArgumentException(ErrorMessage.IS_NUMBER.message);
-            }
-        }
+        Exception.checkSizeException(input);
+        Exception.checkRangeException(input);
 
-        int size = Integer.parseInt(input);
-
-        // 범위 벗어나면 예외
-        if (size < 3 || 19 < size) {
-            throw new IllegalArgumentException();
-        }
-
-        return size;
+        return Integer.parseInt(input);
     }
 
     public static String readMoving() throws IllegalArgumentException {
         System.out.println(BridgeGameInfo.SELECT_UP_DOWN.message);
-        // 이동할 칸 입력받기
         String input = input();
 
-        if (!(input.equals("U") || input.equals("D"))) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_UP_DOWN.message);
-        }
+        Exception.checkCorrectInputUpDown(input);
 
         return input;
     }
 
     public static String readGameCommand() throws IllegalArgumentException {
         System.out.println(BridgeGameInfo.RESTART.message);
-        // 다시 시도지 종료할지 입력받는다.
         String input = input();
 
-        if (!(input.equals("Q") || input.equals("R"))) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_QUIT_RESTART.message);
-        }
+        Exception.checkCorrectInputQuitRestart(input);
 
         return input;
     }
