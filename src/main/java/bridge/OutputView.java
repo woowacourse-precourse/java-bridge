@@ -58,8 +58,6 @@ public class OutputView {
     private void initBridgeMap() {
         upperBridge.clear();
         lowerBridge.clear();
-        upperBridge.add("[");
-        lowerBridge.add("[");
     }
 
     private void parseDirection(String dir) {
@@ -92,11 +90,10 @@ public class OutputView {
     }
 
     private void completeBridgeMap() {
-        upperBridge.add("]");
-        lowerBridge.add("]");
-
-        upperBridgeView = String.join(" ", upperBridge);
-        lowerBridgeView = String.join(" ", lowerBridge);
+        upperBridgeView = String.join(" | ", upperBridge);
+        lowerBridgeView = String.join(" | ", lowerBridge);
+        upperBridgeView = "[ " + upperBridgeView + " ]";
+        lowerBridgeView = "[ " + lowerBridgeView + " ]";
     }
 
     /**
