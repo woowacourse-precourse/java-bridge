@@ -1,8 +1,7 @@
 package bridge.view;
 
-import bridge.model.Plate;
+import bridge.model.Tile;
 import bridge.model.PlayerStatus;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -30,7 +29,7 @@ public class OutputViewTest {
     @DisplayName("현재까지 움직인 경로 출력하는 테스트")
     @ParameterizedTest
     @MethodSource("expectedOutput")
-    void printMapTest(boolean isSuccess, List<Plate> path, String expectedOutput) {
+    void printMapTest(boolean isSuccess, List<Tile> path, String expectedOutput) {
         outputView.printMap(isSuccess, path);
         assertThat(out.toString().trim())
                 .isEqualTo(expectedOutput);
@@ -38,10 +37,10 @@ public class OutputViewTest {
 
     static Stream<Arguments> expectedOutput() {
         boolean success = true;
-        List<Plate> path1 = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        List<Tile> path1 = List.of(Tile.UP_TILE, Tile.DOWN_TILE, Tile.UP_TILE);
         String expected1 = "[ O |   | O ]\n[   | O |   ]";
         boolean fail = false;
-        List<Plate> path2 = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        List<Tile> path2 = List.of(Tile.UP_TILE, Tile.DOWN_TILE, Tile.UP_TILE);
         String expected2 = "[ O |   | X ]\n[   | O |   ]";
         return Stream.of(
                 Arguments.of(success, path1, expected1),
@@ -51,7 +50,7 @@ public class OutputViewTest {
     @DisplayName("게임 성공 결과 테스트")
     @Test
     void printResultSuccessTest() {
-        List<Plate> path = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        List<Tile> path = List.of(Tile.UP_TILE, Tile.DOWN_TILE, Tile.UP_TILE);
         outputView.printResult(PlayerStatus.COMPLETE_CROSSING_BRIDGE, 5, path);
 
         String expectedOutput
@@ -64,7 +63,7 @@ public class OutputViewTest {
     @DisplayName("게임 실패 결과 테스트")
     @Test
     void printResultFailTest() {
-        List<Plate> path = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        List<Tile> path = List.of(Tile.UP_TILE, Tile.DOWN_TILE, Tile.UP_TILE);
         outputView.printResult(PlayerStatus.FALL_BRIDGE, 5, path);
 
         String expectedOutput

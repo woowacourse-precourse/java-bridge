@@ -1,6 +1,5 @@
 package bridge.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,26 +15,26 @@ public class PlayerPathTest {
     @BeforeAll
     static void beforeAll() {
         playerPath = new PlayerPath();
-        playerPath.nextStep(Plate.UP_PLATE);
-        playerPath.nextStep(Plate.DOWN_PLATE);
-        playerPath.nextStep(Plate.UP_PLATE);
+        playerPath.nextStep(Tile.UP_TILE);
+        playerPath.nextStep(Tile.DOWN_TILE);
+        playerPath.nextStep(Tile.UP_TILE);
     }
 
     @DisplayName("다음칸으로 넘어가는 테스트")
     @Test
     void nextStepTest() {
-        List<Plate> playerPlates = playerPath.getPlayerPath();
-        assertThat(playerPlates)
-                .containsExactly(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        List<Tile> playerTiles = playerPath.getPlayerPath();
+        assertThat(playerTiles)
+                .containsExactly(Tile.UP_TILE, Tile.DOWN_TILE, Tile.UP_TILE);
     }
 
     @DisplayName("경로에서 현재 위치와 발판을 가져오는 테스트")
     @Test
-    void currentPositionAndPlateTest() {
-        Plate currentPlate = playerPath.currentPlate();
+    void currentPositionAndTileTest() {
+        Tile currentTile = playerPath.currentTile();
         int currentPosition = playerPath.currentPosition();
 
-        assertThat(currentPlate).isEqualTo(Plate.UP_PLATE);
+        assertThat(currentTile).isEqualTo(Tile.UP_TILE);
         assertThat(currentPosition).isEqualTo(2);
     }
 }

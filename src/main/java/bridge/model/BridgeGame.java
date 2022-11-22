@@ -19,8 +19,8 @@ public class BridgeGame {
     }
 
     public void move(String nextStep) {
-        Plate nextPlate = Plate.findBySymbol(nextStep);
-        playerPath.nextStep(nextPlate);
+        Tile nextTile = Tile.findBySymbol(nextStep);
+        playerPath.nextStep(nextTile);
     }
 
     public boolean retry(String inputRetry) {
@@ -33,22 +33,22 @@ public class BridgeGame {
     }
 
     public PlayerStatus checkPlayerStatus() {
-        List<Plate> playerPath = this.playerPath.getPlayerPath();
+        List<Tile> playerPath = this.playerPath.getPlayerPath();
         boolean isSuccess = bridge.sameAs(playerPath);
         return PlayerStatus.findBySurvive(isSuccess);
     }
 
     public boolean possibleNextStep() {
         int currentIndex = playerPath.currentPosition();
-        Plate currentPlate = playerPath.currentPlate();
-        return bridge.possibleNextStep(currentIndex, currentPlate);
+        Tile currentTile = playerPath.currentTile();
+        return bridge.possibleNextStep(currentIndex, currentTile);
     }
 
     public int getTryCount() {
         return tryCount.getTryCount();
     }
 
-    public List<Plate> getPlayerPath() {
+    public List<Tile> getPlayerPath() {
         return playerPath.getPlayerPath();
     }
 }

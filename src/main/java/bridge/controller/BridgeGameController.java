@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.Plate;
+import bridge.model.Tile;
 import bridge.model.PlayerStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -59,7 +59,7 @@ public class BridgeGameController {
 
     // 3-2. 완전히 성공하거나 떨어질 때 까지 건널 다리를 선택
     public void playRound() {
-        selectPlate();
+        selectTile();
         if (isSuccessAndNotVictory()) {
             playRound();
         }
@@ -71,13 +71,13 @@ public class BridgeGameController {
     }
 
     // 3-3. 다리를 선택(입력)
-    public void selectPlate() {
+    public void selectTile() {
         try {
             String nextStep = inputView.readMoving();
             moveBridge(nextStep);
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException);
-            selectPlate();
+            selectTile();
         }
     }
 
@@ -111,7 +111,7 @@ public class BridgeGameController {
     public void gameResult() {
         PlayerStatus playerStatus = bridgeGame.checkPlayerStatus();
         int tryCount = bridgeGame.getTryCount();
-        List<Plate> playerPath = bridgeGame.getPlayerPath();
+        List<Tile> playerPath = bridgeGame.getPlayerPath();
         outputView.printResult(playerStatus, tryCount, playerPath);
     }
 }

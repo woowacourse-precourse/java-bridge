@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.model.Plate;
+import bridge.model.Tile;
 import bridge.model.PlayerStatus;
 
 import java.util.List;
@@ -26,32 +26,32 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printMap(boolean possibleNextStep, List<Plate> playerPath) {
-        System.out.println(tracePathByPlate(possibleNextStep, playerPath, Plate.UP_PLATE));
-        System.out.println(tracePathByPlate(possibleNextStep, playerPath, Plate.DOWN_PLATE));
+    public void printMap(boolean possibleNextStep, List<Tile> playerPath) {
+        System.out.println(tracePathByTile(possibleNextStep, playerPath, Tile.UP_TILE));
+        System.out.println(tracePathByTile(possibleNextStep, playerPath, Tile.DOWN_TILE));
         System.out.println();
     }
 
-    private String tracePathByPlate(boolean possibleNextStep, List<Plate> playerPath, Plate bridgePlate) {
-        StringBuilder plateRecord = new StringBuilder(MAP_PREFIX);
+    private String tracePathByTile(boolean possibleNextStep, List<Tile> playerPath, Tile bridgeTile) {
+        StringBuilder tileRecord = new StringBuilder(MAP_PREFIX);
         for (int pathIndex = 0; pathIndex < playerPath.size() - 1; pathIndex++) {
-            plateRecord.append(getStringPlate(playerPath.get(pathIndex), bridgePlate));
-            plateRecord.append(MAP_SEPARATOR);
+            tileRecord.append(getStringTile(playerPath.get(pathIndex), bridgeTile));
+            tileRecord.append(MAP_SEPARATOR);
         }
-        plateRecord.append(getLastPlate(possibleNextStep, playerPath.get(playerPath.size() - 1), bridgePlate));
-        plateRecord.append(MAP_SUFFIX);
-        return plateRecord.toString();
+        tileRecord.append(getLastTile(possibleNextStep, playerPath.get(playerPath.size() - 1), bridgeTile));
+        tileRecord.append(MAP_SUFFIX);
+        return tileRecord.toString();
     }
 
-    private String getStringPlate(Plate playerStep, Plate bridgePlate) {
-        if (playerStep.equals(bridgePlate)) {
+    private String getStringTile(Tile playerStep, Tile bridgeTile) {
+        if (playerStep.equals(bridgeTile)) {
             return MAP_SUCCESS_STEP;
         }
         return MAP_NOT_STEP;
     }
 
-    private String getLastPlate(boolean possibleNextStep, Plate playerStep, Plate bridgePlate) {
-        if (!playerStep.equals(bridgePlate)) {
+    private String getLastTile(boolean possibleNextStep, Tile playerStep, Tile bridgeTile) {
+        if (!playerStep.equals(bridgeTile)) {
             return MAP_NOT_STEP;
         }
         if (possibleNextStep) {
@@ -60,7 +60,7 @@ public class OutputView {
         return MAP_FAIL_STEP;
     }
 
-    public void printResult(PlayerStatus playerStatus, int tryCount, List<Plate> playerPath) {
+    public void printResult(PlayerStatus playerStatus, int tryCount, List<Tile> playerPath) {
         System.out.println(NOTICE_RESULT);
         boolean possibleNextStep = (playerStatus == PlayerStatus.COMPLETE_CROSSING_BRIDGE);
         printMap(possibleNextStep, playerPath);

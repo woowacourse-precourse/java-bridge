@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.Plate;
+import bridge.model.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +25,13 @@ public class BridgeMaker {
         List<String> newBridge = new ArrayList<>();
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
             zeroOrOne = bridgeNumberGenerator.generate();
-            newBridge.add(decidePlate(zeroOrOne));
+            newBridge.add(decideTile(zeroOrOne));
         }
         return newBridge;
     }
 
-    private String decidePlate(int zeroOrOne) {
-        Plate plateByRandomNumber = Plate.findByRandomNumber(zeroOrOne);
-        return plateByRandomNumber.getSymbol();
+    private String decideTile(int zeroOrOne) {
+        Tile tileByRandomNumber = Tile.findByRandomNumber(zeroOrOne);
+        return tileByRandomNumber.getSymbol();
     }
 }

@@ -16,8 +16,8 @@ public class Validator {
 
     private static boolean isNotUorD(String input) {
         return !input.matches(
-                Rules.PLATE_DOWN_PLATE_SYMBOL
-                        + "|" + Rules.PLATE_UP_PLATE_SYMBOL);
+                Rules.TILE_DOWN_TILE_SYMBOL
+                        + "|" + Rules.TILE_UP_TILE_SYMBOL);
     }
 
     public static void validateRetryQuit(String input) {

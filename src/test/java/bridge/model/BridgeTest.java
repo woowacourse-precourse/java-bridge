@@ -1,8 +1,6 @@
 package bridge.model;
 
-import bridge.model.Bridge;
 import camp.nextstep.edu.missionutils.Randoms;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -54,8 +52,8 @@ public class BridgeTest {
     void possibleNextStepTest() {
         Bridge bridge = new Bridge(20);
 
-        boolean indexZeroIsUp = bridge.possibleNextStep(0, Plate.UP_PLATE);
-        boolean indexZeroIsNotDown = bridge.possibleNextStep(0, Plate.DOWN_PLATE);
+        boolean indexZeroIsUp = bridge.possibleNextStep(0, Tile.UP_TILE);
+        boolean indexZeroIsNotDown = bridge.possibleNextStep(0, Tile.DOWN_TILE);
 
         assertThat(indexZeroIsUp).isTrue();
         assertThat(indexZeroIsNotDown).isFalse();
@@ -66,10 +64,10 @@ public class BridgeTest {
     void sameAsTest() {
         Bridge bridge = new Bridge(20);
 
-        List<Plate> playerPath = new ArrayList<>();
+        List<Tile> playerPath = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            playerPath.add(Plate.UP_PLATE);
-            playerPath.add(Plate.DOWN_PLATE);
+            playerPath.add(Tile.UP_TILE);
+            playerPath.add(Tile.DOWN_TILE);
         }
 
         assertThat(bridge.sameAs(playerPath)).isTrue();

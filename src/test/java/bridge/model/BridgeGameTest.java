@@ -56,7 +56,7 @@ public class BridgeGameTest {
         bridgeField.setAccessible(true);
         Bridge bridge = (Bridge) bridgeField.get(bridgeGame);
 
-        List<Plate> otherBridge = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
+        List<Tile> otherBridge = List.of(Tile.UP_TILE, Tile.DOWN_TILE, Tile.UP_TILE);
 
         assertThat(bridge.sameAs(otherBridge)).isTrue();
     }
@@ -66,9 +66,9 @@ public class BridgeGameTest {
     void moveTest() throws Exception {
         bridgeGame.move("U");
 
-        Plate currentPlate = playerPath.currentPlate();
+        Tile currentTile = playerPath.currentTile();
 
-        assertThat(currentPlate).isEqualTo(Plate.UP_PLATE);
+        assertThat(currentTile).isEqualTo(Tile.UP_TILE);
     }
 
     @DisplayName("재시도 시 플레이어 경로 초기화 테스트")
@@ -77,7 +77,7 @@ public class BridgeGameTest {
         bridgeGame.retry(Rules.GAME_RETRY);
 
         assertThat(playerPath.currentPosition()).isEqualTo(-1);
-        assertThat(playerPath.currentPlate()).isEqualTo(null);
+        assertThat(playerPath.currentTile()).isEqualTo(null);
     }
 
     @DisplayName("재시도 시 시도 횟수 +1 테스트")
