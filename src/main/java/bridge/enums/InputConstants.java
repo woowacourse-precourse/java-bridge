@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum InputConstants {
     UP_MOVE("U"),

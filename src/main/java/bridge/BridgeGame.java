@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.enums.InputConstants;
 import java.util.List;
 
 /**

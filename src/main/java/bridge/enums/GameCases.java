@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum GameCases {
     UP_TRUE_SITUATION("U", true, " O ", "   "),
