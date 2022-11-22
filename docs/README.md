@@ -9,6 +9,9 @@ BridgeGame클래스에서 InputView, OutputView 사용 불가
 InputView 클래스에서만 readLine() 가능  
 main 포함 모든 함수 10줄만  
   
+
+#예외처리  
+예외가 있을 시 main
   
 #Application
 -InputView, OutputView 호출 및 BridgeGame 시작.  
@@ -16,7 +19,8 @@ main 포함 모든 함수 10줄만
 -BridgeGame Controller 느낌으로 구현 예정.
 
 #BridgeGame-패키지변경O,필드추가O,메서드이름변경X,메서드추가,인자반환타입변경O
--생성자(다리 길이, 다리 모양)
+현재의 위치만 안다면 앞까지의 유저input 또한 알 수 있기 때문에(다리의 모양과 같음) 따로 저장하지 않음.
+-생성자(다리 길이, 다리 모양 생성)
 -메서드) 사용자가 칸 이동할 때 사용  
 -메서드) 사용자가 게임 다시 시도할때 사용  
 
