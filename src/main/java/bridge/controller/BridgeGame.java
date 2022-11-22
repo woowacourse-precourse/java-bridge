@@ -22,6 +22,7 @@ public class BridgeGame {
     private int bridgeSize;
     private String playerMove;
     private int totalGameCount;
+    private boolean isRoundOver;
     private boolean isGameOver;
 
     public BridgeGame(BridgeService bridgeService) {
@@ -46,13 +47,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        while(!isGameOver) {
+        while(!isRoundOver) {
             setPlayerMove();
             boolean canMove = eachMove();
             outputView.printMap(player);
-            isGameOver = !canMove;
+            isRoundOver = !canMove;
         }
-
     }
 
     public boolean eachMove() {
@@ -65,18 +65,28 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        totalGameCount++;
+        isRoundOver = false;
+        player = new Player();
     }
 
     public void startGame() {
         initGame();
-        player = new Player();
-        move();
+        startRond();
     }
 
     public void initGame() {
         outputView.printGameStartInfo();
         setBridgeSize();
         setBridge(bridgeSize);
+    }
+
+    public void startRond() {
+        while (!isGameOver) {
+            retry();
+            move();
+        }
+
     }
 
     /**
