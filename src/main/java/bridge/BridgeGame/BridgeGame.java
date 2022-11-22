@@ -1,5 +1,6 @@
 package bridge.BridgeGame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,12 +69,12 @@ public class BridgeGame {
         return false;
     }
 
-    public StringBuilder getTop(){
-        return this.top;
-    }
+    public List<StringBuilder> getBridgeFair(){
+        ArrayList<StringBuilder> bridgeFair = new ArrayList<>();
+        bridgeFair.add(this.top);
+        bridgeFair.add(this.bottom);
 
-    public StringBuilder getBottom() {
-        return this.bottom;
+        return bridgeFair;
     }
 
     public int getBridgeSize() {

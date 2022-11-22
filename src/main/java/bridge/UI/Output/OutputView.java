@@ -1,5 +1,7 @@
 package bridge.UI.Output;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -9,9 +11,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(StringBuilder top, StringBuilder bottom) {
-        System.out.println(formattingBridge(top));
-        System.out.println(formattingBridge(bottom));
+    public void printMap(List<StringBuilder> bridgeFair) {
+        for(StringBuilder side : bridgeFair){
+            System.out.println(formattingBridge(side));
+        }
     }
 
     /**
@@ -19,11 +22,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean flag, int count) {
+    public void printResult(boolean flag, int count, List<StringBuilder> bridgeFair) {
         String isSuccess = "실패";
         System.out.println("\n최종 게임 결과");
-        //System.out.println(formattingBridge(this.top));
-        //System.out.println(formattingBridge(this.bottom));
+
+        for(StringBuilder side : bridgeFair){
+            System.out.println(formattingBridge(side));
+        }
 
         if(flag) isSuccess = "성공";
 

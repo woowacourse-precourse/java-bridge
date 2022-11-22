@@ -44,36 +44,56 @@ public class BridgeGameController {
         this.bridgeGame.clear();
     }
 
+    private String enterMove() {
+        String move = inputView.readMoving();
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        return move;
+    }
+
     private boolean moveFail(){
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String reply = inputView.readGameCommand();
         return bridgeGame.retry(reply);
     }
 
+    private void moveSuccess(){
+        outputView.printMap(bridgeGame.getBridgeFair());
+        currentLocation++;
+    }
+
+    private void judgeMove(String move){
+        if(!bridgeGame.move(currentLocation, move)) {
+            outputView.printMap(bridgeGame.getBridgeFair());
+            tryFlag = false;
+            retryFlag = moveFail();
+        }
+    }
+
+    private void retry(){
+        initializeAttribute();
+        count++;
+    }
+
+
+
     public void run(){
         while(currentLocation < bridgeGame.getBridgeSize() && tryFlag){
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-            String move = inputView.readMoving();
-
-            // 다리 맞추기를 시도하고, 실패한 경우
-            if(!bridgeGame.move(currentLocation, move)) {
-                outputView.printMap(bridgeGame.getTop(), bridgeGame.getBottom());
-                tryFlag = false;
-                retryFlag = moveFail();
-            }
+            /*
+                사용자에게 입력을 받아서, 건널 수 있는 다리인지를 판단.
+                건널 수 없다면, 재도전 여부를 묻는다.
+             */
+            judgeMove(enterMove());
 
             // 재도전을 수락한 경우
             if(retryFlag) {
-                initializeAttribute();
-                count++;
+                retry();
                 continue;
             }
 
-            outputView.printMap(bridgeGame.getTop(), bridgeGame.getBottom());
-            currentLocation++;
+            // 재도전 절차가 동작하지 않으면, 성공으로 간주한다.
+            moveSuccess();
         }
 
-        //bridgeGame.printResult(tryFlag, count);
-
+        outputView.printResult(tryFlag, count, bridgeGame.getBridgeFair());
     }
 }
