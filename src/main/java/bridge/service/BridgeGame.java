@@ -134,4 +134,8 @@ public class BridgeGame {
         return false;
     }
 
+    private void addTryCount() {
+        this.tryCount = tryCount + BINARY_UP;
+    }
+
 }

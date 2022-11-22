@@ -76,7 +76,7 @@
 - [x] 종료 입력인지 확인한다. #isEndCommand()
 - [x] 재시작 입력인지 확인한다. #isRestartCommand()
 - [ ] 재시작 상황인지 확인한다. #isRestartGame()
-- [ ] 총 시도 횟수를 늘린다. #addTryCount()
+- [x] 총 시도 횟수를 늘린다. #addTryCount()
 - [ ] 총 시도 횟수를 반환한다. #getTryCount()
 - [ ] 사용자가 다리를 모두 건넜는지 확인한다. #isCrossAllBridge()
 
