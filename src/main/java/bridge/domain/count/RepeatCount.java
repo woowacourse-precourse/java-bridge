@@ -7,7 +7,6 @@ public class RepeatCount {
     private final Integer count;
 
     public RepeatCount(final Integer count) {
-        validateRepeatCountLessThanMaxValue(count);
         this.count = count;
     }
 
@@ -15,14 +14,18 @@ public class RepeatCount {
         return new RepeatCount(1);
     }
 
-    private void validateRepeatCountLessThanMaxValue(Integer count) {
-        if (count < 0) {
-            throw new IllegalStateException(ERROR_COUNT_OVER_MAX_SIZE);
-        }
+    public RepeatCount increment(final Integer plusCount) {
+        validateRepeatCountOverFlow(count, plusCount);
+       
+        return new RepeatCount(count + plusCount);
     }
 
-    public RepeatCount increment(final Integer plusCount) {
-        return new RepeatCount(count + plusCount);
+    private void validateRepeatCountOverFlow(Integer count, Integer plusCount) {
+        try {
+            Math.addExact(count, plusCount);
+        } catch (Exception exception) {
+            throw new IllegalStateException(ERROR_COUNT_OVER_MAX_SIZE);
+        }
     }
 
     public String result() {
