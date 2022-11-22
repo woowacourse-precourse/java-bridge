@@ -16,7 +16,7 @@ public class BridgeGame {
     private static int position = 0;
     private int attempt = 1;
 
-    public static List<String> bridge;
+    private List<String> bridge;
 
     public BridgeGame(int size) {
         this.bridge = bridgeMaker.makeBridge(size);
