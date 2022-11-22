@@ -56,13 +56,13 @@ public class InputView {
         }
     }
 
-    private static void validateIsUOrD(String input) {
+    public static void validateIsUOrD(String input) {
         if (!(input.equals("U") || input.equals("D"))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getErrorMessage());
         }
     }
 
-    private static void validateIsROrQ(String input) {
+    public static void validateIsROrQ(String input) {
         if (!(input.equals("R") || input.equals("Q"))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getErrorMessage());
         }
