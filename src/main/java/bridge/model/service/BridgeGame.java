@@ -1,7 +1,9 @@
 package bridge.model.service;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.dto.Bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,11 +11,11 @@ import java.util.List;
  */
 public class BridgeGame {
     private final BridgeMaker BRIDGE_MAKER;
-    private final List<String> BRIDGE;
+    private final Bridge BRIDGE;
 
     public BridgeGame(int bridgeSize) {
-        BRIDGE_MAKER = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BRIDGE = BRIDGE_MAKER.makeBridge(bridgeSize);
+        this.BRIDGE_MAKER = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.BRIDGE = new Bridge(BRIDGE_MAKER.makeBridge(bridgeSize));
     }
 
     /**
@@ -25,15 +27,13 @@ public class BridgeGame {
         if (isCorrectAnswer(moveAnswer, index)) {
             return "O";
         }
-
         return "X";
     }
 
     public boolean isCorrectAnswer(String moveAnswer, int index) {
-        if (!BRIDGE.get(index).equals(moveAnswer)) {
+        if (!BRIDGE.getBridge().get(index).equals(moveAnswer)) {
             return false;
         }
-
         return true;
     }
 
@@ -42,7 +42,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String retryAnswer) {
+        if (retryAnswer.equals("R")) {
+            return true;
+        }
+        return false;
+    }
 
+    public Bridge getBridge() {
+        return BRIDGE;
     }
 }

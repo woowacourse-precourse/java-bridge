@@ -42,20 +42,22 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    public void printUpBridge() {
-
-    }
-
-    public void printDownBridge() {
-
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean isWinning) {
+        System.out.print("게임 성공 여부: ");  //프린트
+        if (isWinning) {
+            System.out.println("성공");
+            return;
+        }
 
+        System.out.println("실패");
+    }
+
+    public void printCountResult(int count) {
+        System.out.println("총 시도한 횟수: " + count);
     }
 }
