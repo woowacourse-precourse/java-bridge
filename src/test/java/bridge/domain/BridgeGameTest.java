@@ -48,4 +48,15 @@ class BridgeGameTest {
         assertEquals(List.of("[", " O ", "|"), bridgeGame.getDownBridge());
     }
 
+    @Test
+    void IsFailedMethodFailedTest() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D", "U", "D"));
+        String direction = "U";
+        bridgeGame.move(direction);
+
+        boolean actual = bridgeGame.isFailed();
+
+        assertTrue(actual);
+    }
+
 }
