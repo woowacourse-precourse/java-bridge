@@ -25,13 +25,32 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public void readBridgeSize() {
-        String bridgeLength;
+        boolean isOccurException;
         do {
-            System.out.println(MessageView.PLAY_BRIDGE_GAME.getMessage() + "\n");
-            System.out.println(MessageView.INPUT_BRIDGE_LENGTH.getMessage());
-            bridgeLength = Console.readLine();
+            String bridgeLength = enterBridgeSize();
+            isOccurException = checkExceptionOccur(true, bridgeLength);
+        } while (isOccurException);
+    }
+
+    private boolean checkExceptionOccur(boolean isOccurException, String bridgeLength) {
+        try {
             System.out.println();
-        } while(bridgeException.invalidLengthInputValue(bridgeLength));
+            isOccurException = bridgeException.invalidLengthInputValue(bridgeLength);
+            settingBridgeValues(bridgeLength);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return isOccurException;
+    }
+
+    private String enterBridgeSize() {
+        String bridgeLength;
+        System.out.println(MessageView.INPUT_BRIDGE_LENGTH.getMessage());
+        bridgeLength = Console.readLine();
+        return bridgeLength;
+    }
+
+    private void settingBridgeValues(String bridgeLength) {
         bridge.setSize(Integer.parseInt(bridgeLength));
         this.gameStatistics.setAnswerRoad(bridge.getBridgeMaker().makeBridge(Integer.parseInt(bridgeLength)));
     }
@@ -49,11 +68,17 @@ public class InputView {
     }
 
     private String enterMoveDirection() {
-        String moveDirection;
+        String moveDirection = null;
+        boolean b = true;
         do {
             System.out.println(MessageView.SELECT_TO_MOVE.getMessage());
-            moveDirection = Console.readLine();
-        } while(bridgeException.invalidMovingInputValue(moveDirection));
+            try {
+                moveDirection = Console.readLine();
+                b = bridgeException.invalidMovingInputValue(moveDirection);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (b);
         return moveDirection;
     }
 
@@ -86,19 +111,29 @@ public class InputView {
      */
     public String readGameCommand() {
         String retryGame;
-        retryGame = enterGameCommand();
+        retryGame = operateGameCommand();
         if (retryGame.equals(MessageView.RETURN_QUIT.getMessage())) {
             gameStatistics.setGameResult(MessageView.RETURN_FAIL.getMessage());
             outputView.printResult();
-        } return retryGame;
+        }
+        return retryGame;
     }
 
-    private String enterGameCommand() {
-        String retryGame;
+    private String operateGameCommand() {
+        boolean b = true;
+        return enterGameCommand(null, b);
+    }
+
+    private String enterGameCommand(String retryGame, boolean b) {
         do {
             System.out.println(MessageView.INPUT_RETRY_OR_NOT_GAME.getMessage());
-            retryGame = Console.readLine();
-        } while(bridgeException.invalidRetryGame(retryGame));
+            try {
+                retryGame = Console.readLine();
+                b = bridgeException.invalidRetryGame(retryGame);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (b);
         return retryGame;
     }
 
