@@ -11,6 +11,7 @@ public class BridgeDTO {
 
     public BridgeDTO(List<String> bridge) {
         int size = bridge.size();
+
         this.count = 1;
         this.bridge = bridge;
         upCase = new BridgeCase[size];

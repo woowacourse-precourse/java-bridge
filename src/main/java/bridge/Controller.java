@@ -7,6 +7,7 @@ public class Controller {
         outputView = new OutputView();
         inputView = new InputView();
     }
+    //Input section
     public int inputBridgeSize(){
       return inputView.getBrideSize();
     }
@@ -16,6 +17,8 @@ public class Controller {
     public String inputReadGameCommand(){
         return inputView.getReadCommand();
     }
+
+    //Outview Section
     public Controller startMessage(){
         outputView.printStart();
         return this;
@@ -32,12 +35,13 @@ public class Controller {
     public void mapMessage(BridgeDTO bridgeDTO){
         outputView.printMap(bridgeDTO);
     }
-    public void gameSuccessMessage(BridgeDTO bridgeDTO){
-        outputView.printSuccessedResult(bridgeDTO);
-        gameTriedMessage(bridgeDTO.getCount());
+    public Controller gameSuccessMessage(BridgeDTO bridgeDTO){
+        outputView.printSuccessResult(bridgeDTO);
+        return this;
     }
-    public void gameFailedMessage(BridgeDTO bridgeDTO){
+    public Controller gameFailedMessage(BridgeDTO bridgeDTO){
         outputView.printFailedResult(bridgeDTO);
+        return this;
     }
     public void gameTriedMessage(int gameCount){
         outputView.printGameCount(gameCount);

@@ -23,7 +23,7 @@ public class BridgeGame {
             controller.mapMessage(bridgeDTO);
             bridgeDTO.addLength(1);
         }
-        controller.gameSuccessMessage(bridgeDTO);
+        controller.gameSuccessMessage(bridgeDTO).gameTriedMessage(bridgeDTO.getCount());
     }
     public boolean moveJudge(String moveCommand, int i) {
         if(bridge.get(i).equals(moveCommand)){
@@ -42,8 +42,7 @@ public class BridgeGame {
         controller.mapMessage(bridgeDTO);
         controller.gameRetriedMessage();
         if(InputCase.QUIT.getInput().equals(controller.inputReadGameCommand())) {
-            controller.gameFailedMessage(bridgeDTO);
-            controller.gameTriedMessage(bridgeDTO.getCount());
+            controller.gameFailedMessage(bridgeDTO).gameTriedMessage(bridgeDTO.getCount());
             return ;
         }
         retry();
