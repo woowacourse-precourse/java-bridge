@@ -20,8 +20,8 @@ public class InputViewTest {
     }
 
     @DisplayName("아무것도 입력 안했을때 확인")
-    @ValueSource(strings = {"", " "})
     @ParameterizedTest
+    @ValueSource(strings = {"", " "})
     void userInputEmptyTest(String userInput) {
         assertThatThrownBy(()-> {
             InputException.userInputEmptyException(userInput);
@@ -29,8 +29,8 @@ public class InputViewTest {
     }
 
     @DisplayName("숫자아닐때 확인")
-    @ValueSource(strings = {"朴", "#", "a1", " 12"})
     @ParameterizedTest
+    @ValueSource(strings = {"朴", "#", "a1", " 12"})
     void notNumberTest(String userInput) {
         assertThatThrownBy(()-> {
             InputException.notNumberException(userInput);
@@ -38,12 +38,20 @@ public class InputViewTest {
     }
 
     @DisplayName("다리의 길이 범위가 벗어나는 것 확인")
-    @ValueSource(ints = {1,3,20,21})
     @ParameterizedTest
+    @ValueSource(ints = {1,3,20,21})
     void outOfBridgeSizeTest(int userInput) {
         assertThatThrownBy(()-> {
             InputException.outOfBridgeSizeException(userInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("플레이어 이동 입력 예외 처리 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "123"})
+    void notMoveCommandTest(String userInput) {
+        assertThatThrownBy(()-> {
+            InputException.notMoveCommandException(userInput);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

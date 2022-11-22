@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.util.BridgeSize;
 import bridge.util.ExceptionPhrases;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -27,7 +26,9 @@ public class InputView {
      */
     public String readMoving() {
         String userInput = readUserInput();
-        return null;
+        InputException.userInputEmptyException(userInput);
+        InputException.notMoveCommandException(userInput);
+        return userInput;
     }
 
     /**

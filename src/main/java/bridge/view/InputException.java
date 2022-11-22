@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.BridgeShapeInfo;
 import bridge.util.BridgeSize;
 import bridge.util.ExceptionPhrases;
 
@@ -24,7 +25,17 @@ public class InputException {
 
     public static void outOfBridgeSizeException(int userInput) {
         if (userInput < BridgeSize.BRIDGE_MIN_SIZE.getSize() || userInput > BridgeSize.BRIDGE_MAX_SIZE.getSize()) {
-            throw new IllegalArgumentException(ExceptionPhrases.IS_OUT_OF_SIZE.getPharases());
+            throw new IllegalArgumentException(ExceptionPhrases.IS_OUTOF_BRIDGE_SIZE.getPharases());
         }
+    }
+
+    public static void notMoveCommandException(String userInput) {
+        if (!(getBridgeShape(BridgeShapeInfo.UP).equals(userInput) || getBridgeShape(BridgeShapeInfo.DOWN).equals(userInput))) {
+            throw new IllegalArgumentException(ExceptionPhrases.IS_NOT_MOVE_COMMAND.getPharases());
+        }
+    }
+
+    private static String getBridgeShape(BridgeShapeInfo bridgeShape) {
+        return bridgeShape.getBridgeShape();
     }
 }
