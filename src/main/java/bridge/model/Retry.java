@@ -1,7 +1,10 @@
 package bridge.model;
 
+import static bridge.exception.GameCommandException.validate;
+
 public class Retry {
 
+    public static final String RETRY = "R";
     private int count;
 
     public Retry() {
@@ -14,5 +17,10 @@ public class Retry {
 
     public void countTry() {
         this.count += 1;
+    }
+
+    public boolean checkRetry(String gameCommand) {
+        validate(gameCommand);
+        return gameCommand.equals(RETRY);
     }
 }
