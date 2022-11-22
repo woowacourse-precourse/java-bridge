@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.ui.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +9,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
-    private final int UP = 1;
-    private final int DOWN = 0;
-
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -35,10 +33,10 @@ public class BridgeMaker {
      * @return block 값이 1이라면 "U", 0이라면 "D" 반환
      */
     private String addBlock(int block) {
-        if (block == UP) {
+        if (block == Constant.UP) {
             return "U";
         }
-        else if (block == DOWN) {
+        else if (block == Constant.DOWN) {
             return "D";
         }
         throw new IllegalArgumentException();

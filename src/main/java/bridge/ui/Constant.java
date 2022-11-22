@@ -8,4 +8,7 @@ public class Constant {
     public static final String TOKEN_FAIL = "X";
     public static final String TOKEN_CLEAR = "O";
     public static final String TOKEN_NULL = " ";
+
+    public static final int UP = 1;
+    public static final int DOWN = 0;
 }
