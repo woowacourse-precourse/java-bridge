@@ -23,6 +23,7 @@ public class OutputView {
     private static final String GOOD_CHOICE_FORM = "O";
     private static final String BAD_CHOICE_FORM = "X";
     private static final String NO_CHOICE_FORM = " ";
+
     private static OutputView instance;
 
     private OutputView() {}

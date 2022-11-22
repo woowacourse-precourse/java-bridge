@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 public enum GameCommand {
     RETRY("R"), QUIT("Q");
+
     private static final String ERR_GAME_COMMAND_FORMAT = "게임 재시도는 'R', 종료는 'Q'를 입력하세요. 대소문자 구별. 예시) R(O), Q(O), r(X)";
+
     private final String inputFormat;
 
     GameCommand(String inputFormat) {

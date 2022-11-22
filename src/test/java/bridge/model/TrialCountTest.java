@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TrialCountTest {
-
     @DisplayName("처음 게임을 시작하면 시도 횟수는 1회이다.")
     @Test
     void firstTrial_메서드는_시도를_1회_했을_때의_TrialCount객체를_반환한다() {

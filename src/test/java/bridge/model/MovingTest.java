@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MovingTest {
-
     @ParameterizedTest(name = "{0}를 Bridge로 변환하려 하면 예외를 던진다.")
     @ValueSource(strings = {"u","d"," ","","U1"," D"})
     void toBridge_인자_형식이_잘못되면_예외_던지는_기능(String format) {

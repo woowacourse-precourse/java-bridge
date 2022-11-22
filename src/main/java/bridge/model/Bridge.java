@@ -6,6 +6,7 @@ public class Bridge {
     public static final int BRIDGE_SIZE_LOWER_BOUNDS = 3;
     public static final int BRIDGE_SIZE_UPPER_BOUNDS = 20;
     private static final String ERR_BRIDGE_SIZE = "다리 길이는 3 이상 20 이하의 자연수여야 합니다. 예시) 3(O), 18(O), 21(X)";
+
     private final List<Moving> bridge;
 
     public Bridge(List<Moving> bridge) {
