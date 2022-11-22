@@ -40,6 +40,50 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("4", "U", "D", "D","R","D","Q");
+            assertThat(output()).contains(
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[   ]",
+                    "[ X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "최종 게임 결과",
+                    "[   ]",
+                    "[ X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1, 0, 1,0);
+    }
+
+    @Test
+    void 잘못된_입력시_메세지와_함께_다시_입력_받는지_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("1","df","4", "U", "D", "ㄷ23","D","R","D","Qdf","Q");
+            assertThat(output()).contains(
+                    "[ERROR] 다리 길이는 3-20 사이의 숫자 입니다",
+                    "[ERROR] 숫자인 문자여야 합니다",
+                    "[ERROR]  허용 입력은 (위: U, 아래: D) 입니다",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[   ]",
+                    "[ X ]",
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                    "[ERROR] R: 재시작과 Q: 완전종료 중에 입력해 주세요",
+                    "최종 게임 결과",
+                    "[   ]",
+                    "[ X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1, 0, 1,0);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
