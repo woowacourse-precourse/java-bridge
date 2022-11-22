@@ -41,12 +41,8 @@ public class BridgeGame {
         return location;
     }
 
-    public static List<String> getUpBridge() {
-        return Collections.unmodifiableList(bridgeMap.getBridgeUpMap());
-    }
-
-    public static List<String> getDownBridge() {
-        return Collections.unmodifiableList(bridgeMap.getBridgeDownMap());
+    public List<List<String>> getMap(){
+        return bridgeMap.getBridgeMap();
     }
 
 

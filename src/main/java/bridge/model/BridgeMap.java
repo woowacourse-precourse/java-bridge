@@ -9,10 +9,8 @@ import java.util.List;
 public class BridgeMap {
 
     private static final String BLANK = " ";
-    private static List<String> bridgeUpMap;
-    private static List<String> bridgeDownMap;
-
-    private static BridgeMap bridgeMap = null;
+    private List<String> bridgeUpMap;
+    private List<String> bridgeDownMap;
 
     private BridgeMap(int size) {
         bridgeUpMap = new ArrayList<>(Collections.nCopies(size, BLANK));
@@ -23,14 +21,8 @@ public class BridgeMap {
         return new BridgeMap(size);
     }
 
-
-    public static List<String> getBridgeUpMap() {
-        return Collections.unmodifiableList(bridgeUpMap);
-
-    }
-
-    public static List<String> getBridgeDownMap() {
-        return Collections.unmodifiableList(bridgeDownMap);
+    public List<List<String>> getBridgeMap(){
+        return Collections.unmodifiableList(List.of(bridgeUpMap, bridgeDownMap));
     }
 
     public void makeBridgeMap(int location, String moving, String expression) {
