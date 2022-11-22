@@ -28,7 +28,12 @@ public class GameExceptionHandler {
 
     private void throwExceptionToMainIfExceedsThreshold() throws IllegalArgumentException {
         if (SERIAL_EXCEPTION_THRESHOLD < this.numSerialExceptions) {
+            initializeExceptionOccurrenceCount();
             throw new IllegalArgumentException(ERROR_PREFIX + THRESHOLD_EXCEEDED);
         }
+    }
+
+    public void initializeExceptionOccurrenceCount() {
+        this.numSerialExceptions = 0;
     }
 }
