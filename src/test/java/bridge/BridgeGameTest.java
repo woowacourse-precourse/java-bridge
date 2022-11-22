@@ -1,9 +1,6 @@
 package bridge;
 
 import bridge.data.Direction;
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
 import bridge.mock.MockBridgeNumberGenerator;
 import bridge.presentation.PlayerMap;
 import org.junit.jupiter.api.BeforeEach;

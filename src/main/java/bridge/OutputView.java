@@ -1,6 +1,7 @@
-package bridge.presentation;
+package bridge;
 
 import bridge.data.GameMessage;
+import bridge.presentation.PlayerMap;
 
 import static bridge.data.GameMark.*;
 

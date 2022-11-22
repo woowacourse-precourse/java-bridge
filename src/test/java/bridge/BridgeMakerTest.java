@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
 import bridge.mock.MockBridgeNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

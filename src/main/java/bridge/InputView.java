@@ -1,6 +1,7 @@
-package bridge.presentation;
+package bridge;
 
 import bridge.data.Error;
+import bridge.presentation.ExceptionHandler;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.NoSuchElementException;

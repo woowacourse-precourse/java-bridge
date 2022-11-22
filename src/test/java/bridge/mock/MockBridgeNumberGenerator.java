@@ -1,6 +1,6 @@
 package bridge.mock;
 
-import bridge.domain.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 public class MockBridgeNumberGenerator implements BridgeNumberGenerator {
     private final int mark;
