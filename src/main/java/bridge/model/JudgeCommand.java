@@ -1,11 +1,14 @@
 package bridge.model;
 
-import bridge.BridgeGame;
 import bridge.view.InputView;
 import java.util.List;
 
 public class JudgeCommand {
-    private BridgeGame bridgeGame = new BridgeGame();
+    private ExecuteCommand executeCommand;
+
+    public JudgeCommand(GameStatus gameStatus, BridgeMaker bridgeMaker, PresentBridgeMaker presentBridgeMaker) {
+        executeCommand = new ExecuteCommand(gameStatus, bridgeMaker, presentBridgeMaker);
+    }
 
     public boolean judgeMove(List<String> bridge, String moveCommand, int bridgeIndex) {
         if (bridge.get(bridgeIndex).equals(moveCommand)) {
@@ -18,7 +21,7 @@ public class JudgeCommand {
         String gameCommand = InputView.readGameCommand();
 
         if (gameCommand.equals("R")) {
-            bridgeGame.retry();
+            executeCommand.retry();
             return true;
         }
         return false;

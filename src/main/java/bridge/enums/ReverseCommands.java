@@ -1,14 +1,12 @@
 package bridge.enums;
 
 public enum ReverseCommands {
-    REVERSE_UP("U", "D"),
-    REVERSE_DOWN("D", "U");
+    U("D"),
+    D("U");
 
-    private String command;
     private String reverseCommand;
 
-    ReverseCommands(String command, String reverseCommand) {
-        this.command = command;
+    ReverseCommands(String reverseCommand) {
         this.reverseCommand = reverseCommand;
     }
 
