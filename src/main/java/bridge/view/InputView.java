@@ -1,12 +1,16 @@
 package bridge.view;
 
+import bridge.constant.InputMessage;
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public String readBridgeSize() {
+        System.out.println(InputMessage.INPUT_BRIDGE_LENGTH_MESSAGE.getMessage());
+        return Console.readLine();
     }
 
     /**
