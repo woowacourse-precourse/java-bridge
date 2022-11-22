@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.config.GameActivity;
+import bridge.config.LoopActivity;
 import bridge.config.ErrorMessageConstant;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
@@ -15,7 +15,7 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgeGameController extends GameActivity {
+public class BridgeGameController extends LoopActivity {
 
     private final BridgePrinter bridgePrinter = new BridgeConsolePrinter();
     private final BridgeMaker bridgeMaker;

@@ -2,7 +2,10 @@ package bridge.config;
 
 import java.util.concurrent.Callable;
 
-public abstract class GameActivity {
+/**
+ * 종료 전까지 반복하는 라이프사이클을 가지는 객체
+ */
+public abstract class LoopActivity {
 
     private boolean stopped = false;
 
