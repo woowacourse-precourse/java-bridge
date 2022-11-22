@@ -10,27 +10,48 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         String userInput = Console.readLine();
-        validate(userInput, ValidateType.SIZE);
-        return Integer.parseInt(userInput);
+        try {
+            validate(userInput, ValidateType.SIZE);
+            return Integer.parseInt(userInput);
+        } catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String userInput = Console.readLine();
-        validate(userInput, ValidateType.MOVE);
-        return userInput;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+
+        try {
+            String userInput = Console.readLine();
+            validate(userInput, ValidateType.MOVE);
+            return userInput;
+        } catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            return readMoving();
+        }
+
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String userInput = Console.readLine();
-        validate(userInput, ValidateType.COMMAND);
-        return userInput;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
+        try {
+            String userInput = Console.readLine();
+            validate(userInput, ValidateType.COMMAND);
+            return userInput;
+        } catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            return readGameCommand();
+        }
     }
 
     private void validate(String s, ValidateType type){
