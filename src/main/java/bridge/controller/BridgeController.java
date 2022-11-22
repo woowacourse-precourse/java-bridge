@@ -26,8 +26,7 @@ public class BridgeController {
     }
 
     public void startGame() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeMaker bridgeMaker = createBridgeMaker();
         outputView.printStartGame();
         Length length = inputHandler.getLength();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
@@ -35,6 +34,10 @@ public class BridgeController {
         MovedPositions movedPositions = createMovedPositions(bridge);
         Result result = playGame(length, movedPositions);
         outputView.printResult(result, bridgeGame.getAttemptCount());
+    }
+
+    private BridgeMaker createBridgeMaker() {
+        return new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     private Result playGame(Length length, MovedPositions movedPositions) {
