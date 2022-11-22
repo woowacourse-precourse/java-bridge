@@ -12,6 +12,6 @@ public class BridgeSize {
     }
 
     public boolean isEqual(int number) {
-        return size == number;
+        return this.size == number;
     }
 }

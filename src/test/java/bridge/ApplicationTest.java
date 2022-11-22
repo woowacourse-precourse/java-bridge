@@ -45,7 +45,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 재시도_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "U", "R","U","D","U");
+            run("3", "U", "U", "R", "U", "D", "U");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   | O ]",
@@ -76,7 +76,7 @@ class ApplicationTest extends NsTest {
             int upSideIndex = output().indexOf("[ O |   ]");
             int downSideIndex = output().indexOf("[   | X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
-        }, 1, 1);
+        }, 1, 1, 1);
     }
 
     @Test
@@ -95,7 +95,7 @@ class ApplicationTest extends NsTest {
             int upSideIndex = output().indexOf("[ O | X ]");
             int downSideIndex = output().indexOf("[   |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
-        }, 1, 0);
+        }, 1, 0, 0);
     }
 
     @Test
