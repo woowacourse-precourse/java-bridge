@@ -16,26 +16,30 @@ public class BridgeController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
+    private int count = 1;
     public List<String> start(){
         String BridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(Integer.parseInt(BridgeSize));
         return bridge;
     }
-    public void repeat(List<String> bridge) {
-        try {
-            bridgeGame.movedResult.clear();
-            for (int i=0; i<bridge.size(); i++){
-                String moving = inputView.readMoving();
-                List<String> movedResult = bridgeGame.move(moving);
-                outputView.printMap(movedResult,bridge);
-                if (!(bridge.get(i).equals(movedResult.get(i)))) {
-                    break;
-                }
+    public boolean repeat(List<String> bridge) throws IllegalArgumentException{
+        bridgeGame.movedResult.clear();
+        for (int i=0; i<bridge.size(); i++){
+            String moving = inputView.readMoving();
+            List<String> movedResult = bridgeGame.move(moving);
+            outputView.printMap(movedResult,bridge);
+            if(movedResult.equals(bridge)){
+                outputView.printResult();
+                System.out.println("게임 성공 여부: 성공");
+                System.out.println("총 시도한 횟수: "+count);
+                return true;
             }
-            outputView.printResult();
-        } catch (IllegalArgumentException e) {
-            e.getMessage();
+            if (!(bridge.get(i).equals(movedResult.get(i)))) {
+                break;
+            }
         }
+        count++;
+        return false;
     }
 
 }

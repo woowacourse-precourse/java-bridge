@@ -12,12 +12,12 @@ public class Application {
     private static InputView inputView = new InputView();
     public static void main(String[] args) {
         List<String> bridge = bridgeController.start();
-        bridgeController.repeat(bridge);
         while(true){
+            if(bridgeController.repeat(bridge)){
+                break;
+            }
             String answer = inputView.readGameCommand();
-            if (bridgeGame.retry(answer)) {
-                bridgeController.repeat(bridge);
-            } else if (!bridgeGame.retry(answer)) {
+            if (!bridgeGame.retry(answer)) {
                 break;
             }
         }
