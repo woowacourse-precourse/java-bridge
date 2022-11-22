@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

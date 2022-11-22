@@ -3,6 +3,7 @@ package bridge.model;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 class BridgeNumberGeneratorTest {
