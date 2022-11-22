@@ -4,10 +4,19 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
+    private BridgeGame bridgeGame;
+
+    @BeforeEach
+    void beforeEach(){
+        List<String> list = List.of("U","U","D");
+        bridgeGame = new BridgeGame(list);
+    }
+
 
     @DisplayName("생성자를 통해 만든 Bridge가 잘 반환되는지 테스트")
     @Test
@@ -16,35 +25,32 @@ class BridgeGameTest {
         List<String> list = List.of("U", "U", "D");
 
         //when
-        BridgeGame bridge = new BridgeGame(list);
 
         //then
-        assertThat(bridge.getBridge()).isEqualTo(list);
+        assertThat(bridgeGame.getBridge()).isEqualTo(list);
     }
 
     @DisplayName("위치가 잘 증가하는지 테스트")
     @Test
     public void increaseLocationTest() {
         //given
-        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         int increaseLocation = 1;
 
         //when
-        bridge.move();
+        bridgeGame.move();
 
         //then
-        assertThat(bridge.getLocation()).isEqualTo(increaseLocation);
+        assertThat(bridgeGame.getLocation()).isEqualTo(increaseLocation);
     }
 
     @DisplayName("위치가 잘 반환되는지 테스트")
     @Test
     public void getLocationTest() {
         //given
-        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         int nowLocation = 0;
 
         //when
-        int location = bridge.getLocation();
+        int location = bridgeGame.getLocation();
 
         //then
         assertThat(location).isEqualTo(nowLocation);
@@ -54,28 +60,26 @@ class BridgeGameTest {
     @Test
     public void initLocationTest() {
         //given
-        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         int resetLocation = 0;
-        bridge.move();
+        bridgeGame.move();
 
         //when
-        bridge.retry();
+        bridgeGame.retry();
 
         //then
-        assertThat(bridge.getLocation()).isEqualTo(resetLocation);
+        assertThat(bridgeGame.getLocation()).isEqualTo(resetLocation);
     }
 
     @DisplayName("위치 비교가 잘되는지 테스트")
     @Test
     public void isPassTest() {
         //given
-        BridgeGame bridge = new BridgeGame(List.of("U", "D", "D"));
         String moveUp = "U";
         String moveDown = "D";
 
         //when
-        boolean pass = bridge.isPass(moveUp);
-        boolean fail = bridge.isPass(moveDown);
+        boolean pass = bridgeGame.isPass(moveUp);
+        boolean fail = bridgeGame.isPass(moveDown);
 
         //then
         assertThat(pass).isEqualTo(true);
