@@ -1,7 +1,9 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Bridge {
     private static final int MIN_BRIDGE_SIZE =3;
@@ -9,18 +11,24 @@ public class Bridge {
     private static final int bridgePositionNumber =2;
     private int bridgeSize;
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private List<String> bridgeMap = new ArrayList<>();
-    private List<String> crossAble = new ArrayList<>();
+    private Map<String,List<String> > bridgeMap = new LinkedHashMap<>();
+    private List<String> bridgeCanCross = new ArrayList<>();
+
+    public Map<String, List<String>> getBridgeMap() {
+        return bridgeMap;
+    }
     public Bridge(String bridgeSize){
         this.bridgeSize = validate(bridgeSize);
         bridgeInit();
     }
-    public List<String> getCrossAble(){
-        return crossAble;
+
+    public List<String> getBridgeCanCross() {
+        return bridgeCanCross;
     }
+
     private void bridgeInit(){
-        crossAble = bridgeMaker.makeBridge(bridgeSize);
-        setBridgeMap();
+        bridgeCanCross = bridgeMaker.makeBridge(bridgeSize);
+        setBridgeUnit();
     }
     private int validate(String bridgeSize){
         int bridgeSizeNumber = stringToNumber(bridgeSize);
@@ -43,25 +51,28 @@ public class Bridge {
         }
     }
     public boolean ableToCross(int index,String userCommand){
-        if(crossAble.get(index)==userCommand){
+        if(bridgeCanCross.get(index)==userCommand){
             return true;
         }
         return false;
     }
-    public void setBridgeMap(){
-        bridgeMap = new ArrayList<>();
-        for(int i=0;i<bridgePositionNumber;i++){
-            for(int j=0;j<bridgeSize;j++){
-                bridgeMap.add(" ");
-            }
+
+    public int getBridgeSize() {
+        return bridgeSize;
+    }
+
+    public void setBridgeUnit(){
+        bridgeMap = new LinkedHashMap<>();
+        List<String> bridgeMapUnit = new ArrayList<>();
+        for(int i=0;i<bridgeSize;i++){
+            bridgeMapUnit.add(" ");
         }
+        bridgeMap.put(UserCommand.MOVE_DOWN.getCommand(),bridgeMapUnit);
+        bridgeMap.put(UserCommand.MOVE_DOWN.getCommand(),bridgeMapUnit);
     }
-    public List<String> getBridgeMap(){
-        return this.bridgeMap;
+    public void changeBridgeMap(int index,String userMoveCommand,String OorX){
+        List<String> bridgeMapUnit = bridgeMap.get(userMoveCommand);
+        bridgeMapUnit.set(index,OorX);
     }
-    public void changeBridgeMap(int index,int userChoicePosition,char OorX){
-        char[] bridgeUnit = bridgeMap.get(userChoicePosition).toCharArray();
-        bridgeUnit[index] = OorX;
-        bridgeMap.set(index,String.valueOf(bridgeUnit));
-    }
+
 }

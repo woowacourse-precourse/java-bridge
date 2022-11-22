@@ -1,11 +1,14 @@
 package bridge;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,11 +37,30 @@ class BridgeTest {
     @Test
     void 다리_생성자3(){
         Bridge bridge = new Bridge("3");
-        for(int i=0;i<bridge.getCrossAble().size();i++){
-            System.out.println(bridge.getCrossAble().get(i));
-            assertTrue(bridge.getCrossAble().get(i) ==UserCommand.MOVE_UP.getCommand()
-                    ||bridge.getCrossAble().get(i)==UserCommand.MOVE_DOWN.getCommand());
+        for(int i = 0; i<bridge.getBridgeCanCross().size(); i++){
+            assertTrue(bridge.getBridgeCanCross().get(i) ==UserCommand.MOVE_UP.getCommand()
+                    ||bridge.getBridgeCanCross().get(i)==UserCommand.MOVE_DOWN.getCommand());
         }
     }
 
+    @DisplayName("다리 초기화 확인")
+    @Test
+    void 다리_초기화(){
+        Bridge bridge = new Bridge("3");
+        List<String> testBridgeUnit = Arrays.asList(" "," "," ");
+        List<String> bridgeUnit = bridge.getBridgeMap().get("U");
+        Assertions.assertThat(testBridgeUnit).isEqualTo(bridgeUnit);
+        bridgeUnit = bridge.getBridgeMap().get("D");
+        Assertions.assertThat(testBridgeUnit).isEqualTo(bridgeUnit);
+    }
+
+    @DisplayName("다리 특정 자리 변경")
+    @Test
+    void bridgeUnit_change(){
+        Bridge bridge = new Bridge("3");
+        List<String> testBridgeUnit = Arrays.asList(" ","X"," ");
+        bridge.changeBridgeMap(1,"U","X");
+        Assertions.assertThat(testBridgeUnit).isEqualTo(bridge.getBridgeMap().get("U"));
+        Assertions.assertThat(testBridgeUnit).isNotEqualTo(bridge.getBridgeMap().get("D"));
+    }
 }
