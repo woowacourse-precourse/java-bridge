@@ -24,4 +24,8 @@ public class BridgeMaker {
         InputView inputView = new InputView();
         return inputView.readBridgeSize();
     }
+    public String numberToString(int randomNumber){
+        if(randomNumber == 1) return "U";
+        return "D";
+    }
 }
