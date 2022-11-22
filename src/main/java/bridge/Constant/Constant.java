@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Constant;
 
 public class Constant {
     public static String Start_Game = "다리 건너기 게임을 시작합니다.";
