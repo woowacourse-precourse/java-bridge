@@ -1,8 +1,6 @@
 package bridge;
 
-import bridge.constant.Message;
 import bridge.controller.BridgeController;
-import bridge.domain.BridgeGame;
 
 public class Application {
 
