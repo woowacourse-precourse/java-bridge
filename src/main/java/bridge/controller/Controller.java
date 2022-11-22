@@ -43,4 +43,12 @@ public class Controller {
         }
         printResult(bridgeGame, user);
     }
+
+    public void checkCorrect(String moveInput, BridgeGame bridgeGame, User user) {
+        if (bridgeGame.correct(moveInput)) {
+            correctCase(moveInput, bridgeGame);
+            return;
+        }
+        wrongCase(moveInput, bridgeGame, user);
+    }
 }
