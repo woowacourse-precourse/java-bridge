@@ -46,7 +46,11 @@
 - [ ] U, D가 아닐 시, 에러 발생
 - [ ] R, Q가 아닐 시, 에러 발생
 
-## ErrorConstants
+## Constants
+
+---
+
+### ErrorConstants
 - [x] 에러 발생 시, 출력되는 String
 
 <br>
@@ -77,7 +81,7 @@
 
 ---
 
-# OutputConstants
+### OutputConstants
 - [x] System.out 시, 출력되는 String 상수
 
 <br>
