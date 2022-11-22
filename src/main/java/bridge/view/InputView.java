@@ -23,18 +23,6 @@ public class InputView {
         blank();
         return inputNum;
     }
-    /*
-    private void stringType(String input) {
-        while (true) {
-            try {
-                Integer.parseInt(input);
-                break;
-            } catch (NumberFormatException e) {
-                out(ExceptionMessage.NOT_INTEGER);
-            }
-        }
-    }
-     */
     public String readMoving() {
         out(InputMessage.INPUT_MOVING);
         String input = Console.readLine();

@@ -13,22 +13,18 @@ public class Application {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
     public static void main(String[] args) {
-        try {
-            List<String> bridge = bridgeController.start();
-            while (true) {
-                if (bridgeController.repeat(bridge)) {
-                    break;
-                }
-                String answer = inputView.readGameCommand();
-                if (!bridgeGame.retry(answer)) {
-                    outputView.printResult();
-                    System.out.println("게임 성공 여부: 실패");
-                    System.out.println("총 시도한 횟수: "+ bridgeController.count);
-                    break;
-                }
+        List<String> bridge = bridgeController.start();
+        while (true) {
+            if (bridgeController.repeat(bridge)) {
+                break;
             }
-        } catch (Exception e) {
-            e.getMessage();
+            String answer = inputView.readGameCommand();
+            if (!bridgeGame.retry(answer)) {
+                outputView.printResult();
+                System.out.println("게임 성공 여부: 실패");
+                System.out.println("총 시도한 횟수: "+ bridgeController.count);
+                break;
+            }
         }
     }
 }
