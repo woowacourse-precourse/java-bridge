@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest extends NsTest {
@@ -12,10 +13,9 @@ public class InputViewTest extends NsTest {
     @Test
     void enterBridgeSizeByInvalidValue() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("a"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 숫자가 아닙니다.");
-                }
+            runException("a");
+            assertThat(output()).contains("[ERROR] 숫자가 아닙니다.");
+        }
         );
     }
 
@@ -23,9 +23,8 @@ public class InputViewTest extends NsTest {
     @Test
     void enterBridgeSizeByInvalidRange() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("21"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 3부터 20 사이의 숫자가 아닙니다.");
+            runException("21");
+            assertThat(output()).contains("[ERROR] 3부터 20 사이의 숫자가 아닙니다.");
         });
     }
 
@@ -33,9 +32,8 @@ public class InputViewTest extends NsTest {
     @Test
     void enterBridgeMoveByNotSingleCharacter() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("3", "ab"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 입력 값이 단일 문자가 아닙니다.");
+            runException("3", "ab");
+            assertThat(output()).contains("[ERROR] 입력 값이 단일 문자가 아닙니다.");
         });
     }
 
@@ -43,9 +41,8 @@ public class InputViewTest extends NsTest {
     @Test
     void enterBridgeMoveByInvalidValue() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("3", "A"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 방향을 잘못 입력하셨습니다.");
+            runException("3", "A");
+            assertThat(output()).contains("[ERROR] 방향을 잘못 입력하셨습니다.");
         });
     }
 
@@ -53,9 +50,8 @@ public class InputViewTest extends NsTest {
     @Test
     void enterGameCommandByNotSingleCharacter() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("3", "U", "Ab"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 입력 값이 단일 문자가 아닙니다.");
+            runException("3", "U", "Ab");
+            assertThat(output()).contains("[ERROR] 입력 값이 단일 문자가 아닙니다.");
         });
     }
 
@@ -63,9 +59,8 @@ public class InputViewTest extends NsTest {
     @Test
     void enterGameCommandByInvalidValue() {
         assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException("3", "U", "A"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 재시작 여부를 잘못 입력하셨습니다.");
+            runException("3", "U", "A");
+            assertThat(output()).contains("[ERROR] 재시작 여부를 잘못 입력하셨습니다.");
         });
     }
 
