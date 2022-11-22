@@ -31,11 +31,4 @@ public enum MoveResult {
 				.findAny()
 				.orElseThrow(()->new IllegalStateException(ErrorMessage.ILLEGAL_STATE_ERROR_MESSAGE));
 	}
-
-//	public static MoveResult getMoveResultByMoveResultCode(String moveResultCode) {
-//		return Arrays.stream(values())
-//				.filter(result -> moveResultCode.equals(result.moveResultCode))
-//				.findAny()
-//				.orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_INPUT_ERROR_MESSAGE));
-//	}
 }
