@@ -19,6 +19,7 @@ class TextValidatorTest {
             TextValidator.validateMoveWay("U");
             TextValidator.validateMoveWay("D");
         }
+
         @CsvSource({"A", "s", "u", "1", "-8", "~", "!!!"})
         @ParameterizedTest
         void U_또는_D가_아닌_경우(String input) {

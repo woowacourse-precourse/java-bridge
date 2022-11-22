@@ -28,12 +28,14 @@ public class ResultInformation {
     public String makeMap(int stage) {
         StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
         StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
+        
         for (int i = 0; i < stage + 1; i++) {
             upJoiner.add(String.valueOf(upBridge[i]));
             downJoiner.add(String.valueOf(downBridge[i]));
         }
         return upJoiner + "\n" + downJoiner;
     }
+
     public void clear() {
         for (int i = 0; i < bridgeSize; i++) {
             upBridge[i] = BLANK;
