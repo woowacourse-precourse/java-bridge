@@ -11,5 +11,9 @@ public class OutputView {
         System.out.println(GAME_START_MESSAGE);
     }
 
+    public void printBridgeLength(int length) {
+        System.out.println(length);
+    }
+
 
 }

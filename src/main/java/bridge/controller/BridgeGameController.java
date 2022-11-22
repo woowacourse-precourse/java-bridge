@@ -12,8 +12,9 @@ public class BridgeGameController {
     public BridgeGameController() {
         outputView.startPrint();
         int bridgeLength = inputView.inputBridgeLength();
+        bridgeGame = new BridgeGame(bridgeLength);
+        outputView.printBridgeLength(bridgeLength);
     }
-
 
 
 }
