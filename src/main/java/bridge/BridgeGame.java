@@ -20,20 +20,13 @@ public class BridgeGame {
         System.out.println("게임 시작");
         int bridgeSize = inputView.readBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        crossBridge(bridge);
-        retry();
+        while (!gameEndChecker.getEnd()) {
+            crossBridge(bridge);
+        }
     }
 
     private void crossBridge(Bridge bridge) {
-        int index = 0;
-        while (true) {
-            String moving = move();
-            if (!bridge.canMove(index, moving)) {
-                outputView.printMap();
-                retry();
-                break;
-            }
-        }
+
     }
 
     public String move() {
@@ -42,9 +35,15 @@ public class BridgeGame {
         return moving;
     }
 
-    public String retry() {
+    public void retry() {
         System.out.println("게임 재시작 유무");
         String answer = inputView.readGameCommand();
-        return answer;
+        Quit(answer);
+    }
+    private void Quit(String answer) {
+        // TODO: Enum으로 리팩토링
+        if (answer.equals("Q")) {
+            gameEndChecker.setEnd(true);
+        }
     }
 }
