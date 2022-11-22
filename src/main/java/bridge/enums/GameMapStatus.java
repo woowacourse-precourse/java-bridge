@@ -6,15 +6,16 @@ public enum GameMapStatus {
     FAIL("X"),
     BOUNDARY_LINE(" | "),
     START_MAP("[ "),
-    END_MAP(" ]");
+    END_MAP(" ]"),
+    NEXT_LINE("\n");
 
     private String symbol;
 
-    GameMapStatus(String symbol){
+    GameMapStatus(String symbol) {
         this.symbol = symbol;
     }
 
-    public String getSymbol(){
+    public String getSymbol() {
         return this.symbol;
     }
 }
