@@ -77,8 +77,8 @@ public class OutputView {
     }
 
     private String checkLastMoveTop(String lastBridgePoint, String resultLastBridgePoint) {
-        if (lastBridgePoint.equals("U") & resultLastBridgePoint.equals("O")
-                | lastBridgePoint.equals("D") & resultLastBridgePoint.equals("X")) {
+        if (lastBridgePoint.equals("U") && resultLastBridgePoint.equals("O")
+                || lastBridgePoint.equals("D") && resultLastBridgePoint.equals("X")) {
             return resultLastBridgePoint + " ]";
         }
         return "  ]";
@@ -102,8 +102,8 @@ public class OutputView {
     }
 
     private String checkLastMoveBottom(String lastBridgePoint, String resultLastBridgePoint) {
-        if (lastBridgePoint.equals("U") & resultLastBridgePoint.equals("X")
-                | lastBridgePoint.equals("D") & resultLastBridgePoint.equals("O")) {
+        if (lastBridgePoint.equals("U") && resultLastBridgePoint.equals("X")
+                || lastBridgePoint.equals("D") && resultLastBridgePoint.equals("O")) {
             return resultLastBridgePoint + " ]";
         }
         return "  ]";
