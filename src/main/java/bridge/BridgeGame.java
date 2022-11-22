@@ -17,14 +17,6 @@ public class BridgeGame {
         retryCount = 1;
     }
 
-    public List<String> getBridge() {
-        return bridge;
-    }
-
-    public List<String> getUserInput() {
-        return userInput;
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -37,9 +29,9 @@ public class BridgeGame {
     public boolean evaluateMove() {
         String answer = this.bridge.get(this.userInput.size() - 1);
         if (!answer.equals(this.userInput.get(this.userInput.size() - 1))) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public boolean isGameOn() {

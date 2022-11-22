@@ -34,7 +34,7 @@ public class Application {
     }
 
     public static BridgeGame makeGameDecision(BridgeGame bridgeGame, OutputView outputView, InputView inputView) {
-        if (bridgeGame.evaluateMove()) {
+        if (!bridgeGame.evaluateMove()) {
             outputView.printRetry();
             bridgeGame.retry(inputView.readGameCommand());
         }
