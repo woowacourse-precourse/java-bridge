@@ -29,13 +29,23 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String direction = readLine();
+        if(direction.length() != 1) throw new IllegalArgumentException("[ERROR] 방향 입력 길이 오류");
+        if(direction.equals("U")) return direction;
+        if(direction.equals("D")) return  direction;
+        throw new IllegalArgumentException("[ERROR] 방향 키 입력 오류 ");
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String command = readLine();
+        if(command.length() != 1) throw new IllegalArgumentException("[ERROR] 커맨드 입력 길이 오류");
+        if(command.equals("R")) return command;
+        if(command.equals("Q")) return command;
+        throw new IllegalArgumentException("[ERROR] 커맨드 키 입력 오류");
     }
 }

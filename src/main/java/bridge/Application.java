@@ -12,6 +12,13 @@ public class Application {
 
         try{
             bridgeGame.StartGame(inputView.readBridgeSize());
+            while(bridgeGame.playing()) {
+                bridgeGame.move(inputView.readMoving());
+                if(bridgeGame.isDead()) bridgeGame.retry(inputView.readGameCommand());
+            }
+
+            outputView.printResult(bridgeGame.isDead());
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
