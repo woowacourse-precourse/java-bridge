@@ -67,6 +67,19 @@ public class InputView {
         }
     }
 
+    public boolean checkStringSize(String s){
+        if(s.length() == 1){
+            return true;
+        }
+        throw new IllegalArgumentException("[ERROR] 한 글자만 입력해야 합니다.");
+    }
+    public boolean checkMoveString(String s){
+        if(s.charAt(0) == 'U' || s.charAt(0) == 'D'){
+            return true;
+        }
+        throw new IllegalArgumentException("[ERROR]U,D 중 하나의 알파벳만 허용됩니다.");
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
