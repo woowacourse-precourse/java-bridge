@@ -9,7 +9,8 @@ import java.util.Map;
 import static bridge.util.constants.RecordKey.UPPER_RECORD_KEY;
 import static bridge.util.constants.RecordKey.LOWER_RECORD_KEY;
 import static bridge.util.constants.MovableSpace.UPPER_SPACE;
-import static bridge.util.constants.Marker.NOT_CROSS;
+import static bridge.util.constants.MovableSpace.LOWER_SPACE;
+import static bridge.util.constants.Marker.NOT_SELECTED;
 
 public class GameRecord {
     private static final int INITIAL_TRY_COUNT = 1;
@@ -24,27 +25,25 @@ public class GameRecord {
     }
 
     public void recordMove(String spaceToMove, boolean isDead) {
-        String marker = Marker.getMarker(isDead);
+        recordCrossedUpper(spaceToMove, isDead);
+        recordCrossedLower(spaceToMove, isDead);
+    }
+
+    private void recordCrossedUpper(String spaceToMove, boolean isDead) {
+        String marker = NOT_SELECTED.getValue();
+        List<String> upperCrossedRecord = crossedRecord.get(UPPER_RECORD_KEY.getValue());
         if (spaceToMove.equals(UPPER_SPACE.getValue())) {
-            recordCrossedUpper(marker);
-            return;
+            marker = Marker.getCrossedMarker(isDead);
         }
-        recordCrossedLower(marker);
-    }
-
-    private void recordCrossedUpper(String marker) {
-        List<String> upperCrossedRecord = crossedRecord.get(UPPER_RECORD_KEY.getValue());
-        List<String> lowerCrossedRecord = crossedRecord.get(LOWER_RECORD_KEY.getValue());
-
         upperCrossedRecord.add(marker);
-        lowerCrossedRecord.add(NOT_CROSS.getValue());
     }
 
-    private void recordCrossedLower(String marker) {
-        List<String> upperCrossedRecord = crossedRecord.get(UPPER_RECORD_KEY.getValue());
+    private void recordCrossedLower(String spaceToMove, boolean isDead) {
+        String marker = NOT_SELECTED.getValue();
         List<String> lowerCrossedRecord = crossedRecord.get(LOWER_RECORD_KEY.getValue());
-
-        upperCrossedRecord.add(NOT_CROSS.getValue());
+        if (spaceToMove.equals(LOWER_SPACE.getValue())) {
+            marker = Marker.getCrossedMarker(isDead);
+        }
         lowerCrossedRecord.add(marker);
     }
 
