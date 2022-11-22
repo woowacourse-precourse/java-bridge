@@ -14,12 +14,6 @@ public class Player {
         this.bridge = bridgeDto.getBridge();
     }
 
-
-//    public Player(int bridgeSize, List<String> bridge) {
-//        this.bridgeSize = bridgeSize;
-//        this.bridge = bridge;
-//    }
-
     public int getBridgeSize() {
         return bridgeSize;
     }
