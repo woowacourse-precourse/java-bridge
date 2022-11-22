@@ -9,8 +9,9 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param bridge    다리
+     * @param userRoute 사용자 이동 경로
      */
     public void printMap(List<String> bridge, List<String> userRoute) {
         String bridgeUpLine = getBridgeLine(bridge, userRoute, "U");
@@ -20,7 +21,14 @@ public class OutputView {
         System.out.println(bridgeDownLine);
     }
 
-    // type 'U', 'D'
+    /**
+     * 다리와 사용자의 이동 경로를 비교해 결과를 출력한다.
+     *
+     * @param bridge    다리
+     * @param userRoute 사용자가 이동한 경로
+     * @param type      첫번째 줄인 경우 "U", 두번 째 줄인 경우 "D"
+     * @return 형식에 맞는 결과 문자열 반환
+     */
     private String getBridgeLine(List<String> bridge, List<String> userRoute, String type) {
         StringBuffer sb = makeBaseLine(userRoute.size());
         for (int i = 0; i < userRoute.size(); i++) {

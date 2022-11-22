@@ -9,7 +9,9 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     /**
-     * 다리의 길이를 입력받는다.
+     * 다리의 길이를 입력 받아 반환 한다.
+     *
+     * @return 다리의 길이 반환
      */
     public int readBridgeSize() {
         try {
@@ -25,7 +27,9 @@ public class InputView {
     }
 
     /**
-     * 사용자가 이동할 칸을 입력받는다.
+     * 사용자가 이동할 칸을 입력 받아 반환 한다.
+     *
+     * @return 사용자가 이동할 칸 반환
      */
     public String readMoving() {
         try {
@@ -42,6 +46,8 @@ public class InputView {
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     *
+     * @return 게임 재진행 여부 반환
      */
     public GameCommand readGameCommand() {
         try {
