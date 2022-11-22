@@ -22,6 +22,11 @@ public enum BridgeGameEndType {
                 .orElseThrow(() -> new IllegalArgumentException(NO_SUCH_BRIDGE_GAME_END_TYPE_EXCEPTION.getMessage()));
     }
 
+    public static boolean isEndTypeExists(String endType) {
+        return Arrays.stream(BridgeGameEndType.values())
+                .anyMatch(bridgeGameEndType -> bridgeGameEndType.type.equals(endType));
+    }
+
     public boolean isEnd() {
         return this == END;
     }

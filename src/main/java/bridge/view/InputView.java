@@ -21,13 +21,19 @@ public class InputView {
 
     public BridgeMoveType readMoving() {
         System.out.print(READ_MOVE_BOARD.getMessage());
-        String readMoveBridgeType = Console.readLine();
-        return BridgeMoveType.of(readMoveBridgeType);
+        String readMoveType = Console.readLine();
+        if (!BridgeMoveType.isMoveTypeExists(readMoveType)) {
+            throw new IllegalArgumentException(READ_WRONG_MOVE_TYPE_EXCEPTION.getMessage());
+        }
+        return BridgeMoveType.of(readMoveType);
     }
 
     public BridgeGameEndType readGameCommand() {
         System.out.println(READ_SELECT_GAME_END_TYPE.getMessage());
         String readGameEndType = Console.readLine();
+        if (!BridgeGameEndType.isEndTypeExists(readGameEndType)) {
+            throw new IllegalArgumentException(READ_WRONG_GAME_END_TYPE_EXCEPTION.getMessage());
+        }
         return BridgeGameEndType.of(readGameEndType);
     }
 

@@ -31,6 +31,11 @@ public enum BridgeMoveType {
                 .type;
     }
 
+    public static boolean isMoveTypeExists(String moveType) {
+        return Arrays.stream(BridgeMoveType.values())
+                .anyMatch(bridgeMoveType -> bridgeMoveType.type.equals(moveType));
+    }
+
     public boolean isSame(BridgeMoveType bridgeMoveType) {
         return this == bridgeMoveType;
     }
