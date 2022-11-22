@@ -21,9 +21,10 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
-            if(bridgeNumberGenerator.generate() == 1){
+            int number = bridgeNumberGenerator.generate();
+            if(number == 1){
                 bridge.add("U");
-            }else if(bridgeNumberGenerator.generate() == 0){
+            }else if(number == 0){
                 bridge.add("D");
             }
         }

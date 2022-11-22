@@ -23,17 +23,21 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(size);
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        moveBridge(bridgeGame);
-        restart(bridgeGame);
+        startGame(bridgeGame);
 
         outputView.printResult(bridgeGame.getTopResult(), bridgeGame.getBottomResult(), bridgeGame.successOrFailure(), bridgeGame.getTotalPlayCnt());
+    }
+
+    private void startGame(BridgeGame bridgeGame) {
+        moveBridge(bridgeGame);
+        restart(bridgeGame);
     }
 
     public void moveBridge(BridgeGame bridgeGame){
         for(int i = 0; i < bridgeGame.getBridge().size(); i++){
             boolean success = bridgeGame.move(inputView.readMoving(), i);
             outputView.printMap(bridgeGame.getTopResult(), bridgeGame.getBottomResult());
-            if(!success){//종료
+            if(!success){
                 return;
             }
         }
@@ -46,7 +50,7 @@ public class BridgeGameController {
         String restartCommand = inputView.readGameCommand();
         if(restartCommand.equals("R")){
             bridgeGame.retry();
-            moveBridge(bridgeGame);
+            startGame(bridgeGame);
         }
     }
 }
