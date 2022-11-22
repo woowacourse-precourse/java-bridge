@@ -14,6 +14,7 @@ public class ExceptionTest {
         String inputNotNumber = "22";
         InputView inputView = new InputView();
 
+        // when, then
         assertThatThrownBy(() -> inputView.validateBridgeLength(inputNotNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
