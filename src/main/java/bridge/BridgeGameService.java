@@ -7,6 +7,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameService {
+    private static final String RETRY_COMMAND = "R";
     private BridgeGame bridgeGame;
 
     public BridgeGameService() {
@@ -15,8 +16,27 @@ public class BridgeGameService {
     public void init(){
         bridgeGame = makeBridgeGame();
 
-        move();
-        OutputView.printMap(bridgeGame);
+        startGame();
+
+        OutputView.printResult(bridgeGame, bridgeGame.isGameSuccess());
+    }
+
+    public void startGame(){
+        while (true){
+            boolean crossSuccess = move();
+            OutputView.printMap(bridgeGame);
+
+            if (bridgeGame.isGameSuccess())
+                break;
+            if (crossSuccess)
+                continue;
+
+            if (isRetry()) {
+                retry();
+                continue;
+            }
+            return;
+        }
     }
 
     public BridgeGame makeBridgeGame(){
@@ -38,6 +58,19 @@ public class BridgeGameService {
     public boolean move(){
         String command = InputView.readMoving();
         return bridgeGame.move(command);
+    }
+
+    public void retry(){
+        bridgeGame.retry();
+    }
+
+    public boolean isGameSuccess(){
+        return bridgeGame.isGameSuccess();
+    }
+
+    public boolean isRetry(){
+        String command = InputView.readGameCommand();
+        return command.equals(RETRY_COMMAND);
     }
 
     private BridgeMaker getBridgeMaker(){
