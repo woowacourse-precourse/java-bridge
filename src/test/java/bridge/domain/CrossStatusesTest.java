@@ -1,7 +1,6 @@
 package bridge.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.enums.CrossStatus;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +26,15 @@ class CrossStatusesTest {
         });
     }
 
+    @DisplayName("특정 인덱스의 다리 칸의 건너기 성공, 실패 여부 업데이트 테스트")
     @Test
     void updateStatus() {
+        // given
+        // when
+        crossStatuses.updateStatus(CrossStatus.SUCCESS, 0);
+        crossStatuses.updateStatus(CrossStatus.SUCCESS, 1);
+
+        // then
+        assertThat(crossStatuses.findLastSuccessIndex()).isEqualTo(1);
     }
 }
