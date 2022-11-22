@@ -13,6 +13,8 @@ public class BridgeGame {
     private InputView inputView;
     private OutputView outputView;
     private int tryCnt;
+    private boolean isSuccess;
+    private boolean isExit;
 
 
     public BridgeGame(List<String> bridge) {
@@ -21,23 +23,23 @@ public class BridgeGame {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.tryCnt = 1;
-
+        this.isSuccess = true;
+        this.isExit = false;
     }
 
     public void start() {
         this.position = 0;
 
-        while (!isSuccessGame()) {
+        while (isSuccessGame()) {
             move();
         }
-        exit();
-
+        if (isExit) {
+            exit();
+        }
     }
 
     private boolean isSuccessGame() {
-
-        return position == bridge.size();
-
+        return position < bridge.size() && isSuccess;
     }
 
     /**
@@ -73,7 +75,7 @@ public class BridgeGame {
             return;
         }
         if (input.equals("Q")) {
-            exit();
+            isSuccess = false;
             return;
         }
     }
@@ -90,6 +92,7 @@ public class BridgeGame {
     }
 
     public void exit() {
-
+        isExit = true;
+        outputView.printResult(isSuccess, tryCnt);
     }
 }
