@@ -30,10 +30,10 @@ public class BridgeGame {
 
     public void move(String moving) {
         curBridge.add(moving);
-        compare();
+        compareMoving();
 
     }
-    private void compare(){
+    private void compareMoving(){
         int idx = curBridge.size();
         if(!answerBridge.get(idx-1).equals(curBridge.get(idx-1))){
             this.status = STATUS_FAIL;
