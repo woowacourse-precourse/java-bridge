@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.model.Bridge;
-import bridge.model.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.model.Player;
 import org.junit.jupiter.api.Test;
 
