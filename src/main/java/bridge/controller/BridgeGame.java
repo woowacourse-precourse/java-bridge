@@ -15,13 +15,9 @@ public class BridgeGame {
 
     private int bridgeSize;
     private List<String> bridge;
+    private int attemptCount = 0;
     InputView inputView = new InputView();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeNumberGenerator() {
-        @Override
-        public int generate() {
-            return Randoms.pickNumberInRange(0, 1);
-        }
-    });
+    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
