@@ -1,6 +1,8 @@
 package bridge;
 
 
+import bridge.InputControl.BridgeInputControl;
+import bridge.InputControl.UserInput;
 import java.util.List;
 
 public class Application {

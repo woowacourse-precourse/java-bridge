@@ -1,17 +1,17 @@
-package bridge;
+package bridge.InputControl;
 
 public class UserInput {
 
     public static int userInputBridgeSize;
-    public static String userInputUpDown;
+    public static String userInputString;
 
 
     public UserInput(int userInputBridgeSize) {
         this.userInputBridgeSize = userInputBridgeSize;
     }
 
-    public UserInput(String userInputUpDown) {
-        this.userInputUpDown = userInputUpDown;
+    public UserInput(String userInputString) {
+        this.userInputString = userInputString;
     }
 
 

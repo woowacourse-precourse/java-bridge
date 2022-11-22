@@ -1,9 +1,8 @@
 package bridge;
 
+import bridge.InputControl.BridgeInputControl;
 import bridge.Vaildator.VaildatorRetryQuit;
 import bridge.Vaildator.VaildatorUpDown;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,7 +10,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
     private static StringBuilder mapUp = new StringBuilder("[  ]");
@@ -23,22 +21,25 @@ public class BridgeGame {
     String addOxContour;
     String emptyContour;
 
+    private static CorrectWrong origin;
+
     public enum CorrectWrong {
-        CORRECT(true, "O", "성공"),
-        WRONG(false, "X", "실패");
+        CORRECT("O", "성공"),
+        WRONG("X", "실패");
 
-        boolean trueFalse;
         String ox;
-        String successFailEnum;
+        String successFail;
 
-        CorrectWrong(boolean trueFalse, String ox, String successFailEnum) {
-            this.trueFalse = trueFalse;
+        CorrectWrong( String ox, String successFail) {
             this.ox = ox;
-            this.successFailEnum = successFailEnum;
+            this.successFail = successFail;
         }
 
         public String getOx() {
             return ox;
+        }
+        public String getSuccessFail() {
+            return successFail;
         }
     }
 
@@ -47,12 +48,11 @@ public class BridgeGame {
         for (int order = 0; order < bridgeList.size(); order++){
             move(bridgeList.get(order), order);
             outputView.printMap(str);
-
             if (judgementFail()){
-                return "실패";
+                return origin.getSuccessFail();
             }
         }
-        return "성공";
+        return origin.getSuccessFail();
     }
 
     /**
@@ -65,7 +65,7 @@ public class BridgeGame {
         String upDownUserInput = VaildatorUpDown.userInputUpDown;
         boolean oxResult = compare(bridgeAnswer, upDownUserInput);//get 메소드?
 
-        CorrectWrong origin = selectFromOrigin(oxResult);
+        origin = selectFromOrigin(oxResult);
         this.ox = origin.getOx();
         makeAddWord(order);
         makeMap(upDownUserInput);
@@ -112,7 +112,7 @@ public class BridgeGame {
         } else if (upDownUserInput.equals("D")) {
             mapUp.insert(mapUp.length()-2, emptyContour);
             mapDown.insert(mapDown.length()-2, addOxContour);
-        }
+        } // else if 수정
         str = mapUp.toString() + "\n" + mapDown.toString() +"\n";
     }
 
@@ -137,4 +137,6 @@ public class BridgeGame {
         }
         return true;
     }
+
+
 }

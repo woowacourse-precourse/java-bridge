@@ -1,5 +1,6 @@
-package bridge;
+package bridge.InputControl;
 
+import bridge.InputView;
 import bridge.Vaildator.VaildatorBridgeSize;
 import bridge.Vaildator.VaildatorRetryQuit;
 import bridge.Vaildator.VaildatorUpDown;
@@ -18,7 +19,7 @@ public class BridgeInputControl {
 
     public static UserInput setUpDown() {
         try {
-            VaildatorUpDown validationUpDown = new VaildatorUpDown(InputView.readBridgeSize());
+            VaildatorUpDown validationUpDown = new VaildatorUpDown(InputView.readMoving());
             return new UserInput(validationUpDown.userInputUpDown);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -28,7 +29,7 @@ public class BridgeInputControl {
 
     public static UserInput setRetryQuit() {
         try {
-            VaildatorRetryQuit validationRQ = new VaildatorRetryQuit(InputView.readBridgeSize());
+            VaildatorRetryQuit validationRQ = new VaildatorRetryQuit(InputView.readGameCommand());
             return new UserInput(validationRQ.userInputRetryQuit);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
