@@ -1,7 +1,8 @@
 package bridge.domain;
 
-import bridge.util.Constant;
-import bridge.util.Validator;
+import static bridge.util.Constant.*;
+import static bridge.util.Validator.validateMovingInput;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Bridge {
     }
 
     public void step() {
-        bridgePosition += Constant.ONESTEP;
+        bridgePosition += ONESTEP;
     }
 
     public boolean isLastStep() {
@@ -41,34 +42,34 @@ public class Bridge {
     }
 
     public void addSafe(String moveTo) {
-        Validator.validateMovingInput(moveTo);
-        if (moveTo.equals(Constant.UP)) {
-            upperBridge.add(Constant.CORRECTSPOT);
-            lowerBridge.add(Constant.NOSPOT);
+        validateMovingInput(moveTo);
+        if (moveTo.equals(UPLOCATION)) {
+            upperBridge.add(CORRECTSPOT);
+            lowerBridge.add(NOSPOT);
             return;
         }
-        if (moveTo.equals(Constant.DOWN)) {
-            upperBridge.add(Constant.NOSPOT);
-            lowerBridge.add(Constant.CORRECTSPOT);
+        if (moveTo.equals(DOWNLOCATION)) {
+            upperBridge.add(NOSPOT);
+            lowerBridge.add(CORRECTSPOT);
         }
     }
 
     public void addUnSafe(String moveTo) {
-        Validator.validateMovingInput(moveTo);
-        if (moveTo.equals(Constant.UP)) {
-            upperBridge.add(Constant.UNCORRECTSPOT);
-            lowerBridge.add(Constant.NOSPOT);
+        validateMovingInput(moveTo);
+        if (moveTo.equals(UPLOCATION)) {
+            upperBridge.add(UNCORRECTSPOT);
+            lowerBridge.add(NOSPOT);
             return;
         }
-        if (moveTo.equals(Constant.DOWN)) {
-            upperBridge.add(Constant.NOSPOT);
-            lowerBridge.add(Constant.UNCORRECTSPOT);
+        if (moveTo.equals(DOWNLOCATION)) {
+            upperBridge.add(NOSPOT);
+            lowerBridge.add(UNCORRECTSPOT);
         }
     }
 
     public void removeUnsafeSpot() {
-        upperBridge.remove(upperBridge.size() - Constant.ONESTEP);
-        lowerBridge.remove(lowerBridge.size() - Constant.ONESTEP);
+        upperBridge.remove(upperBridge.size() - ONESTEP);
+        lowerBridge.remove(lowerBridge.size() - ONESTEP);
     }
 
     public List<String> getBaseBridge() {
@@ -81,5 +82,8 @@ public class Bridge {
 
     public List<String> getLowerBridge() {
         return lowerBridge;
+    }
+    public int getBridgePosition() {
+        return bridgePosition;
     }
 }
