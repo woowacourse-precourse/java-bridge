@@ -2,12 +2,16 @@ package bridge;
 
 public enum BridgeStructure {
 
-    UN_KNOWN("    |"),
-    TRUE(" O |"),
-    FALSE(" X |");
+    FIRST_TRUE("[ O |"),
+    MIDDLE_TRUE(" O |"),
+    LAST_TRUE(" O ]"),
+
+    FIRST_COLUMN("[ O ]"),
+    UN_KNOWN("   |"),
+    FALSE(" X ]");
 
 
-    private String structure;
+    private final String structure;
 
     BridgeStructure(String structure) {
         this.structure = structure;
