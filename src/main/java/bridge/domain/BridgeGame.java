@@ -26,8 +26,8 @@ public class BridgeGame {
     private List<String> bridge;
     private List<MoveDirection> playerMoveRecord;
     private List<MoveAnswer> playerMoveWhetherAnswer;
-    private StringBuilder printPlayerMoveUp;
-    private StringBuilder printPlayerMoveDown;
+    private StringBuilder playerUpMoveForPrint;
+    private StringBuilder playerDownMoveForPrint;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -79,50 +79,50 @@ public class BridgeGame {
 
     private void appendPlayerMoveUpResultNotFirstMove(int bridgeIdx) {
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_TRUE)) {
-            printPlayerMoveUp.append("| O ");
+            playerUpMoveForPrint.append("| O ");
             return;
         }
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(MoveAnswer.UP_FALSE)) {
-            printPlayerMoveUp.append("| X ");
+            playerUpMoveForPrint.append("| X ");
             return;
         }
-        printPlayerMoveUp.append("|   ");
+        playerUpMoveForPrint.append("|   ");
     }
 
     private void appendPlayerMoveUpResultAtFirstMove(int bridgeIdx ) {
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(UP_TRUE)) {
-            printPlayerMoveUp.append(" O ");
+            playerUpMoveForPrint.append(" O ");
             return;
         }
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(UP_FALSE)) {
-            printPlayerMoveUp.append(" X ");
+            playerUpMoveForPrint.append(" X ");
             return;
         }
-        printPlayerMoveUp.append("   ");
+        playerUpMoveForPrint.append("   ");
     }
 
     private void appendPlayerMoveDownResultNotFirstMove(int bridgeIdx ) {
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(DOWN_TRUE)) {
-            printPlayerMoveDown.append("| O ");
+            playerDownMoveForPrint.append("| O ");
             return;
         }
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(DOWN_FALSE)) {
-            printPlayerMoveDown.append("| X ");
+            playerDownMoveForPrint.append("| X ");
             return;
         }
-        printPlayerMoveDown.append("|   ");
+        playerDownMoveForPrint.append("|   ");
     }
 
     private void appendPlayerMoveDownResultAtFirstMove(int bridgeIdx) {
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(DOWN_TRUE)) {
-            printPlayerMoveDown.append(" O ");
+            playerDownMoveForPrint.append(" O ");
             return;
         }
         if(playerMoveWhetherAnswer.get(bridgeIdx).equals(DOWN_FALSE)) {
-            printPlayerMoveDown.append(" X ");
+            playerDownMoveForPrint.append(" X ");
             return;
         }
-        printPlayerMoveDown.append("   ");
+        playerDownMoveForPrint.append("   ");
     }
 
 
@@ -147,18 +147,18 @@ public class BridgeGame {
     }
 
     private void appendOpenSquareBrackets(){
-        printPlayerMoveUp.append("[");
-        printPlayerMoveDown.append("[");
+        playerUpMoveForPrint.append("[");
+        playerDownMoveForPrint.append("[");
     }
 
     private void appendCloseSquareBrackets(){
-        printPlayerMoveUp.append("]");
-        printPlayerMoveDown.append("]");
+        playerUpMoveForPrint.append("]");
+        playerDownMoveForPrint.append("]");
     }
 
     public void printResult() {
-        System.out.println(printPlayerMoveUp);
-        System.out.println(printPlayerMoveDown);
+        System.out.println(playerUpMoveForPrint);
+        System.out.println(playerDownMoveForPrint);
     }
 
     public void printFinalResult(){
@@ -197,8 +197,8 @@ public class BridgeGame {
         this.bridge = bridge;
         this.playerMoveRecord = new ArrayList<>();
         this.playerMoveWhetherAnswer = new ArrayList<>();
-        this.printPlayerMoveUp = new StringBuilder();
-        this.printPlayerMoveDown = new StringBuilder();
+        this.playerUpMoveForPrint = new StringBuilder();
+        this.playerDownMoveForPrint = new StringBuilder();
         this.tryCount = 1;
         this.isSuccessGame = 실패;
         bridgeIdx = 0;
@@ -211,8 +211,8 @@ public class BridgeGame {
     }
 
     public void initializeBuilderForMakePrintingResult(){
-        this.printPlayerMoveUp = new StringBuilder();
-        this.printPlayerMoveDown = new StringBuilder();
+        this.playerUpMoveForPrint = new StringBuilder();
+        this.playerDownMoveForPrint = new StringBuilder();
         this.bridgeIdx =0;
         this.playerMoveWhetherAnswer = new ArrayList<>();
     }
