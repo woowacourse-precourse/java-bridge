@@ -18,12 +18,8 @@ public class Application {
 
     public static void main(String[] args) {
         Application application = new Application();
-        try {
-            application.init();
-            application.start();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
-        }
+        application.init();
+        application.start();
     }
 
     public void init() {
@@ -33,13 +29,20 @@ public class Application {
     public void start() {
         while (true) {
             MoveResponseDto response = this.bridgeGameController.move();
-            if (checkIsAllCorrect(response)) {
-                return;
-            }
-            if (!(this.retry(response))) {
+            if (handleApplicationOffOrRetry(response)) {
                 return;
             }
         }
+    }
+
+    public boolean handleApplicationOffOrRetry(MoveResponseDto response) {
+        if (checkIsAllCorrect(response)) {
+            return Boolean.TRUE;
+        }
+        if (!retry(response)) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 
     public boolean retry(MoveResponseDto response) {

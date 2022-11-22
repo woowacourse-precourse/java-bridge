@@ -25,7 +25,7 @@ class BridgeGameTest {
 
     @Test
     void moveTest() {
-        MoveResponseDto move = bridgeGame.move(Command.UP);
+        MoveResponseDto move = bridgeGame.move("U");
 
         assertThat(player.getCommands().get(0)).isEqualTo(Command.UP);
         assertThat(move.getSelectedBridge()).isEqualTo("UP");

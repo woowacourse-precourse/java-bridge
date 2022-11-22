@@ -7,6 +7,9 @@ import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.domain.Result;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -25,11 +28,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MoveResponseDto move(Command command) {
+    public MoveResponseDto move(String commandKey) {
+        Command command = mapByStringToCommand(commandKey);
         int currentLevel = player.checkCurrentLevel();
         player.enterCommand(command);
         Result result = bridge.compare(command, currentLevel);
-        MoveResponseDto response = new MoveResponseDto(command.toString(), result, player.getAttemptCount());
+        return makeMoveResponseDto(command.toString(), result, player.getAttemptCount());
+    }
+
+    private MoveResponseDto makeMoveResponseDto(String command, Result result, int attemptCount) {
+        MoveResponseDto response = new MoveResponseDto(command, result, player.getAttemptCount());
         if (checkIfAllCorrect(result)) {
             response.setAllCorrect(Boolean.TRUE);
         }
@@ -58,5 +66,14 @@ public class BridgeGame {
             }
         }
         return Boolean.FALSE;
+    }
+
+    private Command mapByStringToCommand(String commandKey) {
+        Optional<Command> optionalCommand = Arrays.stream(Command.values()).filter(
+                command -> command.getKey().equals(commandKey)).findFirst();
+        if (optionalCommand.isPresent()) {
+            return optionalCommand.get();
+        }
+        throw new NullPointerException();
     }
 }

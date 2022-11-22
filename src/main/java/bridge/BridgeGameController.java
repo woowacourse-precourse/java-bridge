@@ -31,7 +31,7 @@ public class BridgeGameController {
 
     public MoveResponseDto move() {
         outputView.askCommand();
-        Command command = inputView.readMoving();
+        String command = inputView.readMoving();
         MoveResponseDto response = bridgeGame.move(command);
         outputView.printMap(new MapViewDto(response));
         if (response.isAllCorrect()) {
