@@ -35,4 +35,9 @@ public class BridgeGame {
         return bridge.canCross(directions.get(index), index);
     }
 
+    public boolean isWin() {
+        if (directions.isEmpty()) return false;
+        int lastIndex = directions.size() - 1;
+        return (directions.size() == bridge.getBridgeSize()) && bridge.isSame(lastIndex, directions.get(lastIndex));
+    }
 }
