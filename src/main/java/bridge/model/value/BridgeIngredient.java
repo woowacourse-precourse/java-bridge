@@ -12,6 +12,15 @@ public enum BridgeIngredient {
         this.ingredient = ingredient;
     }
 
+    public static boolean contains(String input) {
+        for(BridgeIngredient ingredient : BridgeIngredient.values()){
+            if(ingredient.getIngredient().equals(input)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getIngredient() {
         return ingredient;
     }
