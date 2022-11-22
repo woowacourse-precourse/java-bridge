@@ -15,9 +15,9 @@ public class BridgeGame {
     private final static String STEP_EMPTY = " ";
     private final static String STEP_CORRECT = "O";
     private final static String STEP_WRONG = "X";
-    Bridge answerMove;
-    List<String> playerMove;
-    GameStatus status;
+    private final Bridge answerMove;
+    private List<String> playerMove;
+    private GameStatus status;
 
     public BridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());

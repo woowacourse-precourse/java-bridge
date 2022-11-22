@@ -6,11 +6,11 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    BridgeGame bridgeGame = new BridgeGame(getBridgeSize());
-    int gameCount;
-    boolean play;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame = new BridgeGame(getBridgeSize());
+    private int gameCount;
+    private boolean play;
 
     public BridgeGameController() {
         this.gameCount = 1;
