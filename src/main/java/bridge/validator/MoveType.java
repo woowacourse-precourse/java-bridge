@@ -1,12 +1,12 @@
 package bridge.validator;
 
-public enum MovingType{
+public enum MoveType {
     UP_MOVING("U"),
     DOWN_MOVING("D");
 
     private final String value;
 
-    MovingType(String value) {
+    MoveType(String value) {
         this.value = value;
     }
     public static boolean isValidInput(String input) {
