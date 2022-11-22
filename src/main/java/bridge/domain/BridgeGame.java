@@ -22,16 +22,19 @@ public class BridgeGame {
 
 
     public boolean compare(List<String> bridge,String userInput){
-        if(bridge.get(current)==covertUserInput(userInput)){
+        System.out.println(userInput);
+        if(bridge.get(current).equals(convertUserInput(userInput))){
            move(userInput,"O");
            return true;
         }
+        System.out.println(bridge.get(current));
+        System.out.println(convertUserInput(userInput));
         move(userInput,"X");
         return false;
     }
 
-    private String covertUserInput(String userInput){
-        if(userInput=="U")return "1";
+    private String convertUserInput(String userInput){
+        if(userInput.equals("U"))return "1";
         return "0";
     }
 
@@ -41,7 +44,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String input,String result) {
-        if(current>0)bridgeBoard.addWall();
         bridgeBoard.addMove(input,result);
         indexMove(result);
     }
@@ -52,6 +54,10 @@ public class BridgeGame {
             return;
         }
             current=0;
+    }
+
+    public BridgeBoard showCurrentBoard(){
+        return bridgeBoard;
     }
 
     /**

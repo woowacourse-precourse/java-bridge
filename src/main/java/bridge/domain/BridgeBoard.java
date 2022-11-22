@@ -12,8 +12,8 @@ public class BridgeBoard {
         this.downBoard = new ArrayList<>();
     }
 
-    private void addMove(String input,String result){
-        if(input =="U"){
+    public void addMove(String input,String result){
+        if(input.equals("U")){
             addUpMove(result);
             return;
         }
@@ -21,18 +21,27 @@ public class BridgeBoard {
     }
 
     private void addUpMove(String result){
-        upBoard.add(" "+result);
-        downBoard.add("  ");
+        upBoard.add(result);
+        downBoard.add(" ");
     }
 
     private void addDownMove(String result){
-        downBoard.add(" "+result);
-        upBoard.add("  ");
+        downBoard.add(result);
+        upBoard.add(" ");
+
     }
 
-    private void addWall(){
-        downBoard.add(" |");
-        upBoard.add(" |");
+    public void addWall(){
+        downBoard.add("|");
+        upBoard.add("|");
+    }
+
+    public String showUpBoard(){
+        return String.join(" | ", upBoard);
+    }
+
+    public String showDownBoard(){
+        return String.join(" | ", downBoard);
     }
 
 }
