@@ -11,6 +11,7 @@ import view.InputView;
 import view.OutputView;
 
 public class BridgeGameController {
+
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;

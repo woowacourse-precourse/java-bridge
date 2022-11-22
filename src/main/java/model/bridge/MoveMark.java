@@ -2,21 +2,22 @@ package model.bridge;
 
 import java.util.Objects;
 
-import static model.bridge.BridgeType.D;
-import static model.bridge.BridgeType.U;
+import static model.bridge.PositionType.D;
+import static model.bridge.PositionType.U;
 
 public class MoveMark {
+
     private static final String VALUE_ERROR = String.format("이동할 칸은 %s 또는 %s여야 합니다.", U, D);
-    private final BridgeType mark;
+    private final PositionType mark;
 
     public MoveMark(String mark) {
         String upperCaseMark = mark.toUpperCase().trim();
 
         validateValue(upperCaseMark);
-        this.mark = BridgeType.valueOf(upperCaseMark);
+        this.mark = PositionType.valueOf(upperCaseMark);
     }
 
-    public BridgeType getMark() {
+    public PositionType getMark() {
         return mark;
     }
 
@@ -26,7 +27,7 @@ public class MoveMark {
         }
     }
 
-    public boolean canMove(BridgeType mark) {
+    public boolean canMove(PositionType mark) {
         return this.mark.equals(mark);
     }
 

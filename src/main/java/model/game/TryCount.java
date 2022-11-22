@@ -1,6 +1,7 @@
 package model.game;
 
 public class TryCount {
+
     private int count;
 
     public TryCount() {

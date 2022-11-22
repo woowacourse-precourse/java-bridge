@@ -8,13 +8,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BridgeTypeTest {
+class PositionTypeTest {
 
     @DisplayName("다리 숫자 전달 시 문자열 반환")
     @CsvSource(value = {"1:U", "0:D"}, delimiter = ':')
     @ParameterizedTest(name = "[{index}]  {0} 전달 시 {1} 반환")
     void getMarkByNumber(Integer number, String mark) {
-        String type = BridgeType.getStringByNumber(number);
+        String type = PositionType.getStringByNumber(number);
 
         assertEquals(type, mark);
     }
@@ -24,7 +24,7 @@ class BridgeTypeTest {
     @ParameterizedTest(name = "[{index}]  {0} 전달 시 오류 반환")
     void getMarkByWrongNumber(Integer number) {
         assertThatThrownBy(() ->
-                BridgeType.getStringByNumber(number)
+                PositionType.getStringByNumber(number)
         ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("1 또는 0이 아닙니다.");
     }

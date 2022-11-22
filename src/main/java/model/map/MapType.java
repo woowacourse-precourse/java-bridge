@@ -3,6 +3,7 @@ package model.map;
 import java.util.Arrays;
 
 public enum MapType {
+
     O(true),
     X(false);
 

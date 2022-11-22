@@ -3,6 +3,7 @@ package model.game;
 import static model.game.ResultType.WIN;
 
 public class GameResult {
+
     private ResultType result;
 
     public GameResult() {

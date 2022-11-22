@@ -3,11 +3,12 @@ package model.bridge;
 import java.util.List;
 
 public class Bridge {
-    private final List<BridgeType> bridge;
+
+    private final List<PositionType> bridge;
 
     public Bridge(List<String> bridge) {
-        List<BridgeType> bridgeTypes = BridgeType.getListByStringList(bridge);
-        this.bridge = List.copyOf(bridgeTypes);
+        List<PositionType> positionTypes = PositionType.getListByStringList(bridge);
+        this.bridge = List.copyOf(positionTypes);
     }
 
     public boolean canMove(int stage, MoveMark mark) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMap {
+
     private final List<String> map;
 
     public BridgeMap() {

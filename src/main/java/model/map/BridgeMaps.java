@@ -1,30 +1,31 @@
 package model.map;
 
-import model.bridge.BridgeType;
+import model.bridge.PositionType;
 
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static model.bridge.BridgeType.U;
+import static model.bridge.PositionType.U;
 
 public class BridgeMaps {
-    private final Map<BridgeType, BridgeMap> maps;
+
+    private final Map<PositionType, BridgeMap> maps;
 
     public BridgeMaps() {
-        maps = new EnumMap<>(BridgeType.class);
+        maps = new EnumMap<>(PositionType.class);
     }
 
-    public Map<BridgeType, List<String>> getMaps() {
-        Map<BridgeType, List<String>> maps = new HashMap<>();
-        for (BridgeType type : this.maps.keySet()) {
+    public Map<PositionType, List<String>> getMaps() {
+        Map<PositionType, List<String>> maps = new HashMap<>();
+        for (PositionType type : this.maps.keySet()) {
             maps.put(type, getMap(type));
         }
         return Map.copyOf(maps);
     }
 
-    private List<String> getMap(BridgeType type) {
+    private List<String> getMap(PositionType type) {
         return maps.get(type).getMap();
     }
 
@@ -33,28 +34,28 @@ public class BridgeMaps {
         return map.getStage();
     }
 
-    public void updateMaps(BridgeType playerType, Boolean result) {
-        for (BridgeType bridgeType : BridgeType.values()) {
-            compareType(bridgeType, playerType, result);
+    public void updateMaps(PositionType playerType, Boolean result) {
+        for (PositionType positionType : PositionType.values()) {
+            compareType(positionType, playerType, result);
         }
     }
 
-    private void compareType(BridgeType bridgeType, BridgeType playerType, Boolean result) {
-        if (bridgeType.isEquals(playerType)) {
-            updateMap(bridgeType, result);
+    private void compareType(PositionType positionType, PositionType playerType, Boolean result) {
+        if (positionType.isEquals(playerType)) {
+            updateMap(positionType, result);
             return;
         }
 
-        updateMap(bridgeType, null);
+        updateMap(positionType, null);
     }
 
-    private void updateMap(BridgeType type, Boolean result) {
-        BridgeMap map = maps.getOrDefault(type, new BridgeMap());
+    private void updateMap(PositionType position, Boolean result) {
+        BridgeMap map = maps.getOrDefault(position, new BridgeMap());
         map.updateMap(result);
-        maps.put(type, map);
+        maps.put(position, map);
     }
 
     public void reset() {
-        maps.forEach((type, map) -> map.reset());
+        maps.forEach((position, map) -> map.reset());
     }
 }

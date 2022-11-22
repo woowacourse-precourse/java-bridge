@@ -3,6 +3,7 @@ package model.game;
 import java.util.Arrays;
 
 public enum ResultType {
+
     WIN(true, "성공"),
     LOSE(false, "실패");
 

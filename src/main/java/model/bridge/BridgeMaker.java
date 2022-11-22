@@ -32,7 +32,7 @@ public class BridgeMaker {
 
     private void addBridge(List<String> bridge) {
         int generate = bridgeNumberGenerator.generate();
-        String type = BridgeType.getStringByNumber(generate);
-        bridge.add(type);
+        String position = PositionType.getStringByNumber(generate);
+        bridge.add(position);
     }
 }

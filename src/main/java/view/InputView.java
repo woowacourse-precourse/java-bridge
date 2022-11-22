@@ -2,8 +2,8 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static model.bridge.BridgeType.D;
-import static model.bridge.BridgeType.U;
+import static model.bridge.PositionType.D;
+import static model.bridge.PositionType.U;
 import static model.command.CommandType.Q;
 import static model.command.CommandType.R;
 
@@ -11,6 +11,7 @@ import static model.command.CommandType.R;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
     private static final String NEW_LINE = System.lineSeparator();
     private static final String BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String BRIDGE_SIZE_ERROR = "다리 길이는 숫자여야 합니다.";

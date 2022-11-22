@@ -1,7 +1,7 @@
 package model.game;
 
 import model.bridge.Bridge;
-import model.bridge.BridgeType;
+import model.bridge.PositionType;
 import model.bridge.MoveMark;
 import model.map.BridgeMaps;
 
@@ -12,6 +12,7 @@ import java.util.Map;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
     private final Bridge bridge;
     private final BridgeMaps maps;
     private final TryCount count;
@@ -24,7 +25,7 @@ public class BridgeGame {
         this.result = new GameResult();
     }
 
-    public Map<BridgeType, List<String>> getMaps() {
+    public Map<PositionType, List<String>> getMaps() {
         return maps.getMaps();
     }
 
@@ -52,8 +53,8 @@ public class BridgeGame {
     }
 
     private void updateBridgeMaps(MoveMark mark, boolean move) {
-        BridgeType type = mark.getMark();
-        maps.updateMaps(type, move);
+        PositionType position = mark.getMark();
+        maps.updateMaps(position, move);
     }
 
     private void updateGameResult(boolean move) {

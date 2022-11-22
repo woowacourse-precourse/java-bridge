@@ -3,6 +3,7 @@ package model.command;
 import java.util.Arrays;
 
 public enum CommandType {
+
     R(true),
     Q(false);
 
