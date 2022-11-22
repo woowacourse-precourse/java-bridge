@@ -36,6 +36,7 @@ public class BridgeController {
             }
             checkSuccess();
         }
+        quit();
     }
 
     public void play() {
@@ -51,6 +52,12 @@ public class BridgeController {
             String userPathLog = bridgeGame.getUserPathLog();
             outputView.printResult(userPathLog, bridgeGame.getResultStatus(), bridgeGame.getTryCount());
         }
+    }
+
+    public void quit() {
+        bridgeGame.changeGameStatus(GameStatus.FAIL);
+        String userPathLog = bridgeGame.getUserPathLog();
+        outputView.printResult(userPathLog, bridgeGame.getResultStatus(), bridgeGame.getTryCount());
     }
 
      private void checkRetry(UserStatus userStatus) {
