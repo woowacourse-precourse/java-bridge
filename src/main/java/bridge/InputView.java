@@ -34,9 +34,9 @@ public class InputView {
             String input = Console.readLine();
             Validator.validateGameCommand(input);
             return input;
-        } catch (IllegalArgumentException movingError) {
-            System.out.println(movingError.getMessage());
-            readMoving();
+        } catch (IllegalArgumentException gameCommandError) {
+            System.out.println(gameCommandError.getMessage());
+            readGameCommand();
         }
         return null;
     }

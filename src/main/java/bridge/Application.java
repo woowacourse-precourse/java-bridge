@@ -19,12 +19,13 @@ public class Application {
             String moving = inputView.readMoving();
             Boolean moved = bridgeGame.move(moving);
             outputView.printMap(bridgeGame);
+            System.out.println(moved);
             if (moved) {
                 continue;
             }
 
             String again = inputView.readGameCommand();
-            if (again.equals(Constant.QUIT)) {
+            if (again.equalsIgnoreCase(Constant.QUIT)) {
                 break;
             }
             bridgeGame.retry();

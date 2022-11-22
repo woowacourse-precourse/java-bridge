@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
@@ -13,15 +12,15 @@ public class BridgeGame {
     }
 
     public Boolean move(String moving) {
+        this.step += 1;
         if (match(moving)) {
-            this.step += 1;
             return true;
         }
         return false;
     }
 
     public Boolean match(String moving) {
-        return bridge.get(step).equals(moving);
+        return bridge.get(step).equalsIgnoreCase(moving);
     }
 
     public Boolean isEnd() {
@@ -30,7 +29,7 @@ public class BridgeGame {
 
     public List<String> getCurrentBridge() {
         if (step > 0) {
-            return bridge.subList(0, step - 1);
+            return bridge.subList(0, step);
         }
         return null;
     }
