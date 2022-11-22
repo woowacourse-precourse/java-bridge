@@ -2,10 +2,7 @@ package bridge.view;
 
 import bridge.core.BridgeGame;
 import bridge.domain.Bridge;
-import bridge.type.BridgeBlock;
-import bridge.type.FinishCondition;
-import bridge.type.PassCondition;
-import bridge.type.ProcessCondition;
+import bridge.type.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

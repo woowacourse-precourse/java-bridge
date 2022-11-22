@@ -41,8 +41,8 @@ public class BridgeGame {
     public ProcessCondition move(String selectBlock) {
         try {
             gameStatusOperator.changePosition();
-            Integer currentPosition = gameStatusOperator.getCurrentPosition();
-            if (bridge.checkPassableBlock(currentPosition, selectBlock)) return PassCondition.PASS;
+            Integer nextPosition = gameStatusOperator.getCurrentPosition();
+            if (bridge.checkPassableBlock(nextPosition, selectBlock)) return PassCondition.PASS;
             return PassCondition.FAIL;
         } catch (InvalidInputException e) {
             gameStatusOperator.turnBackPosition();

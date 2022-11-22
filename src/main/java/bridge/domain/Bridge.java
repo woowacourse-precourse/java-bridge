@@ -13,9 +13,9 @@ public class Bridge {
         this.bridgeMap = bridgeMap;
     }
 
-    public Boolean checkPassableBlock(Integer currentPosition, String selectBlock) {
+    public Boolean checkPassableBlock(Integer nextPosition, String selectBlock) {
         validate(selectBlock);
-        String passableBlock = bridgeMap.get(currentPosition);
+        String passableBlock = bridgeMap.get(nextPosition);
         if (selectBlock.equals(passableBlock)) return true;
         return false;
     }
