@@ -1,4 +1,4 @@
-package bridge.domain.randomnumber;
+package bridge;
 
 @FunctionalInterface
 public interface BridgeNumberGenerator {
