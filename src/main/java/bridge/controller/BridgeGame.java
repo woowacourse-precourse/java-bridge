@@ -33,6 +33,10 @@ public class BridgeGame {
         return bridgeGenerateService.generateBridgeBySize(bridgeSize);
     }
 
+    private boolean isPlaying() {
+        return onMovableCompartment && position < bridgeSize;
+    }
+
     private void initializeGame() {
         position = 0;
         onMovableCompartment = true;
