@@ -5,21 +5,20 @@ package bridge;
  */
 public class BridgeGame {
 
-	private Bridge bridge;
+	private BridgeStage bridgeStage;
 
 	public BridgeGame() {
-		bridge = new Bridge();
+		bridgeStage = new BridgeStage();
 	}
 
 	public void run() {
 		init();
 		while (loop()) {
-
 		}
 	}
 
 	public void init() {
-		bridge.makeBridge();
+		bridgeStage.makeBridge();
 	}
 
 	/**
@@ -42,7 +41,6 @@ public class BridgeGame {
 
 	public boolean loop() {
 		while (action()) {
-
 		}
 		if (retry()) {
 			return true;
