@@ -25,4 +25,11 @@ public class BridgeInputException {
         }
     }
 
+    private void validInputRangeLength(String lenBridge) {
+        int len = Integer.parseInt(lenBridge);
+        if (len < 3 || len > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리의 길이는 3 이상 20 이하의 숫자입니다.");
+        }
+    }
+
 }
