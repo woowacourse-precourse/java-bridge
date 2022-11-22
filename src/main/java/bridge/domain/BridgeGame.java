@@ -8,6 +8,8 @@ import java.util.List;
 import static bridge.constant.GameCommand.QUIT;
 import static bridge.constant.GameCommand.RETRY;
 import static bridge.constant.GameStatus.*;
+import static bridge.constant.moving.LOWER_SIDE;
+import static bridge.constant.moving.UPPER_SIDE;
 
 
 /**
@@ -34,6 +36,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String moving) {
+        validateMoving(moving);
         GameStatus gameStatusAfterMoving = this.bridgeCalculator.go(moving);
         this.gameStatus = gameStatusAfterMoving;
         this.bridgeMonitor.record(moving, gameStatusAfterMoving);
@@ -46,6 +49,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String gameCommand) {
+        validateGameCommand(gameCommand);
         if (gameCommand.equals(RETRY)) {
             this.gameStatus = ON_WAY;
             this.tryCount += 1;
@@ -68,4 +72,33 @@ public class BridgeGame {
         return this.gameStatus.equals(END);
     }
 
+    public boolean isSuccess() {
+        return this.bridgeCalculator.isCrossCompletely();
+    }
+
+    public String getPicture() {
+        return this.bridgeMonitor.getPicture();
+    }
+
+    public int getTryCount() {
+        return this.tryCount;
+    }
+
+    private void validateMoving(String moving) {
+        if (moving.equals(UPPER_SIDE) || moving.equals(LOWER_SIDE)) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format(
+                "[ERROR] 위로 이동하려면 \"%s\", 아래로 이동하려면 \"%s\"를 입력하세요.", UPPER_SIDE, LOWER_SIDE
+        ));
+    }
+
+    private void validateGameCommand(String gameCommand) {
+        if (gameCommand.equals(RETRY) || gameCommand.equals(QUIT)) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format(
+                "[ERROR] 게임을 재시작하려면 \"%s\", 종료하려면 \"%s\"를 입력하세요.", RETRY, QUIT
+        ));
+    }
 }
