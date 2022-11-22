@@ -11,8 +11,7 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param resultMap 형식에 맞춰 출력할 upperLines, bottomLines 를 가지고 있는 map
      */
     public void printMap(Map<String,List<String>> resultMap) {
         List<String> upperLine = resultMap.get("upperLine");
@@ -31,8 +30,9 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param resultMap 형식에 맞춰 출력할 upperLines, bottomLines 를 가지고 있는 map
+     * @param success 게임 성공 여부
+     * @param attempts 시도 횟수
      */
     public void printResult(Map<String,List<String>> resultMap, boolean success, int attempts) {
         System.out.println("최종 게임 결과");
