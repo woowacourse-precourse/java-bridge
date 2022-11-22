@@ -11,19 +11,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ColumnTest {
-    @DisplayName("이동할 때 공백이 입력 되는 경우 예외처리.")
-    @Test
-    void inputMoveLetterByBlank() {
-        assertThatThrownBy(() -> ValidationUtils.letter(""))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @DisplayName("이동할 때 다른 문자가 입력 되는 경우 예외처리.")
-    @ParameterizedTest
-    @CsvSource({"t", "-1", "u", "I"})
-    void inputMoveLetterByAnotherLetter(String input) {
-        assertThatThrownBy(() -> ValidationUtils.letter(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @DisplayName("대문자(입력문자)를 비교 후 값이 같은 경우 참을 반환한다")
     @ParameterizedTest
@@ -33,13 +20,6 @@ class ColumnTest {
         assertThat(column.equals(answer)).isEqualTo(expected);
     }
 
-//    @DisplayName("입력된 문자가 잘못됐는지 이중으로 확인 후 예외처리 한다")
-//    @ParameterizedTest
-//    @CsvSource({"t", "-1", "u", "I"})
-//    void validateMoveLetter(String input) {
-//        assertThatThrownBy(() -> Column.valueOfCapitalLetter(input))
-//                .isInstanceOf(IllegalArgumentException.class);
-//    }
     @DisplayName("입력된 문자에 맞는 열거형을 반환한다")
     @ParameterizedTest
     @CsvSource({"D,DOWN_ROW", "U,TOP_ROW"})
