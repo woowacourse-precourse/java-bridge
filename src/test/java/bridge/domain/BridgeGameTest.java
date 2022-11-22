@@ -7,37 +7,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import bridge.constant.Direction;
 import bridge.dto.TrialResult;
 
 class BridgeGameTest {
 
-    @Test
-    void 플레이어를_움직인다() {
-        List<Direction> directions = List.of(UPPER, LOWER, UPPER, LOWER);
-        BridgeGame bridgeGame = BridgeGame.fromDirections(directions);
+    @ParameterizedTest
+    @CsvSource(value = {"UPPER,true", "LOWER,false"}, delimiter = ',')
+    void 위나_아래로_이동한다(Direction direction, boolean expected) {
+        BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER, LOWER, UPPER, LOWER));
 
-        Direction direction = UPPER;
         TrialResult trialResult = bridgeGame.move(direction);
 
-        assertThat(trialResult.wasSuccessful()).isTrue();
+        assertThat(trialResult.wasSuccessful()).isEqualTo(expected);
         assertThat(trialResult.getDirection()).isEqualTo(direction);
     }
 
-    @Test
-    void 게임이_끝났는지_알_수_있다() {
+    @ParameterizedTest
+    @CsvSource(value = {"UPPER,true", "LOWER,false"}, delimiter = ',')
+    void 다리를_모두_건넜는지_알_수_있다(Direction direction, boolean expected) {
         BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER));
+        bridgeGame.move(direction);
 
-        bridgeGame.move(UPPER);
-        assertThat(bridgeGame.isFinished()).isTrue();
-    }
-
-    @Test
-    void 게임이_아직_끝나지_않았다() {
-        BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER));
-
-        assertThat(bridgeGame.isFinished()).isFalse();
+        assertThat(bridgeGame.isFinished()).isEqualTo(expected);
     }
 
     @Test
