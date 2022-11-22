@@ -31,6 +31,10 @@ public class BridgeGame {
         user.cross(bridge, MoveType.convertMoveType(moveType));
     }
 
+    public String getUserPathLog() {
+        return user.getUserPathLog();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
