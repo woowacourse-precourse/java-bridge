@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     @Test
-    void matchNext() {
+    void move() {
         List<String> bridge = List.of("U", "U", "U");
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.match("U");
-        assertEquals(true, bridgeGame.match("U"));
-        assertEquals(false, bridgeGame.match("D"));
+        bridgeGame.move("U");
+        assertEquals(true, bridgeGame.move("U"));
+        assertEquals(false, bridgeGame.move("D"));
     }
 }

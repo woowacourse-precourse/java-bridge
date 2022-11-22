@@ -13,20 +13,20 @@ class OutputViewTest {
     @Test
     void addDelimiter() {
         String printed = outputView.addDelimiter(bridge);
-        assertEquals(printed, "[U | U | D]");
+        assertEquals(printed, "[ U | U | D ]");
     }
 
     @Test
     void convertUpperRow() {
         List<String> upperRow = outputView.convertUpperRow(bridge, true);
         String printed = outputView.addDelimiter(upperRow);
-        assertEquals("[O | O |  ]", printed);
+        assertEquals("[ O | O |   ]", printed);
     }
 
     @Test
     void convertLowerRow() {
         List<String> lowerRow = outputView.convertLowerRow(bridge, false);
         String printed = outputView.addDelimiter(lowerRow);
-        assertEquals("[  |   |  ]", printed);
+        assertEquals("[   |   |   ]", printed);
     }
 }

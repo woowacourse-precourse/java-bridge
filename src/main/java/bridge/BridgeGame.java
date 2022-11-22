@@ -12,6 +12,7 @@ public class BridgeGame {
     }
 
     public Boolean move(String moving) {
+        System.out.println(step);
         this.step += 1;
         if (match(moving)) {
             return true;

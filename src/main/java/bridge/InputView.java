@@ -10,9 +10,8 @@ public class InputView {
             return Validator.validatedBridgeSize(input);
         } catch (IllegalArgumentException bridgeSizeError) {
             System.out.println(bridgeSizeError.getMessage());
-            readBridgeSize();
+            return readBridgeSize();
         }
-        return 0;
     }
 
     public String readMoving() {
@@ -23,9 +22,8 @@ public class InputView {
             return input;
         } catch (IllegalArgumentException movingError) {
             System.out.println(movingError.getMessage());
-            readMoving();
+            return readMoving();
         }
-        return null;
     }
 
     public String readGameCommand() {
@@ -36,8 +34,7 @@ public class InputView {
             return input;
         } catch (IllegalArgumentException gameCommandError) {
             System.out.println(gameCommandError.getMessage());
-            readGameCommand();
+            return readGameCommand();
         }
-        return null;
     }
 }
