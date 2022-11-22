@@ -12,4 +12,11 @@ public class InputController {
     public static MoveSpace getMoving(){
         return new MoveSpace(InputView.readMoving());
     }
+
+    public static boolean retryOrGameOver(){
+        if(InputView.readGameCommand().equals("R")){
+            return true;
+        }
+        return false;
+    }
 }

@@ -13,11 +13,13 @@ public class BridgeGame {
     private List<MoveResult> moveResults;
     private Bridge bridge;
     private boolean exit;
+    private int gameCount;
 
     public BridgeGame(List<MoveResult> moveResults, Bridge bridge) {
         this.moveResults = moveResults;
         this.bridge = bridge;
         this.exit = false;
+        this.gameCount = 1;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -43,6 +45,7 @@ public class BridgeGame {
     public void retry() {
         this.moveResults = new ArrayList<>();
         this.bridge.resetStep();
+        this.gameCount += 1;
     }
 
     public boolean isFailedGame() {
@@ -52,11 +55,18 @@ public class BridgeGame {
         return false;
     }
 
-
     public boolean notExit() {
         if (!this.exit) {
             return true;
         }
         return false;
+    }
+
+    public int getCount() {
+        return gameCount;
+    }
+
+    public void exit() {
+        this.exit = true;
     }
 }

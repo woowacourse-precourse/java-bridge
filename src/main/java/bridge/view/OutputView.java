@@ -1,5 +1,10 @@
 package bridge.view;
 
+import static bridge.view.SystemMessage.FINAL_GAME_RESULTS_MESSAGE;
+import static bridge.view.SystemMessage.GAME_SUCCESS_MESSAGE;
+import static bridge.view.SystemMessage.TOTAL_NUMBER_OF_ATTEMPTS;
+
+import bridge.domain.BridgeGame;
 import bridge.domain.MoveResult;
 import java.util.List;
 import java.util.StringJoiner;
@@ -64,6 +69,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(BridgeGame bridgeGame, List<MoveResult> moveResults) {
+        System.out.println(FINAL_GAME_RESULTS_MESSAGE);
+        printUpMap(moveResults);
+        printDownMap(moveResults);
+        System.out.println(GAME_SUCCESS_MESSAGE+ getPrintIsSuccess(bridgeGame));
+        System.out.println(TOTAL_NUMBER_OF_ATTEMPTS+ bridgeGame.getCount());
     }
+    public static String getPrintIsSuccess(BridgeGame bridgeGame) {
+        if (bridgeGame.notExit()) {
+            return "성공";
+        }
+        return "실패";
+    }
+
+    public static void printSentence(String s) {
+        System.out.println(s);
+    }
+
 }

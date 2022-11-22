@@ -1,5 +1,6 @@
 package bridge.controller;
 import static bridge.controller.InputController.getBridge;
+import static bridge.view.SystemMessage.FINAL_GAME_RESULTS_MESSAGE;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
@@ -31,16 +32,26 @@ public class BridgeGameController {
         while (bridge.crossingBridgeSuccess() && bridgeGame.notExit()) {
             bridgeGame.move();
             OutputView.printMap(bridgeGame.getMoveResults());
-//            retryOrOver(bridgeGame);
+            retryOrOver(bridgeGame);
             bridge.nextStep();
-        }
+        }gameOver(bridgeGame, moveResults);
     }
 
 
     private static void retryOrOver(BridgeGame bridgeGame) {
         if (bridgeGame.isFailedGame()) {
-            bridgeGame.retry();
+            boolean command = InputController.retryOrGameOver();
+            if(command){
+                bridgeGame.retry();
+            }
+            if(!command){
+                bridgeGame.exit();
+            }
         }
+    }
+
+    private static void gameOver(BridgeGame bridgeGame, List<MoveResult> moveResults){
+        OutputView.printResult(bridgeGame, moveResults);
     }
 
 }
