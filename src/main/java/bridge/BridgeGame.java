@@ -22,6 +22,7 @@ public class BridgeGame {
             }
             retry(bridge);
         }
+        outputView.printResult(status, gameCount);
     }
 
     private boolean isQuit() {
