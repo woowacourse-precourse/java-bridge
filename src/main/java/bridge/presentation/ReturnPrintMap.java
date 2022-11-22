@@ -28,24 +28,27 @@ public class ReturnPrintMap {
     }// lineChoice
 
     private Map<String, String> addLastMap(List<String> userSelectResult, Map<String, String> contentsMap, boolean success) {
-        if (userSelectResult.get(userSelectResult.size() - 1).equals("U") && success) {
-            contentsMap.put("upContents", contentsMap.get("upContents") + "O");
-            contentsMap.put("downContents", contentsMap.get("downContents") + " ");
-        }//if
-        if (userSelectResult.get(userSelectResult.size() - 1).equals("D") && success) {
-            contentsMap.put("upContents", contentsMap.get("upContents") + " ");
-            contentsMap.put("downContents", contentsMap.get("downContents") + "O");
-        }//if
-        if (userSelectResult.get(userSelectResult.size() - 1).equals("U") && !success) {
-            contentsMap.put("upContents", contentsMap.get("upContents") + "X");
-            contentsMap.put("downContents", contentsMap.get("downContents") + " ");
-        }//if
-        if (userSelectResult.get(userSelectResult.size() - 1).equals("D") && !success) {
-            contentsMap.put("upContents", contentsMap.get("upContents") + " ");
-            contentsMap.put("downContents", contentsMap.get("downContents") + "X");
-        }//if
+        boolean isUpLine = userSelectResult.get(userSelectResult.size() - 1).equals("U");
+        boolean isDownLine = userSelectResult.get(userSelectResult.size() - 1).equals("D");
+
+        contentsMap = chooseUpLine(isUpLine, contentsMap, success);
+        contentsMap = chooseDownLine(isDownLine, contentsMap, success);
         return contentsMap;
     }//addLastMap
 
+    private Map<String, String> chooseUpLine(boolean isUpLine, Map<String, String> contentsMap, boolean success) {
+        if (!isUpLine) {return contentsMap;}
+        if (success) {contentsMap.put("upContents", contentsMap.get("upContents") + "O");}
+        if (!success) {contentsMap.put("upContents", contentsMap.get("upContents") + "X");}
+        contentsMap.put("downContents", contentsMap.get("downContents") + " ");
+        return contentsMap;
+    }//chooseUpLine
 
+    private Map<String, String> chooseDownLine(boolean isDownLine, Map<String, String> contentsMap, boolean success) {
+        if (!isDownLine) {return contentsMap;}
+        contentsMap.put("upContents", contentsMap.get("upContents") + " ");
+        if (success) {contentsMap.put("downContents", contentsMap.get("downContents") + "O");}
+        if (!success) {contentsMap.put("downContents", contentsMap.get("downContents") + "X");}
+        return contentsMap;
+    }//chooseDownLine
 }// end class
