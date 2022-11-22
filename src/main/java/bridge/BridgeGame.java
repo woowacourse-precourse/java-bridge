@@ -62,6 +62,7 @@ public class BridgeGame {
         } catch (IllegalArgumentException exception) {
             this.exceptionHandler.handleIllegalArgumentException(exception);
             bridgeSize = bridgeSize();
+            this.exceptionHandler.initializeExceptionOccurrenceCount();
         }
         return bridgeSize;
     }
@@ -73,6 +74,7 @@ public class BridgeGame {
         } catch (IllegalArgumentException exception) {
             this.exceptionHandler.handleIllegalArgumentException(exception);
             move = move();
+            this.exceptionHandler.initializeExceptionOccurrenceCount();
         }
         return move;
     }
@@ -84,6 +86,7 @@ public class BridgeGame {
         } catch (IllegalArgumentException exception) {
             this.exceptionHandler.handleIllegalArgumentException(exception);
             gameCommand = retry();
+            this.exceptionHandler.initializeExceptionOccurrenceCount();
         }
         return gameCommand;
     }
