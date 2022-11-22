@@ -7,7 +7,8 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
+    private static final String BRIDGE_SIZE_ERROR_MSG = "[ERROR] 다리 길이는 3~20 사이의 숫자여야 합니다";
+    private static final String COMMAND_ERROR_MSG = "[ERROR] 다리를 만드는 중 오류가 발생했습니다";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -30,16 +31,16 @@ public class BridgeMaker {
 
     private void validateBridgeSize(int size) {
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MSG);
         }
     }
 
     private String directionToString(int direction) {
         if (direction == 0) {
             return "D";
-        } if (direction == 1) {
+        } else if (direction == 1) {
             return "U";
         }
-        throw new IllegalStateException("[ERROR] 다리를 만드는 중 오류가 발생했습니다");
+        throw new IllegalStateException(COMMAND_ERROR_MSG);
     }
 }
