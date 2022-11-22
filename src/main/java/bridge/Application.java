@@ -12,7 +12,6 @@ public class Application {
     public static OutputView outputView = new OutputView();
     /*
     확인 사항
-    1.총 시도 횟수 입력 예외처리
     2.다리 길이 입력 예외처리
     3.이동할 칸 입력 예외처리
     4.재시작 여부 입력 예외처리
@@ -49,7 +48,22 @@ public class Application {
         //1)R이면 재시작
         //2)Q이면 중단, 세임 결과 출력
         //5.출력: 게임 성공 여부, 총 시도한 횟수
-        int bridgeSize = inputView.readBridgeSize();
+
+        int bridgeSize=0;
+        boolean bridgeSizeFlag = true;
+        while(bridgeSizeFlag){
+            try{
+                bridgeSize = inputView.readBridgeSize();
+                if(bridgeSize<3 || bridgeSize>20) {
+                    bridgeSizeFlag=true;
+                    throw new IllegalArgumentException();
+                }
+                bridgeSizeFlag=false;
+            }catch (IllegalArgumentException illegalArgumentException){
+                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        }
+
         List<String> bridges = bridgeMaker.makeBridge(bridgeSize);
         int cnt=0;
 
