@@ -14,8 +14,8 @@ public class Application {
 
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         BridgeGameController controller = new BridgeGameController(new Player(), bridgeGame);
-성
-        int start = controller.run(bridgeSize, bridgeGame);
+
+        int start = controller.run(bridgeSize);
         OutputView.printResult(GameStatus.currentStatus(start), bridgeGame.totalGameCount());
     }
 }

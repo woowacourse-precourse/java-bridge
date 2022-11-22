@@ -10,15 +10,15 @@ public class BridgeGameController {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private Player player;
-    private BridgeGame bridgeGame;
+    private final Player player;
+    private final BridgeGame bridgeGame;
 
     public BridgeGameController(Player player, BridgeGame bridgeGame) {
         this.player = player;
         this.bridgeGame = bridgeGame;
     }
 
-    public int run(int bridgeSize, BridgeGame bridgeGame) {
+    public int run(int bridgeSize) {
         int start = 0;
         while (start != bridgeSize) {
             bridgeGame.start(player, InputView.readMoving());
