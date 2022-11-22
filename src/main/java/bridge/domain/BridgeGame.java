@@ -41,7 +41,6 @@ public class BridgeGame {
     }
 
     public void firstResult(String upSide, String downSide) {
-        String checkRestart = "";
         System.out.print(upSide);
         printView.lineSkip();
         System.out.print(downSide);
@@ -55,7 +54,6 @@ public class BridgeGame {
     }
 
     private void checkRestartOrQuit(String checkRestart) {
-        BridgeController bridgeController = new BridgeController();
         OutputView outputView =new OutputView();
 
         if(checkRestart.equals("Q")){
