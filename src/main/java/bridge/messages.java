@@ -4,9 +4,13 @@ public class messages {
     public interface words{
         int max = 20;
         int min = 3;
+        String up = "U";
+        String down = "D";
+        String quit = "Q";
         String right = "O";
         String wrong = "X";
         String partition = "| ";
+        String closing = " ]";
         String success = "성공";
         String losing = "실패";
     }

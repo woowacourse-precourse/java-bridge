@@ -19,10 +19,10 @@ public class BridgeGame {
      */
     public List<String> move(List<String> makingBridge, String status, String movingState) {
         List<String> inputResult = new ArrayList<>();
-        if(movingState.equals("U")){
+        if(movingState.equals(up)){
             inputResult=chooseUp(makingBridge,status);
         }
-        if(movingState.equals("D")){
+        if(movingState.equals(down)){
             inputResult=chooseDown(makingBridge,status);
         }
         return inputResult;
@@ -31,24 +31,24 @@ public class BridgeGame {
     private List<String> chooseUp(List<String> makingBridge, String status){
         List<String> inputResult = new ArrayList<>();
         if(makingBridge.get(0).length()<=3){
-            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+status+" ]");
-            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+" "+" ]");
+            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+status+closing);
+            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+" "+closing);
         }
         if(makingBridge.get(0).length()>3){
-            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+partition+status+" ]");
-            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+partition+" "+" ]");
+            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+partition+status+closing);
+            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+partition+" "+closing);
         }
         return inputResult;
     }
     private List<String> chooseDown(List<String> makingBridge, String status){
         List<String> inputResult = new ArrayList<>();
         if(makingBridge.get(1).length()<=3){
-            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+" "+" ]");
-            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+status+" ]");
+            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+" "+closing);
+            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+status+closing);
         }
         if(makingBridge.get(1).length()>3){
-            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+partition+" "+" ]");
-            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+partition+status+" ]");
+            inputResult.add(makingBridge.get(0).substring(0,makingBridge.get(0).length()-1)+partition+" "+closing);
+            inputResult.add(makingBridge.get(1).substring(0,makingBridge.get(1).length()-1)+partition+status+closing);
         }
         return inputResult;
     }
@@ -66,7 +66,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String restartCommand) {
-        if(restartCommand.equals("Q")){
+        if(restartCommand.equals(quit)){
             return false;
         }
         return true;
