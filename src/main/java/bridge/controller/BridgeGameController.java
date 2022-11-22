@@ -30,6 +30,10 @@ public class BridgeGameController {
         checkRetry();
     }
 
+    private void resultGame() {
+        outputView.printResult(bridgeGame);
+    }
+
     private void checkRetry() {
         if (bridgeGame.isFail()) {
             bridgeGame.updateRestart(inputView.readGameCommand());
