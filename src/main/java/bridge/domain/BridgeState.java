@@ -92,4 +92,14 @@ public class BridgeState {
     private boolean compareBridgeRootToUserInput(String userInput, List<String> bridge) {
         return userInput.equals(bridge.get(round.getRound()));
     }
+
+    // map과 round를 초기화 하는 기능
+    public void init() {
+        map = new ArrayList<>(List.of(INIT_MAP, INIT_MAP));
+        round.initRound();
+    }
+
+    public List<String> getMap() {
+        return map;
+    }
 }
