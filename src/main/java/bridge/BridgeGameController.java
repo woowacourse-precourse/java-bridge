@@ -21,7 +21,7 @@ public class BridgeGameController {
         endGame();
     }
     private void startGame(){
-        while(bridgeGame.isCorrect() == NOT_OVER){
+        while(bridgeGame.isCorrect() == NOT_OVER && bridgeGame.isGameOver() == false){
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.lastMoveToString());
             if(bridgeGame.isGameOver() == FAIL){
