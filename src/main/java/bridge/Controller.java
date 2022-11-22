@@ -32,16 +32,20 @@ public class Controller {
             String moving = inputView.readMoving();
             game = bridgeGame.move(bridge, moving, count);
             count++;
-            if (game == false) {
-                game = manageGameState();
-            }
-            if (game == true && count == bridge.size()) {
-                outputView.printResult(challengeCount, game);
-                game = false;
-            }
+            manageGameState();
         }
     }
-    private boolean manageGameState() {
+
+    private void manageGameState() {
+        if (game == false) {
+            wantRestartOrQuit();
+        }
+        if (game == true && count == bridge.size()) {
+            outputView.printResult(challengeCount, game);
+            game = false;
+        }
+    }
+    private void wantRestartOrQuit() {
         game = bridgeGame.retry(inputView.readGameCommand());
         if (game == true) {
             wantRestart();
@@ -49,7 +53,6 @@ public class Controller {
         if (game == false) {
             wantQuit();
         }
-        return game;
     }
 
     private void wantRestart() {
