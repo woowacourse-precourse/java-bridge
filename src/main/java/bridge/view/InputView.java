@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.validator.BridgeSizeValidator.validateBridgeSize;
 import static bridge.validator.MovingValidator.validateMoving;
+import static bridge.validator.GameCommandValidator.validateGameCommand;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -34,7 +35,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommandInput = Console.readLine();
-        //예외 처리
+        validateGameCommand(gameCommandInput);
         return gameCommandInput;
     }
 }
