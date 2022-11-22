@@ -47,7 +47,7 @@ public class InputViewTest extends NsTest {
         );
     }
 
-    @DisplayName("R 또는 Q 의외에 이동할 칸을 입력받았을 경우")
+    @DisplayName("R 또는 Q 의외에 재시작 여부 입력받았을 경우")
     @Test
     void checkInputRetry() {
         assertSimpleTest(
