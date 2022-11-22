@@ -31,8 +31,8 @@ public class OutputView {
     public void printResult(List<String> makingBridge, int gameCnt) {
         System.out.println(resultGame);
         printMap(makingBridge);
-        if(makingBridge.get(0).contains("X") || makingBridge.get(1).contains("X")) System.out.println(SorF+losing);
-        if(!makingBridge.get(0).contains("X") && !makingBridge.get(1).contains("X")) System.out.println(SorF+success);
+        if(makingBridge.get(0).contains(wrong) || makingBridge.get(1).contains(wrong)) System.out.println(SorF+losing);
+        if(!makingBridge.get(0).contains(wrong) && !makingBridge.get(1).contains(wrong)) System.out.println(SorF+success);
         System.out.println(gameCounting+gameCnt);
     }
 }
