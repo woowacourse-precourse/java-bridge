@@ -83,6 +83,30 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_추가_범위에_맞지_않은_다리_길이() {
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_추가_움직일_방향() {
+        assertSimpleTest(() -> {
+            runException("3", "u");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_추가_게임_재시작_여부() {
+        assertSimpleTest(() -> {
+            runException("3", "D", "r");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
