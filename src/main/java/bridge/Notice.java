@@ -13,7 +13,7 @@ public enum Notice {
     WRONG_DIRECTION_ERROR("정확히 U나 D로 입력해주세요."),
     WRONG_QUIT_ERROR("정확히 R이나 U로 입력해주세요.");
 
-    private String message;
+    private final String message;
 
     Notice(String message) {
         this.message = message;
