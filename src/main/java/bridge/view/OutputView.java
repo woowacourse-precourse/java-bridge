@@ -29,8 +29,7 @@ public class OutputView {
      */
     public void printGameStartInfo() {
         printInfo(OutputPharses.START_MSG.getMsg());
-        printInfo(OutputPharses.NEXT_LINE.getMsg());
-        printInfo(OutputPharses.BRIDGE_LENGTH_MSG.getMsg());
+        printInfo(OutputPharses.EMPTY_LINE.getMsg());
     }
     public void printInfo(String msg) {
         System.out.println(msg);

@@ -17,6 +17,7 @@ public class BridgeGame {
     private final BridgeService bridgeService;
 
     private Bridge bridge;
+
     int bridgeSize;
     int totalGameCount;
 
@@ -54,13 +55,16 @@ public class BridgeGame {
 
     public void startGame() {
         outputView.printGameStartInfo();
-        bridgeSize = getBridgeSize();
+        setBridgeSize();
         setBridge(bridgeSize);
     }
 
-    public int getBridgeSize() {
-        int size = inputView.readBridgeSize();
-        outputView.printInfo(OutputPharses.NEXT_LINE.getMsg());
-        return size;
+    public void setBridgeSize() {
+        try {
+            outputView.printInfo(OutputPharses.BRIDGE_LENGTH_MSG.getMsg());
+            bridgeSize = inputView.readBridgeSize();
+        } catch (IllegalArgumentException exception) {
+            setBridgeSize();
+        }
     }
 }
