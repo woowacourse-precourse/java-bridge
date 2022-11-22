@@ -65,4 +65,5 @@ class ApplicationTest extends NsTest {
             return numbers.remove(0);
         }
     }
+
 }
