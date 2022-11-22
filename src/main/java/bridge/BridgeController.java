@@ -17,4 +17,23 @@ public class BridgeController {
             }
         }
     }
+
+    private void playGame() {
+        do {
+            outputView.printAskDirection();
+            move();
+            outputView.printMap(bridgeGame.makeBridgeResult());
+        } while (bridgeGame.isEnd());
+    }
+
+    private void move() {
+        while (true) {
+            try {
+                bridgeGame.move(inputView.readMoving());
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
