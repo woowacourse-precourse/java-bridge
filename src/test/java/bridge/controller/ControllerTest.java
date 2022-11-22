@@ -24,10 +24,7 @@ public class ControllerTest {
         randomsMockedStatic = Mockito.mockStatic(Randoms.class);
         Mockito.when(Randoms.pickNumberInRange(0, 1)).thenReturn(1, 0, 1);
 
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGameController = new BridgeGameController(inputView, outputView, bridgeGame);
+        bridgeGameController = new BridgeGameController();
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
     }

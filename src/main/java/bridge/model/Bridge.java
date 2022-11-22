@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.util.Errors;
 import bridge.util.Rules;
+import bridge.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Bridge {
     private final List<Plate> bridge;
 
     public Bridge(int bridgeLength) {
-        validateLength(bridgeLength);
+        Validator.validateBridgeSize(bridgeLength);
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> makeBridge = bridgeMaker.makeBridge(bridgeLength);
@@ -25,17 +26,6 @@ public class Bridge {
             newBridge.add(Plate.findBySymbol(symbol));
         }
         return newBridge;
-    }
-
-    private void validateLength(int bridgeLength) {
-        if (isOutOfBoundsLength(bridgeLength)) {
-            throw new IllegalArgumentException(Errors.ERROR_BRIDGE_LENGTH.getMessage());
-        }
-    }
-
-    private boolean isOutOfBoundsLength(int bridgeLength) {
-        return (bridgeLength < Rules.BRIDGE_MIN_LENGTH)
-                || (bridgeLength > Rules.BRIDGE_MAX_LENGTH);
     }
 
     public boolean possibleNextStep(int nextBridgeIndex, Plate nextPlate) {

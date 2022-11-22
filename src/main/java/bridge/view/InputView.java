@@ -1,7 +1,6 @@
 package bridge.view;
 
-import bridge.util.Errors;
-import bridge.util.Rules;
+import bridge.util.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -29,52 +28,24 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(ASK_BRIDGE_SIZE);
         String input = readString();
-        validateNumberType(input);
+        Validator.validateNumberType(input);
+        int inputNumber = Integer.parseInt(input);
+        Validator.validateBridgeSize(inputNumber);
         System.out.println();
-        return Integer.parseInt(input);
-    }
-
-    private void validateNumberType(String input) {
-        if (!input.matches("[0-9]+")) {
-            throw new IllegalArgumentException(Errors.ERROR_INPUT_NOT_NUMBER_TYPE.getMessage());
-        }
+        return inputNumber;
     }
 
     public String readMoving() {
         System.out.println(ASK_NEXT_STEP);
         String input = readString();
-        validateUpDown(input);
+        Validator.validateUpDown(input);
         return input;
-    }
-
-    private void validateUpDown(String input) {
-        if (isNotUorD(input)) {
-            throw new IllegalArgumentException(Errors.ERROR_INPUT_UP_OR_DOWN.getMessage());
-        }
-    }
-
-    private boolean isNotUorD(String input) {
-        return !input.matches(
-                Rules.PLATE_DOWN_PLATE_SYMBOL
-                        + "|" + Rules.PLATE_UP_PLATE_SYMBOL);
     }
 
     public String readGameCommand() {
         System.out.println(ASK_RETRY_GAME);
         String input = readString();
-        validateRetryQuit(input);
+        Validator.validateRetryQuit(input);
         return input;
-    }
-
-    private void validateRetryQuit(String input) {
-        if (isRorQ(input)) {
-            throw new IllegalArgumentException(Errors.ERROR_GAME_RETRY_OR_QUIT.getMessage());
-        }
-    }
-
-    private boolean isRorQ(String input) {
-        return !input.matches(
-                Rules.GAME_RETRY
-                        + "|" + Rules.GAME_QUIT);
     }
 }
