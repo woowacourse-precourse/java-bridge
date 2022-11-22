@@ -51,7 +51,7 @@ public class BridgeGameController {
     }
 
     private void abilityToMove(BridgeGame bridgeGame) {
-        bridgeGame.move();
+        bridgeGame.move(InputController.getMoving());
         OutputView.printMap(bridgeGame.getMoveResults());
     }
 
