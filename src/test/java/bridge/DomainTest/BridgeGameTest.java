@@ -1,13 +1,13 @@
 package bridge.DomainTest;
 
-import bridge.Constants.StandardTools;
-import bridge.Constants.StandardTools.retry;
+import bridge.Constants.StandardTools.GameStatus;
+import bridge.Database.BridgeData;
 import bridge.Domain.BridgeGame;
+import bridge.UI.InputView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -19,7 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BridgeGameTest {
 
     @Mock
-    BridgeGame bridgeGame = new BridgeGame();
+    BridgeData bridgeData = new BridgeData();
+    InputView inputView = new InputView();
 
     @Nested
     @DisplayName("데이터 저장 테스트")
@@ -32,8 +33,9 @@ public class BridgeGameTest {
             InputStream in = new ByteArrayInputStream(bridgeLength.getBytes());
             System.setIn(in);
 
-            bridgeGame.gameStart();
-            assertThat(bridgeGame.bridgeData.getBridge()).hasSize(Integer.parseInt(bridgeLength));
+            BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeLength());
+
+            assertThat(bridgeGame.bridgeData.copyBridge()).hasSize(Integer.parseInt(bridgeLength));
         }
 
         @DisplayName("게임 시작시 다리 길이 입력 후 총 시도횟수 초기화 여부")
@@ -43,7 +45,8 @@ public class BridgeGameTest {
             InputStream in = new ByteArrayInputStream(bridgeLength.getBytes());
             System.setIn(in);
 
-            bridgeGame.gameStart();
+            BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeLength());
+
             assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(1);
         }
     }
@@ -55,13 +58,14 @@ public class BridgeGameTest {
         @DisplayName("다 건넜을 경우 성공을 선언한다.")
         @Test
         void finishCrossingBridgeTest() {
-            bridgeGame.bridgeData.setBridge(Arrays.asList("U", "D", "D"));
+            bridgeData.setBridge(Arrays.asList("U", "D", "D"));
             List<String> nextSteps = new ArrayList<>(Arrays.asList("U", "D", "D"));
-            bridgeGame.bridgeData.updateBridgeDesignByUser(nextSteps);
 
-            bridgeGame.validateGameSuccessfullyFinished();
+            for (String nextStep : nextSteps) {
+                bridgeData.addBridgeDesignByUser(nextStep);
+            }
 
-            assertThat(bridgeGame.getIsGameSucceed()).isTrue();
+            assertThat(bridgeData.isBridgeDesignByUserCompleted()).isTrue();
         }
     }
 
@@ -69,31 +73,35 @@ public class BridgeGameTest {
     @DisplayName("재시도 여부 테스트")
     class retryOrQuitTest {
 
-        @DisplayName("R을 받을 경우 RETRY를 선언, 시도 횟수 증가, 유저의 인풋값을 초기화한다.")
+        @Mock
+        BridgeGame bridgeGame = new BridgeGame(3);
+        BridgeData bridgeData = bridgeGame.bridgeData;
+
+        @DisplayName("R을 받을 경우 RETRY를 선언, 시도 횟수를 +1 한다.")
         @Test
         void retryTest() {
             String retryInput = "R";
-            retry retry = StandardTools.retry.RETRY;
+            GameStatus retry = GameStatus.RETRY;
+            int attemptBeforeRetry = bridgeData.getTotalAttempt();
             InputStream in = new ByteArrayInputStream(retryInput.getBytes());
             System.setIn(in);
 
-            bridgeGame.retry();
-            assertThat(bridgeGame.getRetryOrQuit()).isEqualTo(retry);
-            assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(1);
-            assertThat(bridgeGame.bridgeData.getBridgeDesignByUser()).isEqualTo(
-                    Collections.emptyList());
+            bridgeGame.retry(inputView.readGameCommand());
+
+            assertThat(bridgeGame.getGameStatus()).isEqualTo(retry);
+            assertThat(bridgeGame.bridgeData.getTotalAttempt()).isEqualTo(attemptBeforeRetry + 1);
         }
 
         @DisplayName("Q를 받을 경우, QUIT 상태로 선언한다.")
         @Test
         void quitTest() {
-            String quitInput = "Q";
-            retry quit = retry.QUIT;
-            InputStream in = new ByteArrayInputStream(quitInput.getBytes());
+            String retryInput = "Q";
+            GameStatus quit = GameStatus.QUIT;
+            InputStream in = new ByteArrayInputStream(retryInput.getBytes());
             System.setIn(in);
 
-            bridgeGame.retry();
-            assertThat(bridgeGame.getRetryOrQuit()).isEqualTo(quit);
+            bridgeGame.retry(inputView.readGameCommand());
+            assertThat(bridgeGame.getGameStatus()).isEqualTo(quit);
         }
     }
 }
