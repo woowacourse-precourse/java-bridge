@@ -11,6 +11,7 @@ public class BridgeMaker {
 
     public static final int UP = 1;
     public static final int INITIAL_INDEX = 0;
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
