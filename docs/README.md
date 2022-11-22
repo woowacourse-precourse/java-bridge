@@ -47,3 +47,53 @@
     - 움직인 현황 (최종 게임 결과)
     - 게임 성공 여부 
     - 총 시도한 횟수 
+    
+
+## 구조 명세 (주요 클래스 중심)
+
+- GameController : 게임의 흐름 총괄
+    - member fields: InputView, OutputView, BridgeGame
+    - member functions: 
+        - executeGame : 메인 흐름 총괄
+        - makeBridge : 다리 만들어서 반환
+        - crossToOtherSide : 전체 다리 건너기 프로세스
+        - moveNextStep : 한 칸 건너기
+        - updateGameStatus : 입력 결과와 다리가 일치하지 않을 때, RETRY/QUIT에 따라 상태 결정
+        - printFinalResult : 최종 결과 출력
+        
+- BridgeGame : 게임의 주요 로직
+    - member fields: GameContext, Bridge, PlayersMove, moveCount
+    - member functions:
+        - move : 사용자가 한칸 움직임
+        - matchResults, isMatch : 사용자와 다리의 움직임을 비교해서 결과 반환
+        - isLastMoveSuccess : 사용자의 마지막 움직임이 다리와 일치했는지 
+        - playerHasCrossed : 사용자가 다리를 다 건넜는지
+        - getPlayersMove : 사용자가 현재까지 움직인 기록
+        - retry, refreshGameContext : 게임 다시 시도할 때 
+        - transitionTo : 사용자 입력값에 따라 상태 변환 (PLAYING/QUIT_PLAYING)
+        - onPlay : 현재 PLAYING 상태인지 
+        - getContextInfo
+        
+- GameContext : 전체 게임 현황 정보
+    - member fields: retryCnt, State
+    - member functions:
+        - increaseRetry : retryCnt++
+        - transition : 상태 정보 변환 (PLAYING/QUIT_PLAYING)
+        - getRetryCnt
+        - isPlaying: 현재 PLAYING 상태인지 
+        
+- Bridge : 다리
+    - member fields: bridgeSize, bridge
+    - member functions:
+        - getBridgeSize
+        - getBridgeMove : 특정 인덱스의 다리 움직임 반환
+        - requestNewBridge : 새로운 다리 생성
+        
+- PlayersMove : 사용자의 움직임 현황
+    - member fields: playersMove
+    - member functions:
+        - move : 사용자 한칸 움직임
+        - initialize : 사용자 움직임 초기화
+        - getPlayersMove
+        - getPlayersMoveAtIdx
+        
