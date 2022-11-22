@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +12,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> inputBridge, List<String> bridge) {
+        printSingleBridge(inputBridge, bridge, "U");
+        printSingleBridge(inputBridge, bridge, "D");
     }
 
     /**
@@ -18,6 +22,31 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame, String didWin, int count) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame.getInputBridge(), bridgeGame.getBridge());
+        System.out.println("게임 성공 여부: " + didWin);
+        System.out.println("총 시도한 횟수: " + count);
+    }
+
+    public void printLabel(String label) {
+        System.out.println(label);
+    }
+
+    private void printSingleBridge(List<String> inputBridge, List<String> bridge, String option) {  // option : "U" | "D"
+        System.out.print("[ ");
+        for (int i = 0; i < inputBridge.size(); i++) {
+            if ( i != 0 ) {
+                System.out.print(" | ");
+            }
+            System.out.print(getOneStep(inputBridge.get(i), bridge.get(i), option));
+        }
+        System.out.println(" ]");
+    }
+
+    private String getOneStep (String input, String bridge, String option) {
+        if (option.equals(bridge) && option.equals(input)) return "O";
+        if (!option.equals(bridge) && option.equals(input)) return "X";
+        return " ";
     }
 }
