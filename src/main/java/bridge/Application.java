@@ -12,6 +12,7 @@ public class Application {
     public static void gameStart() {
         printStartMessage();
         InputView inputView = new InputView();
+        inputView.getBridgeLen();
         BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> answer_list = bm.makeBridge(inputView.readBridgeSize());
         System.out.println(answer_list);

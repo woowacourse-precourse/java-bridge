@@ -32,6 +32,7 @@ public class OutputView {
         this.result = 1;
         return 1;
     }
+
     public void setSettings(List<String> answerList, List<String> inputList){
         this.check_msg = new String[2][answerList.size()];
         this.trial = inputList.size();
@@ -81,11 +82,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int tryCnt) {
+    public void printResult(int tryCnt, int result) {
         System.out.println("최종 게임 결과");
         printMsg(trial);
         System.out.println();
         String resultMsg = "성공";
+        System.out.println(this.result);
         if (result==0){
             resultMsg = "실패";
         }

@@ -21,9 +21,13 @@ public class BridgeGame {
             int ret = outputView.printMap(answer_list,inputView.readMoving());
             if (ret == 0){
                 if (inputView.readGameCommand().equals("R")){
-                    retry(inputView, answer_list);
-                    return;}}}
-        outputView.printResult(try_count);
+                    retry(answer_list,inputView.readBridgeSize());
+                    return;}
+                outputView.printResult(try_count,0);
+                return;
+            }
+        }
+        outputView.printResult(try_count,1);
     }
 
 
@@ -32,8 +36,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(InputView inputView, List<String> answer_list) {
-        this.try_count += 1;
+    public void retry(List<String> answer_list, int bs) {
+        InputView inputView = new InputView();
+        inputView.setBridge_size(bs);
         move(inputView,answer_list);
     }
 }

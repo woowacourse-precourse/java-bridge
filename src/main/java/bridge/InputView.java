@@ -16,7 +16,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
 
-    public InputView() {
+    public void getBridgeLen() {
         boolean b = true;
         while (b) {
             try {
@@ -27,6 +27,9 @@ public class InputView {
                 System.out.println("[ERROR] 입력 값이 잘못되었습니다.");
             }
         }
+    }
+    public void setBridge_size(int bs){
+        this.bridge_size = bs;
     }
 
     public int readBridgeSize() {
