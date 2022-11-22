@@ -6,51 +6,68 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        InputView inputs = new InputView(); // 다리 입력 길이 객체
-        OutputView outputs = new OutputView();
+    public void gamePlay() {
+
+    }
+
+    static InputView inputs = new InputView(); // 다리 입력 길이 객체
+
+    static OutputView outputs = new OutputView();
+    static BridgeGame bridgeGame = new BridgeGame();
+
+    public static List<String> buildBridge() {
+        InputView inputs = new InputView();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator(); // 난수 생성 객체
-        BridgeMaker newBridge = new BridgeMaker(bridgeNumberGenerator); // 난수를 이용한 다리 빌딩 객체
-        List<String> newWholeBridge; // 빌드한 다리 저장 객체
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeMaker newBridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        List<String> newBridge;
+        int size = inputs.readBridgeSizeWithValidityCheck(); //다리 길이 입력
+        newBridge = newBridgeMaker.makeBridge(size); // 입력 받은 길이의 다리 빌드
+        System.out.println(newBridge); // 다리 출력 (디버그)
+        return newBridge;
+    }
+
+    public static int playCounter(int triedCounter) {
+        triedCounter++;
+        return triedCounter;
+    }
+
+    public static void main(String[] args) {
+        List<String> currentResult = new ArrayList<>();
+        List<String> newBridge = buildBridge();
         boolean stageResult;
-        boolean retry = true;
+        boolean retryPlay = true;
         int triedCounter = 1;
         int round;
 
-        List<String> currentResult = new ArrayList<>();
-        int size = inputs.readBridgeSizeWithValidityCheck(); //다리 길이 입력
-        newWholeBridge = newBridge.makeBridge(size); // 입력 받은 길이의 다리 빌드
-        System.out.println(newWholeBridge); // 다리 출력 (디버그)
-
-        while (retry) {
-            retry = false;
-
-            for (round = 0; round < size; round++) {
+        while (retryPlay) {
+            retryPlay = false;
+            for (round = 0; round < newBridge.size(); round++) {
                 String userAnswer = inputs.readMovingWithValidityCheck();
-                stageResult = bridgeGame.move(userAnswer, newWholeBridge, round);
-
-                outputs.designBridgeMap(newWholeBridge, currentResult, stageResult, round);
-
+                stageResult = bridgeGame.move(userAnswer, newBridge, round);
+                outputs.designBridgeMap(newBridge, currentResult, stageResult, round);
+                outputs.printMap(currentResult);
                 if (!stageResult) {
-                    String retryAnswer = inputs.readGameCommandWithValidityCheck();
-                    retry = bridgeGame.retry(retryAnswer);
-                    if(retry){
-                        currentResult.clear();
-                        triedCounter++;
-                    }
+                    retryPlay = whenItsWrong(currentResult, triedCounter);
                     break;
-                }
-                if (round == size - 1) {
-                    outputs.printResult(newWholeBridge, currentResult, round, triedCounter);
-            }
+                }//if
 
-            }
+                outputs.printResult(newBridge, currentResult, round, triedCounter);
 
-
-        }
-
-
+            }//for
+        }//while
     }
+
+
+    static boolean whenItsWrong(List<String> currentResult, int triedCounter) {
+        String retryAnswer = inputs.readGameCommandWithValidityCheck();
+        boolean retry = bridgeGame.retry(retryAnswer, currentResult, triedCounter);
+        return retry;
+    }
+
+    static int resetStatus(List<String> currentResult, int triedCounter) { //진행상황 초기화 및 시도 카운터 증가
+        currentResult.clear();
+        triedCounter = playCounter(triedCounter);
+        return triedCounter;
+    }
+
 }

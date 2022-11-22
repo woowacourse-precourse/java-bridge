@@ -30,11 +30,20 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String retryAnswer) {
-        if (retryAnswer.equals("R")) {
+    public boolean retry(String retryAnswer, List<String> currentResult, int triedCounter) {
+        boolean keepPlaying = retryOrQuit(retryAnswer);
+        if (keepPlaying) {
+            currentResult.clear();
+            triedCounter++;
+        }
+        return keepPlaying;
+
+    }
+    public boolean retryOrQuit(String userAnswer){
+        if (userAnswer.equals("R")) {
             return true;
         }
-        if (retryAnswer.equals("Q")) {
+        if (userAnswer.equals("Q")) {
             return false;
         }
         return false;
