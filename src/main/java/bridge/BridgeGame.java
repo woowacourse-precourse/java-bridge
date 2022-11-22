@@ -4,40 +4,31 @@ import bridge.dto.BridgeGameDto;
 import java.util.Arrays;
 import java.util.List;
 import bridge.view.InputView;
+import java.util.Objects;
 
 public class BridgeGame {
     private static int currentPosition = -1;
     private static int totalTrial = 1;
-    private static String direction = null;
+    private static Direction direction;
     public static boolean valueError = false;
     private final List<String> moveCandidate = Arrays.asList("U", "D");
     private final List<String> decisionCandidate = Arrays.asList("R", "Q");
     private final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
     private final String QUIT = "Q";
-
-    public void move(String direction) {
+    private static final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
+    public void move(String input) {
         valueError = false;
-        dealMoveError(direction);
-        if (!valueError) {
-            currentPosition++;
-            BridgeGame.direction = direction;
-        }
-    }
-
-    public void dealMoveError(String direction) {
+        Direction direction;
         try {
-            checkMoveValidity(direction);
+            this.direction = Direction.of(input);
         } catch (IllegalArgumentException e) {
+            valueError = true;
             if (!InputView.sizeFormatError) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private void checkMoveValidity(String word) {
-        if (!moveCandidate.contains(word)) {
-            valueError = true;
-            throw new IllegalArgumentException(ERROR_INVALID_INPUT);
+        if (!valueError) {
+            currentPosition++;
         }
     }
 
@@ -69,8 +60,6 @@ public class BridgeGame {
         Application.totalResult = new Result();
         Application.launchGame(bridge);
     }
-
-
     public void initializeValues() {
         currentPosition = -1;
         direction = null;

@@ -13,8 +13,8 @@ public class Bridge {
 
     public boolean isCorrectGuess(BridgeGameDto bridgeGameDto) {
         int currentPosition = bridgeGameDto.currentPosition;
-        String answer = bridge.get(currentPosition);
-        String guess = bridgeGameDto.direction;
+        Direction answer = Direction.of(bridge.get(currentPosition));
+        Direction guess = bridgeGameDto.direction;
         return guess.equals(answer);
     }
 
