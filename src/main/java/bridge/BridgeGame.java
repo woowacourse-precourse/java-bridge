@@ -88,4 +88,8 @@ public class BridgeGame {
     public void newGame() {
         game = new GameSimulation();
     }
+
+    public GameSimulation getGame() {
+        return game;
+    }
 }

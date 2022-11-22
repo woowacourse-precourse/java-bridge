@@ -6,6 +6,7 @@ public class BridgeGameController {
     private final static BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
+        outputView.printStart();
         init();
         do {
             bridgeGame.newGame();
@@ -15,7 +16,14 @@ public class BridgeGameController {
 
     private boolean retry() {
         if (checkEnd()) return false;
-        return bridgeGame.retry(inputView.readGameCommand());
+        try {
+            outputView.printRetry();
+            return bridgeGame.retry(inputView.readGameCommand());
+        } catch (IllegalArgumentException e) {
+            outputView.printError();
+            retry();
+        }
+        return true;
     }
 
     public void init() {
@@ -25,7 +33,13 @@ public class BridgeGameController {
     }
 
     private static void start() {
-        move();
+        try {
+            move();
+        } catch (IllegalArgumentException e) {
+            outputView.printError();
+            start();
+
+        }
     }
 
     private boolean checkEnd() {
@@ -36,7 +50,12 @@ public class BridgeGameController {
     }
 
     private static void move() {
-        String match = bridgeGame.move(inputView.readMoving());
+        String match;
+        do {
+            outputView.printMove();
+            match = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.getGame());
+        } while (bridgeGame.fail(match));
 
     }
 }
