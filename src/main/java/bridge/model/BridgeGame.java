@@ -43,12 +43,7 @@ public class BridgeGame {
     public void retry() {
         this.playerMove = new ArrayList<>();
     }
-
-    /**
-     * 다리들의 정답 결과를 가져오는 메소드
-     * <p>
-     * 각 다리의 생성 순서는 Move enum의 상수 순서이다.
-     */
+    
     public List<List<String>> getGameMap() {
         answerMove.makeAllMap(playerMove);
         return answerMove.getBridgeMap();
