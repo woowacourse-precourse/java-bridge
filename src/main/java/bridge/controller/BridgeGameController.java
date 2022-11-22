@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.config.BaseGameActivity;
+import bridge.config.GameActivity;
 import bridge.config.ErrorMessageConstant;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
@@ -15,7 +15,7 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgeGameController extends BaseGameActivity {
+public class BridgeGameController extends GameActivity {
 
     private final BridgePrinter bridgePrinter = new BridgeConsolePrinter();
     private final BridgeMaker bridgeMaker;
@@ -34,25 +34,36 @@ public class BridgeGameController extends BaseGameActivity {
 
     @Override
     protected final void onStart() {
-        int bridgeSize = readBridgeSize();
-        createBridgeGame(bridgeSize);
+        outputView.printGameStart();
+        executeUntilNoException(this::readBridgeSize);
     }
 
     @Override
     protected final void onLoop() {
         while (bridgeGame.getStatus() == GameStatus.RUNNING) {
-            proceedTurn();
+            executeUntilNoException(this::proceedTurn);
         }
-        if (bridgeGame.getStatus() == GameStatus.LOSE && enterRetry()) {
-            bridgeGame.retry();
-            return;
+        if (bridgeGame.getStatus() == GameStatus.LOSE) {
+            if (executeUntilNoException(this::enterRetry)) {
+                bridgeGame.retry();
+                return;
+            }
         }
-        super.stop();
+        stop();
     }
 
     @Override
     protected final void onStop() {
         outputView.printResult(bridgeGame, bridgePrinter);
+    }
+
+    @Override
+    protected void onError(Exception e) {
+        if (e instanceof IllegalArgumentException) {
+            outputView.printExpectedErrorMessage((IllegalArgumentException) e);
+            return;
+        }
+        outputView.printUnexpectedErrorMessage(e);
     }
 
     private void validationConstructorParams() throws IllegalArgumentException {
@@ -61,19 +72,19 @@ public class BridgeGameController extends BaseGameActivity {
         }
     }
 
-    private int readBridgeSize() {
-        outputView.printGameStart();
+    private void readBridgeSize() throws IllegalArgumentException {
         outputView.printEnterBridgeLength();
-        return inputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
+        createBridgeGame(bridgeSize);
     }
 
-    private void createBridgeGame(int bridgeSize) {
+    private void createBridgeGame(int bridgeSize) throws IllegalArgumentException {
         List<String> bridgeInfo = bridgeMaker.makeBridge(bridgeSize);
         Bridge bridge = new Bridge(bridgeInfo);
         bridgeGame = new BridgeGame(bridge);
     }
 
-    private boolean enterRetry() {
+    private boolean enterRetry() throws IllegalArgumentException {
         outputView.printEnterGameRetry();
         CommandType command = inputView.readGameCommand();
         if (command == CommandType.GAME_QUIT) {
