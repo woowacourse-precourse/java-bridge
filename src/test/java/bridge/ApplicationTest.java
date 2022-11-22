@@ -1,20 +1,19 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
-import static org.assertj.core.util.Lists.newArrayList;
-
 import bridge.generator.BridgeMaker;
 import bridge.generator.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Lists.newArrayList;
 
 class ApplicationTest extends NsTest {
 
