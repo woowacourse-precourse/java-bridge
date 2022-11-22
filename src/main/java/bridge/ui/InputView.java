@@ -8,8 +8,11 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String bridgeSizeInput =Console.readLine();
+        InputValidator.checkBridgeSizeType(bridgeSizeInput);
+
         int size = Integer.valueOf(bridgeSizeInput);
         InputValidator.checkBridgeSizeRange(size);
+
         return size;
     }
 
