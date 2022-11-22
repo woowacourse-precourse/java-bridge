@@ -5,9 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import bridge.domain.vo.BridgeMap;
 import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
-import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
