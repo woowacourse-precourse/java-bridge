@@ -22,7 +22,7 @@ public enum BridgeDirection {
         return Arrays.stream(BridgeDirection.values())
                 .filter(location -> location.number == number)
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(IllegalAccessError::new);
     }
 
     public static BridgeDirection wordToDirection(String word) {
