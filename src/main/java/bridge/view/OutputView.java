@@ -27,15 +27,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<BridgeToken> bridgeTokens) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Direction direction : Direction.values()) {
-            stringBuilder.append(BRIDGE_START_REGEX);
-            stringBuilder.append(bridgeTokens.stream()
-                    .map(bridgeToken -> toSign(direction, bridgeToken))
-                    .collect(Collectors.joining(BRIDGE_SEPARATOR)));
-            stringBuilder.append(BRIDGE_END_REGEX);
-        }
-        System.out.println(stringBuilder);
+        System.out.println(createMap(bridgeTokens));
     }
 
     /**
@@ -50,6 +42,18 @@ public class OutputView {
         System.out.println(printSuccessStatus(bridgeGame.isEnd()));
 
         System.out.println(TRY_COUNT_MESSAGE + bridgeGame.getRetryCount());
+    }
+
+    private String createMap(List<BridgeToken> bridgeTokens) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Direction direction : Direction.values()) {
+            stringBuilder.append(BRIDGE_START_REGEX);
+            stringBuilder.append(bridgeTokens.stream()
+                    .map(bridgeToken -> toSign(direction, bridgeToken))
+                    .collect(Collectors.joining(BRIDGE_SEPARATOR)));
+            stringBuilder.append(BRIDGE_END_REGEX);
+        }
+        return String.valueOf(stringBuilder);
     }
 
     public static void printExceptionMessage(String message) {
