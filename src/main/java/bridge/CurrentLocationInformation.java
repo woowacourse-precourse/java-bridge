@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentLocationInformation {
-    private final OutputView outputView = new OutputView();
+    private static final OutputView outputView = new OutputView();
     private static List<String> str = new ArrayList<>();
     private static List<String> upStr = new ArrayList<>();
     private static int check = 0;
+
 
     public static void init() {
         str.clear();
@@ -16,14 +17,13 @@ public class CurrentLocationInformation {
 
 
     public void showMyLocation(List<String> bridge, String moving, int count) {
-        String gameState = "";
         check = count;
         makeUpLocation(bridge, moving);
         makeDownLocation(bridge, moving);
-        outputView.printMap(gameState);
+        System.out.println();
     }
 
-    public String getResultLocation() {
+    public static String getResultLocation() {
         int size = upStr.size();
         String resultLocation = "";
         resultLocation += upStr.get(size - 1);
@@ -35,7 +35,6 @@ public class CurrentLocationInformation {
 
     private void makeUpLocation(List<String> bridge, String moving) {
         List<Boolean> bridgeExist = makeUpLocationExist(bridge);
-
         String state = "[ ";
         state += gameIng(bridgeExist, bridge, moving);
         if (check > 0) {
@@ -48,26 +47,25 @@ public class CurrentLocationInformation {
     }
 
     private List<Boolean> makeUpLocationExist(List<String> bridge) {
-        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
-        for (int i = 0; i < bridge.size(); i++) {
-            if (bridge.get(i).equals("U")) {
-                bridgeTrueAndFalse.add(true);
+        List<Boolean> bridgeExist = new ArrayList<>();
+        for (int index = 0; index < bridge.size(); index++) {
+            if (bridge.get(index).equals("U")) {
+                bridgeExist.add(true);
             }
-            if (bridge.get(i).equals("D")) {
-                bridgeTrueAndFalse.add(false);
+            if (bridge.get(index).equals("D")) {
+                bridgeExist.add(false);
             }
         }
-        return bridgeTrueAndFalse;
+        return bridgeExist;
     }
 
     private void makeDownLocation(List<String> bridge, String moving) {
-        List<Boolean> bridgeTrueAndFalse = makeDownLocationExist(bridge);
-
+        List<Boolean> bridgeExist = makeDownLocationExist(bridge);
         String state = "[ ";
-        state += gameIng(bridgeTrueAndFalse, bridge, moving);
+        state += gameIng(bridgeExist, bridge, moving);
         if (check > 0) {
             state = "";
-            state += str.get(check - 1) + gameIng(bridgeTrueAndFalse, bridge, moving);
+            state += str.get(check - 1) + gameIng(bridgeExist, bridge, moving);
         }
         str.add(state);
         state += " ]";
@@ -75,35 +73,35 @@ public class CurrentLocationInformation {
     }
 
     private List<Boolean> makeDownLocationExist(List<String> bridge) {
-        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
-        for (int i = 0; i < bridge.size(); i++) {
-            if (bridge.get(i).equals("D")) {
-                bridgeTrueAndFalse.add(true);
+        List<Boolean> bridgeExist = new ArrayList<>();
+        for (int index = 0; index < bridge.size(); index++) {
+            if (bridge.get(index).equals("D")) {
+                bridgeExist.add(true);
             }
-            if (bridge.get(i).equals("U")) {
-                bridgeTrueAndFalse.add(false);
+            if (bridge.get(index).equals("U")) {
+                bridgeExist.add(false);
             }
         }
-        return bridgeTrueAndFalse;
+        return bridgeExist;
     }
 
-    private String gameIng(List<Boolean> test, List<String> bridge, String moving) {
+    private String gameIng(List<Boolean> bridgeExist, List<String> bridge, String moving) {
         String ing = "";
         if (check == 0) {
-            ing += showUpAndDownResult(test, bridge, moving);
+            ing += showUpAndDownResult(bridgeExist, bridge, moving);
         }
         if (check > 0) {
             ing += " | ";
-            ing += showUpAndDownResult(test, bridge, moving);
+            ing += showUpAndDownResult(bridgeExist, bridge, moving);
         }
         return ing;
     }
 
-    private String showUpAndDownResult(List<Boolean> test, List<String> bridge, String moving) {
-        if (test.get(check) && bridge.get(check).equals(moving)) {
+    private String showUpAndDownResult(List<Boolean> bridgeExist, List<String> bridge, String moving) {
+        if (bridgeExist.get(check) && bridge.get(check).equals(moving)) {
             return "O";
         }
-        if (!test.get(check) && !bridge.get(check).equals(moving)) {
+        if (!bridgeExist.get(check) && !bridge.get(check).equals(moving)) {
             return "X";
         }
         return " ";

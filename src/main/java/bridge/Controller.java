@@ -6,72 +6,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
-    private static BridgeMaker bridgeMaker;
-    private static BridgeSizeInputException bridgeSizeInputException;
-    private CurrentLocationInformation currentLocationInformation = new CurrentLocationInformation();
-
-    public Controller() {
-        bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-    }
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
+    private static final BridgeGame bridgeGame = new BridgeGame();
+    private static List<String> bridge;
+    private static int count;
+    private static boolean game;
+    private static int challengeCount;
 
     private void init() {
+        count = 0;
+        game = true;
+        challengeCount = 1;
+    }
 
+    public void readyBridgeGame(BridgeMaker bridgeMaker) {
+        init();
+        int bridgeSize = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+        startGame();
     }
 
     public void startGame() {
-        try {
-            int count = 0;
-            int challengeCount = 1;
-            boolean game = true;
-            InputView inputView = new InputView();
-            int bridgeSize = inputView.readBridgeSize();
-
-            List<String> test = new ArrayList<>();
-            OutputView outputView = new OutputView();
-
-            test = bridgeMaker.makeBridge(bridgeSize);
-            for (String s : test) {
-                System.out.print(s + " ");
+        while (game) {
+            String moving = inputView.readMoving();
+            game = bridgeGame.move(bridge, moving, count);
+            count++;
+            if (game == false) {
+                game = manageGameState();
             }
-            System.out.println();
-            BridgeGame bridgeGame = new BridgeGame();
-
-            while (game) {
-                String moving = inputView.readMoving();
-                game = bridgeGame.move(test, moving, count);
-
-                count++;
-
-                if (game == false && count < bridgeSize) {
-                    game = bridgeGame.retry(inputView.readGameCommand());
-                    if (game == false) {
-                        outputView.printResult(currentLocationInformation, challengeCount, game);
-                    }
-                    count = 0;
-                    challengeCount++;
-                    CurrentLocationInformation.init();
-                }
-
-                if (game == false && count == bridgeSize) {
-                    game = bridgeGame.retry(inputView.readGameCommand());
-                    if (game == false) {
-                        outputView.printResult(currentLocationInformation, challengeCount, game);
-                    }
-                    count = 0;
-                    challengeCount++;
-                    CurrentLocationInformation.init();
-                }
-
-
-                if (game == true && count == bridgeSize) {
-                    outputView.printResult(currentLocationInformation, challengeCount, game);
-                    game = false;
-                }
+            if (game == true && count == bridge.size()) {
+                outputView.printResult(challengeCount, game);
+                game = false;
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
         }
+    }
+    private boolean manageGameState() {
+        game = bridgeGame.retry(inputView.readGameCommand());
+        if (game == true) {
+            wantRestart();
+        }
+        if (game == false) {
+            wantQuit();
+        }
+        return game;
+    }
+
+    private void wantRestart() {
+        count = 0;
+        challengeCount++;
+    }
+
+    private void wantQuit() {
+        outputView.printResult(challengeCount, game);
     }
 }

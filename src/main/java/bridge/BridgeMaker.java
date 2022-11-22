@@ -22,7 +22,6 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             upAndDown.add(makeBridgeSpace());
         }
-
         return upAndDown;
     }
 
@@ -37,4 +36,28 @@ public class BridgeMaker {
         }
         return space;
     }
+
+//    private List<Boolean> makeUpLocationExist(String upAndDown) {
+//        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
+//            if (upAndDown.equals("U")) {
+//                bridgeTrueAndFalse.add(true);
+//            }
+//            if (upAndDown.equals("D")) {
+//                bridgeTrueAndFalse.add(false);
+//        }
+//        return bridgeTrueAndFalse;
+//    }
+//
+//    private List<Boolean> makeDownLocationExist(List<String> bridge) {
+//        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
+//        for (int i = 0; i < bridge.size(); i++) {
+//            if (bridge.get(i).equals("D")) {
+//                bridgeTrueAndFalse.add(true);
+//            }
+//            if (bridge.get(i).equals("U")) {
+//                bridgeTrueAndFalse.add(false);
+//            }
+//        }
+//        return bridgeTrueAndFalse;
+//    }
 }

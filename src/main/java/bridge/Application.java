@@ -8,7 +8,7 @@ public class Application {
 
         Controller controller = new Controller();
 
-        controller.startGame();
+        controller.readyBridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
 
     }
 }
