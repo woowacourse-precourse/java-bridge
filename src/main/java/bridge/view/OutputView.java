@@ -1,10 +1,8 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
 import dto.Result;
 
-import static bridge.constant.BridgeOutput.*;
-import static bridge.constant.GameResult.FAILURE;
-import static bridge.constant.GameResult.SUCCESS;
 import static bridge.constant.Movement.DOWN;
 import static bridge.constant.Movement.UP;
 import static bridge.constant.OutputSentence.*;
@@ -14,15 +12,10 @@ import static bridge.constant.OutputSentence.*;
  */
 public class OutputView {
 
-    private static String upBridge = INITIAL_SETTING;
-    private static String downBridge = INITIAL_SETTING;
+    Bridge bridge;
 
-    public void setUpBridge() {
-        upBridge = INITIAL_SETTING;
-    }
-
-    public void setDownBridge() {
-        downBridge = INITIAL_SETTING;
+    public OutputView(Bridge bridge) {
+        this.bridge = bridge;
     }
 
     public void printStart() {
@@ -62,16 +55,14 @@ public class OutputView {
 
     private void succeedDownMovement(String movement) {
         if (isD(movement)) {
-            upBridge = upBridge.replace(END_POINT, EMPTY);
-            downBridge = downBridge.replace(END_POINT, SUCCESS.getNowCondition());
+            bridge.succeedDownMovement();
             printUpAndDownBridge();
         }
     }
 
     private void succeedUpMovement(String movement) {
         if (isU(movement)) {
-            upBridge = upBridge.replace(END_POINT, SUCCESS.getNowCondition());
-            downBridge = downBridge.replace(END_POINT, EMPTY);
+            bridge.succeedUpMovement();
             printUpAndDownBridge();
         }
     }
@@ -83,25 +74,22 @@ public class OutputView {
 
     private void failDownMovement(String movement) {
         if (isD(movement)) {
-            upBridge = upBridge.replace(END_POINT, EMPTY);
-            downBridge = downBridge.replace(END_POINT, SUCCESS.getNowCondition());
+            bridge.failDownMovement();
             printUpAndDownBridge();
         }
     }
 
     private void failUpMovement(String movement) {
         if (isU(movement)) {
-            upBridge = upBridge.replace(END_POINT, FAILURE.getNowCondition());
-            downBridge = downBridge.replace(END_POINT, EMPTY);
+            bridge.failUpMovement();
             printUpAndDownBridge();
         }
     }
 
     private void printUpAndDownBridge() {
-        upBridge = upBridge.replace(CHANGE_POINT, FIRST_POINT);
-        downBridge = downBridge.replace(CHANGE_POINT, FIRST_POINT);
-        System.out.println(upBridge);
-        System.out.println(downBridge + "\n");
+        bridge.replaceBridge();
+        System.out.println(bridge.getUpBridge());
+        System.out.println(bridge.getDownBridge() + "\n");
     }
 
     private boolean isU(String movement) {
@@ -119,8 +107,8 @@ public class OutputView {
      */
     public void printResult(Result result) {
         System.out.println(GAME_RESULT);
-        System.out.println(upBridge);
-        System.out.println(downBridge);
+        System.out.println(bridge.getUpBridge());
+        System.out.println(bridge.getDownBridge());
         System.out.println(SUCCESS_OR_FAILURE + result.getGameResult());
         System.out.println(TOTAL_ATTEMPTS + result.getAttempt());
     }
