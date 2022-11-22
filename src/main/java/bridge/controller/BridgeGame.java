@@ -1,0 +1,70 @@
+package bridge.controller;
+
+import bridge.dto.MapDto;
+import bridge.dto.ResultDto;
+import bridge.model.Bridge;
+import bridge.model.BridgeResult;
+import bridge.model.Retry;
+
+/**
+ * 다리 건너기 게임을 관리하는 클래스
+ */
+public class BridgeGame {
+
+    private Bridge bridge;
+
+    private BridgeResult bridgeResult;
+
+    private Retry retry;
+
+    public BridgeGame() {
+        this.bridgeResult = new BridgeResult();
+        this.retry = new Retry();
+    }
+
+    public BridgeGame(Bridge bridge, BridgeResult bridgeResult, Retry retry) {
+        this.bridge = bridge;
+        this.bridgeResult = bridgeResult;
+        this.retry = retry;
+    }
+
+    public void make(String size) {
+        this.bridge = new Bridge(size);
+    }
+
+    /**
+     * 사용자가 칸을 이동할 때 사용하는 메서드
+     * <p>
+     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public MapDto move(String moving) {
+        bridgeResult.add(bridge, moving);
+        return new MapDto(bridge, bridgeResult);
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * <p>
+     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public boolean retry(String gameCommand) {
+        if (retry.checkRetry(gameCommand)) {
+            retry.countTry();
+            bridgeResult.initResult();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean canMove() {
+        return bridgeResult.getLast() && !bridgeResult.isEnd(bridge);
+    }
+
+    public boolean success() {
+        return bridgeResult.checkSuccess(bridge);
+    }
+
+    public ResultDto getResult() {
+        return new ResultDto(bridge, bridgeResult, retry);
+    }
+}
