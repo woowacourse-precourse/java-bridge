@@ -22,14 +22,19 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<String>();
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == 1) {
-                bridge.add("U");
-            }
-            if (randomNumber == 0) {
-                bridge.add("D");
-            }
+            bridge.add(makeShape(randomNumber));
         }
         return bridge;
+    }
+
+    private String makeShape(int randomNumber) {
+        final String shape;
+        if (randomNumber == 1) {
+            shape = "U";
+            return shape;
+        }
+        shape = "D";
+        return shape;
     }
 
 }
