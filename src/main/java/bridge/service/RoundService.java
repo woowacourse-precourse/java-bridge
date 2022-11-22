@@ -36,7 +36,6 @@ public class RoundService {
     }
 
     public void getFinalResult(boolean status) {
-        OutputView.messageFinalResult();
-        OutputView.printMap(round.getMovings(), status);
+        OutputView.printResult(round.getMovings(), status);
     }
 }
