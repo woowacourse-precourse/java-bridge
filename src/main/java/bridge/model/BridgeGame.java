@@ -19,7 +19,6 @@ public class BridgeGame {
     private static final int INIT_TRIAL = 1;
 
     private final Bridge bridge;
-    private final BridgeMaker bridgeMaker;
 
     private final List<MoveRecord> records;
     private int trial;
@@ -30,7 +29,7 @@ public class BridgeGame {
         trial = INIT_TRIAL;
         records = new ArrayList<>();
 
-        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
@@ -48,7 +47,14 @@ public class BridgeGame {
     }
 
     public boolean isOver() {
-        return bridge.getSize() == currentLocation;
+        if (bridge.isEnd(currentLocation)) {
+            return true;
+        }
+        return !checkFinalStep();
+    }
+
+    public boolean checkFinalStep() {
+        return records.get(currentLocation).isSuccess();
     }
 
     public List<MoveRecord> getResult() {
