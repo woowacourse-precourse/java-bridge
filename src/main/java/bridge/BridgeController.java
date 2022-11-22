@@ -5,6 +5,7 @@ public class BridgeController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final String startComment = "다리 건너기 게임을 시작합니다.\n";
     private BridgeGame bridgeGame;
 
     public BridgeController() {
@@ -13,7 +14,7 @@ public class BridgeController {
     }
 
     public void run() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(startComment);
         this.bridgeGame = new BridgeGame(inputView.readBridgeSize());
         while (true) {
             boolean moveResult = bridgeGame.move(inputView.readMoving());

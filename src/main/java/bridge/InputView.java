@@ -13,6 +13,8 @@ public class InputView {
     private final String moveErrorMessage = "[ERROR] U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있습니다.";
     private final String bridgeSizeErrorMessage = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private final String commandErrorMessage = "[ERROR]  R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있습니다.";
+    private final String readMoveInputComment = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String readCommandComment = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
 
     /**
@@ -33,7 +35,7 @@ public class InputView {
 
     private boolean isCorrectRange(int bridgeLength) {
         try {
-            if (bridgeLength >= 3 && bridgeLength <= 20) {
+            if (bridgeLength >= minBridgeLength && bridgeLength <= maxBridgeLength) {
                 return true;
             }
             throw new IllegalArgumentException(bridgeSizeErrorMessage);
@@ -61,7 +63,7 @@ public class InputView {
     public String readMoving() {
         String moveInput;
         do {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            System.out.println(readMoveInputComment);
             moveInput = Console.readLine();
 
         } while (!isCorrectMove(moveInput));
@@ -85,7 +87,7 @@ public class InputView {
     public String readGameCommand() {
         String gameCommandInput;
         do {
-            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            System.out.println(readCommandComment);
             gameCommandInput = Console.readLine();
         } while (!isCorrectCommand(gameCommandInput));
         return gameCommandInput;
