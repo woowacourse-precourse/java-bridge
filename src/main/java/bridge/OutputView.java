@@ -9,15 +9,15 @@ public class OutputView {
 
     public static void printMap(List<String> bridge, int size, String userInput) {
         System.out.print("[");
-        for(int i = 0; i < size-1;i++){
+        for(int i = 0; i < size;i++){
             printMapChar(bridge.get(i), "U");
         }
-        printLastChar(bridge.get(size-1), "U", userInput);
+        printLastChar(bridge.get(size), "U", userInput);
         System.out.print("[");
-        for(int i = 0; i < size-1;i++){
+        for(int i = 0; i < size;i++){
             printMapChar(bridge.get(i), "D");
         }
-        printLastChar(bridge.get(size-1), "D", userInput);
+        printLastChar(bridge.get(size), "D", userInput);
     }
 
     private static int printMapChar(String bridgeChar, String upDown){
@@ -42,11 +42,22 @@ public class OutputView {
         return 0;
     }
 
-    public void printResult() {
+    public static void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
-        //다리 출력
-        System.out.println("게임 성공 여부 : ");
+        printMap(bridgeGame.getBridge(), bridgeGame.getNowIdx(), bridgeGame.getRecentInput());
+        System.out.print("게임 성공 여부 : ");
+        printWin(bridgeGame);
+        System.out.print("총 시도한 횟수: ");
+        System.out.println(bridgeGame.getTryTimes());
+    }
 
+    public static int printWin(BridgeGame bridgeGame){
+        if(bridgeGame.getWin() == true){
+            System.out.println("성공");
+            return 0;
+        }
+        System.out.println("실패");
+        return 0;
     }
 
     public static void errorHandling(String errorMessage){
