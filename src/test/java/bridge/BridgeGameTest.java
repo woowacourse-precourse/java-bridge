@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest extends NsTest {
     @Test
-    void move_테스트() {
+    void isMovable_RightMove_True() {
         BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
@@ -20,7 +21,7 @@ public class BridgeGameTest extends NsTest {
     }
 
     @Test
-    void wrong_move_테스트() {
+    void isMovable_WrongMove_False() {
         BridgeNumberGenerator bridgeNumberGenerator = new TestNumberGenerator(new ArrayList<>(Arrays.asList(1, 1, 1)));
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
