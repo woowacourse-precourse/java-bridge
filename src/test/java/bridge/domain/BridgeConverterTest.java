@@ -14,7 +14,7 @@ class BridgeConverterTest {
     }
 
     @Test
-    void generatePosiion_fail(){
+    void generatePosition_fail(){
         int number = 100;
         assertThatThrownBy(()->BridgeConverter.generatePosition(number)).isInstanceOf(IllegalArgumentException.class);
     }
