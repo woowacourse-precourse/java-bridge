@@ -13,14 +13,33 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> inputResults, int index, String moveAnswer) {
-        System.out.print("[");
+        System.out.print("[ ");
         for (int i = 0; i <= index; i++) {
-            System.out.print(inputResults.get(i));
+            if (moveAnswer.equals("U")) {
+                System.out.print(inputResults.get(i));
+            } else {
+                System.out.print(" ");
+            }
+
             if (i < index) {
                 System.out.print(" | ");
             }
         }
-        System.out.println("]");
+        System.out.println(" ]");
+
+        System.out.print("[ ");
+        for (int i = 0; i <= index; i++) {
+            if (moveAnswer.equals("D")) {
+                System.out.print(inputResults.get(i));
+            } else {
+                System.out.print(" ");
+            }
+
+            if (i < index) {
+                System.out.print(" | ");
+            }
+        }
+        System.out.println(" ]");
     }
 
     /**
