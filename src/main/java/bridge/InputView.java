@@ -11,27 +11,70 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        String size = Console.readLine();
-        int Size = Integer.parseInt(size);
-        return Size;
+        int Size = 0;
+        String size = "";
+        while (true) {
+            try {
+                System.out.println("다리의 길이를 입력해주세요.");
+                size = Console.readLine();
+                if (validate(size)) {
+                    return Integer.parseInt(size);
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]");
+            }
+        }
+    }
+
+    public boolean validate(String size) {
+        try {
+            int Size = Integer.parseInt(size);
+            if (Size <= 3 || Size >= 20) {
+                System.out.println("[ERROR] 유효하지 않은 수 입니다.");
+                return false;
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 유효하지 않은 타입입니다.");
+        }
+        return false;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String userUD = Console.readLine();
-        return userUD;
+        String userUD = "";
+        while (true) {
+            try {
+                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                userUD = Console.readLine();
+                if (!(userUD.equals("U") || userUD.equals("D"))) {
+                    throw new IllegalArgumentException("[ERROR] 유효하지 않은 값입니다.");
+                }
+                return userUD;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String userRQ = Console.readLine();
-        return userRQ;
+        String userRQ = "";
+        while (true) {
+            try {
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                userRQ = Console.readLine();
+                if (!(userRQ.equals("R") || userRQ.equals("Q"))) {
+                    throw new IllegalArgumentException("[ERROR] 유효하지 않은 값입니다.");
+                }
+                return userRQ;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
