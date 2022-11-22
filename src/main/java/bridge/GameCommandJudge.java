@@ -1,8 +1,8 @@
 package bridge;
 
 public class GameCommandJudge {
-    private String retry = "R";
-    private String quit = "Q";
+    private static String retry = "R";
+    private static String quit = "Q";
 
     public Boolean checkPlayerWantsRetrial(String gameCommand) {
         if (gameCommand.equals(retry)) {
