@@ -1,6 +1,9 @@
 package bridge.domain;
 
-import bridge.domain.constants.BridgeConstants;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_COMMAND_RETRY;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_FAIL;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_SUCCESS;
+
 import bridge.domain.vo.BridgeMap;
 import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
@@ -45,7 +48,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(GameCommand gameCommand) {
-        if (gameCommand.equals(BridgeConstants.BRIDGE_GAME_COMMAND_RETRY)) {
+        if (gameCommand.equals(BRIDGE_GAME_COMMAND_RETRY)) {
             playerMap = new PlayerMap();
             isMoveSuccess = true;
             count++;
@@ -58,9 +61,9 @@ public class BridgeGame {
 
     public String getStatus() {
         if (isMoveSuccess) {
-            return BridgeConstants.BRIDGE_GAME_SUCCESS;
+            return BRIDGE_GAME_SUCCESS;
         }
-        return BridgeConstants.BRIDGE_GAME_FAIL;
+        return BRIDGE_GAME_FAIL;
     }
 
     public List<List> getPlayerMap() {

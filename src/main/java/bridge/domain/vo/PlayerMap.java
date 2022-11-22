@@ -1,6 +1,11 @@
 package bridge.domain.vo;
 
-import bridge.domain.constants.BridgeConstants;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_MOVING_BLANC;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_MOVING_DOWN;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_MOVING_FAIL;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_MOVING_SUCCESS;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_MOVING_UP;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,11 +29,11 @@ public class PlayerMap {
     }
 
     public void move(Moving moving, boolean value) {
-        if (moving.equals(BridgeConstants.BRIDGE_GAME_MOVING_UP)) {
-            addMap(getStatus(value), BridgeConstants.BRIDGE_GAME_MOVING_BLANC);
+        if (moving.equals(BRIDGE_GAME_MOVING_UP)) {
+            addMap(getStatus(value), BRIDGE_GAME_MOVING_BLANC);
         }
-        if (moving.equals(BridgeConstants.BRIDGE_GAME_MOVING_DOWN)) {
-            addMap(BridgeConstants.BRIDGE_GAME_MOVING_BLANC, getStatus(value));
+        if (moving.equals(BRIDGE_GAME_MOVING_DOWN)) {
+            addMap(BRIDGE_GAME_MOVING_BLANC, getStatus(value));
         }
     }
 
@@ -39,8 +44,8 @@ public class PlayerMap {
 
     private String getStatus(boolean value) {
         if (value) {
-            return BridgeConstants.BRIDGE_GAME_MOVING_SUCCESS;
+            return BRIDGE_GAME_MOVING_SUCCESS;
         }
-        return BridgeConstants.BRIDGE_GAME_MOVING_FAIL;
+        return BRIDGE_GAME_MOVING_FAIL;
     }
 }

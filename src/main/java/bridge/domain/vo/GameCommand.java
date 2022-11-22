@@ -1,6 +1,8 @@
 package bridge.domain.vo;
 
-import bridge.domain.constants.BridgeConstants;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_COMMAND_QUIT;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_GAME_COMMAND_RETRY;
+
 import bridge.domain.constants.ErrorCode;
 
 public class GameCommand {
@@ -17,8 +19,8 @@ public class GameCommand {
     }
 
     private void validateInput(String input) {
-        if (!(input.equals(BridgeConstants.BRIDGE_GAME_COMMAND_RETRY))
-                ^ (input.equals(BridgeConstants.BRIDGE_GAME_COMMAND_QUIT))) {
+        if (!(input.equals(BRIDGE_GAME_COMMAND_RETRY))
+                ^ (input.equals(BRIDGE_GAME_COMMAND_QUIT))) {
             throw ErrorCode.GAME_COMMAND_NOT_R_Q.getException();
         }
     }

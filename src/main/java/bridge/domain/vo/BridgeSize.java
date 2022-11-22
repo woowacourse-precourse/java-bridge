@@ -1,6 +1,8 @@
 package bridge.domain.vo;
 
-import bridge.domain.constants.BridgeConstants;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_SIZE_END;
+import static bridge.domain.constants.BridgeConstants.BRIDGE_SIZE_START;
+
 import bridge.domain.constants.ErrorCode;
 
 public class BridgeSize {
@@ -21,7 +23,7 @@ public class BridgeSize {
     }
 
     private void validSize(int size) {
-        if (size < BridgeConstants.BRIDGE_SIZE_START || size > BridgeConstants.BRIDGE_SIZE_END) {
+        if (size < BRIDGE_SIZE_START || size > BRIDGE_SIZE_END) {
             throw ErrorCode.SIZE_NOT_IN_RANGE.getException();
         }
     }
