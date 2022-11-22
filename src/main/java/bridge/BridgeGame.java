@@ -13,7 +13,7 @@ public class BridgeGame extends BridgeGameInit{
     }
 
     public String play() {
-//        System.out.println("bridge = " + bridge);
+        bridgeToString();
         for (int i=0; i < bridge.size(); i++) {
             String moveDir = inputView.readMoving();
             String gameResult = move(i,moveDir);

@@ -12,7 +12,6 @@ public class Application{
 
         newGame.startNewGame();
 
-
     }
 
 

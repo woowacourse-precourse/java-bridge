@@ -37,7 +37,7 @@ public class BridgeGameInit {
 
 
 
-
-
-
+    public void bridgeToString() {
+        System.out.println(bridge.toString());
+    }
 }
