@@ -38,4 +38,14 @@ class BridgeGameTest {
         assertEquals(List.of("[", " X ", "|"), bridgeGame.getDownBridge());
     }
 
+    @Test
+    void moveDownSuccessTest() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D", "U", "D"));
+        String direction = "D";
+
+        bridgeGame.move(direction);
+
+        assertEquals(List.of("[", " O ", "|"), bridgeGame.getDownBridge());
+    }
+
 }
