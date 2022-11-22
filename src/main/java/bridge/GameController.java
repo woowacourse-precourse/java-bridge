@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.enums.BridgeMove;
 import bridge.enums.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -34,11 +35,32 @@ public class GameController {
     }
 
     public void run() {
-        game.play();
+        playGameOnce();
         while ((!game.isCleared()) && (isWantRestart())) {
             game.retry();
+            playGameOnce();
         }
         outputView.printResult(game);
+    }
+
+    private void playGameOnce() {
+        while (!game.isCleared()) {
+            boolean isMoveSuccess = game.move(readMove());
+            outputView.printMap(game.getGameBridges());
+            if (!isMoveSuccess) {
+                return;
+            }
+        }
+    }
+
+    private BridgeMove readMove() {
+        while(true) {
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private boolean isWantRestart() {

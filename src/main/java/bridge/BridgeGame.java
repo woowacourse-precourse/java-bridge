@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.enums.BridgeMove;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -11,35 +9,12 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
     private final Bridges gameBridges;
     private int gameTryCount;
 
     public BridgeGame(List<String> bridges) {
         this.gameBridges = new Bridges(bridges);
-        this.gameTryCount = 0;
-    }
-
-    public void play() {
-        ++gameTryCount;
-        while (!this.isCleared()) {
-            boolean isMoveSuccess = move(readMove());
-            outputView.printMap(gameBridges);
-            if (!isMoveSuccess) {
-                return;
-            }
-        }
-    }
-
-    private BridgeMove readMove() {
-        while(true) {
-            try {
-                return inputView.readMoving();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        this.gameTryCount = 1;
     }
 
     /**
@@ -61,7 +36,7 @@ public class BridgeGame {
      */
     public void retry() {
         gameBridges.init();
-        play();
+        ++gameTryCount;
     }
 
     public boolean isCleared() {

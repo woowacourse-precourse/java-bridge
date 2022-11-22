@@ -16,6 +16,7 @@ public class Bridges {
     private final StringBuilder sb = new StringBuilder();
 
     public Bridges(List<String> inputBridges) {
+        validateBridgeSize(inputBridges);
         bridges = inputBridges.stream().map(BridgeMove::getEnum)
                 .collect(Collectors.toList());
     }
@@ -47,6 +48,13 @@ public class Bridges {
 
     public List<BridgeMove> getBridges() {
         return this.bridges;
+    }
+
+    private void validateBridgeSize(List<String> inputBridges) {
+        int size = inputBridges.size();
+        if(!((3 <= size) && (size <= 20))) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 
     @Override
