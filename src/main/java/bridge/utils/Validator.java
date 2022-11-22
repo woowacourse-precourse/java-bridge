@@ -1,13 +1,21 @@
 package bridge.utils;
 
 import bridge.view.InputView;
+import camp.nextstep.edu.missionutils.Console;
 
 public class Validator {
 
     public static String readGameCommand() {
-        String command = InputView.readGameCommand();
-        checkValueOfReadGameCommand(command);
-        return command;
+        while (true) {
+            try {
+                String command = InputView.readGameCommand();
+                checkValueOfReadGameCommand(command);
+                return command;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public static String readBridgeMove() {
@@ -30,6 +38,7 @@ public class Validator {
                 return Integer.parseInt(inputBridgeSize);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                Console.readLine();
             }
         }
     }
