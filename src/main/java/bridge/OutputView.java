@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
+    BridgeGame bridgeGame;
+    Boolean moved;
+
     public void printMap(BridgeGame bridgeGame, Boolean moved) {
+        this.bridgeGame = bridgeGame;
+        this.moved = moved;
         List<String> currentBridge = bridgeGame.getCurrentBridge();
         List<String> upperRow = convertUpperRow(currentBridge, moved);
         List<String> lowerRow = convertLowerRow(currentBridge, moved);
         System.out.println(addDelimiter(upperRow));
         System.out.println(addDelimiter(lowerRow));
+        System.out.println();
     }
 
     public List<String> convertUpperRow(List<String> currentBridge, Boolean moved) {
@@ -55,6 +61,10 @@ public class OutputView {
         return Constant.BRIDGE_START + String.join(Constant.BRIDGE_DELIMITER, row) + Constant.BRIDGE_END;
     }
 
-    public void printResult() {
+    public void printResult(String result, Integer attempt) {
+        System.out.println(Constant.PRINT_RESULT);
+        printMap(this.bridgeGame, this.moved);
+        System.out.println(Constant.GAME_RESULT + result);
+        System.out.println(Constant.ATTEMPT + attempt);
     }
 }
