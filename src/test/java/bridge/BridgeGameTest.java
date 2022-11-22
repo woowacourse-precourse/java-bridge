@@ -40,4 +40,16 @@ public class BridgeGameTest {
         bridgeGame.move("U");
         Assertions.assertEquals(bridgeGame.move("D"), 1);
     }
+
+    @DisplayName("사용자가 게임을 다시 시작하면 필드들을 초기화한다.")
+    @Test
+    public void retryBridgeGame() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        Assertions.assertEquals(bridgeGame.getUp(), "[ O |   |");
+        Assertions.assertEquals(bridgeGame.getDown(), "[   | X |");
+        bridgeGame.retry();
+        Assertions.assertEquals(bridgeGame.getUp(), "[");
+        Assertions.assertEquals(bridgeGame.getDown(), "[");
+    }
 }
