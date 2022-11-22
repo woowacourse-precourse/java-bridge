@@ -1,23 +1,77 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import java.util.List;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+public class BridgeGame {
+    public static final String CMD_UP = "U";
+    public static final String CMD_DOWN = "D";
+    public static final String CMD_RETRY = "R";
+    public static final String CMD_QUIT = "Q";
+
+    private List<String> bridge;
+    private int tryCount;
+    private int lastPosition;
+    private String lastCommand;
+
+    public BridgeGame() {
+        lastPosition = 0;
+        bridge = null;
+        tryCount = 1;
+        lastCommand = null;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void move(String command) {
+        lastPosition += 1;
+        lastCommand = command;
+    }
+
     public void retry() {
+        lastPosition = 0;
+        tryCount++;
+    }
+
+    public boolean isPlayerAlive() {
+        if (getLastPosition() == 0 || bridge.get(getLastIndex()).equals(lastCommand)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isSuccess() {
+        if (bridge.size() == getLastPosition() && bridge.get(getLastIndex()).equals(lastCommand)) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getGameResultToString() {
+        if (isSuccess()) {
+            return "성공";
+        }
+        return "실패";
+    }
+
+    public void initBridge(List<String> bridgeMap) {
+        bridge = bridgeMap;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public String getBridgeCell(int i) {
+        return bridge.get(i);
+    }
+
+    public int getLastPosition() {
+        return lastPosition;
+    }
+
+    public int getLastIndex() {
+        return lastPosition - 1;
+    }
+
+    public String getLastCommand() {
+        return lastCommand;
     }
 }
