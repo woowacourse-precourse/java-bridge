@@ -21,12 +21,25 @@ public class Application {
         // 이동 확인
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
-        for (int i=0; i<size; i++) {
-            // 이동할 칸 입력
+        int i = 0;
+        while (true) {
             String moving = inputView.readMoving();
+            boolean result = bridgeGame.move(bridge, moving, i);
 
-            boolean resultMove = bridgeGame.move(bridge, moving, i);
-            System.out.println(resultMove);
+            // 틀렸을 때, 종료
+            if (result == false) {
+                boolean retry = bridgeGame.retry();
+                if (retry == false) {
+                    break;
+                }
+                i = 0;
+            }
+
+            // 성공
+            if (i == size) {
+                break;
+            }
+            i++;
         }
     }
 }

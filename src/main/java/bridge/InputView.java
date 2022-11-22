@@ -50,6 +50,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String inputString = camp.nextstep.edu.missionutils.Console.readLine();
+
+        return checkGameCommand(inputString);
+    }
+
+    public String checkGameCommand(String inputString) {
+        if (inputString.equals("R") || inputString.equals("Q")) {
+            return inputString;
+        }
+        throw new IllegalArgumentException("[ERROR] 다시 시도 여부는 R이나 Q여야 합니다.");
     }
 }
