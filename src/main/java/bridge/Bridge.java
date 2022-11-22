@@ -9,7 +9,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-//    public boolean isCorrect(Player player, String direction){
-//        return bridge[player.getPosition()].equals(direction);
-//    }
+    public boolean isCorrect(int position, Direction direction) {
+        return bridge.get(position).equals(direction.name());
+    }
 }

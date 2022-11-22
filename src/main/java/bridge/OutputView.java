@@ -31,11 +31,11 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printInputRequestMessage(){
+    public void printInputLengthRequestMessage() {
         System.out.println(LENGTH_INPUT_REQUEST_MESSAGE);
     }
 
-    public void printGameStart(){
+    public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
     }
 }

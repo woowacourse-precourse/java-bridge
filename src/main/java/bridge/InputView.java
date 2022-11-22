@@ -10,24 +10,22 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws NumberFormatException {
+    public int readBridgeSize() {
         String readLine = Console.readLine();
-        int size = Integer.parseInt(readLine);
-        if (!correctBridgeSize(size)) {
-            throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 숫자를 입력하세요");
+        try {
+            int size = Integer.parseInt(readLine);
+            return size;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
-        return size;
     }
 
-    private boolean correctBridgeSize(int size) {
-        return size >= 3 && size <= 20;
-    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        return Console.readLine();
     }
 
     /**

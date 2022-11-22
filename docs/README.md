@@ -28,13 +28,11 @@
     - [x] 생성된 문자열로 생성한다.
   - [x] BridgeGame
     - [x] Bridge를 입력받아 생성된다.
-  - [ ] OutputView와 협력하여 다음 칸을 입력받는 메시지를 출력한다.
-  - [ ] InputView와 협력하여 다음 칸을 입력받는다.
-    - [ ] Player
-      - [ ] 정답유무 배열과 현재 칸을 저장함
-  - [ ] BridgeGame
-    - [ ] Bridge
-      - [ ] Player를 입력받아 Bridge 클래스에서 정답과 비교 후 boolean 반환
+  - [x] OutputView와 협력하여 다음 칸을 입력받는 메시지를 출력한다.
+  - [x] InputView와 협력하여 다음 칸을 입력받는다.
+  - [x] BridgeGame
+    - [x] Bridge
+      - [x] 다음 칸을 전달받아 정답과 비교 후 boolean 반환
   - [ ] OutputView와 협력하여 현재 다리의 현황을 출력합니다.
     - [ ] 맞춘 부분 O 틀린부분 X
   - [ ] 틀렸을 때 재시도를 요청하는 메세지를 출력합니다.
