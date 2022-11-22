@@ -22,31 +22,27 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         do {
             playGame(bridge);
-        } while (!bridgeGame.isClear() && !bridgeGame.isQuitGame()) ;
-        outputView.printResult(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), bridgeGame);
+        } while (!bridgeGame.isGameClear() && !bridgeGame.isQuitGame());
+        outputView.printResult(bridgeGame);
     }
 
     public void playGame(List<String> bridge) {
         for (int index = 0; index < bridge.size(); index++) {
-            String moving = inputView.readMoving();
-            boolean canMove = bridgeGame.move(bridge, index, moving);
+            boolean canMove = bridgeGame.move(bridge, index, inputView.readMoving());
             outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
-            if(restartOrPlayGame(canMove)) {
+            if (!canMove) {
+                restartOrPlayGame();
                 break;
             }
         }
     }
 
-    public boolean restartOrPlayGame(boolean canMove) {
-        if (!canMove) {
-            String gameCommand = inputView.readGameCommand();
-            if (gameCommand.equals("Q")) {
-                bridgeGame.quit();
-                return true;
-            }
-            bridgeGame.retry();
-            return true;
+    public void restartOrPlayGame() {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("Q")) {
+            bridgeGame.quit();
+            return;
         }
-        return false;
+        bridgeGame.retry();
     }
 }
