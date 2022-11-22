@@ -1,4 +1,4 @@
-package bridge.domain.maker;
+package bridge;
 
 import static bridge.constant.Direction.LOWER;
 import static bridge.constant.Direction.UPPER;
@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.constant.Direction;
 
 class BridgeMakerTest {
