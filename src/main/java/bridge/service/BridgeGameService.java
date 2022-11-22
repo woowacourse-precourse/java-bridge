@@ -18,4 +18,8 @@ public class BridgeGameService {
         BridgeGameAnswer gameAnswer = new BridgeGameAnswer(bridge);
         this.bridgeGame = new BridgeGame(gameAnswer);
     }
+
+    public boolean isRunning() {
+        return bridgeGame.isRunning();
+    }
 }

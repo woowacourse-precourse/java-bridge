@@ -38,4 +38,8 @@ public class BridgeGame {
     public void retry() {
         this.gameStatus = BridgeGameStatus.gameRestart();
     }
+
+    public boolean isRunning() {
+        return gameStatus.isRunning();
+    }
 }
