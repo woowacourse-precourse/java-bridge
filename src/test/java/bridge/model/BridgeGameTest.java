@@ -41,10 +41,8 @@ class BridgeGameTest {
         bridgeGame.getRecordByMove("U");
 
         Boolean isFail = bridgeGame.isFail();
-        Boolean isPass = bridgeGame.isPass();
 
         Assertions.assertThat(isFail).isFalse();
-        Assertions.assertThat(isPass).isTrue();
     }
 
     @DisplayName("남은 라운드가 있는 지 판단한다.")

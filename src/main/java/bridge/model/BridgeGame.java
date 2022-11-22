@@ -64,10 +64,6 @@ public class BridgeGame {
         return isFail;
     }
 
-    public Boolean isPass() {
-        return !isFail();
-    }
-
     public Boolean isRoundLeft() {
         int currentRoundNumber = bridge.getCurrentRoundNumber();
         return bridge.isRoundLeft(currentRoundNumber);

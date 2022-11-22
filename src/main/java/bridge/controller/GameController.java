@@ -60,11 +60,11 @@ public class GameController {
     }
 
     private boolean isFail() {
-        if (bridgeGame.isPass()) {
-            return false;
+        if (bridgeGame.isFail()) {
+            isRestartOrQuit();
+            return true;
         }
-        isRestartOrQuit();
-        return true;
+        return false;
     }
 
     private void isRestartOrQuit() {
