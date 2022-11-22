@@ -22,7 +22,7 @@ public class UserTest {
         int round = user.getRound();
         user.playNextRound();
         assertThat(user.getRound()).isEqualTo(round + 1)
-                .isEqualTo(2);
+                .isEqualTo(1);
     }
 
     @DisplayName("다음 라운드를 진행하면 시도 횟수는 변하지 않는다.")
@@ -48,7 +48,7 @@ public class UserTest {
         int round = user.getRound();
         user.playSameRoundAgain();
         assertThat(user.getRound()).isEqualTo(round - 1)
-                .isEqualTo(1);
+                .isEqualTo(0);
     }
 
     @DisplayName("같은 라운드를 다시 진행하면 시도 횟수가 1 증가한다.")
