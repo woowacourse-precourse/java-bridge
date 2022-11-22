@@ -2,9 +2,6 @@ package bridge.service;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
-import bridge.dto.BridgeCorrectLocationDto;
-import bridge.dto.BridgeDto;
-import bridge.dto.PlayerBridgeSizeDto;
 import bridge.exception.InputException;
 
 import java.util.List;
@@ -33,7 +30,8 @@ public class PlayerSetting {
     }
 
     public List<String> getPlayerBridge() {
-        return BridgeDto.from(player).getBridge();
+        return player.getBridge();
+//        return BridgeDto.from(player).getBridge();
     }
 
     public String getBridgeCorrectLocation(int location) {
