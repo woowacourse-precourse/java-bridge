@@ -8,13 +8,10 @@ public class Application {
     }
 
     public static void gameStart() {
-        int size = getBridgeSize();
+        printStartMessage();
         InputView inputView = new InputView();
-        inputView.readBridgeSize(size);
-
-        BridgeRandomNumberGenerator gen = new BridgeRandomNumberGenerator();
-        BridgeMaker bm = new BridgeMaker(gen);
-        System.out.println(bm.makeBridge(size));
+        BridgeMaker bm = new BridgeMaker(new BridgeRandomNumberGenerator());
+        System.out.println(bm.makeBridge(inputView.bridge_size));
 
     }
 
@@ -22,10 +19,5 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
         System.out.println("다리의 길이를 입력해주세요.");
-    }
-    public static int getBridgeSize(){
-        printStartMessage();
-        int size = Integer.valueOf(Console.readLine());
-        return size;
     }
 }
