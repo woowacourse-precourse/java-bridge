@@ -6,7 +6,7 @@ public class ReInput {
 
     public int reGetBridgeLength() {
         try {
-            return inputView.getBridgeLength();
+            return inputView.readBridgeSize();
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return reGetBridgeLength();
@@ -15,7 +15,7 @@ public class ReInput {
 
     public String reGetMoveString() {
         try {
-            return inputView.getMoveString();
+            return inputView.readMoving();
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return reGetMoveString();
@@ -24,7 +24,7 @@ public class ReInput {
 
     public static String reGetExitOrRestart() {
         try {
-            return inputView.getExitOrRestart();
+            return inputView.readGameCommand();
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return reGetExitOrRestart();

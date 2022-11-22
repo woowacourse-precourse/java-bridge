@@ -19,7 +19,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int getBridgeLength() {
+    public int readBridgeSize() {
         printStartGame();
         System.out.println(INPUT_BRIDGE_LENGTH.getValue());
         String inputBridgeLength = Console.readLine();
@@ -32,7 +32,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String getMoveString() {
+    public String readMoving() {
         System.out.println(MOVE.getValue());
         String inputUpOrDown = Console.readLine();
         if (!(inputUpOrDown.equals(UP.getName()) || inputUpOrDown.equals(DOWN.getName()))) {
@@ -44,7 +44,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String getExitOrRestart() {
+    public String readGameCommand() {
         System.out.println(RESTART_OF_END.getValue());
         String exitOrRestart = Console.readLine();
         if (!(exitOrRestart.equals(EXIT) || exitOrRestart.equals(RESTART))) {

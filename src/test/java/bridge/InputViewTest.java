@@ -27,7 +27,7 @@ class InputViewTest {
             InputStream in = new ByteArrayInputStream(input.getBytes());
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
-                    inputView.getBridgeLength());
+                    inputView.readBridgeSize());
             assertEquals(ER_BRIDGE_LENGTH_INPUT.getMessage(), illegalArgumentException.getMessage());
         }
 
@@ -39,7 +39,7 @@ class InputViewTest {
             InputStream in = new ByteArrayInputStream(input.getBytes());
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
-                    inputView.getBridgeLength());
+                    inputView.readBridgeSize());
             assertEquals(ER_BRIDGE_LENGTH_INPUT.getMessage(), illegalArgumentException.getMessage());
         }
     }
@@ -55,7 +55,7 @@ class InputViewTest {
             InputStream in = new ByteArrayInputStream(input.getBytes());
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
-                    inputView.getMoveString());
+                    inputView.readMoving());
             assertEquals(ER_NOT_UP_OR_DOWN.getMessage(), illegalArgumentException.getMessage());
         }
 
@@ -67,7 +67,7 @@ class InputViewTest {
             InputStream in = new ByteArrayInputStream(input.getBytes());
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
-                    inputView.getMoveString());
+                    inputView.readMoving());
             assertEquals(ER_NOT_UP_OR_DOWN.getMessage(), illegalArgumentException.getMessage());
         }
     }
@@ -83,7 +83,7 @@ class InputViewTest {
             InputStream in = new ByteArrayInputStream(input.getBytes());
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
-                    inputView.getExitOrRestart());
+                    inputView.readGameCommand());
             assertEquals(ER_NOT_Q_OR_R.getMessage(), illegalArgumentException.getMessage());
         }
 
@@ -95,7 +95,7 @@ class InputViewTest {
             InputStream in = new ByteArrayInputStream(input.getBytes());
             System.setIn(in);
             IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () ->
-                    inputView.getExitOrRestart());
+                    inputView.readGameCommand());
             assertEquals(ER_NOT_Q_OR_R.getMessage(), illegalArgumentException.getMessage());
         }
     }
