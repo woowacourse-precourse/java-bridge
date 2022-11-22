@@ -33,4 +33,12 @@ public class Validator {
 
         return step;
     }
+
+    public String validateRetryCommand(String command) {
+        if (!command.equals("R") && !command.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시작 여부로 재시도: R, 종료: Q를 입력해주세요.");
+        }
+
+        return command;
+    }
 }

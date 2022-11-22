@@ -64,9 +64,22 @@ public class BridgeController {
         return bridgeSize;
     }
 
-    public String getWantToRetry() {
-        outputView.printAskForRetry();
-        return inputView.readGameCommand();
+    public String getRetryCommand() {
+        String command = null;
+        return getValidRetryCommand(command);
+    }
+
+    private String getValidRetryCommand(String command) {
+        while (command == null) {
+            outputView.printAskForRetry();
+            try {
+                command = inputView.readGameCommand();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+
+        return command;
     }
 
     private String getStep() {

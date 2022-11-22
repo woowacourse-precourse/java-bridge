@@ -28,7 +28,7 @@ public class BridgeGame {
         }
 
         if (!isFinished(player)) {
-            String retryCommand = bridgeController.getWantToRetry();
+            String retryCommand = bridgeController.getRetryCommand();
             retry(player, retryCommand);
         }
     }
