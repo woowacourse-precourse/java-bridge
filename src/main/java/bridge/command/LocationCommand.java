@@ -24,6 +24,14 @@ public enum LocationCommand {
         throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_MAKE_INPUT_ERROR);
     }
 
+    public static boolean isUpDirection(String userInput) {
+        return Up.direction.equals(userInput);
+    }
+
+    public static boolean isDownDirection(String userInput) {
+        return Down.direction.equals(userInput);
+    }
+
     public String getDirection() {
         return direction;
     }
