@@ -82,4 +82,8 @@ public class BridgeGame {
         gameCount++;
         status.reset();
     }
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge;
+    }
 }
