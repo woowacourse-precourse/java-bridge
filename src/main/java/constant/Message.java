@@ -1,8 +1,5 @@
 package constant;
 
-/*
- ** Enum으로 수정해볼 것
- */
 public class Message {
 
     public static final String UP = "U";
