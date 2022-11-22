@@ -1,6 +1,8 @@
 package bridge.exception;
 
+import bridge.data.Command;
 import bridge.data.Error;
+import bridge.data.Moving;
 
 public class InputValidator {
 
@@ -15,13 +17,13 @@ public class InputValidator {
     }
 
     public static void validateCorrectMovingCommand(String moving) {
-        if (!moving.equals("U") && !moving.equals("D")) {
+        if (!moving.equals(Moving.UP.getLabel()) && !moving.equals(Moving.DOWN.getLabel())) {
             throw new IllegalArgumentException(Error.INVALID_MOVING_COMMAND_MESSAGE.getMessage());
         }
     }
 
     public static void validateCorrectRetryCommand(String retry) {
-        if (!retry.equals("R") && !retry.equals("Q")) {
+        if (!retry.equals(Command.RETRY.getLabel()) && !retry.equals(Command.QUIT.getLabel())) {
             throw new IllegalArgumentException(Error.INVALID_RETRY_COMMAND_MESSAGE.getMessage());
         }
     }
