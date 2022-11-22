@@ -13,12 +13,12 @@ public class MoveRequest {
     }
 
     private void validate(String move) {
-        if (!isValid()) {
+        if (!isValid(move)) {
             throw new IllegalArgumentException("이동시 입력값은 U, D 만 가능합니다.");
         }
     }
 
-    private boolean isValid() {
+    private boolean isValid(String move) {
         return move.equals(MOVE_UP) || move.equals(MOVE_DOWN);
     }
 
