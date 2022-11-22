@@ -1,7 +1,6 @@
 package bridge.util;
 
 import bridge.Lang;
-
 import java.util.List;
 
 public class Validator {

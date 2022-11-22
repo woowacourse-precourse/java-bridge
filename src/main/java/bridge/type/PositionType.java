@@ -1,7 +1,6 @@
 package bridge.type;
 
 import bridge.Env;
-
 import java.util.Arrays;
 
 public enum PositionType {

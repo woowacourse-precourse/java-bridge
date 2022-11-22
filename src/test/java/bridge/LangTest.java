@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LangTest {
-
     @Test
     void 문자열_변환() {
         assertThat(Lang.HELLO_WORLD.toString()).isEqualTo("안녕 세계 %s");

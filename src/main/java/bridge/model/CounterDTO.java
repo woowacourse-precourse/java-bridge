@@ -1,8 +1,5 @@
 package bridge.model;
 
-import bridge.type.GlassType;
-import bridge.type.PositionType;
-
 public class CounterDTO {
     private final String name;
     private int value;
