@@ -10,6 +10,13 @@ public enum Code {
         this.message = message;
     }
 
+    public static Code of(Long failCount) {
+        if (failCount == 0) {
+            return SUCCESS;
+        }
+        return FAILURE;
+    }
+
     @Override
     public String toString() {
         return message;
