@@ -7,11 +7,13 @@ import view.OutputView;
 
 public class Application {
 
-    private static BridgeGame game = new BridgeGame();
+//    private static BridgeGame game = new BridgeGame();
+    private static BridgeGame game;
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
+        game = new BridgeGame();
         try {
             outputView.printGameStartMessage();
             start();
