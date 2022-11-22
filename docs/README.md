@@ -12,3 +12,13 @@
 4. 해당 선택에 따른 반복 또는 종료
 
 
+
+# 게임 작동 기능
+
+1. BridgeGame - 게임 내 기능을 담당한다. 캐릭터 이동,이동한 다리 저장,게임 종료 등
+2. BridgeNumberGenerator - 다리 자동 생성을 도와주는 인터페이스
+3. BridgeRandomNumber - 다리 자동 생성 인터페이스를 구현한 클래스. 이 클래스를 통해 0,1로 이뤄진 다리를 생성할 수 있는 기능을 가진다.
+4. BridgeMaker - BridgeRandomNumber를 직접 사용하여 다리 객체를 구현한다.
+5. GameStart - 위에서 나열한 BridgeGame과 BridgeMaker 기능을 가져 하나의 게임 실행을 도와준다.
+6. InputView - 게임 진행 시, 입력 기능을 따로 모아둔다.
+7. OutputView - 게임 진행시, 출력 기능을 따로 모아둔다.
