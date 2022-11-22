@@ -17,7 +17,7 @@ public class Application {
         BridgeGameService bridgeGameService = new BridgeGameService();
         bridgeGameService.startBridgeGame();
         try {
-            bridgeSize = input.readBridgeSize(); // 다리의 길이 입력
+            bridgeSize = Integer.parseInt(input.readBridgeSize()); // 다리의 길이 입력
             bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             crossByBridge = bridgeMaker.makeBridge(bridgeSize); // 다리 만들기
             bridgeGameService = new BridgeGameService(crossByBridge);
