@@ -34,16 +34,17 @@ public class BridgeController {
     }
     public boolean restartCheck(){
         String restartCommand=inputView.readGameCommand();
+        return restartComDivide(restartCommand);
+    }
+    public boolean restartComDivide(String restartCommand){
         if (restartCommand.equals("R")){
             outputView = new OutputView();
             bridgeGame.retry();
-            return true;
-        }
+            return true; }
         if (restartCommand.equals("Q")) {
             System.out.println("게임 성공 여부: 실패");
             outputView.printResult(bridgeGame);
-            return false;
-        }
+            return false; }
         throw new IllegalArgumentException("[ERROR] R / Q 로 입력해주세요");
     }
 }

@@ -8,8 +8,7 @@ public class Application {
         try {
             BridgeController bridgeController = new BridgeController();
             BridgeGame bridgeGame = bridgeController.doBridgeMake();
-            while (true) if(!bridgeController.doBridgeMove(bridgeGame)) break;
-
+            while (bridgeController.doBridgeMove(bridgeGame)) ;
         }catch (Exception e){
             System.out.println(e);
         }

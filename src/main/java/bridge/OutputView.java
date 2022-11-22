@@ -22,7 +22,6 @@ public class OutputView {
     }
 
     public boolean printMap(BirdgeMoveType isPossibleMove,InputView inputView,BridgeGame bridgeGame) {
-
         checkIndex(isPossibleMove);
 
         printMapDetail(mapList);
@@ -37,7 +36,6 @@ public class OutputView {
         System.out.println("\n");
     }
     public List<ArrayList<String>> checkIndex(BirdgeMoveType whereMove){
-
         if(whereMove.getIndex()==0){
             mapList.get(whereMove.getIndex()).add("| "+whereMove.getCode()+" ");
             mapList.get(whereMove.getIndex()+1).add("|   ");
@@ -51,6 +49,7 @@ public class OutputView {
         List<String> result=new ArrayList<>();
         for (List<String> map: mapView) {
             String resultText="";
+
             for (String mapText: map) { resultText+=mapText; }
             String formatString="["+resultText.substring(1)+"]";
             result.add(formatString);
@@ -67,7 +66,6 @@ public class OutputView {
         System.out.println(String.format("총 시도한 횟수: %d",bridgeGame.getTryCount()));
     }
     public boolean checkPrintResult(InputView inputView,BridgeGame bridgeGame,BirdgeMoveType isPossibleMove){
-
         if(inputView.checkBridgeSize(mapList.get(0).size())&&isPossibleMove.getCode().equals("O")){
             printLastResult();
             System.out.println("게임 성공 여부: 성공");

@@ -19,7 +19,6 @@ public class InputView {
         try {
             bridgeSize = Integer.parseInt(Console.readLine());
         }catch (NumberFormatException e){
-//            System.out.println("[ERROR] 숫자를 입력하세요.");
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
         validateBridgeSize(bridgeSize);
@@ -28,7 +27,6 @@ public class InputView {
 
     public void validateBridgeSize(int checkNum){
         if (BRIDGE_SIZE_MIN > checkNum || checkNum > BRIDGE_SIZE_MAX){
-//            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
@@ -41,7 +39,6 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String writeMoving = Console.readLine();
         if (!writeMoving.equals("U")&&!writeMoving.equals("D")){
-//            System.out.println("[ERROR] U / D 로 입력해주세요");
             throw new IllegalArgumentException("[ERROR] U / D 로 입력해주세요");
         }
         return writeMoving;
@@ -54,7 +51,6 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String writeRestart = Console.readLine();
         if (!writeRestart.equals("R")&&!writeRestart.equals("Q")){
-//            System.out.println("[ERROR] R / Q 로 입력해주세요");
             throw new IllegalArgumentException("[ERROR] R / Q 로 입력해주세요");
         }
         return writeRestart;
