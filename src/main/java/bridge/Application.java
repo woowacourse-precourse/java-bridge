@@ -22,36 +22,33 @@ public class Application {
             createBridge();
 
             Route route = new Route();
-            while (state != GameState.QUIT) {
-                goToNextSpace(route);
-                state = GameState.QUIT;
-            }
-
-
-            // 게임
-            /*
             int tryCount = 1;
             String result = "실패";
-            while(state != GameState.QUIT) {
+            while (state != GameState.QUIT) {
+
                 if(state == GameState.RESTART) {
+                    route = new Route();
                     tryCount++;
+                    state = GameState.START;
                 }
 
-                goToNextSpace();
+                boolean success = goToNextSpace(route);
 
-                if(state == GameState.INCORRECT) {
+                if(!success) {
                     chooseGameContinue();
                 }
 
-                if(spaceNum == bridgeSize && state == GameState.CORRECT) {
-                    state = GameState.QUIT;
+                if(route.gameSuccess(bridge.size())) {
                     result = "성공";
+                    state = GameState.QUIT;
+                }
+
+                if(state == GameState.QUIT) {
+                    output.printFinalResult(route);
                 }
             }
 
-             */
-
-//            output.printResult(result, tryCount);
+            output.printResult(result, tryCount);
         } catch (IllegalArgumentException e) {
             System.out.printf("[ERROR] %s", e.getMessage());
         }
@@ -80,12 +77,7 @@ public class Application {
     private static void chooseGameContinue() {
         output.printChoseRetryInputRequestMessage();
         String gameCommand = input.readGameCommand();
-        boolean restart = game.retry(gameCommand);
-        if (restart) {
-            state = GameState.RESTART;
-//            spaceNum = 0;
-            return;
-        }
-        state = GameState.QUIT;
+
+        state = game.retry(gameCommand);
     }
 }

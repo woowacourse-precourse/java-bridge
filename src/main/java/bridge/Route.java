@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Route {
-    private List<String> up = new ArrayList<>();
-    private List<String> down = new ArrayList<>();
-    private int size = 0;
+    private List<String> up;
+    private List<String> down;
+    private String result;
+    private int size;
 
-    public Route() {}
+    public Route() {
+        this.up = new ArrayList<>();
+        this.down = new ArrayList<>();
+        this.result = "";
+        this.size = 0;
+    }
 
     public void goToNextBlock(String nextRoute, List<String> bridge) {
         result = compareRoute(nextRoute, bridge.get(size));
