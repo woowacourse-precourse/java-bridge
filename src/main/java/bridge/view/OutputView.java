@@ -11,6 +11,7 @@ public class OutputView {
 
     public void printGameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        printBlank();
     }
 
     public void printAskForBridgeSize() {
@@ -32,6 +33,7 @@ public class OutputView {
     public void printMap(Player player) {
         System.out.println(String.format("[ %s ]", String.join(" | ", player.getUpperFootPrint())));
         System.out.println(String.format("[ %s ]", String.join(" | ", player.getLowerFootPrint())));
+        printBlank();
     }
 
     /**
@@ -43,7 +45,6 @@ public class OutputView {
     public void printResult(Player player) {
         System.out.println("최종 게임 결과");
         printMap(player);
-        printBlank();
         printGameSuccess(player);
         printTrials(player);
     }
