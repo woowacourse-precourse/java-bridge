@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class InputExceptionTest extends NsTest {
 
     @DisplayName("다리 길이 공백 입력 테스트")
-    @ValueSource(strings = {" ", "\n"})
+    @ValueSource(strings = {" ", "      "})
     @ParameterizedTest
     void createBlankBridgeSize(String input) {
         assertSimpleTest(() -> {
@@ -43,7 +43,7 @@ public class InputExceptionTest extends NsTest {
     }
 
     @DisplayName("플레이어 이동 공백인지 확인하는 테스트")
-    @ValueSource(strings = {" ", "\n"})
+    @ValueSource(strings = {" ", "     "})
     @ParameterizedTest
     void createBlankUserMove(String input) {
         assertSimpleTest(() -> {
@@ -63,7 +63,7 @@ public class InputExceptionTest extends NsTest {
     }
 
     @DisplayName("게임 재시작/종료 여부 공백 입력 테스트")
-    @ValueSource(strings = {" ", "\n"})
+    @ValueSource(strings = {" ", "    "})
     @ParameterizedTest
     void createBlankGameCommand(String input) {
         assertRandomNumberInRangeTest(() -> {
