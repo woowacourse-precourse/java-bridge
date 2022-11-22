@@ -64,4 +64,10 @@ public class BridgeProgram {
 		}
 		return true;
 	}
+
+	public void setNumber() {
+		clearList();
+		stack = 0;
+		count++;
+	}
 }
