@@ -44,7 +44,7 @@ public class BridgeGame {
     }
 
     public boolean getSuccess() {
-
+        return status.isSuccess();
     }
 
     public String convertBridge() {
