@@ -16,8 +16,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        BridgeException bridgeException;
         System.out.println(Bridge_Size.getMessage());
+        BridgeException bridgeException;
         try{
             bridgeException = new BridgeException(readLine());
         } catch (Exception e) {
@@ -31,7 +31,12 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(Moving.getMessage());
-        MovingException movingException = new MovingException(readLine());
+        MovingException movingException;
+        try{
+            movingException = new MovingException(readLine());
+        } catch (Exception e) {
+            movingException = new MovingException(readLine());
+        }
         return movingException.getMoving();
     }
 
@@ -40,7 +45,12 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(Restarting.getMessage());
-        GameRestartingException gameRestartingException = new GameRestartingException(readLine());
+        GameRestartingException gameRestartingException;
+        try{
+            gameRestartingException = new GameRestartingException(readLine());
+        } catch (Exception e) {
+            gameRestartingException  = new GameRestartingException(readLine());
+        }
         return gameRestartingException.getRestarting();
     }
 }
