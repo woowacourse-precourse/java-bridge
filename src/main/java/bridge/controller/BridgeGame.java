@@ -77,9 +77,29 @@ public class BridgeGame {
         }
     }
     public void retryOrEnd() {
+        view.printRestartMassage();
+        try {
+            String command = view.readGameCommand();
+            if (command.equals("Q")) {
+                end();
+                return;
+            }
+            if (command.equals("R")) {
+                retry();
+                return;
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            retryOrEnd();
+        }
     }
 
     public void end() {
+        view.printEndMassage();
+        List<List<String>> map = domain.getMap();
+        boolean result = domain.isGameSuccess();
+        int tryCount = domain.getTryCount();
+        view.printGameResult(map, result, tryCount);
     }
 
     /**
