@@ -34,7 +34,7 @@ public class BridgeGame {
             firstResult(upSide.get(index), downSide.get(index));
         }
         if(index > 0){
-            restResult(upSide, downSide);
+            restResult();
         }
     }
 
@@ -93,21 +93,20 @@ public class BridgeGame {
         }
     }
 
-    private void restResult(List<String> upSide, List<String> downSide) {
+    private void restResult() {
         String checkRestart = "";
-        extractBracket(upSide, downSide);
+        extractBracket();
         orderView.lineSkip();
         if(!checkRestResult(upSide, downSide)){
             orderView.checkAnswerIndex = 1;
             System.out.println();
-            extractBracket(upSide,downSide);
             System.out.println(orderView.EXIT_OR_CONTINUE);
             checkRestart = orderView.continueOrExit();
+            checkRestartOrQuit(checkRestart);
         }
-        checkRestartOrQuit(checkRestart);
     }
 
-    private void extractBracket(List<String> upSide, List<String> downSide) {
+    private void extractBracket() {
         System.out.print(changeToBracket(upSide));
         orderView.lineSkip();
         System.out.print(changeToBracket(downSide));
