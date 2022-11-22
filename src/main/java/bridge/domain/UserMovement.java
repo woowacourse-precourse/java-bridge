@@ -7,7 +7,15 @@ import java.util.List;
  * 유저 이동 정보와 관련 메서드
  */
 public class UserMovement {
-    private List<String> userMovement = new ArrayList<>();
+    private List<String> userMovement;
+
+    public UserMovement() {
+        userMovement = new ArrayList<>();
+    }
+
+    public UserMovement(List<String> movement) {
+        userMovement = movement;
+    }
 
     /**
      * 유저 움직임 추가한다.
