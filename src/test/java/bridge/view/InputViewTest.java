@@ -34,4 +34,22 @@ public class InputViewTest {
         int bridgeSize = inputView.readBridgeSize();
         assertThat(bridgeSize).isEqualTo(5);
     }
+
+    @Test
+    void readMovingByCorrect() {
+        InputView inputView = new InputView();
+        InputStream in = generateUserInput("U");
+        System.setIn(in);
+        String bridgeSize = inputView.readMoving();
+        assertThat(bridgeSize).isEqualTo("U");
+    }
+
+    @Test
+    void readGameCommandByCorrect() {
+        InputView inputView = new InputView();
+        InputStream in = generateUserInput("Q");
+        System.setIn(in);
+        String bridgeSize = inputView.readGameCommand();
+        assertThat(bridgeSize).isEqualTo("Q");
+    }
 }
