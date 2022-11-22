@@ -91,4 +91,8 @@ public class OutputView {
         System.out.println("\n게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + bridgeGame.getChallenge());
     }
+
+    public void printError() {
+        System.out.println(ExceptionView.message);
+    }
 }

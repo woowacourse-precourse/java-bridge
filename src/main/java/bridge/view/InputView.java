@@ -18,7 +18,7 @@ public class InputView {
     public int readBridgeSize() {
         int size = Utils.inputToNumber(Console.readLine());
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            ExceptionView.bridgeRangeError();
             throw new IllegalArgumentException();
         }
         return size;
@@ -30,7 +30,7 @@ public class InputView {
     public String readMoving() {
         String movePlace = Console.readLine();
         if (!movePlace.equals(Command.UPPER.getCommand()) && !movePlace.equals(Command.LOWER.getCommand())) {
-            System.out.println("[ERROR] U(위 칸)과 D(아래 칸) 중 하나를 선택하여야 합니다.");
+            ExceptionView.commandUpperOrLowerError();
             throw new IllegalArgumentException();
         }
         return movePlace;
@@ -47,7 +47,7 @@ public class InputView {
         } else if (command.equals(Command.QUIT.getCommand())) {
             return false;
         }
-        System.out.println("[ERROR] R(재시작)과 Q(종료) 중 하나를 선택하여야 합니다.");
+        ExceptionView.commandRestartOrNotError();
         throw new IllegalArgumentException();
     }
 }

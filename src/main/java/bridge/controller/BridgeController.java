@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.view.ExceptionView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,6 +18,7 @@ public class BridgeController {
             outputView.printRequestBridgeSize();
             return inputView.readBridgeSize();
         }catch (IllegalArgumentException e){
+            outputView.printError();
             return requestBridgeSize();
         }
     }
@@ -31,6 +33,7 @@ public class BridgeController {
             outputView.printRequestMove();
             return inputView.readMoving();
         }catch (IllegalArgumentException e){
+            outputView.printError();
             return requestMovingPoint();
         }
     }
@@ -40,6 +43,7 @@ public class BridgeController {
             outputView.printRequestGameCommand();
             return inputView.readGameCommand();
         }catch (IllegalArgumentException e){
+            outputView.printError();
             return requestRetry();
         }
     }
