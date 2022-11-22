@@ -7,17 +7,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static bridge.domain.exception.ErrorMessage.ERROR_BRIDGE_STATUS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeStatusTest {
 
-    @DisplayName("방향 키 + 다리 건널 수 있는지 여부 값으로 BridgeStatus 상수 참조 불가능 시 예외가 발생한다.")
+    @DisplayName("방향키 + 다리 건널 수 있는지 여부 값으로 BridgeStatus 상수 참조 불가능 시 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("illegalBridgeStatusValues")
     void validateReferabilityBridgeStatus(String moving, String mark) {
         assertThatThrownBy(() -> BridgeStatus.valueOfArrowAndMark(moving, mark))
-                .isInstanceOf(IllegalStateException.class);
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(ERROR_BRIDGE_STATUS);
     }
 
     private static Stream<Arguments> illegalBridgeStatusValues() {
