@@ -7,6 +7,8 @@ import bridge.identifiers.GameRetry;
 import bridge.views.InputView;
 import bridge.views.OutputView;
 
+import static bridge.exception.ExceptionCheckedFunction.retryWhenExceptionOrTryOnce;
+
 public class BridgeGameController {
 
     InputView inputView;
@@ -67,21 +69,4 @@ public class BridgeGameController {
                 bridgeGame.getIsSuccess()
         );
     }
-
-    private static void retryWhenExceptionOrTryOnce(OutputView outputView, Function function) {
-        while (true) {
-            try {
-                function.run();
-                break;
-            } catch (IllegalArgumentException | IllegalStateException exception) {
-                outputView.printErrorMessage(exception.getMessage());
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-}
-
-interface Function {
-    void run() throws InterruptedException;
 }
