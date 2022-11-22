@@ -7,20 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class GameControllerTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
-    @Test
-    void gameStart() {
-    }
-
-    @Test
-    void gameProgress() {
-    }
-
-    @Test
-    void gameRetry() {
-    }
-
     @Test
     void isValidBridgeNumber() {
         final String input = "qwo";
@@ -48,4 +34,5 @@ class GameControllerTest {
         final boolean instance = GameController.isValidBridgeRestart(input);
         assertFalse(instance);
     }
+
 }
