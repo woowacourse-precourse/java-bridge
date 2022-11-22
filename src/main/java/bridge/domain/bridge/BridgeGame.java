@@ -37,10 +37,7 @@ public class BridgeGame {
      */
     public boolean retry(String command) {
         player.setPlayerCommand(command);
-        if (command.equals("R")) {
-            return true;
-        }
-        return false;
+        return player.getPlayerCommand().getPlayerCommandType();
     }
     public Bridge getBridge(){
         return bridge;
