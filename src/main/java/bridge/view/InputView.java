@@ -48,7 +48,7 @@ public class InputView {
         try {
             ValidationUtil.isUpOrDown(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printMessage(e.getMessage());
             return "";
         }
         return input;
@@ -70,15 +70,19 @@ public class InputView {
         try {
             ValidationUtil.isRetryOrQuit(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printMessage(e.getMessage());
             return "";
         }
         return input;
     }
 
+    private static void printMessage(String message) {
+        System.out.println(message);
+    }
+
     private static void printMessage(ViewMessage... inputStartGame) {
         for (ViewMessage viewMessage : inputStartGame) {
-            System.out.println(viewMessage.getValue());
+            printMessage(viewMessage.getValue());
         }
     }
 }

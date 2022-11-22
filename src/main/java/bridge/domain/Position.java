@@ -12,16 +12,16 @@ public class Position {
         return ++position;
     }
 
-    void clear() {
-        this.position = -1;
+    int getPosition() {
+        return position;
     }
 
     void fail() {
         this.position = -2;
     }
 
-    int getPosition() {
-        return position;
+    void clear() {
+        this.position = -1;
     }
 
     boolean hasReachedToTheEnd() {

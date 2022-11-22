@@ -1,10 +1,11 @@
 package bridge.domain;
 
 import bridge.enums.Key;
-import bridge.util.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+// input과 output을 엮어주고, 게임을 진행하는 핵심 로직들을 호출
 public class GameManager {
 
     private final BridgeGame bridgeGame;
@@ -15,10 +16,7 @@ public class GameManager {
     }
 
     public void play() {
-        boolean status;
-        do {
-            status = moveForward();
-        } while (status && retryOrNot());
+        while (moveForward() && retryOrNot()) ;
 
         OutputView.printResult(bridgeGame);
     }
