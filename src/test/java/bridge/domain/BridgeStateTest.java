@@ -3,6 +3,7 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -41,5 +42,19 @@ class BridgeStateTest {
     void wrongOtherRound(String userInput, String output) {
         result.convertWrongResultAfterFirstRound(userInput);
         assertThat(result.getMap().toString()).isEqualTo(output);
+    }
+
+    @DisplayName("맵을 초기화 하면 맵은 [[ ], [ ]]이 된다,")
+    @Test
+    void initMap() {
+        // given
+        String userInput = "U";
+        result.convertCorrectResultAfterFirstRound(userInput);
+
+        // when
+        result.init();
+
+        // then
+        assertThat(result.getMap().toString()).isEqualTo("[[ ], [ ]]");
     }
 }
