@@ -33,6 +33,19 @@ public class Result {
         return map;
     }
 
+    public String toResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(toMap()).append("'\n");
+        if (isFinished()) {
+            stringBuilder.append("게임 성공 여부: 성공\n");
+            stringBuilder.append("총 시도한 횟수: ").append(this.tryCount);
+            return stringBuilder.toString();
+        }
+        stringBuilder.append("게임 성공 여부: 실패\n");
+        stringBuilder.append("총 시도한 횟수: ").append(this.tryCount);
+        return stringBuilder.toString();
+    }
+
     public void retry() {
         map.retry();
         tryCount++;
@@ -40,10 +53,5 @@ public class Result {
 
     public boolean isFinished() {
         return lastResultType.isFinished();
-    }
-
-    //getter 없이 살아남기 도전
-    public int getTryCount() {
-        return tryCount;
     }
 }
