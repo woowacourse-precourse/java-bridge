@@ -32,4 +32,9 @@ public class OutputView extends View {
     public void printStart() {
         print(LETS_START);
     }
+
+    @Override
+    public void printError(String errorMessage) {
+        super.printError(errorMessage);
+    }
 }
