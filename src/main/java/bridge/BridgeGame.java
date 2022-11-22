@@ -13,10 +13,9 @@ public class BridgeGame {
     private int tryCount = 1;
     private boolean quit = false;
 
-    public BridgeGame() {
+    private void startBridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        System.out.println(bridge);
     }
 
     /**
@@ -33,8 +32,8 @@ public class BridgeGame {
                 quit = true;
             }
         } else {
-            outputView.printMap(bridge, position+1, true);
             position++;
+            outputView.printMap(bridge, position, true);
         }
     }
 
@@ -48,11 +47,21 @@ public class BridgeGame {
         tryCount++;
     }
 
+    private void endBridgeGame(){
+        outputView.printEndMsg();
+        outputView.printMap(bridge, position, !quit);
+        if (quit == true) {
+            outputView.printResult("실패", tryCount);
+        } else {
+            outputView.printResult("성공", tryCount);
+        }
+    }
+
     public void run() {
+        startBridgeGame();
         while (position <= bridge.size()-1 && quit == false) {
-            System.out.println(position);
             move(bridge.get(position), inputView.readMoving());
         }
-        outputView.printResult();
+        endBridgeGame();
     }
 }
