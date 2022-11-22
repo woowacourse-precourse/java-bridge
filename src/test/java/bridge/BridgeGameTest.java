@@ -59,8 +59,18 @@ class BridgeGameTest {
 
 
     @Test
+    @DisplayName("2번 이동 후 retry 를 해서 Result 다시 확인하면 tryCount 가  2, 브릿지 인덱스 초기화 되어야한다.")
     void retry() {
-        //초기화후 Result 다시 확인해서 트라이카운터가 증가하는지 확인
+        //given
+        bridgeGame.move(MoveType.UP);
+        bridgeGame.move(MoveType.UP);
+        bridgeGame.retry();
+        //when
+        Result actual = bridgeGame.move(MoveType.UP);
+        //then
+        assertThat(actual.getTryCount()).isEqualTo(2);
+        assertTrue(actual.isSucceeded());
+        assertFalse(actual.isFinished());
 
     }
 
