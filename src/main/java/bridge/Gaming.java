@@ -16,8 +16,15 @@ public class Gaming {
     }
     /** 게임을 시작하는 기능 */
     public int startGame(){
-        gameLoop(0);
-        return 0;
+        if (gameLoop(0)){
+            new OutputView().printResult(true, this.upBridgeMap, this.DownBridgeMap, this.gameTryCount); return -1;
+        }
+        /** 건널 수 없는 칸으로 이동했을 시, 게임을 다시 시도할지 여부를 입력받는 기능 */
+        if(!new BridgeGame().retry(new InputView().readGameCommand())){
+            new OutputView().printResult(false, this.upBridgeMap, this.DownBridgeMap, this.gameTryCount); return -1;
+        }
+        gameTryCountUp();
+        return gameTryCount;
     }
     public boolean gameLoop(int count){
         /** 건널 수 있는 칸으로 이동했을 시, 다리를 끝까지 건넜는지 확인하는 기능 */
@@ -26,7 +33,7 @@ public class Gaming {
             boolean moveResult = new BridgeGame().move(bridge, count, new InputView().readMoving()); // 잘 움직였는지 결과 가져오고
             fillBridgeMap(count, moveResult); // 지도저장
             new OutputView().printMap(upBridgeMap, DownBridgeMap); count++; // 지도 출력
-            return false;
+            if (!moveResult) { new OutputView().printGetGameCommand(); return false;}
         }
         return true;
     }
@@ -49,6 +56,9 @@ public class Gaming {
         }
         this.upBridgeMap += " X "; this.DownBridgeMap += "   "; return true;
     }
-
+    /** 게임을 다시 시작할 시, 총 도전 카운트를 +1 하는 기능 */
+    private void gameTryCountUp(){
+        this.gameTryCount++;
+    }
 
 }
