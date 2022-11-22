@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.controller.BridgeGame;
 import bridge.model.BridgeMaker;
+import bridge.model.Player;
 import bridge.service.BridgeService;
 
 public class Application {
@@ -9,7 +10,8 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         BridgeService bridgeService = getBridgeService();
-        BridgeGame bridgeGame = new BridgeGame(bridgeService);
+        Player player = new Player();
+        BridgeGame bridgeGame = new BridgeGame(bridgeService, player);
 
         bridgeGame.startGame();
     }

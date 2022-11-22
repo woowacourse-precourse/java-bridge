@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeMaker;
+import bridge.model.Player;
 import bridge.service.BridgeService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,7 +17,7 @@ public class BridgeGameTest {
 
     @BeforeAll
     static void setBridgeGame() {
-        bridgeGame = new BridgeGame(new BridgeService(new BridgeMaker(new BridgeRandomNumberGenerator())));
+        bridgeGame = new BridgeGame(new BridgeService(new BridgeMaker(new BridgeRandomNumberGenerator())), new Player());
     }
 
     @ParameterizedTest

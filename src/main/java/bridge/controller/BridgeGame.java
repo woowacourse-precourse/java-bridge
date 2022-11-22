@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeMaker;
+import bridge.model.Player;
 import bridge.service.BridgeService;
 import bridge.util.OutputPharses;
 import bridge.view.InputView;
@@ -15,14 +16,16 @@ public class BridgeGame {
     private static final OutputView outputView = new OutputView();
 
     private final BridgeService bridgeService;
+    private final Player player;
 
     private Bridge bridge;
 
     int bridgeSize;
     int totalGameCount;
 
-    public BridgeGame(BridgeService bridgeService) {
+    public BridgeGame(BridgeService bridgeService, Player player) {
         this.bridgeService = bridgeService;
+        this.player = player;
     }
 
     /**
@@ -43,6 +46,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        bridgeService.move(bridge, player);
     }
 
     /**
@@ -57,6 +61,8 @@ public class BridgeGame {
         outputView.printGameStartInfo();
         setBridgeSize();
         setBridge(bridgeSize);
+
+
     }
 
     public void setBridgeSize() {

@@ -24,7 +24,7 @@ public class InputViewTest {
     @ParameterizedTest
     void userInputEmptyTest(String userInput) {
         assertThatThrownBy(()-> {
-            inputView.userInputEmptyException(userInput);
+            InputException.userInputEmptyException(userInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,7 +33,7 @@ public class InputViewTest {
     @ParameterizedTest
     void notNumberTest(String userInput) {
         assertThatThrownBy(()-> {
-            inputView.notNumberException(userInput);
+            InputException.notNumberException(userInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +42,7 @@ public class InputViewTest {
     @ParameterizedTest
     void outOfBridgeSizeTest(int userInput) {
         assertThatThrownBy(()-> {
-            inputView.outOfBridgeSizeException(userInput);
+            InputException.outOfBridgeSizeException(userInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
