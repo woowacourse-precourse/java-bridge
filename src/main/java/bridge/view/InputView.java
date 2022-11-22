@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.model.Command;
+import bridge.model.Move;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -9,10 +11,6 @@ public class InputView {
     private static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String ENTER_WHETHER_TO_TRY = "게임을 다시 시도할지 여부를 입력해주세요.";
     private static final String SELECT_A_SPACE_TO_MOVE = "이동할 칸을 선택해주세요.";
-    private static final String RETRY_GAME = "R";
-    private static final String QUIT_GAME = "Q";
-    private static final String MOVE_TO_UP = "U";
-    private static final String MOVE_TO_DOWN = "D";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -28,7 +26,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.printf("%s (위: %s, 아래: %s)%n", SELECT_A_SPACE_TO_MOVE, MOVE_TO_UP, MOVE_TO_DOWN);
+        System.out.printf("%s (위: %s, 아래: %s)%n", SELECT_A_SPACE_TO_MOVE, Move.U, Move.D);
         return readInput();
     }
 
@@ -36,7 +34,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.printf("%s (재시도: %s, 종료: %s)%n", ENTER_WHETHER_TO_TRY, RETRY_GAME, QUIT_GAME);
+        System.out.printf("%s (재시도: %s, 종료: %s)%n", ENTER_WHETHER_TO_TRY, Command.R, Command.Q);
         return readInput();
     }
 

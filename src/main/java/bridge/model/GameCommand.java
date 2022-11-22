@@ -1,8 +1,6 @@
 package bridge.model;
 
 public class GameCommand {
-    private static final String RE_START_MESSAGE = "R";
-    private static final String QUIT_MESSAGE = "Q";
     private final String command;
 
     public GameCommand(String command) {
@@ -11,7 +9,7 @@ public class GameCommand {
     }
 
     public boolean isRetry() {
-        return command.equals(RE_START_MESSAGE);
+        return command.equals(Command.R.toString());
     }
 
     private void validate(String command) {
@@ -21,6 +19,6 @@ public class GameCommand {
     }
 
     private boolean isValidCommand(String command) {
-        return command.equals(RE_START_MESSAGE) || command.equals(QUIT_MESSAGE);
+        return command.equals(Command.Q.toString()) || command.equals(Command.R.toString());
     }
 }
