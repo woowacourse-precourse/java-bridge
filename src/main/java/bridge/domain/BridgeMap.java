@@ -18,8 +18,8 @@ public class BridgeMap {
     }
 
     private void makeBridgeMap(Bridge bridge){
-        lineMaker(BridgeRoute.UP.getRouth(), bridge, upperAnswerLine);
-        lineMaker(BridgeRoute.DOWN.getRouth(), bridge, lowerAnswerLine);
+        lineMaker(BridgeRoute.UP.getRoute(), bridge, upperAnswerLine);
+        lineMaker(BridgeRoute.DOWN.getRoute(), bridge, lowerAnswerLine);
     }
 
     private void lineMaker(String line, Bridge bridge, List<String> lineMap){
@@ -63,8 +63,8 @@ public class BridgeMap {
 
     public HashMap<String, List<String>> getCurrentMap(){
         HashMap<String, List<String>> currentMap = new HashMap<>();
-        currentMap.put(BridgeRoute.UP.getRouth(), currentUpperLine);
-        currentMap.put(BridgeRoute.DOWN.getRouth(), currentLowerLine);
+        currentMap.put(BridgeRoute.UP.getRoute(), currentUpperLine);
+        currentMap.put(BridgeRoute.DOWN.getRoute(), currentLowerLine);
         return currentMap;
     }
 }

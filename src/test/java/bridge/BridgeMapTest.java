@@ -27,8 +27,8 @@ public class BridgeMapTest {
     @Test
     void caseMoveCorrect2Step(){
         bridgeMap.updateCurrentMap(1, true);
-        List<String> upperMap =bridgeMap.getCurrentMap().get(BridgeRoute.UP.getRouth());
-        List<String> lowerMap = bridgeMap.getCurrentMap().get(BridgeRoute.DOWN.getRouth());
+        List<String> upperMap =bridgeMap.getCurrentMap().get(BridgeRoute.UP.getRoute());
+        List<String> lowerMap = bridgeMap.getCurrentMap().get(BridgeRoute.DOWN.getRoute());
         assertThat(upperMap).containsExactly("O"," ");
         assertThat(lowerMap).containsExactly(" ","O");
     }
@@ -37,8 +37,8 @@ public class BridgeMapTest {
     @Test
     void caseMoveInCorrect3Step(){
         bridgeMap.updateCurrentMap(2, false);
-        List<String> upperMap =bridgeMap.getCurrentMap().get(BridgeRoute.UP.getRouth());
-        List<String> lowerMap = bridgeMap.getCurrentMap().get(BridgeRoute.DOWN.getRouth());
+        List<String> upperMap =bridgeMap.getCurrentMap().get(BridgeRoute.UP.getRoute());
+        List<String> lowerMap = bridgeMap.getCurrentMap().get(BridgeRoute.DOWN.getRoute());
         assertThat(upperMap).containsExactly("O"," ", " ");
         assertThat(lowerMap).containsExactly(" ","O", "X");
     }

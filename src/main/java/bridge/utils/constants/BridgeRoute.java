@@ -25,7 +25,7 @@ public enum BridgeRoute {
         return this.routeCode;
     }
 
-    public String getRouth(){
+    public String getRoute(){
         return this.route;
     }
 }
