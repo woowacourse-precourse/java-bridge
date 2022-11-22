@@ -3,34 +3,34 @@ package bridge.model;
 import bridge.util.BridgeGameExceptionMessage;
 import java.util.Arrays;
 
-public enum Direction {
+public enum Moving {
     UP("U", 1), DOWN("D", 0);
 
-    private final String command;
+    private final String direction;
     private final int randomValue;
 
-    Direction(String command, int randomValue) {
-        this.command = command;
+    Moving(String direction, int randomValue) {
+        this.direction = direction;
         this.randomValue = randomValue;
     }
 
-    public static Direction fromInput(String input) {
+    public static Moving fromInput(String inputDirection) {
         return Arrays.stream(values())
-                .filter(direction -> direction.getCommand().equals(input))
+                .filter(moving -> moving.direction.equals(inputDirection))
                 .findAny()
                 .orElseThrow(() ->
                         new IllegalArgumentException(BridgeGameExceptionMessage.DIRECTION_NOT_MATCH.getMessage()));
     }
 
-    public static Direction findDirectionByRandomValue(int randomValue) {
+    public static Moving findDirectionByRandomValue(int randomValue) {
         return Arrays.stream(values())
-                .filter(movingType -> movingType.randomValue == randomValue)
+                .filter(moving -> moving.randomValue == randomValue)
                 .findAny()
                 .orElseThrow(() ->
                         new IllegalArgumentException(BridgeGameExceptionMessage.RANDOM_NUMBER_NOT_MATCH.getMessage()));
     }
 
-    public String getCommand() {
-        return command;
+    public String getDirection() {
+        return direction;
     }
 }

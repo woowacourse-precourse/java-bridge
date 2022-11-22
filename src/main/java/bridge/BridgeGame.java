@@ -1,11 +1,11 @@
 package bridge;
 
 import bridge.model.Bridge;
-import bridge.model.Direction;
 import bridge.model.DrawType;
 import bridge.model.GameCommand;
 import bridge.model.GameMap;
 import bridge.model.GameState;
+import bridge.model.Moving;
 import bridge.model.Player;
 
 /**
@@ -29,10 +29,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(Direction direction) {
+    public void move(Moving moving) {
         player.move();
-        changeStateByPlayerLife(player.die(bridge, direction));
-        drawGameMapBySurvival(player.die(bridge, direction), direction);
+        changeStateByPlayerLife(player.die(bridge, moving));
+        drawGameMapBySurvival(player.die(bridge, moving), moving);
     }
 
     private void changeStateByPlayerLife(boolean playerDie) {
@@ -45,12 +45,12 @@ public class BridgeGame {
         }
     }
 
-    private void drawGameMapBySurvival(boolean playerDie, Direction direction) {
+    private void drawGameMapBySurvival(boolean playerDie, Moving moving) {
         if (playerDie) {
-            gameMap.draw(direction, DrawType.FAIL);
+            gameMap.draw(moving, DrawType.FAIL);
             return;
         }
-        gameMap.draw(direction, DrawType.SUCCESS);
+        gameMap.draw(moving, DrawType.SUCCESS);
     }
 
     /**

@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bridge {
-    private final List<Direction> bridge;
+    private final List<Moving> bridge;
 
     public Bridge(List<String> bridge) {
         this.bridge = toDirection(bridge);
     }
 
-    private List<Direction> toDirection(List<String> bridge) {
-        return bridge.stream().map(Direction::fromInput).collect(Collectors.toList());
+    private List<Moving> toDirection(List<String> bridge) {
+        return bridge.stream().map(Moving::fromInput).collect(Collectors.toList());
     }
 
-    public boolean isBroken(int position, Direction direction) {
-        return bridge.get(position) != direction;
+    public boolean isBroken(int position, Moving moving) {
+        return bridge.get(position) != moving;
     }
 
     public boolean isEnded(int position) {

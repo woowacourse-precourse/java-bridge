@@ -17,8 +17,8 @@ public class Player {
         position++;
     }
 
-    public boolean die(Bridge bridge, Direction direction) {
-        return bridge.isBroken(position, direction);
+    public boolean die(Bridge bridge, Moving moving) {
+        return bridge.isBroken(position, moving);
     }
 
     public boolean isBridgePassed(Bridge bridge) {

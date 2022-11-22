@@ -3,9 +3,9 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.model.Bridge;
-import bridge.model.Direction;
 import bridge.model.GameCommand;
 import bridge.model.GameMap;
+import bridge.model.Moving;
 import bridge.model.Player;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,14 +23,14 @@ class BridgeGameTest {
 
     @Test
     void 실패하고나서_재시도_한_경우_게임_결과는_실패이고_시도_횟수는_두번이어야_한다() {
-        bridgeGame.move(Direction.DOWN);
+        bridgeGame.move(Moving.DOWN);
         assertThat(bridgeGame.fail()).isTrue();
 
         bridgeGame.retry(GameCommand.RESTART);
         assertThat(bridgeGame.fail()).isFalse();
 
-        bridgeGame.move(Direction.UP);
-        bridgeGame.move(Direction.DOWN);
+        bridgeGame.move(Moving.UP);
+        bridgeGame.move(Moving.DOWN);
         GameResult gameResult = bridgeGame.gameResult();
 
         assertThat(gameResult.getResult()).isEqualTo("실패");
@@ -39,9 +39,9 @@ class BridgeGameTest {
 
     @Test
     void 다리_끝까지_건너면_게임_결과는_성공이어야한다() {
-        bridgeGame.move(Direction.UP);
-        bridgeGame.move(Direction.DOWN);
-        bridgeGame.move(Direction.UP);
+        bridgeGame.move(Moving.UP);
+        bridgeGame.move(Moving.DOWN);
+        bridgeGame.move(Moving.UP);
 
         assertThat(bridgeGame.quit()).isTrue();
 
@@ -53,9 +53,9 @@ class BridgeGameTest {
 
     @Test
     void 마지막_다리에서_실패하면_게임_결과는_실패여야한다() {
-        bridgeGame.move(Direction.UP);
-        bridgeGame.move(Direction.DOWN);
-        bridgeGame.move(Direction.DOWN);
+        bridgeGame.move(Moving.UP);
+        bridgeGame.move(Moving.DOWN);
+        bridgeGame.move(Moving.DOWN);
 
         assertThat(bridgeGame.quit()).isFalse();
 
@@ -67,7 +67,7 @@ class BridgeGameTest {
 
     @Test
     void 게임종료를_입력하면_정상적으로_종료되어야한다() {
-        bridgeGame.move(Direction.DOWN);
+        bridgeGame.move(Moving.DOWN);
         assertThat(bridgeGame.fail()).isTrue();
 
         bridgeGame.retry(GameCommand.QUIT);

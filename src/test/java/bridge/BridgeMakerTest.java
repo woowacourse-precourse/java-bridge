@@ -2,7 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.model.Direction;
+import bridge.model.Moving;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +17,8 @@ class BridgeMakerTest {
 
         assertThat(bridge.size()).isEqualTo(size);
 
-        List<String> directions = Arrays.stream(Direction.values())
-                .map(Direction::getCommand)
+        List<String> directions = Arrays.stream(Moving.values())
+                .map(Moving::getDirection)
                 .collect(Collectors.toList());
         bridge.forEach(direction -> assertThat(directions).contains(direction));
     }

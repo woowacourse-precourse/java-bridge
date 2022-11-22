@@ -2,9 +2,9 @@ package bridge;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeSize;
-import bridge.model.Direction;
 import bridge.model.GameCommand;
 import bridge.model.GameMap;
+import bridge.model.Moving;
 import bridge.model.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -63,9 +63,9 @@ public class Application {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
     }
 
-    private static Direction inputDirection() {
+    private static Moving inputDirection() {
         try {
-            return Direction.fromInput(inputView.readDirection());
+            return Moving.fromInput(inputView.readDirection());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputDirection();

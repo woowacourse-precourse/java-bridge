@@ -8,15 +8,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GameMap {
-    private final Map<Direction, List<DrawType>> map = new EnumMap<>(Direction.class);
+    private final Map<Moving, List<DrawType>> map = new EnumMap<>(Moving.class);
 
     public GameMap() {
         initialize();
     }
 
-    public void draw(Direction direction, DrawType drawType) {
-        Arrays.stream(Direction.values()).forEach(directionType -> {
-            if (directionType == direction) {
+    public void draw(Moving moving, DrawType drawType) {
+        Arrays.stream(Moving.values()).forEach(directionType -> {
+            if (directionType == moving) {
                 map.get(directionType).add(drawType);
                 return;
             }
@@ -26,15 +26,15 @@ public class GameMap {
 
     public void initialize() {
         if (map.isEmpty()) {
-            Arrays.stream(Direction.values()).forEach(direction -> map.put(direction, new ArrayList<>()));
+            Arrays.stream(Moving.values()).forEach(direction -> map.put(direction, new ArrayList<>()));
             return;
         }
-        Arrays.stream(Direction.values()).forEach(direction -> map.get(direction).clear());
+        Arrays.stream(Moving.values()).forEach(direction -> map.get(direction).clear());
     }
 
-    private String showBoardByType(Direction direction) {
+    private String showBoardByType(Moving moving) {
         return "[ " +
-                map.get(direction).stream()
+                map.get(moving).stream()
                         .map(DrawType::getDrawCharacter)
                         .collect(Collectors.joining(" | "))
                 + " ]";
@@ -42,6 +42,6 @@ public class GameMap {
 
     @Override
     public String toString() {
-        return Arrays.stream(Direction.values()).map(this::showBoardByType).collect(Collectors.joining("\n"));
+        return Arrays.stream(Moving.values()).map(this::showBoardByType).collect(Collectors.joining("\n"));
     }
 }

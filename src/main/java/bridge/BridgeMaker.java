@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.Direction;
+import bridge.model.Moving;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,8 +22,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return IntStream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
-                .mapToObj(Direction::findDirectionByRandomValue)
-                .map(Direction::getCommand)
+                .mapToObj(Moving::findDirectionByRandomValue)
+                .map(Moving::getDirection)
                 .collect(Collectors.toList());
     }
 }

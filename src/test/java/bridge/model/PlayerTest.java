@@ -19,13 +19,13 @@ class PlayerTest {
     @Test
     void 존재하지_않는_다리로_이동하면_플레이어는_죽어야한다() {
         player.move();
-        assertThat(player.die(bridge, Direction.DOWN)).isEqualTo(true);
+        assertThat(player.die(bridge, Moving.DOWN)).isEqualTo(true);
     }
 
     @Test
     void 존재하는_다리로_이동하면_플레이어는_죽지_않는다() {
         player.move();
-        assertThat(player.die(bridge, Direction.UP)).isEqualTo(false);
+        assertThat(player.die(bridge, Moving.UP)).isEqualTo(false);
     }
 
     @Test
