@@ -16,7 +16,7 @@ class BridgeMoveTest {
     }
 
     @ParameterizedTest(name = "잘못된 움직임 명령어를 입력하면 예외가 발생한다")
-    @ValueSource(strings = {"u", "d", "", " "})
+    @ValueSource(strings = {"u", "d", "", " ", "u\\", "1"})
     void getBridgeMoveByMoveCommandThrowsError(String command) {
         assertThatThrownBy(() -> BridgeMove.getBridgeMoveByMoveCommand(command))
                 .isInstanceOf(IllegalArgumentException.class)
