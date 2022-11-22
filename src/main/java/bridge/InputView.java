@@ -15,11 +15,11 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
-
+        BridgeInputExceptionValidation bridgeInputExceptionValidation = new BridgeInputExceptionValidation();
+        bridgeInputExceptionValidation.valid(input);
 //        if(!isNumber(input)){
 //            throw  new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
 //        }
-        isNumber(input);
         return Integer.parseInt(input);
     }
 
