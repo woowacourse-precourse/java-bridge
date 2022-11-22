@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.validation.BridgeValidation.bridgeValidation;
+import static bridge.validation.RetryValidation.retryValidation;
 import static bridge.validation.StateValidation.stateValidation;
 
 public class GameController {
@@ -38,7 +39,11 @@ public class GameController {
     }
 
     public boolean checkRetry(BridgeGame bridgeGame) {
-        if (isPlayerArrive(bridgeGame) || getGameCommand(bridgeGame).equals("Q")) {
+        if (isPlayerArrive(bridgeGame)) {
+            return false;
+        }
+        if(inputRetry().equals("Q")){
+            bridgeGame.changeToLoose();
             return false;
         }
         bridgeGame.retry();
@@ -47,16 +52,6 @@ public class GameController {
 
     public boolean isPlayerArrive(BridgeGame bridgeGame) {
         return bridgeGame.getPlayerBridgePosition() == (bridgeSize) && (bridgeGame.getCurrentIsCorrect().equals("O"));
-    }
-
-    public String getGameCommand(BridgeGame bridgeGame) {
-        String gameCommand;
-        gameCommand = inputView.readGameCommand();
-
-        if (gameCommand.equals("Q")) {
-            bridgeGame.changeToLoose();
-        }
-        return gameCommand;
     }
 
     private int inputBridgeSize() {
@@ -72,6 +67,14 @@ public class GameController {
         do {
             input = inputView.readMoving();
         } while (!stateValidation(input));
+        return input;
+    }
+
+    private String inputRetry() {
+        String input;
+        do {
+            input = inputView.readGameCommand();
+        } while (!retryValidation(input));
         return input;
     }
 }
