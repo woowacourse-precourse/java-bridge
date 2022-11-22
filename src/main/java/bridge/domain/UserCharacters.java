@@ -23,17 +23,14 @@ public class UserCharacters {
         footprints.clear();
     }
 
-    public void move(String direction) {
+    public String move(String direction) {
         validateDirection(direction);
         footprints.add(direction);
+        return getLastItem();
     }
 
-    public int getFootPrintSize() {
-        return footprints.size();
-    }
-
-    public int getFootPrintLastIndex() {
-        return getFootPrintSize() - 1;
+    public String getLastItem(){
+        return footprints.get(getFootPrintLastIndex());
     }
 
     public List<String> getFootprints() {
@@ -46,5 +43,9 @@ public class UserCharacters {
 
     public SuccessOrFailureDto createFailDto() {
         return successBridgeStringGenerator.createFailDto(footprints);
+    }
+
+    public int getFootPrintLastIndex() {
+        return footprints.size() - 1;
     }
 }

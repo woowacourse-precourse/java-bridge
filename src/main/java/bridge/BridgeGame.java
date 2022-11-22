@@ -1,25 +1,20 @@
 package bridge;
 
-import bridge.domain.UserCharacters;
-import bridge.dto.BridgeStatusDto;
-import bridge.reader.SuccessReader;
-
+import java.util.Collections;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-public class BridgeGame implements BridgeGameImp {
+public class BridgeGame {
 
-    private final UserCharacters userCharacters;
     private final List<String> bridge;
-    private SuccessReader successReader = new SuccessReader();
 
+    private int index = 0;
     private int count = 1;
 
-    public BridgeGame(List<String> bridge, List<String> footprints) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.userCharacters = new UserCharacters(footprints);
     }
 
     /**
@@ -29,14 +24,10 @@ public class BridgeGame implements BridgeGameImp {
      *
      * @return
      */
-    @Override
-    public BridgeStatusDto move(String direction) {
-        userCharacters.move(direction);
 
-        if (successReader.isUnitSuccess(userCharacters, bridge)) {
-            return makeSuccessBridgeStatusDto();
-        }
-        return makeFailBridgeStatusDto();
+    public String move(Integer index) {
+        this.index=index;
+        return bridge.get(index);
     }
 
     /**
@@ -44,46 +35,41 @@ public class BridgeGame implements BridgeGameImp {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    @Override
     public boolean retry(String command) {
         validateCommand(command);
 
-        if (isReplay(command)) {
+        if (isCommandIsR(command)) {
             count++;
             return true;
         }
         return false;
     }
 
-    private static boolean isReplay(String command) {
-        return command.equals("R");
+    public List<String> getBridge() {
+        return Collections.unmodifiableList(bridge);
     }
 
-    public BridgeStatusDto makeSuccessBridgeStatusDto() {
-        return new BridgeStatusDto(userCharacters.createSuccessDto(), count);
+    public String getLastItem() {
+        return bridge.get(index);
     }
 
-    @Override
-    public BridgeStatusDto makeFailBridgeStatusDto() {
-        return new BridgeStatusDto(userCharacters.createFailDto(), count);
+    public void addBridge(List<String> makeBridge) {
+        bridge.addAll(makeBridge);
     }
 
-    @Override
-    public boolean isUnitSuccess() {
-        return successReader.isUnitSuccess(userCharacters, bridge);
-    }
-
-    @Override
-    public boolean isOverallSuccess() {
-        return successReader.isOverallSuccess(userCharacters, bridge);
-    }
-
-    @Override
-    public void clearFootprints() {
-        userCharacters.clearFootprints();
+    public int getCount() {
+        return count;
     }
 
     private void validateCommand(String command) {
-        if (!command.equals("Q") && !isReplay(command)) throw new IllegalArgumentException("U나 D를 입력해주십시오");
+        if (!isCommandIsQ(command) && !isCommandIsR(command)) throw new IllegalArgumentException("U나 D를 입력해주십시오");
+    }
+
+    private static boolean isCommandIsQ(String command) {
+        return command.equals("Q");
+    }
+
+    private static boolean isCommandIsR(String command) {
+        return command.equals("R");
     }
 }

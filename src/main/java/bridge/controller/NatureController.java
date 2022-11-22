@@ -1,53 +1,50 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
-import bridge.BridgeGameImp;
+import bridge.SuccessFail;
+import bridge.dto.CurrentStatusDto;
+import bridge.dto.RetrySatutsDto;
 import bridge.mediator.ControllerMediator;
 import bridge.dto.BridgeStatusDto;
+import bridge.service.Serivce;
 
 import java.util.HashMap;
-import java.util.function.Function;
 
 public class NatureController implements Controller {
 
-    private BridgeGameImp bridgeGame;
     private ControllerMediator mediator;
-    private Function<Integer, BridgeGameImp> function;
 
-    public NatureController(Function<Integer, BridgeGameImp> function, ControllerMediator mediator) {
+    private Serivce service;
+
+    public NatureController(ControllerMediator mediator,Serivce service) {
         this.mediator=mediator;
-        this.function = function;
-    }
-
-    public void initBridgeGame(int size){
-        bridgeGame = function.apply(size);
+        this.service=service;
     }
     @Override
     public Runnable generateBridge(int size) {
-        initBridgeGame(size);
+        service.saveBridge(size);
         return () -> mediator.moveBridge();
     }
 
     @Override
     public Runnable moveBridge(String direction, HashMap<String, String> map) {
-        BridgeStatusDto bridgeStatusDto = bridgeGame.move(direction);
+        CurrentStatusDto currentStatusDto = service.move(direction);
+        BridgeStatusDto bridgeStatusDto = currentStatusDto.getBridgeStatusDto();
         map.put("bridge", bridgeStatusDto.getBridge());
 
-        if (bridgeGame.isOverallSuccess()) {
+        if (currentStatusDto.getSuccessFail().equals(SuccessFail.OverallSuccess)) {
             return () -> mediator.end(bridgeStatusDto);
         }
-        if (bridgeGame.isUnitSuccess()) return () -> mediator.moveBridge();
+        if (currentStatusDto.getSuccessFail().equals(SuccessFail.UNIT_SUCCESS)) return () -> mediator.moveBridge();
         return () -> mediator.replay();
     }
 
     @Override
     public Runnable replay(String restartCommand) {
-        if (bridgeGame.retry(restartCommand)) {
-            bridgeGame.clearFootprints();
+        RetrySatutsDto retry = service.isRetry(restartCommand);
+        if (retry.isRetryFlag()) {
             return () -> mediator.moveBridge();
         }
 
-        BridgeStatusDto bridgeStatusDto = bridgeGame.makeFailBridgeStatusDto();
-        return () -> mediator.end(bridgeStatusDto);
+        return () -> mediator.end(retry.getBridgeStatusDto());
     }
 }

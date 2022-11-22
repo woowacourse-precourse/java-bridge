@@ -1,10 +1,13 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
-import bridge.BridgeMaker;
+import bridge.SuccessFail;
 import bridge.dto.BridgeStatusDto;
-import bridge.generator.BridgeNumberGenerator;
+import bridge.dto.CurrentStatusDto;
+import bridge.dto.RetrySatutsDto;
+import bridge.dto.SuccessOrFailureDto;
 import bridge.mediator.ControllerMediator;
+import bridge.reader.SuccessReader;
+import bridge.service.Serivce;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -21,20 +24,18 @@ class NatureControllerTest {
 
     @Test
     void generateBridge() {
-        Controller controller = new NatureController(i -> createBridgeGame(i, new ArrayList<>()), new MockControllerMediator());
+        NatureController controller = createController(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
         Runnable runnable = controller.generateBridge(3);
         try {
             runnable.run();
         } catch (RuntimeException e) {
             assertThat(e.getMessage()).isEqualTo("moveBridge");
         }
-
     }
 
     @Test
     void 다리이동실패케이스() {
-        NatureController controller = createController(new ArrayList<>());
-        controller.initBridgeGame(3);
+        NatureController controller = createController(new ArrayList<>(Arrays.asList("U","D","D")),new ArrayList<>());
         Runnable runnable = controller.moveBridge("D", new HashMap<>());
         try {
             runnable.run();
@@ -45,8 +46,7 @@ class NatureControllerTest {
 
     @Test
     void 다리이동_한번성공_케이스() {
-        NatureController controller = createController(new ArrayList<>());
-        controller.initBridgeGame(3);
+        NatureController controller = createController(new ArrayList<>(Arrays.asList("U","D","D")),new ArrayList<>());
         Runnable runnable = controller.moveBridge("U", new HashMap<>());
         try {
             runnable.run();
@@ -57,8 +57,7 @@ class NatureControllerTest {
 
     @Test
     void 다리이동_전체성공_케이스() {
-        NatureController controller = createController(new ArrayList<>(Arrays.asList("U", "U")));
-        controller.initBridgeGame(3);
+        NatureController controller = createController(new ArrayList<>(Arrays.asList("D","D","U")),new ArrayList<>(Arrays.asList("D","D")));
         Runnable runnable = controller.moveBridge("U", new HashMap<>());
         try {
             runnable.run();
@@ -68,16 +67,8 @@ class NatureControllerTest {
     }
 
     @Test
-    void 다리이동_잘못된_입력() {
-        NatureController controller = createController(new ArrayList<>(Arrays.asList("U", "U")));
-        controller.initBridgeGame(3);
-        assertThatThrownBy(() -> controller.moveBridge("ad", new HashMap<>())).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     void 다시시작_한다() {
-        NatureController controller = createController(new ArrayList<>());
-        controller.initBridgeGame(3);
+        NatureController controller = createController(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
         Runnable runnable = controller.replay("R");
         try {
             runnable.run();
@@ -88,8 +79,7 @@ class NatureControllerTest {
 
     @Test
     void 다시시작_안한다() {
-        NatureController controller = createController(new ArrayList<>(Arrays.asList("U")));
-        controller.initBridgeGame(3);
+        NatureController controller = createController(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
         Runnable runnable = controller.replay("Q");
         try {
             runnable.run();
@@ -98,21 +88,9 @@ class NatureControllerTest {
         }
     }
 
-    @Test
-    void 다시시작_잘못된입력() {
-        NatureController controller = createController(new ArrayList<>(Arrays.asList("U")));
-        controller.initBridgeGame(3);
-        assertThatThrownBy(() -> controller.replay("d")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    private static NatureController createController(ArrayList<String> footPoints) {
-        NatureController controller = new NatureController(i -> createBridgeGame(i, footPoints), new MockControllerMediator());
+    private static NatureController createController(ArrayList<String> bridge,ArrayList<String> footPoints) {
+        NatureController controller = new NatureController(new MockControllerMediator(),new MockService(bridge,footPoints));
         return controller;
-    }
-
-    private static BridgeGame createBridgeGame(Integer integer, ArrayList<String> footPoints) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new TestNumberGenerator(newArrayList(1, 1, 1)));
-        return new BridgeGame(bridgeMaker.makeBridge(integer), footPoints);
     }
 
     static class MockControllerMediator implements ControllerMediator {
@@ -134,17 +112,39 @@ class NatureControllerTest {
         }
     }
 
-    static class TestNumberGenerator implements BridgeNumberGenerator {
+    static class MockService implements Serivce {
 
-        private final List<Integer> numbers;
+        private List<String> bridge;
+        private List<String> footprints;
 
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
+        private SuccessReader successReader=new SuccessReader();
+
+        public MockService(List<String> bridge, List<String> footprints) {
+            this.bridge = bridge;
+            this.footprints = footprints;
         }
 
         @Override
-        public int generate() {
-            return numbers.remove(0);
+        public void saveBridge(int size) {
+        }
+
+        @Override
+        public CurrentStatusDto move(String direction) {
+            footprints.add(direction);
+            if(successReader.isOverallSuccess(footprints,bridge)){
+                return new CurrentStatusDto(new BridgeStatusDto(new SuccessOrFailureDto("",""),0), SuccessFail.OverallSuccess);
+            }
+            if(successReader.isSuccess(footprints.get(footprints.size()-1),bridge.get(footprints.size()-1)))
+                return new CurrentStatusDto(new BridgeStatusDto(new SuccessOrFailureDto("",""),0), SuccessFail.UNIT_SUCCESS);
+            return new CurrentStatusDto(new BridgeStatusDto(new SuccessOrFailureDto("",""),0), SuccessFail.FAIL);
+        }
+
+        @Override
+        public RetrySatutsDto isRetry(String restartCommand) {
+            if(restartCommand.equals("R")){
+                return new RetrySatutsDto(new BridgeStatusDto(new SuccessOrFailureDto("",""),0),true);
+            }
+            return new RetrySatutsDto(new BridgeStatusDto(new SuccessOrFailureDto("",""),0),false);
         }
     }
 }

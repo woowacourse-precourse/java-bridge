@@ -26,6 +26,10 @@ public class BridgeStatusDto {
         return count;
     }
 
+    public static BridgeStatusDto makeBrideStatus(SuccessOrFailureDto successOrFailureDto, int count){
+        return new BridgeStatusDto(successOrFailureDto,count);
+    }
+
     @Override
     public String toString() {
         return "BridgeStatusDto{" +

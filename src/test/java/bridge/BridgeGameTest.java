@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.dto.BridgeStatusDto;
-import bridge.dto.SuccessOrFailureDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,100 +7,60 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.util.Lists.newArrayList;
 
 class BridgeGameTest {
 
-    private static BridgeGame getBridgeGame(ArrayList<String> bridge,ArrayList<String> footprints) {
-        BridgeGame bridgeGame = new BridgeGame(bridge, footprints);
-        return bridgeGame;
-    }
-
     @Test
-    void 하단이동_테스트() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
-        assertThat(bridgeGame.move("D").getBridge()).isEqualTo("[   ]\n[ O ]\n");
-    }
-
-    @Test
-    void 상단이동_테스트() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("U","D","D")),new ArrayList<>());
-        assertThat(bridgeGame.move("U").getBridge()).isEqualTo("[ O ]\n[   ]\n");
-    }
-
-    @Test
-    void 하단이동_테스트_실패() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("U","D","D")),new ArrayList<>());
-        assertThat(bridgeGame.move("D").getBridge()).isEqualTo("[   ]\n[ X ]\n");
-    }
-
-    @Test
-    void 상단이동_테스트_실패() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
-        assertThat(bridgeGame.move("U").getBridge()).isEqualTo("[ X ]\n[   ]\n");
-    }
-
-    @Test
-    void 잘못된_입력() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
-        assertThatThrownBy(()->bridgeGame.move("T")).isInstanceOf(IllegalArgumentException.class);
+    void 다리이동() {
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>(Arrays.asList("D","U","U")));
+        String move = bridgeGame.move(0);
+        assertThat(move).isEqualTo("D");
     }
 
     @Test
     void 다시시작_한다_선택() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
-        boolean retry = bridgeGame.retry("R");
-        assertThat(retry).isTrue();
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>(Arrays.asList("D","U","U")));
+        assertThat(bridgeGame.retry("R")).isTrue();
     }
 
     @Test
     void 다시시작_안한다_선택() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
-        boolean retry = bridgeGame.retry("Q");
-        assertThat(retry).isFalse();
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>(Arrays.asList("D","U","U")));
+        assertThat(bridgeGame.retry("Q")).isFalse();
     }
 
     @Test
     void 다시시작_잘못된_입력() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>());
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>(Arrays.asList("D","U","U")));
         assertThatThrownBy(()->bridgeGame.retry("D")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 최종점_도착_성공() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("D","D","D")));
-        assertThat(bridgeGame.isOverallSuccess()).isTrue();
+    void 브릿지값_받아오기() {
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>(Arrays.asList("D","U","U")));
+        assertThat(bridgeGame.getBridge()).isEqualTo(new ArrayList<>(Arrays.asList("D","U","U")));
     }
 
     @Test
-    void 최종점_도착_하지않음() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("D")));
-        assertThat(bridgeGame.isOverallSuccess()).isFalse();
+    void 마지막다리() {
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>(Arrays.asList("D","U","U")));
+        assertThat(bridgeGame.getLastItem()).isEqualTo("D");
     }
 
     @Test
-    void 성공시의_DTO() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("D")));
-        BridgeStatusDto bridgeStatusDto = new BridgeStatusDto(new SuccessOrFailureDto("[   ]\n[ O ]\n","성공"),1);
-        assertThat(bridgeGame.makeSuccessBridgeStatusDto()).isEqualTo(bridgeStatusDto);
+    void 브릿지_추가() {
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>());
+        ArrayList<String> bridges = new ArrayList<>(Arrays.asList("D", "U", "U"));
+        bridgeGame.addBridge(bridges);
+        assertThat(bridgeGame.getBridge()).isEqualTo(bridges);
     }
 
     @Test
-    void 실패시의_DTO() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("U")));
-        BridgeStatusDto bridgeStatusDto = new BridgeStatusDto(new SuccessOrFailureDto("[ X ]\n[   ]\n","실패"),1);
-        assertThat(bridgeGame.makeFailBridgeStatusDto()).isEqualTo(bridgeStatusDto);
-    }
-
-    @Test
-    void 부분게임성공() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("D")));
-        assertThat(bridgeGame.isUnitSuccess()).isTrue();
-    }
-
-    @Test
-    void 부분게임실패() {
-        BridgeGame bridgeGame = getBridgeGame(new ArrayList<>(Arrays.asList("D","D","D")),new ArrayList<>(Arrays.asList("U")));
-        assertThat(bridgeGame.isUnitSuccess()).isFalse();
+    void getCount() {
+        BridgeGame bridgeGame = new BridgeGame(new ArrayList<>(Arrays.asList("D","U","U")));
+        bridgeGame.retry("R");
+        bridgeGame.retry("R");
+        bridgeGame.retry("R");
+        assertThat(bridgeGame.getCount()).isEqualTo(4);
     }
 }
