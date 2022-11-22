@@ -3,7 +3,7 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        BridgePlay bridgePlay = new BridgePlay();
-        bridgePlay.play();
+        BridgeManager bridgeManager = new BridgeManager();
+        bridgeManager.play();
     }
 }

@@ -1,11 +1,14 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgePlayer;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
 
-public class BridgePlay {
+public class BridgeManager {
 
     private final InputView inputView;
 
@@ -17,7 +20,7 @@ public class BridgePlay {
 
     private BridgeGame bridgeGame;
 
-    public BridgePlay() {
+    public BridgeManager() {
         inputView = new InputView();
         bridgePlayer = new BridgePlayer();
         outputView = new OutputView(bridgePlayer);
