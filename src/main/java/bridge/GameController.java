@@ -3,25 +3,26 @@ package bridge;
 import java.util.List;
 
 public class GameController {
-    BridgeGame game = new BridgeGame();
+    BridgeGame game;
     InputView inputView = new InputView();
     int size;
-    int attempts;
+    int attempts = 1;
     String movingInput;
     public void play() {
+        int index = 0;
         System.out.println("다리 건너기 게임을 시작합니다.");
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         size = getBridgeSize();
         List<String> answer = maker.makeBridge(size);
+        game = new BridgeGame(answer);
         while(attempts < size) {
             movingInput = inputView.readMoving();
-            game.move(attempts, movingInput);
-            result(answer.get(attempts), movingInput);
+            game.move(movingInput, index++);
             attempts++;
         }
     }
 
-    public boolean result(String answer, String userInput) {
+    public boolean isCorrect(String answer, String userInput) {
         if(userInput.equals(answer)) {
             return true;
         }
