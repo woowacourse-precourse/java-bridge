@@ -23,11 +23,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Bridge bridge) {
-        StringBuilder upSb = new StringBuilder();
-        StringBuilder downSb = new StringBuilder();
-        makeMapMessage(bridge, upSb, downSb);
-        System.out.println(upSb);
-        System.out.println(downSb);
+        SbMap sbMap = new SbMap();
+        makeMapMessage(bridge, sbMap);
+        sbMap.print();
     }
 
     /**
@@ -40,48 +38,48 @@ public class OutputView {
         printMap(bridge);
     }
 
-    private void makeMapMessage(Bridge bridge, StringBuilder upSb, StringBuilder downSb) {
-        upSb.append("[");
-        downSb.append("[");
-        temp(bridge, upSb, downSb);
-        upSb.deleteCharAt(upSb.length() - 1);
-        upSb.append("]");
-        downSb.deleteCharAt(downSb.length() - 1);
-        downSb.append("]");
+    private void makeMapMessage(Bridge bridge, SbMap sbMap) {
+        sbMap.append("[");
+        addState(bridge, sbMap);
+        sbMap.deleteCharAt(sbMap.getUpSb().length() - 1);
+        sbMap.append("]");
     }
 
-    private void temp(Bridge bridge, StringBuilder upSb, StringBuilder downSb) {
+    private void addState(Bridge bridge, SbMap sbMap) {
         for (int i = 0; i < bridge.getResults().size(); i++) {
-            String bridgeAnswer = bridge.getBridge().get(i);
-            if (bridgeAnswer.equals(UP)) {
-                whenUpSide(bridge.getResults().get(i), upSb, downSb);
-            }
-            if (bridgeAnswer.equals(DOWN)) {
-                whenDownSide(bridge.getResults().get(i), upSb, downSb);
-            }
-            upSb.append("|");
-            downSb.append("|");
+            noteState(bridge, sbMap, i);
         }
     }
 
-
-    private void whenUpSide(boolean bridgeResult, StringBuilder upSb, StringBuilder downSb) {
-        if (bridgeResult) {
-            upSb.append(CORRECT_STATE);
-            downSb.append(NONE_STATE);
-            return;
+    private void noteState(Bridge bridge, SbMap sbMap, int i) {
+        String bridgeAnswer = bridge.getBridge().get(i);
+        if (bridgeAnswer.equals(UP)) {
+            whenUpSide(bridge.getResults().get(i), sbMap);
         }
-        upSb.append(NONE_STATE);
-        downSb.append(WRONG_STATE);
+        if (bridgeAnswer.equals(DOWN)) {
+            whenDownSide(bridge.getResults().get(i), sbMap);
+        }
+        sbMap.append("|");
     }
 
-    private void whenDownSide(boolean bridgeResult, StringBuilder upSb, StringBuilder downSb) {
+
+    private void whenUpSide(boolean bridgeResult, SbMap sbMap) {
         if (bridgeResult) {
-            downSb.append(CORRECT_STATE);
-            upSb.append(NONE_STATE);
+            sbMap.getUpSb().append(CORRECT_STATE);
+            sbMap.getDownSb().append(NONE_STATE);
             return;
         }
-        downSb.append(NONE_STATE);
-        upSb.append(WRONG_STATE);
+        sbMap.getUpSb().append(NONE_STATE);
+        sbMap.getDownSb().append(WRONG_STATE);
+    }
+
+    private void whenDownSide(boolean bridgeResult, SbMap sbMap) {
+        if (bridgeResult) {
+            sbMap.getDownSb().append(CORRECT_STATE);
+            sbMap.getUpSb().append(NONE_STATE);
+            return;
+        }
+        sbMap.getDownSb().append(NONE_STATE);
+        sbMap.getUpSb().append(WRONG_STATE);
     }
 }
