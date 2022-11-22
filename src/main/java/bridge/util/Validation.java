@@ -1,6 +1,6 @@
 package bridge.util;
 
-import static bridge.Constant.*;
+import static bridge.util.Constant.*;
 
 public class Validation {
 

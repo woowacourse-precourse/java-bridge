@@ -48,6 +48,7 @@ public class OutputView {
         System.out.println(TOTAL_TRY_COUNT_MESSAGE + tryCount);
     }
 
+    // 실패 or 성공을 판별
     private String checkPassOrFail(boolean passOrFail) {
         if(passOrFail)
             return PASS_MESSAGE;

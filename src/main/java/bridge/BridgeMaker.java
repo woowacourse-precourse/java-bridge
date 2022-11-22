@@ -3,7 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.Constant.*;
+import static bridge.util.Constant.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -29,12 +29,14 @@ public class BridgeMaker {
         return bridgeShape;
     }
 
+    // 랜덤한 모양 생성해서 리턴
     private String getRandomShape() {
         if(bridgeNumberGenerator.generate() == 1)
             return MOVE_TO_UPPER;
         return MOVE_TO_LOWER;
     }
 
+    // 다리 초기화
     public void clearBridge(){
         bridgeShape.clear();
     }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.String.*;
-import static bridge.Constant.*;
+import static bridge.util.Constant.*;
 
 public class MapShape {
 
@@ -14,6 +14,7 @@ public class MapShape {
     private static final List<String> upperMap = new ArrayList<>();
     private static final List<String> lowerMap = new ArrayList<>();
 
+    // 결과 Map 에 O or X 를 add
     public void addShape(String nextMove, String moveResult) {
         if(nextMove.equals(MOVE_TO_UPPER)) {
             upperMap.add(moveResult);
@@ -30,6 +31,7 @@ public class MapShape {
         lowerMap.clear();
     }
 
+    // 형식에 맞는 String 으로 변환
     public String convertUpperMapToString() {
         return getJoinWithSplitUnit(upperMap);
     }
