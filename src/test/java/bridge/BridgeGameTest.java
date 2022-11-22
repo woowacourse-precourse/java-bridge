@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeGameTest {
 
+    private final BridgeGame bridgeGame = new BridgeGame();
+
     @Test
-    void 게임_실패_test() {
-        BridgeGame bridgeGame = new BridgeGame();
+    void 게임실패_test() {
         String result = bridgeGame.retry("Q");
         Assertions.assertEquals(result, "실패");
     }

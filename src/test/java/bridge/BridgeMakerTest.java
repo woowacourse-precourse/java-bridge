@@ -17,13 +17,13 @@ public class BridgeMakerTest {
 
     @ParameterizedTest
     @CsvSource({"3", "10", "20"})
-    void 사이즈에_맞게_다리가_생성되는_지_test(int size) {
+    void 입력값에_맞게_다리가_생성되는_지_test(int size) {
         List<String> bridges = bridgeMaker.makeBridge(size);
         Assertions.assertEquals(bridges.size(), size);
     }
 
     @ParameterizedTest
-    @CsvSource({"1", "21"})
+    @CsvSource({"-3", "1", "21", "999"})
     void 입력값이_범위_밖인_경우_예외발생_test(int number) {
         assertThatThrownBy(() -> bridgeMaker.validateNumberRange(number))
                 .isInstanceOf(IllegalArgumentException.class);
