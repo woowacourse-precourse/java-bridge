@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class BridgeControllerTest {
@@ -15,6 +16,15 @@ class BridgeControllerTest {
         validate = new ValidateInput();
     }
 
+
+
+    @DisplayName("다리의 길이를 숫자로 반환한다")
+    @ParameterizedTest
+    @CsvSource({"3, 3", "200, 200", "10, 10"})
+    void inputBridgeLengthByNotNumeric(String input, int expected) {
+        int actual = validate.numeric(input);
+        assertThat(actual).isEqualTo(expected);
+    }
     @DisplayName("다리의 길이를 숫자로 입력 받지 않는 경우 예외처리.")
     @ParameterizedTest
     @CsvSource({"h", "A", "영"})
@@ -22,6 +32,7 @@ class BridgeControllerTest {
         assertThatThrownBy(() -> validate.numeric(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
 
     @DisplayName("게임이 실패 하고 다른 문자가 입력 되는 경우 예외처리.")
     @ParameterizedTest
