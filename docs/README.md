@@ -72,9 +72,9 @@
 
   
 
-# 구조
+# Flow Chart
 
-<img width="705" alt="image" src="https://user-images.githubusercontent.com/79066049/203065841-0a016b4a-e5aa-44be-8dec-40175487fdfc.png">
+![image](https://user-images.githubusercontent.com/79066049/203342911-1ed9c5a6-af0b-43ba-9654-5c383ba53847.png)
 
 
 
