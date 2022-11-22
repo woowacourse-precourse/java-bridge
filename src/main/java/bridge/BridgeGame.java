@@ -31,7 +31,6 @@ public class BridgeGame {
     public void start() {
         outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         List<String> moves = new ArrayList<>();
         boolean isTerminated = play(bridgeSize, bridge, moves);
