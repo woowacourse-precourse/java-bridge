@@ -2,26 +2,22 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import data.BridgeData;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     InputParser inputParser = new InputParser();
-
-    int attempt = 0;
+    BridgeComparator bridgeComparator = new BridgeComparator();
     public void start() {
-        List<String> bridge = new ArrayList<>();
-        boolean isSuccess;
+        List<String> bridge;
         bridge = makeBridge(); // 다리 생성
-        List<String> player = new ArrayList<>();
-        do{
-            player = new ArrayList<>();
-            isSuccess = move(bridge, player); // 다리 맞추기
-        }while(retry() || isSuccess); // 재시도를 선택했거나 성공했을경우 끝
-        result(bridge, player);
+        playGame(bridge); // 게임 시작
     }
 
+    /**
+     * 다리 생성할때 쓰이는 메서드
+     */
     public List<String> makeBridge(){
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
@@ -34,15 +30,30 @@ public class BridgeGame {
         return bridge;
     }
 
-
+    private void playGame(List<String> bridge){
+        List<String> player;
+        int attempt = 0;
+        do{
+            attempt++;
+            player = new ArrayList<>(); // 플레이어 초기화
+            if(move(bridge, player)){
+                break; // 생존에 성공 시 재시도를 묻지 않음.
+            }
+        }while(retry()); // 재시도를 선택했거나 성공했을경우 끝
+        result(bridge, player, attempt);
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(List<String> bridge, List<String> player){
-        player.add(inputParser.getMoveCommand());
-        return false;
+        boolean isAlive = true;
+        while(bridge.size() != player.size() && isAlive) {
+            player.add(inputParser.getMoveCommand());
+            isAlive = bridgeComparator.movePlayer(bridge, player);
+        }
+        return isAlive;
     }
 
     /**
@@ -51,11 +62,21 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-
+        String gameCommand;
+        gameCommand = inputParser.getGameCommand();
+        if(gameCommand.equals(BridgeData.RESTART)) {
+            return true;
+        }
         return false;
     }
 
-    public void result(List<String> bridge, List<String> player){
+    /**
+     * 결과 출력할때 쓰는 메서드
+     * @param bridge
+     * @param player
+     */
+    public void result(List<String> bridge, List<String> player, int attempt){
 
+        Input
     }
 }
