@@ -1,6 +1,7 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
@@ -19,6 +20,19 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("D");
+    }
+
+    @Test
+    @DisplayName("재시작 종료 검증")
+    void retryTest() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeMove(bridgeGame);
+
+        assertThat(bridgeGame.retry("R")).isTrue();
+        assertThat(bridgeGame.retry("Q")).isFalse();
+        assertThatThrownBy(() -> bridgeGame.retry("W"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -74,3 +88,5 @@ class BridgeGameTest {
         assertThat(bridgeGame.isMoveFinish()).isTrue();
 
     }
+
+}
