@@ -55,11 +55,15 @@ public class GameController {
         String nextMove = inputView.readMoving();
         String moveResult = bridgeGame.move(bridge.get(currentPosition), nextMove);
         outputView.printMap(nextMove, moveResult);
-        currentPosition++;
+        moveForward();
         if(moveResult.equals(FAIL_SIGN)) {
             String retryCommand = inputView.readGameCommand();
             bridgeGame.retry(retryCommand);
         }
+    }
+
+    private static void moveForward() {
+        currentPosition++;
     }
 
     // 게임 리셋
@@ -79,7 +83,6 @@ public class GameController {
         tryCount = 1;
         currentPosition = 0;
         keepGoing = true;
-        bridgeMaker.clearBridge();
         mapShape.clearMap();
     }
 }
