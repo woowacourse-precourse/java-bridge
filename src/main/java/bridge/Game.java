@@ -54,7 +54,7 @@ public class Game {
     }
 
     private static String printNowResult(int index) {
-        String nowResult = String.valueOf(bridgeGame.move(InputView.readMoving(),index));
+        String nowResult = bridgeGame.move(InputView.readMoving(),index);
         OutputView.printMap(nowResult);
         return nowResult;
     }

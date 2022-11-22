@@ -15,7 +15,7 @@ public class BridgeGame {
         matchNum = 1;
     }
 
-    public static StringBuilder move(String direction, int index) {
+    public static String move(String direction, int index) {
         String answer = bridge.get(index);
         result.add(direction);
         if (direction.equals(answer)) {
@@ -24,14 +24,14 @@ public class BridgeGame {
         return (printMove(result,false));
     }
 
-    private static StringBuilder printMove(List<String> result, boolean thisturn) {
+    private static String printMove(List<String> result, boolean thisturn) {
         upResult = new StringBuilder("[");
         downResult = new StringBuilder("[");
         prePrint();
         nowPrint(thisturn);
         upResult.append("]");
         downResult.append("]");
-        return new StringBuilder((upResult + "\n" + downResult));
+        return ((upResult + "\n" + downResult));
     }
 
     private static void prePrint() {
