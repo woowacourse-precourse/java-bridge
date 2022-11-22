@@ -1,7 +1,4 @@
-package bridge;
-
-import java.util.ArrayList;
-import java.util.List;
+package bridge.domain;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -9,25 +6,16 @@ import java.util.List;
 public class BridgeGame {
 
     private int totalAttempt = 1;
-    private List<String> bridge;
-    private List<String> history = new ArrayList<>();
+    private Bridge bridge;
+    private History history;
 
-    public BridgeGame(List<String> bridge) {
-        this.bridge = new ArrayList<>(bridge);
+    public BridgeGame(Bridge bridge) {
+        this.history = new History();
+        this.bridge = bridge;
     }
-//    private Bridge bridge;
-//
-//    public BridgeGame(Bridge bridge){
-//        this.bridge = bridge;
-//    }
-
 
     public int getTotalAttempt() {
         return totalAttempt;
-    }
-
-    public List<String> getBridge() {
-        return bridge;
     }
 
     /**
@@ -36,19 +24,19 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public MoveResult move(MoveCommand moveCommand) {
-        history.add(String.valueOf(moveCommand.getValue()));
+        history.appendMove(moveCommand);
         return getMoveResult();
     }
 
     private MoveResult getMoveResult() {
-        if (history.equals(bridge)) {
-            return new MoveResult(history, GameStatus.CORRECT);
+        if (bridge.isCorrect(history)) {
+            return new MoveResult(history.getBridgeChars(), GameStatus.CORRECT);
         }
-        int idx = history.size() - 1;
-        if (history.get(idx).equals(bridge.get(idx))) {
-            return new MoveResult(history, GameStatus.CONTINUE);
+        if (bridge.isContinue(history)) {
+            return new MoveResult(history.getBridgeChars(), GameStatus.CONTINUE);
         }
-        return new MoveResult(history, GameStatus.FAIL);
+
+        return new MoveResult(history.getBridgeChars(), GameStatus.FAIL);
     }
 
     /**
@@ -58,6 +46,6 @@ public class BridgeGame {
      */
     public void retry() {
         totalAttempt++;
-        history = new ArrayList<>();
+        history = new History();
     }
 }

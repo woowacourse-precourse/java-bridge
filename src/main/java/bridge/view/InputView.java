@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.MoveCommand;
-import bridge.RetryCommand;
+import bridge.domain.MoveCommand;
+import bridge.domain.RetryCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

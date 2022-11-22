@@ -33,7 +33,7 @@ public class BridgeMaker {
 
     private String generateBridgeNumber(int size) {
         StringBuilder sb = new StringBuilder();
-        for(int cnt = 0; cnt < size; cnt++)
+        for (int cnt = 0; cnt < size; cnt++)
             sb.append(bridgeNumberGenerator.generate());
 
         return sb.toString();

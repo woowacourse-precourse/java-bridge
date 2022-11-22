@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum MoveCommand {
     UP('U'), DOWN('D');
@@ -13,10 +13,10 @@ public enum MoveCommand {
         return value;
     }
 
-    public static MoveCommand of(char c){
-        if(c != 'U' && c != 'D')
+    public static MoveCommand of(char c) {
+        if (c != 'U' && c != 'D')
             throw new IllegalArgumentException("잘못된 MoveCommand 입력.");
-        if(c == 'U')
+        if (c == 'U')
             return UP;
         return DOWN;
     }

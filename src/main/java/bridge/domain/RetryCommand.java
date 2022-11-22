@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum RetryCommand {
     QUIT('Q'), RETRY('R');
@@ -14,9 +14,9 @@ public enum RetryCommand {
     }
 
     public static RetryCommand of(char c) {
-        if(c != 'R' && c != 'Q')
+        if (c != 'R' && c != 'Q')
             throw new IllegalArgumentException("잘못된 RetryCommand 입력.");
-        if(c == 'Q')
+        if (c == 'Q')
             return QUIT;
         return RETRY;
     }

@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.*;
+import bridge.domain.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -31,7 +32,8 @@ public class GamePlayController {
     private BridgeGame createBridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 //                Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        return new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
+        return new BridgeGame(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
+//        return new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public void moveUser(BridgeGame bridgeGame) {

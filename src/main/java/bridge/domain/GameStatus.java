@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum GameStatus {
     CONTINUE("진행중"), FAIL("실패"), CORRECT("성공");
