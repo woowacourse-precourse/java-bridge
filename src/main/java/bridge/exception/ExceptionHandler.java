@@ -1,9 +1,9 @@
-package bridge;
+package bridge.exception;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class ExceptionHandler {
-    private static final String NUMBER_EXCEPTION_ERROR_MESSAGE = "[ERROR] 자연수의 숫자를 입력해주세요.";
+    private static final String NUMBER_EXCEPTION_ERROR_MESSAGE = "[ERROR] 자연수의 숫자를 소수점 제외하여 입력해주세요.";
     private static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 다리 길이의 범위는 3이상 20이하 입니다.";
     private static final String MOVING_CHARACTER_EXCEPTION_ERROR_MESSAGE = "[ERROR] U 또는 D만 입력할 수 있습니다.";
     private static final String GAME_COMMAND_CHARACTER_EXCEPTION_ERROR_MESSAGE = "[ERROR] R 또는 Q만 입력할 수 있습니다.";
@@ -31,6 +31,7 @@ public class ExceptionHandler {
         }
         return moving;
     }
+
     public static String gameCommandValidTest(String gameCommand){
         while(true){
             try{
@@ -41,5 +42,6 @@ public class ExceptionHandler {
         }
         return gameCommand;
     }
+
 }
 

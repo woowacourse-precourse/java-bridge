@@ -1,12 +1,12 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bridges {
-    List<String> upBridge;
-    List<String> downBridge;
-    int bridgesSize;
+    public List<String> upBridge;
+    public List<String> downBridge;
+    public int bridgesSize;
     public Bridges(int bridgesSize){
         List<String> upBridge = new ArrayList<>();
         List<String> downBridge = new ArrayList<>();

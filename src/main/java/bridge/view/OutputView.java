@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+import bridge.domain.Bridges;
+import bridge.domain.Player;
+
 import java.util.List;
 
 /**
@@ -42,7 +45,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printFinalResult(Bridges bridges, Boolean successOrNot,int trialNumber) {
+    public static void printFinalResult(Bridges bridges, Boolean successOrNot, int trialNumber) {
         System.out.println(FINAL_RESULT_MESSAGE);
         System.out.println(bridgeForPrint(bridges.upBridge,bridges.bridgesSize-1));
         System.out.println(bridgeForPrint(bridges.downBridge,bridges.bridgesSize-1) + PRINT_ENTER);
@@ -57,14 +60,13 @@ public class OutputView {
     public static String bridgeForPrint(List<String> bridge, int size){
         String bridgeResult = LEFT_SQUARE;
         for(int index=0;index<=size;index++) {
-            if(size ==0){
-                bridgeResult = bridgeResult + bridge.get(0) + RIGHT_SQUARE;
-                return bridgeResult;
-            }
-            else if( size != 0 && index != size) bridgeResult = bridgeResult + bridge.get(index) + PIPE_CHARACTER;
-            else if( size != 0 && (index == size)) bridgeResult = bridgeResult + bridge.get(index) + RIGHT_SQUARE;
+            if(size == 0) return bridgeResult = bridgeResult + bridge.get(0) + RIGHT_SQUARE;
+            if( size != 0 && (index == size)) return bridgeResult = bridgeResult + bridge.get(index) + RIGHT_SQUARE;
+
+            bridgeResult = bridgeResult + bridge.get(index) + PIPE_CHARACTER; // if( size != 0 && index != size)
         }
         return bridgeResult;
     }
+
 
 }

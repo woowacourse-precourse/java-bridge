@@ -1,13 +1,14 @@
-package bridge;
+package bridge.domain;
 
-import org.mockito.stubbing.Answer;
+;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 
-;import java.util.ArrayList;
 import java.util.List;
 
 public class AnswerBridge {
     public int size;
-    static List<String> answer;
+    private static List<String> answer;
 
     public AnswerBridge(int size){
         this.size = size;

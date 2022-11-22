@@ -1,7 +1,12 @@
 package bridge;
 
+import bridge.view.InputView;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.service.GameSystem.DOWN_CHARACTER;
+import static bridge.service.GameSystem.UP_CHARACTER;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -20,7 +25,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for(int index=0;index<size;index++) bridge.add(index,numberToString(this.bridgeNumberGenerator.generate()));
+        for(int index=0;index<size;index++) bridge.add(index,numberToString(bridgeNumberGenerator.generate()));
         return bridge;
     }
     
@@ -29,7 +34,7 @@ public class BridgeMaker {
         return inputView.readBridgeSize();
     }
     public String numberToString(int randomNumber){
-        if(randomNumber == 1) return "U";
-        return "D";
+        if(randomNumber == 1) return UP_CHARACTER;
+        return DOWN_CHARACTER;
     }
 }

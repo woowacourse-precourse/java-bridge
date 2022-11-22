@@ -1,12 +1,11 @@
-package bridge;
+package bridge.controller;
 
 import bridge.*;
-import org.mockito.stubbing.Answer;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static bridge.Player.bridges;
+import bridge.domain.AnswerBridge;
+import bridge.BridgeMaker;
+import bridge.domain.Bridges;
+import bridge.domain.Player;
+import bridge.service.GameSystem;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -61,8 +60,8 @@ public class BridgeGame {
         trialNumber++;
         return true;
     }
+
     public void finalResult(boolean moveSuccess){
         gameSystem.printResult(moveSuccess,trialNumber);
     }
-
 }

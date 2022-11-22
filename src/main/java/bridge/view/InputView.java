@@ -1,9 +1,7 @@
-package bridge;
+package bridge.view;
 
-import bridge.ExceptionHandler;
-import bridge.OutputView;
+import bridge.exception.ExceptionHandler;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */

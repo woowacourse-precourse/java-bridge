@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.domain.Bridges;
 
 public class Player {
     public static Bridges bridges;
