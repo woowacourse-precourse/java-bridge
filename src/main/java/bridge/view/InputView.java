@@ -24,26 +24,24 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException {
+    public CommandType readMoving() throws IllegalArgumentException {
         String input = Console.readLine();
-        validationCommandByGroup(input, CommandGroup.MOVE);
-        return input;
+        return validatedCommandByGroup(input, CommandGroup.MOVE);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public CommandType readGameCommand() {
         String input = Console.readLine();
-        validationCommandByGroup(input, CommandGroup.GAME_CONTROL);
-        return input;
+        return validatedCommandByGroup(input, CommandGroup.GAME_CONTROL);
     }
 
-    private static void validationCommandByGroup(String input, CommandGroup commandGroup) throws IllegalArgumentException {
+    private static CommandType validatedCommandByGroup(String input, CommandGroup commandGroup) throws IllegalArgumentException {
         try {
             CommandType commandType = CommandType.of(input);
             if (CommandGroup.findByCommandType(commandType) == commandGroup) {
-                return;
+                return commandType;
             }
             throw new IllegalArgumentException(ErrorMessageConstant.INVALID_COMMAND_IN_STATUS);
         } catch (NoSuchElementException e) {
