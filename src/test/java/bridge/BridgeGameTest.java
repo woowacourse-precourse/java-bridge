@@ -1,10 +1,10 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import game.BridgeGame;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
 package bridge;
 
+import constant.BridgeType;
 import java.util.ArrayList;
 import java.util.List;
 

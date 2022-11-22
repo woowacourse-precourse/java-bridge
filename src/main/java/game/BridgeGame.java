@@ -1,5 +1,6 @@
-package bridge;
+package game;
 
+import constant.StateCode;
 import java.util.ArrayList;
 import java.util.List;
 

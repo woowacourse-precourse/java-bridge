@@ -1,4 +1,4 @@
-package bridge;
+package constant;
 
 public enum BridgeType {
 

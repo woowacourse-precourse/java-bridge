@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.BridgeGameController.runBridgeGame;
+import static game.BridgeGameController.runBridgeGame;
 
 public class Application {
 
