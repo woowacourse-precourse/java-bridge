@@ -35,14 +35,7 @@ public class Bridge {
         return up.append(ConstValue.LINE_BREAK).append(down).toString();
     }
 
-    public boolean move(String movingPlace) {
-        addUpBridgeResult(movingPlace);
-        addDownBridgeResult(movingPlace);
-
-        return isCorrect(movingPlace);
-    }
-
-    private void addUpBridgeResult(String movingPlace) {
+    public void addUpBridgeResult(String movingPlace) {
         if (canCross(movingPlace) && movingPlace.equals(ConstValue.UPPER_BRIDGE)) {
             upperBridgeResult.add(ConstValue.PASS);
             return;
@@ -50,7 +43,7 @@ public class Bridge {
         upperBridgeResult.add(getOXResult(movingPlace, ConstValue.UPPER_BRIDGE));
     }
 
-    private void addDownBridgeResult(String movingPlace) {
+    public void addDownBridgeResult(String movingPlace) {
         if (canCross(movingPlace) && movingPlace.equals(ConstValue.LOWER_BRIDGE)) {
             lowerBridgeResult.add(ConstValue.PASS);
             return;
@@ -58,15 +51,19 @@ public class Bridge {
         lowerBridgeResult.add(getOXResult(movingPlace, ConstValue.LOWER_BRIDGE));
     }
 
-    private boolean isCorrect(String movingPlace) {
+    public boolean isCorrect(String movingPlace) {
         String correctBridge = bridge.get(currentPosition);
 
         if (movingPlace.equals(correctBridge)) {
-            currentPosition++;
+            move();
             return true;
         }
 
         return false;
+    }
+
+    private void move() {
+        currentPosition++;
     }
 
     private boolean canCross(String movingPlace) {

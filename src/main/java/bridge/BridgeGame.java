@@ -14,7 +14,10 @@ public class BridgeGame {
     }
 
     public boolean move(String movingPlace) {
-        return bridge.move(movingPlace);
+        bridge.addUpBridgeResult(movingPlace);
+        bridge.addDownBridgeResult(movingPlace);
+
+        return bridge.isCorrect(movingPlace);
     }
 
     public void retry() {
