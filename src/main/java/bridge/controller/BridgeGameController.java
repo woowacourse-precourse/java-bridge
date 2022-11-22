@@ -18,8 +18,8 @@ public class BridgeGameController {
 
     public  void playGame(){
         Bridge bridge = startGame();
-        List<MoveResult> moveResults = new ArrayList<>();
-        runGame(moveResults, bridge);
+
+        runGame(bridge);
     }
     public Bridge startGame() {
         Bridge bridge = InputController.getBridge();
@@ -27,27 +27,31 @@ public class BridgeGameController {
     }
 
 
-    public static void runGame(List<MoveResult> moveResults, Bridge bridge) {
+    public static void runGame(Bridge bridge) {
+        List<MoveResult> moveResults = new ArrayList<>();
         BridgeGame bridgeGame = new BridgeGame(moveResults, bridge);
         while (bridge.crossingBridgeSuccess() && bridgeGame.notExit()) {
-            bridgeGame.move();
-            OutputView.printMap(bridgeGame.getMoveResults());
-            retryOrOver(bridgeGame);
+            abilityToMove(bridgeGame);
+            if(retryOrOver(bridgeGame)){
+                moveResults = new ArrayList<>();
+                continue;
+            }
             bridge.nextStep();
         }gameOver(bridgeGame, moveResults);
     }
-
-
-    private static void retryOrOver(BridgeGame bridgeGame) {
+    private static void abilityToMove(BridgeGame bridgeGame){
+        bridgeGame.move();
+        OutputView.printMap(bridgeGame.getMoveResults());
+    }
+    private static boolean retryOrOver(BridgeGame bridgeGame) {
         if (bridgeGame.isFailedGame()) {
             boolean command = InputController.retryOrGameOver();
             if(command){
                 bridgeGame.retry();
+                return true;
             }
-            if(!command){
-                bridgeGame.exit();
-            }
-        }
+            bridgeGame.exit();
+        } return false;
     }
 
     private static void gameOver(BridgeGame bridgeGame, List<MoveResult> moveResults){
