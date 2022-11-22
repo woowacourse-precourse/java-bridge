@@ -34,10 +34,21 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public String receiveMoveDirection() {
+        String moveDirection = "";
+        try {
+            moveDirection = readMoveDirection(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            moveDirection = receiveMoveDirection();
+        }
+        return moveDirection;
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String input) {
+    public String readMoveDirection(String input) {
         validateInput.validateMoveAlphabet(input);
         return input;
     }

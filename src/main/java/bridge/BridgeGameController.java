@@ -38,7 +38,7 @@ public class BridgeGameController {
 
     private void moveUser(Bridge bridge) {
         System.out.println("이동할 칸을 선택해주세요");
-        bridgeGame.move(bridge, inputView.readMoving(Console.readLine()));
+        bridgeGame.move(bridge, inputView.receiveMoveDirection());
         outputView.printMap(bridge);
     }
 
