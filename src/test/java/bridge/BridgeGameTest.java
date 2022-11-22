@@ -3,6 +3,12 @@ package bridge;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeMap;
+import bridge.domain.Command;
+import bridge.domain.Direction;
+import bridge.service.BridgeGame;
+import bridge.service.BridgeMaker;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

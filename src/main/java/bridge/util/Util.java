@@ -1,4 +1,6 @@
-package bridge;
+package bridge.util;
+
+import bridge.exception.IllegalArgumentError;
 
 public class Util {
 

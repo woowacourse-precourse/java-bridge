@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum ResultFormat {
     SUCCESS("성공", true, 'O'),

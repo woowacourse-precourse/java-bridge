@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.exception.IllegalArgumentError;
 
 public enum Direction {
     UP(1, "U", 0),

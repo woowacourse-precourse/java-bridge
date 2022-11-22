@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ public class BridgeMap {
 
     private final Character[][] map;
 
-    BridgeMap(Bridge bridge, List<Direction> histories) {
+    public BridgeMap(Bridge bridge, List<Direction> histories) {
         this.map = makeMap(bridge, histories);
     }
 

@@ -9,11 +9,11 @@
 ## 📮 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
-      제출한다.
+  - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
+    제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원](https://apply.techcourse.co.kr) 사이트에 접속하여 프리코스 과제를 제출한다.
-    - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
-    - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+  - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
+  - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ## 🚨 과제 제출 전 체크 리스트 - 0점 방지
 
@@ -34,7 +34,9 @@ BUILD SUCCESSFUL in 0s
 ---
 
 ## 🚀 기능 요구 사항
+
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
+
 - 위아래 두 칸으로 이루어진 다리를 건너야 한다.
   - 다리는 왼쪽에서 오른쪽으로 건너야 한다.
   - 위아래 둘 중 하나의 칸만 건널 수 있다.
@@ -55,25 +57,35 @@ BUILD SUCCESSFUL in 0s
 ### 입출력 요구 사항
 
 #### 입력
+
 - 자동으로 생성할 다리 길이를 입력 받는다. 3 이상 20 이하의 숫자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.
+
 ```
 3
 ```
+
 - 라운드마다 플레이어가 이동할 칸을 입력 받는다. U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.
+
 ```
 U
 ```
+
 - 게임 재시작/종료 여부를 입력 받는다. R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.
+
 ```
 R
 ```
 
 #### 출력
+
 - 게임 시작 문구
+
 ```
 다리 건너기 게임을 시작합니다.
 ```
+
 - 게임 종료 문구
+
 ```
 최종 게임 결과
 [ O |   |   ]
@@ -82,6 +94,7 @@ R
 게임 성공 여부: 성공
 총 시도한 횟수: 2
 ```
+
 - 사용자가 이동할 때마다 다리 건너기 결과의 출력 형식은 실행 결과 예시를 참고한다.
   - 이동할 수 있는 칸을 선택한 경우 O 표시
   - 이동할 수 없는 칸을 선택한 경우 X 표시
@@ -90,11 +103,13 @@ R
   - 다리 칸의 구분은 ` | `(앞뒤 공백 포함) 문자열로 구분
   - 현재까지 건넌 다리를 모두 출력
 - 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
+
 ```
 [ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.
 ```
 
 #### 실행 결과 예시
+
 ```
 다리 건너기 게임을 시작합니다.
 
@@ -197,10 +212,12 @@ Q
   - `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
 
 ### InputView 클래스
+
 - 제공된 `InputView` 클래스를 활용해 구현해야 한다.
 - `InputView`의 패키지는 변경할 수 있다.
 - `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
 - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
+
 ```java
 public class InputView {
 
@@ -212,16 +229,19 @@ public class InputView {
         return null;
     }
 
-    public String readGameCommand() {
+    public String readGametype() {
         return null;
     }
 }
 ```
+
 ### OutputView 클래스
+
 - 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
 - `OutputView`의 패키지는 변경할 수 있다.
 - `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
 - 값 출력을 위해 필요한 메서드를 추가할 수 있다.
+
 ```java
 public class OutputView {
 
@@ -234,6 +254,7 @@ public class OutputView {
 ```
 
 ### BridgeGame 클래스
+
 - 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
 - `BridgeGame`에 필드(인스턴스 변수)를 추가할 수 있다.
 - `BridgeGame`의 패키지는 변경할 수 있다.
@@ -252,9 +273,11 @@ public class BridgeGame {
 ```
 
 ### BridgeMaker 클래스
+
 - 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
 - `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다.
 - `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+
 ```java
 public class BridgeMaker {
 
@@ -274,12 +297,13 @@ public class BridgeMaker {
 - 다리 칸을 생성하기 위한 Random 값은 아래와 같이 추출한다.
 
 ```java
-int number = bridgeNumberGenerator.generate();
+int number=bridgeNumberGenerator.generate();
 ``` 
 
 ### 라이브러리
 
-- [`camp.nextstep.edu.missionutils`](https://github.com/woowacourse-projects/mission-utils)에서 제공하는 `Console` API를 사용하여 구현해야 한다.
+- [`camp.nextstep.edu.missionutils`](https://github.com/woowacourse-projects/mission-utils)에서 제공하는 `Console` API를 사용하여
+  구현해야 한다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
 ---
@@ -289,5 +313,5 @@ int number = bridgeNumberGenerator.generate();
 - 미션은 [java-bridge](https://github.com/woowacourse-precourse/java-bridge) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
-    - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
+  - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.

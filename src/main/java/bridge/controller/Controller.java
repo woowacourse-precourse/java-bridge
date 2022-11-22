@@ -1,7 +1,15 @@
-package bridge;
+package bridge.controller;
 
-import static bridge.Util.toInt;
+import static bridge.util.Util.toInt;
 
+import bridge.service.BridgeGame;
+import bridge.service.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.exception.IllegalArgumentError;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.domain.Command;
+import bridge.domain.Direction;
 import java.util.List;
 
 public class Controller {

@@ -1,7 +1,10 @@
-package bridge;
+package bridge.service;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeMap;
+import bridge.domain.Command;
+import bridge.domain.Direction;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,11 +18,11 @@ public class BridgeGame {
     private int pointer = 0;
     private int tryCount = 1;
 
-    BridgeGame(List<String> bridge) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = new Bridge(bridge);
         this.histories = new ArrayList<>();
     }
-    
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

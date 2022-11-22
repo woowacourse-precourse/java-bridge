@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import bridge.ApplicationTest.TestNumberGenerator;
 
+import bridge.domain.Command;
+import bridge.domain.Direction;
+import bridge.service.BridgeGame;
+import bridge.service.BridgeMaker;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;

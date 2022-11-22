@@ -1,5 +1,9 @@
-package bridge;
+package bridge.service;
 
+import bridge.BridgeNumberGenerator;
+import bridge.domain.Constants;
+import bridge.domain.Direction;
+import bridge.exception.IllegalArgumentError;
 import java.util.ArrayList;
 import java.util.List;
 

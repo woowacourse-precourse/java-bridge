@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.exception.IllegalArgumentError;
 
 public enum Command {
     Retry("R"),
