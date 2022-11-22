@@ -21,4 +21,9 @@ public class OutputView {
         System.out.println(upBuilder);
         System.out.println(downBuilder);
     }
+
+    public void printResult(StringBuilder upBridge, StringBuilder downBridge) {
+        System.out.println("\n최종 게임 결과");
+        printMap(upBridge, downBridge);
+    }
 }
