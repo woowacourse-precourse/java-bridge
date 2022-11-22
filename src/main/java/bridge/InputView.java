@@ -19,14 +19,9 @@ public class InputView {
      */
     public int readBridgeSize() throws IllegalArgumentException {
         String cmd = Console.readLine();
-        int size;
-        try {
-            size = Integer.parseInt(cmd);
-        } catch (NumberFormatException e) {
-            throw InputValidationError.ERROR_BRIDGE_SIZE.exception;
-        }
-        validator.validateBridgeSize(size);
-        return size;
+        int parsedCmd = validator.validateBridgeSizeParsable(cmd);
+        validator.validateBridgeSize(parsedCmd);
+        return parsedCmd;
     }
 
     /**
