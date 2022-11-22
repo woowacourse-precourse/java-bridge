@@ -13,11 +13,18 @@ public class BridgeController {
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        for (String s : bridge)
+            System.out.print(s + " ");
         for (int i = 0; i < bridgeSize; i++) {
             String direction = inputView.readMoving();
             if (!bridgeGame.move(direction)) {
-                break;
+                if (!inputView.readGameCommand()) {
+                    break;
+                }
+                i = -1;
+                bridgeGame.retry();
             }
         }
+        outputView.printResult();
     }
 }
