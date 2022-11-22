@@ -1,14 +1,9 @@
-package bridge.model;
+package bridge.test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.model.Bridge;
-import bridge.model.BridgeGame;
-import bridge.model.Bridgelocation;
-import bridge.model.MoveBox;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {

@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeMaker;
-import bridge.model.BridgeNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

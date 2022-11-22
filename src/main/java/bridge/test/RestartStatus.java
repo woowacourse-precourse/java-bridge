@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.test;
 
 public class RestartStatus {
 
