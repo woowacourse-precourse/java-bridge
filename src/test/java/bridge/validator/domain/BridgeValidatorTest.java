@@ -3,7 +3,7 @@ package bridge.validator.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeMaker;
+import bridge.BridgeMaker;
 import bridge.exception.InvalidDirectionException;
 import bridge.exception.LengthOutOfRangeException;
 import java.util.List;
