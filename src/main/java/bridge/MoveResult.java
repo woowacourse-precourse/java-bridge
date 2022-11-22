@@ -17,7 +17,7 @@ public class MoveResult {
         return new ArrayList<>(this.history);
     }
 
-    public GameStatus getMoveStatus() {
+    public GameStatus getGameStatus() {
         return gameStatus;
     }
 }

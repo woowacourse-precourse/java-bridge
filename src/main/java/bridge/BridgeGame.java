@@ -35,17 +35,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MoveResult move(char moveCommand) {
-        history.add(String.valueOf(moveCommand));
+    public MoveResult move(MoveCommand moveCommand) {
+        history.add(String.valueOf(moveCommand.getValue()));
         return getMoveResult();
     }
 
     private MoveResult getMoveResult() {
-        int idx = history.size() - 1;
-
         if (history.equals(bridge)) {
             return new MoveResult(history, GameStatus.CORRECT);
         }
+        int idx = history.size() - 1;
         if (history.get(idx).equals(bridge.get(idx))) {
             return new MoveResult(history, GameStatus.CONTINUE);
         }

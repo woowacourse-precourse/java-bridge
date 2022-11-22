@@ -35,19 +35,18 @@ public class OutputView {
 
         printBridge(upperBridge);
         printBridge(lowerBridge);
+        System.out.println();
     }
 
     private void fillMapByStatus(MoveResult moveResult) {
-        GameStatus gameStatus = moveResult.getMoveStatus();
         List<String> history = moveResult.getHistory();
 
-        if (gameStatus == GameStatus.CORRECT || gameStatus == GameStatus.CONTINUE) {
-            fillMap(history);
-        }
-        if (gameStatus == GameStatus.FAIL) {
+        if (moveResult.getGameStatus() == GameStatus.FAIL) {
             fillMapExceptLastValue(history);
             fillLastValue(history);
+            return;
         }
+        fillMap(history);
     }
 
     private void fillMapExceptLastValue(List<String> history) {
@@ -67,11 +66,10 @@ public class OutputView {
         if (moveCommand == MoveCommand.UP.getValue()) {
             upperBridge.add(MOVE_SUCCESS);
             lowerBridge.add(MOVE_BLANK);
+            return;
         }
-        if (moveCommand == MoveCommand.DOWN.getValue()) {
-            upperBridge.add(MOVE_BLANK);
-            lowerBridge.add(MOVE_SUCCESS);
-        }
+        upperBridge.add(MOVE_BLANK);
+        lowerBridge.add(MOVE_SUCCESS);
     }
 
     private void fillLastValue(List<String> history) {
@@ -79,11 +77,10 @@ public class OutputView {
         if (lastChar == MoveCommand.UP.getValue()) {
             upperBridge.add(MOVE_FAIL);
             lowerBridge.add(MOVE_BLANK);
+            return;
         }
-        if (lastChar == MoveCommand.DOWN.getValue()) {
-            upperBridge.add(MOVE_BLANK);
-            lowerBridge.add(MOVE_FAIL);
-        }
+        upperBridge.add(MOVE_BLANK);
+        lowerBridge.add(MOVE_FAIL);
     }
 
     private void printBridge(List<Character> bridge) {
@@ -92,8 +89,7 @@ public class OutputView {
             System.out.print(" " + bridge.get(i) + " |");
         }
         System.out.print(" " + bridge.get(bridge.size() - 1) + " ");
-        System.out.print("]");
-        System.out.println();
+        System.out.print("]\n");
     }
 
     /**
@@ -105,8 +101,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(moveResult);
         System.out.println();
-
-        System.out.println("게임 성공 여부: " + moveResult.getMoveStatus().getMessage());
+        System.out.println("게임 성공 여부: " + moveResult.getGameStatus().getMessage());
         System.out.println("총 시도한 횟수: " + bridgeGame.getTotalAttempt());
     }
 }

@@ -18,6 +18,7 @@ public class InputView {
 
         int bridgeLen = validateBridgeInputIsNumber(Console.readLine());
         validateBridgeLen(bridgeLen);
+        System.out.println();
 
         return bridgeLen;
     }
@@ -40,16 +41,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public char readMoveCommand() {
+    public MoveCommand readMoveCommand() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
 
-        String alphabeticInput = Console.readLine();
-        validateAlphabeticInputLen(alphabeticInput);
-
-        char moveCommand = alphabeticInput.charAt(0);
+        char moveCommand = readAlphabeticInput();
         validateMoveCommandFormat(moveCommand);
 
-        return moveCommand;
+        return MoveCommand.of(moveCommand);
     }
 
     private void validateMoveCommandFormat(char moving) {
@@ -65,16 +63,20 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public char readRetryCommand() {
+    public RetryCommand readRetryCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
+        char restartCommand = readAlphabeticInput();
+        validateRetryCommandFormat(restartCommand);
+
+        return RetryCommand.of(restartCommand);
+    }
+
+    private char readAlphabeticInput() {
         String alphabeticInput = Console.readLine();
         validateAlphabeticInputLen(alphabeticInput);
 
-        char restartCommand = alphabeticInput.charAt(0);
-        validateRetryCommandFormat(restartCommand);
-
-        return restartCommand;
+        return alphabeticInput.charAt(0);
     }
 
     private void validateRetryCommandFormat(char retryCommand) {

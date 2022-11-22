@@ -7,15 +7,19 @@ import bridge.view.OutputView;
 public class GamePlayController {
     private final static String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public GamePlayController() {
+        inputView = new InputView();
+        outputView = new OutputView();
+    }
 
     public void createBridgeGame() {
         BridgeGame bridgeGame;
         while (true) {
             try {
-                int bridgeSize = inputView.readBridgeSize();
-                bridgeGame = createBridgeGame(bridgeSize);
+                bridgeGame = createBridgeGame(inputView.readBridgeSize());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
@@ -33,14 +37,11 @@ public class GamePlayController {
     public void moveUser(BridgeGame bridgeGame) {
         while (true) {
             try {
-                char moveCommand = inputView.readMoveCommand();
-                MoveResult moveResult = bridgeGame.move(moveCommand);
+                MoveResult moveResult = bridgeGame.move(inputView.readMoveCommand());
                 outputView.printMap(moveResult);
-
                 if (isEndGame(moveResult, bridgeGame)) {
                     return;
                 }
-
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
@@ -48,11 +49,10 @@ public class GamePlayController {
     }
 
     private boolean isEndGame(MoveResult moveResult, BridgeGame bridgeGame) {
-        GameStatus gameStatus = moveResult.getMoveStatus();
-        if (gameStatus == GameStatus.FAIL) {
+        if (GameStatus.FAIL == moveResult.getGameStatus()) {
             return !retry(bridgeGame, moveResult);
         }
-        if (gameStatus == GameStatus.CORRECT) {
+        if (GameStatus.CORRECT == moveResult.getGameStatus()) {
             outputView.printResult(moveResult, bridgeGame);
             return true;
         }
@@ -62,21 +62,20 @@ public class GamePlayController {
     public boolean retry(BridgeGame bridgeGame, MoveResult moveResult) {
         while (true) {
             try {
-                char retryCommand = inputView.readRetryCommand();
-
-                if (retryCommand == RetryCommand.QUIT.getValue()) {
-                    outputView.printResult(moveResult, bridgeGame);
-                    return false;
-                }
-
-                if (retryCommand == RetryCommand.RETRY.getValue()) {
-                    bridgeGame.retry();
-                    return true;
-                }
-
+                RetryCommand retryCommand = inputView.readRetryCommand();
+                return retryOrQuit(bridgeGame, moveResult, retryCommand);
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
         }
+    }
+
+    private boolean retryOrQuit(BridgeGame bridgeGame, MoveResult moveResult, RetryCommand retryCommand) {
+        if (retryCommand == RetryCommand.QUIT) {
+            outputView.printResult(moveResult, bridgeGame);
+            return false;
+        }
+        bridgeGame.retry();
+        return true;
     }
 }

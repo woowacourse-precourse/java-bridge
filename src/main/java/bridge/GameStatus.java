@@ -3,7 +3,7 @@ package bridge;
 public enum GameStatus {
     CONTINUE("진행중"), FAIL("실패"), CORRECT("성공");
 
-    private String message;
+    private final String message;
 
     GameStatus(String message) {
         this.message = message;
