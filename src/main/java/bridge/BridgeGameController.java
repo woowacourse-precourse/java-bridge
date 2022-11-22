@@ -15,6 +15,7 @@ public class BridgeGameController {
 
         do {
             map.add(bridgeGameService.askMoving());
+            bridgeGameService.printMapStatus(bridge, map);
         } while (bridgeGameService.isMovable(bridge, map));
 
     }

@@ -1,9 +1,11 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameService {
     private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
     private static final BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(generator);
     private static final BridgeGame bridgeGame = new BridgeGame();
@@ -37,6 +39,29 @@ public class BridgeGameService {
             return true;
         }
         return false;
+    }
+
+    public void printMapStatus(List<String> bridge, List<String> map) {
+        outputView.printMap(generateMapStatus(bridge, map, "U"));
+        outputView.printMap(generateMapStatus(bridge, map, "D"));
+    }
+
+    private List<String> generateMapStatus(List<String> bridge, List<String> map, String direction) {
+        List<String> mapStatus = new ArrayList<>();
+        for (int index = 0; index < map.size(); index++) {
+            mapStatus.add(calculateStatus(bridge.get(index), map.get(index), direction));
+        }
+        return mapStatus;
+    }
+
+    private String calculateStatus(String bridge, String map, String direction) {
+        if (bridge.equals(map)) {
+            if (map.equals(direction)) {
+                return "O";
+            }
+            return " ";
+        }
+        return "X";
     }
 
 
