@@ -26,51 +26,15 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
-            );
-
-            int upSideIndex = output().indexOf("[ O |   | O ]");
-            int downSideIndex = output().indexOf("[   | O |   ]");
-            assertThat(upSideIndex).isLessThan(downSideIndex);
-        }, 1, 0, 1);
-    }
-
-    @Test
-    void 기능_테스트_실패_포함_성공() {
-        assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "U", "R", "U", "D", "U");
-            assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   | O ]",
                     "[   | O |   ]",
                     "게임 성공 여부: 성공",
-                    "총 시도한 횟수: 2"
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
-            assertThat(upSideIndex).isLessThan(downSideIndex);
-        }, 1, 0, 1);
-    }
-
-    @Test
-    void 기능_테스트_실패_후_종료() {
-        assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "U", "Q");
-            assertThat(output()).contains(
-                    "최종 게임 결과",
-                    "[ O | X ]",
-                    "[   |   ]",
-                    "게임 성공 여부: 실패",
-                    "총 시도한 횟수: 1"
-            );
-
-            int upSideIndex = output().indexOf("[ O | X ]");
-            int downSideIndex = output().indexOf("[   |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
@@ -79,30 +43,6 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_추가_범위에_맞지_않은_다리_길이() {
-        assertSimpleTest(() -> {
-            runException("1");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_추가_움직일_방향() {
-        assertSimpleTest(() -> {
-            runException("3", "u");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_추가_게임_재시작_여부() {
-        assertSimpleTest(() -> {
-            runException("3", "D", "r");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
