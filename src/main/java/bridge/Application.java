@@ -31,7 +31,7 @@ public class Application {
         }
         if(!move_Status){
             OV.restartGuidance();
-//            if(IV.readGameCommand().equals("R"));
+            if(IV.readGameCommand().equals("R"));
 //            BG.retry();
         }
     }
