@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enums.BridgeLine;
+import bridge.enums.GameState;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.StringJoiner;

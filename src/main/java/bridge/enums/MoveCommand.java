@@ -1,17 +1,16 @@
-package bridge;
+package bridge.enums;
 
-public enum EndCommand {
-    RESTART("R"),
-    QUIT("Q");
+public enum MoveCommand {
+    UP("U"),
+    DOWN("D");
 
     private final String commandStr;
 
-    EndCommand(String commandStr) {
+    MoveCommand(String commandStr) {
         this.commandStr = commandStr;
     }
 
     public String getCommandStr() {
         return commandStr;
     }
-
 }

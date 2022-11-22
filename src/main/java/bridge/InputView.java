@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.enums.BridgeSizeBound;
+import bridge.enums.EndCommand;
+import bridge.enums.ErrorMessage;
+import bridge.enums.MoveCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -59,8 +63,7 @@ public class InputView {
     }
 
     private void validateMoveChoice(String moveChoice) {
-        if ((!moveChoice.equals(MoveCommand.UP.getCommandStr())) && (!moveChoice.equals(
-                MoveCommand.DOWN.getCommandStr()))) {
+        if ((!moveChoice.equals(MoveCommand.UP.getCommandStr())) && (!moveChoice.equals(MoveCommand.DOWN.getCommandStr()))) {
             throw new IllegalArgumentException(ErrorMessage.MOVE_CHOICE_EXCEPTION.getMessage());
         }
     }

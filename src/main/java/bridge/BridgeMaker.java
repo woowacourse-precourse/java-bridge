@@ -1,8 +1,10 @@
 package bridge;
 
+import bridge.enums.BridgeMakerMapping;
+import bridge.enums.BridgeSizeBound;
+import bridge.enums.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -11,7 +13,6 @@ import java.util.stream.Collectors;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final Map<Integer, String> numToStringMapping = Map.of(0, "D", 1, "U");
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -46,7 +47,7 @@ public class BridgeMaker {
     }
 
     private String convertNumToString(int num) {
-        return numToStringMapping.get(num);
+        return BridgeMakerMapping.findBy(num).getStr();
     }
 
 }
