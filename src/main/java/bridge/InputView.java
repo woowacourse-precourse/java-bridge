@@ -48,10 +48,7 @@ public class InputView {
         String nextStepInput;
         nextStepInput = Console.readLine();
         if (!nextStepInput.equals("U") && !nextStepInput.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] U 혹은 D만 입력 가능합니다.");
-        }
-        if (nextStepInput.length() > 1) {
-            throw new IllegalArgumentException("[ERROR] 한자리만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 반드시 U 혹은 D 중 (최소)한글자를 입력 해야 합니다.");
         }
         return nextStepInput;
     }
