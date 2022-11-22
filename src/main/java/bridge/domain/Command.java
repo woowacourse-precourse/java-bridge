@@ -1,18 +1,21 @@
 package bridge.domain;
 
 public enum Command {
-    UPPER("U"),
-    LOWER("D"),
-    RESTART("R"),
-    QUIT("Q");
+    U(1),
+    D(0);
 
-    private String command;
+    private int index ;
 
-    Command(String command) {
-        this.command = command;
+    Command(int index) {
+        this.index = index;
     }
 
-    public String getCommand() {
-        return command;
+    public static String getCommand(int index){
+        for(Command command : Command.values()){
+            if(command.index == index){
+                return command.name();
+            }
+        }
+        return null;
     }
 }

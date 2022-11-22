@@ -29,7 +29,7 @@ public class InputView {
      */
     public String readMoving() {
         String movePlace = Console.readLine();
-        if (!movePlace.equals(Command.UPPER.getCommand()) && !movePlace.equals(Command.LOWER.getCommand())) {
+        if (!movePlace.equals("U") && !movePlace.equals("D")) {
             ExceptionView.commandUpperOrLowerError();
             throw new IllegalArgumentException();
         }
@@ -42,9 +42,9 @@ public class InputView {
     public boolean readGameCommand() {
         String command = Console.readLine();
 
-        if (command.equals(Command.RESTART.getCommand())) {
+        if (command.equals("R")) {
             return true;
-        } else if (command.equals(Command.QUIT.getCommand())) {
+        } else if (command.equals("Q")) {
             return false;
         }
         ExceptionView.commandRestartOrNotError();

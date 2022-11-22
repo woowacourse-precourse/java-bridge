@@ -31,9 +31,6 @@ public class BridgeMaker {
     }
 
     private String getPassable(int number) {
-        if (number == 0) {
-            return Command.LOWER.getCommand();
-        }
-        return Command.UPPER.getCommand();
+        return Command.getCommand(number);
     }
 }

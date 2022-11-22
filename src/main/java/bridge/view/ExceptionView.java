@@ -11,15 +11,11 @@ public class ExceptionView {
     }
 
     public static void commandUpperOrLowerError(){
-        String upperCommand = Command.UPPER.getCommand();
-        String lowerCommand = Command.LOWER.getCommand();
-        message = "[ERROR] " + upperCommand +"(위 칸)과 "+ lowerCommand +"(아래 칸) 중 하나를 선택하여야 합니다.";
+        message = "[ERROR] U(위 칸)과 D(아래 칸) 중 하나를 선택하여야 합니다.";
     }
 
     public static void commandRestartOrNotError(){
-        String restartCommand = Command.RESTART.getCommand();
-        String quitCommand = Command.QUIT.getCommand();
-        message = "[ERROR] " + restartCommand +"(재시작)과 " + quitCommand +"(종료) 중 하나를 선택하여야 합니다.";
+        message = "[ERROR] R(재시작)과 Q(종료) 중 하나를 선택하여야 합니다.";
     }
 
 
