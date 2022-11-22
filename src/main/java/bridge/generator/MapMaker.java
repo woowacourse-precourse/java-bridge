@@ -2,15 +2,10 @@ package bridge.generator;
 
 import bridge.game.Move;
 import bridge.game.Result;
-import bridge.generator.Answer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MapMaker {
-    private final String START = "[";
-    private final String DIVIDE = "|";
-    private final String END = "]";
-    private final String NEW_LINE = "\n";
 
     public String makeMap(List<Move> moves) {
         return getUpperBridgeMap(moves) + getLowerBridge(moves);
@@ -19,7 +14,7 @@ public class MapMaker {
     public String getUpperBridgeMap(List<Move> moves) {
         List<Result> upperBridgeResult = makeUpperBridgeResult(moves);
         String upperBridgeMap = changeResultsToString(upperBridgeResult);
-        return START + upperBridgeMap + END + NEW_LINE;
+        return MapFormat.START + upperBridgeMap + MapFormat.END + MapFormat.NEW_LINE;
     }
 
     public List<Result> makeUpperBridgeResult(List<Move> moves) {
@@ -43,11 +38,14 @@ public class MapMaker {
     }
 
     public String changeResultsToString(List<Result> results) {
-        String result = "";
-        for (int i = 0; i < results.size() - 1; i++) {
-            result += results.get(i) + DIVIDE;
+        StringBuilder printableResult = new StringBuilder();
+        for (int index = 0; index < results.size(); index++) {
+            printableResult.append(results.get(index));
+            printableResult.append(MapFormat.DIVIDE);
         }
-        return result + getLastResult(results);
+        int removeDivideIndex = printableResult.length() - 1;
+        printableResult.deleteCharAt(removeDivideIndex);
+        return printableResult.toString();
     }
 
     public Result getLastResult(List<Result> results) {
@@ -58,7 +56,7 @@ public class MapMaker {
     public String getLowerBridge(List<Move> moves) {
         List<Result> lowerBridgeResult = makeLowerBridgeResult(moves);
         String lowerBridgeMap = changeResultsToString(lowerBridgeResult);
-        return START + lowerBridgeMap + END + NEW_LINE;
+        return MapFormat.START + lowerBridgeMap + MapFormat.END + MapFormat.NEW_LINE;
     }
 
     public List<Result> makeLowerBridgeResult(List<Move> moves) {
