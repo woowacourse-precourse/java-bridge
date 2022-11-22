@@ -38,6 +38,13 @@ public class OutputView {
         System.out.printf("총 시도한 횟수: %s\n", gameResult.getTryCount());
     }
 
+    private String getResultMark(boolean success) {
+        if (success) {
+            return ANSWER_IS_RIGHT;
+        }
+        return ANSWER_IS_WRONG;
+    }
+
     private void addCurrentRoundMap(String message, String resultMark) {
         if (message.equals(MOVE_TO_UPPER_BLOCK)) {
             upperBlocks.add(resultMark);
@@ -47,13 +54,6 @@ public class OutputView {
             upperBlocks.add(BLANK);
             lowerBlocks.add(resultMark);
         }
-    }
-
-    private String getResultMark(boolean success) {
-        if (success) {
-            return ANSWER_IS_RIGHT;
-        }
-        return ANSWER_IS_WRONG;
     }
 
     private void printJoiningMap() {
