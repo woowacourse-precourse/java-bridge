@@ -11,10 +11,8 @@ import bridge.SideMap;
  */
 public class OutputView {
 
-    private final static int STARTING_POINT = 0;
     private final static String BRIDGE_START = "[ ";
     private final static String BRIDGE_END = " ]";
-    private final static String BRIDGE_SEPARATOR = " | ";
 
     public void printGameIntro() {
         System.out.println(GuidanceMessage.GAME_INTRO);
@@ -37,13 +35,7 @@ public class OutputView {
 
     private void printSideMap(SideMap sideMap) {
         System.out.print(BRIDGE_START);
-
-        for (int position = STARTING_POINT; position < sideMap.size(); position++) {
-            if (position > STARTING_POINT) {
-                System.out.print(BRIDGE_SEPARATOR);
-            }
-            System.out.print(sideMap.get(position));
-        }
+        System.out.print(sideMap);
         System.out.println(BRIDGE_END);
     }
 
