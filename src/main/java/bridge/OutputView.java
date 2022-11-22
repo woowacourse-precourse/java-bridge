@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.enummodel.GameResultEnum;
+import bridge.enummodel.MessageEnum;
 
 import java.util.List;
 
@@ -25,14 +26,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<String>> result, int retryNumber, Boolean gameResult) {
-        System.out.println("최종 게임 결과");
+        System.out.println(MessageEnum.GAME_END_INFO.getValue());
         printMap(result.get(0), result.get(1));
-        System.out.println("게임 성공 여부: " + GameResultEnum.RESULT.getValue(gameResult));
-        System.out.println("총 시도한 횟수: " + retryNumber);
+        System.out.println(MessageEnum.GAME_RESULT.getValue() + GameResultEnum.RESULT.getValue(gameResult));
+        System.out.println(MessageEnum.GAME_TRY.getValue() + retryNumber);
     }
 
     public void initGame(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(MessageEnum.GAME_START.getValue());
     }
 
     private void convertResult(List<String> upAnswer) {
