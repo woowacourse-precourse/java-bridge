@@ -27,17 +27,23 @@ public class OutputView {
     }
 
     public void printMap(List<MoveResult> moveResults) {
+        System.out.println(getMapInString(moveResults));
+    }
+
+    public void printResult(FinalResult finalResult) {
+        System.out.printf("%s%s%s%s%s%s%s%s%s%s",
+                FINAL_RESULT_HEADING, System.lineSeparator(),
+                getMapInString(finalResult.getMoveResults()), System.lineSeparator(),
+                GAME_RESULT, finalResult.getGameResult().getValue(), System.lineSeparator(),
+                NUMBER_OF_ATTEMPTS, finalResult.getNumAttempts(), System.lineSeparator()
+        );
+    }
+
+    private String getMapInString(List<MoveResult> moveResults) {
         StringBuilder upperRow = new StringBuilder();
         StringBuilder lowerRow = new StringBuilder();
         this.mapDrawer.drawMap(moveResults, upperRow, lowerRow);
 
-        System.out.println(upperRow + System.lineSeparator() + lowerRow + System.lineSeparator());
-    }
-
-    public void printResult(FinalResult finalResult) {
-        System.out.println(FINAL_RESULT_HEADING);
-        printMap(finalResult.getMoveResults());
-        System.out.println(GAME_RESULT + finalResult.getGameResult().getValue());
-        System.out.println(NUMBER_OF_ATTEMPTS + finalResult.getNumAttempts());
+        return String.format("%s%s%s%s", upperRow, System.lineSeparator(), lowerRow, System.lineSeparator());
     }
 }
