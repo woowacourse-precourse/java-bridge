@@ -19,8 +19,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeResult bridgeResult) {
+
         System.out.printf(MESSAGE_OUTPUT_BRACKET, String.join(MESSAGE_OUTPUT_WALL, bridgeResult.getUpperBridge()));
         printBlank();
+
         System.out.printf(MESSAGE_OUTPUT_BRACKET, String.join(MESSAGE_OUTPUT_WALL, bridgeResult.getLowerBridge()));
         printBlank();
         printBlank();
@@ -32,9 +34,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeResult bridgeResult, boolean gameResult, int tryCount) {
+
         System.out.println(MESSAGE_OUTPUT_RESULT);
         System.out.printf(MESSAGE_OUTPUT_BRACKET, String.join(MESSAGE_OUTPUT_WALL, bridgeResult.getUpperBridge()));
         printBlank();
+
         System.out.printf(MESSAGE_OUTPUT_BRACKET, String.join(MESSAGE_OUTPUT_WALL, bridgeResult.getLowerBridge()));
         printBlank();
         printSuccessOrNot(gameResult, tryCount);
