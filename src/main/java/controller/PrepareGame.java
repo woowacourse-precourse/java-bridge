@@ -1,7 +1,7 @@
 package controller;
 
 import bridge.BridgeRandomNumberGenerator;
-import model.BridgeMaker;
+import bridge.BridgeMaker;
 import view.InputView;
 
 import java.util.List;
