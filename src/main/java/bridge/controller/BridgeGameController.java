@@ -47,7 +47,7 @@ public class BridgeGameController {
     }
 
     private void quit() {
-        bridgeGame.quit();
+        bridgeGame.fail();
     }
 
     private void checkEnd() {

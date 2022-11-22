@@ -31,12 +31,12 @@ public class BridgeGame {
         gameStatus = GameStatusType.PLAYING;
     }
 
-    public void quit() {
-        gameStatus = GameStatusType.FAIL;
-    }
-
     public void end() {
         gameStatus = GameStatusType.END;
+    }
+
+    public void fail() {
+        gameStatus = GameStatusType.FAIL;
     }
 
     public boolean isPlaying() {
@@ -71,7 +71,4 @@ public class BridgeGame {
         return gameStatus;
     }
 
-    private void fail() {
-        gameStatus = GameStatusType.FAIL;
-    }
 }
