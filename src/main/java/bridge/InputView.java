@@ -9,10 +9,10 @@ public class InputView {
         int size = 0;
         boolean Try = true;
         System.out.println(Constant.INPUT_LENGTH);
-        while(Try){
+        while(retry){
             try{
                 size = Integer.parseInt(bridgeSize);
-                Try = false;
+                retry = false;
             } catch(NumberFormatException e){
                 throw new IllegalArgumentException(Constant.Length_Restrict());
             }
