@@ -12,10 +12,10 @@
     - [x] 이동할 칸 입력이 U혹은 D인지 확인 InputView#validateMoveAlphabet()
   - [x] 이동할 칸과 다리 비교 Bridge#compareWithBridge()
   - [x] 이동한 칸 결과 출력하기 OutputView#printMap()
-- [ ] 게임 결과
+- [x] 게임 결과
   - [x] 게임 결과 출력 OutputView#printResult()
   - [x] 재시도 여부 입력받기 InputView#readGameCommand()
-  - [ ] 게임 재시도 or 종료
+  - [x] 게임 재시도 or 종료 BridgeGameController#checkRestartOrQuit()
 
 ## 🚀 기능 요구 사항
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
