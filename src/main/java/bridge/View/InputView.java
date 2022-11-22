@@ -7,16 +7,23 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(UiMessage.PLEASE_INPUT_BRIDGE_SIZE.getValue());
         String input = Console.readLine();
-        isDigit(input);
-        return Integer.parseInt(input);
+        return isSizeOutOfRange(isDigit(input));
     }
 
-    private static void isDigit(String input) {
+    public Integer isSizeOutOfRange(Integer input) {
+        if (input < 3 || input > 20) {
+            throw new IllegalArgumentException(UiMessage.ERROR_ENTERED_BRIDGE_SIZE.getValue());
+        }
+        return input;
+    }
+
+    public static Integer isDigit(String input) {
         for (char c : input.toCharArray()) {
             if (!(48 <= c && c <= 57)) {
                 throw new IllegalArgumentException(UiMessage.ERROR_ENTERED_BRIDGE_SIZE.getValue());
             }
         }
+        return Integer.parseInt(input);
     }
 
     public String readMoving() throws IllegalArgumentException {
