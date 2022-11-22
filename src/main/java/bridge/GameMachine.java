@@ -15,46 +15,44 @@ public class GameMachine {
 
     private List<BridgeType> bridge;
     private BridgeGame bridgeGame;
-    private int counter;
+    private int gameCounter;
 
     public GameMachine() {
+        view.printStart();
+        view.printBridgeSizeRequest();
         bridge = makeBridge();
         bridgeGame = new BridgeGame(bridge);
-        counter = 1;
+        gameCounter=0;
     }
 
     public void run() {
-        start();
-        RetryCommand retry = RetryCommand.RETRY;
-        while (retry == RetryCommand.RETRY) {
-            bridgeGame.retry();
+        RetryCommand respond;
+        do {
             MoveResult gameResult = play();
-            retry = gameAfter(gameResult);
-        }
+            respond = askRetry(gameResult);
+        } while (respond == RetryCommand.RETRY);
         end();
     }
 
-    private void start() {
-        view.printBridgeSizeRequest();
-        view.printStart();
-    }
 
-    private RetryCommand gameAfter(MoveResult gameResult) {
+    private RetryCommand askRetry(MoveResult gameResult) {
+        RetryCommand respond = RetryCommand.QUIT;
         if (gameResult == MoveResult.FAIL) {
             view.printRestartRequest();
-            counter++;
-            return RetryCommand.of(ui.readGameCommand());
+            respond = RetryCommand.of(ui.readGameCommand());
         }
-        return RetryCommand.QUIT;
+        return respond;
+
     }
 
     private void end() {
         view.printResult();
-        view.printGameCount(counter);
+        view.printGameCount(gameCounter);
     }
 
 
     private MoveResult play() {
+        gameCounter++;
         for (int location = 0; location < bridge.size(); location++) {
             MoveResult moveResult = move();
             if (moveResult == MoveResult.FAIL) {
@@ -66,6 +64,7 @@ public class GameMachine {
         return MoveResult.PASS;
 
     }
+
     private MoveResult move() {
         view.printMoveTypeRequest();
         BridgeType userInput = BridgeType.of(ui.readMoving());
