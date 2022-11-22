@@ -22,9 +22,8 @@ public class InputView {
                 System.out.println(e.getMessage());
                 continue;
             }
-            break;
+            return size;
         }
-        return size;
     }
 
     private int bridgeNumberAsk() {
@@ -41,13 +40,16 @@ public class InputView {
      */
     public String readMoving() {
         String userDirection = "";
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        try {
-            userDirection = moveAsk();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        while(true) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            try {
+                userDirection = moveAsk();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return userDirection;
         }
-        return userDirection;
     }
     private String moveAsk() {
         String input = Console.readLine();
