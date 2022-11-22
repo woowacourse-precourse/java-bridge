@@ -15,7 +15,8 @@ class BridgePrintingCoreTest {
         List<Integer> traceLocation = List.of(GameState.UP_STATEMENT,GameState.DOWN_STATEMENT,GameState.DOWN_STATEMENT);
         int nowState=GameState.DOWN_STATEMENT;
         String state = null;
-        if(bridgeState.get(1) && traceLocation.get(1) == nowState){
+        int index=1;
+        if(bridgeState.get(index) && traceLocation.get(index) == nowState){
            state = GameState.EXIST_SQUARE;
         }
         Assertions.assertThat(state).isEqualTo(GameState.EXIST_SQUARE);
@@ -27,8 +28,9 @@ class BridgePrintingCoreTest {
         List<Boolean> bridgeState = List.of(true, false, false);
         List<Integer> traceLocation = List.of(GameState.UP_STATEMENT,GameState.DOWN_STATEMENT,GameState.DOWN_STATEMENT);
         String state = null;
+        int index=1;
         int nowState=GameState.DOWN_STATEMENT;
-        if(!bridgeState.get(1) && traceLocation.get(1) == nowState){
+        if(!bridgeState.get(index) && traceLocation.get(index) == nowState){
             state = GameState.NO_EXIST_SQUARE;
         }
         Assertions.assertThat(state).isEqualTo(GameState.NO_EXIST_SQUARE);
