@@ -10,8 +10,6 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public final String STARTGAME = "다리 건너기 게임을 시작합니다.";
-
     public InputView inputView;
     public OutputView outputView;
     public BridgeMaker bridgeMaker;
@@ -28,7 +26,7 @@ public class BridgeGame {
     }
 
     public void game() {
-        System.out.println(STARTGAME + '\n');
+        outputView.gameStart();
         int bridgeSize = inputView.readBridgeSize();
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         while (userLocation < bridgeSize) {
