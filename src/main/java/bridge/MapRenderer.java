@@ -14,44 +14,41 @@ public class MapRenderer {
 	private static final String LINE_BREAK_CHARACTER = "\n";
 	private static final int ONE = 1;
 	private static final int FIRST_INDEX = 0;
-	private final List<String> movingStack;
-	private final int lastIndex;
-	private final boolean isCorrect;
+
 	private StringBuilder upperRow;
 	private StringBuilder lowerRow;
 	private String map;
 
 	public MapRenderer(List<String> bridge, List<String> movingStack) {
-		this.movingStack = movingStack;
-		this.lastIndex = movingStack.size() - ONE;
-		this.isCorrect = bridge.get(lastIndex).equals(movingStack.get(lastIndex));
+		int lastIndex = movingStack.size() - ONE;
+		boolean isCorrect = bridge.get(lastIndex).equals(movingStack.get(lastIndex));
 
 		init();
 		addEntrance();
-		render();
+		render(lastIndex, movingStack, isCorrect);
 	}
 
-	private void render() {
+	private void render(int lastIndex, List<String> movingStack, boolean isCorrect) {
 		if (movingStack.size() == ONE) {
-			map = renderWhenSizeIsOne();
+			map = renderWhenSizeIsOne(lastIndex, movingStack, isCorrect);
 		}
 		if (movingStack.size() != ONE) {
-			map = renderWhenSizeBiggerThanOne();
+			map = renderWhenSizeBiggerThanOne(lastIndex, movingStack, isCorrect);
 		}
 	}
 
-	private String renderWhenSizeIsOne() {
-		addLastCell();
+	private String renderWhenSizeIsOne(int lastIndex, List<String> movingStack, boolean isCorrect) {
+		addLastCell(lastIndex, movingStack, isCorrect);
 		addExit();
 		return upperRow.toString() + LINE_BREAK_CHARACTER + lowerRow.toString();
 	}
 
-	private String renderWhenSizeBiggerThanOne() {
+	private String renderWhenSizeBiggerThanOne(int lastIndex, List<String> movingStack, boolean isCorrect) {
 		for (int index = FIRST_INDEX; index < lastIndex; index++) {
-			addCircle(index);
+			addCircle(index, movingStack);
 			addDivisionLine();
 		}
-		addLastCell();
+		addLastCell(lastIndex, movingStack, isCorrect);
 		addExit();
 		return upperRow.toString() + LINE_BREAK_CHARACTER + lowerRow.toString();
 	}
@@ -76,23 +73,23 @@ public class MapRenderer {
 		lowerRow.append(DIVISION_LINE);
 	}
 
-	private void addLastCell() {
+	private void addLastCell(int lastIndex, List<String> movingStack, boolean isCorrect) {
 		if (isCorrect) {
-			addCircle(lastIndex);
+			addCircle(lastIndex, movingStack);
 		}
 		if (!isCorrect) {
-			addCross();
+			addCross(lastIndex, movingStack);
 		}
 	}
 
-	private void addCircle(int index) {
+	private void addCircle(int index, List<String> movingStack) {
 		if (movingStack.get(index).equals(Constant.UPPER_POSITION))
 			addCircleToUpperRow();
 		if (movingStack.get(index).equals(Constant.LOWER_POSITION))
 			addCircleToLowerRow();
 	}
 
-	private void addCross() {
+	private void addCross(int lastIndex, List<String> movingStack) {
 		if (movingStack.get(lastIndex).equals(Constant.LOWER_POSITION)) {
 			addCrossToLowerRow();
 		}
