@@ -33,7 +33,6 @@ public class InputView {
     public String readMoving() {
         String move = "";
         try {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
             move = Console.readLine();
             validator.validateMoving(move);
         } catch (IllegalArgumentException exception) {
