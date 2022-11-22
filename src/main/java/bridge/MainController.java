@@ -6,6 +6,7 @@ public class MainController {
 
     private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
+    public static final int RESET = -1;
 
     /**
      * 게임 성공여부 에러
@@ -23,19 +24,13 @@ public class MainController {
     }
 
     private void mainGame(Bridge bridge, BridgeGame game) {
-        int count = 0;
-        while(bridge.size() > count) {
-            String in = input.readMoving();
-            game.move(count, in);
+        for(int count = 0; count < bridge.size(); count++) {
+            game.move(count, input.readMoving());
             output.printMap(game);
-            count++;
             if(game.isWrong()) {
-                String command = input.readGameCommand();
-                if(!game.retry(command)){
-                    break;
-                }
+                if(!game.retry(input.readGameCommand())){ break; }
                 game.plusGameCount();
-                count = 0;
+                count = RESET;
             }
         }
     }
