@@ -31,6 +31,7 @@ public class OutputView extends View {
 
     public void printStart() {
         print(LETS_START);
+        printEmptyLine();
     }
 
     @Override
