@@ -5,11 +5,11 @@ import org.junit.jupiter.params.provider.NullSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class ReadMovingCommandTest {
+class MovingCommandTest {
     @ParameterizedTest
     @NullSource
     void ReadMovingCommand_클래스는_생성시_null_입력이_들어오면_예외(final String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new ReadMovingCommand(input));
+        assertThatIllegalArgumentException().isThrownBy(() -> new MovingCommand(input));
     }
 }
 

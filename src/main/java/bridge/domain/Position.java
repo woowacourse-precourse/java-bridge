@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.command.ReadMovingCommand;
+import bridge.command.MovingCommand;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -18,7 +18,7 @@ enum Position {
         this.bridgeType = bridgeType;
     }
 
-    public static Position from(final ReadMovingCommand movingCommand) {
+    public static Position from(final MovingCommand movingCommand) {
         return Arrays.stream(Position.values())
                 .filter(it -> Objects.equals(it.bridgeType, movingCommand.getMoving()))
                 .findFirst()

@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.command.BridgeSizeCommand;
-import bridge.command.ReadMovingCommand;
+import bridge.command.MovingCommand;
 import bridge.command.RetryCommand;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -22,8 +22,8 @@ public final class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public ReadMovingCommand readMoving() {
-        return new ReadMovingCommand(Console.readLine());
+    public MovingCommand readMoving() {
+        return new MovingCommand(Console.readLine());
     }
 
     /**
