@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.service.BridgeLayer;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,6 +22,21 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>(Collections.emptyList());
+        for (int i = 0; i < size; i++) {
+            int generator = bridgeNumberGenerator.generate();
+            addBridge(generator, bridge);
+        }
+        return bridge;
+    }
+
+    private void addBridge(int generator, List<String> bridge) {
+        if (generator == BridgeLayer.LOWER_LAYER.getLayer()) {
+            bridge.add("D");
+            return;
+        }
+        if (generator == BridgeLayer.UPPER_LAYER.getLayer()) {
+            bridge.add("U");
+        }
     }
 }
