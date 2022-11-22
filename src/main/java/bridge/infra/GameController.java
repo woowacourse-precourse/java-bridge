@@ -5,7 +5,7 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameService;
 import bridge.domain.command.BridgeMoveCommand;
 import bridge.domain.command.CreateBridgeGameCommand;
-import bridge.domain.command.ReTryCommand;
+import bridge.infra.dto.ReTryCommand;
 import bridge.domain.dto.MovingResult;
 import bridge.infra.dto.InputBridgeSize;
 import java.util.List;

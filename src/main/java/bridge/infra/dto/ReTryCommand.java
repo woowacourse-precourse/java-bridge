@@ -1,4 +1,4 @@
-package bridge.domain.command;
+package bridge.infra.dto;
 
 public class ReTryCommand {
 
