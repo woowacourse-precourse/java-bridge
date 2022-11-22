@@ -61,7 +61,7 @@ public class BridgeController {
                 String playContinue = inputView.readGameCommand();
                 return bridgeService.makeContinueMessage(playContinue);
             } catch(IllegalArgumentException e){
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
     }
