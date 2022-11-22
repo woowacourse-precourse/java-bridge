@@ -11,9 +11,8 @@ import java.util.List;
 
 import static bridge.message.ValidateMessage.INVALID_INPUT;
 import static bridge.message.ValidateMessage.OUT_OF_RANGE;
-import static bridge.util.BridgeUtil.BINARY_UP;
-import static bridge.util.BridgeUtil.MIN_BRIDGE_SIZE;
-import static bridge.util.BridgeUtil.MAX_BRIDGE_SIZE;
+import static bridge.util.BridgeUtil.*;
+import static bridge.util.BridgeUtil.DOWN;
 
 public class BridgeGame {
 
@@ -98,6 +97,13 @@ public class BridgeGame {
         if (MIN_BRIDGE_SIZE > number || MAX_BRIDGE_SIZE < number) {
             throw new IllegalArgumentException(OUT_OF_RANGE);
         }
+    }
+
+    private boolean isMoveCommand(String command) {
+        if (UP.equals(command) || DOWN.equals(command)) {
+            return true;
+        }
+        return false;
     }
 
 }
