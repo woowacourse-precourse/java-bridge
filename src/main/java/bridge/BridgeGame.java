@@ -15,55 +15,55 @@ public class BridgeGame {
 
     public void run() {
         outputView.printInitMessage();
-        assertAvailableBridge();
+        retryUntilInitAvailableBridge();
         runUntilGameEnds();
     }
 
-    private void assertAvailableBridge() {
+    private void retryUntilInitAvailableBridge() {
         try  {
             bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            assertAvailableBridge();
+            retryUntilInitAvailableBridge();
         }
     }
 
     private void runUntilGameEnds() {
         while (!bridge.gameWon()) {
-            if (isGameFailed()) {
+            if (isGameFailEnded()) {
                 return;
             }
         }
         outputView.printResult(bridge);
     }
 
-    private boolean isGameFailed() {
-        if (!assertAvailableMove()) {
-            if (!assertRetry()) {
+    private boolean isGameFailEnded() {
+        if (!retryUntilGetAvailableMove()) {
+            if (!retryUntilGetAvailableRetryMsg()) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean assertAvailableMove() {
+    private boolean retryUntilGetAvailableMove() {
         boolean moveSuccessful;
         try {
             moveSuccessful = move();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            moveSuccessful = assertAvailableMove();
+            moveSuccessful = retryUntilGetAvailableMove();
         }
         return moveSuccessful;
     }
 
-    private boolean assertRetry() {
+    private boolean retryUntilGetAvailableRetryMsg() {
         boolean retry;
         try {
             retry = retry();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            retry = assertRetry();
+            retry = retryUntilGetAvailableRetryMsg();
         }
         return retry;
     }
