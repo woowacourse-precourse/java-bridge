@@ -80,11 +80,11 @@ public class BridgeGame {
 
     private void putFailLogElement(List<List<ChoiceResult>> gameLog, int userRound) {
         for (List<ChoiceResult> lineLog : gameLog) {
-            putFailureElementToLine(lineLog, userRound);
+            putFailElementToLine(lineLog, userRound);
         }
     }
 
-    private void putFailureElementToLine (List<ChoiceResult> lineLog, int userRound) {
+    private void putFailElementToLine (List<ChoiceResult> lineLog, int userRound) {
         int lastPanelIndex = userRound - 1;
         ChoiceResult lastPanel = lineLog.get(lastPanelIndex);
         if (lastPanel == ChoiceResult.NOT_CHOSEN) {
