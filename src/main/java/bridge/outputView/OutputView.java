@@ -1,4 +1,4 @@
-package bridge;
+package bridge.outputView;
 
 import java.util.List;
 
