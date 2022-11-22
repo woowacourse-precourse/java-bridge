@@ -66,13 +66,17 @@ public class BridgeGameController {
 
     private void runPassOrFailCase(boolean pass, BridgeGame bridgeGame, User user) {
         if (pass) {
-            bridgeGame.move();
+            runPassCase(bridgeGame);
         }
         if (!pass) {
             outputView.printChoiceRetry();
             String gameCommand = inputView.readGameCommand();
             runFailCase(bridgeGame, user, gameCommand);
         }
+    }
+
+    private void runPassCase(BridgeGame bridgeGame) {
+        bridgeGame.move();
     }
 
     private void runFailCase(BridgeGame bridgeGame, User user, String gameCommand) {
