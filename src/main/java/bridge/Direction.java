@@ -19,7 +19,7 @@ public enum Direction {
                 return direction;
             }
         }
-        throw new IllegalArgumentException("잘못된 입력입니다.");
+        throw new IllegalArgumentException("잘못된 방향 입력입니다.");
     }
 
     static public String getDirection(int number) {
