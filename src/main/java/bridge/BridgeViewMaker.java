@@ -13,6 +13,29 @@ public class BridgeViewMaker {
         this.bridgeType = bridgeType;
     }
 
+    public void getResultMap(List<String> answer, int blankNumber, int bridgeLength) {
+        String gather = getResultMapCondition(answer, blankNumber, bridgeLength);
+        System.out.println("[ " + gather + " ]");
+    }
+
+    private String getResultMapCondition(List<String> answer, int blankNumber, int bridgeLength) {
+        if (blankNumber == 0) {
+            return failBlankCondition(answer.get(blankNumber), blankNumber);
+        }
+        if (blankNumber == bridgeLength) {
+            return untilBlank(answer, blankNumber);
+        }
+        return untilBlank(answer, blankNumber) + failBlankCondition(answer.get(blankNumber), blankNumber);
+    }
+
+
+    private String failBlankCondition(String answer, int blankNumber) {
+        if (!answer.equals(bridgeType)) {
+            return blankStep(incorrectBridge, blankNumber);
+        }
+        return blankStep(emptyBridge, blankNumber);
+    }
+
     public void resultBridge(List<String> answer, String userUpDown, int blankNumber) {
         String gather = resultBridgeCondition(answer, userUpDown, blankNumber);
         System.out.println("[ " + gather + " ]");
