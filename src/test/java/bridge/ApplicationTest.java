@@ -68,15 +68,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @DisplayName("R과 Q에 상관없는 값 입력 - 플레이어 재시작 여부확인")
-    @Test
-    void 예외_테스트3() {
-        assertSimpleTest(() -> {
-            runException("3", "D", "K");
-            assertThat(output()).contains(ERROR_MESSAGE, INVALID_INPUT_ERROR_MESSAGE, SELECT_R_OR_Q_MESSAGE);
-        });
-    }
-
     @DisplayName("재시도 후 정답")
     @Test
     void 기능_테스트1() {
