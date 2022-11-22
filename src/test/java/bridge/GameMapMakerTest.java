@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.game.BridgeGame;
+import bridge.view.GameMapMaker;
+import bridge.status.PassOrNot;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

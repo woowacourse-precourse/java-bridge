@@ -32,18 +32,40 @@ public class Controller {
         gameController();
     }
 
-    private void gameController() {
+    public void setBridge() {
+        staticView.gameStartMsg();
+        inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame = new BridgeGame(bridge);
+        System.out.println(bridge); //
+    }
+
+    public void gameController() {
         String command = null;
 
         while (noQuitNoSuccess(command)) {
             playGame();
-//            ====================================== 재시작 관련 로직
             command = noPassAskRetry(command);
             choseToRetry(command);
         }
-//        =====================================================
-        // Q 입력시 로직 [종료 - 실패]
         choseToQuit(command);
+    }
+
+    private boolean noQuitNoSuccess(String command) {
+        return !Objects.equals(command, QUIT.getMessage()) && gameResult != SUCCESS;
+    }
+
+    private String noPassAskRetry(String command) {
+        if (gameResult != SUCCESS) {
+            command = inputView.readGameCommand();
+        }
+        return command;
+    }
+
+    private void choseToRetry(String command) {
+        if (Objects.equals(command, RETRY.getMessage())) {
+            bridgeGame.retry();
+        }
     }
 
     private void choseToQuit(String command) {
@@ -56,32 +78,7 @@ public class Controller {
         }
     }
 
-    private void choseToRetry(String command) {
-        if (Objects.equals(command, RETRY.getMessage())) { // R 입력시 로직
-            bridgeGame.retry();
-        }
-    }
-
-    private String noPassAskRetry(String command) {
-        if (gameResult != SUCCESS) { //다리건너기 실패시 실행되는 로직
-            command = inputView.readGameCommand();
-        }
-        return command;
-    }
-
-    public void setBridge() {
-        staticView.gameStartMsg();
-        inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        bridgeGame = new BridgeGame(bridge);
-        System.out.println(bridge);
-    }
-
-    private boolean noQuitNoSuccess(String command) {
-        return !Objects.equals(command, QUIT.getMessage()) && gameResult != SUCCESS;
-    }
-
-    public void playGame() {
+    private void playGame() {
 
         for (int i = 0; i < bridgeSize; i++) {
 
