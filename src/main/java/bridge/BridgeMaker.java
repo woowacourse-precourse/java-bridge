@@ -15,8 +15,6 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final String UPPER_BRIDGE = "U";
-    private final String LOWER_BRIDGE = "D";
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -37,7 +35,8 @@ public class BridgeMaker {
     }
 
     public String convertToBridge(int randomNumber) {
-        if (randomNumber == 1) return UPPER_BRIDGE;
-        return LOWER_BRIDGE;
+        if (randomNumber == Bridge.UPPER_BRIDGE.getRandomNumber()) return Bridge.UPPER_BRIDGE.getBridgeWay();
+
+        return Bridge.LOWER_BRIDGE.getBridgeWay();
     }
 }
