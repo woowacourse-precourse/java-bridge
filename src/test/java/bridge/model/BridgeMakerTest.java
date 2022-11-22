@@ -28,9 +28,8 @@ public class BridgeMakerTest {
 
     @BeforeEach
     void init() {
-        bridgeMaker = Mockito.mock(BridgeMaker.class);
-        gameStatistics = Mockito.mock(GameStatistics.class);
-        when(bridgeMaker.makeBridge(3)).thenReturn(List.of("U", "D", "D"));
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.gameStatistics = new GameStatistics();
     }
 
     @Nested
@@ -40,6 +39,7 @@ public class BridgeMakerTest {
         @DisplayName("다리 길이 입력 값과 정답 경로 다리 길이 일치 테스트")
         @Test
         void 정답경로_다리_길이_테스트() {
+            gameStatistics.setAnswerRoad(bridgeMaker.makeBridge(3));
             assertThat(gameStatistics.getAnswerRoad().size()).isEqualTo(3);
         }
 
