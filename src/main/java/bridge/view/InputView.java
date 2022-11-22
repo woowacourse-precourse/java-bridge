@@ -82,7 +82,7 @@ public class InputView {
             validateGameCommand(inputCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputCommand = readMoving();
+            inputCommand = readGameCommand();
         }
         return inputCommand;
     }

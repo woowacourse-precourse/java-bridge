@@ -49,6 +49,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println(OUTPUT_MESSAGE_RESULT);
         printMap(bridgeGame.getResults());
+        System.out.println();
         System.out.printf(OUTPUT_MESSAGE_SUCCESSORFAIL + "%s\n", bridgeGame.getSuccessOrFail());
         System.out.printf(OUTPUT_MESSAGE_TRIAL + "%d", bridgeGame.getTrial());
     }
