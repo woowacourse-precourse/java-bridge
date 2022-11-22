@@ -1,12 +1,13 @@
 package bridge.view;
 
 import bridge.domain.vo.BridgeSize;
+import bridge.domain.vo.Moving;
 
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.domain.vo.BridgeSize.recordBridgeSize;
-import static bridge.view.OutputView.printBridgeSizeRequestMessage;
-import static bridge.view.OutputView.printEnter;
+import static bridge.domain.vo.Moving.recordMoving;
+import static bridge.view.OutputView.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -27,8 +28,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static Moving readMoving() {
+        printMovingRequestMessage();
+        String movingInput = Console.readLine();
+        return recordMoving(movingInput);
     }
 
     /**

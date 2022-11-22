@@ -30,4 +30,8 @@ public class OutputView {
     public static void printBridgeSizeRequestMessage() {
         System.out.println(INPUT_BRIDGE_SIZE.getMessage());
     }
+
+    public static void printMovingRequestMessage() {
+        System.out.println(INPUT_MOVE.getMessage());
+    }
 }
