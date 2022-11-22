@@ -11,10 +11,7 @@ public class BridgeTest {
     @DisplayName("다리 생성 테스트")
     @Test
     void createBridge() {
-        Bridge bridge = new Bridge();
-        bridge.addBridge("U");
-        bridge.addBridge("D");
-        bridge.addBridge("U");
+        Bridge bridge = new Bridge(Arrays.asList("U", "D", "U"));
         assertThat(bridge.getBridge()).isEqualTo(Arrays.asList("U", "D", "U"));
     }
 }

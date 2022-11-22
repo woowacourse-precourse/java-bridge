@@ -16,13 +16,13 @@ public class BridgeGame {
     private final static String STEP_CORRECT = "O";
     private final static String STEP_WRONG = "X";
     Bridge answerMove;
-    Bridge playerMove;
+    List<String> playerMove;
     GameStatus status;
 
     public BridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.answerMove = new Bridge(bridgeMaker.makeBridge(size));
-        this.playerMove = new Bridge();
+        this.playerMove = new ArrayList<>();
         this.status = GameStatus.SUCCESS;
     }
 
@@ -31,7 +31,7 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        return answerMove.getBridge().equals(playerMove.getBridge());
+        return playerMove.equals(answerMove.getBridge());
     }
 
     /**
@@ -42,7 +42,7 @@ public class BridgeGame {
     public void move() {
         InputView inputView = new InputView();
         String step = inputView.readMoving();
-        playerMove.addBridge(step);
+        playerMove.add(step);
     }
 
     /**
@@ -51,7 +51,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        this.playerMove = new Bridge();
+        this.playerMove = new ArrayList<>();
         this.status = GameStatus.SUCCESS;
     }
 
@@ -69,8 +69,8 @@ public class BridgeGame {
     private List<String> makeEachBridge(String way) {
         List<String> result = new ArrayList<>();
 
-        for (int index = 0; index < playerMove.getBridge().size(); index++) {
-            String resultStep = checkStep(way, playerMove.getBridge().get(index), answerMove.getBridge().get(index));
+        for (int index = 0; index < playerMove.size(); index++) {
+            String resultStep = checkStep(way, playerMove.get(index), answerMove.getBridge().get(index));
             result.add(resultStep);
         }
         return result;
