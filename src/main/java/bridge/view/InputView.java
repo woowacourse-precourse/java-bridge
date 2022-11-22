@@ -2,22 +2,27 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.view.Message.INPUT_BRIDGE_LENGTH;
+import static bridge.view.Message.INPUT_RETRY;
+import static bridge.view.Message.INPUT_STATE;
+import static bridge.view.Message.PRINT_START_MESSAGE;
+
 public class InputView {
 
     public String readBridgeSize() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(PRINT_START_MESSAGE);
+        System.out.println(INPUT_BRIDGE_LENGTH);
         return Console.readLine();
     }
 
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(INPUT_STATE);
         String move = Console.readLine();
         return move;
     }
 
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(INPUT_RETRY);
         String move = Console.readLine();
         return move;
     }}
