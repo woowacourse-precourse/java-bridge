@@ -13,17 +13,19 @@ public class Application {
         if(bg.curidx == bg.curbridge.size()) return 2;
         return 1; //맞춤
     }
+    public static int inloop(BridgeGame bg){
+        while(true){
+            int c = choose(bg);
+            if(c == 0) {return 1;}
+            else if(c == 2){return 0;}
+        }
+    }
     public static void main(String[] args) {
         try{
             cnt = 1;
             iv = new InputView();
             BridgeGame bg = new BridgeGame(iv.readBridgeSize());
-            int flag = 0;
-            while(true){
-                int c = choose(bg);
-                if(c == 0) {flag = 1; break;}
-                else if(c == 2){flag = 0; break;}
-            }
+            int flag = inloop(bg);
             //최종 결과 출력
             OutputView ov = new OutputView(bg.curidx,bg.curbridge,bg.curmov);
             ov.printResult(flag,cnt);
