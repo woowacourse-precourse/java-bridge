@@ -42,4 +42,16 @@ public class GamePlay {
 
         printGameResult(isWon, playerMap);
     }
+
+    private boolean playTotalGame(List<String> bridge, PlayerMap playerMap) {
+        while (true) {
+            if (isGameWon(bridge, playerMap)) {
+                return WON;
+            }
+            if (!isRetry()) {
+                return FAILURE;
+            }
+            resetPrev(playerMap);
+        }
+    }
 }
