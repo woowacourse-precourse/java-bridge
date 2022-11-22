@@ -18,10 +18,10 @@ public class User {
         this.tryCount++;
     }
 
-    public void updateMapBridge(String move, int isSuccess){
-        if(isSuccess == 1)
+    public void updateMapBridge(String move, boolean isSuccess){
+        if(isSuccess)
             updateMapBridgeTrue(move);
-        if(isSuccess == 0)
+        if(!isSuccess)
             updateMapBridgeFalse(move);
     }
 
