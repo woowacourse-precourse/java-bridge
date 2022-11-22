@@ -16,20 +16,12 @@ public class Game {
     }
 
     private void makeBridge() {
-        this.size = checkSize();
+        this.size = InputView.readBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker user = new BridgeMaker(bridgeNumberGenerator);
         List<String> userBridge = user.makeBridge(size);
         this.bridgeGame = new BridgeGame(userBridge);
         System.out.println(userBridge);
-    }
-
-    private int checkSize() {
-        int input = InputView.readBridgeSize();
-        if (!(3 <= input && input <= 20)) {
-            throw new IllegalArgumentException("다리의 길이가 3이상 20이하가 아닙니다.");
-        }
-        return input;
     }
 
     public static void playGame() {
@@ -46,7 +38,7 @@ public class Game {
     }
 
     private static int retryGame() {
-        if (checkUserRetry().equals("R")) {
+        if (InputView.readGameCommand().equals("R")) {
             bridgeGame.retry();
             return 0;
         }
@@ -63,25 +55,9 @@ public class Game {
     }
 
     private static String printNowResult(int index) {
-        String nowResult = String.valueOf(bridgeGame.move(checkUserDirection(),index));
+        String nowResult = String.valueOf(bridgeGame.move(InputView.readMoving(),index));
         OutputView.printMap(nowResult);
         return nowResult;
-    }
-
-    private static String checkUserDirection() {
-        String input = InputView.readMoving();
-        if (!(input.equals("U") || input.equals("D"))) {
-            throw new IllegalArgumentException("입력 방향이 U나 D가 아닙니다.");
-        }
-        return input;
-    }
-
-    private static String checkUserRetry() {
-        String input = InputView.readGameCommand();
-        if (!(input.equals("R") || input.equals("Q"))) {
-            throw new IllegalArgumentException("재시작 여부가 R이나 Q가 아닙니다.");
-        }
-        return input;
     }
 
     public static void endGame(String finalResult, boolean matchResult, int matchNum) {
