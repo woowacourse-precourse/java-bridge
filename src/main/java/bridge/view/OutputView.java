@@ -1,12 +1,12 @@
 package bridge.view;
 
 import bridge.model.BridgeGame;
-import bridge.model.BridgeMoveLog;
 import bridge.model.BridgeType;
 import bridge.model.ContinueType;
 import bridge.model.GameStatus;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -55,8 +55,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeMoveLog bridgeMoveLog) {
-        for (List<String> log : bridgeMoveLog.getMoveLog().values()) {
+    public void printMap(Map<BridgeType, List<String>> bridgeMoveLog) {
+        for (List<String> log : bridgeMoveLog.values()) {
             out(String.format("[ %s ]", String.join(" | ", log)));
         }
     }
@@ -69,7 +69,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame, GameStatus resultStatus) {
         blank();
         out("최종 게임 결과");
-        printMap(bridgeGame.getBridgeMoveLog());
+        printMap(bridgeGame.getLog());
         blank();
         out(String.format("게임 성공 여부: %s", resultStatus.getState()));
         out(String.format("총 시도한 횟수: %d", bridgeGame.getTryCount()));

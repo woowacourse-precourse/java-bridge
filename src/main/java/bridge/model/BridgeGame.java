@@ -1,6 +1,7 @@
 package bridge.model;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -41,8 +42,8 @@ public class BridgeGame {
         return gameStatus;
     }
 
-    public BridgeMoveLog getBridgeMoveLog() {
-        return bridgeMoveLog;
+    public Map<BridgeType, List<String>> getLog() {
+        return bridgeMoveLog.getMoveLog();
     }
 
     public int getTryCount() {

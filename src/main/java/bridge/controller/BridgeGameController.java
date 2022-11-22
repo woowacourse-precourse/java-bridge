@@ -41,7 +41,7 @@ public class BridgeGameController {
 
         while (true) {
             GameStatus gameStatus = bridgeGame.move(choiceBridge());
-            outputView.printMap(bridgeGame.getBridgeMoveLog());
+            outputView.printMap(bridgeGame.getLog());
 
             if (isGameOver(bridgeGame, gameStatus)) {
                 return gameStatus;
