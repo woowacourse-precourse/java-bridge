@@ -37,7 +37,7 @@ public class Util {
      * 여러 글자인가?
      */
     public static boolean isString(final String input) {
-        return input.length() != 1;
+        return input.length() > 1;
     }
 
     /**
