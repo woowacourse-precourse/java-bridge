@@ -13,7 +13,7 @@
   - [x] 이동 경로가 위(U) 이면 1, 아래(D) 라면 0을 얻어야한다. - service.Referee.convertPath()
 - [x] 전체 이동 경로를 출력해야한다. - OutPutView.printMap()
   - [x] 경로 리스트를 [ word | word ] 와 같은 포맷으로 만들어야한다. - OutPutView.toStringWithPath() 
-- [ ] 게임 성공 여부를 구해야한다.
+- [x] 게임 성공 여부를 구해야한다. - Referee.makeResult()
 - [x] 사용자의 총 시도 횟수를 카운트 해야한다. - BridgeGame.addTotalCount()
 - [x] 게임 실패시 사용자가 입력한 값에 따라 재시작 또는 게임 종료 유무를 제공해야한다. - BridgeGameRun.isRetry()
   - [x] 게임 종료, 재시작 유무를 입력 받아야한다. - InputView.readGameCommand()

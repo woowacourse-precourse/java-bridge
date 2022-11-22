@@ -10,6 +10,15 @@ public class Referee {
     private static final String COMPARE_PATH_NOT_EQUAL = "X";
     private static final int BRIDGE_COUNT = 2;
 
+    public boolean makeResult(List<String> myPaths, List<String> bridgePaths){
+        for (int i = 0; i < myPaths.size(); i++) {
+            if(!myPaths.get(i).equals(bridgePaths.get(i))){
+                return false;
+            }
+        }
+
+        return true;
+    }
     private static int convertPath(String path) {
         if (path.equals(MOVE_COMMAND_UP)) {
             return 1;
