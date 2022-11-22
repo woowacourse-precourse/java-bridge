@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import bridge.RunMainTest.TestNumberGenerator;
+import bridge.ApplicationTest.TestNumberGenerator;
 import bridge.model.BridgeMaker;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
