@@ -1,12 +1,9 @@
-package bridge;
+package bridge.domain;
 
 import bridge.utils.MapType;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     public static final String RETRY = "R";
     public static final String QUIT = "Q";
@@ -20,11 +17,6 @@ public class BridgeGame {
         bridgeMap = new BridgeMap();
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public List<Stack> move(String movingValue, boolean moveResult) {
         MapType mapType = findMapType(movingValue, moveResult);
         return makeMap(mapType);
@@ -69,11 +61,6 @@ public class BridgeGame {
         throw new IllegalArgumentException("[ERROR] 사용자 입력 값이 잘못 되었습니다.");
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public boolean retry(String tryCommand) {
         if (tryCommand.equals(RETRY)) {
             bridgeMap.init();
@@ -84,6 +71,6 @@ public class BridgeGame {
         if (tryCommand.equals(QUIT)) {
             return false;
         }
-        throw new IllegalArgumentException("[ERROR] R과 Q중에 하나만 입력하세요.");
+        return true;
     }
 }
