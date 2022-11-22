@@ -5,7 +5,8 @@ public enum Map {
     BRIDGE_END(" ]"),
     BLOCK_SECTION(" | "),
     BLOCK_CAN_MOVE("O"),
-    BLOCK_CANT_MOVE("X");
+    BLOCK_CANT_MOVE("X"),
+    BLOCK_BLANK(" ");
 
     private String mark;
 
