@@ -13,17 +13,22 @@ public class BridgeGame {
     private int attempts;
 
 
-    public void start(int size) {
-        if (size < 3 || size > 20)
+    public void start(String stringSize) {
+        try {
+            int size = Integer.parseInt(stringSize);
+            if (size < 3 || size > 20)
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            this.isInProgress = true;
+            this.size = size;
+            this.stage = 1;
+            this.attempts = 1;
+            this.bridge = bridgeMaker.makeBridge(size);
+            this.isCleared = "실패";
+            this.inputResult = true;
+        } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        this.isInProgress = true;
-        this.size = size;
-        this.stage = 1;
-        this.attempts = 1;
-        this.bridge = bridgeMaker.makeBridge(size);
-        this.isCleared = "실패";
-        this.inputResult = true;
+        }
     }
 
     public void move(String input) {

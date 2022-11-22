@@ -6,9 +6,9 @@ public class InputView {
     public void readBridgeSize(BridgeGame bridgeGame) {
         try {
             System.out.println("다리의 길이를 입력해주세요");
-            int size = Integer.parseInt(Console.readLine());
+            String size = Console.readLine();
             bridgeGame.start(size);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             this.readBridgeSize(bridgeGame);
         }
