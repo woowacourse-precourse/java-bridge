@@ -47,4 +47,8 @@ public class User {
     public boolean isFinish(int bridgeSize) {
         return bridgeSize == location;
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
