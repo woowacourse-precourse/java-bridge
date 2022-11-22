@@ -8,7 +8,8 @@ import java.util.List;
 public class Bridge {
     private List<String> bridge;
 
-    public Bridge (BridgeLength length) {
+    public Bridge (int lengthInput) {
+        BridgeLength length = new BridgeLength(lengthInput);
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(length.get());
     }
