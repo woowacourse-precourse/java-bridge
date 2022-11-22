@@ -23,7 +23,7 @@
 - [x] 성공 참거짓 유무의 문자열을 반환한다. #getMessage
 
 ### InputView : 입력 관련 출력
-- [ ] 다리의 길이를 입력받는다. #readBridgeSize
+- [x] 다리의 길이를 입력받는다. #readBridgeSize
 - [ ] 사용자가 이동할 칸을 입력받는다. #readMoveCommand
 - [ ] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. #readGameCommand
 
