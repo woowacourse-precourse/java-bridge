@@ -28,7 +28,7 @@ public class BridgeGame {
     }
 
     public void move() {
-        position++;
+        this.position += 1;
     }
 
     public void retry() {
