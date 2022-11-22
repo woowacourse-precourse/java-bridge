@@ -68,4 +68,14 @@ public class BridgeTest {
         bridge.move(Step.DOWN);
         assertThat(bridge.isFinished()).isTrue();
     }
+
+    @DisplayName("재시도 적용 성공")
+    @Test
+    void isRetried() {
+        bridge.move(Step.UP);
+        bridge.move(Step.DOWN);
+        bridge.move(Step.DOWN);
+        bridge.retry();
+        assertThat(bridge.isFinished()).isFalse();
+    }
 }

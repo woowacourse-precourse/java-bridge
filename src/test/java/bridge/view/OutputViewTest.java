@@ -2,7 +2,7 @@ package bridge.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.GameResult;
+import bridge.domain.GameResult;
 import bridge.domain.Step;
 import bridge.dto.GameResultDto;
 import java.io.ByteArrayOutputStream;

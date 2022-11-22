@@ -1,6 +1,5 @@
-package bridge;
+package bridge.domain;
 
-import bridge.domain.Step;
 import java.util.LinkedList;
 import java.util.List;
 

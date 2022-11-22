@@ -1,7 +1,7 @@
 package bridge.dto;
 
-import bridge.GameResult;
-import bridge.GameStatus;
+import bridge.domain.GameResult;
+import bridge.domain.GameStatus;
 import bridge.domain.Step;
 import java.util.List;
 

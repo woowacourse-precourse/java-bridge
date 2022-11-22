@@ -13,6 +13,7 @@ public class Bridge {
     public Bridge(List<String> stringBridge) {
         validate(stringBridge.size());
         this.bridge = transformStringToStep(stringBridge);
+        retry();
     }
 
     private List<Step> transformStringToStep(List<String> stringBridge) {
@@ -55,5 +56,9 @@ public class Bridge {
 
     public boolean isFinished() {
         return currentPosition >= bridge.size();
+    }
+
+    public void retry() {
+        this.currentPosition = 0;
     }
 }
