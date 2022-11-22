@@ -3,7 +3,6 @@ package view;
 import static constant.Message.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import constant.Message;
 import utils.Validation;
 
 /**
@@ -23,14 +22,11 @@ public class InputView {
     public int readBridgeSize() {
         do {
             System.out.println(INPUT_BRIDGE_LENGTH);
-            String bridgeSize = Console.readLine();
             try {
-                validation.validBridgeSize(bridgeSize);
+                return validation.validBridgeSize(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            return Integer.parseInt(bridgeSize);
         } while (true);
     }
 

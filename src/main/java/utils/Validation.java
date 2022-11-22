@@ -1,12 +1,7 @@
 package utils;
 
 import static constant.ErrorMessage.*;
-import static constant.ErrorMessage.*;
-
-import constant.ErrorMessage;
-import constant.Message;
 import org.assertj.core.util.Strings;
-import org.mockito.internal.matchers.Null;
 
 public class Validation {
 
@@ -31,9 +26,9 @@ public class Validation {
         }
     }
 
-    public void validBridgeSize(String bridgeSize) throws IllegalArgumentException {
+    public int validBridgeSize(String bridgeSize) throws IllegalArgumentException {
         try {
-            validBridgeLengthRange(Long.parseLong(bridgeSize));
+            return validBridgeLengthRange(Long.parseLong(bridgeSize));
         } catch (NullPointerException e) {
             throw new IllegalArgumentException(String.format(ASK_INPUT_VALUE, ERROR_HEAD_MESSAGE));
         } catch (NumberFormatException e) {
@@ -41,10 +36,11 @@ public class Validation {
         }
     }
 
-    private void validBridgeLengthRange(long bridgeSize) throws IllegalArgumentException {
+    private int validBridgeLengthRange(long bridgeSize) throws IllegalArgumentException {
         if (bridgeSize < MINIMUM_LENGTH || bridgeSize > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(String.format(WRONG_LENGTH, ERROR_HEAD_MESSAGE));
         }
+        return (int) bridgeSize;
     }
 
     public void validGameCommand(String gameCommand) throws IllegalArgumentException {
