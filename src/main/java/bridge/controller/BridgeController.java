@@ -16,15 +16,8 @@ public class BridgeController {
         BridgeService.getInitMoveRow();
     }
 
-    public static void moveBridge() {
-        BridgeService.moveBridge();
-    }
-
     public static void compareMove() {
         BridgeService.compareMoveBridge();
     }
 
-    public static void viewBridge() {
-        BridgeService.viewBridge();
-    }
 }
