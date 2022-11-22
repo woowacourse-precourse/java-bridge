@@ -76,17 +76,8 @@ class ApplicationTest extends NsTest {
      */
 
     @Nested
-    @DisplayName("다리 길이 테스트")
-    class BridgeSize {
-        @Test
-        @DisplayName("길이 5")
-        void bridgeSize5() {
-            BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0, 1, 0, 1));
-            BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-            List<String> bridge = bridgeMaker.makeBridge(5);
-            assertThat(bridge).containsExactly("U", "D", "D", "U", "D");
-        }
-
+    @DisplayName("입력 예외 테스트")
+    class InputExceptionTest {
         @Test
         @DisplayName("길이 2")
         void bridgeSizeShort() {
@@ -103,6 +94,60 @@ class ApplicationTest extends NsTest {
                 runException("25");
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
+        }
+
+        @Test
+        @DisplayName("정수가 아닌 길이")
+        void bridgeSizeDouble() {
+            assertSimpleTest(() -> {
+                runException("3.1");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("문자열 입력")
+        void bridgeSizeString() {
+            assertSimpleTest(() -> {
+                runException("HI");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("다리 이동 오류")
+        void moveNotUD() {
+            assertSimpleTest(() -> {
+                runException("3", "Q");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("다리 이동 소문자")
+        void moveLowerUD() {
+            assertSimpleTest(() -> {
+                runException("3", "u");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @Test
+        @DisplayName("재시작 소문자")
+        void retryLowerRQ() {
+            assertRandomNumberInRangeTest(() -> {
+                run("3", "D", "r");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }, 1);
+        }
+
+        @Test
+        @DisplayName("재시작 오류")
+        void retryNotRQ() {
+            assertRandomNumberInRangeTest(() -> {
+                run("3", "D", "W");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }, 1);
         }
     }
 
@@ -180,64 +225,6 @@ class ApplicationTest extends NsTest {
                 );
 
             }, 0, 0, 0, 0, 0);
-        }
-    }
-
-    @Nested
-    @DisplayName("다리 출력 테스트")
-    class PrintMapTest{
-        private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        private final PrintStream standardOut = System.out;
-        private OutputView outputView;
-
-        @BeforeEach
-        void setUp() {
-            System.setOut(new PrintStream(outputStreamCaptor));
-        }
-
-        @AfterEach
-        void tearDown() {
-            System.setOut(standardOut);
-        }
-
-        PrintMapTest() {
-            outputView = new OutputView();
-        }
-
-        @Test
-        @DisplayName("다리 중간 출력")
-        void printBridgeInMiddle() {
-            List<String> bridge = List.of("U", "U", "U", "D");
-
-            outputView.printMap(bridge, 1, false);
-
-            assertThat(outputStreamCaptor.toString().trim())
-                    .contains("[ O |   ]",
-                            "[   | X ]");
-        }
-
-        @Test
-        @DisplayName("다리 오류")
-        void printBridgeWrong() {
-            List<String> bridge = List.of("U", "U", "U", "D");
-
-            outputView.printMap(bridge, 3, false);
-
-            assertThat(outputStreamCaptor.toString().trim())
-                    .contains("[ O | O | O | X ]",
-                            "[   |   |   |   ]");
-        }
-
-        @Test
-        @DisplayName("다리 정답")
-        void printBridgeCorrect() {
-            List<String> bridge = List.of("U", "U", "U", "D");
-
-            outputView.printMap(bridge, 3, true);
-
-            assertThat(outputStreamCaptor.toString().trim())
-                    .contains("[ O | O | O |   ]",
-                            "[   |   |   | O ]");
         }
     }
 }
