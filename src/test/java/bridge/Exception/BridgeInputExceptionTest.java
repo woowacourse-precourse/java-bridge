@@ -44,7 +44,7 @@ class BridgeInputExceptionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"앞", "u", "d", "1", ""})
+    @ValueSource(strings = {"앞", "u", "d", "1", " "})
     @DisplayName("사용자의 이동 방향이 U 또는 D가 아닌 문자일 때 예외 처리")
     void validInputFormMove(String move) {
         assertThatThrownBy(() -> bridgeInputException.validMoveDirection(move))
