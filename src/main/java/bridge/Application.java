@@ -16,6 +16,7 @@ public class Application {
         printTitle();
         final BridgeSize bridgeSize = askBridgeSize();
         final List<String> rawBridge = bridgeMaker.makeBridge(bridgeSize.getValue());
+        final Bridge bridge = Bridge.of(rawBridge);
     }
 
     private static BridgeSize askBridgeSize() {
