@@ -1,8 +1,10 @@
 package bridge;
 
+import bridge.domain.Player;
 import bridge.dto.Bridge;
 import bridge.dto.MoveResult;
 import bridge.dto.PathTravel;
+import bridge.repository.PlayerRepository;
 import bridge.service.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -96,5 +98,17 @@ public class BridgeGameTest {
         List<String> lowerBridge = pathTravel.getLowerBridge();
 
         assertTrue(lowerBridge.get(0).equals(IMPOSSIBLE));
+    }
+
+    @DisplayName("재시도했을 때 시도 횟수 증가하는지 테스트")
+    @Test
+    void 재시도_시도_횟수_증가() {
+        PlayerRepository playerRepository = PlayerRepository.getInstance();
+        bridgeGame.retry(playerId, "R");
+        Player player = playerRepository.findById(playerId);
+
+        Long numberOfTry = player.getNumberOfTry();
+
+        assertEquals(2, numberOfTry);
     }
 }
