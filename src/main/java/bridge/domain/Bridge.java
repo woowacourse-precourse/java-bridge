@@ -9,8 +9,8 @@ public class Bridge {
     private static List<String> resultBridge;
 
     public Bridge(int bridgeLength, List<String> resultBridge){
-        this.bridgeLength = bridgeLength;
-        this.resultBridge = resultBridge;
+        Bridge.bridgeLength = bridgeLength;
+        Bridge.resultBridge = resultBridge;
     }
 
     public int getBridgeLength() {
