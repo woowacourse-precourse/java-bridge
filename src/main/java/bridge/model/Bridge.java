@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Bridge {
 
-    private static final int CRITERION_ROUND_START = 1;
+    private static final int START_ROUND = 1;
 
     private final List<BridgeMark> bridge;
 
@@ -41,7 +41,7 @@ public class Bridge {
     }
 
     private BridgeMark get(int round) {
-        return bridge.get(round - CRITERION_ROUND_START);
+        return bridge.get(round - START_ROUND);
     }
 
     private int size() {
