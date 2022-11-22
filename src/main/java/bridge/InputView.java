@@ -28,4 +28,11 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+    private int strToInt(String input){
+        try{
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(Messages.INPUT_BRIDGE_MESSAGE.getMessage());
+        }
+    }
 }
