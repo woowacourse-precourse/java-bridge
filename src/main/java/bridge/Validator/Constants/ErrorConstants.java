@@ -1,4 +1,4 @@
-package bridge.Validator;
+package bridge.Validator.Constants;
 
 public class ErrorConstants {
     public static final String ERROR_MESSAGE = "[ERROR]";

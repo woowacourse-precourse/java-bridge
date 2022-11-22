@@ -1,6 +1,6 @@
 package bridge.Validator;
 
-import static bridge.Validator.ErrorConstants.*;
+import static bridge.Validator.Constants.ErrorConstants.*;
 
 public class InputValidator {
     public static void validateNumeric(String input) {
