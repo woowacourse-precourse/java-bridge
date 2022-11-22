@@ -48,6 +48,17 @@ class LogicUnitTest extends NsTest {
         assertThat(playResult.nowBridge.toString()).isEqualTo("[U, D, U]");
     }
 
+    @Test
+    void 기능_OutputView_printMap() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        MoveResult moveResult = bridgeGame.move("U");
+        OutputView outputView = new OutputView();
+        outputView.printMap(moveResult);
+        assertThat(output()).contains("[ O |   | X ]\n[   | O |   ]");
+    }
+
 //    @Test
 //    void 기능_Application_startGame() {
 //        assertRandomNumberInRangeTest(() -> {
