@@ -1,4 +1,4 @@
-package domain.bridge.view;
+package view;
 
 import java.util.ArrayList;
 import java.util.List;

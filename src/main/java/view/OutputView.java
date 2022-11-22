@@ -1,4 +1,4 @@
-package domain.bridge.view;
+package view;
 
 import domain.player.Player;
 

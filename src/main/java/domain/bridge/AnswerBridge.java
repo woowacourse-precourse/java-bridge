@@ -1,6 +1,6 @@
 package domain.bridge;
 
-import domain.bridge.view.InputView;
+import view.InputView;
 import java.util.List;
 
 public class AnswerBridge implements Bridge {
@@ -17,7 +17,12 @@ public class AnswerBridge implements Bridge {
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     System.out.println("다리의 길이를 입력해주세요.");
-    bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+    try {
+      bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      throw new IllegalArgumentException(e);
+    }
   }
 
   public boolean isCorrect(List<String> user_bridge) {

@@ -2,7 +2,7 @@ package domain;
 
 import domain.bridge.AnswerBridge;
 import domain.bridge.BridgeGame;
-import domain.bridge.view.OutputView;
+import view.OutputView;
 import domain.player.Player;
 
 public class Game {

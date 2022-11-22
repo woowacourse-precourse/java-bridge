@@ -1,7 +1,7 @@
 package domain.bridge;
 
-import domain.bridge.view.InputView;
-import domain.bridge.view.OutputView;
+import view.InputView;
+import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,12 @@ public class UserBridge implements Bridge {
     InputView inputView = new InputView();
 
     System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-    addUserBridge(inputView.readMoving());
+    try {
+      addUserBridge(inputView.readMoving());
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      throw new IllegalArgumentException();
+    }
   }
 
   private void addUserBridge(String move) {
