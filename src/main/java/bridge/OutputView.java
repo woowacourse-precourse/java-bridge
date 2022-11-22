@@ -17,7 +17,7 @@ public class OutputView {
      * @param bridgeGame
      */
     public void printMap(BridgeGame bridgeGame) {
-        this.StringBuilderInit();
+        this.stringBuilderInit();
         for (int i = 0; i < bridgeGame.getCurrentDownBridge().size(); i++) {
             appendUpDown(bridgeGame, i);
             if (i == bridgeGame.getCurrentUpBridge().size() - 1) {
@@ -50,7 +50,7 @@ public class OutputView {
         stringBuilderDown.append(bridgeGame.getCurrentDownBridge().get(i));
     }
 
-    private void StringBuilderInit() {
+    private void stringBuilderInit() {
         this.stringBuilderUp = new StringBuilder();
         this.stringBuilderDown = new StringBuilder();
         this.stringBuilderUp.append("[ ");
@@ -65,6 +65,8 @@ public class OutputView {
      * @param bridgeGame
      */
     public void printResult(boolean isSuccess, BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame);
         if (isSuccess == true) {
             System.out.println("게임 성공 여부: "+ CheckSuccess.SUCCESS_GAME.getMessage());
         }
