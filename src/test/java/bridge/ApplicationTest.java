@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.support.BridgeMaker;
-import bridge.support.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

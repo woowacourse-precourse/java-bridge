@@ -1,4 +1,4 @@
-package bridge.support;
+package bridge;
 
 import bridge.utils.command.MoveCommand;
 import bridge.utils.status.BridgeStatus;
