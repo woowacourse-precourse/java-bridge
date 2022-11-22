@@ -9,7 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class MoveTest {
-
+    @DisplayName("사용자 이동 입력 기능을 테스트한다")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void 이동_입력_테스트(String userMove) {
+        assertThat(new UserException().checkUserMove(userMove))
+                .isEqualTo(false);
+    }
 
     @DisplayName("이동 입력 크기의 예외처리 기능을 테스트한다")
     @ValueSource(strings = {"UU", "DD", "D ", "U "})
