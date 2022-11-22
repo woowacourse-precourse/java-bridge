@@ -1,6 +1,8 @@
 package bridge;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -17,11 +19,13 @@ public class BridgeGame {
     public void start(){
         makeBridge();
         do {
-            player.init();
+            player.increaseGameCount();
+            player.currentPositionReset();
             play();
         }while(!player.isSuccess() && retry());
 
-        System.out.println("게임 종료");
+        // 여기서 Upline, DownLine 줘야할듯 // totalMap; (Map<String, List<String>>)
+        player.printTotalScore(lastBridgeMap(player.getCurrentPosition(), player.success));
     }
 
     public void makeBridge(){
@@ -30,8 +34,7 @@ public class BridgeGame {
 
     public void play(){
         while(move()){
-//            if(bridge.isFinished(player.getCurrentPosition()))
-//                break;
+
         }
     }
 
@@ -62,5 +65,12 @@ public class BridgeGame {
      */
     public boolean retry() {
         return player.retry();
+    }
+
+    public Map<String, String> lastBridgeMap(int currentPosition, boolean result){
+        Map<String, String> ret = new HashMap<>();
+        ret.put("U", bridge.getUpLineResult(currentPosition, result));
+        ret.put("D", bridge.getDownLineResult(currentPosition, result));
+        return ret;
     }
 }

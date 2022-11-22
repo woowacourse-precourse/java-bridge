@@ -22,7 +22,7 @@ public class Bridge {
         return isCorrectSpot;
     }
 
-    private String getUpLineResult(int idx, boolean lastIdxResult){
+    public String getUpLineResult(int idx, boolean lastIdxResult){
         String result = "";
         for(int i = 0; i < idx; i++){
             if(bridge.get(i).equals("U"))
@@ -47,7 +47,7 @@ public class Bridge {
         return result;
     }
 
-    private String getDownLineResult(int idx, boolean lastIdxResult){
+    public String getDownLineResult(int idx, boolean lastIdxResult){
         String result = "";
         for(int i = 0; i < idx; i++){
             if(bridge.get(i).equals("D"))
