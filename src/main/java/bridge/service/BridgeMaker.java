@@ -1,7 +1,5 @@
 package bridge.service;
 
-import bridge.domain.Command;
-
 import java.util.ArrayList;
 import java.util.List;
 

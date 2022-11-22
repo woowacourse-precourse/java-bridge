@@ -51,6 +51,7 @@ public class Application {
         }
         return Boolean.TRUE;
     }
+
     public boolean checkIsAllCorrect(MoveResponseDto response) {
         if (response.isAllCorrect()) {
             return Boolean.TRUE;
