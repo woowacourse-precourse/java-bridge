@@ -6,7 +6,7 @@ public class BridgeSizeInputException {
 
     public static void validateBridgeSize(String bridgeSize) {
         checkParsingError(bridgeSize);
-        isNumber(bridgeSize);
+        checkNumberRange(bridgeSize);
     }
 
     private static void checkParsingError(String number) {
@@ -18,7 +18,7 @@ public class BridgeSizeInputException {
     }
 
     // 에러 메세지 생성해야 됨
-    private static void isNumber(String bridgeSize) {
+    private static void checkNumberRange(String bridgeSize) {
         int bridgeSizeCheck = Integer.parseInt(bridgeSize);
         if (!(MIN_BRIDGE_SIZE <= bridgeSizeCheck && bridgeSizeCheck <= MAX_BRIDGE_SIZE)) {
             throw new IllegalArgumentException(BridgeSizeInputExceptionMessage.NUMBER_RANGE_EXCEPTION_MESSAGE.getBridgeSizeInputExceptionMessage());
