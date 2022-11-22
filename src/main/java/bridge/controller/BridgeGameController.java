@@ -5,7 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgePlayer;
-import bridge.utils.constants.BridgeGameCommand;
+import bridge.utils.constants.GameCommand;
 import bridge.views.InputView;
 import bridge.views.OutputView;
 
@@ -56,7 +56,7 @@ public class BridgeGameController {
     }
 
     private void askRetry(){
-        if(!bridgeGame.isCompletedGame() && inputView.readGameCommand().equals(BridgeGameCommand.RETRY)){
+        if(!bridgeGame.isCompletedGame() && inputView.readGameCommand().equals(GameCommand.RETRY.getCommand())){
             gameRetry();
         }
     }
