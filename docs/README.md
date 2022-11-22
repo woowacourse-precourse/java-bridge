@@ -74,9 +74,22 @@
 - downMove() - upBridge와 기능은 동일. downBridge에 적용하기 위해 이용
 - retry() - 게임을 다시 시작할 때 count 수를 증가시키고 반환한다
 
+### 5. OutputView
+- printMap() - InpuView.readMoving()을 이용해 U or D를 읽어들인 후,
+  bridgeGame.move()를 이용해 O or X를 추가한다. 이를 출력한 후,
+  "|"를 리스트에 추가한다. X가 추가되자마자 종료하기 위해 조건문을 활용해 break 해준다.
+  최종 결과에 "|"가 한번 더 추가되는 것을 막기 위해 조건문을 활용해 break 해준다
+- printResult() - 게임이 종료되기 직전 최종 결과를 print해주는 메소드.
+  종료되기 직전 upBridge, downBridge를 불러와 출력해준다
+- printSuccess() - 성공 여부를 출력하는 메소드.
+  X가 포함되어 있다면 실패 메시지를, X가 포함되어 있지 않다면 성공 메시지를 출력 후, 총 시도 횟수를 출력한다
+- printFail() - 게임 실패 시, 재시도 메시지를 출력 후, 재시도 여부에 대한
+  입력 값을 받는다. 입력 값을 반환하여, 재시도 여부를 결정한다.
+- restart() - 재시작 하기 위해, upBridge와 downBridge를 초기화 하는
+  역할을 수행한다.
 
-
-
+### 6. Message
+- 게임에 필요한 메시지들을 모아둔 클래스
 
 
 
