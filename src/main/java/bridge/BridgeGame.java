@@ -28,35 +28,50 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moveCommand) {
+        addPlayerCommandHistory(moveCommand);
+
+        String moveResult = checkMoveResult(moveCommand);
+        gameMap.add(moveCommand, moveResult);
+
+        checkGameStatus(moveResult);
+    }
+
+    private void addPlayerCommandHistory(String moveCommand) {
         playerCommands.add(moveCommand);
         playerMoveCount++;
-        String moveResult = checkMoveResult(moveCommand);
-        checkFailed(moveResult);
-        gameMap.add(moveCommand, moveResult);
-        checkFinished();
     }
 
     private String checkMoveResult(String moveCommand) {
         String result = "";
-        if (moveCommand.equals(bridge.get(playerMoveCount - 1))) {
+        if (isCorrect(moveCommand)) {
             result = CORRECT_MARK;
         }
 
-        if (!moveCommand.equals(bridge.get(playerMoveCount - 1))) {
+        if (!isCorrect(moveCommand)) {
             result = WRONG_MARK;
         }
+
         return result;
     }
 
-    private void checkFinished() {
-        if (gameStatus != GameStatus.GAME_OVER && playerMoveCount == bridge.size()) {
-            gameStatus = GameStatus.GAME_CLEAR;
-        }
+    private boolean isCorrect(String moveCommand) {
+        return moveCommand.equals(bridge.get(playerMoveCount - 1));
+    }
+
+    private void checkGameStatus(String moveResult) {
+        checkFailed(moveResult);
+        checkFinished();
     }
 
     private void checkFailed(String moveResult) {
         if (moveResult.equals(WRONG_MARK)) {
             gameStatus = GameStatus.GAME_OVER;
+        }
+    }
+
+    private void checkFinished() {
+        if (gameStatus != GameStatus.GAME_OVER && playerMoveCount == bridge.size()) {
+            gameStatus = GameStatus.GAME_CLEAR;
         }
     }
 
