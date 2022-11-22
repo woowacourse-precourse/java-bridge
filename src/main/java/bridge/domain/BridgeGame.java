@@ -62,4 +62,12 @@ public class BridgeGame {
         int bridgeEnd = bridge.getBridgeEnd();
         return user.isFinish(bridgeEnd);
     }
+
+    public String getResultStatus() {
+        return gameStatus.getGameStatusMessage();
+    }
+
+    public int getTryCount() {
+        return user.getTryCount();
+    }
 }
