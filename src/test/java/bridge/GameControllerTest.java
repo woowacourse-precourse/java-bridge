@@ -15,7 +15,7 @@ public class GameControllerTest extends NsTest {
 
     @DisplayName("움직임이 잘 적용되는지 확인: case 1")
     @Test
-    void testShortNormalCase() {
+    void testNormalCase1() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U");
             assertThat(output()).contains(
@@ -27,7 +27,25 @@ public class GameControllerTest extends NsTest {
 
     @DisplayName("움직임이 잘 적용되는지 확인: case 2")
     @Test
-    void testLongNormalCase() {
+    void testNormalCase2() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "R", "D", "U");
+            assertThat(output()).contains(
+                    "[ X ]",
+                    "[   ]",
+                    MSG_GET_RETRY,
+                    "[   | O ]",
+                    "[ O |   ]"
+            );
+            int upSideIndex = output().indexOf("[   | O ]");
+            int downSideIndex = output().indexOf("[ O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 0, 1);
+    }
+
+    @DisplayName("움직임이 잘 적용되는지 확인: case 3")
+    @Test
+    void testNormalCase3() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "R", "U", "D", "U");
             assertThat(output()).contains(
