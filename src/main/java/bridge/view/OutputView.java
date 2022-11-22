@@ -23,6 +23,7 @@ public class OutputView {
     public static void printMap(List<String> bridge, List<String> selections) {
         System.out.println(up(bridge, selections, Command.UP.getCommand()));
         System.out.println(down(bridge, selections, Command.DOWN.getCommand()));
+        System.out.println("");
     }
 
     private static String up(List<String> bridge, List<String> selections, String position) {
