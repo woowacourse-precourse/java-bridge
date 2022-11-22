@@ -22,7 +22,12 @@ public class GameRequest {
         return request.equals(RETRY) || request.equals(QUIT);
     }
 
-    public String getGameRequest() {
-        return gameRequest;
+    public boolean wantRetry() {
+        if (gameRequest.equals(RETRY)) {
+            return true;
+        }
+        return false;
     }
+
+
 }

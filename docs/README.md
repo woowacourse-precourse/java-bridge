@@ -22,6 +22,7 @@
      - [x] 다리 길이는 숫자만 가능하고 범위는 3 ~ 20 이어야 한다. - > BridgeSizeRequest
      - [x] 사용자가 이동하기를 위한 입력값으로 "U" or "D" 인지 검증하는 기능 - > MoveRequest
      - [x] 재시도 여부를 묻는 입력값으로 "R" or "Q" 인지 검증하는 기능 - > GameRequest
+     - [x] 사용자의 재시도 여부를 확인하는 기능 - > wantRetry
 
 ### Bridge Game
 - [x] 요구사항에 맞게 Bridge maker에게 다리를 만들도록 일을 넘김
