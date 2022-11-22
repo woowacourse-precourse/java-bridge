@@ -16,8 +16,10 @@ public class BridgeController {
 
     private static final String MOVINGIMPOSSIBLE = "X";
     private static final String GAMEQUIT = "Q";
+    private static final String GAMERSTART = "R";
     private static final String GAMESUCCESS = "성공";
     private static final String GAMEFAILURE = "실패";
+    private static final int FIRSTMOVING = 1;
 
     public BridgeController() {
         outView.printStartGame();
@@ -29,7 +31,7 @@ public class BridgeController {
     }
 
     public String playGame() {
-        numberOfMoving = 1;
+        numberOfMoving = FIRSTMOVING;
         while (numberOfMoving <= bridgeSize) {
             String moving = inputView.readMoving();
             String movingResult = bridgeGame.move(numberOfMoving++, moving);
@@ -44,7 +46,7 @@ public class BridgeController {
 
     public String Failure() {
         String gameCommand = inputView.readGameCommand();
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(GAMERSTART)) {
             bridgeGame.retry();
             return gameCommand;
         }
