@@ -13,8 +13,6 @@ public class BridgeGameController {
 	private BridgeGame bridgeGame = null;
 
 	public void startGame() {
-//		outputView.printStartMessage();
-//		BridgeGame bridgeGame = new BridgeGame(inputView.readBridgeSize());
 		makeBridge();
 		move(bridgeGame);
 		retry(bridgeGame);
@@ -43,7 +41,7 @@ public class BridgeGameController {
 			} catch (Exception e) {
 				outputView.printError(e.getMessage());
 			}
-		};
+		}
 	}
 
 	private void retry(BridgeGame bridgeGame) {
