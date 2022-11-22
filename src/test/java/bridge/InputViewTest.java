@@ -44,7 +44,13 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void readGameCommand() {
+    @DisplayName("R, D외의 문자, 숫자를 입력할 경우 [ERROR] 발생")
+    @ValueSource(strings = {"A", "1"})
+    @ParameterizedTest
+    void readGameCommand(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(() -> new InputView().readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
