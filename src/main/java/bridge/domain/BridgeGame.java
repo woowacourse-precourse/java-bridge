@@ -60,7 +60,7 @@ public class BridgeGame {
     public static void retry() {
         answerCount = 0;
         BridgeService.resetBridge();
-        BridgeController.makeBridge();
+        BridgeController.makeBridge(BridgeService.getInputSize());
         BridgeController.initMoveRow();
         BridgeController.compareMove();
     }

@@ -4,12 +4,12 @@ import bridge.service.BridgeService;
 
 public class BridgeController {
 
-    public static void initBridgeSize() {
-        BridgeService.getInitBridgeSize();
+    public static int initBridgeSize() {
+        return BridgeService.getInitBridgeSize();
     }
 
-    public static void makeBridge() {
-        BridgeService.makeBridge();
+    public static void makeBridge(int inputSize) {
+        BridgeService.makeBridge(inputSize);
     }
 
     public static void initMoveRow() {

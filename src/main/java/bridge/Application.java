@@ -6,8 +6,8 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        BridgeController.initBridgeSize();
-        BridgeController.makeBridge();
+        int inputSize = BridgeController.initBridgeSize();
+        BridgeController.makeBridge(inputSize);
         BridgeController.initMoveRow();
         BridgeController.compareMove();
     }

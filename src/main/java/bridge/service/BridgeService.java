@@ -45,7 +45,7 @@ public class BridgeService {
         }
     }
 
-    public static List<String> makeBridge() {
+    public static List<String> makeBridge(int inputSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         answerBridge = bridgeMaker.makeBridge(inputSize);
         resetBridge();
