@@ -1,7 +1,5 @@
 package bridge;
 
-
-
 import constant.Message;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,6 @@ public class BridgeMaker {
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     * @test 입력받은 숫자 길이만큼 다리를 생성하는 지 테스트한다.
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
