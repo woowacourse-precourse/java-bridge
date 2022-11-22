@@ -38,4 +38,13 @@ public class BridgeProgram {
 			return checkMovingInput();
 		}
 	}
+
+	private String checkRetryInput() {
+		try {
+			return inputView.readGameCommand();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return checkRetryInput();
+		}
+	}
 }
