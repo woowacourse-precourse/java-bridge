@@ -21,12 +21,10 @@ public class BridgeGame {
     private final InputView inputView;
     private final BridgeGenerateService bridgeGenerateService;
 
-    public BridgeGame(OutputView outputView,
-                      InputView inputView,
-                      BridgeGenerateService bridgeGenerateService) {
-        this.outputView = outputView;
-        this.inputView = inputView;
-        this.bridgeGenerateService = bridgeGenerateService;
+    public BridgeGame() {
+        this.outputView = new OutputView();
+        this.inputView = new InputView();
+        this.bridgeGenerateService = new BridgeGenerateService();
     }
 
     private void Run() {
