@@ -40,21 +40,33 @@ public class GamePlay {
     }
 
     private int tryGameOnce() {
-        user = new User();
-        BridgeGame bridgeGame = new BridgeGame(bridge, user);
+        BridgeGame bridgeGame = loadBridgeGame();
 
         for (; bridge.isUnderBridgeSize(user.getUserMovingDistance()); ) {
-            if (isInaccessibleNextPosition(bridgeGame)) {
+            if (isGameOver(bridgeGame)) {
                 return bridgeGame.retry(InputView.readGameCommand());
             }
         }
         return ResultTable.PASS.getResultNumber();
     }
 
-    private boolean isInaccessibleNextPosition(BridgeGame bridgeGame) {
-        boolean result = bridgeGame.move(InputView.readMoving());
-        OutputView.printMap(MapConverter.convertMap(user.getUserMap()));
+    private BridgeGame loadBridgeGame() {
+        user = new User();
+        return new BridgeGame(bridge, user);
+    }
+
+    private boolean isGameOver(BridgeGame bridgeGame) {
+        boolean result = tryMove(bridgeGame);
+        printProgress();
 
         return result;
+    }
+
+    private boolean tryMove(BridgeGame bridgeGame) {
+        return bridgeGame.move(InputView.readMoving());
+    }
+
+    private void printProgress() {
+        OutputView.printMap(MapConverter.convertMap(user.getUserMap()));
     }
 }
