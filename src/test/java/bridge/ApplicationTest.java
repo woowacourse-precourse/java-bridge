@@ -49,6 +49,32 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 잘못된_범위_입력() {
+        assertSimpleTest(() -> {
+            runException("21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 잘못된_재시도_입력() {
+        assertSimpleTest(() -> {
+            runException("3");
+            runException("-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 잘못된_이동칸_입력() {
+        assertSimpleTest(() -> {
+            runException("3");
+            runException("W");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
