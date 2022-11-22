@@ -28,4 +28,11 @@ public class BridgeGame {
         int index = directions.size() - 1;
         mapMaker.updateMap(bridge, index, inputKey);
     }
+
+    public boolean canCross() {
+        if(directions.isEmpty()) return true;
+        int index = directions.size() - 1;
+        return bridge.canCross(directions.get(index), index);
+    }
+
 }
