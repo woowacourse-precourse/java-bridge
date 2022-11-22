@@ -17,17 +17,23 @@ public class BridgeGameController {
     BridgeGame bridgeGame;
 
 
-    public void run(){
-        try{
+    public void run() {
+        try {
             start();
             setDifficulty();
             do {
                 playGame();
-            } while (!isSuccess() && askRetry());
+            } while (isOneMoreGame());
             end();
         } catch (IllegalAccessException e) {
             outputView.printErrorMessage(e.getMessage());
         }
+    }
+
+    private boolean isOneMoreGame() throws IllegalAccessException {
+        if (isSuccess())
+            return false;
+        return askRetry();
     }
 
     public void start() {
@@ -72,7 +78,7 @@ public class BridgeGameController {
         return bridgeGame.isAlive();
     }
 
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         return bridgeGame.getIsSuccess();
     }
 
