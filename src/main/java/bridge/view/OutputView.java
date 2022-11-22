@@ -18,10 +18,10 @@ public class OutputView {
         List<String> bridgeUpMap = bridgeMap.get(0);
         List<String> bridgeDownMap = bridgeMap.get(1);
         printMapElement(bridgeUpMap, location);
-        System.out.println();
+//        System.out.println();
         printMapElement(bridgeDownMap, location);
-        System.out.println();
-        System.out.println();
+//        System.out.println();
+//        System.out.println();
     }
 
     private static void printMapElement(List<String> bridgeMap, int location) {
@@ -45,7 +45,7 @@ public class OutputView {
     }
 
     private static void printMapBoarderRight() {
-        System.out.print(OutputViewMessage.RIGHT_BOARDER.getMessage());
+        System.out.print(OutputViewMessage.RIGHT_BOARDER.getMessage()+"\n");
     }
 
     /**
@@ -81,8 +81,7 @@ public class OutputView {
     }
 
     public void printInit() {
-        System.out.println(OutputViewMessage.START_MESSAGE.getMessage());
-        System.out.println();
+        System.out.println(OutputViewMessage.START_MESSAGE.getMessage()+"\n");
     }
 
     public void printException(String message) {
