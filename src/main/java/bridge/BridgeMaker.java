@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -27,6 +27,7 @@ public class BridgeMaker {
     }
 
     public static void generateBridge(List<String> bridge) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         int number = bridgeNumberGenerator.generate();
         if (number == 0) {
             bridge.add("D");
@@ -36,3 +37,6 @@ public class BridgeMaker {
         }
     }
 }
+
+
+

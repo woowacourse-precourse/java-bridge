@@ -27,6 +27,7 @@ public class BridgeGame {
          userMoving.add(userMove);
          return userMoving;
      }
+
      public static void failMove(List<String> bridge, List<String> userMoving, int turn) {
          if (!userMoving.get(turn).equals(bridge.get(turn))) {
              failCheck = 1;
