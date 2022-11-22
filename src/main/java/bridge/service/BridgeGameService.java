@@ -13,5 +13,11 @@ public class BridgeGameService {
     public BridgeGameService() {
         outputView.printStartMessage();
     }
+
+    public void startBridgeMakingProcess() {
+        int bridgeSize = inputView.readBridgeSize();
+        bridgeGame.prepare();
+        bridgeGame.constructBridge(bridgeSize);
+    }
     
 }
