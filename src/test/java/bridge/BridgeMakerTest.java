@@ -10,7 +10,7 @@ class BridgeMakerTest {
     @Test
     void 입력값에따라_다리를_생성하는지_테스트() {
         //given
-        BridgeNumberGenerator generator = new TestBridgeNumberGenerator(newArrayList(1, 0, 0, 1));
+        BridgeNumberGenerator generator = new BridgeTestNumberGenerator(newArrayList(1, 0, 0, 1));
         BridgeMaker maker = new BridgeMaker(generator);
 
         //when
@@ -20,10 +20,10 @@ class BridgeMakerTest {
         assertThat(bridge).containsExactly("U", "D", "D", "U");
     }
 
-    static class TestBridgeNumberGenerator implements BridgeNumberGenerator {
-        private List<Integer> numbers;
+    static class BridgeTestNumberGenerator implements BridgeNumberGenerator {
+        private final List<Integer> numbers;
 
-        TestBridgeNumberGenerator(List<Integer> numbers) {
+        BridgeTestNumberGenerator(List<Integer> numbers) {
             this.numbers = numbers;
         }
 
