@@ -2,6 +2,8 @@ package bridge.View;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.Exception.*;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -11,7 +13,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        return Integer.parseInt(inputValue());
+        String input = inputValue();
+        validateIsNumeric(input);
+        validateInterval(input);
+        return Integer.parseInt(input);
     }
 
     /**
@@ -19,7 +24,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요.(위: U, 아래: D)");
-        return inputValue();
+        String input = inputValue();
+        validateIsValidMoving(input);
+        return input;
     }
 
     /**
@@ -27,7 +34,9 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료, Q)");
-        return inputValue();
+        String input = inputValue();
+        validateIsValidCommand(input);
+        return input;
     }
 
     private String inputValue(){
