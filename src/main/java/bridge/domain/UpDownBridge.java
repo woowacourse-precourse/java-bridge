@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.domain.UpDownBridgeValidator.validateUpDownBridge;
+
 import bridge.messages.Message;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class UpDownBridge {
     public static void makeUpDownBridge(String inputDirection, String moveResult) {
         addUpBridge(inputDirection, moveResult);
         addDownBridge(inputDirection, moveResult);
+        validateUpDownBridge();
     }
 
     public static void initBridge() {
