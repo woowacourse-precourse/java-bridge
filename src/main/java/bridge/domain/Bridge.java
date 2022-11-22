@@ -13,4 +13,8 @@ public class Bridge {
         this.size = size;
         this.bridgeStatus = bridgeMaker.makeBridge(size);
     }
+
+    public boolean compareByIndex(int index, String value) {
+        return this.bridgeStatus.get(index).equals(value);
+    }
 }

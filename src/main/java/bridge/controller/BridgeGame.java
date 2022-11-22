@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
 import bridge.service.BridgeService;
 import bridge.service.GameService;
 import bridge.service.RoundService;
@@ -8,6 +9,7 @@ import bridge.service.RoundService;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private Bridge bridge;
     private final GameService gameService;
     private final BridgeService bridgeService;
     private final RoundService roundService;
@@ -20,7 +22,7 @@ public class BridgeGame {
 
     public void start() {
         gameService.initializeGame();
-        bridgeService.initializeBridge();
+        bridge = bridgeService.initializeBridge();
     }
 
     /**

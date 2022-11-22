@@ -7,10 +7,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeService {
-    private Bridge bridge;
-
-    public void initializeBridge() {
-        bridge = new Bridge(getLength(), new BridgeMaker(new BridgeRandomNumberGenerator()));
+    public Bridge initializeBridge() {
+        return new Bridge(getLength(), new BridgeMaker(new BridgeRandomNumberGenerator()));
     }
 
     private int getLength() {

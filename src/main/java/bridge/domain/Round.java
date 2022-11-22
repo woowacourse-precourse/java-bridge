@@ -12,4 +12,12 @@ public class Round {
     public void addMoving(String moving) {
         this.movings.add(moving);
     }
+
+    public String findLastValue() {
+        return this.movings.get(movings.size() - 1);
+    }
+
+    public int findLastIndex() {
+        return this.movings.size() - 1;
+    }
 }

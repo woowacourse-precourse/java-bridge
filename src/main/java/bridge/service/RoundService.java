@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.domain.Bridge;
 import bridge.domain.Round;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -18,5 +19,9 @@ public class RoundService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public boolean compareBridge(Bridge bridge) {
+        return bridge.compareByIndex(round.findLastIndex(), round.findLastValue());
     }
 }
