@@ -38,7 +38,7 @@ public class BridgeMaker {
         bridges.clear();
         bridges.add("U");
         bridges.add("D");
-        bridges.add("U");
+        bridges.add("D");
         return bridges;
     }
 }
