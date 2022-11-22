@@ -1,5 +1,5 @@
 package bridge.domain;
 
 public enum PlayResult {
-    FAIL
+    PASS, FAIL
 }

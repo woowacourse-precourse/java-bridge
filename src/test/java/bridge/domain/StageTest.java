@@ -10,7 +10,14 @@ public class StageTest {
     @DisplayName("매 라운드마다 게임의 결과를 구할 수 있다. - FAIL")
     @Test
     void returnPlayResultFAIL() {
-        Stage stage = new Stage(1, "U");
+        Stage stage = new Stage("U");
         assertThat(stage.choose("D")).isEqualTo(PlayResult.FAIL);
+    }
+
+    @DisplayName("매 라운드마다 게임의 결과를 구할 수 있다. - PASS")
+    @Test
+    void returnPlayResultPASS() {
+        Stage stage = new Stage("U");
+        assertThat(stage.choose("U")).isEqualTo(PlayResult.PASS);
     }
 }

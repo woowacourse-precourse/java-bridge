@@ -1,17 +1,28 @@
 package bridge.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Stage {
 
-    private final int round;
+    private final Map<String, TileStatus> tiles;
 
-    private final String direction;
-
-    public Stage(final int round, final String direction) {
-        this.round = round;
-        this.direction = direction;
+    public Stage(final String shape) {
+        this.tiles = mapTiles(shape);
     }
 
-    public PlayResult choose(final String direction) {
+    private Map<String, TileStatus> mapTiles(final String shape) {
+        Map<String, TileStatus> tiles = new HashMap<>();
+        tiles.put(shape, TileStatus.PASS);
+        return tiles;
+    }
+
+    public PlayResult choose(final String shape) {
+        TileStatus status = tiles.getOrDefault(shape, TileStatus.NO_PASS);
+
+        if (status.isPassable()){
+            return PlayResult.PASS;
+        }
         return PlayResult.FAIL;
     }
 }
