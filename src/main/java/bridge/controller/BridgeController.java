@@ -54,14 +54,14 @@ public class BridgeController {
     private MoveResultDto moveOneBridge() {
         String bridgeType = inputView.readMoving();
         MoveResultDto moveResultDto = bridgeGame.move(bridgeType);
-        List<String> bridgeMap = bridgeGame.readBridgeMap();
+        List<String> bridgeMap = bridgeGame.findBridgeMap();
         outputView.printMap(bridgeMap, moveResultDto.isRightLastBridgePick());
         return moveResultDto;
     }
 
     private void printResult() {
         GameResultDto gameResult = bridgeGame.readGameResult();
-        List<String> bridgeMap = bridgeGame.readBridgeMap();
+        List<String> bridgeMap = bridgeGame.findBridgeMap();
         outputView.printResult(bridgeMap, gameResult.getSuccessOrFail(), gameResult.getRetryCount());
     }
 }

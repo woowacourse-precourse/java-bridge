@@ -48,7 +48,7 @@ public class BridgeGame {
         return bridgeRepository.findGameResult();
     }
 
-    public List<String> readBridgeMap() {
+    public List<String> findBridgeMap() {
         return bridgeRepository.findBridgeMap();
     }
 
