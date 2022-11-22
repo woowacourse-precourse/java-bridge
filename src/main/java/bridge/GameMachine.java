@@ -53,16 +53,17 @@ public class GameMachine {
 
     private MoveResult play() {
         gameCounter++;
-        for (int location = 0; location < bridge.size(); location++) {
-            MoveResult moveResult = move();
-            if (moveResult == MoveResult.FAIL) {
-                view.printMap(bridge, location, MoveResult.FAIL);
-                return MoveResult.FAIL;
-            }
-            view.printMap(bridge, location, MoveResult.PASS);
-        }
-        return MoveResult.PASS;
+        MoveResult result = MoveResult.PASS;
+        for (int location = 0; location < bridge.size() && isPass(result); location++) {
+            result = move();
+            view.printMap(bridge, location, result);
 
+        }
+        return result;
+    }
+
+    private boolean isPass(MoveResult result) {
+        return result == MoveResult.PASS;
     }
 
     private MoveResult move() {
