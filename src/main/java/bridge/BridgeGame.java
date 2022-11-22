@@ -19,7 +19,7 @@ public class BridgeGame {
     private int gameCount;
     private boolean gameStatus;
 
-    BridgeGame(){
+    public BridgeGame(){
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
         moveCount = 0;
