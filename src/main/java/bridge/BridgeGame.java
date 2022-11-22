@@ -50,9 +50,7 @@ public class BridgeGame {
             location++;
             return 0;
         }
-
         notCorrect(move);
-        location++;
         return -1;
     }
 
@@ -67,6 +65,7 @@ public class BridgeGame {
     }
 
     private void notCorrect(String nextStep) {
+        location++;
         if (nextStep.equals(UP)) {
             up.append(CANNOT_GO);
             down.append(NOT_SELECT);
