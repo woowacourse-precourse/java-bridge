@@ -13,9 +13,18 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String location,  List<String>upBridge ,List<String> downBridge) {
-        location.charAt(0);
-        location.charAt(1);
-
+        if(location.charAt(0) == 'U' && location.charAt(1) == 'O'){
+            BridgeAdd(upBridge, 1);BridgeAddElse(downBridge);
+        }
+        else if(location.charAt(0) == 'U' && location.charAt(1) != 'O'){
+            BridgeAdd(upBridge, 0);BridgeAddElse(downBridge);
+        }
+        else if(location.charAt(0) == 'D' && location.charAt(1) != 'O'){
+            BridgeAdd(downBridge, 1);BridgeAddElse(upBridge);
+        }
+        else{
+            BridgeAdd(downBridge, 0);BridgeAddElse(upBridge);
+        }
         printResult(upBridge);
         printResult(downBridge);
     }
