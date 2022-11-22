@@ -4,20 +4,22 @@ import bridge.util.BridgeGameExceptionMessage;
 import java.util.Arrays;
 
 public enum Direction {
-    U(1), D(0);
+    UP("U", 1), DOWN("D", 0);
 
+    private final String command;
     private final int randomValue;
 
-    Direction(int randomValue) {
+    Direction(String command, int randomValue) {
+        this.command = command;
         this.randomValue = randomValue;
     }
 
     public static Direction fromInput(String input) {
-        try {
-            return valueOf(input);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(BridgeGameExceptionMessage.DIRECTION_NOT_MATCH.getMessage());
-        }
+        return Arrays.stream(values())
+                .filter(direction -> direction.getCommand().equals(input))
+                .findAny()
+                .orElseThrow(() ->
+                        new IllegalArgumentException(BridgeGameExceptionMessage.DIRECTION_NOT_MATCH.getMessage()));
     }
 
     public static Direction findDirectionByRandomValue(int randomValue) {
@@ -26,5 +28,9 @@ public enum Direction {
                 .findAny()
                 .orElseThrow(() ->
                         new IllegalArgumentException(BridgeGameExceptionMessage.RANDOM_NUMBER_NOT_MATCH.getMessage()));
+    }
+
+    public String getCommand() {
+        return command;
     }
 }

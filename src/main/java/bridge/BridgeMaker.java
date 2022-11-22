@@ -23,7 +23,7 @@ public class BridgeMaker {
         return IntStream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
                 .mapToObj(Direction::findDirectionByRandomValue)
-                .map(Enum::toString)
+                .map(Direction::getCommand)
                 .collect(Collectors.toList());
     }
 }

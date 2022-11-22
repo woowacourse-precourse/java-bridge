@@ -11,7 +11,7 @@ public class Bridge {
     }
 
     private List<Direction> toDirection(List<String> bridge) {
-        return bridge.stream().map(Direction::valueOf).collect(Collectors.toList());
+        return bridge.stream().map(Direction::fromInput).collect(Collectors.toList());
     }
 
     public boolean isBroken(int position, Direction direction) {
