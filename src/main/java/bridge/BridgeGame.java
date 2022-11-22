@@ -40,4 +40,11 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public static boolean gameOver() {
+        if (getUserInputSize() == getBridgeSize() && Objects.equals(userInput.get(userInput.size() - 1), bridge.get(bridge.size() - 1))) {
+            return true;
+        }
+        return false;
+    }
 }
