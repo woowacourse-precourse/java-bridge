@@ -16,19 +16,17 @@ public class Controller {
     private final BridgeGame bridgeGame;
 
     private InputController inputController;
-    private InputView inputView;
     private Bridge bridge;
     private OutputView outputView;
     private List<String> choices;
     private int tryNumbers;
     private boolean pass;
 
-    public Controller() {
+    public Controller(InputView view) {
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeGame = new BridgeGame();
-        inputView = new InputView();
-        inputController = new InputController(inputView);
+        inputController = new InputController(view);
     }
 
     public void game() throws IllegalArgumentException{
@@ -72,7 +70,7 @@ public class Controller {
     }
 
     private String makeChoice(int i) {
-        String choice = inputController.setMoveChoice();
+            String choice = inputController.setMoveChoice();
         choices.add(choice);
         outputView.printMap(i, choices);
 
