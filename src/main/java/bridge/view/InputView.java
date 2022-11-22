@@ -43,7 +43,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return inputGameCommand();
+        String gameCommand;
+        try {
+            gameCommand = inputGameCommand();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            gameCommand = readGameCommand();
+        }
+        return gameCommand;
     }
 
     private int toBridgeSize(String bridgeSizeCommand) {
