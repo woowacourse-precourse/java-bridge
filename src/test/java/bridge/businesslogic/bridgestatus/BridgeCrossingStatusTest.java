@@ -83,5 +83,87 @@ class BridgeCrossingStatusTest {
             assertThat(downLine.toString()).isEqualTo("");
         }
     }
+    @Nested
+    class GetBridgeStatusTest{
 
+        @DisplayName("첫 선택이 위면서, 정답을 맞췄을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case1(){
+            StringBuilder upLine = new StringBuilder("O");
+            StringBuilder downLine = new StringBuilder(" ");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   ]");
+        }
+
+        @DisplayName("첫 선택이 아래면서, 정답을 맞췄을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case2(){
+            StringBuilder upLine = new StringBuilder(" ");
+            StringBuilder downLine = new StringBuilder("O");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[   ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[ O ]");
+        }
+
+        @DisplayName("첫 선택이 위면서, 정답을 틀렸을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case3(){
+            StringBuilder upLine = new StringBuilder("O");
+            StringBuilder downLine = new StringBuilder(" ");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ X ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   ]");
+        }
+
+        @DisplayName("첫 선택이 아래면서, 정답을 틀렸을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case4(){
+            StringBuilder upLine = new StringBuilder(" ");
+            StringBuilder downLine = new StringBuilder("O");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[   ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[ X ]");
+        }
+
+        @DisplayName("마지막 선택이 위면서, 정답을 맞았을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case5(){
+            StringBuilder upLine = new StringBuilder("O | O");
+            StringBuilder downLine = new StringBuilder("  |  ");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O | O ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   |   ]");
+        }
+
+        @DisplayName("마지막 선택이 위면서, 정답을 틀렸을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case6(){
+            StringBuilder upLine = new StringBuilder("O | O");
+            StringBuilder downLine = new StringBuilder("  |  ");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ O | X ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   |   ]");
+        }
+
+        @DisplayName("마지막 선택이 아래면서, 정답을 맞았을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case7(){
+            StringBuilder upLine = new StringBuilder("O |  ");
+            StringBuilder downLine = new StringBuilder("  | O");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",true)).isEqualTo("[ O |   ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",true)).isEqualTo("[   | O ]");
+        }
+
+        @DisplayName("마지막 선택이 아래면서, 정답을 틀렸을 때의 BridgeStatus")
+        @Test
+        void getBridgeStatus_case8(){
+            StringBuilder upLine = new StringBuilder("O |  ");
+            StringBuilder downLine = new StringBuilder("  | O");
+            bridgeCrossing = new BridgeCrossingStatus(upLine,downLine);
+            assertThat(bridgeCrossing.getBridgeStatus("U",false)).isEqualTo("[ O |   ]");
+            assertThat(bridgeCrossing.getBridgeStatus("D",false)).isEqualTo("[   | X ]");
+        }
+    }
 }
