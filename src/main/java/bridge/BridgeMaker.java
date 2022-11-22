@@ -19,7 +19,6 @@ public class BridgeMaker {
             int number = bridgeNumberGenerator.generate();
             bridge.add(ConvertBridge.toUpOrDown(number));
         }
-        System.out.println("bridge = " + bridge);
         return bridge;
     }
 }

@@ -1,11 +1,9 @@
 package bridge.domain.resources;
 
+import bridge.constant.Constant;
 import bridge.domain.exception.InvalidMoveException;
 
 public class Move {
-
-    public static final String UP = "U";
-    public static final String DOWN = "D";
 
     private final String move;
 
@@ -17,7 +15,7 @@ public class Move {
     }
 
     private boolean isUpOrDown(final String move) {
-        return move.equals(UP) || move.equals(DOWN);
+        return move.equals(Constant.UP.getValue()) || move.equals(Constant.DOWN.getValue());
     }
 
     public static Move from(final String move) {  // 정적 팩토리 메소드

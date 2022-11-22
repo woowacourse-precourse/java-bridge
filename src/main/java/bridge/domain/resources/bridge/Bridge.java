@@ -1,13 +1,12 @@
 package bridge.domain.resources.bridge;
 
 import bridge.constant.BridgePhrase;
+import bridge.constant.Constant;
 import java.util.List;
 import java.util.Objects;
 
 public class Bridge {
 
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
@@ -17,7 +16,7 @@ public class Bridge {
 
     private void validateUpOrDown(final List<String> bridge) {
         bridge.stream()
-            .filter(str -> str.equals(UP) || str.equals(DOWN))
+            .filter(str -> str.equals(Constant.UP.getValue()) || str.equals(Constant.DOWN.getValue()))
             .findFirst()
             .orElseThrow(()-> new IllegalArgumentException(BridgePhrase.ERROR_BRIDGE_GENERATION.getMessage()));
     }

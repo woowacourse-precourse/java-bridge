@@ -1,11 +1,9 @@
 package bridge.domain.resources;
 
+import bridge.constant.Constant;
 import bridge.domain.exception.InvalidGameCommandException;
 
 public class GameCommand {
-
-    public static final String RETRY = "R";
-    public static final String QUIT = "Q";
 
     private final String gameCommand;
 
@@ -17,7 +15,7 @@ public class GameCommand {
     }
 
     private boolean isRetryOrQuit(final String gameCommand) {
-        return gameCommand.equals(RETRY) || gameCommand.equals(QUIT);
+        return gameCommand.equals(Constant.RETRY.getValue()) || gameCommand.equals(Constant.QUIT.getValue());
     }
 
     public static GameCommand from(final String gameCommand) {  // 정적 팩토리 메소드

@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public class BridgeGame {
 
-    private static final boolean RETRY = true;
-    private static final boolean QUIT = false;
+    private static final boolean RETRY_FLAG = true;
+    private static final boolean QUIT_FLAG = false;
 
     private final BridgeStateService bridgeStateService;
     private int totalAttempts;
@@ -27,10 +27,10 @@ public class BridgeGame {
     public boolean retry(final GameCommand gameCommand) {
         String retryOrQuit = gameCommand.getGameCommand();
         if (Objects.equals(retryOrQuit, "R")) {
-            return RETRY;
+            return RETRY_FLAG;
         }
         if (Objects.equals(retryOrQuit, "Q")) {
-            return QUIT;
+            return QUIT_FLAG;
         }
         return true;
     }
@@ -48,7 +48,7 @@ public class BridgeGame {
     }
 
     public boolean isRetry(final boolean button) {
-        if (button == RETRY) {
+        if (button == RETRY_FLAG) {
             bridgeStateService.clearBridgeMap();
             return true;
         }
