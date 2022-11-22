@@ -9,6 +9,10 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
+    public void printMapMessage() {
+        System.out.println("\n최종 게임 결과");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
