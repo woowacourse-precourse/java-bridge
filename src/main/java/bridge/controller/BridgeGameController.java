@@ -10,8 +10,8 @@ import bridge.validator.InputValidator;
 public class BridgeGameController {
     InputView input;
     OutputView output;
-    Bridge bridge;
-    BridgeGame game;
+    private Bridge bridge;
+    private BridgeGame game;
 
 
     public BridgeGameController() {

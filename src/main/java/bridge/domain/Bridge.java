@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    int size;
-    List<String> bridge;
-    List<String> userRoute;
+    private int size;
+    private List<String> bridge;
+    private List<String> userRoute;
 
     public Bridge(int size) {
         BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
