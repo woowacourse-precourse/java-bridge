@@ -24,7 +24,7 @@ public class BridgeGame {
         this.tryCount = 1;
     }
 
-    public void move(String moving) {
+    public void move(final String moving) {
         player.addMove(moving);
     }
 

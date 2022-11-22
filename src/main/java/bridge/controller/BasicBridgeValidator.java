@@ -15,23 +15,23 @@ public class BasicBridgeValidator implements BridgeValidator {
     GameCommand[] gameCommands = GameCommand.values();
 
     @Override
-    public void validateBridgeSize(String size) throws IllegalArgumentException {
+    public void validateBridgeSize(final String size) throws IllegalArgumentException {
         validateInteger(size);
         validateSizeRange(size);
     }
 
     @Override
-    public void validateMoveCommand(String command) throws IllegalArgumentException {
+    public void validateMoveCommand(final String command) throws IllegalArgumentException {
         validateStringMoveCommand(command);
     }
 
     @Override
-    public void validateGameCommand(String command) throws IllegalArgumentException {
+    public void validateGameCommand(final String command) throws IllegalArgumentException {
         validateStringGameCommand(command);
     }
 
     @Override
-    public void validateBridge(List<String> bridge) throws IllegalArgumentException {
+    public void validateBridge(final List<String> bridge) throws IllegalArgumentException {
         validateBridgeSize(String.valueOf(bridge.size()));
         for (String command : bridge) {
             if (!Pattern.matches("^[UD]$", command)) {
@@ -42,7 +42,7 @@ public class BasicBridgeValidator implements BridgeValidator {
         }
     }
 
-    private void validateInteger(String size) {
+    private void validateInteger(final String size) {
         if (!Pattern.matches("^[0-9]*$", size)) {
             String errMessage = "[ERROR] 다리 길이는 자연수만 입력 가능합니다.";
             System.out.println(errMessage);
@@ -50,7 +50,7 @@ public class BasicBridgeValidator implements BridgeValidator {
         }
     }
 
-    private void validateSizeRange(String size) {
+    private void validateSizeRange(final String size) {
         int sizeValue = Integer.parseInt(size);
         if (sizeValue < MINIMUM.getSize() | sizeValue > MAXIMUM.getSize()) {
             String errMessage = String.format("[ERROR] 다리 길이는 %d 이상 %d 이하만 가능합니다.", MINIMUM.getSize(), MAXIMUM.getSize());
@@ -59,7 +59,7 @@ public class BasicBridgeValidator implements BridgeValidator {
         }
     }
 
-    private void validateStringMoveCommand(String command) {
+    private void validateStringMoveCommand(final String command) {
         for (MoveCommand moveCommand : moveCommands) {
             if (command.equals(moveCommand.getCommand())) {
                 return;
@@ -70,7 +70,7 @@ public class BasicBridgeValidator implements BridgeValidator {
         throw new IllegalArgumentException();
     }
 
-    private void validateStringGameCommand(String command) {
+    private void validateStringGameCommand(final String command) {
         for (GameCommand gameCommand : gameCommands) {
             if (command.equals(gameCommand.getCommand())) {
                 return;

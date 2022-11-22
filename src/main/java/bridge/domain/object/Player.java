@@ -6,7 +6,7 @@ import java.util.List;
 public class Player {
     List<String> moves = new ArrayList<>();
 
-    public void addMove(String move) {
+    public void addMove(final String move) {
         moves.add(move);
     }
 
