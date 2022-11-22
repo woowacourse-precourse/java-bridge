@@ -1,5 +1,6 @@
 package bridge.Controller;
 
+import bridge.constant.GameConstant;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.User;
@@ -43,7 +44,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        if (InputView.readGameCommand().equals("R")) {
+        if (InputView.readGameCommand().equals(GameConstant.RETRY)) {
             gameService.retry();
             move();
         }
