@@ -1,5 +1,6 @@
 package bridge;
 
+import model.*;
 import type.MovingType;
 
 import java.util.Map;

@@ -1,5 +1,7 @@
 package bridge;
 
+import model.Bridge;
+import model.Moving;
 import view.InputView;
 import view.OutputView;
 

@@ -1,4 +1,4 @@
-package bridge;
+package model;
 
 import validation.Validation;
 
