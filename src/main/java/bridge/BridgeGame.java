@@ -3,6 +3,8 @@ package bridge;
 import controller.Util;
 import model.*;
 import view.GameMessage;
+import view.InputMessage;
+import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
@@ -21,25 +23,26 @@ public class BridgeGame {
     private GameResult gameResult;
     private BridgeMaker bridgeMaker;
     private OutputView outputView;
+    private InputView inputView;
 
     public MovingResult movingResult;
 
     public BridgeGame() {
         util = new Util();
-        user = new User(new ArrayList<>());
+        inputView = new InputView();
+        movingResult = new MovingResult();
+        user = new User();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        movingResult = new MovingResult(new ArrayList<>());
         outputView = new OutputView();
         gameResult = new GameResult();
     }
 
     public void run() {
         System.out.println(GameMessage.START_MESSAGE);
-        int size = util.inputSize();
+        int size = util.inputSize(inputView);
         bridge = new Bridge(bridgeMaker.makeBridge(size));
         while(true){
             move();
-            enterResult();
             outputView.printMap(movingResult);
             if(retry()){
                 outputView.printResult(gameResult,movingResult);
@@ -54,9 +57,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        String moving = util.inputMoving();
+        String moving = util.inputMoving(inputView);
         user.setCurrentMoving(moving);
         user.addMovingRoute(moving);
+        enterResult();
     }
 
     /**
@@ -75,13 +79,17 @@ public class BridgeGame {
     }
 
     public void enterResult() {
-        List<String> currentResult = new ArrayList<>();
-        String movingResult = compareBridge();
-        currentResult.add(user.getCurrentMoving());
-        currentResult.add(movingResult);
-        this.movingResult.setCurrentResult(currentResult);
-        this.movingResult.addTotalMovingResult(currentResult);
+        String resultMoving = compareBridge();
+        if(user.getCurrentMoving().equals("U")){
+            movingResult.addUpResult(resultMoving);
+            movingResult.addDownResult(" ");
+        }
+        if(user.getCurrentMoving().equals("D")){
+            movingResult.addDownResult(resultMoving);
+            movingResult.addUpResult(" ");
+        }
     }
+
 
     private String compareBridge() {
         int currentLocation = user.getMovingRoute().size();
@@ -92,7 +100,7 @@ public class BridgeGame {
     }
 
     private boolean checkRestart() {
-        String restart = util.inputRestart();
+        String restart = util.inputRestart(inputView);
         if (restart.equals("Q"))
             return false;
         return true;

@@ -5,27 +5,22 @@ import view.ErrorMessage;
 import view.InputView;
 
 public class Util {
-    private InputView inputView;
 
-    public Util() {
-        inputView = new InputView();
-    }
-
-    public int inputSize(){
+    public int inputSize(InputView inputView){
         inputView.readBridgeSize();
         int size = Integer.parseInt(Console.readLine());
         validateSize(size);
         return size;
     }
 
-    public String inputMoving(){
+    public String inputMoving(InputView inputView){
         inputView.readMoving();
         String moving = Console.readLine();
         validateMoving(moving);
         return moving;
     }
 
-    public String inputRestart(){
+    public String inputRestart(InputView inputView){
         inputView.readGameCommand();
         String restart = Console.readLine();
         validateRetry(restart);

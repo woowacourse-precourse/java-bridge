@@ -5,48 +5,39 @@ import java.util.List;
 
 public class MovingResult {
 
-    private List<List<String>> totalMovingResult;
+    private List<String> upResult;
 
-    private List<String> currentResult;
+    private List<String> downResult;
 
-    public List<String> getCurrentResult() {
-        return currentResult;
-    }
-    public MovingResult(List<List<String>> totalMovingResult) {
-        this.totalMovingResult = totalMovingResult;
-    }
-    public void setCurrentResult(List<String> currentResult) {
-        this.currentResult = currentResult;
+    public MovingResult() {
+        upResult = new ArrayList<>();
+        downResult = new ArrayList<>();
     }
 
-    public void addTotalMovingResult(List<String> movingResult){
-        totalMovingResult.add(movingResult);
-    }
-    public void clearResult(){
-        totalMovingResult.clear();
-        currentResult = null;
+    public void clearResult() {
+        upResult.clear();
+        downResult.clear();
     }
 
-    public String getResultAt(int position){
-        return totalMovingResult.get(position).get(1);
+    public void addUpResult(String moving) {
+        upResult.add(moving);
     }
 
-    public int movingResultSize(){
-        return totalMovingResult.size();
+    public void addDownResult(String moving) {
+        downResult.add(moving);
     }
-    public List<Integer> extractUpPosition(){
-        List<Integer> upPosition = new ArrayList<>();
-        for(int i = 0; i < totalMovingResult.size(); i++)
-            if(totalMovingResult.get(i).contains("U"))
-                upPosition.add(i);
-        return upPosition;
+    public int sizeUpResult(){
+        return upResult.size();
     }
-    public List<Integer> extractDownPosition(){
-        List<Integer> upPosition = new ArrayList<>();
-        for(int i = 0; i < totalMovingResult.size(); i++)
-            if(totalMovingResult.get(i).contains("D"))
-                upPosition.add(i);
-        return upPosition;
+    public String upResultAt(int location){
+        return upResult.get(location);
+    }
+
+    public String downResultAt(int location){
+        return downResult.get(location);
+    }
+    public int sizeDownResult(){
+        return downResult.size();
     }
 
 }

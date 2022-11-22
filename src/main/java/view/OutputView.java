@@ -35,23 +35,21 @@ public class OutputView {
     }
 
     private void printUpMap(MovingResult movingResult) {
-        List<Integer> upPosition = movingResult.extractUpPosition();
         System.out.print("[ ");
-        for (int i = 0; i < movingResult.movingResultSize(); i++) {
-            if (upPosition.contains(i))
-                System.out.print(movingResult.getResultAt(i));
-            System.out.print(" | ");
+        for (int i = 0; i < movingResult.sizeUpResult(); i++) {
+            System.out.print(movingResult.upResultAt(i));
+            if (movingResult.sizeUpResult() > 1 && i >= 1)
+                System.out.print(" | ");
         }
         System.out.print(" ]");
     }
 
-    private void printDownMap(MovingResult movingResult){
-        List<Integer> upPosition = movingResult.extractDownPosition();
+    private void printDownMap(MovingResult movingResult) {
         System.out.print("[ ");
-        for (int i = 0; i < movingResult.movingResultSize(); i++) {
-            if (upPosition.contains(i))
-                System.out.print(movingResult.getResultAt(i));
-            System.out.print("| ");
+        for (int i = 0; i < movingResult.sizeDownResult(); i++) {
+            System.out.print(movingResult.downResultAt(i));
+            if (movingResult.sizeDownResult() > 1 && i >= 1)
+                System.out.print(" | ");
         }
         System.out.print(" ]");
     }

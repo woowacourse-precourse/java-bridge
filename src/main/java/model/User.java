@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -9,8 +10,8 @@ public class User {
 
     private String currentMoving;
 
-    public User(List<String> movingRoute) {
-        this.movingRoute = movingRoute;
+    public User() {
+        movingRoute = new ArrayList<>();
     }
     public String getCurrentMoving() {
         return currentMoving;
