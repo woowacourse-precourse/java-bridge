@@ -10,6 +10,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final int MINIMUM_BRIDGE_LENGTH = 3;
+    private final int MAXIMUM_BRIDGE_LENGTH = 20;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -50,7 +52,8 @@ public class InputView {
     }
 
     public void checkScope(String number) {
-        if (Integer.parseInt(number) < 3 || Integer.parseInt(number) > 20) {
+        int bridgeLength = Integer.parseInt(number);
+        if (bridgeLength < MINIMUM_BRIDGE_LENGTH || bridgeLength > MAXIMUM_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(ExceptionMessage.SCOPE.getErrorMessage());
         }
     }
