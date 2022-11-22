@@ -47,4 +47,10 @@ public class BridgeProgram {
 			return checkRetryInput();
 		}
 	}
+
+	public void loop() {
+		for (upBridge.size(); checkRetry() && upBridge.size() < bridge.getBridgeSize(); ) {
+			checkMoving(upBridge.size());
+		}
+	}
 }
