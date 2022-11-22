@@ -12,7 +12,7 @@ public class InputController {
         this.inputView = view;
     }
 
-    private static List<Integer> recursions = Arrays.asList(1, 1, 1);
+    private List<Integer> recursions = Arrays.asList(1, 1, 1);
 
     public int setBridgeSize() {
         try {
@@ -62,7 +62,7 @@ public class InputController {
         return false;
     }
 
-    public static void init() {
+    public void init() {
         recursions = Arrays.asList(1, 1, 1);
     }
 }

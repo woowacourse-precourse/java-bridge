@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.controller.InputController;
+import bridge.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 
@@ -59,7 +60,7 @@ class ApplicationTest extends NsTest {
         @ValueSource(strings = {"1","22",""})
         void wrongBridgeLengthInput(String input) {
             assertSimpleTest(() -> {
-                InputController.init();
+                new InputController(new InputView()).init();
                 runException(input);
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
@@ -70,7 +71,7 @@ class ApplicationTest extends NsTest {
         @ValueSource(strings = {"1","H",""})
         void wrongInput(String input) {
             assertSimpleTest(() -> {
-                InputController.init();
+                new InputController(new InputView()).init();
                 runException("3", input);
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
@@ -81,7 +82,7 @@ class ApplicationTest extends NsTest {
         @ValueSource(strings = {"1","H",""})
         void wrongRestartInput(String input) {
             assertRandomNumberInRangeTest(() -> {
-                InputController.init();
+                new InputController(new InputView()).init();
                 runException("D","U","D", input);
                 assertThat(output()).contains(ERROR_MESSAGE);
             }, 0,1,1);
