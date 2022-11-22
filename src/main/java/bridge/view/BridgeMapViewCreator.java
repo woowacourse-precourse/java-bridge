@@ -16,9 +16,6 @@ import static bridge.view.BridgeMapConstant.SUFFIX_IDX_VALUE;
 
 public class BridgeMapViewCreator {
 
-    private BridgeMapViewCreator() {
-    }
-
     public static class BridgeMap{
 
         private final StringBuilder upBridge;
@@ -36,6 +33,9 @@ public class BridgeMapViewCreator {
         public StringBuilder getDownBridge() {
             return downBridge;
         }
+    }
+
+    private BridgeMapViewCreator() {
     }
 
     public static BridgeMap create(GameStatus gameStatus, List<BridgeMark> records) {
