@@ -1,8 +1,9 @@
 package bridge.view;
 
+import static bridge.util.Constant.*;
+
 import bridge.domain.Bridge;
 import bridge.rule.EndRule;
-import bridge.util.Constant;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -10,7 +11,7 @@ import bridge.util.Constant;
 public class OutputView {
 
     public static void printStart() {
-        System.out.println(Constant.GAMESTART);
+        System.out.println(GAMESTART);
         System.out.println();
     }
 
@@ -23,9 +24,9 @@ public class OutputView {
         String[] upperBridge = bridge.getUpperBridge().toArray(new String[0]);
         String[] lowerBridge = bridge.getLowerBridge().toArray(new String[0]);
         System.out.println(
-            Constant.BRACKETS_OPEN + String.join(Constant.DELIMITER, upperBridge) + Constant.BRACKETS_CLOSE);
+            BRACKETS_OPEN + String.join(DELIMITER, upperBridge) + BRACKETS_CLOSE);
         System.out.println(
-            Constant.BRACKETS_OPEN + String.join(Constant.DELIMITER, lowerBridge) + Constant.BRACKETS_CLOSE);
+            BRACKETS_OPEN + String.join(DELIMITER, lowerBridge) + BRACKETS_CLOSE);
         System.out.println();
     }
 
@@ -35,27 +36,27 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(Bridge bridge, int count) {
-        System.out.println(Constant.FINAL_GAME_RESULT);
+        System.out.println(FINAL_GAME_RESULT);
         printBridgeResult(bridge);
         System.out.println();
-        System.out.println(Constant.GAME_CLEAR_OR_FAIL + EndRule.isComplete(bridge));
-        System.out.println(Constant.TOTAL_TRY + count);
+        System.out.println(GAME_CLEAR_OR_FAIL + EndRule.isComplete(bridge));
+        System.out.println(TOTAL_TRY + count);
     }
 
     private static void printBridgeResult(Bridge bridge) {
         String[] upperBridge = bridge.getUpperBridge().toArray(new String[0]);
         String[] lowerBridge = bridge.getLowerBridge().toArray(new String[0]);
         System.out.println(
-            Constant.BRACKETS_OPEN + String.join(Constant.DELIMITER, upperBridge) + Constant.BRACKETS_CLOSE);
+            BRACKETS_OPEN + String.join(DELIMITER, upperBridge) + BRACKETS_CLOSE);
         System.out.println(
-            Constant.BRACKETS_OPEN + String.join(Constant.DELIMITER, lowerBridge) + Constant.BRACKETS_CLOSE);
+            BRACKETS_OPEN + String.join(DELIMITER, lowerBridge) + BRACKETS_CLOSE);
     }
 
     public static void notifySelectMoveLocation(){
-        System.out.println(Constant.SELECT_MOVE_LOCATION);
+        System.out.println(SELECT_MOVE_LOCATION);
     }
 
     public static void errorMessageLogger(IllegalArgumentException illegalArgumentException){
-        System.out.println(Constant.ERRORMESSAGE + illegalArgumentException.getMessage());
+        System.out.println(ERRORMESSAGE + illegalArgumentException.getMessage());
     }
 }
