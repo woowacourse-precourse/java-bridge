@@ -16,7 +16,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -24,10 +23,6 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
 
     @Test
     void 다리_생성_테스트() {
@@ -52,6 +47,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 맵_출력_테스트(){
+        setUp();
         OutputView outputView = new OutputView();
         outputView.printMap(List.of(" O ", "   "), List.of("   ", " X "));
         assertThat(outputStreamCaptor.toString()).contains(
@@ -103,5 +99,9 @@ class ApplicationTest extends NsTest {
         public int generate() {
             return numbers.remove(0);
         }
+    }
+
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
     }
 }
