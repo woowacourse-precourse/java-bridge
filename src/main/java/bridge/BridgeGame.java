@@ -7,32 +7,24 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private final static InputView inputView = new InputView();
+    private final static OutputView outputView = new OutputView();
+    private final static BridgeGame bridgeGame = new BridgeGame();
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    public boolean move(List<String> bridge, CurrentBridgeState currentBridgeState, int turn) {
 
-    private void failMove(String moveCommand, List<String> upBridgeResult, List<String> downBridgeResult) {
+        boolean isPossibleMove;
 
-        if (moveCommand.equals("U")) {
-            upBridgeResult.add("X");
-            downBridgeResult.add(" ");
-        } else if (moveCommand.equals("D")) {
-            upBridgeResult.add(" ");
-            downBridgeResult.add("X");
-        }
-    }
+        String moveCommand = inputView.readMoving();
+        isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
+        currentBridgeState.recordBridgeMove(moveCommand, isPossibleMove);
+        outputView.printMap(currentBridgeState);
 
-    private void successMove(String moveCommand, List<String> upBridgeResult, List<String> downBridgeResult) {
-
-        if (moveCommand.equals("U")) {
-            upBridgeResult.add("O");
-            downBridgeResult.add(" ");
-        } else if (moveCommand.equals("D")) {
-            upBridgeResult.add(" ");
-            downBridgeResult.add("O");
-        }
     }
 
     public boolean isPossibleMove(List<String> bridge, String moveCommand, int turn) {
@@ -49,7 +41,18 @@ public class BridgeGame {
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param currentBridgeState
+     * @param isPossibleMove
+     * @param tryNumber
      */
-    public void retry() {
+    public boolean retry(CurrentBridgeState currentBridgeState, boolean isPossibleMove, int tryNumber) {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("Q")) {
+            outputView.printResult(currentBridgeState, isPossibleMove, tryNumber);
+            return false;
+        } else if (gameCommand.equals("R")) {
+            return true;
+        }
+        return false;
     }
 }

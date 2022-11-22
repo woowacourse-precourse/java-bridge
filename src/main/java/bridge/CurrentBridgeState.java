@@ -44,6 +44,7 @@ public class CurrentBridgeState {
         }
     }
 
+
     public List<String> getUpBridgeState() {
         return upBridgeState;
     }

@@ -5,7 +5,6 @@ import java.util.List;
 public class Application {
 
     private final static InputView inputView = new InputView();
-    private final static OutputView outputView = new OutputView();
     private final static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final static BridgeGame bridgeGame = new BridgeGame();
 
@@ -13,33 +12,22 @@ public class Application {
         // TODO: 프로그램 구현
         CurrentBridgeState currentBridgeState = new CurrentBridgeState();
         int tryNumber = 1;
-
+        boolean isPossibleMove = true;
+        boolean isRetry = true;
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        while (true) {
-            boolean isPossibleMove = true;
+        while (isRetry) {
             for (int turn = 0; turn < bridgeSize; turn++) {
-                String moveCommand = inputView.readMoving();
-                isPossibleMove = bridgeGame.isPossibleMove(bridge, moveCommand, turn);
-                currentBridgeState.recordBridgeMove(moveCommand, isPossibleMove);
-                outputView.printMap(currentBridgeState);
+                isPossibleMove = bridgeGame.move(bridge, currentBridgeState, bridgeSize);
                 if (isPossibleMove == false) {
-                    String gameCommand = inputView.readGameCommand();
-                    if (gameCommand.equals("Q")) {
-                        outputView.printResult(currentBridgeState, isPossibleMove, tryNumber);
-                        return ;
-                    } else if (gameCommand.equals("R")) {
-                        break;
-                    }
+                    isRetry = bridgeGame.retry(currentBridgeState, isPossibleMove, tryNumber);
+                }else if (isPossibleMove == true) {
+                    outputView.printResult(currentBridgeState, isPossibleMove, tryNumber);
+                    return ;
                 }
-            }
-            if (isPossibleMove == true) {
-                outputView.printResult(currentBridgeState, isPossibleMove, tryNumber);
-                return ;
             }
             tryNumber++;
         }
-
     }
 }
