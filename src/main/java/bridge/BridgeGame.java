@@ -28,6 +28,15 @@ public class BridgeGame {
      *
      * @return
      */
+    public boolean isClear(String bridgeSize) {
+        int num = Integer.parseInt(bridgeSize);
+        return getTopMap().size() == num && getTopMap().get(num - 1).equals(Map.CROSS_OK.getSymbol()) ||
+                getDownMap().size() == num && getDownMap().get(num - 1).equals(Map.CROSS_OK.getSymbol());
+    }
+
+    public boolean isPlayerDead() {
+        return getTopMap().contains(Map.CROSS_NO.getSymbol()) || getDownMap().contains(Map.CROSS_NO.getSymbol());
+    }
     public void move(String userInput, List<String> bridge, int cnt) {
         if (isU(userInput)) {
             moveUp(userInput, bridge, cnt);
@@ -102,5 +111,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+
+    }
+
+    public void initMap() {
+        topMap = new ArrayList<>();
+        downMap = new ArrayList<>();
     }
 }
