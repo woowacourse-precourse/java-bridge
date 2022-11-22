@@ -1,6 +1,6 @@
 # 기능 구현 목록
 
-## domain
+## domain()
 
 ### BridgeGame
 - 객체를 생성할 때 다리와 현재 포지션을 저장
