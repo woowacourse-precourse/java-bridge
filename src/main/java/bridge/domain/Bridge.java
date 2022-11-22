@@ -33,9 +33,9 @@ public class Bridge {
         throw new IllegalArgumentException("Internal Server Error - 다리 생성 (0,1)");
     }
 
-    public static Bridge mapToBridge(List<String> random) {
+    public static Bridge mapToBridge(List<String> commandKey) {
         List<Command> commands = new ArrayList<>();
-        for (String command : random) {
+        for (String command : commandKey) {
             commands.add(handleRandomStringToCommand(command));
         }
         return new Bridge(commands);

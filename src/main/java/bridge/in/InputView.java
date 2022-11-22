@@ -36,7 +36,7 @@ public class InputView {
     public Command readMoving() {
         String inputCommand = Console.readLine();
         try {
-            validateCommand(MOVE_COMMAND, inputCommand, VALID_SIZE);
+            validateCommand(inputCommand, VALID_SIZE);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]" + e.getMessage());
             readMoving();
@@ -50,7 +50,7 @@ public class InputView {
     public Command readGameCommand() {
         String inputCommand = Console.readLine();
         try {
-            validateCommand(RETRY_COMMAND, inputCommand, VALID_SIZE);
+            validateCommand(inputCommand, VALID_SIZE);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]" + e.getMessage());
             readGameCommand();
@@ -58,9 +58,9 @@ public class InputView {
         return convertInputToCommand(inputCommand, RETRY_COMMAND);
     }
 
-    private void validateCommand(List<Command> commands, String inputCommand, int validSize) {
+    private void validateCommand(String inputCommand, int validSize) {
         checkNotLargeThenValidSize(inputCommand, validSize);
-        checkValidateCommandInput(inputCommand, commands);
+        checkValidateCommandInput(inputCommand);
     }
 
     private Command convertInputToCommand(String input, List<Command> commands) {
@@ -76,10 +76,10 @@ public class InputView {
 
     //로직 다시 한번 생각해보자.
     //띄어쓰기도 맞는지 확인.
-    private void checkValidateCommandInput(String input, List<Command> commands) {
-        Boolean isPresent = commands.stream().map(
-                command -> command.getKey().equals(input)).findFirst().get();
-        if (!isPresent) {
+    private void checkValidateCommandInput(String input) {
+        long count = MOVE_COMMAND.stream().filter(
+                command -> command.getKey().equals(input)).count();
+        if (count == 0) {
             throw new IllegalArgumentException("입력값이 유효하지 않습니다.");
         }
     }
