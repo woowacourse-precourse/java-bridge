@@ -13,12 +13,17 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeGameTest extends NsTest {
 
-    @DisplayName("다리 랜덤 값이 제대로 나오는 지 확인")
+    @DisplayName("bridge 생성이 제대로 되는지 확인")
     @Test
     void checkRandomNumbers() {
-
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeMaker.makeBridge(3);
+        int size = 10;
+        bridgeMaker.makeBridge(size);
+
+        assertRandomNumberInRangeTest(
+                () -> {
+                    assertThat(bridgeMaker.makeBridge(size)).isEqualTo((List.of("U", "U", "U", "D", "D", "D", "D", "D", "U", "U")));
+                }, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1);
     }
 
     @Override

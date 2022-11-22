@@ -39,20 +39,20 @@ public class Controller {
     }
 
     private void manageGameState() {
-        if (game == false) {
+        if (!game) {
             wantRestartOrQuit();
         }
-        if (game == true && count == bridge.size()) {
+        if (game && count == bridge.size()) {
             outputView.printResult(challengeCount, game);
             game = false;
         }
     }
     private void wantRestartOrQuit() {
         game = bridgeGame.retry(inputView.readGameCommand());
-        if (game == true) {
+        if (game) {
             wantRestart();
         }
-        if (game == false) {
+        if (!game) {
             wantQuit();
         }
     }

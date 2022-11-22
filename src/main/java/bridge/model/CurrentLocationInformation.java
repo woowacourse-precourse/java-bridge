@@ -40,10 +40,10 @@ public class CurrentLocationInformation {
     private void makeUpLocation(List<String> bridge, String moving) {
         List<Boolean> bridgeExist = makeUpLocationExist(bridge);
         String state = MiniMapState.START_BRIDGE_FRAME.getMiniMapState();
-        state += gameIng(bridgeExist, bridge, moving);
+        state += makeProgressStatus(bridgeExist, bridge, moving);
         if (check > 0) {
             state = "";
-            state += upStairs.get(check - 1) + gameIng(bridgeExist, bridge, moving);
+            state += upStairs.get(check - 1) + makeProgressStatus(bridgeExist, bridge, moving);
         }
         upStairs.add(state);
         state += MiniMapState.END_BRIDGE_FRAME.getMiniMapState();
@@ -66,10 +66,10 @@ public class CurrentLocationInformation {
     private void makeDownLocation(List<String> bridge, String moving) {
         List<Boolean> bridgeExist = makeDownLocationExist(bridge);
         String state = MiniMapState.START_BRIDGE_FRAME.getMiniMapState();
-        state += gameIng(bridgeExist, bridge, moving);
+        state += makeProgressStatus(bridgeExist, bridge, moving);
         if (check > 0) {
             state = "";
-            state += downStairs.get(check - 1) + gameIng(bridgeExist, bridge, moving);
+            state += downStairs.get(check - 1) + makeProgressStatus(bridgeExist, bridge, moving);
         }
         downStairs.add(state);
         state += MiniMapState.END_BRIDGE_FRAME.getMiniMapState();
@@ -89,16 +89,16 @@ public class CurrentLocationInformation {
         return bridgeExist;
     }
 
-    private String gameIng(List<Boolean> bridgeExist, List<String> bridge, String moving) {
-        String ing = "";
+    private String makeProgressStatus(List<Boolean> bridgeExist, List<String> bridge, String moving) {
+        String currentStatus = "";
         if (check == 0) {
-            ing += showUpAndDownResult(bridgeExist, bridge, moving);
+            currentStatus += showUpAndDownResult(bridgeExist, bridge, moving);
         }
         if (check > 0) {
-            ing += MiniMapState.LINE.getMiniMapState();
-            ing += showUpAndDownResult(bridgeExist, bridge, moving);
+            currentStatus += MiniMapState.LINE.getMiniMapState();
+            currentStatus += showUpAndDownResult(bridgeExist, bridge, moving);
         }
-        return ing;
+        return currentStatus;
     }
 
     private String showUpAndDownResult(List<Boolean> bridgeExist, List<String> bridge, String moving) {
