@@ -1,22 +1,22 @@
 package bridge.domain;
 
 public enum Command {
-    UP(1, 'U'),
-    DOWN(0, 'D');
+    UP(1, "U"),
+    DOWN(0, "D");
 
     private final int statusInteger;
-    private final char statusChar;
+    private final String statusString;
 
-    Command(int statusInteger, char statusChar) {
+    Command(int statusInteger, String statusString) {
         this.statusInteger = statusInteger;
-        this.statusChar = statusChar;
+        this.statusString = statusString;
     }
 
     public int getStatusInteger() {
         return statusInteger;
     }
 
-    public char getStatusChar() {
-        return statusChar;
+    public String getStatusString() {
+        return statusString;
     }
 }
