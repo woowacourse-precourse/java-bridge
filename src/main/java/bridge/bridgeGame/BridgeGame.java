@@ -10,7 +10,7 @@ public class BridgeGame {
     private final List<String> answerGameBridge;
     private BridgeGameResult bridgeGameResult;
     private int moveCount = 0;
-    
+
     public BridgeGame(List<String> answerGameBridge){
         this.answerGameBridge = answerGameBridge;
         this.bridgeGameResult = new BridgeGameResult();
@@ -38,6 +38,16 @@ public class BridgeGame {
         if (moveDirection.equals("D")) {
             bridgeGameResult.addResultUp(move);
             moveCount++;
+        }
+    }
+
+    public void notMove(String moveDirection) {
+        boolean move = false;
+        if (moveDirection.equals("U")) {
+            bridgeGameResult.addResultUp(move);
+        }
+        if (moveDirection.equals("D")) {
+            bridgeGameResult.addResultDown(move);
         }
     }
 
