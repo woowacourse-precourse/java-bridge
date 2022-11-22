@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class StringUtilsTest {
     @DisplayName("입력한 값의 빈칸 여부를 확인한다.")
     @ParameterizedTest
-    @CsvSource({",true", "input,false"})
+    @CsvSource({",true", "'',true", "input,false"})
     public void validateByBlank(String input, boolean expected) {
         Assertions.assertThat(StringUtils.isBlank(input)).isEqualTo(expected);
     }
