@@ -42,19 +42,18 @@ public class BridgeJudge {
     }
 
     public static List<String> getBridgeMapDown(List<String> result, int count) {
-        bridgeMapDown = saveMap(result, count);
+        bridgeMapDown = saveMap(result, count*2+1);
         return bridgeMapDown;
     }
 
     public static List<String> getBridgeMapUp(List<String> result, int count) {
-        bridgeMapUp = saveMap(result, count);
+        bridgeMapUp = saveMap(result, count*2+1);
         return bridgeMapUp;
     }
 
     private static List<String> saveMap(List<String> result, int count) {
         List<String> bridgeMap = new ArrayList<>();
         int resultIndex = 0;
-        count = count * 2 + 1;
         for (int index = 0; index < count; index++) {
             String judge = judgeIndex(index, count);
             if (judge == null) {

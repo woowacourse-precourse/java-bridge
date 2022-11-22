@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.UI;
 
 import bridge.Constant.Constant;
 import camp.nextstep.edu.missionutils.Console;
@@ -7,8 +7,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public static final InputView getInstance = new InputView();
-
     /**
      * 다리의 길이를 입력받는다.
      */

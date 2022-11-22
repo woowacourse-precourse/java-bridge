@@ -17,15 +17,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-
-
     public List<List<String>> move(List<String> madeBridge, String userDirection) {
         List<List<String>> userBridge = new ArrayList<>();
         BridgeJudge.getInstance.judgeReflect(userDirection, madeBridge.get(index), Bridge.getInstance);
-
         userBridge.add(BridgeJudge.getBridgeMapUp(Bridge.getInstance.getUp(), count));
         userBridge.add(BridgeJudge.getBridgeMapDown(Bridge.getInstance.getDown(), count));
-
         count++;
         index++;
 

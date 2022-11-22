@@ -6,7 +6,6 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static final OutputView getInstance = new OutputView();
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -27,7 +26,7 @@ public class OutputView {
      */
     public void printResult(List<List<String>> userBridge, String gameResult, int tried) {
         System.out.println("\n최종 게임 결과");
-        OutputView.getInstance.printMap(userBridge);
+        printMap(userBridge);
 
         System.out.println("\n게임 성공 여부: " + gameResult);
         System.out.println("총 시도한 횟수: " + tried);
