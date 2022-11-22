@@ -21,7 +21,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("어디로 이동하시겠습니까? -> 위: U, 아래: D");
+        String userMove = readLine();
+//        new Error().validUOrD();
+        return userMove;
+//        return null;
     }
 
     /**
