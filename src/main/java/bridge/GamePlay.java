@@ -59,4 +59,10 @@ public class GamePlay {
         bridgeGame.resetPrev(playerMap);
         ++tryCount;
     }
+
+    private void printGameResult(boolean isWon, PlayerMap playerMap) {
+        outputView.printFinalResult();
+        outputView.printMap(playerMap, bridgeGame.getPosition());
+        outputView.printResult(isWon, tryCount);
+    }
 }
