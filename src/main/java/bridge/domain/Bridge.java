@@ -9,4 +9,8 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
+
+    public int getBridgeSize() {
+        return bridge.size();
+    }
 }
