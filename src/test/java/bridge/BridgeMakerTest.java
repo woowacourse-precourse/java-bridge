@@ -2,7 +2,6 @@ package bridge;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -17,7 +16,7 @@ class BridgeMakerTest {
     }
 
     @DisplayName("다리 생성")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{displayName} => {0}")
     @ValueSource(strings = {"3", "10", "15"})
     public void createBridge(int size) {
         assertThat(bridgeMaker.makeBridge(size)).containsAnyOf("U", "D");

@@ -17,7 +17,7 @@ class BridgeSizeTest {
     }
 
     @DisplayName("3 ~ 20 사이 숫자 형태가 아닌 다리 길이에 대한 예외 처리")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{displayName} => {0}")
     @ValueSource(strings = {"21", "2", "-1", " 20"})
     public void validateByRange(String input) {
         assertThatIllegalArgumentException()
@@ -25,10 +25,9 @@ class BridgeSizeTest {
     }
 
     @DisplayName("다리 길이 입력을 안한 경우에 대한 예외 처리")
-    @Test
-    public void validateByBlank() {
-        String input = "";
-
+    @ParameterizedTest(name = "{displayName} => {0}")
+    @ValueSource(strings = {"''", ""})
+    public void validateByBlank(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new BridgeSize(input));
     }
