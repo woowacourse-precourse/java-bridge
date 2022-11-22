@@ -20,4 +20,8 @@ public enum GameCommand {
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException(INVALID_COMMAND_MESSAGE));
     }
+
+    public String getCommand() {
+        return command;
+    }
 }
