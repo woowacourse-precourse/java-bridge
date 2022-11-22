@@ -29,7 +29,7 @@ public class BridgeGameController {
             gameRecord.clear();
             gameRecord.updatePlayTime();
 
-            playGame(bridgeGame, gameRecord);
+            moveUser(bridgeGame, gameRecord);
             if (gameRecord.isGameSuccess()) {
                 GameResultModel gameResultModel = new GameResultModel(gameRecord.makeBridgeRecord(),
                         gameRecord.isGameSuccess(), gameRecord.getPlayTime());
@@ -44,18 +44,23 @@ public class BridgeGameController {
         } while (retryflag);
     }
 
-    private void playGame(BridgeGame bridgeGame, GameRecord gameRecord) {
+    private void moveUser(BridgeGame bridgeGame, GameRecord gameRecord) {
         for (int bridgeBlock = 0; bridgeGame.canExecute(bridgeBlock); bridgeBlock++) {
-            OutputView.printUserMoveRequest();
-            String direction = InputView.readMoving();
-            boolean success = bridgeGame.move(direction, bridgeBlock);
-            gameRecord.addRecord(direction, success);
-
-            BridgeStatusModel bridgeStatusModel = new BridgeStatusModel(gameRecord.makeBridgeRecord());
-            OutputView.printMap(bridgeStatusModel);
+            boolean success = moveOneBlock(bridgeGame, gameRecord, bridgeBlock);
             if (!success) {
                 break;
             }
         }
+    }
+
+    private static boolean moveOneBlock(BridgeGame bridgeGame, GameRecord gameRecord, int bridgeBlock) {
+        OutputView.printUserMoveRequest();
+        String direction = InputView.readMoving();
+        boolean success = bridgeGame.move(direction, bridgeBlock);
+        gameRecord.addRecord(direction, success);
+
+        BridgeStatusModel bridgeStatusModel = new BridgeStatusModel(gameRecord.makeBridgeRecord());
+        OutputView.printMap(bridgeStatusModel);
+        return success;
     }
 }
