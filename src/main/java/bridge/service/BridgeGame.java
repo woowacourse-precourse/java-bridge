@@ -43,7 +43,7 @@ public class BridgeGame {
 
     private void checkValidLocation(int location) {
         if (location >= bridge.size() || location < 0) {
-            throw new IllegalArgumentException(INVALID_LOCATION_MESSAGE);
+            throw new IllegalStateException(INVALID_LOCATION_MESSAGE);
         }
     }
 

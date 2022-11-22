@@ -3,7 +3,7 @@ package bridge.domain;
 import static bridge.domain.BridgeCellType.DOWN;
 import static bridge.domain.BridgeCellType.UP;
 
-import bridge.util.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 

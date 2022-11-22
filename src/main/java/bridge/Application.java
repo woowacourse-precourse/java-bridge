@@ -3,8 +3,6 @@ package bridge;
 import bridge.controller.BridgeGameController;
 import bridge.controller.GameController;
 import bridge.domain.BridgeMaker;
-import bridge.util.BridgeNumberGenerator;
-import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

@@ -46,7 +46,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(List.of("D", "U"), new MoveResult());
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> bridgeGame.move(2, BridgeCellType.UP));
+        assertThrows(IllegalStateException.class, () -> bridgeGame.move(2, BridgeCellType.UP));
     }
 
     @Test
