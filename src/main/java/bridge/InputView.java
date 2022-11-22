@@ -11,6 +11,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+
+        System.out.println("다리의 길이를 입력해 주세요");
         String bridgeSize = Console.readLine();
         validateBridgeSize(bridgeSize);
         int result = Integer.parseInt(bridgeSize);
@@ -33,6 +35,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D");
         String playerMove = Console.readLine();
         validateMove(playerMove);
         return playerMove;
@@ -52,12 +55,16 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand= Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
+    }
+
+    private static void validateGameCommand(String gameCommand) {
         if(gameCommand.length()!=1){
             throw new IllegalArgumentException("[ERROR] 이동은 R, 또는 Q로 입력하셔야 합니다.");
         }
         if(!gameCommand.equals("Q")||!gameCommand.equals("R")){
             throw new IllegalArgumentException("[ERROR] 이동은 R, 또는 Q로 입력하셔야 합니다.");
         }
-        return gameCommand;
     }
 }
