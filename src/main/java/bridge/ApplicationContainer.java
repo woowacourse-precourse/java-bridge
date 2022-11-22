@@ -7,6 +7,9 @@ public class ApplicationContainer {
     private static Player playerInstance;
     private static Bridge bridgeInstance;
 
+    private ApplicationContainer() {
+    }
+
     //Beans
     public static Player player() {
         if(playerInstance == null) {
