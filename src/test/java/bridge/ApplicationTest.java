@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
@@ -77,7 +79,7 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
-            assertThat(output()).contains(CommonVariables.ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
