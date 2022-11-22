@@ -9,6 +9,10 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final int INIT_LOCATION = -1;
+    private static final int INIT_RETRY_COUNT = 1;
+    private static final int COUNT_NUM = 1;
+    private static final int INDEX_PLUS = 1;
     private static BridgeComparator bridgeComparator = new BridgeComparator();
     private static BridgeCalculator bridgeCalculator = new BridgeCalculator();
     private final List<String> bridge;

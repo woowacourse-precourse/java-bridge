@@ -31,16 +31,16 @@ class BridgeMakerTest {
     @Test
     void displayUpRandomNumOne() {
         //given
-        ArrayList<String> expectedBridge =new ArrayList<>();
+        ArrayList<String> expectedBridge = new ArrayList<>();
         expectedBridge.add("U");
-        int generatedNumber=1;
+        int generatedNumber = 1;
         ArrayList<String> bridge = new ArrayList<>();
 
         //when
-        bridgeMaker.makeUp(generatedNumber,bridge);
+        bridgeMaker.makeUp(generatedNumber, bridge);
 
         //then
-        assertArrayEquals(expectedBridge.toArray(),bridge.toArray());
+        assertArrayEquals(expectedBridge.toArray(), bridge.toArray());
 
     }
 
@@ -48,22 +48,22 @@ class BridgeMakerTest {
     @Test
     void displayDownRandomNumZero() {
         //given
-        ArrayList<String> expectedBridge =new ArrayList<>();
+        ArrayList<String> expectedBridge = new ArrayList<>();
         expectedBridge.add("D");
-        int generatedNumber=0;
+        int generatedNumber = 0;
         ArrayList<String> bridge = new ArrayList<>();
 
         //when
-        bridgeMaker.makeDown(generatedNumber,bridge);
+        bridgeMaker.makeDown(generatedNumber, bridge);
 
         //then
-        assertArrayEquals(expectedBridge.toArray(),bridge.toArray());
+        assertArrayEquals(expectedBridge.toArray(), bridge.toArray());
 
     }
 
     @DisplayName("다리의 길이에 맞춰서 랜덤으로 다리 생성하기")
     @Test
-    void generateRandomBridge(){
+    void generateRandomBridge() {
 
         //given
         ArrayList<String> expectedBridge = new ArrayList<>();
@@ -75,6 +75,6 @@ class BridgeMakerTest {
         List<String> bridge = bridgeMaker.makeBridge(5);
 
         //then
-        assertArrayEquals(expectedBridge.toArray(),bridge.toArray());
+        assertArrayEquals(expectedBridge.toArray(), bridge.toArray());
     }
 }

@@ -11,9 +11,9 @@ class BridgeMovingTest {
 
     @DisplayName("이동할 칸 문자가 U,D 이 아닌 경우 예외처리")
     @ParameterizedTest
-    @ValueSource(strings = {"A","123","awda","u"})
-    void 이동_문자_형식_테스트(String moving){
-        assertThatThrownBy(() ->  BridgeMoving.createBridgeMoving(moving))
+    @ValueSource(strings = {"A", "123", "awda", "u"})
+    void 이동_문자_형식_테스트(String moving) {
+        assertThatThrownBy(() -> BridgeMoving.createBridgeMoving(moving))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
