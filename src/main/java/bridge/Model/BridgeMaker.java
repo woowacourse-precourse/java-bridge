@@ -30,10 +30,9 @@ public class BridgeMaker {
             randomNum = bridgeNumberGenerator.generate();
             if (randomNum == Constant.UP) {
                 bridge.add(Constant.UP_STR);
+                continue;
             }
-            if (randomNum == DOWN) {
-                bridge.add(Constant.DOWN_STR);
-            }
+            bridge.add(Constant.DOWN_STR);
         }
         return bridge;
     }
