@@ -1,6 +1,8 @@
-package bridge.bridgeGame;
+package bridge;
 
 import bridge.Validation;
+import bridge.bridgeGame.BridgeGameResultDto;
+import bridge.bridgeGame.StepStatus;
 import bridge.enums.GameStatus;
 import bridge.enums.UpDown;
 
