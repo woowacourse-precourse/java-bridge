@@ -20,15 +20,21 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+
         for (int i=0; i<size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            // TODO: 메서드 길이 개선
-            if (randomNumber == 1) {
-                bridge.add("U");
-            } if (randomNumber == 0) {
-                bridge.add("D");
-            }
+            convertRandomNumberToBridge(randomNumber);
         }
+
         return bridge;
+    }
+
+    public String convertRandomNumberToBridge(int randomNumber) {
+        if (randomNumber == 1) {
+            return "U";
+        } if (randomNumber == 0) {
+            return "D";
+        }
+        return "";
     }
 }
