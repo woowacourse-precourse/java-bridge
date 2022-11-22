@@ -11,20 +11,6 @@ import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputManagementTest {
-//    @ParameterizedTest
-//    @MethodSource("generateNumber")
-//    void shouldGetDataBit(int first, String second, List<String> third) {
-//        System.out.println(first);
-//        System.out.println(second);
-//        System.out.println(third);
-//    }
-//
-//    static Stream<Arguments> generateNumber() {
-//        return Stream.of(
-//                Arguments.of(1, "foo", Arrays.asList("a", "b", "c")),
-//                Arguments.of(2, "bar", Arrays.asList("x", "y", "z"))
-//        );
-//    }
 
     @DisplayName("양의 정수가 아닌 다리 길이 예외 처리")
     @ValueSource(strings = {".0", "test", "1 3", "4.1", "-14", " 5 1"})
