@@ -7,6 +7,19 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
     private static final String EMPTY_STRING = "";
 
+    private static InputView instance;
+
+    private InputView() {
+
+    }
+
+    public static InputView getInputView() {
+        if (instance == null) {
+            instance = new InputView();
+        }
+        return instance;
+    }
+
     public String readBridgeSize() {
         String bridgeSize;
 

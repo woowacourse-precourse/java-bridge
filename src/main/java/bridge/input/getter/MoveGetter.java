@@ -13,7 +13,7 @@ public class MoveGetter {
     private final MoveValidator validator;
 
     private MoveGetter() {
-        this.inputView = new InputView();
+        this.inputView = InputView.getInputView();
         this.validator = new MoveValidator();
     }
 

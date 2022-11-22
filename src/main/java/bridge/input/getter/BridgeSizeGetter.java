@@ -13,7 +13,7 @@ public class BridgeSizeGetter {
     private final BridgeSizeValidator validator;
 
     private BridgeSizeGetter() {
-        this.inputView = new InputView();
+        this.inputView = InputView.getInputView();
         this.validator = new BridgeSizeValidator();
     }
 
