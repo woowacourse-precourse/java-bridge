@@ -21,9 +21,9 @@ public class GameRecord {
 		downLog = new ArrayList<>();
 	}
 
-	public void recordSuccess(String direction) {
+	public void recordSuccess(String moving) {
 		final String SUCCESS = "O";
-		if (direction.equals(Constants.UP)) {
+		if (moving.equals(Constants.UP)) {
 			recordUpLog(SUCCESS);
 			return;
 		}
@@ -40,9 +40,9 @@ public class GameRecord {
 		upLog.add(EMPTY);
 	}
 
-	public void recordFail(String direction) {
+	public void recordFail(String moving) {
 		final String FAIL = "X";
-		if (direction.equals(Constants.UP)) {
+		if (moving.equals(Constants.UP)) {
 			recordUpLog(FAIL);
 			return;
 		}

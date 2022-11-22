@@ -19,9 +19,9 @@ public class Bridge {
 		}
 	}
 
-	public boolean canWalk(int position, String direction) {
+	public boolean canWalk(int position, String moving) {
 		validatePosition(position);
-		return value.get(position).equals(direction);
+		return value.get(position).equals(moving);
 	}
 
 	private void validatePosition(int position) {
