@@ -19,6 +19,16 @@ public class BridgeGameController {
         this.bridgeGame = new BridgeGame();
     }
 
+    public void gameStart() {
+        outputView.printGameStart();
+        outputView.printDivisionLine();
+
+        gameSetting(getMakeBridgeSize());
+        outputView.printDivisionLine();
+
+        gamePlay();
+    }
+
     private int getMakeBridgeSize() {
         String input;
 
