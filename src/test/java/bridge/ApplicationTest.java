@@ -53,13 +53,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @Test
-    @DisplayName("printMap 출력확인")
-    void mytest(){
-        List<String> list1 = Arrays.asList("U" , "D" , "D");
-        List<String> list2 = Arrays.asList("U" , "U");
-        new OutputView().printMap(list2, list1);
-    }
 
     @Override
     protected void runMain() {

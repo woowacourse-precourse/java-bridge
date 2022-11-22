@@ -10,7 +10,8 @@ public enum UserResponse {
     DOWN(0, "D"),
     UP(1, "U"),
     QUIT(-1, "Q"),
-    RESTART(-1, "R");
+    RESTART(-1, "R"),
+    ERROR(-1, "[ERROR]");
 
     final int stateCode;
     final String stateInfo;
