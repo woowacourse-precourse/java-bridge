@@ -2,8 +2,10 @@ package bridge;
 
 import java.util.StringJoiner;
 
+import static bridge.ResultConstants.BLANK;
+import static bridge.ResultConstants.O_SIGN;
+
 public class ResultInformation {
-    private static final char O_SIGN = 'O';
     private final char[] upBridge;
     private final char[] downBridge;
     private final int bridgeSize;
@@ -34,8 +36,8 @@ public class ResultInformation {
     }
     public void clear() {
         for (int i = 0; i < bridgeSize; i++) {
-            upBridge[i] = '\u0000';
-            downBridge[i] = '\u0000';
+            upBridge[i] = BLANK;
+            downBridge[i] = BLANK;
         }
         tryCount++;
     }
