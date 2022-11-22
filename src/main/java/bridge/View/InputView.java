@@ -50,7 +50,7 @@ public class InputView {
     }
 
     private static void validateBridgeLength(String input) {
-        if (input.length() < 2 || input.length() > 20) {
+        if (Integer.parseInt(input) < 2 || Integer.parseInt(input) > 20) {
             throw new IllegalArgumentException(INVALID_RANGE);
         }
     }
