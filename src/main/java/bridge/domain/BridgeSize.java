@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.view.ExceptionMessage;
+import bridge.view.InputView;
 
 import java.util.regex.Pattern;
 
@@ -8,19 +9,21 @@ public class BridgeSize {
 
     private static final Pattern pattern = Pattern.compile("^[0-9]*$");
 
-    private boolean isNumber(String str){
+    private String isNumber(String str){
         if(!(pattern.matcher(str).matches())) {
-            throw new IllegalArgumentException(ExceptionMessage.isNumberMsg());
+            System.out.println(ExceptionMessage.isNumberMsg());
+            return InputView.readBridgeSize();
         }
-        return true;
+        return str;
     }
 
-    private boolean isRangeNumber(String str) {
+    private String isRangeNumber(String str) {
         int size = Integer.parseInt(str);
         if(!(size >=3 && size <=20)) {
-            throw new IllegalArgumentException(ExceptionMessage.isRangeNumberMsg());
+            System.out.println(ExceptionMessage.isRangeNumberMsg());
+            return InputView.readBridgeSize();
         }
-        return true;
+        return str;
     }
 
     public void checkNumber(String str){
