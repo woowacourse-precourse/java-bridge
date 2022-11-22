@@ -34,5 +34,13 @@ class BridgeInputExceptionTest {
         assertThatThrownBy(() -> bridgeInputException.validBridgeLength(length))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"2999", "21", "2"})
+    @DisplayName("다리 길이가 3 이상 20 이하가 아니면 예외 처리")
+    void validInputRangeLength(String length) {
+        assertThatThrownBy(() -> bridgeInputException.validBridgeLength(length))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 
