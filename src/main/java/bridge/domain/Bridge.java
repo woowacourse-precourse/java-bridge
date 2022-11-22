@@ -1,7 +1,9 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Bridge {
     private List<Command> answers;
@@ -22,11 +24,11 @@ public class Bridge {
         return Result.FAIL;
     }
 
-    private static Command handleRandomStringToCommand(String command) {
-        if (command.equals("0")) {
-            return Command.DOWN;
-        } else if (command.equals("1")) {
-            return Command.UP;
+    private static Command handleRandomStringToCommand(String commandKey) {
+        Optional<Command> optionalCommand = Arrays.stream(Command.values()).filter(
+                command -> command.getKey().equals(commandKey)).findFirst();
+        if (optionalCommand.isPresent()) {
+            return optionalCommand.get();
         }
         throw new IllegalArgumentException("Internal Server Error - 다리 생성 (0,1)");
     }
