@@ -37,6 +37,8 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(MESSAGE_INPUT_EXIT);
-        return null;
+        String gameCommand = Console.readLine();
+        InputViewValidation.isValidGameCommand(gameCommand);
+        return gameCommand;
     }
 }
