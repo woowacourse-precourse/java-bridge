@@ -13,12 +13,13 @@ public class BridgeGameController {
 
     private int trials = 1;
     private boolean retry = true;
+    private String moving;
     private BridgeGame bridgeGame;
 
     public void run() {
         initialize();
         while (retry) {
-            String moving = moving();
+            moving();
             if (bridgeGame.isLose(moving)) {
                 retryOrQuit();
             }
@@ -45,22 +46,19 @@ public class BridgeGameController {
         }
     }
 
-    private String moving() {
-        String moving = readMoving();
+    private void moving() {
+        readMoving();
         bridgeGame.move(moving);
         OutputView.printMap(BridgeResultData.getUpBridgeResults(), BridgeResultData.getDownBridgeResults());
-        return moving;
     }
 
-    private String readMoving() {
-        String moving = "";
+    private void readMoving() {
         try {
             moving = InputView.readMoving();
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             readMoving();
         }
-        return moving;
     }
 
     private void retryOrQuit() {
