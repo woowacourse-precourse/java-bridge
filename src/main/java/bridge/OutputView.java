@@ -32,6 +32,7 @@ public class OutputView {
     public static void printMap(List<String> up, List<String> down) {
         OutputView.printUpDown(up);
         OutputView.printUpDown(down);
+        System.out.println();
     }
 
     public static void printUpDown(List<String> upOrDown){
@@ -41,7 +42,6 @@ public class OutputView {
         }
         System.out.print(upOrDown.get(upOrDown.size()-1));
         System.out.println("]");
-        System.out.print("[");
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
