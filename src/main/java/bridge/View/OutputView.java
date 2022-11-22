@@ -12,17 +12,19 @@ import static bridge.View.Constants.OutputConstants.*;
  */
 public class OutputView {
 
-    public void outputInitialAnnouncement() {
+    public void printGameStart() {
         System.out.println(GAME_START);
-        System.out.println();
+    }
+
+    public void printEnterLengthOfBridge(){
         System.out.println(ENTER_LENGTH_OF_BRIDGE);
     }
 
-    public void outputChoiceMove() {
+    public void printEnterMove() {
         System.out.println(ENTER_MOVE);
     }
 
-    public void outputRetryOrNot() {
+    public void printEnterRetryOrNot() {
         System.out.println(ENTER_RETRY_OR_NOT);
     }
 
@@ -36,12 +38,12 @@ public class OutputView {
         System.out.println(output);
     }
 
-    private String checkSuccess(boolean isSuccess) {
-        String success = SUCCESS_OR_NOT;
-        if (isSuccess) {
-            return success + SUCCESS;
+    private String getSuccessOrNot(boolean success) {
+        String successOrNot = SUCCESS_OR_NOT;
+        if (success) {
+            return successOrNot + SUCCESS;
         }
-        return success + FAIL;
+        return successOrNot + FAIL;
     }
 
     /**
@@ -55,7 +57,7 @@ public class OutputView {
         printMap(user.getPathOfUpperBridge());
         printMap(user.getPathOfLowerBridge());
         System.out.println();
-        System.out.println(checkSuccess(bridgeGame.getSuccess()));
+        System.out.println(getSuccessOrNot(bridgeGame.getSuccess()));
         System.out.println(TOTAL_OF_ATTEMPT + bridgeGame.getAttempt());
     }
 }
