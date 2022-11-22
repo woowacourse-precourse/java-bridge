@@ -3,7 +3,7 @@ package bridge.controller;
 import static bridge.controller.GameState.*;
 import static bridge.view.ProgressMessage.*;
 
-import bridge.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameInitialization;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -22,14 +22,11 @@ public class BridgeGameController {
 		startBridgeGame();
 		GameState state;
 		do {
-			// 다리끝 판별 (게임종료 판별)
 			state = movePlayer();
 			state = operateGame(state);
 
-		} while (state.equals(CONTINUATION));   // decidePlayerMove가 true이고 다리길이끝 전까지 진행
-		finishGame();
-		// if 다리길이 끝 : 게임종료
-		// if 결정 false : 지속여부 선택
+		} while (state.equals(CONTINUATION));
+		finishGame(state);
 	}
 
 	private void startBridgeGame() {
@@ -66,10 +63,8 @@ public class BridgeGameController {
 		}
 	}
 
-	public void finishGame() {
+	public void finishGame(GameState result) {
 		OutputView.printProgressMessage(GAME_DRAW_RESULT);
-		// 게임 그리기 bridgeGame.draw
-		OutputView.printProgressMessage(GAME_SUCCESSFUL);
-		OutputView.printProgressMessage(TOTAL_TRY_NUMBER);
+		bridgeGame.draw(result);
 	}
 }

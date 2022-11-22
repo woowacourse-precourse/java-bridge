@@ -1,8 +1,15 @@
 package bridge.controller;
 
 public enum GameState {
-	CONTINUATION, RETRY, END, SELECT_GAME_COMMAND;
+	CONTINUATION(""), RETRY("R"), SUCCESS_END(""), FAIL_END(""), SELECT_GAME_COMMAND("");
 
-	GameState() {
+	private final String code;
+
+	GameState(String code) {
+		this.code = code;
+	}
+
+	public String getCode() {
+		return code;
 	}
 }
