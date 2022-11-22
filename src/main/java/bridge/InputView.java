@@ -6,13 +6,12 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final InputValidator inputValidator = new InputValidator();
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = Console.readLine();
+        InputValidator inputValidator = new InputValidator();
         int bridgeSize = inputValidator.validatePureNumber(input);
         inputValidator.validateBridgeSizeRange(bridgeSize);
         return bridgeSize;
@@ -23,6 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
+        InputValidator inputValidator = new InputValidator();
         return inputValidator.validateMoving(input);
     }
 
@@ -31,6 +31,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
+        InputValidator inputValidator = new InputValidator();
         return inputValidator.validateRestart(input);
     }
 }
