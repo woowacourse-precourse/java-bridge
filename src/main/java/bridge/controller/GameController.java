@@ -26,7 +26,6 @@ public class GameController {
     public void playGame() {
         do {
             round();
-            countTry++;
             if ((bridgeSize == bridgeGame.getMoves().size()) && (!isFailed())) {
                 successResult();
                 break;
@@ -42,6 +41,7 @@ public class GameController {
             result.updateBridge(bridge, bridgeGame.getMoves());
             OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
         } while ((!isFailed()) && (bridgeGame.getMoves().size() < bridgeSize));
+        countTry++;
     }
 
     private boolean isFailed() {
@@ -65,22 +65,18 @@ public class GameController {
     }
 
     private void failedAndEndGame() {
-        if (bridgeGame.getMoves().size() < bridgeSize) {
-            retry = bridgeGame.retry();
+        retry = bridgeGame.retry();
 
-            if (!retry) {
-                OutputView.printEndResult();
-                OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
-                OutputView.printResult(FAIL);
-                OutputView.printTotalAttempts(countTry);
-            }
+        if (!retry) {
+            OutputView.printEndResult();
+            OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
+            OutputView.printResult(FAIL, countTry);
         }
     }
 
     private void successResult() {
         OutputView.printEndResult();
         OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
-        OutputView.printResult(SUCCESS);
-        OutputView.printTotalAttempts(countTry);
+        OutputView.printResult(SUCCESS, countTry);
     }
 }

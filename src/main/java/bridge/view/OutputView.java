@@ -25,14 +25,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(String success) {
+    public static void printResult(String success, int countTry) {
         System.out.println(CHECK_GAME_SUCCESS_MESSAGE + success);
-    }
-
-    public static void printTotalAttempts(int countTry) {
         System.out.println(TOTAL_ATTEMPTS_MESSAGE + countTry);
     }
-
     public static void printStart() {
         System.out.println(START_MESSAGE + NEW_LINE);
     }
