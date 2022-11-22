@@ -22,8 +22,7 @@ public class BridgeService {
     }
 
     public GameResult move(String moveCommand) {
-        boolean isMatch = bridgeGame.move(moveCommand);
-        return bridgeGame.resultOfMove(isMatch);
+        return bridgeGame.move(moveCommand);
     }
 
     public ViewStatus retry(String retryCommand) {

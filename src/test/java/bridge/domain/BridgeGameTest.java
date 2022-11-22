@@ -5,10 +5,8 @@ import bridge.dto.GameResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -38,37 +36,10 @@ class BridgeGameTest {
     }
 
     @DisplayName("올바른 move 명령어를 입력한다.")
-    @CsvSource(value = {"U,true", "D,false"})
+    @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
-    void returnResultWhenInputValidMoveCommand(String command, boolean result) {
-        Assertions.assertThat(bridgeGame.move(command)).isEqualTo(result);
-    }
-
-    @DisplayName("정답을 맞춘 경우 그에 맞는 결과를 반환한다.")
-    @Test
-    void returnGameResultWhenGiveCorrectMoveCommand() {
-        GameResult result = bridgeGame.resultOfMove(true);
-
-        assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_MOVE);
-    }
-
-    @DisplayName("정답을 맞추지 못한 경우 그에 맞는 결과를 반환한다.")
-    @Test
-    void returnGameResultWhenGiveWrongMoveCommand() {
-        GameResult result = bridgeGame.resultOfMove(false);
-
-        assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.DETERMINE_RETRY);
-    }
-
-    @DisplayName("모든 정답을 맞춘 경우 그에 맞는 결과를 반환한다.")
-    @Test
-    void returnWinStatusWhenGiveCorrectMoveCommand() {
-        GameResult result = moveUntilWin(bridgeGame);
-
-        List<String> partialBridge = result.getResult();
-
-        assertThat(result.getNextViewStatus()).isEqualTo(ViewStatus.WIN);
-        assertThat(partialBridge.size()).isEqualTo(3);
+    void returnResultWhenInputValidMoveCommand(String command) {
+        Assertions.assertThat(bridgeGame.move(command)).isInstanceOf(GameResult.class);
     }
 
     @DisplayName("재시도 요청을 한 경우 그에 맞는 상태 값을 반환한다.")
@@ -94,14 +65,6 @@ class BridgeGameTest {
     void returnRetryCount(int count) {
         retryMultipleTime(count);
         assertThat(bridgeGame.getGameCount()).isEqualTo(count + 1);
-    }
-
-    private GameResult moveUntilWin(BridgeGame bridgeGame) {
-        boolean isMatch = true;
-        for (String position : arr) {
-            isMatch = bridgeGame.move(position);
-        }
-        return bridgeGame.resultOfMove(isMatch);
     }
 
     private void retryMultipleTime(int count) {

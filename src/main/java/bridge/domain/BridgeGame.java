@@ -11,16 +11,14 @@ import bridge.exception.IllegalRetryCommandException;
  */
 public class BridgeGame {
 
-    private final Bridge bridge;
+    private final Mover mover;
     private final String RETRY = "R";
     private final String QUIT = "Q";
 
-    private int columnPosition;
     private int gameCount = 1;
 
     private BridgeGame(Bridge bridge) {
-        this.bridge = bridge;
-        this.columnPosition = 0;
+        this.mover = new Mover(bridge);
     }
 
     /**
@@ -28,10 +26,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Boolean move(String command) {
+    public GameResult move(String command) {
         validateMove(command);
-        columnPosition++;
-        return bridge.compare(command, columnPosition - 1);
+        boolean isMatch = mover.move(command);
+        return mover.resultOfMove(isMatch);
     }
 
     private void validateMove(String moveCommand) {
@@ -40,13 +38,6 @@ public class BridgeGame {
             return;
         }
         throw new IllegalMoveCommandException();
-    }
-
-    public GameResult resultOfMove(boolean isMatch) {
-        if (isMatch) {
-            return bridge.getMatchedPathResult(columnPosition);
-        }
-        return bridge.getUnMatchedPathResult(columnPosition);
     }
 
     /**
@@ -58,7 +49,7 @@ public class BridgeGame {
         validateRetry(retryCommand);
 
         if (retryCommand.equals(RETRY)) {
-            columnPosition = 0;
+            mover.init();
             gameCount++;
             return ViewStatus.DETERMINE_MOVE;
         }
