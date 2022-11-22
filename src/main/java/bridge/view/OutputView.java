@@ -25,11 +25,18 @@ public class OutputView {
     private final String FAIL = "실패";
     private final BridgeGameController bridgeGameController;
 
-    private StringBuilder topLine;
-    private StringBuilder bottomLine;
+    private final StringBuilder topLine;
+    private final StringBuilder bottomLine;
 
     public OutputView(BridgeGameController bridgeGameController) {
         this.bridgeGameController = bridgeGameController;
+        topLine = new StringBuilder();
+        bottomLine = new StringBuilder();
+    }
+
+    public void init() {
+        topLine.setLength(0);
+        bottomLine.setLength(0);
     }
 
     /**
@@ -38,9 +45,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(GameResult gameResult) {
-        topLine = new StringBuilder();
-        bottomLine = new StringBuilder();
-
         createMap(gameResult);
 
         System.out.println(topLine);
@@ -48,6 +52,7 @@ public class OutputView {
     }
 
     private void createMap(GameResult gameResult) {
+        init();
         createMapExceptLastPart(gameResult);
         createMapLastPart(gameResult);
     }
