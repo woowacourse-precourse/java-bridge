@@ -21,20 +21,11 @@ public class Round {
         return RoundResult.FAILURE;
     }
 
-    public String getUpMap() {
-        if (Objects.equals(playerMoving, Moving.UP)) {
-            return result.getExpression();
-        }
-        return " ";
-    }
-    public String getDownMap() {
-        if (Objects.equals(playerMoving, Moving.DOWN)) {
-            return result.getExpression();
-        }
-        return " ";
-    }
-
     public RoundResult getResult() {
         return result;
+    }
+
+    public Moving getPlayerMoving() {
+        return playerMoving;
     }
 }

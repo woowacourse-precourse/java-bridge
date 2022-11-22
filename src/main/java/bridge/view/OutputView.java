@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.Moving;
 import bridge.domain.Round;
 import java.util.List;
 import java.util.Objects;
@@ -27,10 +28,18 @@ public class OutputView {
             if (Objects.equals(round, rounds.get(rounds.size() - 1))) {
                 endStr = "]";
             }
-            upMap += " " + round.getUpMap() + " " + endStr;
-            downMap += " " + round.getDownMap() + " " + endStr;
+            upMap += " " + getRoundMap(round, Moving.UP) + " " + endStr;
+            downMap += " " + getRoundMap(round, Moving.DOWN) + " " + endStr;
         }
         System.out.println(upMap + "\n" + downMap);
+    }
+
+
+    public static String getRoundMap(Round round, Moving moving) {
+        if (Objects.equals(round.getPlayerMoving(), moving)) {
+            return round.getResult().getExpression();
+        }
+        return " ";
     }
 
     /**
@@ -46,4 +55,5 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + totalNumberOfAttempts);
 
     }
+
 }
