@@ -24,9 +24,10 @@ public class OutputView {
     }
 
     private void bridgeLineToString(StringBuilder map, List<String> bridgeLine){
-        map.append(BridgeShape.START_BRIDGE);
-        map.append(String.join(BridgeShape.BOUNDARY_BRIDGE, bridgeLine));
-        map.append(BridgeShape.END_BRIDGE+"\n");
+        map.append(BridgeShape.START_BRIDGE.getShape());
+        map.append(String.join(BridgeShape.BOUNDARY_BRIDGE.getShape(), bridgeLine));
+        map.append(BridgeShape.END_BRIDGE.getShape());
+        map.append("\n");
     }
 
     public void printResult(boolean isGameSuccess, int attemptCount) {

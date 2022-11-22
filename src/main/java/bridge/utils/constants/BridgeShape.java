@@ -1,10 +1,20 @@
 package bridge.utils.constants;
 
-public class BridgeShape {
-    public static final String START_BRIDGE = "[ ";
-    public static final String END_BRIDGE = " ]";
-    public static final String BOUNDARY_BRIDGE = " | ";
-    public static final String ANSWER_BRIDGE = "O";
-    public static final String WRONG_BRIDGE = "X";
-    public static final String BLANK = " ";
+public enum BridgeShape {
+    START_BRIDGE("[ "),
+    END_BRIDGE(" ]"),
+    BOUNDARY_BRIDGE(" | "),
+    ANSWER_BRIDGE("O"),
+    WRONG_BRIDGE("X"),
+    BLANK(" ");
+
+    private final String shape;
+
+    BridgeShape(String shape){
+        this.shape = shape;
+    }
+
+    public String getShape(){
+        return shape;
+    }
 }

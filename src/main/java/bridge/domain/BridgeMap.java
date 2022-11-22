@@ -32,10 +32,10 @@ public class BridgeMap {
     private String getCorrectMarker(int index, String line, Bridge bridge){
         List<Integer> lineAnswer = bridge.getAnswerLineIndex(line);
         if(lineAnswer.contains(index)){
-            return BridgeShape.ANSWER_BRIDGE;
+            return BridgeShape.ANSWER_BRIDGE.getShape();
         }
 
-        return BridgeShape.BLANK;
+        return BridgeShape.BLANK.getShape();
     }
 
     public void updateCurrentMap(int currentPosition, boolean isAlive){
@@ -48,11 +48,11 @@ public class BridgeMap {
 
     private void changeSymbol(){
         int lastIdx = currentUpperLine.size()-1;
-        if(currentUpperLine.get(lastIdx).equals(BridgeShape.ANSWER_BRIDGE)){
-            changeLastSymbol(BridgeShape.BLANK, BridgeShape.WRONG_BRIDGE);
+        if(currentUpperLine.get(lastIdx).equals(BridgeShape.ANSWER_BRIDGE.getShape())){
+            changeLastSymbol(BridgeShape.BLANK.getShape(), BridgeShape.WRONG_BRIDGE.getShape());
         }
-        if(currentLowerLine.get(lastIdx).equals(BridgeShape.ANSWER_BRIDGE)){
-            changeLastSymbol(BridgeShape.WRONG_BRIDGE,BridgeShape.BLANK);
+        if(currentLowerLine.get(lastIdx).equals(BridgeShape.ANSWER_BRIDGE.getShape())){
+            changeLastSymbol(BridgeShape.WRONG_BRIDGE.getShape(),BridgeShape.BLANK.getShape());
         }
     }
 
