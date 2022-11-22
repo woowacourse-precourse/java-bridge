@@ -33,9 +33,7 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.printf(
-                INPUT_MOVING_POSITION_MESSAGE,
-                BridgeInfo.UP_BRIDGE.getLetter(),
-                BridgeInfo.DOWN_BRIDGE.getLetter()
+                INPUT_MOVING_POSITION_MESSAGE, BridgeInfo.UP_BRIDGE.getLetter(), BridgeInfo.DOWN_BRIDGE.getLetter()
         );
         String input = getInput();
         InputValidator.validateMoving(input);
