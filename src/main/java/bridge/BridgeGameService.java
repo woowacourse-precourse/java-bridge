@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -55,16 +56,16 @@ public class BridgeGameService {
     }
 
     public BridgeGame makeBridgeGame(){
-        List<String> bridge = makeBridge();
+        Bridge bridge = makeBridge();
         Player player = makePlayer();
 
         return new BridgeGame(bridge, player);
     }
-    public List<String> makeBridge(){
+    public Bridge makeBridge(){
         int bridgeSize = InputView.readBridgeSize();
         List<String> bridge = getBridgeMaker().makeBridge(bridgeSize);
 
-        return bridge;
+        return new Bridge(bridge);
     }
     public Player makePlayer(){
         return new Player();

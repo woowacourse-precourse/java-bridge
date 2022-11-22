@@ -18,8 +18,8 @@ public class BridgeGame {
     private Bridge bridge;
     private Player player;
 
-    public BridgeGame(List<String> bridge, Player player) {
-        this.bridge = new Bridge(bridge);
+    public BridgeGame(Bridge bridge, Player player) {
+        this.bridge = bridge;
         this.player = player;
     }
 
