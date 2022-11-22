@@ -41,10 +41,17 @@ public class InputTest {
     }
 
     @DisplayName("이동명령어_입력_실패")
-    @ValueSource(strings = {"u", "d", "c"})
+    @ValueSource(strings = {"u", "d", "UD"})
     @ParameterizedTest()
     void 이동명령어_입력_실패_테스트(String size) {
-        assertThatThrownBy(() -> InputException.validateInputLength(size))
+        assertThatThrownBy(() -> InputException.validateInputMoveCommand(size))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이동명령어_입력_ 성공")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest()
+    void 이동명령어_입력_성공_테스트(String size) {
+        assertThatNoException().isThrownBy(() -> InputException.validateInputMoveCommand(size));
     }
 }
