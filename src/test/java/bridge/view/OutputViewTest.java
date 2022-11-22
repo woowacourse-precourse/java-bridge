@@ -1,9 +1,7 @@
 package bridge.view;
 
-import bridge.DTO.MoveRecord;
+import bridge.model.MoveRecord;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +25,8 @@ class OutputViewTest {
         List<MoveRecord> record =
                 Arrays.asList(
                         MoveRecord.addRecord("U", true)
-                        ,MoveRecord.addRecord("D", true)
-                        ,MoveRecord.addRecord("U", false));
+                        , MoveRecord.addRecord("D", true)
+                        , MoveRecord.addRecord("U", false));
         outputView.printMap(record);
 
         Assertions.assertThat(out.toString()).isEqualTo(answer);

@@ -16,6 +16,7 @@ public class BridgeMaker {
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
+
     public List<String> makeBridge(int size) {
         validateSize(size);
         List<String> bridge = new ArrayList<>();
