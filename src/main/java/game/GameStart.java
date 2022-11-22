@@ -14,7 +14,7 @@ public class GameStart {
     private static int tryNum=1;
     private static boolean regame ;
 
-    GameStart(BridgeGame bridgeGame) {
+    public GameStart(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
         inputView = new InputView();
         outputView = new OutputView();
