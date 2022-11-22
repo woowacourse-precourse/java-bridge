@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.game.BridgeGame;
-import bridge.game.MapMaker;
+import bridge.generator.MapMaker;
 import bridge.game.Move;
 import bridge.message.GameMessage;
 import java.util.List;

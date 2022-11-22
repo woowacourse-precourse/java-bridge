@@ -1,5 +1,7 @@
-package bridge.game;
+package bridge.generator;
 
+import bridge.game.Move;
+import bridge.game.Result;
 import bridge.generator.Answer;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +13,7 @@ public class MapMaker {
     private final String NEW_LINE = "\n";
 
     public String makeMap(List<Move> moves) {
-        StringBuilder map = new StringBuilder();
-        map.append(getUpperBridgeMap(moves));
-        map.append(getLowerBridge(moves));
-        return map.toString();
+        return getUpperBridgeMap(moves) + getLowerBridge(moves);
     }
 
     public String getUpperBridgeMap(List<Move> moves) {

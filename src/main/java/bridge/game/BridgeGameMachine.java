@@ -7,7 +7,6 @@ import bridge.input.UserMove;
 public class BridgeGameMachine {
     private final TotalView totalView = new TotalView();
     private final GameCharacter gameCharacter = new GameCharacter();
-    private final String RETRY = "R";
     private BridgeGame bridgeGame;
 
     public void turnOn() {
