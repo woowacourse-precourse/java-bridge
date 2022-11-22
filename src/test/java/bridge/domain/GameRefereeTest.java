@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.domain.Bridge;
 import bridge.domain.GameReferee;
@@ -7,11 +7,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
 
+import static bridge.utils.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class GameRefereeTest {
 
@@ -19,9 +22,9 @@ public class GameRefereeTest {
     GameReferee gameReferee = new GameReferee(bridge);
 
     @ParameterizedTest
-    @DisplayName("이동할 수 있는 칸인지 검증한다.")
+    @DisplayName("이동할 수 있는 칸이면 true, 이동할 수 없는 칸이면 false 반환한다.")
     @MethodSource("provideObjectsForIsCorrectMoving")
-    void test(PlayerMoving playerMoving, int index, boolean expected) {
+    void isCorrectMoving_ShouldReturn_TrueOrFalse(PlayerMoving playerMoving, int index, boolean expected) {
         assertThat(gameReferee.isCorrectMoving(playerMoving, index))
                 .isEqualTo(expected);
     }
