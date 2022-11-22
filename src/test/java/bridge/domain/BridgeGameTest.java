@@ -3,6 +3,8 @@ package bridge.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -69,5 +71,15 @@ class BridgeGameTest {
                 () -> assertTrue(bridgeGame.retry("R")),
                 () -> assertFalse(bridgeGame.retry("Q"))
         );
+    }
+
+    @DisplayName("재시작하면 사용자의 시도 횟수가 증가하는지 확인")
+    @ValueSource(strings = {"3", "4", "5", "6", "7", "8", "18", "19", "20"})
+    @ParameterizedTest
+    void retry_재시작_하면_사용자의_시도_횟수_증가(Integer input) {
+        for (int i = 0; i < input; i++) {
+            bridgeGame.retry("R");
+        }
+        assertThat(player.getTryCount()).isEqualTo(input + 1);
     }
 }
