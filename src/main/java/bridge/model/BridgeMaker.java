@@ -21,7 +21,8 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> Bridge = new ArrayList<>();
-        IntStream.range(0, size).forEach(i -> Bridge.add(addBridge(bridgeNumberGenerator.generate())));
+        IntStream.range(0, size)
+                .forEach(i -> Bridge.add(addBridge(bridgeNumberGenerator.generate())));
         return Bridge;
     }
 

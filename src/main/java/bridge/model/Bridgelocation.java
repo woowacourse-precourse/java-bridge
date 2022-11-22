@@ -11,10 +11,8 @@ public enum Bridgelocation {
     DOWNO(new Bridge(" ", "O"), (userInput, match) -> userInput.equals("D") && match),
     DOWNX(new Bridge(" ", "X"), (userInput, match) -> userInput.equals("D") && !match);
 
-
     private final Bridge bridge;
     private final BiPredicate<String, Boolean> isMatch;
-
 
     Bridgelocation(Bridge bridge, BiPredicate<String, Boolean> isMatch) {
         this.bridge = bridge;
