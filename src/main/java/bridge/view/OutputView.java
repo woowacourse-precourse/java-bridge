@@ -47,10 +47,8 @@ public class OutputView {
     public static void printResult(BridgeGame bridgeGame) {
         System.out.println(GAME_RESULT);
         printMap(bridgeGame);
-        System.out.print(SUCCESS_OR_NOT);
         printSuccessOrFailure(bridgeGame.isReached());
-        System.out.print(TRY_COUNT);
-        System.out.println(bridgeGame.getPlayer().getTryCount());
+        printTryCount(bridgeGame);
     }
 
     private static List<String> drawLine(List<String> bridge, Player player, String lineType) {
@@ -89,11 +87,17 @@ public class OutputView {
     }
 
     private static void printSuccessOrFailure(boolean isSuccessful) {
+        System.out.print(SUCCESS_OR_NOT);
         if (isSuccessful) {
             System.out.println(SUCCESS);
         }
         if (!isSuccessful) {
             System.out.println(FAILURE);
         }
+    }
+
+    private static void printTryCount(BridgeGame bridgeGame) {
+        System.out.print(TRY_COUNT);
+        System.out.println(bridgeGame.getPlayer().getTryCount());
     }
 }
