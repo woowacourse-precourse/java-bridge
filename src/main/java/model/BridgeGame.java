@@ -11,10 +11,12 @@ public class BridgeGame {
 
 	private final List<String> bridge;
 	private int currentPos;
+	private int gameRoundCount;
 
 	public BridgeGame(final List<String> bridge) {
 		this.bridge = bridge;
 		this.currentPos = START_POSITION;
+		this.gameRoundCount = FIRST_ROUND;
 	}
 
 	/**
@@ -51,5 +53,10 @@ public class BridgeGame {
 	 */
 	public void retry() {
 		this.currentPos = START_POSITION;
+		gameRoundCount += ROUND_INCREASE;
+	}
+
+	public int getGameRoundCount() {
+		return gameRoundCount;
 	}
 }
