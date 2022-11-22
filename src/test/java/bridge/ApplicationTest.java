@@ -9,6 +9,9 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import bridge.cotroller.BridgeMaker;
+import bridge.model.BridgeNumberGenerator;
+
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
