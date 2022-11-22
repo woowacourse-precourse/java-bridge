@@ -14,6 +14,7 @@ public class InputView {
         boundaryCheck(size);
         return size;
     }
+
     public String readMoving() {
         String input = readInput();
         inputLengthCheck(input);

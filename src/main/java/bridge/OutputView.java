@@ -5,9 +5,6 @@ import static bridge.MessageForOutput.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
     public void printMap(List<String> bridgeTrack, List<String> answerBridge) {
@@ -35,9 +32,9 @@ public class OutputView {
     private String createBody(String bridgeTrack, String answerBridge, String bridgeMark) {
         if (bridgeTrack.equals(bridgeMark)) {
             if (!bridgeTrack.equals(answerBridge)) {
-                return FAIL_MARK.getMessage();
+                return MAP_FAIL_MARK.getMessage();
             }
-            return SUCCESS_MARK.getMessage();
+            return MAP_SUCCESS_MARK.getMessage();
         }
         return MAP_BLANK.getMessage();
     }
@@ -67,7 +64,7 @@ public class OutputView {
         printBlank();
     }
     private void printSeparator() {
-        System.out.print(SEPARATOR.getMessage());
+        System.out.print(MAP_SEPARATOR.getMessage());
     }
     private void printBlank() {
         System.out.print(MAP_BLANK.getMessage());
@@ -83,35 +80,33 @@ public class OutputView {
         System.out.print("\n");
         printTryCount(tryCount);
     }
-
-    private void printGameEndingHead(){
+    private void printGameEndingHead() {
         System.out.print(GAME_ENDING_HEAD.getMessage() + "\n");
     }
-    private void  printGameSuccessStatus(List<String> bridgeTrack, List<String> answerBridge){
+    private void printGameSuccessStatus(List<String> bridgeTrack, List<String> answerBridge) {
         System.out.print(GAME_SUCCESS_STATUS.getMessage());
-        if(isGameSuccess(bridgeTrack, answerBridge)){
+        if (isGameSuccess(bridgeTrack, answerBridge)) {
             printGameSuccess();
             return;
         }
-        if(isGameFail(bridgeTrack, answerBridge)){
+        if (isGameFail(bridgeTrack, answerBridge)) {
             printGameFail();
-            return;
         }
     }
-    private boolean isGameSuccess(List<String> bridgeTrack, List<String> answerBridge){
+    private boolean isGameSuccess(List<String> bridgeTrack, List<String> answerBridge) {
         return bridgeTrack.equals(answerBridge);
     }
-    private boolean isGameFail(List<String> bridgeTrack, List<String> answerBridge){
+    private boolean isGameFail(List<String> bridgeTrack, List<String> answerBridge) {
         return !bridgeTrack.equals(answerBridge);
     }
-    private void printGameSuccess(){
+    private void printGameSuccess() {
         System.out.print(GAME_SUCCESS.getMessage());
     }
-    private void printGameFail(){
+    private void printGameFail() {
         System.out.print(GAME_FAIL.getMessage());
     }
     private void printTryCount(int tryCount) {
-        System.out.print(TRY_COUNT.getMessage());
+        System.out.print(GAME_TRY_COUNT.getMessage());
         System.out.print(tryCount);
     }
 }

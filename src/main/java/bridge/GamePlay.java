@@ -7,21 +7,21 @@ import java.util.List;
 
 public class GamePlay {
 
-    List<String> answerBridge;
     BridgeGame bridgeGame;
     InputView inputView;
     OutputView outputView;
+
     public GamePlay() {
         inputView = new InputView();
         outputView = new OutputView();
     }
+
     public void play() {
         printGameStart();
         createBridgeGame();
-        System.out.print("\n");
 
         GameState gameState = MOVABLE;
-        while(gameState != GAME_END){
+        while (gameState != GAME_END) {
             gameState = playingGame(gameState);
         }
 
@@ -34,18 +34,20 @@ public class GamePlay {
     private void createBridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         printRequireSize();
-        answerBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        List<String> answerBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         bridgeGame = new BridgeGame(answerBridge);
+        System.out.print("\n");
     }
     private void printRequireSize() {
         System.out.print(REQUIRE_SIZE.getMessage());
         System.out.print("\n");
     }
-    private GameState playingGame(GameState gameState){
-        if(gameState == MOVABLE){
+
+    private GameState playingGame(GameState gameState) {
+        if (gameState == MOVABLE) {
             return movable();
         }
-        if(gameState == FAIL_TO_MOVE){
+        if (gameState == FAIL_TO_MOVE) {
             return failToMove();
         }
         return GAME_END;
@@ -53,18 +55,21 @@ public class GamePlay {
     private GameState movable() {
         printRequireWhereToMove();
         bridgeGame.move(inputView.readMoving());
-        outputView.printMap(bridgeGame.getBridgeTrack(), answerBridge);
-        if (!bridgeGame.isRecentMoveSuccessful()) {
-            return FAIL_TO_MOVE;
-        }
-        if(bridgeGame.isBridgeGameSuccess()){
-            return GAME_END;
-        }
-        return MOVABLE;
+        outputView.printMap(bridgeGame.getBridgeTrack(), bridgeGame.getAnswerBridge());
+        return gameStateAfterMoving();
     }
     private void printRequireWhereToMove() {
         System.out.print(REQUIRE_WHERE_TO_MOVE.getMessage());
         System.out.print("\n");
+    }
+    private GameState gameStateAfterMoving() {
+        if (!bridgeGame.isRecentMoveSuccessful()) {
+            return FAIL_TO_MOVE;
+        }
+        if (bridgeGame.isBridgeGameSuccess()) {
+            return GAME_END;
+        }
+        return MOVABLE;
     }
     private GameState failToMove() {
         printWantToRetry();
@@ -79,11 +84,12 @@ public class GamePlay {
         System.out.print(REQUIRE_WANT_TO_RETRY.getMessage());
         System.out.print("\n");
     }
-    private boolean isWantToRetry(String input){
+    private boolean isWantToRetry(String input) {
         return input.equals(RETRY_COMMAND);
     }
-    private void printGameResult(){
-        outputView.printResult(bridgeGame.getBridgeTrack(), answerBridge, bridgeGame.getTryCount());
+
+    private void printGameResult() {
+        outputView.printResult(bridgeGame.getBridgeTrack(), bridgeGame.getAnswerBridge(), bridgeGame.getTryCount());
     }
 }
 

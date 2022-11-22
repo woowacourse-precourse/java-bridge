@@ -7,8 +7,10 @@ public enum InputError {
     ONLY_ONE_INPUT_ALLOWED("한 글자만 입력해야 합니다."),
     UNENTERED("아무것도 입력되지 않았습니다."),
     NOT_NUMBER("숫자만 입력해야 합니다.", "0123456789"),
-    WRONG_MOVING_INPUT("명시된 키만 입력해야 합니다.", UP.getBridgeMark() + DOWN.getBridgeMark()),
-    WRONG_GAME_COMMAND_INPUT("명시된 커맨드만 입력해야 합니다. ", GameState.QUIT_COMMAND + GameState.RETRY_COMMAND);
+    WRONG_MOVING_INPUT("명시된 키만 입력해야 합니다.",
+            UP.getBridgeMark() + DOWN.getBridgeMark()),
+    WRONG_GAME_COMMAND_INPUT("명시된 커맨드만 입력해야 합니다. ",
+            GameState.QUIT_COMMAND + GameState.RETRY_COMMAND);
 
     final String nonAllowedInput;
     final String errorMessage;
