@@ -12,10 +12,12 @@ public class OutputView {
         out(result);
         blank();
     }
-    public void printResult() {
+    public void printResult(String result, int count) {
         out(OutputMessage.BRIDGE_FINAL);
         out(BridgeGame.gameResult);
         blank();
+        out("게임 성공 여부: "+result);
+        out("총 시도한 횟수: "+count);
     }
     private void out(String text) {
         System.out.println(text);

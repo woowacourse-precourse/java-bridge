@@ -15,6 +15,7 @@ public class BridgeController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
+    private static final String success = "성공";
     public int count = 0;
     public List<String> start(){
         int BridgeSize = inputView.readBridgeSize();
@@ -28,10 +29,8 @@ public class BridgeController {
             List<String> movedResult = bridgeGame.move(moving);
             outputView.printMap(movedResult,bridge);
             if(movedResult.equals(bridge)){
-                outputView.printResult();
                 count++;
-                System.out.println("게임 성공 여부: 성공");
-                System.out.println("총 시도한 횟수: "+count);
+                outputView.printResult(success,count);
                 return true;
             }
             if (!(bridge.get(i).equals(movedResult.get(i)))) {
@@ -41,5 +40,4 @@ public class BridgeController {
         count++;
         return false;
     }
-
 }
