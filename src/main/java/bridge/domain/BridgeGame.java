@@ -7,9 +7,7 @@ package bridge.domain;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private int position;
-    private int tryCount = 1;
-    private GameStatus gameStatus;
+    private final BridgeGameStatus bridgeGameStatus = new BridgeGameStatus();
 
     public BridgeGame(Bridge bridge) {
         init();
@@ -17,8 +15,7 @@ public class BridgeGame {
     }
 
     private void init() {
-        position = 0;
-        gameStatus = GameStatus.PLAYING;
+        bridgeGameStatus.initGame();
     }
 
     /**
@@ -27,7 +24,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Answer move(BridgeDirection direction) {
-        Answer answer = bridge.canMove(position, direction);
+        Answer answer = bridge.canMove(bridgeGameStatus.getPosition(), direction);
         if (answer.isCorrect()) {
             return moveSuccess();
         }
@@ -35,16 +32,16 @@ public class BridgeGame {
     }
 
     private Answer moveSuccess() {
-        position++;
+        bridgeGameStatus.increasePosition();
 
-        if (bridge.isEnd(position)) {
-            gameStatus = GameStatus.SUCCESS;
+        if (bridge.isEnd(bridgeGameStatus.getPosition())) {
+            bridgeGameStatus.success();
         }
         return Answer.RIGHT;
     }
 
     private Answer moveFail() {
-        gameStatus = GameStatus.FAIL;
+        bridgeGameStatus.fail();
         return Answer.WRONG;
     }
 
@@ -54,23 +51,23 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        tryCount++;
+        bridgeGameStatus.increaseTryCount();
         init();
     }
 
     public boolean isPlaying() {
-        return gameStatus == GameStatus.PLAYING;
+        return getStatus() == GameStatus.PLAYING;
     }
 
     public GameStatus getStatus() {
-        return gameStatus;
+        return bridgeGameStatus.getGameStatus();
     }
 
     public int getTryCount() {
-        return tryCount;
+        return bridgeGameStatus.getTryCount();
     }
 
     public boolean isFail() {
-        return gameStatus == GameStatus.FAIL;
+        return getStatus() == GameStatus.FAIL;
     }
 }
