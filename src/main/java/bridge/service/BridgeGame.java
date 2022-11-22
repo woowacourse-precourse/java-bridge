@@ -20,11 +20,11 @@ public class BridgeGame {
     private GameStatus status;
     private Bridge bridge;
 
-    public BridgeGame (BridgeLength bridgeLength) {
+    public BridgeGame (int lengthInput) {
         attemptCount = 0;
         panelOrder = 0;
         status = GameStatus.PLAYING;
-        this.bridge = new Bridge(bridgeLength);
+        this.bridge = new Bridge(lengthInput);
     }
 
     /**
