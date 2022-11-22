@@ -67,4 +67,10 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D로 나타냅니다.");
         }
     }
+
+    private void validateGameCommand(String gameCommand) throws IllegalArgumentException {
+        if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 게임 종료 여부는 R과 Q로 나타냅니다.");
+        }
+    }
 }
