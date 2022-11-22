@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MoveResultJudgement {
-    List<String> bridge;
+    private final List<String> bridge;
 
     public MoveResultJudgement(List<String> bridge) {
         this.bridge = bridge;
