@@ -17,6 +17,7 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         try {
             List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+            bridgeGame.setBridge(bridge);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); //TODO 종료되도록 처리
         }

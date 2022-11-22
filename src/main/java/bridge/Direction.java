@@ -21,6 +21,15 @@ public enum Direction {
         throw new IllegalArgumentException(String.format("[ERROR] %d에 해당하는 방향이 없습니다.", number));
     }
 
+    public static Direction valueOfIcon(String icon) {
+        for (Direction direction : Direction.values()) {
+            if (direction.icon.equals(icon)) {
+                return direction;
+            }
+        }
+        throw new IllegalArgumentException(String.format("[ERROR] %s에 해당하는 방향이 없습니다.", icon));
+    }
+
     public String getIcon() {
         return icon;
     }
