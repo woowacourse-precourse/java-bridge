@@ -2,8 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.NoSuchElementException;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -60,7 +58,7 @@ public class InputView {
         return bridgeSize < BRIDGE_SIZE_MIN_VALUE || bridgeSize > BRIDGE_SIZE_MAX_VALUE;
     }
 
-    private static void validateIsDigit(String input) {
+    private void validateIsDigit(String input) {
         char[] inputs = input.toCharArray();
         for (char character : inputs) {
             if (!Character.isDigit(character)) {
@@ -75,11 +73,11 @@ public class InputView {
         }
     }
 
-    private static boolean isUp(String input) {
+    private boolean isUp(String input) {
         return input.length() == CLIPPED_WORD_LENGTH && input.equals(U_INPUT_CLIPPED_WORD);
     }
 
-    private static boolean isDown(String input) {
+    private boolean isDown(String input) {
         return input.length() == CLIPPED_WORD_LENGTH && input.equals(D_INPUT_CLIPPED_WORD);
     }
 }
