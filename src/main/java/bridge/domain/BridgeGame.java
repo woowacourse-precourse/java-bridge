@@ -9,10 +9,6 @@ import java.util.List;
 import static bridge.Instances.EndType.*;
 import static bridge.Instances.Setting.COMMAND_RETRY;
 
-
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     public List<String> bridge;

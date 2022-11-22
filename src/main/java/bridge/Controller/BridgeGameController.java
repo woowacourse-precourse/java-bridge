@@ -80,7 +80,7 @@ public class BridgeGameController {
         return inputView.readMoving();
     }
 
-    public static int getBridgeSize(){
+    public static int getBridgeSize() {
         return inputView.readBridgeSize();
     }
 
