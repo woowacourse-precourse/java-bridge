@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.service.BridgeService;
+import bridge.service.MovedBridgeService;
+import bridge.util.Command;
 
 import java.util.List;
 
@@ -11,21 +13,24 @@ import java.util.List;
  */
 public class BridgeGame {
     private final BridgeService bridgeService = new BridgeService();
+    private final MovedBridgeService movedBridgeService = new MovedBridgeService();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
+     * @param moveCommand
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String moveCommand) {
+        movedBridgeService.add(moveCommand);
     }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
+     * @param gameCommand
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String gameCommand) {
+        return gameCommand.equals(Command.GAME_RETRY_LETTER.getCommand());
     }
 
     public void setBridge(int readBridgeSize) {

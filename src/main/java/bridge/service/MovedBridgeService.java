@@ -43,4 +43,8 @@ public class MovedBridgeService {
         }
     }
 
+    public void reset() {
+        MovedBridge.getInstance().reset();
+        gameStatusService.find().addAttemptCount();
+    }
 }
