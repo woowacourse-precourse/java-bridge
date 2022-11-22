@@ -41,5 +41,9 @@ public class BridgeGame {
         records.add(onPlayingBridge);
     }
 
+    public boolean isCorrect() {
+        return onPlayingBridge.matchWith(answerBridge);
+    }
+
     }
 }
