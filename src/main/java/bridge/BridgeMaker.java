@@ -1,23 +1,63 @@
 package bridge;
 
+import constant.BothSideConstant;
+import constant.InputConstant;
+import constant.NumberConstant;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private static final int FIRST_INDEX = NumberConstant.FIRST_INDEX.getConstant();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        buildBridgePath(size, bridge);
+        return Collections.unmodifiableList(bridge);
+    }
+
+    private void buildBridgePath(int size, List<String> bridge) {
+        for (int index = FIRST_INDEX; index < size; index++) {
+            int bridgeNumber = bridgeNumberGenerator();
+            buildUpPath(bridge, bridgeNumber);
+            buildDownPath(bridge, bridgeNumber);
+        }
+    }
+
+    private int bridgeNumberGenerator() {
+        return bridgeNumberGenerator.generate();
+    }
+
+    private void buildUpPath(List<String> bridge, int bridgeNumber) {
+        if (isBridgeNumberUpSide(bridgeNumber)) {
+            addBridgeUpPath(bridge);
+        }
+    }
+
+    private void buildDownPath(List<String> bridge, int bridgeNumber) {
+        if (isBridgeNumberDownSide(bridgeNumber)) {
+            addBridgeDownPath(bridge);
+        }
+    }
+
+    private boolean isBridgeNumberUpSide(int bridgeNumber) {
+        return bridgeNumber == BothSideConstant.UP_SIDE_INDEX.getConstant();
+    }
+
+    private boolean isBridgeNumberDownSide(int bridgeNumber) {
+        return bridgeNumber == BothSideConstant.DOWN_SIDE_INDEX.getConstant();
+    }
+
+    private void addBridgeUpPath(List<String> bridge) {
+        bridge.add(InputConstant.UP_SIDE.getConstant());
+    }
+
+    private void addBridgeDownPath(List<String> bridge) {
+        bridge.add(InputConstant.DOWN_SIDE.getConstant());
     }
 }
