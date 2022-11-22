@@ -1,23 +1,44 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import constants.BridgeConstants;
+
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final BridgeState bridgeState;
+    private final BridgeFigureBuilder bridgeFigureBuilder;
+    private int gameTryCount;
+
+    public BridgeGame() {
+        this.bridgeState = new BridgeState();
+        this.bridgeFigureBuilder = new BridgeFigureBuilder(bridgeState);
+        this.gameTryCount = 1;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public boolean move(Bridge bridge, String moving, int round) {
+        String resultOfMoving = bridge.isCorrectMoving(moving, round);
+        bridgeState.updateStateOfBridge(moving, resultOfMoving);
+
+        if (resultOfMoving.equals(BridgeConstants.WRONG_ANSWER)) {
+            return false;
+        }
+        return true;
+    }
+
     public void retry() {
+        gameTryCount++;
+        bridgeState.clearAllBridgeState();
+    }
+
+    public Bridge generateBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    public BridgeFigureBuilder getBridgeFigureBuilder() {
+        return bridgeFigureBuilder;
+    }
+
+    public int getGameTryCount() {
+        return gameTryCount;
     }
 }
