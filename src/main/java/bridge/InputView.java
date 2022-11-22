@@ -11,17 +11,20 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String bridgesSize = readLine();
-        notNumber(bridgesSize);
-        validateBridgeSize(Integer.valueOf(bridgesSize));
-        return Integer.valueOf(bridgesSize);
+        bridgesSize = notNumber(bridgesSize);
+        int bridgeLength = Integer.valueOf(bridgesSize);
+        bridgeLength = validateBridgeSize(bridgeLength);
+        return bridgeLength;
     }
-    private void notNumber(String bridgesSize){
+    private String notNumber(String bridgesSize){
         try {
             checkNumber(bridgesSize);
         }catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 숫자만 입력해 주세요.");
-            readBridgeSize();
+            System.out.println("다리의 길이를 입력해주세요.");
+            bridgesSize = readLine();
         }
+        return bridgesSize;
     }
 
     private void checkNumber(String bridgesSize) {
@@ -31,13 +34,14 @@ public class InputView {
         }
     }
 
-    private void validateBridgeSize(int numbers) {
+    private int validateBridgeSize(int numbers) {
         try {
             checkBridgeSize(numbers);
         }catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이를 3이상 20이하로 입력 하세요.");
-            readBridgeSize();
+            return readBridgeSize();
         }
+        return numbers;
     }
 
     private void checkBridgeSize(int numbers) {
