@@ -6,15 +6,15 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주새요.";
-    public static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String GAME_RETRY_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세여. (재시도: R, 종료: Q)";
-    public static final int BRIDGE_SIZE_RANGE1 = 3;
-    public static final int BRIDGE_SIZE_RANGE2 = 20;
-    public static final String USER_MOVE_UP = "U";
-    public static final String USER_MOVE_DOWN = "D";
-    public static final String USER_RETRY = "R";
-    public static final String USER_OVER = "Q";
+    private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주새요.";
+    private static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GAME_RETRY_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세여. (재시도: R, 종료: Q)";
+    private static final int BRIDGE_SIZE_RANGE1 = 3;
+    private static final int BRIDGE_SIZE_RANGE2 = 20;
+    private static final String USER_MOVE_UP = "U";
+    private static final String USER_MOVE_DOWN = "D";
+    private static final String USER_RETRY = "R";
+    private static final String USER_OVER = "Q";
 
     private Validation validation = new Validation();
 
