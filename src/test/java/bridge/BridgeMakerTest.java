@@ -53,6 +53,6 @@ public class BridgeMakerTest extends NsTest {
 
     @Override
     protected void runMain() {
-        Application.main(new String[]{});
+
     }
 }

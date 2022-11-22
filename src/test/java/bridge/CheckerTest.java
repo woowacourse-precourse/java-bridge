@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import constant.Values.BridgeCase;
 import constant.Values.MoveCase;
 import org.junit.jupiter.api.Test;
 
@@ -146,6 +145,6 @@ public class CheckerTest extends NsTest {
 
     @Override
     protected void runMain() {
-        Application.main(new String[]{});
+
     }
 }
