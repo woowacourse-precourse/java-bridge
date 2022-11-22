@@ -71,9 +71,9 @@ public class BridgeGameService {
         return gameStatus.isQuitStatus();
     }
 
-
     public boolean isGameOver(Player player) {
-        return !isPlaying() && player.checkGameSuccess().equals(SUCCESS);
+        Code code = player.checkGameSuccess();
+        return !isPlaying() && code.isSuccess();
     }
 
     // 게임 종료 메서드
