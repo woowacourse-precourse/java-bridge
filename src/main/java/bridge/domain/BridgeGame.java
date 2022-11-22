@@ -8,12 +8,14 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private List<String> player;
-    private int retryCount = 1;
+    private final List<String> player;
+    private final BridgeGameMap bridgeGameMap;
+    private int tryCount = 1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         player = new ArrayList<>();
+        bridgeGameMap = new BridgeGameMap();
     }
 
     /**
@@ -21,8 +23,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String movement) throws IllegalArgumentException {
-        player.add(movement);
+    public void move(String moving) throws IllegalArgumentException {
+        player.add(moving);
+        int currentIndex = player.size() - 1;
+        bridgeGameMap.updateMap(bridge.get(currentIndex), player.get(currentIndex));
     }
 
     /**
@@ -32,11 +36,15 @@ public class BridgeGame {
      */
     public void retry() {
         player.clear();
-        retryCount++;
+        tryCount++;
+        bridgeGameMap.reset();
     }
 
-    public int getRetryCount() {
-        return retryCount;
+    public List<List<String>> getMap() {
+        return List.of(bridgeGameMap.getUpSide(), bridgeGameMap.getDownSide());
+    }
+    public int getTryCount() {
+        return tryCount;
     }
 
     public boolean isEnd() {
