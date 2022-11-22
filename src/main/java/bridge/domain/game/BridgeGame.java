@@ -22,6 +22,10 @@ public class BridgeGame {
         return success;
     }
 
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     public BridgeGame(List<String> answerBridge) {
         progress = new Progress();
         bridge = new Bridge(answerBridge);
