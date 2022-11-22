@@ -20,8 +20,7 @@ public class BridgeGame {
         String status = BridgeStatus.getStatus(upOrDown + bridge.get(count));
         resultStatus += status;
         if (count == Constants.ZERO) {
-            fillFirstBridge(upOrDown + bridge.get(count));
-            return false;
+            return fillFirstBridge(upOrDown + bridge.get(count));
         }
         return fillBridge(count,bridge,upOrDown + bridge.get(count));
     }
