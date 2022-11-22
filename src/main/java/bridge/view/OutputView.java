@@ -34,7 +34,7 @@ public class OutputView {
         if (bridgeGame.getResults().get(bridgeGame.getResults().size() - 1)) {
             result = SUCCESS_MESSAGE;
         }
-        System.out.printf(RESULT_FORMAT_MESSAGE + result);
-        System.out.printf(TRIES_FORMAT_MESSAGE + bridgeGame.getTries());
+        System.out.println(RESULT_FORMAT_MESSAGE + result);
+        System.out.println(TRIES_FORMAT_MESSAGE + bridgeGame.getTries());
     }
 }
