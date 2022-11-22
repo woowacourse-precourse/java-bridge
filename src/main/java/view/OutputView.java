@@ -1,8 +1,9 @@
 package view;
 
-import inMemoryDB.GameData;
 import bridge.Direction;
 import game.GameResult;
+import inMemoryDB.GameData;
+
 import java.util.List;
 
 public class OutputView {
@@ -37,12 +38,10 @@ public class OutputView {
         endWork(firstFloorBridge, secondFloorBridge);
     }
 
-
     private static void endWork(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {
         addEndBridge(firstFloorBridge, secondFloorBridge);
         printFloor(firstFloorBridge, secondFloorBridge);
     }
-
 
     private static void printFloor(StringBuilder firstFloorBridge, StringBuilder secondFloorBridge) {
         System.out.println(firstFloorBridge);
@@ -81,11 +80,6 @@ public class OutputView {
         secondFloorBridge.append(" ]");
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public static void printResult(GameData gameData, int count) {
         OutputView.printMap(gameData.getMovingFloorDataSet(), gameData.getPassDataSet(), gameData.getDataSetSize());
         System.out.println("게임 성공 여부: " + resultGameSuccess(gameData));

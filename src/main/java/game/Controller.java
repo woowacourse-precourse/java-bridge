@@ -1,7 +1,7 @@
 package game;
 
 import inMemoryDB.GameData;
-import view.InputView;
+import utils.InputCheck;
 import view.OutputView;
 import java.util.List;
 
@@ -13,16 +13,16 @@ public class Controller {
         do {
             Game game = new Game();
             gameData = game.play(bridge);
-            isRestart = setRestartStatus(gameData);
+            isRestart = isRestart(gameData);
             count++;
         } while (isRestart);
         printEndMessage(gameData, count);
     }
 
-    private boolean setRestartStatus(GameData gameData) {
+    private boolean isRestart(GameData gameData) {
         if (gameData.getPassDataSet().contains(GameResult.WRONG_FLOOR.getResultMessage())) {
             OutputView.printRestartStatusMessage();
-            return BridgeGame.retry(InputView.readGameCommand());
+            return BridgeGame.retry(InputCheck.RestartStatusValue());
         }
         return false;
     }
