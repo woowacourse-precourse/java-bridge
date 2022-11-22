@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.enums.BridgeMark;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static bridge.dto.GameResultDto.GameRecordDto;
@@ -32,6 +33,6 @@ public class Player {
     }
 
     public GameRecordDto toResponseDto() {
-        return new GameRecordDto(new ArrayList<>(record), attempt);
+        return new GameRecordDto(Collections.unmodifiableList(record), attempt);
     }
 }
