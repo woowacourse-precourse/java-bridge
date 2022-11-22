@@ -39,9 +39,24 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String move="";
+        int flag = 0;
+        while(flag!=1) {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            move = Console.readLine();
+            flag=check.checkMove(move);
+            if ( flag== 0)
+                moveError();
+        }
+        return move;
     }
-
+    public  void moveError() {
+        try {
+            throw new IllegalArgumentException("[ERROR] 움직일 칸이 올바르지 않습니다");
+        } catch (Exception e) {   //이거 Exception 하면 안되고 명확히 해야함
+            System.out.println(e);
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
