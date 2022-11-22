@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
 import bridge.domain.message.ErrorMessage;
 import bridge.exception.IllegalGenerateException;
 import camp.nextstep.edu.missionutils.test.NsTest;
