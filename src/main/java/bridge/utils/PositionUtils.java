@@ -19,9 +19,9 @@ public class PositionUtils {
         return false;
     }
 
-    public static RetryType toRetryType(boolean isPass, InputView inputView) {
+    public static RetryType toRetryType(boolean isPass) {
         if (!isPass) {
-            String readGameCommand = inputView.readGameCommand();
+            String readGameCommand = InputView.readGameCommand();
 
             return RetryType.matchSymbol(readGameCommand)
                     .orElseThrow(() -> new IllegalArgumentException("[ERROR] RetryType is not match !!"));

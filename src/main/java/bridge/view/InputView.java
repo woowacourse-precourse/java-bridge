@@ -8,12 +8,12 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private InputValidation validation = new InputValidation();
+    private static final InputValidation validation = new InputValidation();
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         boolean isDigit = false;
         String readLine = "";
         while (isFinish(isDigit)) {
@@ -27,7 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         boolean isPattern = false;
         String position = "";
         while (isFinish(isPattern)) {
@@ -41,7 +41,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         boolean isPattern = false;
         String gameCommand = "";
         while (isFinish(isPattern)) {
@@ -52,7 +52,7 @@ public class InputView {
         return gameCommand;
     }
 
-    private boolean isFinish(boolean isBoolean) {
+    private static boolean isFinish(boolean isBoolean) {
         return !Boolean.TRUE.equals(isBoolean);
     }
 }

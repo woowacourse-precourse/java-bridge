@@ -9,7 +9,7 @@ import bridge.type.DrawType;
  */
 public class OutputView {
 
-    private Draw draw = new Draw();
+    private static Draw draw = new Draw();
 
     public static void printInputBridgeSizeMessage() {
         System.out.println("다리의 길이를 입력해주세요.");
@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
-    public void printStart() {
+    public static void printGameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
@@ -32,7 +32,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Player player, boolean isPass, int start) {
+    public static void printMap(Player player, boolean isPass, int start) {
         DrawType.PASS.draw(player.currentPosition(start), isPass, draw);
         DrawType.MISS.draw(player.currentPosition(start), isPass, draw);
 
@@ -45,7 +45,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String gameStatus, int gameCount) {
+    public static void printResult(String gameStatus, int gameCount) {
         System.out.println("최종 게임 결과");
         System.out.printf("[ %s ]\n", String.join(" | ", draw.getUpBridges()));
         System.out.printf("[ %s ]\n\n", String.join(" | ", draw.getDownBridges()));
@@ -53,11 +53,11 @@ public class OutputView {
         System.out.printf("총 시도한 횟수: %d\n", gameCount);
     }
 
-    public void reset() {
+    public static void reset() {
         draw.removeAll();
     }
 
-    public int countPassSymbol() {
+    public static int countPassSymbol() {
         return draw.countPassSymbol();
     }
 }

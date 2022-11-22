@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.type.RetryType;
 import bridge.utils.PositionUtils;
-import bridge.view.InputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -37,8 +36,8 @@ public class BridgeGame {
      * <p>
      * 다리를 건넌 결과로 RetryType 을 반환한다.
      */
-    public RetryType retry(boolean isPass, InputView inputView) {
-        RetryType retryType = PositionUtils.toRetryType(isPass, inputView);
+    public RetryType retry(boolean isPass) {
+        RetryType retryType = PositionUtils.toRetryType(isPass);
 
         if (RetryType.RETRY.equals(retryType)) {
             gameCount += 1;

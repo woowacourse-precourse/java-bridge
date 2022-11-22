@@ -13,8 +13,8 @@ public enum GameStatus {
         this.message = message;
     }
 
-    public static String currentStatus(OutputView outputView, int size) {
-        int passCount = outputView.countPassSymbol();
+    public static String currentStatus(int size) {
+        int passCount = OutputView.countPassSymbol();
 
         if (passCount == size) {
             return SUCCESS.message;

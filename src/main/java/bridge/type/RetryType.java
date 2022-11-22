@@ -11,22 +11,22 @@ public enum RetryType implements RetrySupporter {
 
     RETRY("R") {
         @Override
-        public int reset(Player player, OutputView outputView, int size) {
+        public int reset(Player player, int size) {
             player.removePositions();
-            outputView.reset();
+            OutputView.reset();
             size = 0;
             return size;
         }
     },
     END("Q"){
         @Override
-        public int reset(Player player, OutputView outputView, int size) {
+        public int reset(Player player, int size) {
             return size;
         }
     },
     PASS( "P") {
         @Override
-        public int reset(Player player, OutputView outputView, int size) {
+        public int reset(Player player, int size) {
             return size;
         }
     };
