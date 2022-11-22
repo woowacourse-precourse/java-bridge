@@ -26,7 +26,7 @@ class OutputViewTest {
         for (String movedDirection : userWantedDirection) {
             bridgeGame.move(movedDirection);
         }
-        String result = outputView.settingPrintLine(bridgeGame,command).toString();
+        String result = outputView.settingPrintLine(bridgeGame, command).toString();
         assertThat(result).isEqualTo(expected);
 
     }

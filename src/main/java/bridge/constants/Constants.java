@@ -25,4 +25,6 @@ public final class Constants {
     public static final String ERROR_MOVING_INPUT = "[ERROR] 이동할 칸은 U또는 D여야 합니다.";
     public static final String ERROR_RETRYING_INPUT = "[ERROR] 게임종료 여부의 입력값은 R또는 Q여야 합니다.";
 
+    public static final String FUNCTION_ERROR_RANDOM_NUMBER = "[ERROR] 브릿지 생성 랜덤숫자에 오류가 있습니다.";
+
 }

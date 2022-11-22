@@ -2,9 +2,6 @@ package bridge.domain;
 
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private int nowLocation; //현재까지 이동한 위치
     private Status status; //게임의 현재 상황
