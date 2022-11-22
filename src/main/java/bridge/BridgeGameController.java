@@ -71,7 +71,6 @@ public class BridgeGameController {
     }
 
     private void result(Bridge bridge, String whetherSuccess) {
-        System.out.println("최종 게임 결과"); // 이거 바꿔야 된다!!
         outputView.printResult(bridge);
         System.out.println("게임 성공 여부: " + whetherSuccess);
         System.out.println("총 시도한 횟수: " + bridge.getTryCount());
