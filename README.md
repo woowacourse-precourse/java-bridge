@@ -412,7 +412,7 @@ int number = bridgeNumberGenerator.generate();
     - 다시 시도하면, 첫 칸을 건너는 것으로 다시 실행한다 
     - 다시 시도하지 않는다면, 게임 성공여부를 실패로 표시하고, 게임 결과와 총 시도한 횟수를 출력한다.
 
-### 6. 징검다리를 건너는 history를 관리해 주는 기능(Business Logic - BridgeCrossingHistory)
+### 6.1 징검다리를 건너는 history를 관리해 주는 기능(Business Logic - BridgeCrossingHistory)
 
 #### UI의 출력 기능이 온전히 출력만 담당할 수 있도록, 다리 건너는 내용을 문자열로 관리하는 기능
 
@@ -426,3 +426,15 @@ int number = bridgeNumberGenerator.generate();
 3. 관리하고 있던 다리의 history 를 전달하는 기능
     - 위인지 아래인지 선택과, 마지막 선택이 맞는지 틀렸는지 여부를 입력받는다. 
     -  위 다리나 아래 다리를 위아래 선택에 따라 돌려준다.
+
+### 6.2 징검다리 History 를 관리하는데 있어 도움을 주는 기능(Business Logic - BridgeHistoryUtil)
+
+1. 마지막이 맞는지 틀렸는지 파악하고, 그에 맞게 업데이트 하는 기능
+    - 타겟으로 하는 History(Up/Down) 와, 마지막 선택이 맞았는지 여부를 입력받는다.
+    - 만약에 마지막 선택이 틀렸다면, 마지막 선택 표기를 O에서 X로 바꾼다.
+
+2. 마지막 선택을 체크하고 대괄호로 감싸주는 기능
+    - 1번 소기능을 활용해 마지막 선택을 체크하고, 소괄호로 감싼 뒤 문자열로써 돌려준다
+
+3. 기존 위아래 다리 history 를 읽어서, ' | ' 넣어주는 기능
+    - 기존 history 가 존재했다면, 바(' | ') 를 위아래 다리 history에 넣어준다.    
