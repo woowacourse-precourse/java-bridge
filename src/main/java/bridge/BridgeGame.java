@@ -10,6 +10,7 @@ public class BridgeGame {
     private final List<String> bridge;
     private int turn = 0;
     private boolean dead = false;
+    private int tryCount = 1;
 
     public BridgeGame (int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -20,10 +21,10 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
     public void move(String direction) {
-        turn++;
         if (!direction.equals(bridge.get(turn))) {
             dead = true;
         }
+        turn++;
     }
 
     /**
@@ -34,6 +35,11 @@ public class BridgeGame {
     public void retry() {
         turn = 0;
         dead = false;
+        tryCount++;
+    }
+
+    public boolean clear() {
+        return turn == bridge.size() && !dead;
     }
 
     public List<String> getBridge() {
@@ -46,5 +52,9 @@ public class BridgeGame {
 
     public boolean isDead() {
         return dead;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
