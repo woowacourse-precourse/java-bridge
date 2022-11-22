@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 import bridge.view.ExceptionMessage;
 import bridge.view.OutputView;
