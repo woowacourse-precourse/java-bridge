@@ -72,7 +72,15 @@ public class BridgeGameController {
         return inputView.readBridgeSize();
     }
 
+    public String askHowUserMoves() {
+        outputView.printInputUserMoveMessage();
+        return inputView.readMoving();
+    }
 
+    public String askGameOptionCommand() {
+        outputView.printInputGameRestartOptionMessage();
+        return inputView.readGameCommand();
+    }
 
 
 }
