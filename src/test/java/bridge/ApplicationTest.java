@@ -63,6 +63,15 @@ class ApplicationTest extends NsTest {
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
         }
+        @DisplayName("이동 입력 예외처리 -> 입력값이 U, D가 아니면 예외")
+        @ParameterizedTest
+        @CsvSource({"a", "b", "BB", "u", "d"})
+        void invalidMoving(String input) {
+            assertSimpleTest(() -> {
+                runException("3", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
     }
 
     @Override
