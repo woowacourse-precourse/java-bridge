@@ -13,12 +13,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeLength = Console.readLine();
-        try {
-            InputValidator.validateBridgeLength(bridgeLength);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return readBridgeSize();
-        }
+        InputValidator.validateBridgeLength(bridgeLength);
         return Integer.parseInt(bridgeLength);
     }
 
@@ -27,12 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String moving = Console.readLine();
-        try {
-            InputValidator.validateCorrectMovingCommand(moving);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return readMoving();
-        }
+        InputValidator.validateCorrectMovingCommand(moving);
         return moving;
     }
 
@@ -41,12 +31,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String retryCommand = Console.readLine();
-        try {
-            InputValidator.validateCorrectRetryCommand(retryCommand);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return readGameCommand();
-        }
+        InputValidator.validateCorrectRetryCommand(retryCommand);
         return retryCommand;
     }
 }

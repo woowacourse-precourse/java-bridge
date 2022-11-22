@@ -18,12 +18,22 @@ public class BridgeGameController {
 
     public void startGame() {
         outputView.printStartMessage();
-        int bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = getBridgeSize();
         outputView.nextLine();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
         crossBridge(bridgeGame);
         outputView.printResult(bridgeGame.getMovingMap(), bridgeGame.allPass(), bridgeGame.getTryCount());
+    }
+
+    private int getBridgeSize() {
+        while (true) {
+            try {
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
@@ -39,16 +49,36 @@ public class BridgeGameController {
 
     private boolean moveAndCheckMovingSuccess(BridgeGame bridgeGame) {
         outputView.printMoveInputMessage();
-        String moving = inputView.readMoving();
+        String moving = getMovingCommand();
         return bridgeGame.move(moving);
+    }
+
+    private String getMovingCommand() {
+        while (true) {
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     private boolean retryGame(BridgeGame bridgeGame) {
         outputView.printRetryMessage();
-        if (inputView.readGameCommand().equals(Command.RETRY.getLabel())) {
+        if (getGameCommand().equals(Command.RETRY.getLabel())) {
             bridgeGame.retry();
             return true;
         }
         return false;
+    }
+
+    private String getGameCommand() {
+        while (true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 }
