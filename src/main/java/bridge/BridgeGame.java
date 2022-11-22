@@ -10,14 +10,20 @@ public class BridgeGame {
     List<String> bridge;
     int attempts;
     int nextLocation;
+    GameStatus type;
+
+    enum GameStatus {
+        FAIL, SUCCESS, PROGRESS
+    }
 
     /**
-     * 게임을 처음 시작할 때만 사용하는 메서드 (재시도에는 사용 X)
+     * 게임을 처음 시작할 때 사용하는 메서드
      */
     public void init(int bridgeSize) {
         bridge = bridgeMaker.makeBridge(bridgeSize);
         attempts = 0;
         nextLocation = 0;
+        type = GameStatus.PROGRESS;
     }
 
     /**
@@ -35,6 +41,14 @@ public class BridgeGame {
     public void move(String command) {
         if (isMovable(command)) {
             nextLocation++;
+            updateStatus();
+        }
+        type = GameStatus.FAIL;
+    }
+
+    public void updateStatus() {
+        if (nextLocation == bridge.size()) {
+            type = GameStatus.SUCCESS;
         }
     }
 
@@ -46,5 +60,39 @@ public class BridgeGame {
     public void retry() {
         attempts++;
         nextLocation = 0;
+        type = GameStatus.PROGRESS;
+    }
+
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("[");
+        for (int i = 0; i < nextLocation; i++) {
+            if (i != nextLocation-1 && bridge.get(i).equals("U")) {
+                sb.append(" O |");
+            }
+            if (i == nextLocation-1 && bridge.get(i).equals("U")) {
+                sb.append(" O ]");
+            }
+            if (i == nextLocation-1 && bridge.get(i).equals("D")) {
+                sb.append(" X ]");
+            }
+            if (i != nextLocation-1 && bridge.get(i).equals("D")) {
+                sb.append("   ");
+            }
+        }
+        sb.append("\n");
+
+        for (int i = 0; i < Math.min(nextLocation, bridge.size()); i++) {
+            if (i != nextLocation-1 && bridge.get(i) == "D") {
+                sb.append(" O ");
+            }
+            if (i == nextLocation-1 && bridge.get(i) == "U") {
+                sb.append(" X ");
+            }
+        }
+        sb.append("\n");
+
+        return sb.toString();
     }
 }
