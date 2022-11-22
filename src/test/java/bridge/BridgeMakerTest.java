@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
-    public static final String ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3 이상 20 이하입니다.";
+    private static final String ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3 이상 20 이하입니다.";
     @Test
     void makeBridge_예외테스트() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
