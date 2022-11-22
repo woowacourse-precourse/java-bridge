@@ -1,112 +1,104 @@
 package bridge;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
-class BridgeGameTest {
+class BridgeGameTest extends FunctionNsTest {
 
     private BridgeGame bridgeGame;
 
     @BeforeEach
-    protected void init() {
+    protected void initBridge() {
         BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1, 0));
         bridgeGame = new BridgeGame(numberGenerator, 4);
     }
 
     @Test
-    @DisplayName(value = "모두 맞췄을때 멈출수 있는가 확인")
-    void checkMatchBridgeTest1() {
+    @DisplayName(value = "정답할때 move가 잘 동작하는지")
+    public void moveTest1() {
         assertSimpleTest(() -> {
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.addBridgeCorrect("D");
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.addBridgeCorrect("D");
-
-            assertThat( bridgeGame.keepMove()).isEqualTo(false);
+            command("U", "D", "U", "D");
+            bridgeGame.move();
+            assertThat(output())
+                    .contains("[ O |   | O |   ]" + System.lineSeparator() + "[   | O |   | O ]");
         });
     }
 
     @Test
-    @DisplayName(value = "최근에 틀렸을때 멈출수 있는가 확인")
-    void checkMatchBridgeTest2() {
+    @DisplayName(value = "실패시 move가 잘 동작하는지")
+    public void moveTest2() {
         assertSimpleTest(() -> {
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.addBridgeCorrect("U");
+            command("U", "U");
 
-            assertThat( bridgeGame.keepMove()).isEqualTo(false);
+            bridgeGame.move();
+            assertThat(output())
+                    .contains("[ O | X ]" + System.lineSeparator() + "[   |   ]");
         });
     }
 
     @Test
-    @DisplayName(value = "중간까지 맞았을때 지속할수 있는가 확인")
-    void checkMatchBridgeTest3() {
+    @DisplayName(value = "잘못된 입력시 move가 잘 동작하는지")
+    public void moveTest3() {
         assertSimpleTest(() -> {
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.addBridgeCorrect("D");
-
-            assertThat( bridgeGame.keepMove()).isEqualTo(true);
+            command("U", "UUU", "U");
+            bridgeGame.move();
+            assertThat(output())
+                    .contains("[ERROR]");
         });
     }
 
     @Test
-    @DisplayName(value = "모두 맞았을때 출력이 잘 나오는가 확인")
-    void printMapTest1(){
+    @DisplayName(value = "retry 후 move가 잘 작동되는지")
+    public void retryTest1() {
         assertSimpleTest(() -> {
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.addBridgeCorrect("D");
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.addBridgeCorrect("D");
-
-            assertThat(bridgeGame.getMapLines())
-                    .containsExactly("[ O |   | O |   ]"
-                            , "[   | O |   | O ]");
+            command("U", "U", "R", "D", "U", "D");
+            bridgeGame.move();
+            bridgeGame.retry();
+            bridgeGame.move();
+            assertThat(output())
+                    .contains("[ O |   | O |   ]" + System.lineSeparator() + "[   | O |   | O ]");
         });
     }
 
     @Test
-    @DisplayName(value = "정상적인 doRetry()")
-    void retryTest1() {
+    @DisplayName(value = "retry 시 에러 표시")
+    public void retryTest2() {
         assertSimpleTest(() -> {
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.addBridgeCorrect("D");
-            bridgeGame.addBridgeCorrect("D");
-            bridgeGame.doRetry();
-
-            assertThat(bridgeGame.keepMove()).isEqualTo(true);
+            command("U", "U", "r", "R");
+            bridgeGame.move();
+            bridgeGame.retry();
+            assertThat(output())
+                    .contains("[ERROR]");
         });
     }
 
     @Test
-    @DisplayName(value = "비정상적인 doRetry()")
-    void retryTest2() {
+    @DisplayName(value = "움직임이 지속되는지 확인")
+    public void isEndTest1() {
         assertSimpleTest(() -> {
-            bridgeGame.doRetry();
+            command("U", "U");
+            bridgeGame.move();
 
-            assertThat(bridgeGame.keepMove()).isEqualTo(true);
+            assertThat(bridgeGame.isEnd())
+                    .isEqualTo(false);
         });
     }
+
 
     @Test
-    @DisplayName(value = "비정상적인 doRetry()")
-    void retryTest3() {
+    @DisplayName(value = "움직임이 지속되는지 확인")
+    public void isEndTest2() {
         assertSimpleTest(() -> {
-            bridgeGame.addBridgeCorrect("U");
-            bridgeGame.doRetry();
-            assertThat(bridgeGame.keepMove()).isEqualTo(true);
+            command("U", "U");
+            bridgeGame.move();
+
+            assertThat(bridgeGame.isEnd())
+                    .isEqualTo(false);
         });
     }
-
 }
