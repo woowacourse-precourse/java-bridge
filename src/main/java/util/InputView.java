@@ -16,12 +16,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println();
         System.out.println("다리의 길이를 입력해주세요.");
-
         String input = Console.readLine();
         inputValidator.validateNumberType(input);
+        inputValidator.validateSize(Integer.parseInt(input));
         return Integer.parseInt(input);
     }
 
