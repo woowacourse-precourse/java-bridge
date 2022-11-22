@@ -90,9 +90,6 @@ public class BridgeGameController {
     }
 
     private GameCommandType getGameCommand() {
-        if (bridgeGame.isClear()) {
-            return GameCommandType.QUIT;
-        }
         CommandValidator gameCommandValidator = new GameCommandValidator();
         String gameCommand;
         do {
