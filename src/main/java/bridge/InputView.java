@@ -13,12 +13,8 @@ public class InputView {
     public int readBridgeSize() {
         String size_input = Console.readLine();
         int size =Integer.MAX_VALUE;
-        try {
-            size = Integer.parseInt(size_input);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
-            throw e;
-        }
+        size = Integer.parseInt(size_input);
+
 
         if(size < 3 || size > 20) {
             System.out.println("[ERROR]다리 길이는 3부터 20사이의 숫자여야 합니다.");

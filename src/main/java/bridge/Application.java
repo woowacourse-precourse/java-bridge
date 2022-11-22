@@ -16,9 +16,16 @@ public class Application {
         String moving = "";
         String command = "";
         int cnt = 1;
+        List<String> bridge = new ArrayList<>();
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리의 길이를 입력해주세요.");
-        List<String> bridge = bridgeMaker.makeBridge(inputview.readBridgeSize());
+        try{
+            bridge = bridgeMaker.makeBridge(inputview.readBridgeSize());
+        } catch(IllegalArgumentException e) {
+            System.out.println("[ERROR]" + e.getMessage());
+            return;
+        }
+
         List<Integer> position_map = new ArrayList<>(Collections.nCopies(bridge.size() + 1, 0));
         position_map.set(0, 1);
 
@@ -26,12 +33,22 @@ public class Application {
             System.out.println(bridge);
             System.out.println(position_map);
             System.out.println("이동할 칸을 선택해주세요.");
-            moving = inputview.readMoving();
+            try {
+                moving = inputview.readMoving();
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR]" + e.getMessage());
+                return;
+            }
             outputview.printMap(bridge, position_map, moving);
             position_map = bridgeGame.move(bridge, position_map, moving);
             if(!position_map.contains(1)) {
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                position_map = bridgeGame.retry(position_map, inputview.readGameCommand());
+                try {
+                    position_map = bridgeGame.retry(position_map, inputview.readGameCommand());
+                } catch(IllegalArgumentException e){
+                    System.out.println("[ERROR]" + e.getMessage());
+                    return;
+                }
                 cnt ++;
             }
             if(!position_map.contains(1)) {
