@@ -11,6 +11,8 @@ import java.util.List;
 public class PlayGame {
     private List<String> crossAble;
     private int endTurn;
+    private int turn = 0;
+    private int tryCount = 1;
 
     private final InputView inputView = new InputView();
     private final BridgeGame bridgeGame = new BridgeGame();
@@ -22,27 +24,31 @@ public class PlayGame {
     }
 
     public void playGame() {
-        int turn = 0;
-        int tryCount = 1;
         while (turn < endTurn) {
-            String move = inputView.readMoving();
-            Boolean matchResult = bridgeGame.move(crossAble, turn, move);
-            if (!matchResult) {
-                String gameCommand = inputView.setGameCommand();
-                Boolean isRetry = bridgeGame.retry(gameCommand);
-                tryCount++;
-                if (isRetry) {
-                    continue;
-                }
-                endTurn = turn + 1;
-                break;
+            Boolean isRetry = playerMove();
+            if (isRetry) {
+                continue;
             }
-            turn++;
-            printResult(tryCount);
+            endTurn = turn + 1;
+            break;
         }
+        printResult();
     }
 
-    private void printResult(int tryCount) {
+    private Boolean playerMove() {
+        String move = inputView.setMoving();
+        Boolean matchResult = bridgeGame.move(crossAble, turn, move);
+        if (matchResult) {
+            turn++;
+            return true;
+        }
+        String gameCommand = inputView.setGameCommand();
+        Boolean isRetry = bridgeGame.retry(gameCommand);
+        tryCount++;
+        return isRetry;
+    }
+
+    private void printResult() {
         List<HashMap> bridge = List.of(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
         System.out.println(OutputStatic.END_GAME_TITLE.getOutputPrint());
         outputView.printMap(endTurn, bridge);
