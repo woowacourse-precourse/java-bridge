@@ -17,4 +17,10 @@ public class ExceptionCase {
         }
     }
 
+    static public void isInputTry(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 재시작은 R과 Q로만 입력 가능합니다..");
+        }
+    }
+
 }
