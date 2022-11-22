@@ -54,4 +54,9 @@ public class GamePlay {
             resetPrev(playerMap);
         }
     }
+
+    private void resetPrev(PlayerMap playerMap) {
+        bridgeGame.resetPrev(playerMap);
+        ++tryCount;
+    }
 }
