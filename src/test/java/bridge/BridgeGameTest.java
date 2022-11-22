@@ -1,6 +1,5 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -60,7 +59,7 @@ class BridgeGameTest {
 
 
     @Test
-    @DisplayName("2번 이동 후 retry 를 해서 Result 다시 확인하면 tryCount 가  2, 브릿지 인덱스 초기화 되어야한다.")
+    @DisplayName("2번 이동 후 retry 를 해서  브릿지 인덱스 초기화 되어야한다.")
     void retry() {
         //given
         bridgeGame.move(MoveType.UP);
@@ -69,7 +68,6 @@ class BridgeGameTest {
         //when
         Result actual = bridgeGame.move(MoveType.UP);
         //then
-        assertThat(actual.getTryCount()).isEqualTo(2);
         assertTrue(actual.isSucceeded());
         assertFalse(actual.isFinished());
 
