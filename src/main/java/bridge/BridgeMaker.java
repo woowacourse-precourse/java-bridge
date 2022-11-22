@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.constants.BlockSymbol;
 import bridge.domain.constants.Constant;
 import bridge.domain.constants.ErrorMessage;
 
@@ -30,15 +31,25 @@ public class BridgeMaker {
         return bridge;
     }
 
+    /**
+     *
+     * @param size 다리의 길이
+     * @exception IllegalArgumentException 입력된 다리의 길이가 범위를 넘을 경우 예외 처리한다.
+     */
+
     private void validateSize(int size){
         if (size < Constant.MINIMUM_LENGTH_INCLUSIVE.getValue() || size > Constant.MAXIMUM_LENGTH_INCLUSIVE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_OUT_OF_RANGE.getMessage());
         }
     }
 
+    /**
+     *
+     * @return 숫자 생성기의 값이 0일 경우 "D", 그렇지 않을 경우 "U"를 반환한다.
+     */
     private String generateBlock(){
-        if (bridgeNumberGenerator.generate() == 0) return "D";
-        return "U";
+        if (bridgeNumberGenerator.generate() == 0) return BlockSymbol.DOWN.getSymbol();
+        return BlockSymbol.UP.getSymbol();
     }
 
 }
