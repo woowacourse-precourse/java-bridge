@@ -111,5 +111,12 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + game.getGameCount());
     }
 
+    public String getGameStatus(boolean isSuccessGame) {
+        if (isSuccessGame) {
+            return "성공";
+        }
+        return "실패";
+    }
+
 
 }
