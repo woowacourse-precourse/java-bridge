@@ -10,7 +10,7 @@ public class Application {
         // TODO: 프로그램 구현
         final InputView inputView = new InputView();
         final OutputView outputView =new OutputView();
-        GameController gameController = new GameController(inputView,outputView);
+        final GameController gameController = new GameController(inputView,outputView);
 
         gameController.start();
     }
