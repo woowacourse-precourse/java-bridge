@@ -73,6 +73,19 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("재시작 시, 시도한 횟수를 증가시키고 이동횟수를 초기화한다.")
     void retry() {
+        //given
+        bridgeGame.move("U");
+        bridgeGame.move("D"); // 테스트를 위해 moveCount를 2로 설정
+
+        //when
+        bridgeGame.retry();
+
+        //then
+        assertAll(
+                ()-> assertEquals(bridgeGame.getReGameCount(),2),
+                ()->assertEquals(bridgeGame.getMoveCount(),0)
+        );
     }
 }
