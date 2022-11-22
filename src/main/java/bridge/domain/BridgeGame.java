@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.type.BridgeType;
 import bridge.type.ResultType;

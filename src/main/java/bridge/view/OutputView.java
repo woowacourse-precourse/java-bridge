@@ -1,9 +1,9 @@
 package bridge.view;
 
-import bridge.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.type.BridgeType;
 import bridge.type.ResultType;
-import bridge.MoveLog;
+import bridge.domain.MoveLog;
 import bridge.util.Message;
 
 /**
