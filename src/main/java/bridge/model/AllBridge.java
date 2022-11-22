@@ -1,9 +1,9 @@
 package bridge.model;
 
 
+import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.InputUtil;
-import bridge.controller.InputController;
 
 import java.util.ArrayList;
 import java.util.List;
