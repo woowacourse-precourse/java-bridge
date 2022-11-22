@@ -1,8 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.ExceptionMessage;
 import camp.nextstep.edu.missionutils.Console;
-
-import java.io.IOException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
