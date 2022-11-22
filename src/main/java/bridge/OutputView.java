@@ -11,7 +11,6 @@ import static bridge.Result.*;
  */
 public class OutputView {
 
-    private List<Result> results = new ArrayList<>();
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -22,20 +21,15 @@ public class OutputView {
         System.out.println(GAME_START_MESSAGE.getMessage());
     }
 
-    public void printMap(Result result) {
-        addResult(result);
-        List<List<String>> printForm = makePrintForm();
+    public void printMap(List<Result> results) {
+        List<List<String>> printForm = makePrintForm(results);
         String up = String.join(" | ", printForm.get(0));
         String down = String.join(" | ", printForm.get(1));
         System.out.println("[ " + up + " ]");
         System.out.println("[ " + down + " ]");
     }
 
-    private void addResult(Result result) {
-        results.add(result);
-    }
-
-    private List<List<String>> makePrintForm() {
+    private List<List<String>> makePrintForm(List<Result> results) {
         List<List<String>> printForm = new ArrayList<>();
         List<String> up = new ArrayList<>();
         List<String> down = new ArrayList<>();
@@ -67,9 +61,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<Result> results) {
         System.out.println(FINAL_GAME_RESULT_MESSAGE.getMessage());
-        List<List<String>> printForm = makePrintForm();
+        List<List<String>> printForm = makePrintForm(results);
         String up = String.join(" | ", printForm.get(0));
         String down = String.join(" | ", printForm.get(1));
         System.out.println("[ " + up + " ]");

@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.Moving.UP;
@@ -11,6 +12,7 @@ import static bridge.Result.*;
 public class BridgeGame {
 
     private final List<String> bridge;
+    private List<Result> results = new ArrayList<>();
     private int tryCount = 1;
 
     public BridgeGame(List<String> bridge) {
@@ -22,17 +24,21 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Result move(int index, String moving) {
+    public boolean move(int index, String moving) {
         if (bridge.get(index) == moving) {
             if (bridge.get(index) == UP.getMoving()) {
-                return UP_SUCCESS;
+                results.add(UP_SUCCESS);
+                return true;
             }
-            return DOWN_SUCCESS;
+            results.add(DOWN_SUCCESS);
+            return true;
         }
         if (bridge.get(index) == UP.getMoving()) {
-            return UP_FAIL;
+            results.add(UP_FAIL);
+            return false;
         }
-        return DOWN_FAIL;
+        results.add(DOWN_FAIL);
+        return false;
     }
 
     /**
@@ -46,12 +52,5 @@ public class BridgeGame {
 
     public int getTryCount() {
         return tryCount;
-    }
-
-    public boolean isWrongApproach(Result result) {
-        if (result == DOWN_FAIL || result == UP_FAIL) {
-            return true;
-        }
-        return false;
     }
 }
