@@ -1,6 +1,5 @@
-package bridge;
+package bridge.input.getter;
 
-import bridge.input.getter.BridgeSizeGetter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +14,7 @@ class BridgeSizeGetterTest {
     @DisplayName("다리 길이 입력 받아오기 기능 테스트: 올바르지 않은 입력일 경우 예외 발생")
     @ValueSource(strings = {"let", "it", "crash", "부서져라", "21", "2", "020", ""})
     void getBridgeSizeTest_exceptionThrowingTest(String userInput) {
-        BridgeSizeGetter getter = new BridgeSizeGetter();
+        BridgeSizeGetter getter = BridgeSizeGetter.getBridgeSizeGetter();
 
         System.setIn(new ByteArrayInputStream((userInput).getBytes()));
 
@@ -29,7 +28,7 @@ class BridgeSizeGetterTest {
             "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
             "13", "14", "15", "16", "17", "18", "19", "20"})
     void getBridgeSizeTest_normalExecutionTest(String userInput) {
-        BridgeSizeGetter getter = new BridgeSizeGetter();
+        BridgeSizeGetter getter = BridgeSizeGetter.getBridgeSizeGetter();
         System.setIn(new ByteArrayInputStream((userInput).getBytes()));
 
         Integer correctResult = Integer.parseInt(userInput);
