@@ -9,6 +9,12 @@ public class BridgeSize {
 
     private static final Pattern pattern = Pattern.compile("^[0-9]*$");
 
+    public int checkNumber(String str){
+        isNumber(str);
+        isRangeNumber(str);
+        return Integer.parseInt(str);
+    }
+
     private String isNumber(String str){
         if(!(pattern.matcher(str).matches())) {
             System.out.println(ExceptionMessage.isNumberMsg());
@@ -26,11 +32,6 @@ public class BridgeSize {
         return str;
     }
 
-    public int checkNumber(String str){
-        isNumber(str);
-        isRangeNumber(str);
-        return Integer.parseInt(str);
-    }
 
 
 }
