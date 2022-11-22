@@ -11,13 +11,6 @@ public class Bridge {
         this.status = status;
     }
 
-    public String compareTo(int index, Moving input) {
-        if (status.get(index).equals(input)) {
-            return MovingType.MOVE.getResult();
-        }
-        return MovingType.NOT_MOVE.getResult();
-    }
-
     public void addBridge(String status) {
         this.status.add(status);
     }
@@ -28,9 +21,5 @@ public class Bridge {
 
     public int getSize() {
         return this.status.size();
-    }
-
-    public void deleteBridge() {
-        this.status.remove(this.status.size() - 1);
     }
 }
