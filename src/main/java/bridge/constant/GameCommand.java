@@ -12,7 +12,7 @@ public enum GameCommand {
 
     private static final Map<String, GameCommand> GAME_COMMANDS = Arrays.stream(values())
             .filter(gameCommands -> !gameCommands.is(NOTHING))
-            .collect(Collectors.toUnmodifiableMap(
+            .collect(Collectors.toMap(
                     gameCommands -> gameCommands.command, Function.identity()));
 
     private final String command;
