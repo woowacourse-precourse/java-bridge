@@ -1,4 +1,4 @@
-package bridge.bridgegame;
+package bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
