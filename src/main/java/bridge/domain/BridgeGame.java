@@ -37,6 +37,16 @@ public class BridgeGame {
         bridgeState.init();
     }
 
+    // 라운드의 횟수를 추가하는 기능
+    public void increaseRoundCount() {
+        round.plusRound();
+    }
+
+    // 게임시도 횟수를 증가시키는 기능
+    public void increaseGameAttemptCount() {
+        gameAttempt.plusAttempt();
+    }
+
     // 게임 성공여부 나타내는 기능
     public String checkGameSuccess(String userInput, List<String> bridge) {
         if(round.getRound() == bridge.size() && userInput.equals(bridge.get(round.getRound()-1))) {

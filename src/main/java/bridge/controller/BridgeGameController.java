@@ -16,6 +16,7 @@ public class BridgeGameController {
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
+    private String userInput;
 
     public BridgeGameController(View view, BridgeGame bridgeGame, BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
@@ -23,6 +24,37 @@ public class BridgeGameController {
         this.outputView = view.getOutputView();
         this.bridgeGame = bridgeGame;
     }
+
+    // 게임을 최종적으로 진행하는 기능
+    public void run() {
+        outputView.printStart();
+        int bridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        playGame(bridge);
+    }
+
+
+    // 한 게임을 진행하는 기능
+    private void playGame(List<String> bridge) {
+        do {
+            bridgeGame.increaseGameAttemptCount();
+            bridgeGame.retry();
+            playRound(bridge);
+        } while (isRetry(bridge, userInput));
+        outputView.printResult(bridgeGame, userInput, bridge);
+    }
+
+
+    // 한 라운드를 진행하는 기능
+    private void playRound(List<String> bridge) {
+        do {
+            userInput = inputView.readMoving();
+            bridgeGame.move(userInput, bridge);
+            bridgeGame.increaseRoundCount();
+            outputView.printMap(bridgeGame);
+        } while (bridgeGame.checkPlayNextRound(userInput, bridge));
+    }
+
 
     private boolean isRetry(List<String> bridge, String userInput) {
         if (bridgeGame.checkGameSuccess(userInput, bridge).equals(SUCCESS)) {
