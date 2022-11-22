@@ -1,5 +1,8 @@
-package bridge;
+package bridge.view;
 
+import bridge.validation.BridgeSizeInputException;
+import bridge.validation.MoveInputException;
+import bridge.validation.RetryInputException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

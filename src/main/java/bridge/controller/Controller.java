@@ -1,4 +1,9 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeMaker;
+import bridge.model.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 

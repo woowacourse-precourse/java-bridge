@@ -1,4 +1,6 @@
-package bridge;
+package bridge.validation;
+
+import bridge.view.BridgeSizeInputExceptionMessage;
 
 public class BridgeSizeInputException {
     private static final int MIN_BRIDGE_SIZE = 3;

@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.controller.Controller;
+import bridge.view.OutputView;
+
 public class Application {
     private static OutputView outputView = new OutputView();
 

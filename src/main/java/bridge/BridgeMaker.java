@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.command.UserMove;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,28 +42,4 @@ public class BridgeMaker {
     private int makeRandomNumbers() {
         return bridgeNumberGenerator.generate();
     }
-
-//    private List<Boolean> makeUpLocationExist(String upAndDown) {
-//        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
-//            if (upAndDown.equals("U")) {
-//                bridgeTrueAndFalse.add(true);
-//            }
-//            if (upAndDown.equals("D")) {
-//                bridgeTrueAndFalse.add(false);
-//        }
-//        return bridgeTrueAndFalse;
-//    }
-//
-//    private List<Boolean> makeDownLocationExist(List<String> bridge) {
-//        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
-//        for (int i = 0; i < bridge.size(); i++) {
-//            if (bridge.get(i).equals("D")) {
-//                bridgeTrueAndFalse.add(true);
-//            }
-//            if (bridge.get(i).equals("U")) {
-//                bridgeTrueAndFalse.add(false);
-//            }
-//        }
-//        return bridgeTrueAndFalse;
-//    }
 }

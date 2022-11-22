@@ -1,18 +1,22 @@
-package bridge;
+package bridge.model;
+
+import bridge.command.MiniMapState;
+import bridge.command.UserMove;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentLocationInformation {
     private static final OutputView outputView = new OutputView();
-    private static List<String> str = new ArrayList<>();
-    private static List<String> upStr = new ArrayList<>();
+    private static List<String> downStairs = new ArrayList<>();
+    private static List<String> upStairs = new ArrayList<>();
     private static int check = 0;
 
 
     public static void init() {
-        str.clear();
-        upStr.clear();
+        downStairs.clear();
+        upStairs.clear();
     }
 
 
@@ -24,25 +28,25 @@ public class CurrentLocationInformation {
     }
 
     public static String getResultLocation() {
-        int size = upStr.size();
+        int size = upStairs.size();
         String resultLocation = "";
-        resultLocation += upStr.get(size - 1);
-        resultLocation += " ]" + "\n";
-        resultLocation += str.get(size - 1);
-        resultLocation += " ]";
+        resultLocation += upStairs.get(size - 1);
+        resultLocation += MiniMapState.END_BRIDGE_FRAME.getMiniMapState() + "\n";
+        resultLocation += downStairs.get(size - 1);
+        resultLocation += MiniMapState.END_BRIDGE_FRAME.getMiniMapState();
         return resultLocation;
     }
 
     private void makeUpLocation(List<String> bridge, String moving) {
         List<Boolean> bridgeExist = makeUpLocationExist(bridge);
-        String state = "[ ";
+        String state = MiniMapState.START_BRIDGE_FRAME.getMiniMapState();
         state += gameIng(bridgeExist, bridge, moving);
         if (check > 0) {
             state = "";
-            state += upStr.get(check - 1) + gameIng(bridgeExist, bridge, moving);
+            state += upStairs.get(check - 1) + gameIng(bridgeExist, bridge, moving);
         }
-        upStr.add(state);
-        state += " ]";
+        upStairs.add(state);
+        state += MiniMapState.END_BRIDGE_FRAME.getMiniMapState();
         outputView.printMap(state);
     }
 
@@ -61,14 +65,14 @@ public class CurrentLocationInformation {
 
     private void makeDownLocation(List<String> bridge, String moving) {
         List<Boolean> bridgeExist = makeDownLocationExist(bridge);
-        String state = "[ ";
+        String state = MiniMapState.START_BRIDGE_FRAME.getMiniMapState();
         state += gameIng(bridgeExist, bridge, moving);
         if (check > 0) {
             state = "";
-            state += str.get(check - 1) + gameIng(bridgeExist, bridge, moving);
+            state += downStairs.get(check - 1) + gameIng(bridgeExist, bridge, moving);
         }
-        str.add(state);
-        state += " ]";
+        downStairs.add(state);
+        state += MiniMapState.END_BRIDGE_FRAME.getMiniMapState();
         outputView.printMap(state);
     }
 
@@ -91,7 +95,7 @@ public class CurrentLocationInformation {
             ing += showUpAndDownResult(bridgeExist, bridge, moving);
         }
         if (check > 0) {
-            ing += " | ";
+            ing += MiniMapState.LINE.getMiniMapState();
             ing += showUpAndDownResult(bridgeExist, bridge, moving);
         }
         return ing;
@@ -99,11 +103,11 @@ public class CurrentLocationInformation {
 
     private String showUpAndDownResult(List<Boolean> bridgeExist, List<String> bridge, String moving) {
         if (bridgeExist.get(check) && bridge.get(check).equals(moving)) {
-            return "O";
+            return MiniMapState.POSSIBLE_MOVE.getMiniMapState();
         }
         if (!bridgeExist.get(check) && !bridge.get(check).equals(moving)) {
-            return "X";
+            return MiniMapState.NOT_POSSIBLE_MOVE.getMiniMapState();
         }
-        return " ";
+        return MiniMapState.NOT_EXIST.getMiniMapState();
     }
 }

@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model;
+
+import bridge.command.GameCommand;
 
 import java.util.List;
 
