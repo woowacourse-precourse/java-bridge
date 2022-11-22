@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.valid;
 
 import bridge.exception.BridgeGameError;
 

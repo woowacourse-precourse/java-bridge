@@ -13,10 +13,11 @@ public class InputView {
     }
 
     private static int inputBridgeSize() {
-        String input = Console.readLine();
+        String size = Console.readLine();
+        try {
 
+        }
         int bridgeSize = Integer.parseInt(input);
-
         return bridgeSize;
     }
 
