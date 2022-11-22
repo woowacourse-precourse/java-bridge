@@ -29,8 +29,13 @@ public class BridgeGameController {
     }
 
     private void move() {
-        String direction = inputView.readMoving();
-        bridgeGame.move(direction);
+        try {
+            outputView.printMessage(Message.REQUEST_MOVE_DIRECTION);
+            bridgeGame.move(inputView.readMoving());
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            move();
+        }
     }
 
 }

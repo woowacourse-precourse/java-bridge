@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  */
 public class BridgeGame {
     private static final String BRIDGE_SIZE_REGEX = "([3-9]|1[0-9]|20)";
+    private static final String MOVE_DIRECTION_REGEX = "[UD]";
 
     private final BridgeRepository bridgeRepository;
 
@@ -30,8 +31,15 @@ public class BridgeGame {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
         }
     }
-    
+
     public void move(String direction) {
+        validateMoveDirection(direction);
+    }
+
+    private void validateMoveDirection(String direction) {
+        if (!Pattern.matches(MOVE_DIRECTION_REGEX, direction)) {
+            throw new IllegalArgumentException(ErrorMessage.MOVE_DIRECTION);
+        }
     }
 
     /**
