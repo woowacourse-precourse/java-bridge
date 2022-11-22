@@ -19,6 +19,18 @@ public class GameManager {
 
         return new BridgeGame(bridgeMaker.makeBridge(size));
     }
+    public void playGame(BridgeGame bridgeGame) {
+        do {
+            while (!bridgeGame.roundOver()) {
+                outputView.printAskingMove();
+                String nextMove = inputView.readMoving();
+                System.out.println(nextMove);
+
+                bridgeGame.move(nextMove);
+                outputView.printMap(bridgeGame.getMapLines());
+            }
+        }while (askRetry(bridgeGame));
+    }
 
 
 }
