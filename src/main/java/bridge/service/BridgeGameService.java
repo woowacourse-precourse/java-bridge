@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.utils.Constants;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -9,11 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameService {
-    private static final String RESTART_GAME = "R";
-    private static final String GAME_FAIL = "실패";
-    private static final String GAME_SUCCESS = "성공";
-    private static final String CAN_NOT_MOVING = "X";
-    private static final int START_BRIDGE_INDEX = 0;
     private static List<String> crossByBridge;
     private static Bridge bridge;
     private static BridgeGame bridgeGame;
@@ -42,11 +38,11 @@ public class BridgeGameService {
         if (checkRestartCondition(bridgeGame.getMovingCount())) {
             return;
         }
-        output.printResult(GAME_SUCCESS, bridgeGame.getTotalGame(), bridge.getLastBridge());
+        output.printResult(Constants.GAME_SUCCESS, bridgeGame.getTotalGame(), bridge.getLastBridge());
     }
 
     private void moveCrossBridge() {
-        int moveIndex = START_BRIDGE_INDEX;
+        int moveIndex = Constants.START_BRIDGE_INDEX;
         boolean movingResult = true;
         while (moveIndex < bridgeSize && movingResult) {
             output.printSelectMoveDirection();
@@ -58,7 +54,7 @@ public class BridgeGameService {
     }
 
     private boolean checkRestartCondition(int movingCount) {
-        if (movingCount != crossByBridge.size() || bridgeGame.getLastMoving().equals(CAN_NOT_MOVING)) {
+        if (movingCount != crossByBridge.size() || bridgeGame.getLastMoving().equals(Constants.CAN_NOT_MOVING)) {
             bridgeGame = new BridgeGame(new ArrayList<>(), bridgeGame.getTotalGame(), bridge);
             selectGameRestart();
             return true;
@@ -70,11 +66,11 @@ public class BridgeGameService {
         output.printEnterGameCommand();
         String gameCommand = input.readGameCommand();
 
-        if (gameCommand.equals(RESTART_GAME)) {
+        if (gameCommand.equals(Constants.RESTART_GAME)) {
             bridgeGame.retry();
             playBridgeGame();
             return;
         }
-        output.printResult(GAME_FAIL, bridgeGame.getTotalGame(), bridge.getLastBridge());
+        output.printResult(Constants.GAME_FAIL, bridgeGame.getTotalGame(), bridge.getLastBridge());
     }
 }

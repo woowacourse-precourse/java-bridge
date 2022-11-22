@@ -2,11 +2,9 @@ package bridge.domain;
 
 import bridge.exception.BridgeError;
 import bridge.exception.ErrorException;
+import bridge.utils.Constants;
 
 public class BridgeSize {
-    private static final int MIN_BRIDE_SIZE = 3;
-    private static final int MAX_BRIDE_SIZE = 20;
-
     private final String bridgeSizeInput;
     private final int bridgeSize;
 
@@ -24,7 +22,7 @@ public class BridgeSize {
     }
 
     private void checkInvalidRange() {
-        if ((MIN_BRIDE_SIZE > bridgeSize) || (MAX_BRIDE_SIZE < bridgeSize)) {
+        if ((Constants.MIN_BRIDE_SIZE > bridgeSize) || (Constants.MAX_BRIDE_SIZE < bridgeSize)) {
             throw new ErrorException(BridgeError.INVALID_RANGE);
         }
     }

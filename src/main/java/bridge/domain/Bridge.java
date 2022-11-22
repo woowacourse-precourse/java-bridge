@@ -1,12 +1,13 @@
 package bridge.domain;
 
+import bridge.utils.Constants;
+import bridge.utils.Direction;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
-    private static final String MOVING_GAP = " ";
-    private static final String EMPTY_GAP = "   ";
     private List<String> upBridge;
     private List<String> downBridge;
     private String lastBridge;
@@ -18,12 +19,12 @@ public class Bridge {
 
     public void setMovingBridge(String movingInput, String movingResult) {
         if (movingInput.equals(Direction.MOVING_UP.getMovingDirection())) {
-            upBridge.add(MOVING_GAP + movingResult + MOVING_GAP);
-            downBridge.add(EMPTY_GAP);
+            upBridge.add(Constants.MOVING_GAP + movingResult + Constants.MOVING_GAP);
+            downBridge.add(Constants.EMPTY_GAP);
             return;
         }
-        downBridge.add(MOVING_GAP + movingResult + MOVING_GAP);
-        upBridge.add(EMPTY_GAP);
+        downBridge.add(Constants.MOVING_GAP + movingResult + Constants.MOVING_GAP);
+        upBridge.add(Constants.EMPTY_GAP);
     }
 
     public void initBridge() {

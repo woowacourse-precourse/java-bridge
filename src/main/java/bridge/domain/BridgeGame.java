@@ -1,13 +1,10 @@
 package bridge.domain;
 
+import bridge.utils.Constants;
+
 import java.util.List;
 
 public class BridgeGame {
-    private static final String CAN_MOVING = "O";
-    private static final String CAN_NOT_MOVING = "X";
-    private static final int INIT_FIRST_GAME = 1;
-    private static final int INIT_MOVING_COUNT = 0;
-
     private final Bridge bridge;
     private List<String> movements;
     private int movingCount;
@@ -15,13 +12,13 @@ public class BridgeGame {
     private String lastMoving;
 
     public BridgeGame(Bridge bridge) {
-        this.totalGame = INIT_FIRST_GAME;
+        this.totalGame = Constants.INIT_FIRST_GAME;
         this.bridge = bridge;
     }
 
     public BridgeGame(List<String> movements, int totalGame, Bridge bridge) {
         this.movements = movements;
-        this.movingCount = INIT_MOVING_COUNT;
+        this.movingCount = Constants.INIT_MOVING_COUNT;
         this.totalGame = totalGame;
         this.bridge = bridge;
     }
@@ -31,19 +28,19 @@ public class BridgeGame {
         addMovingCount();
 
         if (checkCanMoving(crossDirection, movingInput)) {
-            setLastMoving(CAN_MOVING);
+            setLastMoving(Constants.CAN_MOVING);
             return true;
         }
-        setLastMoving(CAN_NOT_MOVING);
+        setLastMoving(Constants.CAN_NOT_MOVING);
         return false;
     }
 
     public void setMovingResult(String crossDirection, String movingInput) {
         if (checkCanMoving(crossDirection, movingInput)) {
-            bridge.setMovingBridge(movingInput, CAN_MOVING);
+            bridge.setMovingBridge(movingInput, Constants.CAN_MOVING);
             return;
         }
-        bridge.setMovingBridge(movingInput, CAN_NOT_MOVING);
+        bridge.setMovingBridge(movingInput, Constants.CAN_NOT_MOVING);
     }
 
     private boolean checkCanMoving(String crossDirection, String movingInput) {
@@ -61,7 +58,7 @@ public class BridgeGame {
     }
 
     private void initMovingCount() {
-        this.movingCount = INIT_MOVING_COUNT;
+        this.movingCount = Constants.INIT_MOVING_COUNT;
     }
 
     private void addGameCount() {

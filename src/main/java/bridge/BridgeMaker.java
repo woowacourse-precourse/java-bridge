@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Direction;
+import bridge.utils.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ public class BridgeMaker {
         for (int bridgePoint = 0; bridgePoint < size; bridgePoint++) {
             int randomNumber = bridgeNumberGenerator.generate();
             new BridgeRandomNumber(randomNumber);
+
             crossByBridge.add(convertRandomToDirection(randomNumber));
         }
         return crossByBridge;

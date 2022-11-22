@@ -1,13 +1,9 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
+import bridge.utils.Constants;
 
 public class OutputView {
-    private static final int LAST_CHARACTER = 1;
-    private static final char MIDDLE_PARTITION_BRIDGE = '|';
-    private static final String FIRST_PARTITION_BRIDGE = "[";
-    private static final String LAST_PARTITION_BRIDGE = "]\n";
-
     static StringBuilder upStringBuilder;
     static StringBuilder downStringBuilder;
 
@@ -19,15 +15,16 @@ public class OutputView {
         finishStringBuilder();
 
         bridge.setLastBridge(upStringBuilder + downStringBuilder.toString());
-        System.out.println(upStringBuilder + downStringBuilder.toString());
+        System.out.println(bridge.getLastBridge());
     }
 
     private void setPrintMap(int crossBridgeSize, Bridge bridge) {
         for (int crossPoint = 0; crossPoint < crossBridgeSize; crossPoint++) {
             upStringBuilder.append(bridge.getUpBridge().get(crossPoint));
             downStringBuilder.append(bridge.getDownBridge().get(crossPoint));
-            upStringBuilder.append(MIDDLE_PARTITION_BRIDGE);
-            downStringBuilder.append(MIDDLE_PARTITION_BRIDGE);
+
+            upStringBuilder.append(Constants.MIDDLE_PARTITION_BRIDGE);
+            downStringBuilder.append(Constants.MIDDLE_PARTITION_BRIDGE);
         }
     }
 
@@ -35,21 +32,22 @@ public class OutputView {
         upStringBuilder = new StringBuilder();
         downStringBuilder = new StringBuilder();
 
-        upStringBuilder.append(FIRST_PARTITION_BRIDGE);
-        downStringBuilder.append(FIRST_PARTITION_BRIDGE);
+        upStringBuilder.append(Constants.FIRST_PARTITION_BRIDGE);
+        downStringBuilder.append(Constants.FIRST_PARTITION_BRIDGE);
     }
 
     private void finishStringBuilder() {
-        upStringBuilder.setLength(upStringBuilder.length() - LAST_CHARACTER);
-        upStringBuilder.append(LAST_PARTITION_BRIDGE);
+        upStringBuilder.setLength(upStringBuilder.length() - Constants.LAST_CHARACTER);
+        upStringBuilder.append(Constants.LAST_PARTITION_BRIDGE);
 
-        downStringBuilder.setLength(downStringBuilder.length() - LAST_CHARACTER);
-        downStringBuilder.append(LAST_PARTITION_BRIDGE);
+        downStringBuilder.setLength(downStringBuilder.length() - Constants.LAST_CHARACTER);
+        downStringBuilder.append(Constants.LAST_PARTITION_BRIDGE);
     }
 
     public void printResult(String gameResult, int gameTryCount, String lastMapResult) {
         printGameFinalBridgeResult();
         System.out.println(lastMapResult);
+
         printGameSuccessOrFailure(gameResult);
         printGameTotalTryCount(gameTryCount);
     }

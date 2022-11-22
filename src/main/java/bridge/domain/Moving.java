@@ -2,9 +2,10 @@ package bridge.domain;
 
 import bridge.exception.BridgeError;
 import bridge.exception.ErrorException;
+import bridge.utils.Constants;
+import bridge.utils.Direction;
 
 public class Moving {
-    private final static int MOVING_INPUT_SIZE = 1;
     private final String movingInput;
 
     public Moving(String movingInput) {
@@ -22,7 +23,7 @@ public class Moving {
     }
 
     private boolean isNotOneCharacter() {
-        return movingInput.length() != MOVING_INPUT_SIZE;
+        return movingInput.length() != Constants.MOVING_INPUT_SIZE;
     }
 
     private boolean checkInvalidMoving() {

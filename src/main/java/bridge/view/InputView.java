@@ -3,59 +3,23 @@ package bridge.view;
 import bridge.domain.BridgeSize;
 import bridge.domain.GameCommand;
 import bridge.domain.Moving;
+import bridge.utils.Constants;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private static final int BRIDGE_SIZE = 1;
-    private static final int MOVING = 2;
-    private static final int GAME_COMMAND = 3;
-    private static final String RE_ENTER_MESSAGE = " 다시 입력해주세요.\n";
     private String input;
 
     public String readBridgeSize() {
         while (true) {
-            input = repeatForValid(BRIDGE_SIZE);
+            input = repeatForValid(Constants.BRIDGE_SIZE);
             break;
-        }
-        return input;
-    }
-
-    private void checkInputObject(int method, String input) {
-        if (BRIDGE_SIZE == method) {
-            new BridgeSize(input);
-            return;
-        }
-        if (MOVING == method) {
-            new Moving(input);
-            return;
-        }
-        new GameCommand(input);
-    }
-
-    private String checkInputMethod(int method) {
-        if (BRIDGE_SIZE == method) {
-            return readBridgeSize();
-        }
-        if (MOVING == method) {
-            return readMoving();
-        }
-        return readGameCommand();
-    }
-
-    private String repeatForValid(int methodType) {
-        try {
-            input = Console.readLine();
-            checkInputObject(methodType, input);
-        } catch (IllegalArgumentException e) {
-            System.out.print(e.getMessage() + RE_ENTER_MESSAGE);
-            input = checkInputMethod(methodType);
         }
         return input;
     }
 
     public String readMoving() {
         while (true) {
-            input = repeatForValid(MOVING);
+            input = repeatForValid(Constants.MOVING);
             break;
         }
         return input;
@@ -63,9 +27,42 @@ public class InputView {
 
     public String readGameCommand() {
         while (true) {
-            input = repeatForValid(GAME_COMMAND);
+            input = repeatForValid(Constants.GAME_COMMAND);
             break;
         }
         return input;
+    }
+    
+    private String repeatForValid(int methodType) {
+        try {
+            input = Console.readLine();
+            checkInputObject(methodType, input);
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage() + Constants.RE_ENTER_MESSAGE);
+            input = checkInputMethod(methodType);
+        }
+        return input;
+    }
+
+    private void checkInputObject(int method, String input) {
+        if (Constants.BRIDGE_SIZE == method) {
+            new BridgeSize(input);
+            return;
+        }
+        if (Constants.MOVING == method) {
+            new Moving(input);
+            return;
+        }
+        new GameCommand(input);
+    }
+
+    private String checkInputMethod(int method) {
+        if (Constants.BRIDGE_SIZE == method) {
+            return readBridgeSize();
+        }
+        if (Constants.MOVING == method) {
+            return readMoving();
+        }
+        return readGameCommand();
     }
 }
