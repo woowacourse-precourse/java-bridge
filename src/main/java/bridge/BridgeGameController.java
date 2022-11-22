@@ -17,7 +17,7 @@ public class BridgeGameController {
         init();
     }
 
-    public void startBridgeGame() {
+    public void start() {
         progress();
         outputView.printResult(bridgeGame);
     }
