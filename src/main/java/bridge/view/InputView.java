@@ -16,6 +16,8 @@ public class InputView {
         printMessage(Constants.INPUT_BRIDGE_SIZE);
         String input = Console.readLine();
         validateNumber(input);
+        String newLine = "";
+        printMessage(newLine);
         return Integer.parseInt(input);
     }
 
