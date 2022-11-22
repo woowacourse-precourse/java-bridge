@@ -1,10 +1,18 @@
-package bridge.utils;
+package bridge.domain;
 
 import bridge.Enum.Error;
 import bridge.Enum.Number;
-import bridge.Enum.PlayerInput;
 
-public class InputValidator {
+public class BridgeSizeInput {
+    private final int bridgeSize;
+
+    public BridgeSizeInput(String input){
+        isEmpty(input);
+        int size = isInteger(input);
+        isNumberInRange(size);
+        this.bridgeSize = size;
+    }
+
     private void isEmpty(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(Error.INPUT_BLANK.getMessage());
@@ -22,18 +30,6 @@ public class InputValidator {
     private void isNumberInRange(int number) {
         if ((number > Number.MAX.getValue() || number < Number.MIN.getValue())) {
             throw new IllegalArgumentException(Error.BRIDGE_SIZE.getMessage());
-        }
-    }
-
-    public void isDirectionValid(String direction) {
-        if (!direction.equals(PlayerInput.UP) && !direction.equals(PlayerInput.DOWN)) {
-            throw new IllegalArgumentException(Error.INPUT_DIRECTION.getMessage());
-        }
-    }
-
-    public void isRetryValid(String decision) {
-        if (!decision.equals(PlayerInput.RESTART) && !decision.equals(PlayerInput.QUIT)) {
-            throw new IllegalArgumentException(Error.INPUT_CONTINUE.getMessage());
         }
     }
 }
