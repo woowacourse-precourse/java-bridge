@@ -1,4 +1,4 @@
-package bridge.ui;
+package bridge.ui.output;
 
 import bridge.domain.Player;
 
@@ -10,19 +10,8 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String CORRECT_CHOICE = "O";
-    private static final String NON_CHOICED = " ";
-    private static final String WRONG_CHOICE = "X";
-    private static final String FRONT_WRAPPER = "[ ";
-    private static final String LAST_WRAPPER = " ]";
-    private static final String DEVIDER = " | ";
     private static final String UP = "U";
     private static final String DOWN = "D";
-    private static final String GAME_NOTIFICATION = "최종 게임 결과";
-    private static final String SUCCESS_NOTIFICATION = "게임 성공 여부: ";
-    private static final String COUNT_NOTIFICATION = "총 시도한 횟수: ";
-    private static final String SUCCESS = "성공";
-    private static final String FAIL = "실패";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -30,11 +19,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Player player) {
-        String upperLine = FRONT_WRAPPER + String.join(DEVIDER, printSingleLine(player,UP )) + LAST_WRAPPER;
-        String lowerLine = FRONT_WRAPPER + String.join(DEVIDER, printSingleLine(player,DOWN)) + LAST_WRAPPER;
+        String upperLine = completeOutput(String.join(Components.SEPERATOR.getValue(), printSingleLine(player, UP )));
+        String lowerLine = completeOutput(String.join(Components.SEPERATOR.getValue(), printSingleLine(player,DOWN)));
         System.out.println(upperLine);
         System.out.println(lowerLine);
         System.out.println();
+    }
+
+    private String completeOutput(String inner) {
+        return Components.FRONT_WRAPPER + inner + Components.LAST_WRAPPER;
     }
 
     private List<String> printSingleLine(Player player, String line) {
@@ -50,15 +43,15 @@ public class OutputView {
 
     private String compareHistory(String history, String line) {
         if (history.equals(line)) {
-            return CORRECT_CHOICE;
+            return Components.CORRECT_CHOICE.getValue();
         }
 
-        return NON_CHOICED;
+        return Components.NON_CHOICED.getValue();
     }
 
     private String addLastMoving(boolean correction, String history, String line) {
         if (!history.equals(line)) {
-            return NON_CHOICED;
+            return Components.NON_CHOICED.getValue();
         }
 
         return distinguishLastAnswer(correction);
@@ -66,10 +59,10 @@ public class OutputView {
 
     private String distinguishLastAnswer(boolean correction) {
         if (correction) {
-            return CORRECT_CHOICE;
+            return Components.CORRECT_CHOICE.getValue();
         }
 
-        return WRONG_CHOICE;
+        return Components.WRONG_CHOICE.getValue();
     }
 
     /**
@@ -78,17 +71,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Player player, long gameCount) {
-        System.out.println(GAME_NOTIFICATION);
+        System.out.println(Components.GAME_NOTIFICATION);
         printMap(player);
-        System.out.println(SUCCESS_NOTIFICATION + successOrFail(player.getResult()));
-        System.out.println(COUNT_NOTIFICATION + gameCount);
+        System.out.println(Components.SUCCESS_NOTIFICATION + successOrFail(player.getResult()));
+        System.out.println(Components.COUNT_NOTIFICATION.getValue() + gameCount);
     }
 
     private String successOrFail(boolean gameResult) {
         if (gameResult) {
-            return SUCCESS;
+            return Components.SUCCESS.getValue();
         }
 
-        return FAIL;
+        return Components.FAIL.getValue();
     }
 }
