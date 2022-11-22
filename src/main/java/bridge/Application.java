@@ -20,7 +20,7 @@ public class Application {
         }
     }
 
-    private static void printResult(int counter){
+    private static void printResult(int counter) {
         outputView.printResult(bridgeGame.getString(), bridgeGame.gameResult());
         outputView.printChance(counter);
     }
