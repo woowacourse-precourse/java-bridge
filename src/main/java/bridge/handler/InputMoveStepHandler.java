@@ -5,10 +5,6 @@ import bridge.view.PrintView;
 public class InputMoveStepHandler {
     private String moveStep;
 
-    public InputMoveStepHandler(String moveStep) {
-        this.moveStep = moveStep;
-    }
-
     public String checkValidator(String moveStep) {
         checkNonInput(moveStep);
         checkIsUpDown(moveStep);

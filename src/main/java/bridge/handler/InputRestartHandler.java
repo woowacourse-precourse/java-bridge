@@ -6,10 +6,6 @@ public class InputRestartHandler {
 
     private String restart;
 
-    public InputRestartHandler(String restart) {
-        this.restart = restart;
-    }
-
     public String checkValidator(String restart) {
         checkNonInput(restart);
         checkIsUpDown(restart);

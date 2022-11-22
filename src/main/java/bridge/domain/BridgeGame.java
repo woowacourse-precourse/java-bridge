@@ -12,10 +12,10 @@ public class BridgeGame {
     public static int retryCount = 0;
     public List<String> upSide = new ArrayList<>();
     public List<String> downSide = new ArrayList<>();
-    private String restart;
+
     PrintView printView = new PrintView();
     BridgeMoveStepService bridgeMoveStepService = new BridgeMoveStepService();
-    InputRestartHandler inputRestartHandler = new InputRestartHandler(restart);
+    InputRestartHandler inputRestartHandler = new InputRestartHandler();
 
     public void move(String moveStep, String bridgeIndexData, int index) {
 

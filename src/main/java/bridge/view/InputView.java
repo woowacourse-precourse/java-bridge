@@ -4,8 +4,7 @@ import bridge.handler.InputBridgeLengthHandler;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private String bridgeLength;
-    InputBridgeLengthHandler inputBridgeLengthHandler = new InputBridgeLengthHandler(bridgeLength);
+    InputBridgeLengthHandler inputBridgeLengthHandler = new InputBridgeLengthHandler();
 
     public String readBridgeSize() {
         PrintView printView = new PrintView();

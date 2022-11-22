@@ -11,7 +11,7 @@ public class OutputView {
     BridgeGame bridgeGame = new BridgeGame();
     InputView inputView = new InputView();
     private String moveStep;
-    InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler(moveStep);
+    InputMoveStepHandler inputMoveStepHandler = new InputMoveStepHandler();
 
     public void printMap(List<String> bridgeData) {
         do {
