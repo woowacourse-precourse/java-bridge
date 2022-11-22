@@ -16,7 +16,7 @@ public class OutputView {
     public void printMap(List<String> upSide, List<String> downSide, Map map) {
         System.out.println(map.format(upSide));
         System.out.println(map.format(downSide));
-        System.out.println();
+        formatRow();
     }
 
     public void printStartOfGame() {
@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public void printBridgeSizeInput() {
-        System.out.println();
+        formatRow();
         System.out.println(ENTER_LENGTH_OF_BRIDGE.getMessage());
     }
 
@@ -44,5 +44,9 @@ public class OutputView {
     public void printFinalMessage(String success, int attempts) {
         System.out.println(SUCCESS_OR_FAILURE.getMessage() + success);
         System.out.println(TOTAL_ATTEMPTS.getMessage() + attempts);
+    }
+
+    public static void formatRow() {
+        System.out.println();
     }
 }
