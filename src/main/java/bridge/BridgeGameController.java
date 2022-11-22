@@ -6,7 +6,7 @@ public class BridgeGameController {
     private GameHelper gameHelper;
 
     public void run() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        OutputView.printStartMessage();
         System.out.println();
         setGame();
         processGame();
@@ -34,6 +34,7 @@ public class BridgeGameController {
         while (gameHelper.selectRightBlock() && !gameHelper.reachEnd()) {
             move();
             OutputView.printMap(gameHelper.getBridge(), gameHelper.getResultBridge());
+            System.out.println();
         }
         if (!gameHelper.reachEnd())
             retry();
