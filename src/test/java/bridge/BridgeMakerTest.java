@@ -19,11 +19,10 @@ class BridgeMakerTest {
     @DisplayName("입력한 길이와 다리 길이가 일치한다")
     @ValueSource(ints = 10)
     @ParameterizedTest
-    void When_MakeBridge_Expect_BridgeSizeIsEqualToInput(int anyValue) {
+    public void When_MakeBridge_Expect_BridgeSizeIsEqualToInput(int anyValue) {
         List<String> bridge = bridgeMaker.makeBridge(anyValue);
         assertThat(bridge.size()).isEqualTo(anyValue);
     }
-
 
     @DisplayName("numberGenerator를 통해 들어온 값이")
     @Nested
@@ -31,7 +30,7 @@ class BridgeMakerTest {
 
         @DisplayName("1이면 " + MOVE_TO_UPPER_BLOCK + "를 반환한다.")
         @Test
-        void When_InputOne_Expect_U() {
+        public void When_InputOne_Expect_U() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 1);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_UPPER_BLOCK);
             assertThat(result).isTrue();
@@ -39,7 +38,7 @@ class BridgeMakerTest {
 
         @DisplayName("0이면 " + MOVE_TO_LOWER_BLOCK + "를 반환한다.")
         @Test
-        void When_InputZero_Expect_D() {
+        public void When_InputZero_Expect_D() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_LOWER_BLOCK);
             assertThat(result).isTrue();
@@ -47,7 +46,7 @@ class BridgeMakerTest {
 
         @DisplayName("그외의 값이면 예외를 반환한다.")
         @Test
-        void When_InputWrongValue_Expect_Exception() {
+        public void When_InputWrongValue_Expect_Exception() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 2);
             assertThatThrownBy(() -> bridgeMaker.makeBridge(10))
                     .isInstanceOf(IllegalArgumentException.class);

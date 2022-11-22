@@ -13,25 +13,25 @@ class BridgeGameRepositoryTest {
     private BridgeGameRepository bridgeGameRepository;
 
     @BeforeEach
-    void init() {
+    private void init() {
         bridgeGameRepository = new BridgeGameRepository();
     }
 
     @DisplayName("round의 기본값은 1이다.")
     @Test
-    void When_AfterSetBridgeGameInfo_Expect_RoundIsOne() {
+    public void When_AfterSetBridgeGameInfo_Expect_RoundIsOne() {
         assertThat(bridgeGameRepository.getRound()).isEqualTo(1);
     }
 
     @DisplayName("tryCount의 기본값은 1이다.")
     @Test
-    void When_AfterSetBridgeGameInfo_Expect_TryCountIsOne() {
+    public void When_AfterSetBridgeGameInfo_Expect_TryCountIsOne() {
         assertThat(bridgeGameRepository.getTryCount()).isEqualTo(1);
     }
 
     @DisplayName("다음 라운드로 넘어갈시 round 값이 1 증가한다.")
     @Test
-    void When_AfterGoToNextRound_Expect_RoundPlusOne() {
+    public void When_AfterGoToNextRound_Expect_RoundPlusOne() {
         bridgeGameRepository.addOneToRound();
         assertThat(bridgeGameRepository.getRound()).isEqualTo(2);
     }
@@ -41,19 +41,19 @@ class BridgeGameRepositoryTest {
     class Retry {
 
         @BeforeEach
-        void retry() {
+        private void retry() {
             bridgeGameRepository.retry();
         }
 
         @DisplayName("tryCount 값이 1 증가한다.")
         @Test
-        void When_AfterRetry_Expect_TryCountPlusOne() {
+        public void When_AfterRetry_Expect_TryCountPlusOne() {
             assertThat(bridgeGameRepository.getTryCount()).isEqualTo(2);
         }
 
         @DisplayName("round는 기본값으로 변경된다.")
         @Test
-        void When_AfterRetry_Expect_RoundIsOne() {
+        public void When_AfterRetry_Expect_RoundIsOne() {
             assertThat(bridgeGameRepository.getRound()).isEqualTo(1);
         }
     }

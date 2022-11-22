@@ -20,7 +20,7 @@ class BridgeSizeTest {
         @ValueSource(ints = {MIN_SIZE - 1, MAX_SIZE + 1})
         @ParameterizedTest
 
-        void When_InputWrongRangeValue_Expect_Exception(int wrongValue) {
+        public void When_InputWrongRangeValue_Expect_Exception(int wrongValue) {
             assertThatThrownBy(() -> new BridgeSize(wrongValue))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -28,7 +28,7 @@ class BridgeSizeTest {
         @DisplayName(MIN_SIZE + " 이상," + MAX_SIZE + " 이하일시 BirdgeSize를 정상적으로 생성한다")
         @ValueSource(ints = {MIN_SIZE, MAX_SIZE})
         @ParameterizedTest
-        void When_InputRightRangeValue_Expect_CreateInstance(int rightValue) {
+        public void When_InputRightRangeValue_Expect_CreateInstance(int rightValue) {
             assertThatNoException().isThrownBy(() -> new BridgeSize(rightValue));
         }
     }

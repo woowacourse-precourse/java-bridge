@@ -21,13 +21,13 @@ class RetryCommandTest {
         @DisplayName("올바른 값이라면 정상적으로 retryCommand를 생성한다")
         @ValueSource(strings = {RETRY, QUIT})
         @ParameterizedTest
-        void When_InputRightValue_Expect_CreateInstance(String rightValue) {
+        public void When_InputRightValue_Expect_CreateInstance(String rightValue) {
             assertThatNoException().isThrownBy(() -> new RetryCommand(rightValue));
         }
 
         @DisplayName("올바른 값이 아니라면 예외를 반환한다.")
         @Test
-        void When_InputWrongValue_Expect_Exception() {
+        public void When_InputWrongValue_Expect_Exception() {
             assertThatThrownBy(() -> new RetryCommand("wrongValue"))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -39,13 +39,13 @@ class RetryCommandTest {
 
         @DisplayName(RETRY + "일시 true를 반환한다.")
         @Test
-        void When_MessageIsRetry_Expect_True() {
+        public void When_MessageIsRetry_Expect_True() {
             assertThat(new RetryCommand(RETRY).isRetry()).isTrue();
         }
 
         @DisplayName(RETRY + "가 아닐시 false를 반환한다.")
         @Test
-        void When_MessageIsNotRetry_Expect_False() {
+        public void When_MessageIsNotRetry_Expect_False() {
             assertThat(new RetryCommand(QUIT).isRetry()).isFalse();
         }
     }

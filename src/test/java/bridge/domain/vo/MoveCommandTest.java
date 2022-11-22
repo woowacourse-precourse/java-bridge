@@ -19,7 +19,7 @@ class MoveCommandTest {
 
         @DisplayName("올바른 값이 아니라면 예외를 반환한다.")
         @Test
-        void When_InputWrongValue_Expect_Exception() {
+        public void When_InputWrongValue_Expect_Exception() {
             assertThatThrownBy(() -> new MoveCommand("wrongValue"))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -27,7 +27,7 @@ class MoveCommandTest {
         @DisplayName("올바른 값일시 MoveCommand를 정상적으로 생성한다")
         @ValueSource(strings = {MOVE_TO_UPPER_BLOCK, MOVE_TO_LOWER_BLOCK})
         @ParameterizedTest
-        void When_InputRightValue_Expect_CreateInstance(String rightValue) {
+        public void When_InputRightValue_Expect_CreateInstance(String rightValue) {
             assertThatNoException().isThrownBy(() -> new MoveCommand(rightValue));
         }
     }
