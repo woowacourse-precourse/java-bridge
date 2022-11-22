@@ -1,6 +1,8 @@
-package bridge;
+package bridge.view;
 
-import java.util.*;
+import bridge.BridgeGame;
+import bridge.model.LowerBridge;
+import bridge.model.UpperBridge;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -29,6 +31,6 @@ public class OutputView {
         printMap(upperBridge, lowerBridge);
         System.out.println();
         System.out.printf("게임 성공 여부: %s\n",successOrFail);
-        System.out.printf("총 시도한 횟수: %s\n",BridgeGame.allTryCount);
+        System.out.printf("총 시도한 횟수: %s\n", BridgeGame.allTryCount);
     }
 }

@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.controller.InputUpOrDown;
+
 import java.util.ArrayList;
 import java.util.List;
 

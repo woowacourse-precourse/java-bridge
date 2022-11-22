@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.model.LowerBridge;
+import bridge.model.UpperBridge;
+import bridge.view.OutputView;
+
 public class BridgeGameManager {
 
 

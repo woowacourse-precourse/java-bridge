@@ -1,4 +1,9 @@
-package bridge;
+package bridge.controller;
+
+import bridge.*;
+import bridge.model.LowerBridge;
+import bridge.model.UpperBridge;
+import bridge.view.InputView;
 
 public enum InputRetryOrNot {
     R,
