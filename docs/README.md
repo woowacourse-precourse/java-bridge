@@ -1,5 +1,34 @@
 # 미션 - 다리 건너기 기능 리스트
 
+## TOC
+
+<!-- TOC -->
+
+* [미션 - 다리 건너기 기능 리스트](#미션---다리-건너기-기능-리스트)
+    * [TOC](#toc)
+    * [1. 기능 요구 사항 💻](#1-기능-요구-사항-💻)
+    * [2. 기능 리스트 만들기전 숙지 사항 💻](#2-기능-리스트-만들기전-숙지-사항-💻)
+        * [설계전 숙지사항](#설계전-숙지사항)
+        * [컨벤션 숙지사항](#컨벤션-숙지사항)
+        * [테스트 숙지사항](#테스트-숙지사항)
+    * [3. 기능 리스트를 만들기전, 메시지를 찾아보자.](#3-기능-리스트를-만들기전-메시지를-찾아보자)
+        * [참여자 목록](#참여자-목록)
+        * [메시지 리스트](#메시지-리스트)
+            * [인사 구간](#인사-구간)
+            * [시작 구간](#시작-구간)
+            * [게임의 현재 진행상황을 물어보는 구간](#게임의-현재-진행상황을-물어보는-구간))
+            * [다리를 건너는 구간 (게임이 종료될 때까지 반복)](#다리를-건너는-구간-게임이-종료될-때까지-반복)
+            * [재시작 여부를 물어보는 구간 (건너기 실패의 경우)](#재시작-여부를-물어보는-구간-건너기-실패의-경우)
+            * [결과를 보여주는 구간(게임이 종료됐을 경우)](#결과를-보여주는-구간게임이-종료됐을-경우)
+    * [4. 기능 리스트](#4-기능-리스트)
+        * [Domain](#domain)
+        * [Controller](#controller)
+        * [View](#view)
+        * [Model](#model)
+    * [5. 구현 클래스 다이어그램](#5-구현-클래스-다이어그램)
+
+<!-- TOC -->
+
 ## 1. 기능 요구 사항 💻
 
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
@@ -43,7 +72,7 @@
 - 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
 - else, switch/case를 사용하지 않는다.
 - 3항 연산자를 쓰지 않는다.
-- indent는 2까지만 허용한다.
+- indent 는 2까지만 허용한다.
 
 ### 테스트 숙지사항
 
@@ -112,22 +141,35 @@
 > 설계를 간단히 끝내고 최대한 빨리 구현에 돌입하라. 머릿 속에 객체의 협력 구조가 번뜩인다면 그대로 코드를 구현하기 시작하라.
 > 설계가 제대로 그려지지 않는다면 고민하지 말고 실제로 코드를 작성해가면서 협력의 전체적인 밑그림을 그려보라.
 
-### Host
+### Domain
+
+- BridgeManager
+    - [ ✔ ] 다리를 준비한다. `BridgeManager#setBridgeWithSize`
+    - [ ✔ ] 사용자가 가고 싶은 곳이 지나갈 수 있는지 판별한다. `BridgeManager#isMovable`
+
+- BridgeMaker
+    - [ ✔ ] 다리를 생성한다. `BridgeMaker#makeBridge`
+
+- BridgeRandomNumberGenerator
+    - [ ✔ ] 난수를 생성한다. `BridgeRandomNumberGenerator#generate`
 
 - BridgeGame
     - [ ✔ ] 게임을 시작한다. `BridgeGame#run`
     - [ ✔ ] 다리를 건넌다. `BridgeGame#move`
     - [ ✔ ] 다리를 건너다 실패하면 게임을 재시작할 수 있다. `BridgeGame#retry`
+    - [ ✔ ] 인사 기능을 수행한다 `BridgeGame#start`
+    - [ ✔ ] 게임이 종료되면 결과를 출력한다. `BridgeGame#close`
 
 ### Controller
 
 - BridgeController
-    - [ ✔ ] 인사 기능을 수행한다. `BridgeController#playGreeting`
+    - [ ✔ ] 인사말을 출력하도록 제어한다. `BridgeController#playGreeting`
     - [ ✔ ] 게임 시작 준비를 한다. `BridgeController#setupGame`
-    - [ ✔ ] 게임 진행 여부를 파악한다. `BridgeController#getNowGameCodition`
+    - [ ✔ ] 게임 진행 여부를 파악한다. `BridgeController#getNowGameProgress`
     - [ ✔ ] 다리 건너기를 수행한다. `BridgeController#moveOneStep`
     - [ ✔ ] 재시작 여부를 파악한다. `BridgeController#figureOutToRestartGame`
     - [ ✔ ] 사용자에게 결과를 보여준다. `BridgeController#showResult`
+    - [ ✔ ] 게임을 재시작한다. `BridgeController#restartGame`
 
 ### View
 
@@ -143,24 +185,19 @@
 
 ### Model
 
-- BridgeManager
-    - [ ✔ ] 다리를 준비한다. `BridgeManager#setBridgeWithSize`
-    - [ ✔ ] 사용자가 가고 싶은 곳이 지나갈 수 있는지 판별한다. `BridgeManager#isMovable`
-
 - BridgeHistory
     - [ ✔ ] 현재 게임의 진행상태를 알려준다. `BridgeHistory#getProgress`
     - [ ✔ ] 현재 게임의 상태를 갱신한다. `BridgeHistory#updateGameState`
+    - [ ✔ ] 현재 게임의 상태를 초기화한다. `BridgeHistory#resetHistory`
+    - [ ✔ ] 현재 게임의 스테이지를 알려준다. `BridgeHistory#getNowStage`
+    - [ ✔ ] 게임의 재시작 횟수를 알려준다. `BridgeHistory#getRetry`
+    - [ ✔ ] 게임의 기록을 알려준다. `BridgeHistory#getHistory`
 
-### Library
+## 5. 구현 클래스 다이어그램
 
-- BridgeMaker
-    - [ ✔ ] 다리를 생성한다. `BridgeMaker#makeBridge`
-
-- BridgeRandomNumberGenerator
-    - [ ✔ ] 난수를 생성한다. `BridgeRandomNumberGenerator#generate`
-
-
-
+<p align ="center">
+  <img src="./resource/bridge_classdiagram.PNG"/>
+</p>
 
 
 
