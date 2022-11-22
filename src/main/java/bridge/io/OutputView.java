@@ -1,14 +1,13 @@
 package bridge.io;
 
 import bridge.domain.BridgeGame;
+import bridge.enums.Constant;
 import bridge.enums.Message;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String SUCCESS = "성공";
-    private static final String FAIL = "실패";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -43,9 +42,9 @@ public class OutputView {
 
     private static String getGameStatus(BridgeGame bridgeGame) {
         if (bridgeGame.isGameWin()) {
-            return SUCCESS;
+            return Constant.SUCCESS.getValue();
         }
-        return FAIL;
+        return Constant.FAIL.getValue();
     }
 
     public static void printMessage(Message message){

@@ -2,6 +2,8 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Util;
+import bridge.enums.Constant;
 import bridge.enums.Message;
 import bridge.enums.UpDown;
 import bridge.io.InputNumValidator;
@@ -51,12 +53,9 @@ public class BridgeController {
 		return moveCommandValidator.getInputValue();
 	}
 
-
 	private boolean isRestartInput() {
-		final List<String> RESTART_ALPHABETS = List.of("R", "Q");
 		InputStringValidator restartInputValidator = new InputStringValidator(InputView.readGameCommand());
-		restartInputValidator.isValidateAlphabet(RESTART_ALPHABETS);
-		return restartInputValidator.getInputValue().equals("R");
+		restartInputValidator.isValidateAlphabet(List.of(Constant.RESTART_YES.getValue(), Constant.RESTART_NO.getValue()));
+		return Util.isSameString(Constant.SUCCESS.getValue(), restartInputValidator.getInputValue());
 	}
-
 }
