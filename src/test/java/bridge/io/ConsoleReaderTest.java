@@ -14,7 +14,7 @@ class ConsoleReaderTest extends NsTest {
     void transferIllegalExceptionTest() {
         assertSimpleTest(() -> assertThatThrownBy(() -> run("asd"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자 형태로 입력해주세요."));
+                .hasMessage("숫자 형태로 변환할 수 없는 입력입니다."));
     }
 
     @Override

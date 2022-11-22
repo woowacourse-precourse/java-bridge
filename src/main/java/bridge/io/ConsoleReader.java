@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class ConsoleReader {
 
-    private static final String ERROR_NUMBER_FORMAT = "숫자 형태로 입력해주세요.";
+    private static final String ERROR_NUMBER_FORMAT = "숫자 형태로 변환할 수 없는 입력입니다.";
 
     public static int readInt() {
         try {
