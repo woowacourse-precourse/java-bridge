@@ -27,8 +27,8 @@ public class BridgeMaker {
 
     private String getUD() {
         if (bridgeNumberGenerator.generate() == 1) {
-            return "U";
+            return Symbols.UPPER.getSymbol();
         }
-        return "D";
+        return Symbols.DOWN.getSymbol();
     }
 }
