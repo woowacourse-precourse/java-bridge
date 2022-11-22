@@ -7,12 +7,8 @@ import java.util.List;
 
 import static bridge.util.constants.MovableSpace.UPPER_SPACE;
 import static bridge.util.constants.MovableSpace.LOWER_SPACE;
-import static bridge.util.constants.BridgeConstant.MIN_BRIDGE_SIZE;
-import static bridge.util.constants.BridgeConstant.MAX_BRIDGE_SIZE;
 import static bridge.util.constants.BridgeConstant.UPPER_BRIDGE_NUMBER;
-import static bridge.util.constants.BridgeConstant.LOWER_BRIDGE_NUMBER;
-import static bridge.util.constants.ErrorMessage.BRIDGE_LENGTH_ERROR;
-import static bridge.util.constants.ErrorMessage.BRIDGE_NUMBER_ERROR;
+
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
