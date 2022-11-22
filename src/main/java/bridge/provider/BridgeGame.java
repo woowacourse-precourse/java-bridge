@@ -10,64 +10,82 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final List<String> direction = new ArrayList<>();
-    private int position;
+
+    private int tryCount = 1;
+
 
     public BridgeGame(final String size) {
         bridge = new Bridge(size);
-        this.position = 0; //상수처리
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move(final String playerInput) { //플레이어의 입력 문자
-        checkValidMoving(playerInput);
-        direction.add(playerInput);
+    public void move(final String InputDirection) { //플레이어의 입력 문자
+        checkValidMoving(InputDirection);
+        direction.add(InputDirection);
     }
 
-    public int getPosition() {
-        return position;
+    public List<String> getDirection() {
+        return direction;
+    }
+
+    public int getBridgePosition() {
+        return bridge.getSize();
     }
 
     private int getBridgeEndPosition() {
         return bridge.getSize() - 1;
     }
 
-    private void isCompareTo() {
-
+    private boolean isEqualsEndPosition() {
+        return isEqualsTo(direction.size() - 1);
     }
 
-    private boolean isEqualsTo(int index) {
+    public boolean isEqualsTo(int index) {
         return direction.get(index).equals(bridge.getBridge(index));
     }
 
-    private void validateBridge(List<String> bridge, final List<String> playerInputDirection) {
 
-
+    public boolean isStillMoving() {
+        if (direction.isEmpty()) {
+            return true;
+        }
+        return isEqualsEndPosition() && bridge.getSize() != direction.size();
     }
 
+    public boolean isGameWinning() {
+        return isEqualsEndPosition() && bridge.getSize() == direction.size();
+    }
 
-    //유효한 입력인지 검증
-    private void checkValidMoving(final String input) {
-        if (input != "U" || input != "D") {
+    public String finalResult() {
+        if (isGameWinning()) {
+            return "성공";
+        }
+        return "실패";
+    }
+
+    private void checkValidMoving(final String InputDirection) {
+        if (InputDirection != "U" || InputDirection != "D") {
             throw new IllegalArgumentException("[ERROR]");
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
-
+    public void retry(final String InputCommand) {
+        checkValidCommand(InputCommand);
+        if (InputCommand.equals("재시도")) {
+            direction.clear();
+        }
     }
 
-    private void checkValidCommand(final String input) {
-        if (input != "R" || input != "Q") {
+    private void checkValidCommand(final String InputCommand) {
+        if (InputCommand != "R" || InputCommand != "Q") {
             throw new IllegalArgumentException("[ERROR]");
         }
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public void addTryCount() {
+        tryCount += 1;
     }
 }
