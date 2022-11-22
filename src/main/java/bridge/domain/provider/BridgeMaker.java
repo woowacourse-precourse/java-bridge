@@ -13,45 +13,19 @@ public class BridgeMaker {
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
-
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     * <p>
-     * 다리 만들기, 다리 길이 체크, 건너는 방향 리스트에 저장
-     * </p>
-     */
     public List<String> makeBridge(int size) {
-        checkSizeOfInteger(size);
-        List<String> moveCase = new ArrayList<>();
+        List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            moveCase.add(addMoving());
+            String direction = addMoving(bridgeNumberGenerator.generate());
+            bridge.add(direction);
         }
-        return moveCase;
+        return bridge;
     }
 
-    private void checkSizeOfInteger(int size) {
-        try {
-            checkRangeOfSize(size);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkRangeOfSize(int size) {
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private String addMoving() {
-        if (bridgeNumberGenerate() == 0) {
+    public String addMoving(int bridgeNumber) {
+        if (bridgeNumber == 0) {
             return "D";
         }
         return "U";
-    }
-
-    private int bridgeNumberGenerate() {
-        return bridgeNumberGenerator.generate();
     }
 }
