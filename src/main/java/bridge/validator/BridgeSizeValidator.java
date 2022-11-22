@@ -11,19 +11,19 @@ public class BridgeSizeValidator {
         return input;
     }
 
-    private void bridgeSizeValidation(String value) {
-        if (checkBridgeSize(convertInputToNumber(value))) {
-            return;
-        }
-        throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR);
-    }
-
     private int convertInputToNumber(String value) {
         try {
             return InputConvertor.inputParseNumber(value);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NO_NUMBER_ERROR);
         }
+    }
+
+    private void bridgeSizeValidation(String value) {
+        if (checkBridgeSize(convertInputToNumber(value))) {
+            return;
+        }
+        throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR);
     }
 
     private boolean checkBridgeSize(int size) {

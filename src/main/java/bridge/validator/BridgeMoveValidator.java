@@ -19,7 +19,6 @@ public class BridgeMoveValidator {
         throw new IllegalArgumentException(ErrorMessage.INPUT_MOVE_ERROR);
     }
 
-
     private boolean checkMoveInputData(String data) {
         return movePossibilityValue.contains(data);
     }
