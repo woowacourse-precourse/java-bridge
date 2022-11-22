@@ -1,16 +1,21 @@
 package bridge.model;
 
 import bridge.BridgeMaker;
+
 import bridge.model.ScreenGenerator.ScreenGenerator;
+
 import java.util.List;
 
 public class BridgeAnswer {
 
     private final List<String> answer;
+
     private static Integer currentSpot = 0;
+
     private static final int REACHED_END = 1;
     private static final int COMPARE_SAME = 2;
     private static final int COMPARE_DIFFERENT = 3;
+    private static final int ZERO = 0;
 
     private BridgeAnswer(final List<String> answerBridge) {
         this.answer = answerBridge;
@@ -36,6 +41,6 @@ public class BridgeAnswer {
     }
 
     public void resetCurrentSpot() {
-        currentSpot = 0;
+        currentSpot = ZERO;
     }
 }

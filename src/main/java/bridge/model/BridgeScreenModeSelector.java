@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.model.ScreenGenerator.CorrectCaseGenerator;
 import bridge.model.ScreenGenerator.ScreenGenerator;
 import bridge.model.ScreenGenerator.WrongCaseGenerator;
+
 import java.util.List;
 
 public class BridgeScreenModeSelector {

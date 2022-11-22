@@ -1,9 +1,13 @@
 package bridge.model;
 
 import bridge.Application;
+
 import bridge.model.ScreenGenerator.BridgeEachRowGenerator;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

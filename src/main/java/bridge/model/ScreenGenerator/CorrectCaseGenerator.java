@@ -1,6 +1,9 @@
 package bridge.model.ScreenGenerator;
 
+import bridge.view.Sentence;
+
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 public class CorrectCaseGenerator implements ScreenGenerator {
@@ -24,8 +27,11 @@ public class CorrectCaseGenerator implements ScreenGenerator {
 
     @Override
     public String toString() {
-        return firstRowAnswer.stream().collect(Collectors.joining("|", "[", "]"))
-                + "\n"+ secondRowAnswer.stream().collect(Collectors.joining("|", "[", "]"));
+        return firstRowAnswer.stream().collect(
+                Collectors.joining(Sentence.DELIMETER.getValue(), Sentence.START_BRIDGE.getValue(),
+                Sentence.END_BRIDGE.getValue())) + "\n" + secondRowAnswer.stream().collect(
+                Collectors.joining(Sentence.DELIMETER.getValue(), Sentence.START_BRIDGE.getValue(),
+                Sentence.END_BRIDGE.getValue()));
     }
 }
 

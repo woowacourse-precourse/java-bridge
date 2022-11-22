@@ -1,10 +1,10 @@
 package bridge;
 
-import bridge.controller.BridgeControl;
+import bridge.controller.BridgeController;
 
 public class Application {
 
     public static void main(String[] args) {
-        new BridgeControl().execute();
+        new BridgeController().execute();
     }
 }

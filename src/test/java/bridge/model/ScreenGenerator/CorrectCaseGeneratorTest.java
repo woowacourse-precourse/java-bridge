@@ -3,13 +3,15 @@ package bridge.model.ScreenGenerator;
 import bridge.Application;
 
 import java.util.List;
+
 import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 
-class CorrectCaseGeneratorTest extends NsTest{
+class CorrectCaseGeneratorTest extends NsTest {
 
     @DisplayName("정답을 맞추었을 경우 생성되는 다리가 올바른가? ")
     @Test
@@ -18,8 +20,7 @@ class CorrectCaseGeneratorTest extends NsTest{
         ScreenGenerator correctCaseGenerator = new CorrectCaseGenerator();
         correctCaseGenerator.generatedTable(answer, 4);
         Assertions.assertThat(correctCaseGenerator.toString())
-            .isEqualTo("[ O |   | O |   | O ]\n"
-                + "[   | O |   | O |   ]");
+                .isEqualTo("[ O |   | O |   | O ]\n" + "[   | O |   | O |   ]");
     }
 
     @Override

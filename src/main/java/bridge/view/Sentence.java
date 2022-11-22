@@ -1,6 +1,7 @@
 package bridge.view;
 
 public enum Sentence {
+
     BEGIN_GAME("다리 건너기 게임을 시작합니다.\n"),
     INPUT_MONEY("구입금액을 입력해 주세요."),
     YOU_PURCHASED("\n%d개를 구매했습니다."),
@@ -21,6 +22,10 @@ public enum Sentence {
     THREE_SIZE_O(" O "),
     THREE_SIZE_BLANK("   "),
     THREE_SIZE_X(" X "),
+
+    DELIMETER("|"),
+    START_BRIDGE("["),
+    END_BRIDGE("]"),
 
     LENGTH_NOT_IN_RANGE("Input is not in range"),
     INPUT_NOT_U_OR_D("Input is not U or D"),

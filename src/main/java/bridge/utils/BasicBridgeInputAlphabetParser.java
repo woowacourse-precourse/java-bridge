@@ -4,6 +4,10 @@ import bridge.model.BridgeGame;
 
 public class BasicBridgeInputAlphabetParser {
 
+    private static final Character UPPER_A = 'A';
+    private static final Character UPPER_Z = 'Z';
+
+
     public static BridgeGame parseBridgeGameInput(final String input, int mode) {
         return parseWithCheckingEmpty(input, mode);
     }
@@ -14,7 +18,7 @@ public class BasicBridgeInputAlphabetParser {
     }
 
     private static BridgeGame parse(final String input, int mode) {
-        if (input.length() != 1 || !(input.charAt(0) >= 'A' && input.charAt(0) <= 'Z')) {
+        if (input.length() != 1 || !(input.charAt(0) >= UPPER_A && input.charAt(0) <= UPPER_Z)) {
             throw new IllegalArgumentException("input Alphabet is not Valid");
         }
         return BridgeGame.from(input, mode);

@@ -1,17 +1,22 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
+
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeAnswer;
+
 import bridge.model.BridgeGame;
+import bridge.model.BridgeAnswer;
 import bridge.model.BridgeLength;
-import bridge.utils.BasicBridgeInputAlphabetParser;
-import bridge.utils.BasicBridgeInputNumericParser;
+
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.Sentence;
 
-public class BridgeControl {
+import bridge.utils.BasicBridgeInputAlphabetParser;
+import bridge.utils.BasicBridgeInputNumericParser;
+
+
+public class BridgeController {
 
     private static InputView inputView;
     private static OutputView outputView;
@@ -25,7 +30,7 @@ public class BridgeControl {
     private static final int COMPARE_SAME = 2;
     private static final int COMPARE_DIFFERENT = 3;
 
-    public BridgeControl() {
+    public BridgeController() {
         inputView = new InputView();
         outputView = new OutputView();
     }
@@ -41,7 +46,7 @@ public class BridgeControl {
             return BasicBridgeInputNumericParser.parseBridgeLengthAmount(inputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return BridgeControl.generateLength();
+            return BridgeController.generateLength();
         }
     }
 
@@ -64,7 +69,7 @@ public class BridgeControl {
 
     private void reachAnswerCase(BridgeAnswer bridgeAnswer, int compareResult) {
         if (compareResult == REACHED_END) {
-            latestOutput = extracted(bridgeAnswer, REACHED_END);
+            latestOutput = getRecentResult(bridgeAnswer, REACHED_END);
             getFinalResult(Sentence.SUCCESS.getValue());
         }
     }
@@ -84,11 +89,11 @@ public class BridgeControl {
     }
 
     private void renewLatestOutput(BridgeAnswer bridgeAnswer, int compareSame) {
-        latestOutput = extracted(bridgeAnswer, compareSame);
+        latestOutput = getRecentResult(bridgeAnswer, compareSame);
         outputView.printMap(latestOutput);
     }
 
-    private String extracted(BridgeAnswer bridgeAnswer, int message) {
+    private String getRecentResult(BridgeAnswer bridgeAnswer, int message) {
         return bridgeAnswer.printCurrentBridgeStatus(message).toString();
     }
 
@@ -116,7 +121,7 @@ public class BridgeControl {
             return BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readMoving(), mode);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return BridgeControl.generateGameActionUpDown(mode);
+            return BridgeController.generateGameActionUpDown(mode);
         }
     }
 
@@ -125,7 +130,7 @@ public class BridgeControl {
             return BasicBridgeInputAlphabetParser.parseBridgeGameInput(inputView.readRetry(), mode);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return BridgeControl.generateGameActionReplay(mode);
+            return BridgeController.generateGameActionReplay(mode);
         }
     }
 

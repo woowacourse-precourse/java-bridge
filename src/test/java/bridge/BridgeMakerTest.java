@@ -1,10 +1,14 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import java.util.List;
+
 import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -34,7 +38,7 @@ class BridgeMakerTest extends NsTest {
     void checkBridgeMakerException2(int inputLength) {
         List<String> answerBridgeMade = bridgeMaker.makeBridge(inputLength);
         Assertions.assertThat(answerBridgeMade.stream().
-            filter(c -> c.equals("U")).filter(c -> c.equals("D")).count()).isEqualTo(0);
+                filter(c -> c.equals("U")).filter(c -> c.equals("D")).count()).isEqualTo(0);
     }
 
     @DisplayName("입력이 유효하지 않다면 적당한 에러 메세지를 던지는가 - 음수, 0 일 때 ")
@@ -42,7 +46,7 @@ class BridgeMakerTest extends NsTest {
     @ParameterizedTest
     void checkBridgeMakerException3(int inputLength) {
         assertThatThrownBy(() -> bridgeMaker.makeBridge(inputLength))
-            .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

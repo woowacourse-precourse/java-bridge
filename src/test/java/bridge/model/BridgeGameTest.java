@@ -1,10 +1,13 @@
 package bridge.model;
 
 import bridge.Application;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
@@ -17,7 +20,7 @@ class BridgeGameTest extends NsTest{
     @ParameterizedTest
     void checkBridgeGameExceptionUD(String input ) {
         assertThatThrownBy(()-> BridgeGame.from(input, UP_DOWN_MODE))
-            .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("U, D, R, Q 에 대한 적절한 예외 처리를 할 수 있는가 - R,Q 케이스")
@@ -25,7 +28,7 @@ class BridgeGameTest extends NsTest{
     @ParameterizedTest
     void checkBridgeGameExceptionRQ(String input ) {
         assertThatThrownBy(()-> BridgeGame.from(input, RETRY_MODE))
-            .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

@@ -1,13 +1,18 @@
 package bridge.model.ScreenGenerator;
 
 import bridge.view.Sentence;
+
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 public class WrongCaseGenerator implements ScreenGenerator {
 
     private List<String> firstRowAnswer;
     private List<String> secondRowAnswer;
+
+    private static final int FIRST_ROW_GEN = 1;
+    private static final int SECOND_ROW_GEN = 0;
 
     @Override
     public void generatedTable(List<String> answer, int current) {
@@ -16,8 +21,8 @@ public class WrongCaseGenerator implements ScreenGenerator {
     }
 
     private void rowAppender(List<String> answer, int current, BridgeEachRowGenerator bridgeEachRowGenerator) {
-        firstRowAnswer = bridgeEachRowGenerator.generateRowInList(1);
-        secondRowAnswer = bridgeEachRowGenerator.generateRowInList(0);
+        firstRowAnswer = bridgeEachRowGenerator.generateRowInList(FIRST_ROW_GEN);
+        secondRowAnswer = bridgeEachRowGenerator.generateRowInList(SECOND_ROW_GEN);
         inputIsU(answer, current);
         inputIsD(answer, current);
     }
@@ -38,7 +43,9 @@ public class WrongCaseGenerator implements ScreenGenerator {
 
     @Override
     public String toString() {
-        return firstRowAnswer.stream().collect(Collectors.joining("|", "[", "]")) +
-                "\n" + secondRowAnswer.stream().collect(Collectors.joining("|", "[", "]"));
+        return firstRowAnswer.stream().collect(Collectors.joining(Sentence.DELIMETER.getValue(),
+                Sentence.START_BRIDGE.getValue(), Sentence.END_BRIDGE.getValue())) +
+                "\n" + secondRowAnswer.stream().collect(Collectors.joining(Sentence.DELIMETER.getValue(),
+                Sentence.START_BRIDGE.getValue(), Sentence.END_BRIDGE.getValue()));
     }
 }
