@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.service.constant.GameStatus;
 import org.junit.jupiter.api.BeforeEach;

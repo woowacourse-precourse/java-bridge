@@ -1,7 +1,5 @@
 package bridge.view.constant;
 
-import bridge.domain.constant.Directions;
-
 public enum InputGuidePhrase {
     BRIDGE_LENGTH("다리의 길이를 입력해주세요."),
     PANEL("이동할 칸을 선택해주세요. (위: " + MoveOptions.UP.get() + ", 아래: " + MoveOptions.DOWN.get() + ")"),

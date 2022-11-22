@@ -1,7 +1,6 @@
 package bridge.view.constant;
 
 import bridge.service.constant.ChoiceResult;
-
 import java.util.Arrays;
 
 public enum ChoiceResultStyle {

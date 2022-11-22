@@ -8,7 +8,6 @@ import bridge.service.constant.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.constant.RetryOptions;
-
 import java.util.function.Supplier;
 
 public class GameController {

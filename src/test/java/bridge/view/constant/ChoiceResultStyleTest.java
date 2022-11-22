@@ -1,10 +1,10 @@
 package bridge.view.constant;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import bridge.service.constant.ChoiceResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ChoiceResultStyleTest {
     @DisplayName("ChoiceResult.CORRECT으로 style을 찾으면 \"O\" 를 반환한다.")

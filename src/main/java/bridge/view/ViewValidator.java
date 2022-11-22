@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.constant.ErrorMessage;
 import bridge.view.constant.ValidationRegex;
-
 import java.util.regex.Pattern;
 
 public class ViewValidator {

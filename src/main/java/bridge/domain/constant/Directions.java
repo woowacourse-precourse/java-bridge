@@ -1,7 +1,6 @@
 package bridge.domain.constant;
 
 import bridge.constant.ErrorMessage;
-
 import java.util.Arrays;
 
 public enum Directions {

@@ -2,7 +2,6 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-
 import java.util.Collections;
 import java.util.List;
 

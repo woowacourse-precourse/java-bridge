@@ -5,7 +5,6 @@ import bridge.domain.Bridge;
 import bridge.domain.User;
 import bridge.service.constant.ChoiceResult;
 import bridge.service.constant.GameStatus;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

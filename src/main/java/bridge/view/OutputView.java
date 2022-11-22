@@ -5,7 +5,6 @@ import bridge.view.constant.BridgeStyle;
 import bridge.view.constant.ChoiceResultStyle;
 import bridge.view.constant.GameResultExpressions;
 import bridge.view.constant.ResultPhrase;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
