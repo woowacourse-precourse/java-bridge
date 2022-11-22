@@ -42,7 +42,7 @@ class BridgeGameInputExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("이동하는 입력값이 잘못되었으면다예외가 발생한.")
+    @DisplayName("이동하는 입력값이 잘못되었으면 예외가 발생한다.")
     @Test
     public void validateWrongMoveInputTest() {
         //given
@@ -53,7 +53,7 @@ class BridgeGameInputExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("게임 재시작 입력값이 잘못되었으면다예외가 발생한.")
+    @DisplayName("게임 재시작 입력값이 잘못되었으면 예외가 발생한다.")
     @Test
     public void validateWrongGameCommandInputTest() {
         //given
