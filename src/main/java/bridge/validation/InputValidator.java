@@ -25,7 +25,7 @@ public class InputValidator {
 
     public void validateMoving(String moving) {
         if((moving.equals(MovingDirection.Lower.getDirection()) ||
-                moving.equals(MovingDirection.Upper.getDirection())==false)) {
+                moving.equals(MovingDirection.Upper.getDirection()))==false) {
 
             throw new IllegalArgumentException(String.format("[ERROR] 위 : %s, 아래: %s 중 입력해야 합니다.",
                   MovingDirection.Lower.getDirection(), MovingDirection.Upper.getDirection()));
