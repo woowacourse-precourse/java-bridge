@@ -31,9 +31,3 @@ public class InputView {
         if(!command.equals(checkKeyWordA) && !command.equals(checkKeyWordB)) throw new IllegalArgumentException("[ERROR] 잘못된 입력을 했습니다.");
     }
 }
-/*
-  사용자로부터 입력을 받는 역할을 한다.
-  readBridgeSize -> 길이를 입력받는다.
-  readMoving -> 이동할 칸
-  readGame -> 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-*/
