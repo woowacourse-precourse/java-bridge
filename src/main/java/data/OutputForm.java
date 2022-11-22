@@ -16,9 +16,11 @@ public enum OutputForm {
     public void printMessage() {
         System.out.println(message);
     }
+
     public void finishMessage(String success) {
         System.out.println(message + success);
     }
+
     public void cntMessage(int cnt) {
         System.out.println(message + cnt);
     }

@@ -47,6 +47,7 @@ public class BridgeGame {
             bridgeD.add("O ");
         }
     }
+
     public void clearBridge() {
         bridgeU.clear();
         bridgeD.clear();
@@ -63,6 +64,7 @@ public class BridgeGame {
         }
         return true;
     }
+
     public boolean restartOrQuit(String input) {
 
         if (input.contains("R")) {
