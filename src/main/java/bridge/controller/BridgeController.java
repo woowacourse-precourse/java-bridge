@@ -37,7 +37,8 @@ public class BridgeController {
             bridgeGame.retry();
             this.newRound();
         } while (this.continueGame());
-        outputView.printResult(this.currentBridge(), bridgeGame.getGameResult(), bridgeGame.getGameCount());
+        outputView.printResult(
+                this.currentBridge(), bridgeGame.getGameResult(), bridgeGame.getGameCount());
     }
 
     public void newRound() {
@@ -49,7 +50,8 @@ public class BridgeController {
 
 
     public boolean continueRound() {
-        return bridgeGame.getGameResult() && (bridgeGame.getCurrentPosition() < bridgeGame.getBridge().size());
+        return bridgeGame.getGameResult()
+                && (bridgeGame.getCurrentPosition() < bridgeGame.getBridge().size());
     }
 
     public boolean continueGame() {
