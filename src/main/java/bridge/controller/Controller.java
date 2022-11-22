@@ -73,4 +73,14 @@ public class Controller {
         String retryInput = inputView.readGameCommand();
         RetryOrQuit(retryInput, bridgeGame , user);
     }
+
+    public void RetryOrQuit(String retryInput, BridgeGame bridgeGame, User user) {
+        if (GoRetry(retryInput)) {
+            bridgeGame.retry();
+            initBuilder();
+            user.addPlayingCount();
+            return;
+        }
+        user.setQuit();
+    }
 }
