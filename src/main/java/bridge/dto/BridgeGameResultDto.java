@@ -9,7 +9,7 @@ public class BridgeGameResultDto {
     private final BridgeGameLocationDto bridgeGameLocationDto;
     private final BridgeGameResult gameResult;
 
-    private BridgeGameResultDto(int triedCount, BridgeGameLocationDto bridgeGameLocationDto, BridgeGameResult gameResult) {
+    private BridgeGameResultDto(final int triedCount, final BridgeGameLocationDto bridgeGameLocationDto, final BridgeGameResult gameResult) {
         validateTriedCount(triedCount);
         validateLogDto(bridgeGameLocationDto);
         validateGameResult(gameResult);
@@ -17,24 +17,24 @@ public class BridgeGameResultDto {
         this.bridgeGameLocationDto = bridgeGameLocationDto;
         this.gameResult = gameResult;
     }
-    public static BridgeGameResultDto of (int triedCount, BridgeGameLocationDto bridgeGameLocationDto, BridgeGameResult gameResult){
+    public static BridgeGameResultDto of (final int triedCount, final BridgeGameLocationDto bridgeGameLocationDto, final BridgeGameResult gameResult){
         return new BridgeGameResultDto(triedCount, bridgeGameLocationDto, gameResult);
     }
 
 
-    private void validateTriedCount(int triedCount) {
+    private void validateTriedCount(final int triedCount) {
         if (triedCount < 1) {
             throw new IllegalArgumentException(SMALLER_THAN_ONE_MESSAGE);
         }
     }
 
-    private void validateLogDto(BridgeGameLocationDto bridgeGameLocationDto) {
+    private void validateLogDto(final BridgeGameLocationDto bridgeGameLocationDto) {
         if (bridgeGameLocationDto == null) {
             throw new IllegalArgumentException(IS_NOT_NULL);
         }
     }
 
-    private void validateGameResult(BridgeGameResult gameResult) {
+    private void validateGameResult(final BridgeGameResult gameResult) {
         if (gameResult == null) {
             throw new IllegalArgumentException(IS_NOT_NULL);
         }

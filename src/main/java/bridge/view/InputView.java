@@ -22,16 +22,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = Console.readLine();
+        final String input = Console.readLine();
         if (!NUMBERS_CORRECT_PATTERN.matcher(input).matches()){
             throw new IllegalArgumentException(INPUT_IS_NOT_NUMBER_MESSAGE);
         }
-        int bridgeLength = Integer.parseInt(input);
+        final int bridgeLength = Integer.parseInt(input);
         validateBridgeLength(bridgeLength);
         return bridgeLength;
     }
 
-    private void validateBridgeLength(int bridgeLength) {
+    private void validateBridgeLength(final int bridgeLength) {
         if (bridgeLength < BRIDGE_MIN_LENGTH) {
             throw new IllegalArgumentException(MIN_SIZE_MESSAGE);
         }
