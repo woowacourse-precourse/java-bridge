@@ -48,4 +48,9 @@ public class ScoreMap {
                 .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX)) + "\n";
     }
 
+    public void clear() {
+        upperBoard.clear();
+        underBoard.clear();
+    }
+
 }
