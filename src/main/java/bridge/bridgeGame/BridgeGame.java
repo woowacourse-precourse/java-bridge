@@ -29,4 +29,8 @@ public class BridgeGame {
         bridgeGameState.clearCurrent();
         tryCount++;
     }
+
+    public void makeBridge(int bridgeSize) {
+        bridgeGameState = new BridgeGameState(bridgeMaker.makeBridge(bridgeSize));
+    }
 }
