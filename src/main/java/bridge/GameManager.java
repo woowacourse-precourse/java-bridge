@@ -32,5 +32,11 @@ public class GameManager {
         }while (askRetry(bridgeGame));
     }
 
+    private boolean askRetry(BridgeGame bridgeGame) {
+        if (bridgeGame.winTheGame()) return false;
+
+        outputView.printAskingRetry();
+        return bridgeGame.retry(inputView.readGameCommand());
+    }
 
 }
