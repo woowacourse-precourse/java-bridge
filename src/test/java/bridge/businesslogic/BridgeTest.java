@@ -111,6 +111,70 @@ class BridgeTest {
         }
     }
 
+    @Nested
+    class GetAlreadyCrossedBridgeTest{
+
+        @DisplayName("위쪽 하나 건너는 데 성공한 상황에서, 얼마나 건넜는지 확인하기")
+        @Test
+        void getAlreadyCrossedBridgeTest_case1(){
+            testBridge.crossBridge("U");
+            List<String> getCrossedBridge = testBridge.getAlreadyCrossedBridge(true);
+            assertThat(getCrossedBridge.get(0)).isEqualTo("[ O ]");
+            assertThat(getCrossedBridge.get(1)).isEqualTo("[   ]");
+        }
+
+        @DisplayName("아래쪽 하나 건너는 데 실패한 상황에서, 얼마나 건넜는지 확인하기")
+        @Test
+        void getAlreadyCrossedBridgeTest_case2(){
+            testBridge.crossBridge("D");
+            List<String> getCrossedBridge = testBridge.getAlreadyCrossedBridge(false);
+            assertThat(getCrossedBridge.get(0)).isEqualTo("[   ]");
+            assertThat(getCrossedBridge.get(1)).isEqualTo("[ X ]");
+        }
+
+        @DisplayName("두번째에서 아래를 선택해 성공했을 때, 얼마나 건넜는지 확인하기")
+        @Test
+        void getAlreadyCrossedBridgeTest_case3(){
+            testBridge.crossBridge("U");
+            testBridge.crossBridge("D");
+            List<String> getCrossedBridge = testBridge.getAlreadyCrossedBridge(true);
+            assertThat(getCrossedBridge.get(0)).isEqualTo("[ O |   ]");
+            assertThat(getCrossedBridge.get(1)).isEqualTo("[   | O ]");
+        }
+
+        @DisplayName("두번째에서 위를 선택해 실패했을 때, 얼마나 건넜는지 확인하기")
+        @Test
+        void getAlreadyCrossedBridgeTest_case4(){
+            testBridge.crossBridge("U");
+            testBridge.crossBridge("U");
+            List<String> getCrossedBridge = testBridge.getAlreadyCrossedBridge(false);
+            assertThat(getCrossedBridge.get(0)).isEqualTo("[ O | X ]");
+            assertThat(getCrossedBridge.get(1)).isEqualTo("[   |   ]");
+        }
+
+        @DisplayName("세번째에서 아래를 선택해 성공했을 때, 얼마나 건넜는지 확인하기")
+        @Test
+        void getAlreadyCrossedBridgeTest_case5(){
+            testBridge.crossBridge("U");
+            testBridge.crossBridge("D");
+            testBridge.crossBridge("D");
+            List<String> getCrossedBridge = testBridge.getAlreadyCrossedBridge(true);
+            assertThat(getCrossedBridge.get(0)).isEqualTo("[ O |   |   ]");
+            assertThat(getCrossedBridge.get(1)).isEqualTo("[   | O | O ]");
+        }
+
+        @DisplayName("세번째에서 위를 선택해 실패했을 때, 얼마나 건넜는지 확인하기")
+        @Test
+        void getAlreadyCrossedBridgeTest_case6(){
+            testBridge.crossBridge("U");
+            testBridge.crossBridge("D");
+            testBridge.crossBridge("U");
+            List<String> getCrossedBridge = testBridge.getAlreadyCrossedBridge(false);
+            assertThat(getCrossedBridge.get(0)).isEqualTo("[ O |   | X ]");
+            assertThat(getCrossedBridge.get(1)).isEqualTo("[   | O |   ]");
+        }
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
