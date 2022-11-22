@@ -58,7 +58,7 @@ public class BridgeGameController {
                 validateBridgeSize(bridgeSize);
                 return bridgeSize;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -71,7 +71,7 @@ public class BridgeGameController {
                 validateMovingCommand(moveCommand);
                 return moveCommand;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -84,7 +84,7 @@ public class BridgeGameController {
                 validateRetryCommand(retryCommand);
                 return retryCommand;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }

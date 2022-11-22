@@ -84,4 +84,8 @@ public class OutputView {
     private void printTryCount(int tryCount) {
         System.out.printf(TRY_COUNT_MESSAGE, tryCount);
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
