@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class InputValidatorTest {
 
-
     @DisplayName("숫자가 아닐 경우 예외를 반환한다.")
     @ParameterizedTest
     @ValueSource(strings = {"a", "#", "_"})
