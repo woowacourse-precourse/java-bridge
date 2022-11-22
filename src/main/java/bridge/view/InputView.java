@@ -104,7 +104,7 @@ public class InputView {
 
     private void validateGameCommand(String gameCommand) {
         if (!gameCommand.matches("[" + Command.GAME_QUIT_LETTER.getCommand() + Command.GAME_RETRY_LETTER.getCommand() + "]")) {
-            throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_MOVE_COMMAND_FORM.getMessage());
+            throw new IllegalArgumentException(IllegalArgumentExceptionMessage.INPUT_RETRY_COMMAND_FORM.getMessage());
         }
     }
 }
