@@ -25,7 +25,12 @@ class InputViewTest {
     }
 
     static Stream<Arguments> readBridgeSizeParam() {
-
+        return Stream.of(
+                Arguments.of("", error01),
+                Arguments.of("5d", error02),
+                Arguments.of("2", error03),
+                Arguments.of("21", error03)
+        );
     }
 
 
