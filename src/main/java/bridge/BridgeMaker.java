@@ -1,10 +1,9 @@
 package bridge;
 
+import Model.Moving;
 import java.util.List;
+import java.util.ArrayList;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -13,11 +12,25 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
+    public void addNumber(List<String> crossable, int addNumber) {
+        if (addNumber == 0) {
+            crossable.add(Moving.Down.getMoving());
+        } else if (addNumber == 1) {
+            crossable.add(Moving.Up.getMoving());
+        }
+    }
+
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> crossable = new ArrayList<>();
+        int addNumber;
+
+        for (int index = 0; index < size; index++) {
+            addNumber = bridgeNumberGenerator.generate();
+            addNumber(crossable,addNumber);
+        }
+
+        return crossable;
     }
 }
+
+
