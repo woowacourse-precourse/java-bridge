@@ -20,16 +20,21 @@ public class GameSystem {
     private final BridgeGame game  = new BridgeGame();
     private final InputValid inputvalid = new InputValid();
 
+    private String input;
+
     public void welcome() {
         outputView.printWelcome();
     }
 
     public void inputBridgeLength() {
         outputView.printTryLengthInput();
-        String input = inputView.readBridgeSize();
+        input = inputView.readBridgeSize();
         if (inputvalid.checkLengthValid(input) == false) {
+            //System.out.println("check");
             inputBridgeLength();
+            //System.out.println("end");
         }
+        //System.out.println("input: " + input);
         saveSize = Integer.parseInt(input);
         game.saveBridge(make.makeBridge(saveSize));
     }
