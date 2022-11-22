@@ -45,16 +45,13 @@
 - [x] Application main 메서드 구현
 
 # 리팩토링 목록
-- [ ] BridgeGame 클래스를 Service화 시키기
+- [x] BridgeGame 클래스를 Service화 시키기
     - [x] BridgeGame의 필드와 관련 메서드를 User 클래스로 분리하기
         - [x] User 클래스 생성
         - [x] BridgeGame의 User 요소 삭제
     - [x] BridgeGame의 비지니스 로직을 담당하는 메서드는 user를 파라미터로 받도록 수정
     - [x] BridgeGame 에서 bridge 필드 제거
     - [x] BridgeGame 싱글톤으로 구현
-    - [ ] MapService 생성
-        - [ ] 게임 진행이 될 다리 생성
-    - [ ] 다리 생성 메서드 추가
-- [ ] UserController 생성
-    - [ ] User 생성
-    - [ ] main 메서드 수정
+- [ ] BridgeService 생성
+    - [ ] 게임 진행이 될 다리 생성
+- [ ] GameController create 메서드에서 다리를 생성하도록 수정
