@@ -70,14 +70,12 @@ public class BridgeGame {
     }
 
     public boolean moveBridge() {
-        round = 0;
         attemptCount++;
-        while (round != bridge.size()) {
+        for (round = 0; round != bridgeSize; round++) {
             isCross = move(round, readBridgeMove());
             printMap(round, isCross);
             if (!isCross)
                 break;
-            round++;
         }
         if (round == bridge.size())
             return false;
