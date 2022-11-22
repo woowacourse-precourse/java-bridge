@@ -42,7 +42,7 @@ class ApplicationTest extends NsTest {
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
-    
+
     @Test
     void 재시작_테스트() {
         assertRandomNumberInRangeTest(() -> {
