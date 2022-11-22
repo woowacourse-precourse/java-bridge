@@ -19,6 +19,7 @@ class BridgeTest {
         list.add("U");
         list.add("D");
         list.add("U");
+        List.of("U", "U", "D", "U");
         Bridge bridge = new Bridge(list);
         assertThat(bridge.toString()).isEqualTo("UUDU");
     }

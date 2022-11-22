@@ -11,7 +11,7 @@ public class Bridge {
     private List<String> bridge;
 
     public Bridge() {
-        bridge = new ArrayList<String>();
+        bridge = new ArrayList<>();
     }
 
     public Bridge(int length, List<String> bridge) {
@@ -55,12 +55,12 @@ public class Bridge {
 
     @Override
     public String toString() {
-        if (bridge.size() == 0) {
+        if (bridge.isEmpty()) {
             return "";
         }
         String result = "";
-        for (String bridge : this.bridge) {
-            result += bridge;
+        for (String block : bridge) {
+            result += block;
         }
         return result;
     }
