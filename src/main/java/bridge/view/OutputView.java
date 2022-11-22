@@ -1,7 +1,5 @@
 package bridge.view;
 
-import java.util.List;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -19,7 +17,7 @@ public class OutputView {
     public static void printMap(String topBridgeResult, String bottomBridgeResult) {
         System.out.println(topBridgeResult);
         System.out.println(bottomBridgeResult);
-        System.out.println(NEW_LINE);
+        System.out.printf(NEW_LINE);
     }
 
     /**

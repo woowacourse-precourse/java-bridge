@@ -78,10 +78,9 @@ public class GameController {
     }
 
     private void successResult() {
-            OutputView.printEndResult();
-            OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
-            OutputView.printResult(SUCCESS);
-            OutputView.printTotalAttempts(countTry);
-
+        OutputView.printEndResult();
+        OutputView.printMap(result.getTopBridgeResult(), result.getBottomBridgeResult());
+        OutputView.printResult(SUCCESS);
+        OutputView.printTotalAttempts(countTry);
     }
 }
