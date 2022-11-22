@@ -11,10 +11,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
+import java.lang.System;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -61,6 +59,27 @@ class BridgeGameTest {
                                 "[   |   |   ]",
                                 "[ O | O | X ]",
                                 "게임 성공 여부: 실패",
+                                "총 시도한 횟수: 1"))
+        );
+    }
+
+    @DisplayName("다리 길이 3. 게임 성공 경우")
+    @ParameterizedTest
+    @MethodSource("bridge_len3_win_param")
+    void bridge_len3_win(String input, List<String> expected) {
+        List<String> bridge_len3 = Arrays.asList("D", "D", "U");
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        bridgeController.newGame(bridge_len3);
+        assertThat(outputStream.toString().trim()).contains(expected);
+    }
+
+    static Stream<Arguments> bridge_len3_win_param() {
+        return Stream.of(
+                Arguments.of("D\nD\nU",
+                        Arrays.asList("최종 게임 결과",
+                                "[   |   | O ]",
+                                "[ O | O |   ]",
+                                "게임 성공 여부: 성공",
                                 "총 시도한 횟수: 1"))
         );
     }
