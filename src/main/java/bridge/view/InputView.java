@@ -3,6 +3,7 @@ package bridge.view;
 import static bridge.domain.Bridge.MAX_SIZE;
 import static bridge.domain.Bridge.MIN_SIZE;
 
+import bridge.domain.Command;
 import bridge.util.Utils;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -28,7 +29,7 @@ public class InputView {
      */
     public String readMoving() {
         String movePlace = Console.readLine();
-        if (!movePlace.equals("U") && !movePlace.equals("D")) {
+        if (!movePlace.equals(Command.UPPER.getCommand()) && !movePlace.equals(Command.LOWER.getCommand())) {
             System.out.println("[ERROR] U(위 칸)과 D(아래 칸) 중 하나를 선택하여야 합니다.");
             throw new IllegalArgumentException();
         }
@@ -41,9 +42,9 @@ public class InputView {
     public boolean readGameCommand() {
         String command = Console.readLine();
 
-        if (command.equals("R")) {
+        if (command.equals(Command.RESTART.getCommand())) {
             return true;
-        } else if (command.equals("Q")) {
+        } else if (command.equals(Command.QUIT.getCommand())) {
             return false;
         }
         System.out.println("[ERROR] R(재시작)과 Q(종료) 중 하나를 선택하여야 합니다.");

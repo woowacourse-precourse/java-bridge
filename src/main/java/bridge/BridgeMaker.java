@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Command;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class BridgeMaker {
 
     private String getPassable(int number) {
         if (number == 0) {
-            return "D";
+            return Command.LOWER.getCommand();
         }
-        return "U";
+        return Command.UPPER.getCommand();
     }
 }
