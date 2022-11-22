@@ -3,38 +3,27 @@ package view;
 import inMemoryDB.GameData;
 import utils.Direction;
 import utils.GameResult;
-
 import java.util.List;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
-
     public static void printStartMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println();
-        System.out.println("다리의 길이를 입력해주세요.");
+        PrintMessage.START_MESSAGE.printMessage();
+        PrintMessage.NEW_LINE.printMessage();
+        PrintMessage.INPUT_LENGTH_MESSAGE.printMessage();
     }
 
     public static void printMoveChoiceMessage() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        PrintMessage.INPUT_MOVING_FLOOR_MESSAGE.printMessage();
     }
 
     public static void printRestartStatusMessage() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        PrintMessage.INPUT_RESTART_STATUS_MESSAGE.printMessage();
     }
 
     public static void printFinalResultMessage() {
-        System.out.println("최종 게임 결과");
+        PrintMessage.FINAL_MESSAGE.printMessage();
     }
-
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
 
     public static void printMap(List<String> movingFloorDataSet, List<String> passDataSet, int dataSetSize) {
         StringBuilder firstFloorBridge = new StringBuilder("[");

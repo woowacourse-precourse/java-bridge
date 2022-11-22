@@ -4,7 +4,6 @@ import inMemoryDB.GameData;
 import utils.GameResult;
 import view.InputView;
 import view.OutputView;
-
 import java.util.List;
 
 public class Controller {
