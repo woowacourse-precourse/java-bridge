@@ -27,4 +27,14 @@ public class BridgeMaker {
         }
         return bridge;
     }
+    private String choose_UD(int number) {
+        if (number == 1) {
+            return Choose.UP.getValue();
+        }
+        if (number == 0) {
+            return Choose.DOWN.getValue();
+        }
+        return null;
+    }
+}
 }
