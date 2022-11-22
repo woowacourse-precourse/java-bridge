@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class PlayerInputValidatorTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"U", "P"})
+    @CsvSource(value = {"U", "D"})
     @DisplayName("사용자가 움직이기 위해서 U, D 중 하나를 입력할 경우 아무것도 반환하지 않는다.")
     void testCanMove_success(String input) throws Exception {
         //when & then
