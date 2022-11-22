@@ -22,7 +22,7 @@ public class ControllerTest {
     @BeforeEach
     void beforeEach() {
         randomsMockedStatic = Mockito.mockStatic(Randoms.class);
-        Mockito.when(Randoms.pickNumberInRange(0,1)).thenReturn(1,0,1);
+        Mockito.when(Randoms.pickNumberInRange(0, 1)).thenReturn(1, 0, 1);
 
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();

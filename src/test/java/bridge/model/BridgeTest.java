@@ -19,7 +19,7 @@ public class BridgeTest {
     @BeforeEach
     void beforeAll() {
         randomsMockedStatic = Mockito.mockStatic(Randoms.class);
-        Mockito.when(Randoms.pickNumberInRange(0,1)).thenReturn(1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0);
+        Mockito.when(Randoms.pickNumberInRange(0, 1)).thenReturn(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0);
     }
 
     @AfterEach

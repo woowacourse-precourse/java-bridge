@@ -28,7 +28,7 @@ public class Bridge {
     }
 
     private void validateLength(int bridgeLength) {
-        if(isOutOfBoundsLength(bridgeLength)) {
+        if (isOutOfBoundsLength(bridgeLength)) {
             throw new IllegalArgumentException(Errors.ERROR_BRIDGE_LENGTH.getMessage());
         }
     }

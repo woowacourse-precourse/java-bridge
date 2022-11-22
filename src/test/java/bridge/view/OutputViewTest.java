@@ -43,7 +43,7 @@ public class OutputViewTest {
         boolean fail = false;
         List<Plate> path2 = List.of(Plate.UP_PLATE, Plate.DOWN_PLATE, Plate.UP_PLATE);
         String expected2 = "[ O |   | X ]\n[   | O |   ]";
-        return Stream.of (
+        return Stream.of(
                 Arguments.of(success, path1, expected1),
                 Arguments.of(fail, path2, expected2));
     }

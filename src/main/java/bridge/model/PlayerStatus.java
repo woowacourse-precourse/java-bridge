@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum PlayerStatus {
-    COMPLETE_CROSSING_BRIDGE(true,"성공"),
+    COMPLETE_CROSSING_BRIDGE(true, "성공"),
     FALL_BRIDGE(false, "실패");
 
     private final static Map<Boolean, PlayerStatus> BY_BOOLEAN = Stream.of(values())

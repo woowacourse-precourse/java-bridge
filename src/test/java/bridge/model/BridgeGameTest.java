@@ -24,7 +24,7 @@ public class BridgeGameTest {
     @BeforeEach
     void beforeAll() throws Exception {
         randomsMockedStatic = Mockito.mockStatic(Randoms.class);
-        Mockito.when(Randoms.pickNumberInRange(0,1)).thenReturn(1,0,1);
+        Mockito.when(Randoms.pickNumberInRange(0, 1)).thenReturn(1, 0, 1);
 
         bridgeGame = new BridgeGame();
         Field playerPathField = BridgeGame.class.getDeclaredField("playerPath");

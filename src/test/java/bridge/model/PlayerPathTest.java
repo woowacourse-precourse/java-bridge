@@ -31,7 +31,7 @@ public class PlayerPathTest {
 
     @DisplayName("경로에서 현재 위치와 발판을 가져오는 테스트")
     @Test
-    void  currentPositionAndPlateTest() {
+    void currentPositionAndPlateTest() {
         Plate currentPlate = playerPath.currentPlate();
         int currentPosition = playerPath.currentPosition();
 

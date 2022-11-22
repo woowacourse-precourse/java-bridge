@@ -12,7 +12,7 @@ public class OutputView {
     private final String MAP_SUFFIX = " ]";
     private final String MAP_NOT_STEP = " ";
     private final String MAP_SUCCESS_STEP = "O";
-    private final String MAP_FAIL_STEP ="X";
+    private final String MAP_FAIL_STEP = "X";
     private final String NOTICE_RESULT = "최종 게임 결과";
     private final String NOTICE_RESULT_VICTORY = "게임 성공 여부: ";
     private final String NOTICE_RESULT_TRY_COUNT = "총 시도한 횟수: ";

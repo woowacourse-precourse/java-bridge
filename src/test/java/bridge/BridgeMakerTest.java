@@ -15,7 +15,7 @@ public class BridgeMakerTest {
     @Test
     void makeBridgeTest() {
         MockedStatic<Randoms> randomsMockedStatic = Mockito.mockStatic(Randoms.class);
-        Mockito.when(Randoms.pickNumberInRange(0,1)).thenReturn(1,0,1,0,1,0,1,0,1,0);
+        Mockito.when(Randoms.pickNumberInRange(0, 1)).thenReturn(1, 0, 1, 0, 1, 0, 1, 0, 1, 0);
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
@@ -23,6 +23,6 @@ public class BridgeMakerTest {
 
         randomsMockedStatic.close();
 
-        Assertions.assertThat(bridge).containsExactly("U","D","U","D","U","D","U","D","U","D");
+        Assertions.assertThat(bridge).containsExactly("U", "D", "U", "D", "U", "D", "U", "D", "U", "D");
     }
 }
