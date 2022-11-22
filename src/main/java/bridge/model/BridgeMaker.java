@@ -5,8 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.view.InputView.readBridgeSize;
-
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -30,6 +28,7 @@ public class BridgeMaker {
         ArrayList<String> bridges = new ArrayList<>();
         for(int num = 0; num < size; num++){
             double ran = Math.random()*2;
+            //generate();
             int rand =  (int) ran;
             System.out.println("rand: " + rand);
             // 0이면 U, 1이면 D
@@ -38,7 +37,6 @@ public class BridgeMaker {
             }else if(rand == 1){
                 bridges.add("D");
             }
-
         }
         return bridges;
     }

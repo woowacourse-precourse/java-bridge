@@ -1,5 +1,9 @@
 package bridge.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.regex.Pattern;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -10,6 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    /*
     public static int readBridgeSize() {
         int bridgeLen = 0;
 
@@ -23,15 +28,43 @@ public class InputView {
         return bridgeLen;
 
     }
+     */
+    public static int readBridgeSize() {
+        while (true) {
+            try {
+                String bridgeLen = Console.readLine();
+                if(checkInputSizeString(bridgeLen))
+                    return Integer.parseInt(bridgeLen);
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+    }
 
+    public static boolean checkInputSizeString(String bridgeLen) {
+        if(isNumber(bridgeLen) && bridgeLenRangeCheck(Integer.parseInt(bridgeLen))) {
+            return true;
+        }
+        return false;
+    }
 
-
-
-    public static void bridgeLenRangeCheck(int bridgeLen){
-        if(bridgeLen >= 21 || bridgeLen <= 2){
+    public static boolean isNumber(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
+
+    public static boolean bridgeLenRangeCheck(int bridgeLen) {
+        if(3 <= bridgeLen && bridgeLen <= 20) {
+            return true;
+        }
+        throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
+
 
 
 
@@ -69,7 +102,6 @@ public class InputView {
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 게임을 다시 시도시 R, 종료시 Q여야 합니다.");
         }
-        //System.out.println("replay:" + replay);
         return replay;
 
     }
