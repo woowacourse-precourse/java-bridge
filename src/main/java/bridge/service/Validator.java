@@ -1,6 +1,6 @@
 package bridge.service;
 
-import static bridge.view.Message.*;
+import static bridge.view.ErrorMessage.*;
 
 public class Validator {
     public static final String RETRY = "R";
