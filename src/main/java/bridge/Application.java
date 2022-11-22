@@ -24,6 +24,11 @@ public class Application {
     private static void run(final BridgeGame bridgeGame) {
         final Movement movement = askMoving();
         final Path path = bridgeGame.onMove(movement);
+        printMap(path);
+    }
+
+    private static void printMap(final Path path) {
+        outputView.printMap(path);
     }
 
     private static Movement askMoving() {
