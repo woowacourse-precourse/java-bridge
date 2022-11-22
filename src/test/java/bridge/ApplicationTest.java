@@ -40,6 +40,60 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트_성공() {
+        assertRandomNumberInRangeTest(() -> {
+            run("20",
+                    "U", "D", "D", "U", "U", "D", "D", "D",
+                    "R",
+                    "U", "D", "D", "U", "U", "D", "D", "U", "D", "D", "U", "D", "U",
+                    "R",
+                    "U", "D", "D", "U", "U", "D", "D", "U", "D", "D", "U", "D", "D", "D", "U", "D", "U", "D", "D", "U",
+                    "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   | O | O |   |   | O |   |   | O |   |   |   | O |   | O |   |   | O ]",
+                    "[   | O | O |   |   | O | O |   | O | O |   | O | O | O |   | O |   | O | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O |   |   | O | O |   |   | O |   |   | O |   |   |   | O |   | O |   |   | O ]");
+            int downSideIndex = output().indexOf(
+                    "[   | O | O |   |   | O | O |   | O | O |   | O | O | O |   | O |   | O | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1);
+    }
+
+    @Test
+    void 기능_테스트_중도포기() {
+        assertRandomNumberInRangeTest(() -> {
+            run("20",
+                    "U", "D", "U",
+                    "R",
+                    "U", "D", "D", "U", "U", "D", "D", "D",
+                    "R",
+                    "U", "D", "D", "U", "U", "D", "D", "U", "D", "D", "U", "D", "U",
+                    "R",
+                    "U", "D", "D", "U", "U", "D", "D", "U", "D", "D", "U", "D", "D", "D", "U", "D", "U", "D", "U",
+                    "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   | O | O |   |   | O |   |   | O |   |   |   | O |   | O |   | X ]",
+                    "[   | O | O |   |   | O | O |   | O | O |   | O | O | O |   | O |   | O |   ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 4"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O |   |   | O | O |   |   | O |   |   | O |   |   |   | O |   | O |   | X ]");
+            int downSideIndex = output().indexOf(
+                    "[   | O | O |   |   | O | O |   | O | O |   | O | O | O |   | O |   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
