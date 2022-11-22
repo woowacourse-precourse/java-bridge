@@ -66,6 +66,11 @@ class InputViewTest {
     }
 
     static Stream<Arguments> readGameCommandParam() {
-
+        return Stream.of(
+                Arguments.of("", error01),
+                Arguments.of("D", error05),
+                Arguments.of("U", error05),
+                Arguments.of("r", error05)
+        );
     }
 }
