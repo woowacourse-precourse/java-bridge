@@ -14,6 +14,9 @@ public class Controller {
     public void run() {
         List<String> bridge = makeBridge();
         bridgeGame = new BridgeGame(bridge);
+        do {
+            crossBridgeToEnd();
+        } while (!gameFinished());
 
     }
 
@@ -27,6 +30,12 @@ public class Controller {
         }
     }
 
+    public boolean gameFinished() {
+        if (bridgeGame.isCleared()) {
+            return true;
+        }
+        return !decideRetry();
+    }
 
     // 건널 수 있을 때 까지 건너기
     public void crossBridgeToEnd() {
@@ -47,5 +56,13 @@ public class Controller {
         }
     }
 
+    public boolean decideRetry() {
+        try {
+            Command command = Command.toCommand(inputView.readGameCommand());
+            return bridgeGame.retry(command);
+        } catch (IllegalArgumentError e) {
+            return decideRetry();
+        }
 
+    }
 }
