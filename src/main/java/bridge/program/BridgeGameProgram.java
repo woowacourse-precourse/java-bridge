@@ -3,7 +3,7 @@ package bridge.program;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeOfUser;
-import bridge.domain.common.BridgeRandomNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.ConsoleView;
 import java.util.List;
 import java.util.Map;
