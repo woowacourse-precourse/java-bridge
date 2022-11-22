@@ -7,8 +7,8 @@ public class BridgeSizeRequestDto {
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
     private static final String NOT_ONLY_NUMBER = "[ERROR] 숫자만 입력이 가능합니다.";
-    private static final String NOT_MIN_SIZE = "[ERROR] 다리의 길이는 최소 3이상이어야 합니다.";
-    private static final String NOT_MAX_SIZE = "[ERROR] 다리의 길이는 최대 20미만이어야 합니다.";
+    private static final String NOT_MIN_SIZE = "[ERROR] 다리의 길이는 3이상이어야 합니다.";
+    private static final String NOT_MAX_SIZE = "[ERROR] 다리의 길이는 20이하이어야 합니다.";
 
     private final int bridgeSize;
 
