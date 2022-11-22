@@ -18,4 +18,11 @@ public class Validate {
         return bridgeSizeInt;
     }
 
+    public static String validateMoving(String moving){
+        if((!Objects.equals(moving, BridgeStatus.UP.getValueString()) && !Objects.equals(moving, BridgeStatus.DOWN.getValueString()))){
+            throw new IllegalArgumentException();
+        }
+        return moving;
+    }
+
 }
