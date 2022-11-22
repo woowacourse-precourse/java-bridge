@@ -3,7 +3,7 @@ package bridge.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserBridege {
+public class UserBridge {
     private List<String> upBridge = new ArrayList<>();
     private List<String> downBridge = new ArrayList<>();
 

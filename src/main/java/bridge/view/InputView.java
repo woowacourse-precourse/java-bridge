@@ -31,4 +31,6 @@ public class InputView {
         String userTry = Console.readLine();
         return userTry;
     }
+
+
 }

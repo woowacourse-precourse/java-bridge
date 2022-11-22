@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.data.BridgeGame;
-import bridge.data.UserBridege;
+import bridge.data.UserBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -47,9 +47,9 @@ public class GameSystem {
         return inputView.readMoving();
     }
 
-    private void printBridgeState(UserBridege userBridege) {
-        outputView.printMap(userBridege.getUpBridge(), "");
-        outputView.printMap(userBridege.getDownBridge(), "\n");
+    private void printBridgeState(UserBridge userBridge) {
+        outputView.printMap(userBridge.getUpBridge(), "");
+        outputView.printMap(userBridge.getDownBridge(), "\n");
     }
 
     private String updateState() {
