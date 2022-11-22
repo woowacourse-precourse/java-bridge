@@ -19,8 +19,6 @@ public class GameController {
         running(answer);
     }
 
-
-
     private boolean runGame() {
         for(int i = 0; i < size; i++) {
             if (!playerMoving(i)) return false;
@@ -39,7 +37,7 @@ public class GameController {
     }
 
     private boolean playerMoving(int index) {
-        if (game.move(inputView.readMoving(), index)) {
+        if (game.move(getMoving(), index)) {
             outputView.printMap(game.upBridge, game.downBridge);
             return true;
         }
@@ -47,11 +45,42 @@ public class GameController {
         return false;
     }
 
+    private String getMoving() {
+        String result = "";
+        while(true) {
+            try {
+                result = inputView.readMoving();
+            } catch(IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                continue;
+            }
+            return result;
+        }
+    }
+
     private int getBridgeSize() {
-        return inputView.readBridgeSize();
+        int result = 0;
+        while(true) {
+            try {
+                result = inputView.readBridgeSize();
+            } catch(IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                continue;
+            }
+            return result;
+        }
     }
 
     private boolean isRetry() {
-        return game.retry(inputView.readGameCommand());
+        boolean result;
+        while(true) {
+            try {
+                result = game.retry(inputView.readGameCommand());
+            } catch(IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+                continue;
+            }
+            return result;
+        }
     }
 }
