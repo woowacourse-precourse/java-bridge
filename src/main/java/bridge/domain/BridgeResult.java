@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BridgeResult {
-    private final String BLANK = " ";
+    private static final String BLANK = " ";
 
     private final List<String> upBridge = new ArrayList<>();
     private final List<String> downBridge = new ArrayList<>();
