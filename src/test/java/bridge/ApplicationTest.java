@@ -13,6 +13,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -103,12 +106,33 @@ class ApplicationTest extends NsTest {
     }
 
     @DisplayName("다리 길이 입력 예외 테스트")
-    @Test
-    void basicException() {
+    @ValueSource(strings = {"a", "2", "-1", "0", "21", "30"})
+    @ParameterizedTest
+    void exceptionBridgeSize(String input) {
         assertSimpleTest(() -> {
-            runException("a");
+            runException(input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("다리 이동 입력 예외 테스트")
+    @CsvSource({"3, 2", "3, R", "3, ^"})
+    @ParameterizedTest
+    void exceptionMoving(String size, String moving) {
+        assertSimpleTest(() -> {
+            runException(size, moving);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("재시작 입력 예외 테스트")
+    @CsvSource({"3, D, 2", "3, D, E", "3, D, ^"})
+    @ParameterizedTest
+    void exceptionCommand(String size, String moving, String command) {
+        assertRandomNumberInRangeTest(() -> {
+            runException(size, moving, command);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 0);
     }
 
     @Override
