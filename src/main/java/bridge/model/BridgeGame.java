@@ -46,9 +46,7 @@ public class BridgeGame {
     public StringBuilder upline() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        for (Bridge bridge : result) {
-            sb.append(" ").append(bridge.getUp()).append(" |");
-        }
+        result.forEach(bridge -> sb.append(" ").append(bridge.getUp()).append(" |"));
         sb.deleteCharAt(sb.length() - 1).append("]");
         return sb;
     }
@@ -56,9 +54,7 @@ public class BridgeGame {
     public StringBuilder downline() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        for (Bridge bridge : result) {
-            sb.append(" ").append(bridge.getDown()).append(" |");
-        }
+        result.forEach(bridge -> sb.append(" ").append(bridge.getDown()).append(" |"));
         sb.deleteCharAt(sb.length() - 1).append("]");
         return sb;
     }
