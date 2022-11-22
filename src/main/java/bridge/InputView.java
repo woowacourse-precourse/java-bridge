@@ -1,28 +1,99 @@
 package bridge;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.Scanner;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+    private Scanner scanner;
+
+    public InputView() {
+        scanner = new Scanner(System.in);
+    }
+
     public int readBridgeSize() {
-        return 0;
+        int num = 0;
+        try {
+            num = read();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : Please input valid argument!");
+            return readBridgeSize();
+        }
+        return num;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    private int read() {
+        int isize = 0;
+        String size = Console.readLine();
+
+        validateBridgeSize(size);
+        isize = Integer.parseInt(size);
+        validateNumArea(isize);
+
+        return Integer.parseInt(size);
+    }
+
+    private void validateNumArea(int data) {
+        if(data<3 || data>20) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateBridgeSize(String size) {
+        for(int i = 0 ; i < size.length() ; i++) {
+            if(!Character.isDigit(size.charAt(i))) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     public String readMoving() {
-        return null;
+        String cmd;
+        try {
+            cmd = moving();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : Please input valid argument!");
+            return readMoving();
+        }
+        return cmd;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    private String moving() {
+        String move = Console.readLine();
+        validateMoving(move);
+        return move;
+    }
+
+    private void validateMoving(String move) {
+        if(!(move.equals("U") || move.equals("D"))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public boolean readGameCommand() {
+        boolean value;
+        try {
+            value = gameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : Please input valid argument!");
+            return readGameCommand();
+        }
+        return value;
+    }
+
+    private boolean gameCommand() {
+        String command = Console.readLine();
+        validateCommand(command);
+        if(command.equals("R")) {
+            return true;
+        }
+        return false;
+    }
+
+    private void validateCommand(String command) {
+        if(!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException();
+        }
     }
 }
