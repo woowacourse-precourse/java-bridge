@@ -11,7 +11,7 @@ public class Bridge {
     private List<String> bridge;
     private BridgeNumberGenerator bridgeNumberGenerator;
     private BridgeMaker bridgeMaker;
-ㅔㅇ
+
     public Bridge(String size){
         Validation.validateBridgeSize(size);
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
