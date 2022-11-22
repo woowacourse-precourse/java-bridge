@@ -1,7 +1,13 @@
-package bridge;
+package bridge.service;
 
 import java.util.List;
 
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.GameInfo;
+import bridge.utils.InputView;
+import bridge.utils.OutputView;
 import constants.*;
 
 public class GameManager {

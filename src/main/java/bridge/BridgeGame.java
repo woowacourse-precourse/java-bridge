@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.List;
 
+import bridge.domain.GameInfo;
 import constants.*;
 
 /**

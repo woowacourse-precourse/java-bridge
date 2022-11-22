@@ -1,5 +1,6 @@
-package bridge;
+package bridge.utils;
 
+import bridge.domain.GameInfo;
 import constants.*;
 
 /**

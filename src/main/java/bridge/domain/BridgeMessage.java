@@ -1,6 +1,6 @@
-package bridge;
+package bridge.domain;
 
-class BridgeMessage {
+public class BridgeMessage {
     StringBuilder s1;
     StringBuilder s2;
 

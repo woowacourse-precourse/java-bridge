@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.List;
 
+import bridge.domain.BridgeMessage;
 import constants.*;
 
 public class BridgeMessageMaker {
