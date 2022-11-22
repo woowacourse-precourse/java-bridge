@@ -21,10 +21,10 @@ public class User {
         this.currentMoving = currentMoving;
     }
 
-    public List<String> getMovingRoute() {
-        return movingRoute;
-    }
+    public int sizeMovingRoute() {
+        return movingRoute.size();
 
+    }
     public void addMovingRoute(String moving){
         movingRoute.add(moving);
     }

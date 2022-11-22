@@ -21,7 +21,7 @@ public class BridgeGame {
     private OutputView outputView;
     private InputView inputView;
 
-    public MovingResult movingResult;
+    private MovingResult movingResult;
 
     public BridgeGame() {
         util = new Util();
@@ -39,9 +39,11 @@ public class BridgeGame {
         System.out.println(GameMessage.START_MESSAGE);
         while (true) {
             move();
-            if(compareBridge().equals("X")){
-                retry();
-            }
+            if(compareBridge().equals("X"))
+                if(!retry())
+                    return;
+            if(checkSuccess(gameResult))
+                return;
         }
     }
 
@@ -63,13 +65,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
         if(!checkRetry()){
             outputView.printResult(gameResult,movingResult);
+            return false;
         }
-        user.clearUser();
+        user.clearUser();;
         movingResult.clearResult();
         gameResult.addRetry();
+        return true;
     }
 
 
@@ -86,7 +90,7 @@ public class BridgeGame {
     }
 
     private String compareBridge() {
-        int currentLocation = user.getMovingRoute().size();
+        int currentLocation = user.sizeMovingRoute();
         if (user.getCurrentMoving().equals(bridge.getAnswer(currentLocation))) {
             return "O";
         }
@@ -100,5 +104,15 @@ public class BridgeGame {
                 return false;
         }
         return true;
+    }
+
+    private boolean checkSuccess(GameResult gameResult){
+        if(user.sizeMovingRoute() == bridge.sizeBridge() && compareBridge().equals("O"))
+        {
+            gameResult.setSuccess(true);
+            outputView.printResult(gameResult,movingResult);
+            return true;
+        }
+        return false;
     }
 }
