@@ -40,11 +40,11 @@ public class BridgeGameController {
     }
 
     private void moveByBlock(MoveByBlockRequest moveByBlockRequest) {
-        String trial = "";
+        String correctOrWrong = "";
         int blockPosition = 0;
 
-        while (!trial.equals("X") && blockPosition != moveByBlockRequest.getBridge().getSize()) {
-            trial = bridgeGame.move(moveByBlockRequest.getBridge().getBlock(blockPosition),
+        while (!correctOrWrong.equals("X") && blockPosition != moveByBlockRequest.getBridge().getSize()) {
+            correctOrWrong = bridgeGame.move(moveByBlockRequest.getBridge().getBlock(blockPosition),
                     moveByBlockRequest.getInputHandler().getBlockToMove());
             moveByBlockRequest.getOutputView().printMap(bridgeGame.getResultBridge());
             blockPosition++;
