@@ -55,7 +55,7 @@ public class BridgeGame {
 		return bridge;
 	}
 
-	GameRecord getGameRecord() {
+	public GameRecord getGameRecord() {
 		return gameRecord;
 	}
 

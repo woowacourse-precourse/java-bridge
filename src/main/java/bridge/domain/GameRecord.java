@@ -54,7 +54,7 @@ public class GameRecord {
 		tryAttempts++;
 	}
 
-	int getTryAttempts() {
+	public int getTryAttempts() {
 		return tryAttempts;
 	}
 
