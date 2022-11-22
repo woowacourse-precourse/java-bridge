@@ -32,7 +32,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return validateMoveType(read());
+        return read();
     }
 
     /**
@@ -50,12 +50,7 @@ public class InputView {
         }
     }
 
-    private String validateMoveType(String target) {
-        if (!(target.equals("U") || target.equals("D"))) {
-            throw new IllegalArgumentException("[ERROR] 이동할 수 있는 위치는 위(U) 혹은 아래(D) 뿐입니다.");
-        }
-        return target;
-    }
+
 }
 
 
