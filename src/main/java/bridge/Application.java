@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -15,6 +16,14 @@ public class Application {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
+    private static void start(){
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        int bridgeSize = InputView.readBridgeSize();
+        List<String> bridge = new ArrayList<>(makeBridge(bridgeSize));
+        int playCount = 1;
+        playGameUntilEnd(bridge,playCount);
+    }
+
     private static void playGameUntilEnd(List<String> bridge,int playCount){
         while(true) {
             if(playGame(bridge,playCount++)){
@@ -22,7 +31,7 @@ public class Application {
             }
         }
     }
-    
+
     private static boolean playGame(List<String> bridge, int count){
         BridgeGame bridgeGame = new BridgeGame();
         for(int i = 0 ; i < bridge.size(); i++){
