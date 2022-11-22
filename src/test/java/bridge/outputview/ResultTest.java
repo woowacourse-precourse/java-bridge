@@ -18,15 +18,7 @@ public class ResultTest {
 	@Test
 	void printResult() {
 		// given
-		String userSelectedCell = UP;
-		String bridgeLetter = UP;
-		move(userSelectedCell, bridgeLetter);
-		userSelectedCell = DOWN;
-		bridgeLetter = DOWN;
-		move(userSelectedCell, bridgeLetter);
-		userSelectedCell = DOWN;
-		bridgeLetter = DOWN;
-		move(userSelectedCell, bridgeLetter);
+		completeCrossBridge();
 
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[ O |   |   ]");
@@ -39,11 +31,7 @@ public class ResultTest {
 		assertThat(actualStatus).isEqualTo(expectedStatus);
 	}
 
-
-	@DisplayName("게임 성공 여부 출력 확인 - 성공")
-	@Test
-	void printSuccess() {
-		// given
+	private void completeCrossBridge() {
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
 		move(userSelectedCell, bridgeLetter);
@@ -53,6 +41,13 @@ public class ResultTest {
 		userSelectedCell = DOWN;
 		bridgeLetter = DOWN;
 		move(userSelectedCell, bridgeLetter);
+	}
+
+	@DisplayName("게임 성공 여부 출력 확인 - 성공")
+	@Test
+	void printSuccess() {
+		// given
+		completeCrossBridge();
 
 		String expectedPrint = OUTPUT_GAME_REPORT + SUCCESS_MESSAGE;
 
@@ -68,15 +63,7 @@ public class ResultTest {
 	@Test
 	void printFail() {
 		// given
-		String userSelectedCell = UP;
-		String bridgeLetter = UP;
-		move(userSelectedCell, bridgeLetter);
-		userSelectedCell = DOWN;
-		bridgeLetter = DOWN;
-		move(userSelectedCell, bridgeLetter);
-		userSelectedCell = UP;
-		bridgeLetter = DOWN;
-		move(userSelectedCell, bridgeLetter);
+		failToCrossBridgeWithOneAttempt();
 
 		String expectedPrint = OUTPUT_GAME_REPORT + FAIL_MESSAGE;
 
@@ -88,10 +75,7 @@ public class ResultTest {
 		assertThat(actualPrint).isEqualTo(expectedPrint);
 	}
 
-	@DisplayName("총 시도한 게임 횟수 출력 확인")
-	@Test
-	void printTotalGameCount() {
-		// given
+	private void failToCrossBridgeWithOneAttempt() {
 		String userSelectedCell = UP;
 		String bridgeLetter = UP;
 		move(userSelectedCell, bridgeLetter);
@@ -101,6 +85,13 @@ public class ResultTest {
 		userSelectedCell = UP;
 		bridgeLetter = DOWN;
 		move(userSelectedCell, bridgeLetter);
+	}
+
+	@DisplayName("총 시도한 게임 횟수 출력 확인")
+	@Test
+	void printTotalGameCount() {
+		// given
+		failToCrossBridgeWithOneAttempt();
 
 		String expectedPrint = OUTPUT_TOTAL_TRY_COUNT + "1";
 

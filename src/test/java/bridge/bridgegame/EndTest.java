@@ -22,8 +22,7 @@ public class EndTest {
 	@Test
 	void isEnd() {
 		// given
-		String userSelectedCell = DOWN;
-		bridgeGame.move(userSelectedCell);
+		moveToWrongCell();
 
 		// when
 		if (PauseGame.isPaused()) {
@@ -31,16 +30,30 @@ public class EndTest {
 		}
 
 		// then
-		assertAll(
-			() -> assertThat(bridgeGame.isEnd()).isTrue(),
-			() -> assertThat(PauseGame.isPaused()).isFalse()
-		);
+		assertThat(bridgeGame.isEnd()).isTrue();
+	}
+
+	private void moveToWrongCell() {
+		String userSelectedCell = DOWN;
+		bridgeGame.move(userSelectedCell);
 	}
 
 	@DisplayName("다리 완주 후 게임 종료 여부 확인")
 	@Test
 	void isEndWithComplete() {
 		// given
+		completeCrossBridge();
+
+		// when
+		if (PauseGame.isPaused()) {
+			bridgeGame.end();
+		}
+
+		// then
+		assertThat(bridgeGame.isEnd()).isTrue();
+	}
+
+	private void completeCrossBridge() {
 		String userSelectedCell = UP;
 		bridgeGame.move(userSelectedCell);
 		userSelectedCell = DOWN;
@@ -51,13 +64,5 @@ public class EndTest {
 		bridgeGame.move(userSelectedCell);
 		userSelectedCell = UP;
 		bridgeGame.move(userSelectedCell);
-
-		// when
-		if (PauseGame.isPaused()) {
-			bridgeGame.end();
-		}
-
-		// then
-		assertThat(bridgeGame.isEnd()).isTrue();
 	}
 }

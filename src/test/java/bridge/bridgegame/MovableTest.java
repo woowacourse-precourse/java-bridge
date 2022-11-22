@@ -38,6 +38,7 @@ public class MovableTest {
 		String userSelectedCell = UP;
 		bridgeGame.move(userSelectedCell);
 		userSelectedCell = UP;
+		bridgeGame.move(userSelectedCell);
 
 		// when
 		boolean isMovable = bridgeGame.isMovable(bridgeLetters, userSelectedCell);

@@ -22,8 +22,7 @@ public class RetryTest {
 	@Test
 	void isRetry() {
 		// given
-		String userSelectedCell = DOWN;
-		bridgeGame.move(userSelectedCell);
+		moveToWrongCell();
 
 		// when
 		if (PauseGame.isPaused()) {
@@ -36,5 +35,10 @@ public class RetryTest {
 			() -> assertThat(bridgeGame.isMovable(bridgeLetters, nextUserSelectedCell)).isTrue(),
 			() -> assertThat(PauseGame.isPaused()).isFalse()
 		);
+	}
+
+	private void moveToWrongCell() {
+		String userSelectedCell = DOWN;
+		bridgeGame.move(userSelectedCell);
 	}
 }

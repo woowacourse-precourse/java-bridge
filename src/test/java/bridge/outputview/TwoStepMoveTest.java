@@ -23,6 +23,7 @@ public class TwoStepMoveTest {
 		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = UP;
 		bridgeLetter = DOWN;
+
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[ O | X ]");
 		expectedStatus.put(LOWER_CELL, "[   |   ]");
@@ -44,6 +45,7 @@ public class TwoStepMoveTest {
 		move(userSelectedCell, bridgeLetter);
 		userSelectedCell = DOWN;
 		bridgeLetter = UP;
+
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put(UPPER_CELL, "[   |   ]");
 		expectedStatus.put(LOWER_CELL, "[ O | X ]");
