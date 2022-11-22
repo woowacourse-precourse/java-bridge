@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Vaildator;
 
 public class VaildatorBridgeSize {
 
