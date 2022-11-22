@@ -11,4 +11,7 @@ public class BridgeVisited {
         moveInfo.moveInfo(move, bridge.isEqual(positions.size(), move));
         positions.add(move);
     }
+    public String printMoveInfo() {
+        return moveInfo.MapInfo();
+    }
 }
