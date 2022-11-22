@@ -9,6 +9,10 @@ public class Player {
         this.gameClear = false;
     }
 
+    public int getGameCount() {
+        return gameCount;
+    }
+
     public void addGameCount() {
         this.gameCount++;
     }

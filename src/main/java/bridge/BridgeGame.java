@@ -26,9 +26,11 @@ public class BridgeGame {
             System.out.println(bridge.getBridge());
             crossBridge(bridge);
         }
+        outputView.printResult(player);
     }
 
     private void crossBridge(Bridge bridge) {
+        // TODO: 함수길이 초과 리팩토링 요망
         for (int i = 0; i < bridge.getBridgeSize(); i++) {
             String moving = move(bridge, i);
             outputView.printMap();
@@ -38,6 +40,7 @@ public class BridgeGame {
             }
         }
         gameEndChecker.setEnd(true);
+        player.setGameClear(true);
     }
 
     public String move(Bridge bridge, int index) {
