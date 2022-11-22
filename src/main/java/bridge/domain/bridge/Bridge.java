@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Bridge {
 
+    public static final int STARTING_POINT = 0;
     private final List<Direction> bridge;
 
     public Bridge(List<Direction> bridge) {
@@ -18,9 +19,13 @@ public class Bridge {
     }
 
     private void validateIndexValue(int location) {
-        if (location >= bridge.size() || location < 0) {
+        if (isOutOfBridgeRange(location)) {
             throw new IndexOutOfBoundsException("[ERROR] 다리의 길이를 벗어난 위치 값이 입력되었습니다.");
         }
+    }
+
+    private boolean isOutOfBridgeRange(int location) {
+        return location >= bridge.size() || location < STARTING_POINT;
     }
 
     public boolean isEnd(int location) {
