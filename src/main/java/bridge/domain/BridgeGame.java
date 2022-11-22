@@ -11,13 +11,12 @@ public class BridgeGame {
 
     private List<String> bridge;
     private BridgeState bridgeState;
-    private int round = BRIDGE_GAME_ROUND_INIT;
-    private int totalGameAttempts = BRIDGE_GAME_ATTEMPTS_INIT;
-    private boolean gameResult = BRIDGE_GAME_RESULT_INIT;
+    private BridgeGameState bridgeGameState;
 
-    public BridgeGame(List<String> bridge, BridgeState bridgeState) {
+    public BridgeGame(List<String> bridge, BridgeState bridgeState, BridgeGameState bridgeGameState) {
         this.bridge = bridge;
         this.bridgeState = bridgeState;
+        this.bridgeGameState = bridgeGameState;
     }
 
     /**
@@ -28,19 +27,19 @@ public class BridgeGame {
     public void move(String moving) {
         bridgeState.mark(makeBridgeStatus(moving));
         updateGameResult(moving);
-        round++;
+        bridgeGameState.countGameRound();
     }
 
     private void updateGameResult(String moving) {
         if (!isCrossable(moving)) {
-            gameResult = false;
+            bridgeGameState.lose();
             return;
         }
-        gameResult = true;
+        bridgeGameState.win();
     }
 
     private boolean isCrossable(String moving) {
-        return moving.equals(bridge.get(round));
+        return moving.equals(bridge.get(bridgeGameState.getGameRound()));
     }
 
     private BridgeStatus makeBridgeStatus(String moving) {
@@ -57,8 +56,8 @@ public class BridgeGame {
      */
     public boolean retry(String command) {
         if (command.equals(RETRY)) {
-            round = 0;
-            totalGameAttempts++;
+            bridgeGameState.initGameRound();
+            bridgeGameState.countTotalGameAttempts();
             bridgeState.initBridgeState();
             return true;
         }
@@ -70,10 +69,10 @@ public class BridgeGame {
     }
 
     public int getTotalGameAttempts() {
-        return totalGameAttempts;
+        return bridgeGameState.getTotalGameAttempts();
     }
 
     public boolean isWon() {
-        return gameResult;
+        return bridgeGameState.isWon();
     }
 }

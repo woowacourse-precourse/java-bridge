@@ -9,6 +9,7 @@ public class BridgeGameManager {
 
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private BridgeState bridgeState = new BridgeState();
+    private BridgeGameState bridgeGameState = new BridgeGameState();
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private int bridgeSize = BRIDGE_SIZE_INIT;
@@ -21,7 +22,7 @@ public class BridgeGameManager {
     }
 
     private BridgeGame makeBridgeGame() {
-        return new BridgeGame(bridgeMaker.makeBridge(readBridgeSize()), bridgeState);
+        return new BridgeGame(bridgeMaker.makeBridge(readBridgeSize()), bridgeState, bridgeGameState);
     }
 
     private int readBridgeSize() {

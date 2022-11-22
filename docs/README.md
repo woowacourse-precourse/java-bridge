@@ -65,6 +65,15 @@
 - [X] 게임 성공 여부 값 반환 - BridgeGame#isWon()
 - [X] 게임 총 도전 횟수 값 반환 - BridgeGame#getTotalGameAttempts()
 ***
+- [X] 게임 라운드 카운트 - BridgeGameState#countGameRound()
+- [X] 게임 라운드 초기화 - BridgeGameState#initGameRound()
+- [X] 게임 라운드 반환 - BridgeGameState#getGameRound()
+- [X] 게임 결과 실패 처리 - BridgeGameState#lose()
+- [X] 게임 결과 성공 처리 - BridgeGameState#win()
+- [X] 게임 결과 반환 - BridgeGameState#isWon()
+- [X] 게임 총 도전 횟수 카운트 - BridgeGameState#countTotalGameAttempts()
+- [X] 게임 총 도전 횟수 반환 - BridgeGameState#getTotalGameAttempts()
+***
 - [X] 다리 상태 표시 - BridgeState#mark()
   - [X] 현재 위, 아래 다리 모두 비어있는지 확인 - BridgeState#isEmpty()
   - [X] 위 칸 또는 아래 칸 중 선택한 방향에 대해 건널 수 있는지 여부 표시, 위 칸 또는 아래 칸 중 선택하지 않는 방향에 대해 공백 표시

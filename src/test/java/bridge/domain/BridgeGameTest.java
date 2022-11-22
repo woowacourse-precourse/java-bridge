@@ -18,11 +18,13 @@ class BridgeGameTest {
     private List<String> bridge = List.of("U", "D");
     private BridgeGame bridgeGame;
     private BridgeState bridgeState;
+    private BridgeGameState bridgeGameState;
 
     @BeforeEach
     void init() {
         bridgeState = new BridgeState();
-        bridgeGame = new BridgeGame(bridge, bridgeState);
+        bridgeGameState = new BridgeGameState();
+        bridgeGame = new BridgeGame(bridge, bridgeState, bridgeGameState);
     }
 
     @DisplayName("게임 재시작 시 게임 총 도전 횟수 카운트 값 확인")
