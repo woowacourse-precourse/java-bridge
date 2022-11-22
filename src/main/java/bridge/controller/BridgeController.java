@@ -15,13 +15,13 @@ public class BridgeController {
 
     public void start() {
         gameStartMessage();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker());
+        int bridgeSize = viewService.requestBridgeSize();
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker(bridgeSize));
         User user = new User();
         playGame(user, bridgeGame);
     }
 
-    public List<String> bridgeMaker() {
-        int bridgeSize = viewService.requestBridgeSize();
+    public List<String> bridgeMaker(int bridgeSize) {
         List<String> bridgeGame = bridgeMaker.makeBridge(bridgeSize);
         return bridgeGame;
     }
