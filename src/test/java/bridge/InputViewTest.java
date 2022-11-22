@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.exception.BridgeException;
+import bridge.exception.ErrorMessage;
 import bridge.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BridgeException.SIZE_LANGE_ERROR);
+                .hasMessage(ErrorMessage.SIZE_LANGE_ERROR);
     }
     @DisplayName("다리 길이의 입력값이 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest
@@ -39,7 +40,7 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BridgeException.SIZE_FORMAT_ERROR);
+                .hasMessage(ErrorMessage.SIZE_FORMAT_ERROR);
 
     }
 
@@ -52,7 +53,7 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readMoving())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BridgeException.MOVING_ERROR);
+                .hasMessage(ErrorMessage.MOVING_ERROR);
     }
 
 
@@ -65,7 +66,7 @@ public class InputViewTest {
 
         assertThatThrownBy(() -> inputView.readGameCommand())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BridgeException.RESTART_ERROR);
+                .hasMessage(ErrorMessage.RESTART_ERROR);
     }
 
 }
