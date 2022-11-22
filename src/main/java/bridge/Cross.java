@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Arrays;
+
 public enum Cross {
 
     CAN_CROSS("O", true),
@@ -11,5 +13,12 @@ public enum Cross {
     Cross(String mark, boolean cross) {
         this.mark = mark;
         this.cross = cross;
+    }
+
+    public static Cross from(boolean cross) {
+        return Arrays.stream(Cross.values())
+                .filter(s -> s.cross == cross)
+                .findFirst()
+                .orElseGet(null);
     }
 }
