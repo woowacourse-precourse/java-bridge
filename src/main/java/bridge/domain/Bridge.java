@@ -10,6 +10,6 @@ public class Bridge {
     }
 
     public String getBridgeOfIndex(int index) {
-        return bridge.get(index); //유효하지 않은 index -> IndexOutOfBoundsException 반환
+        return bridge.get(index);
     }
 }
