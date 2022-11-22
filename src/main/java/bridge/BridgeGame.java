@@ -25,6 +25,9 @@ public class BridgeGame {
         isCorrect = bridge.get(playerPlace).equals(moving);
     }
 
+    public boolean isGameOver(int bridgeSize, MovingMap movingMap) {
+        return (playerPlace == bridgeSize) && (movingMap.isLastStepCorrect()) ;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
