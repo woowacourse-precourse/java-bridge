@@ -1,7 +1,4 @@
-package bridge.service;
-
-import bridge.constant.GameInInformation;
-import bridge.view.OutputView;
+package bridge;
 
 import java.util.List;
 

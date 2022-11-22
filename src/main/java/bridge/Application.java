@@ -1,14 +1,5 @@
 package bridge;
 
-import bridge.exception.ValidException;
-import bridge.service.BridgeGame;
-import bridge.service.BridgeInit;
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeService;
-import bridge.view.BridgePainting;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
 public class Application {
 
     public static void main(String[] args) {

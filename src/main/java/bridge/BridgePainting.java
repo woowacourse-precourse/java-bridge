@@ -1,7 +1,7 @@
-package bridge.view;
+package bridge;
 
-import bridge.constant.PaintingInformation;
-import bridge.constant.GameInInformation;
+import bridge.PaintingInformation;
+import bridge.GameInInformation;
 
 import java.util.ArrayList;
 import java.util.List;

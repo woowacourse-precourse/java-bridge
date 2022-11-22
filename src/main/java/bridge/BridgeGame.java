@@ -1,6 +1,4 @@
-package bridge.service;
-
-import bridge.view.BridgePainting;
+package bridge;
 
 import java.util.List;
 

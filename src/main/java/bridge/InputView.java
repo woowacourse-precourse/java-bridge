@@ -1,5 +1,5 @@
-package bridge.view;
-import bridge.exception.ValidException;
+package bridge;
+import bridge.ValidException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

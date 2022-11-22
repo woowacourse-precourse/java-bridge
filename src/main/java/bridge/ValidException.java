@@ -1,7 +1,7 @@
-package bridge.exception;
+package bridge;
 
-import bridge.constant.ErrorMessage;
-import bridge.constant.GameInInformation;
+import bridge.ErrorMessage;
+import bridge.GameInInformation;
 
 import java.util.NoSuchElementException;
 
