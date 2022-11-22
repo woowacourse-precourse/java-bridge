@@ -10,7 +10,6 @@ import static bridge.view.game.GameStatusView.makeGameStatusView;
 import bridge.domain.game.GameRunStatus;
 import bridge.service.BridgeGame;
 import bridge.value.GameCommand;
-import bridge.view.game.GameStatusView;
 import bridge.view.io.UserIOView;
 
 public class BridgeGameController {
@@ -26,25 +25,29 @@ public class BridgeGameController {
 
     public void start() {
         init();
-        process();
+        run();
         release();
     }
 
-    private void process() {
+    private void run() {
         while (!gameRunStatus.isStop()) {
-            run();
+            runProcess();
         }
     }
 
-    public void run() {
+    public void runProcess() {
         if (!canMove()) {
             failProcess();
             return;
         }
+        successProcess();
+    }
 
+    private void successProcess() {
         bridgeGame.move();
 
         updateGameRunStatus();
+
         userIOView.outputGameStatus(makeGameStatusView(bridgeGame.status()));
     }
 
