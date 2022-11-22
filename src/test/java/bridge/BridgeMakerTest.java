@@ -1,5 +1,7 @@
-package bridge.model;
+package bridge;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.constant.ErrorMessage;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;

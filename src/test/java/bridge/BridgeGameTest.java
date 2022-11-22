@@ -1,5 +1,10 @@
-package bridge.model;
+package bridge;
 
+import bridge.Bridge;
+import bridge.BridgeGame;
+import bridge.Moving;
+import bridge.MovingResult;
+import bridge.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

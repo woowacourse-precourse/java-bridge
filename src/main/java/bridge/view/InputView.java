@@ -2,8 +2,8 @@ package bridge.view;
 
 import bridge.constant.ErrorMessage;
 import bridge.constant.GuidanceMessage;
-import bridge.model.GameCommand;
-import bridge.model.Moving;
+import bridge.GameCommand;
+import bridge.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

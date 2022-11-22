@@ -1,17 +1,17 @@
-package bridge.model;
+package bridge;
 
 import java.util.List;
 
-public class UpSideMap extends SideMap {
+public class DownSideMap extends SideMap{
 
-    public UpSideMap(List<MovingResult> history) {
+    public DownSideMap(List<MovingResult> history) {
         for (MovingResult movingResult : history) {
             sideMap.add(convert(movingResult));
         }
     }
 
     private String convert(MovingResult movingResult) {
-        if (movingResult.isUpSide()) {
+        if (movingResult.isDownSide()) {
             if (movingResult.isSuccess()) {
                 return SUCCESS;
             }

@@ -1,10 +1,10 @@
 package bridge.view;
 
-import bridge.model.BridgeGame;
+import bridge.BridgeGame;
 import bridge.constant.ErrorMessage;
 import bridge.constant.GuidanceMessage;
-import bridge.model.MovingHistory;
-import bridge.model.SideMap;
+import bridge.MovingHistory;
+import bridge.SideMap;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

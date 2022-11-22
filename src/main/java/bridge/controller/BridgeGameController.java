@@ -1,14 +1,14 @@
 package bridge.controller;
 
-import bridge.model.Bridge;
-import bridge.model.BridgeGame;
-import bridge.model.BridgeMaker;
-import bridge.model.BridgeNumberGenerator;
-import bridge.model.BridgeRandomNumberGenerator;
-import bridge.model.GameCommand;
-import bridge.model.Moving;
-import bridge.model.MovingHistory;
-import bridge.model.MovingResult;
+import bridge.Bridge;
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.GameCommand;
+import bridge.Moving;
+import bridge.MovingHistory;
+import bridge.MovingResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
