@@ -21,7 +21,7 @@ class BridgeMatcherTest {
     @BeforeEach
     void setUp() {
         boolBridge = newArrayList(true, true, false);
-        bridgeMatcher = new BridgeMatcher(boolBridge);
+        bridgeMatcher = new BridgeMatcher(boolBridge, 1);
     }
 
     @Test
@@ -46,7 +46,7 @@ class BridgeMatcherTest {
     @MethodSource("generateTestBridge")
     @DisplayName("게임 성공 여부를 확인하는 기능 테스트")
     void isGameSuccess(List<Boolean> matchedBridge, List<String> bridge, boolean expected) {
-        bridgeMatcher = new BridgeMatcher(matchedBridge);
+        bridgeMatcher = new BridgeMatcher(matchedBridge, 1);
         boolean actual = bridgeMatcher.isGameSuccess(bridge);
         Assertions.assertThat(actual).isEqualTo(expected);
     }
