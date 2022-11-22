@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.BridgeGame;
+import bridge.constant.MovingCommand;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -33,7 +36,7 @@ public class OutputView {
      */
     public void printMap(BridgeGame bridgeGame) {
         for (MovingCommand command : MovingCommand.values()){
-            printMessage(bridgeGame.getBridgeStringOf(command.getCommand()));
+            printMessage(bridgeGame.getBridgeLaneOf(command.getCommand()));
         }
     }
 
@@ -44,7 +47,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         printMessage(gameResultMessage);
         for (MovingCommand command: MovingCommand.values()){
-            printMessage(bridgeGame.getResultStringOf(command.getCommand()));
+            printMessage(bridgeGame.getResultLaneOf(command.getCommand()));
         }
         printMessage(String.format(whetherSuccessMessage, bridgeGame.getGameResult()));
         printMessage(String.format(numberOfTrialMessage, bridgeGame.getNumberOfTrials()));

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,11 +76,11 @@ public class BridgeGame {
         return bridge2;
     }
 
-    public String getResultStringOf(String side) {
+    public String getResultLaneOf(String side) {
         return getResultBridge().getLaneString(side, answerBridge.getBridge());
     }
 
-    public String getBridgeStringOf(String side) {
+    public String getBridgeLaneOf(String side) {
         return onPlayingBridge.getLaneString(side, answerBridge.getBridge());
     }
     

@@ -1,4 +1,8 @@
-package bridge;
+package bridge.domain;
+
+import bridge.constant.GameCommand;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
 
