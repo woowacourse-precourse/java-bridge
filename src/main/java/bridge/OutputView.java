@@ -5,50 +5,50 @@ public class OutputView {
     public static StringBuilder down = new StringBuilder();
 
     public void printMap(String state, boolean stop) {
-        if (state.equals(Constant.Up)) moveUp(stop);
-        if (state.equals(Constant.Down)) moveDown(stop);
+        if (state.equals(Constant.UP)) moveUp(stop);
+        if (state.equals(Constant.DOWN)) moveDown(stop);
 
-        System.out.println(Constant.Front + up + Constant.Back);
-        System.out.println(Constant.Front + down + Constant.Back);
+        System.out.println(Constant.FRONT + up + Constant.BACK);
+        System.out.println(Constant.FRONT + down + Constant.BACK);
 
-        up.append(Constant.Delimiter);
-        down.append(Constant.Delimiter);
+        up.append(Constant.DELIMITER);
+        down.append(Constant.DELIMITER);
     }
     
     public void printResult(boolean stop, int count) {
-        System.out.println(Constant.Result_of_game);
-        System.out.println(Constant.Front + up.substring(0, up.length() - 2) + Constant.Back);
-        System.out.println(Constant.Front + down.substring(0, up.length() - 2) + Constant.Back);
-        if (!stop) System.out.println(Constant.Result_of_try + Constant.Win);
-        if (stop) System.out.println(Constant.Result_of_try + Constant.Lose);
-        System.out.println(Constant.Total_Try + count);
+        System.out.println(Constant.RESULT_OF_GAME);
+        System.out.println(Constant.FRONT + up.substring(0, up.length() - 2) + Constant.BACK);
+        System.out.println(Constant.FRONT + down.substring(0, up.length() - 2) + Constant.BACK);
+        if (!stop) System.out.println(Constant.RESULT_OF_TRY + Constant.WIN);
+        if (stop) System.out.println(Constant.RESULT_OF_TRY + Constant.LOSE);
+        System.out.println(Constant.TOTAL_TRY + count);
     }
 
     public void moveUp(boolean stop) {
         if (stop) {
-            down.append(Constant.Fail + Constant.Space);
-            up.append(Constant.Space + Constant.Space);
+            down.append(Constant.FAIL + Constant.SPACE);
+            up.append(Constant.SPACE + Constant.SPACE);
         }
 
         if (!stop) {
-            up.append(Constant.Success + Constant.Space);
-            down.append(Constant.Space + Constant.Space);
+            up.append(Constant.SUCCESS + Constant.SPACE);
+            down.append(Constant.SPACE + Constant.SPACE);
         }
     }
 
     public void moveDown(boolean stop) {
         if (stop) {
-            up.append(Constant.Fail + Constant.Space);
-            down.append(Constant.Space + Constant.Space);
+            up.append(Constant.FAIL + Constant.SPACE);
+            down.append(Constant.SPACE + Constant.SPACE);
         }
 
         if (!stop) {
-            down.append(Constant.Success + Constant.Space);
-            up.append(Constant.Space + Constant.Space);
+            down.append(Constant.SUCCESS + Constant.SPACE);
+            up.append(Constant.SPACE + Constant.SPACE);
         }
     }
 
-    public void ResetAll() {
+    public void resetAll() {
         up.delete(0, up.length());
         down.delete(0, down.length());
     }
