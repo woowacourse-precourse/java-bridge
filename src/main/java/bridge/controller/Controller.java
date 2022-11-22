@@ -113,4 +113,8 @@ public class Controller {
         downBuilder.append(wrongBridge);
         upBuilder.append(emptyBridge);
     }
+
+    public void printBuilder() {
+        outputView.printMap(upBuilder, downBuilder);
+    }
 }
