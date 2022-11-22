@@ -41,4 +41,9 @@ public class InputView {
         retryInput(retry);
         return retry;
     }
+
+    public void bridgeSizeInput(String input) {
+        exception.notNatural(input);
+        exception.checkBridgeSize(input);
+    }
 }
