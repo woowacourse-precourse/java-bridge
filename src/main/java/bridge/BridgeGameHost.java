@@ -80,7 +80,7 @@ public class BridgeGameHost {
 
     public void printGuideComment() {
         System.out.printf("이동할 칸을 선택해주세요. (위: %s, 아래: %s)" + System.lineSeparator(),
-                MovingDirection.Upper.getDirection(), MovingDirection.Lower.getDirection());
+                MovingDirection.UPPER.getDirection(), MovingDirection.LOWER.getDirection());
     }
 
     public void printRetrialComment() {

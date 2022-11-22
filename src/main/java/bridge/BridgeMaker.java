@@ -27,10 +27,10 @@ public class BridgeMaker {
 
         for(int i=0; i<size; i++) {
             if(bridgeNumberGenerator.generate()==upperCompartmentNum) {
-                bridge.add(MovingDirection.Upper.getDirection());
+                bridge.add(MovingDirection.UPPER.getDirection());
                 continue;
             }
-            bridge.add(MovingDirection.Lower.getDirection());
+            bridge.add(MovingDirection.LOWER.getDirection());
         }
 
         return bridge;

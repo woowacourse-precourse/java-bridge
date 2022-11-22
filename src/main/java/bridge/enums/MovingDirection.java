@@ -1,8 +1,8 @@
 package bridge.enums;
 
 public enum MovingDirection {
-    Upper("U"),
-    Lower("D");
+    UPPER("U"),
+    LOWER("D");
 
     private final String direction;
 

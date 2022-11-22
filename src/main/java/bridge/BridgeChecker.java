@@ -25,9 +25,9 @@ public class BridgeChecker {
         List<String> upperBlocks = new ArrayList<>();
 
         for(int i=0; i<matchingResult.size(); i++) {
-            if(bridge.get(i).equals(MovingDirection.Upper.getDirection())) {
+            if(bridge.get(i).equals(MovingDirection.UPPER.getDirection())) {
                 upperBlocks.add(matchingResult.get(i));
-            }else if(bridge.get(i).equals(MovingDirection.Lower.getDirection())) {
+            }else if(bridge.get(i).equals(MovingDirection.LOWER.getDirection())) {
                 upperBlocks.add(BlockExpression.EMPTY.getMark());
             }
         }
@@ -38,9 +38,9 @@ public class BridgeChecker {
         List<String> lowerBlocks = new ArrayList<>();
 
         for(int i=0; i<matchingResult.size(); i++) {
-            if(bridge.get(i).equals(MovingDirection.Lower.getDirection())) {
+            if(bridge.get(i).equals(MovingDirection.LOWER.getDirection())) {
                 lowerBlocks.add(matchingResult.get(i));
-            }else if(bridge.get(i).equals(MovingDirection.Upper.getDirection())) {
+            }else if(bridge.get(i).equals(MovingDirection.UPPER.getDirection())) {
                 lowerBlocks.add(BlockExpression.EMPTY.getMark());
             }
         }
