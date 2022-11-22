@@ -43,7 +43,7 @@ public class BridgeGameController {
         while (true) {
             try {
                 return inputView.readMoving();
-            } catch (IllegalArgumentException exception) {
+            } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
         }

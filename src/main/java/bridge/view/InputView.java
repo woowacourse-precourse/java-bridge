@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.Command;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -19,7 +20,7 @@ public class InputView {
         try {
             return Console.readLine();
         } catch (Exception exception) {
-            throw new IllegalArgumentException(NULL_INPUT_ERROR_MSG);
+            throw new NoSuchElementException(NULL_INPUT_ERROR_MSG);
         }
     }
 
