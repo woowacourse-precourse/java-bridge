@@ -21,7 +21,7 @@ public class OutputView {
         this.gameResult = gameResult;
     }
 
-    public void printGameStart() {
+    public static void printGameStart() {
         System.out.println(OUTPUT_GAME_START);
     }
 
