@@ -22,4 +22,13 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() {
+        System.out.println(Constants.CHOOSE_UP_DOWN);
+        String moving = Console.readLine();
+        movingInput(moving);
+        return moving;
+    }
 }
