@@ -4,12 +4,6 @@ import bridge.domain.game.MovingType;
 
 public class Constants {
 
-    // 입력 관련
-    public static final int MAX_TRY_OF_READ_BRIDGE_LENGTH = 20;
-    public static final int MAX_TRY_OF_READ_MOVING = 20;
-    public static final int MAX_TRY_OF_READ_RESTART_OPTION = 20;
-
-
     // 검증 로직
     public static final int MIN_LENGTH_OF_BRIDGE = 3;
     public static final int MAX_LENGTH_OF_BRIDGE = 20;
@@ -18,7 +12,6 @@ public class Constants {
 
 
     // 에러 처리 관련
-    public static final String EXCEED_THE_NUMBER_OF_TRY = "[ERROR] 입력 시도 횟수 초과";
     public static final String NO_MATCHING_MOVING_TYPE_FOUND = "[ERROR] 해당 값에 해당하는 이동 유형을 찾을 수 없음";
     public static final String OUT_OF_RANGE_OF_BRIDGE =
             String.format("[ERROR] 다리 길이는 %d 이상 %d 이하여야 합니다.",
@@ -49,7 +42,7 @@ public class Constants {
             String.format("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s",
                     RESTART_OPTION,
                     QUIT_OPTION);
-    public static final String RETRY_GUIDE = "[ERROR] 다시 입력해주십시오. (최대 %d번의 기회 제공, 현재 %d번 시도)\n";
+    public static final String RETRY_GUIDE = "[ERROR] 다시 입력해주십시오. (현재 %d번 시도)\n";
 
     // 아웃풋
     public static final String RESULT_GUIDE = "최종 게임 결과";

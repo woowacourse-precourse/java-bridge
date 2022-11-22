@@ -44,14 +44,13 @@ public class BridgeGameController {
     }
 
     private int readBridgeLength() {
-        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_BRIDGE_LENGTH; tryCnt++) {
+        for (int tryCnt = 1; ; tryCnt++) {
             try {
                 return inputView.readBridgeLength();
             } catch (IllegalArgumentException e) {
-                callRetryGuide(tryCnt, MAX_TRY_OF_READ_BRIDGE_LENGTH, e);
+                callRetryGuide(tryCnt, e);
             }
         }
-        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
     }
 
     private void firstRoundStart() {
@@ -74,21 +73,18 @@ public class BridgeGameController {
     }
 
     private String readRestartOption() {
-        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_RESTART_OPTION; tryCnt++) {
+        for (int tryCnt = 1; ; tryCnt++) {
             try {
                 return inputView.readRestartOption();
             } catch (IllegalArgumentException e) {
-                callRetryGuide(tryCnt, MAX_TRY_OF_READ_RESTART_OPTION, e);
+                callRetryGuide(tryCnt, e);
             }
         }
-        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
     }
 
-    private void callRetryGuide(int tryCnt, int maxTry, IllegalArgumentException e) {
+    private void callRetryGuide(int tryCnt, IllegalArgumentException e) {
         outputView.printErrorMessage(e);
-        if (tryCnt != maxTry) {
-            outputView.printRetryGuide(tryCnt, maxTry);
-        }
+        outputView.printRetryGuide(tryCnt);
     }
 
     private boolean getRoundResultAndPrintMap() {
@@ -105,14 +101,13 @@ public class BridgeGameController {
     }
 
     private String readMoving() {
-        for (int tryCnt = 1; tryCnt <= MAX_TRY_OF_READ_MOVING; tryCnt++) {
+        for (int tryCnt = 1; ; tryCnt++) {
             try {
                 return inputView.readMoving();
             } catch (IllegalArgumentException e) {
-                callRetryGuide(tryCnt, MAX_TRY_OF_READ_MOVING, e);
+                callRetryGuide(tryCnt, e);
             }
         }
-        throw new IllegalArgumentException(EXCEED_THE_NUMBER_OF_TRY);
     }
 
     private void restartRoundStart() {

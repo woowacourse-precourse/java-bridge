@@ -88,7 +88,7 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public void printRetryGuide(int tryCnt, int maxtry) {
-        System.out.printf(RETRY_GUIDE, maxtry, tryCnt);
+    public void printRetryGuide(int tryCnt) {
+        System.out.printf(RETRY_GUIDE, tryCnt);
     }
 }
