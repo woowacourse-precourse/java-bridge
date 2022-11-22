@@ -1,6 +1,7 @@
 package bridge.exception;
 
 import bridge.constant.GameMessage;
+import bridge.constant.Letter;
 
 import static bridge.model.Column.BY_CAPITAL_LETTER;
 
@@ -23,7 +24,7 @@ public class ValidationUtils {
         }
     }
     public static void endLetter(String input){
-        if(!input.equals(GameMessage.RETRY) && !input.equals(GameMessage.CLOSE)){
+        if(!input.equals(Letter.RETRY) && !input.equals(Letter.CLOSE)){
             throw new IllegalArgumentException(ExceptionMsg.END_LETTER.msg);
         }
     }

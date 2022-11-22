@@ -1,6 +1,7 @@
 package bridge.controller;
 
-import bridge.constant.GameMessage;
+
+import bridge.constant.Letter;
 import bridge.model.BridgeBuffer;
 import bridge.model.BridgeGame;
 import bridge.model.Column;
@@ -22,7 +23,7 @@ public class BridgeController {
 
     public void startGame(){
         int size = inputSize();
-        bridgeGame.start(size);
+        buffer = bridgeGame.start(size);
         playing(size);
     }
 
@@ -72,7 +73,7 @@ public class BridgeController {
 
     private int checkRetry(int size){
         String letter = inputRetry();
-        if(letter.equals(GameMessage.RETRY)){
+        if(letter.equals(Letter.RETRY)){
             bridgeGame.retry();
             return playing(size);
         }
@@ -89,11 +90,11 @@ public class BridgeController {
     }
 
     private int failGame(){
-        output.printResult(buffer.over(), GameMessage.FAILURE, bridgeGame.getTotalCount());
+        output.printResult(buffer.over(), Letter.FAILURE, bridgeGame.getTotalCount());
         return 0;
     }
     private int succeedGame(){
-        output.printResult(buffer.over(),GameMessage.SUCCESS, bridgeGame.getTotalCount());
+        output.printResult(buffer.over(),Letter.SUCCESS, bridgeGame.getTotalCount());
         return 0;
     }
 }

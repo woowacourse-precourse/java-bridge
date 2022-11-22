@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.constant.GameMessage;
+
 import java.util.List;
 
 /**
@@ -8,16 +10,16 @@ import java.util.List;
 public class OutputView {
 
     public void printIntro(){
-        System.out.println(Notice.STARTING_GAME);
+        System.out.println(GameMessage.STARTING_GAME);
         System.out.println();
-        System.out.println(Notice.SET_GAME);
+        System.out.println(GameMessage.SET_GAME);
     }
 
     public void printMove(){
-        System.out.println(Notice.RUNNING_GAME);
+        System.out.println(GameMessage.RUNNING_GAME);
     }
     public void printRetry(){
-        System.out.println(Notice.GAME_RETRY);
+        System.out.println(GameMessage.GAME_RETRY);
     }
     public void printException(String exception){
         System.out.println(exception);
@@ -43,10 +45,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<String>> buffer, String result, int totalCount) {
-        System.out.println(Notice.GAME_RESULT);
+        System.out.println(GameMessage.GAME_RESULT);
         printMap(buffer);
         System.out.println();
-        System.out.println(Notice.GAME_SUCCESS_OR_FAILURE + result);
-        System.out.println(String.format(Notice.ATTEMPT_COUNT,totalCount));
+        System.out.println(GameMessage.GAME_SUCCESS_OR_FAILURE + result);
+        System.out.println(String.format(GameMessage.ATTEMPT_COUNT,totalCount));
     }
 }
