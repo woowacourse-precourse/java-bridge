@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge;
 
 import bridge.view.ErrorMessage;
 import bridge.view.GameSign;
