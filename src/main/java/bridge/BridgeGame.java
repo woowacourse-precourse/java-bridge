@@ -15,10 +15,10 @@ import java.util.List;
 // InputView, OutputView 사용 불가
 public class BridgeGame {
 
-    public void start() {
-        InputView inputView = new InputView();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize(Console.readLine()));
+    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+    public Bridge make(int bridgeSize) {
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     /**
@@ -26,7 +26,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(Bridge bridge, String inputMove) {
+        bridge.compareWithBridge(inputMove);
     }
 
     /**
@@ -34,6 +35,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public int retry(Bridge bridge, String gameCommand) {
+            bridge.restartBridge();
+            bridge.plusTryCount();
+        return -1;
     }
 }
