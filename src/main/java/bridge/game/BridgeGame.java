@@ -51,6 +51,7 @@ public class BridgeGame {
             return GameState.EXIT;
         }
 
+        this.count += 1;
         return GameState.CONTINUE;
     }
 
@@ -70,5 +71,9 @@ public class BridgeGame {
         if (!(input.equals("R") || input.equals("Q"))) {
             throw new IllegalArgumentException("재시작은 R와 Q만 입력할 수 있습니다.");
         }
+    }
+
+    public Bridge getBridge() {
+        return bridge;
     }
 }
