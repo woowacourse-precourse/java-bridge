@@ -1,9 +1,9 @@
-package bridge.View;
+package bridge;
 
-import static bridge.Type.OutputMsg.*;
+import static bridge.OutputMsg.*;
 
-import bridge.Type.DirectionType;
-import bridge.Domain.Record;
+import bridge.DirectionType;
+import bridge.Record;
 import java.util.List;
 
 /**

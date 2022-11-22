@@ -1,9 +1,5 @@
-package bridge.Service;
+package bridge;
 
-import bridge.BridgeRandomNumberGenerator;
-import bridge.Utils.BridgeMaker;
-import bridge.Domain.Judgement;
-import bridge.Domain.Record;
 import java.util.List;
 
 /**

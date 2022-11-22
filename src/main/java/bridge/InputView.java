@@ -1,9 +1,9 @@
-package bridge.View;
+package bridge;
 
-import static bridge.View.OutputView.printBridgeLengthMsg;
-import static bridge.View.OutputView.printMovingMsg;
-import static bridge.View.OutputView.printRetryQuitMsg;
-import static bridge.Validator.Validator.*;
+import static bridge.OutputView.printBridgeLengthMsg;
+import static bridge.OutputView.printMovingMsg;
+import static bridge.OutputView.printRetryQuitMsg;
+import static bridge.Validator.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
