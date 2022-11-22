@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CompareBridge {
@@ -18,7 +19,7 @@ public class CompareBridge {
 
     public List<Boolean> canStepping(Player player) {
         checkSameOrNot(player.getMovingChoices(), moveResults);
-        return moveResults;
+        return Collections.unmodifiableList(moveResults);
     }
 
     public void checkSameOrNot(List<String> movingChoices, List<Boolean> moveResults) {
