@@ -5,6 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import org.junit.jupiter.api.RepeatedTest;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+
 public class BridgeMakerTest {
     BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
