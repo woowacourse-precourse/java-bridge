@@ -6,6 +6,6 @@ public class Application {
 
     public static void main(String[] args) {
         BridgeGameController bridgeGameController = new BridgeGameController();
-        bridgeGameController.start();
+        bridgeGameController.start(new BridgeRandomNumberGenerator());
     }
 }

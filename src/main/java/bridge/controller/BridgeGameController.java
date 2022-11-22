@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
 import bridge.model.GameResultState;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
@@ -18,14 +19,14 @@ public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final BridgeGameService bridgeGameService = new BridgeGameService();
 
-    public void start() {
-        initBridge();
+    public void start(BridgeNumberGenerator generator) {
+        initBridge(generator);
         proceedGame();
     }
 
-    private void initBridge() {
+    private void initBridge(final BridgeNumberGenerator generator) {
         bridgeSize = inputView.printStartMessage();
-        bridgeGameService.makeBridge(bridgeSize);
+        bridgeGameService.makeBridge(bridgeSize, generator);
     }
 
     private void proceedGame() {

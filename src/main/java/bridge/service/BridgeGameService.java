@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.repository.BridgeRepository;
 import bridge.repository.PositionRepository;
@@ -15,8 +15,7 @@ public class BridgeGameService {
     private final TryRepository tryRepository = new TryRepository();
     private BridgeGame bridgeGame;
 
-    public void makeBridge(int number) {
-        BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
+    public void makeBridge(int number, BridgeNumberGenerator randomGenerator) {
         this.bridgeGame = BridgeGame.of(number, randomGenerator);
     }
 
