@@ -28,7 +28,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String User_Move = String.valueOf(Console.readLine());
+            if (!User_Move.equals("U") && !User_Move.equals("D")) {
+                throw new IllegalArgumentException();
+            }
+            return User_Move;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 이동할 칸은 U 또는 D만 입력 가능합니다.");
+            return readMoving();
+        }
     }
 
     /**
