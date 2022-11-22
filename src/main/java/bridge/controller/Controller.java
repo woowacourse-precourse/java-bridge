@@ -31,11 +31,17 @@ public class Controller {
                 break;
             }
             if (isLoss(result)) {
-                String s = inputView.readGameCommand();
-                if ("Q".equals(s)) break;
-                service.retry();
+                boolean finish = askFinish();
+                if (finish) break;
             }
         }
+    }
+
+    private boolean askFinish() {
+        String s = inputView.readGameCommand();
+        if ("Q".equals(s)) return true;
+        service.retry();
+        return false;
     }
 
     private boolean isLoss(Result result) {
