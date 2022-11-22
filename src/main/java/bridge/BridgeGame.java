@@ -19,18 +19,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(InputView Input) {
+    public String move(InputView Input,OutputView Output) {
         while(gameStepCount != bridgeSize){
             String movingCommand=Input.readMoving();
             System.out.println(movingCommand);
-            OutputView Output = new OutputView();
             if(!Output.printMap(gameStepCount,movingCommand,Bridge)){
                 return retry(Input);
             }
             gameStepCount++;
         }
-        System.out.println("--------끝---------");
-        return true;
+        return "COMPLETE";
     }
 
     /**
@@ -38,12 +36,16 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(InputView Input) {
+    public String retry(InputView Input) {
         System.out.println(Constants.RETRY_INFO);
         String command =Input.readGameCommand();
         if(command.equals("Q")){
-            return false;
+            return "STOP";
         }
-        return true;
+        return "CONTINUE";
+    }
+
+    public int getGameStepCount() {
+        return gameStepCount;
     }
 }

@@ -23,15 +23,24 @@ public class OutputView {
             printOX(mark,command);
             System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
             System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
+            System.out.println();
             return false;
         };
         printOX(mark,command);
         System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
         System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
+        System.out.println();
         return true;
     }
 
-    public void printResult() {
+    public void printResult(int number,boolean gameStatus) {
+        String whether = "실패";
+        System.out.println("최종 게임 결과");
+        System.out.printf("[" + String.join("|", upBridgeMap) + "]\n");
+        System.out.printf("[" + String.join("|", downBridgeMap) + "]\n");
+        if (gameStatus){whether = "성공";}
+        System.out.println("게임 성공 여부: " + whether);
+        System.out.println("총 시도한 횟수: " +number);
     }
 
     public String checkMap(String command,int count,List<String>Bridge) {
@@ -39,7 +48,7 @@ public class OutputView {
         // 1차원 배열에서 2의 배수씩 다음 칸으로 넘어가고, U는 0으로, D는 1로 표기하여 계산함
         if (command.equals("U")) {
             index = (count * 2) + 0;
-            if (Bridge.get(index).equals("0")) {
+            if (Bridge.get(index).equals("1")) {
                 return Constants.CIRCLE_MARK;
             }
         }

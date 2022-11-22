@@ -17,6 +17,12 @@ public class InputView {
         /**
          * 다리의 길이를 입력받는다.
          */
+//        while (true) {
+//            bridgeLength = Integer.valueOf(Console.readLine());
+//            if (checkBridgeLength(bridgeLength)){
+//                break;
+//            }
+//        }
         while (true) {
             bridgeLength = Integer.valueOf(Console.readLine());
             if (checkBridgeLength(bridgeLength)){
@@ -59,8 +65,7 @@ public class InputView {
 
     public boolean checkBridgeLength(int length){
         try{
-        if (length<2 || length >20){
-            throw new IllegalArgumentException();
+        if (length<2 || length >20){throw new IllegalArgumentException();
         }
     }catch(IllegalArgumentException e){
             System.out.println(Constants.ERROR_RANGE_INFO);
