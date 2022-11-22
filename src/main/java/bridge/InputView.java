@@ -32,6 +32,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommand = Console.readLine();
+        errorControl.retryCommandError(gameCommand);
         return gameCommand;
     }
 }
