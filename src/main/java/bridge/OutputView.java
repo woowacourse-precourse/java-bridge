@@ -13,7 +13,6 @@ public class OutputView {
 
     public void printBridgeSize() {
         System.out.println(Output.BRIDGE_SIZE_MSG.getMsg());
-
     }
 
     public void printMoving() {
@@ -22,6 +21,10 @@ public class OutputView {
 
     public void printGameCommand() {
         System.out.println(Output.GAME_COMMAND_MSG.getMsg());
+    }
+
+    public void printEnd() {
+        System.out.println(Output.END_MSG.getMsg());
     }
 
     /**
@@ -37,6 +40,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean result, int numberOfTimes) {
+        if (result) {
+            System.out.println(String.format(Output.RESULT_MSG.getMsg(), Output.SUCCESS_MSG.getMsg()));
+        }
+        if (!result) {
+            System.out.println(String.format(Output.RESULT_MSG.getMsg(), Output.FAIL_MSG.getMsg()));
+        }
+        System.out.println(String.format(Output.NUMBER_OF_TIMES_MSG.getMsg(), numberOfTimes));
     }
 }
