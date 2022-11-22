@@ -14,11 +14,15 @@ public class CurrentBridge {
         return currentCommand.get(phase);
     }
 
-    public void setCurrentCommand(String command) {
+    public void addCurrentCommand(String command) {
         currentCommand.add(command);
     }
 
     public int getCurrentPhase() {
         return currentCommand.size();
+    }
+
+    public void removeCurrentCommand() {
+        currentCommand.remove(currentCommand.size() - 1);
     }
 }

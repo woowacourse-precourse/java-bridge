@@ -21,19 +21,17 @@ public class OutputView {
     public static final String MOVING_ERROR_MESSAGE = "[ERROR] 위는 U, 아래는 D를 입력해야 합니다.";
     public static final String RESTART_ERROR_MESSAGE = "[ERROR] 재시도는 R, 종료는 Q를 입력해야 합니다.";
 
-    public static final String LEFT_WALL = "[ ";
-    public static final String PARTITION = " | ";
-    public static final String RIGHT_WALL = " ]";
-
     public void printStart() {
         System.out.println(START_MESSAGE);
     }
 
     public void printLengthCommand() {
+        System.out.println();
         System.out.println(LENGTH_COMMAND_MESSAGE);
     }
 
     public void printMovingCommand() {
+        System.out.println();
         System.out.println(MOVING_COMMAND_MESSAGE);
     }
 
@@ -48,6 +46,7 @@ public class OutputView {
 
 
     public void printReStart() {
+        System.out.println();
         System.out.println(RESTART_COMMAND_MESSAGE);
     }
 

@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Status {
 
-    private int successedPhase;
+    private CurrentBridge currentBridge;
     private int totalTryNumber;
     private boolean isSuccess;
 
     public Status() {
-        this.successedPhase = 0;
-        this.totalTryNumber = 0;
+        this.currentBridge = new CurrentBridge(new ArrayList<>());
+        this.totalTryNumber = 1;
         this.isSuccess = false;
     }
 
@@ -27,15 +27,30 @@ public class Status {
         this.totalTryNumber++;
     }
 
+    public void decreaseTryNumber() {
+        if(this.totalTryNumber > 0) {
+            this.totalTryNumber--;
+        }
+    }
+
     public void setSuccess(boolean isSuccess) {
         this.isSuccess = isSuccess;
     }
 
-    public int getSuccessedPhase() {
-        return successedPhase;
+
+    public void enterCommand(String command) {
+        currentBridge.addCurrentCommand(command);
     }
 
-    public void increaseSuccessedPhase() {
-        this.successedPhase++;
+    public void removeCommand() {
+        currentBridge.removeCurrentCommand();
+    }
+
+    public String getCurrentCommand(int phase) {
+        return currentBridge.getCurrentCommand(phase);
+    }
+
+    public int getCurrentPhase() {
+        return currentBridge.getCurrentPhase();
     }
 }

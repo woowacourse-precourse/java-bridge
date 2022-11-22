@@ -9,7 +9,7 @@ public class MovingValidator {
     private static final char DOWN = 'D';
 
     public static void validateMoving(String input) {
-        if(input.charAt(0) != LENGTH) {
+        if(input.length() != LENGTH) {
             throw new IllegalArgumentException(OutputView.MOVING_ERROR_MESSAGE);
         }
 
