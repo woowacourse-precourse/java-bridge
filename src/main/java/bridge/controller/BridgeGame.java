@@ -20,9 +20,9 @@ public class BridgeGame {
     private Bridge bridge;
 
     private int totalGameCount;
-    private boolean isRoundOver;
-    private boolean isGameOver;
-    private boolean isSuccess;
+    private boolean isRoundOver; // 매 플레이어 진행 라운드
+    private boolean isGameOver; // 전체 게임
+    private boolean isSuccess; // 게임 성공
 
     public BridgeGame(BridgeService bridgeService) {
         this.bridgeService = bridgeService;
@@ -47,8 +47,7 @@ public class BridgeGame {
      */
     public boolean move() {
         while(!isRoundOver) {
-            inputView.readMoving();
-            player.setCurrentMove(inputView.getPlayerMove());
+            moveSet();
             isRoundOver = !eachMove();
             outputView.printMap(player);
             if(isGameSuccess()) {
@@ -56,6 +55,14 @@ public class BridgeGame {
             }
         }
         return false;
+    }
+
+    /**
+     * 사용자에게 입력받은 값 초기 설정
+     */
+    public void moveSet() {
+        inputView.readMoving();
+        player.setCurrentMove(inputView.getPlayerMove());
     }
 
     public boolean eachMove() {
