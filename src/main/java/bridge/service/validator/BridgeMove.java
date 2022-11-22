@@ -22,9 +22,9 @@ public class BridgeMove {
         return input;
     }
 
-    private boolean isValidateInputMoveBridge(String moveBridge) {
+    private boolean isValidateInputMoveBridge(String input) {
         try{
-            checkIsMoveCode(moveBridge);
+            checkIsMoveCode(input);
         } catch (Exception e) {
             return false;
         }
