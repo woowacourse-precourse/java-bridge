@@ -10,18 +10,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private static final int INIT_LOCATION = -1;
-    private static final int INIT_RETRY_COUNT = 1;
-    private static final int COUNT_NUM = 1;
     private static final BridgeComparator bridgeComparator = new BridgeComparator();
+    private static final BridgeCalculator BRIDGE_CALCULATOR = new BridgeCalculator();
     private final List<String> bridge;
     private BridgeMap bridgeMap;
     private int location;
     private int retryCount;
 
     private BridgeGame(int size) {
-        this.location = INIT_LOCATION;
-        this.retryCount = INIT_RETRY_COUNT;
+        this.location = BRIDGE_CALCULATOR.getInitLocation();
+        this.retryCount = BRIDGE_CALCULATOR.getInitRetryCount();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
         bridgeMap = BridgeMap.createBridgeMap(size);
@@ -56,7 +54,7 @@ public class BridgeGame {
     }
 
     private void countLocation() {
-        location += COUNT_NUM;
+        location += BRIDGE_CALCULATOR.countNum(location);
     }
 
 
@@ -79,7 +77,7 @@ public class BridgeGame {
     }
 
     private void initLocation() {
-        location = INIT_LOCATION;
+        location = BRIDGE_CALCULATOR.getInitLocation();
     }
 
     public boolean isFail() {
@@ -87,7 +85,7 @@ public class BridgeGame {
     }
 
     public void countRetry() {
-        retryCount += COUNT_NUM;
+        retryCount += BRIDGE_CALCULATOR.countNum(retryCount);
     }
 
 }
