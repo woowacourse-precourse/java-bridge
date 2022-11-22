@@ -32,16 +32,20 @@ public class OutputView {
         Iterator<String> keys = bridgeMap.keySet().iterator();
         while(keys.hasNext()){
             String command = keys.next();
-            System.out.print(BRIDGE_LEFT);
-            for(int j=0;j<=index;j++){
-                System.out.print(bridgeMap.get(command).get(j));
-                if(j!=index){
-                    System.out.print(BRIDGE_MIDDLE);
-                }
-            }
-            System.out.println(BRIDGE_RIGHT);
+            printEachBridge(bridgeMap, index, command);
         }
     }
+    private static void printEachBridge(Map<String, List<String>> bridgeMap, int index, String command) {
+        System.out.print(BRIDGE_LEFT);
+        for(int j = 0; j<= index; j++){
+            System.out.print(bridgeMap.get(command).get(j));
+            if(j!= index){
+                System.out.print(BRIDGE_MIDDLE);
+            }
+        }
+        System.out.println(BRIDGE_RIGHT);
+    }
+
     private static void printInsideMap(int index, String bridgePosition) {
 
     }
