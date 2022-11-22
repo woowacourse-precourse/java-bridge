@@ -28,6 +28,8 @@ public class BridgeGameService {
 
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             bridgeGame.move(inputView.readMoving());
+
+            outputView.printMap(bridgeGame.getRounds());
         }
 
     }
