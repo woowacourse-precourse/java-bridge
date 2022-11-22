@@ -21,4 +21,10 @@ class BridgeGameHistoryTest {
     void whenCreateBridgeGameHistoryThenSuccessTest() {
         assertThat(bridgeGameHistory).isNotNull();
     }
+
+    @Test
+    @DisplayName("플레이어 다리 기록을 불러오는 것에 성공한다.")
+    void whenGetPlayerBridgeThenSuccessTest() {
+        assertThat(bridgeGameHistory.getPlayerBridge()).isNotNull();
+    }
 }
