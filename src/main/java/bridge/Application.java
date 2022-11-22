@@ -17,8 +17,7 @@ public class Application {
             BridgeGame bridgeGame = new BridgeGame(bridge, new Player(new Map()));
             System.out.println("다리 건너기 게임을 시작합니다.");
             playGame(bridgeGame);
-            OutputView.printResult(bridgeGame);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println(e.getMessage());
         }
     }
