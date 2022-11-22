@@ -1,14 +1,10 @@
 package bridge.domain;
 
-public class Tile {
-
-    private final TileStatus status;
-
-    public Tile(final TileStatus status) {
-        this.status = status;
-    }
+public enum Tile {
+    PASS,
+    NO_PASS;
 
     public boolean isPassable() {
-        return status.isPassable();
+        return this == PASS;
     }
 }

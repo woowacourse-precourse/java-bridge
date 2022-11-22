@@ -13,15 +13,14 @@ public class TileTest {
     @DisplayName("다리의 각 칸이 건널 수 있는지 알 수 있다.")
     @ParameterizedTest
     @MethodSource("provideTileStatusWithOutput")
-    void returnTrueIfCrossTile(TileStatus status, boolean expected) {
-        Tile tile = new Tile(status);
+    void returnTrueIfCrossTile(Tile tile, boolean expected) {
         assertThat(tile.isPassable()).isEqualTo(expected);
     }
 
     private static Stream<Arguments> provideTileStatusWithOutput() {
         return Stream.of(
-            Arguments.of(TileStatus.PASS, true),
-            Arguments.of(TileStatus.NO_PASS, false)
+            Arguments.of(Tile.PASS, true),
+            Arguments.of(Tile.NO_PASS, false)
         );
     }
 }
