@@ -19,6 +19,7 @@ public class Controller {
         Game(Start_Point, "");
     }
 
+    //movingIndex는 현재 게임 진행 단계, 즉 몇 칸을 갔는지에 대한 표시라고 할 수 있다.
     private void Game(int movingIndex, String lastInput) {
         if (GameClear(movingIndex, lastInput)) return; //정답을 모두 맞춘 경우
         String input = Movement(movingIndex); //입력을 받고 진행 사항을 출력
