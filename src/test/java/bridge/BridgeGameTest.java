@@ -33,9 +33,9 @@ class BridgeGameTest {
     @DisplayName("플레이어가 올바른 방향으로 다리를 세차례 건넌다.")
     @Test
     void move() {
-        bridgeGame.move(Movement.UP, result);
-        bridgeGame.move(Movement.DOWN, result);
-        bridgeGame.move(Movement.UP, result);
+        bridgeGame.move(Movement.UP);
+        bridgeGame.move(Movement.DOWN);
+        bridgeGame.move(Movement.UP);
 
         assertThat(result.getSuccessOrFailure()).isEqualTo("성공");
     }

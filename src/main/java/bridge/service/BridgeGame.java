@@ -8,8 +8,6 @@ import bridge.view.OutputView;
 
 public class BridgeGame {
 
-    private static final Boolean CORRECT_ANSWER = Boolean.TRUE;
-    private static final Boolean WRONG_ANSWER = Boolean.FALSE;
     private final Bridge bridge;
     private final Player player;
 
@@ -18,30 +16,12 @@ public class BridgeGame {
         this.player = player;
     }
 
-    public void move(Movement directionInput, Result result) {
+    public boolean move(Movement directionInput) {
         player.updateMovement(directionInput);
-        if (!checkAnswer()) {
-            judgeFalse(result);
-            return;
-        }
-        judgeTrue(result);
-    }
-
-    private boolean checkAnswer() {
         if (!player.matchPlayerAndBridge(bridge)) {
             return false;
         }
         return true;
-    }
-
-    private void judgeTrue(Result result) {
-        result.setGameResult(CORRECT_ANSWER);
-        OutputView.printMap(result, player);
-    }
-
-    private void judgeFalse(Result result) {
-        result.setGameResult(WRONG_ANSWER);
-        OutputView.printMap(result, player);
     }
 
     public void retry(Result result) {

@@ -15,6 +15,8 @@ public class GameController {
 
     private final InputController inputController;
     private final Result result = new Result();
+    private static final Boolean CORRECT_ANSWER = Boolean.TRUE;
+    private static final Boolean WRONG_ANSWER = Boolean.FALSE;
 
     public GameController(InputController inputController) {
         this.inputController = inputController;
@@ -22,6 +24,7 @@ public class GameController {
 
     public void run() {
         Bridge bridge = createBridge();
+        System.out.println(bridge.getBridge());
         Player player = new Player();
         BridgeGame bridgeGame = new BridgeGame(bridge, player);
         crossABridge(bridge, player, bridgeGame);
@@ -38,19 +41,30 @@ public class GameController {
     private void crossABridge(Bridge bridge, Player player, BridgeGame bridgeGame) {
         for (int step = 0; step < bridge.getBridgeSize(); step++) {
             Movement directionInput = inputController.getDirectionInput();
-            bridgeGame.move(directionInput, result);
-            if (result.getSuccessOrFailure().equals("실패")) {
+            if (!bridgeGame.move(directionInput)) {
                 retryGame(bridge, player, bridgeGame);
                 break;
             }
+            judgeTrue(player);
         }
     }
 
     private void retryGame(Bridge bridge, Player player, BridgeGame bridgeGame) {
+        judgeFalse(player);
         boolean retryCommandInput = inputController.getRetryCommandInput();
         if (retryCommandInput) {
             bridgeGame.retry(result);
             crossABridge(bridge, player, bridgeGame);
         }
+    }
+
+    private void judgeTrue(Player player) {
+        result.setGameResult(CORRECT_ANSWER);
+        OutputView.printMap(result, player);
+    }
+
+    private void judgeFalse(Player player) {
+        result.setGameResult(WRONG_ANSWER);
+        OutputView.printMap(result, player);
     }
 }
