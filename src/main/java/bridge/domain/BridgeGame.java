@@ -37,7 +37,12 @@ public class BridgeGame {
     }
 
     private Boolean isMovable(String moveCommand){
-        return bridge.get(progress.size()).equals(moveCommand);
+        if (moveCommand.equals(Command.MOVE_UP.getCommand())){
+            return bridge.get(progress.size()).equals(BlockSymbol.UP.getSymbol());
+        }
+        if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
+            return bridge.get(progress.size()).equals(BlockSymbol.DOWN.getSymbol());
+        }
     }
 
     private Boolean isClear(){
@@ -56,7 +61,7 @@ public class BridgeGame {
     public void retry(String retrialCommand) {
         validateRetrialCommand(retrialCommand);
         if (retrialCommand.equals(Command.RETRY.getCommand())) {
-            progress = new BridgeProgress();
+            progress.clear();
             trialCount += 1;
             gameState = GameState.RUNNING;
             return;
@@ -89,11 +94,9 @@ public class BridgeGame {
     private void updateProgress(String moveCommand, String symbol){
         if (moveCommand.equals(Command.MOVE_UP.getCommand())){
             progress.put(symbol, BlockSymbol.BLANK.getSymbol());
-            return;
         }
         if (moveCommand.equals(Command.MOVE_DOWN.getCommand())){
             progress.put(BlockSymbol.BLANK.getSymbol(), symbol);
-            return;
         }
     }
 }

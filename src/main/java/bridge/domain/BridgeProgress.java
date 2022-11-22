@@ -21,4 +21,9 @@ public class BridgeProgress {
         lowerBlock.add(lowerSymbol);
     }
 
+    public void clear(){
+        upperBlock.clear();
+        lowerBlock.clear();
+    }
+
 }
