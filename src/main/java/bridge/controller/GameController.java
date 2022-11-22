@@ -24,20 +24,21 @@ public class GameController {
     }
 
     private void run(BridgeGame bridgeGame, BridgeGameStatus status, Result result) {
-        while (status.isRunning()) {
-            result.initResult();
-            this.playGame(result, bridgeGame);
-            if (bridgeGame.retry(result)) {
-                this.changeGameStatus(status);
-                OutputView.printResult(result);
-                continue;
-            }
-            OutputView.printResult(result);
-            break;
+        if (!status.isRunning()) {
+            return;
         }
+        this.playGame(result, bridgeGame);
+
+        if (bridgeGame.retry(result)) {
+            this.changeGameStatus(status);
+            OutputView.printResult(result);
+            this.run(bridgeGame, status, result);
+        }
+        OutputView.printResult(result);
     }
 
     private void playGame(Result result, BridgeGame bridgeGame) {
+        result.initResult();
         Bridge bridge = bridgeGame.getBridge();
         result.increaseTryCount();
 
