@@ -1,11 +1,14 @@
 package domain;
 
+import enums.InputEnum;
+import enums.ResultMessage;
+
 public class Result {
-    private boolean isSuccess;
+    private String isSuccess = ResultMessage.FAIL.getText();
 
     private int trial;
 
-    public boolean getIsSuccess() {
+    public String getIsSuccess() {
         return isSuccess;
     }
 
@@ -13,7 +16,7 @@ public class Result {
         return trial;
     }
 
-    public void setIsSuccess(boolean isSuccess) {
+    public void setIsSuccess(String isSuccess) {
         this.isSuccess = isSuccess;
     }
 
@@ -21,7 +24,7 @@ public class Result {
         this.trial = trial;
     }
 
-    public void setResult(boolean isSuccess, int trial){
+    public void setResult(String isSuccess, int trial){
         this.isSuccess = isSuccess;
         this.trial = trial;
     }

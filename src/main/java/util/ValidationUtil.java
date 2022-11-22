@@ -6,8 +6,8 @@ import enums.ErrorMessage;
 import java.util.regex.Pattern;
 
 public class ValidationUtil {
-    public static int isValidSize(int size){
-        if(size < BridgeEnum.MIN_SIZE.getValue() || size > BridgeEnum.MAX_SIZE.getValue()) throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getValue());
+    public static String isValidSize(String size){
+        if(!Pattern.matches("^[3~20]$", size)) throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getValue());
         return size;
     }
 

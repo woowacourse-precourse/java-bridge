@@ -14,8 +14,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(InputEnum.PLEASE_INPUT_BRDIGE_SIZE.getValue());
-        int bridgeSize = Integer.parseInt(Console.readLine());
-        return ValidationUtil.isValidSize(bridgeSize);
+        String bridgeSize = Console.readLine();
+        return Integer.parseInt(ValidationUtil.isValidSize(bridgeSize));
     }
 
     /**

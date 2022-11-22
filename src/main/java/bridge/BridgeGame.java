@@ -34,23 +34,23 @@ public class BridgeGame {
      */
     public void move() {
         while(true) {
-
             if( setResultWhenSuccess() ) break;
             final String moving = inputView.readMoving();
             if ( showWhenCorrect(moving) ) continue;
+            insertMovingWhenFail(moving, position);
+            outputView.printMapWhenFail(bridge, position);
             retry(moving);
         }
     }
 
     private boolean setResultWhenSuccess(){
         if (position == bridgeAnswer.size()) {
-            result.setResult(true, trial);
+            result.setResult(ResultMessage.SUCCESS.getText(), trial);
             return true;
         } return false;
     }
 
     private boolean showWhenCorrect(String moving){
-
         insertMovingWhenSuccess(moving, position);
         if ( bridgeAnswer.get(position).equals(moving) ) {
             outputView.printMap(bridge, position);
@@ -61,10 +61,10 @@ public class BridgeGame {
 
     private void insertMovingWhenSuccess(String moving, int position){
         if(moving.equals(BridgeEnum.U.name())) {
-            bridge.getUp().add(position,"0");
+            bridge.getUp().add(position,"O");
         }
         if(moving.equals(BridgeEnum.D.name())) {
-            bridge.getDown().add(position,"0");
+            bridge.getDown().add(position,"O");
         }
     }
 
@@ -84,19 +84,17 @@ public class BridgeGame {
      */
     private void retry(String moving) {
         trial++;
-        insertMovingWhenFail(moving, position);
-        outputView.printMapWhenFail(bridge);
         String retrial = inputView.readGameCommand();
         if(retrial.equals("Q")) {
             System.out.println(ResultMessage.RESULT_INTRO_TEXT.getText());
-            outputView.printResult(result ,  bridge);
+            outputView.printResult(result ,bridge, position);
             return;
         }
     }
 
     public void start() {
         move();
-        outputView.printResult(result, bridge);
+        outputView.printResult(result, bridge, position);
     }
 
     public void setUp(){
