@@ -17,4 +17,29 @@ public class InputView {
     private InputView() {
 
     }
+
+    /**
+     * 다리의 길이를 입력받는다.
+     */
+    public static int readBridgeSize() throws IllegalArgumentException{
+        System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
+        return validateBridgeSize(Console.readLine());
+    }
+
+    /**
+     * 입려받은 다리의 길이를 int 데이터로 바꾸고, 예외를 처리하는 메소드
+     *
+     * @param inputBridgeSize 입력받은 다리의 길이(String)
+     * @return 설정할 다리의 길이(int)
+     */
+    private static int validateBridgeSize(String inputBridgeSize) {
+        try {
+            int bridgeSize = Integer.parseInt(inputBridgeSize);
+            if (bridgeSize < 3 || bridgeSize > 20)
+                throw new IllegalArgumentException(BRIDGE_SIZE_OUT_OF_BOUND_ERROR);
+            return bridgeSize;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_INTEGER_ERROR);
+        }
+    }
 }
