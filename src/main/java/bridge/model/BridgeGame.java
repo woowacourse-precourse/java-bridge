@@ -20,6 +20,7 @@ public class BridgeGame {
     private int position;
     private String resultOfGame;
     List<String[]> map;
+    private boolean retryGame;
 
     public BridgeGame() {
         this.marks = new ArrayList<>();
@@ -27,6 +28,7 @@ public class BridgeGame {
         resultOfGame = SUCCESS;
         gameCount = 1;
         position = 0;
+        retryGame = false;
     }
 
     /**
@@ -69,13 +71,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String cmd) {
+    public void retry(String cmd) {
         if (cmd.equals(RETRY)) {
             resultOfGame = SUCCESS;
             gameCount++;
-            return true;
+            retryGame = true;
+            return;
         }
-        return false;
+        retryGame = false;
     }
 
     /**
@@ -153,5 +156,9 @@ public class BridgeGame {
 
     public List<String[]> getMap() {
         return map;
+    }
+
+    public boolean isRetryGame() {
+        return retryGame;
     }
 }
