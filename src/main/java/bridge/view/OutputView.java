@@ -3,7 +3,7 @@ package bridge.view;
 import bridge.config.ErrorMessageConstant;
 import bridge.config.PrintMessageConstant;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgePrinter;
+import bridge.domain.BridgeTranslator;
 import bridge.domain.model.GameStatus;
 
 /**
@@ -16,8 +16,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame bridgeGame, BridgePrinter bridgePrinter) {
-        System.out.println(bridgeGame.getPrintable(bridgePrinter));
+    public void printMap(BridgeGame bridgeGame, BridgeTranslator bridgeTranslator) {
+        System.out.println(bridgeGame.getPrintable(bridgeTranslator));
     }
 
     /**
@@ -25,9 +25,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGame bridgeGame, BridgePrinter bridgePrinter) {
+    public void printResult(BridgeGame bridgeGame, BridgeTranslator bridgeTranslator) {
         System.out.println(PrintMessageConstant.GAME_RESULT_TITLE);
-        System.out.println(bridgeGame.getPrintable(bridgePrinter));
+        System.out.println(bridgeGame.getPrintable(bridgeTranslator));
         System.out.println(String.format(PrintMessageConstant.GAME_RESULT_SUCCESS_OR_NOT_FORMAT, getSuccessOrNot(bridgeGame.getStatus())));
         System.out.println(String.format(PrintMessageConstant.GAME_RESULT_TRIAL_COUNT_FORMAT, bridgeGame.getTrialCount()));
     }

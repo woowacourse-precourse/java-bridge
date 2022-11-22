@@ -5,10 +5,10 @@ import bridge.config.LoopActivity;
 import bridge.config.ErrorMessageConstant;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgePrinter;
+import bridge.domain.BridgeTranslator;
 import bridge.domain.model.Direction;
 import bridge.domain.model.GameStatus;
-import bridge.view.BridgeConsolePrinter;
+import bridge.view.BridgeConsoleTranslator;
 import bridge.view.CommandType;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class BridgeGameController extends LoopActivity {
 
-    private final BridgePrinter bridgePrinter = new BridgeConsolePrinter();
+    private final BridgeTranslator bridgeTranslator = new BridgeConsoleTranslator();
     private final BridgeMaker bridgeMaker;
     private final InputView inputView;
     private final OutputView outputView;
@@ -54,7 +54,7 @@ public class BridgeGameController extends LoopActivity {
 
     @Override
     protected final void onStop() {
-        outputView.printResult(bridgeGame, bridgePrinter);
+        outputView.printResult(bridgeGame, bridgeTranslator);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class BridgeGameController extends LoopActivity {
         outputView.printEnterMoveDirection();
         Direction direction = mapToDirection(inputView.readMoving());
         moveToDirection(direction);
-        outputView.printMap(bridgeGame, bridgePrinter);
+        outputView.printMap(bridgeGame, bridgeTranslator);
     }
 
     private void moveToDirection(Direction direction) throws IllegalArgumentException {

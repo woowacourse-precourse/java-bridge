@@ -1,12 +1,12 @@
 package bridge.view;
 
 import bridge.domain.model.Direction;
-import bridge.domain.BridgePrinter;
+import bridge.domain.BridgeTranslator;
 import bridge.domain.model.PieceMove;
 
 import java.util.Stack;
 
-public class BridgeConsolePrinter implements BridgePrinter {
+public class BridgeConsoleTranslator implements BridgeTranslator {
 
     public static final String DELIMITER = "|";
     public static final String START_OF_BRIDGE = "[";

@@ -49,12 +49,12 @@ public class BridgeGame {
      * 누적된 이동 결과를 이용해 다리를 출력 가능하도록 반환
      * <p>
      * 다리 출력 방법에 대한 구현체 필요
-     * @param printer 다리 출력 구현체
+     * @param translator 다리 출력 구현체
      * @return 출력 가능한 형태의 다리 모습
-     * @see BridgePrinter
+     * @see BridgeTranslator
      */
-    public String getPrintable(BridgePrinter printer) {
-        return printer.getPrintable(this.moveTrace);
+    public String getPrintable(BridgeTranslator translator) {
+        return translator.getPrintable(this.moveTrace);
     }
 
     /**

@@ -3,7 +3,7 @@ package bridge;
 import bridge.domain.model.Direction;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.view.BridgeConsolePrinter;
+import bridge.view.BridgeConsoleTranslator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ public class BridgeConsolePrinterTest {
         BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "D", "U", "U")));
         bridgeGame.move(Direction.UP);
         bridgeGame.move(Direction.DOWN);
-        assertThat(bridgeGame.getPrintable(new BridgeConsolePrinter()))
+        assertThat(bridgeGame.getPrintable(new BridgeConsoleTranslator()))
                 .contains(
                         "[ O |   ]",
                         "[   | O ]"
@@ -33,7 +33,7 @@ public class BridgeConsolePrinterTest {
         bridgeGame.move(Direction.UP);
         bridgeGame.move(Direction.DOWN);
         bridgeGame.move(Direction.DOWN);
-        assertThat(bridgeGame.getPrintable(new BridgeConsolePrinter()))
+        assertThat(bridgeGame.getPrintable(new BridgeConsoleTranslator()))
                 .contains(
                         "[ O |   |   ]",
                         "[   | O | X ]"
@@ -47,7 +47,7 @@ public class BridgeConsolePrinterTest {
         List<Direction> dirs = List.of(Direction.UP, Direction.DOWN, Direction.UP, Direction.UP);
         dirs.forEach(bridgeGame::move);
 
-        assertThat(bridgeGame.getPrintable(new BridgeConsolePrinter()))
+        assertThat(bridgeGame.getPrintable(new BridgeConsoleTranslator()))
                 .contains(
                         "[ O |   | O | O ]",
                         "[   | O |   |   ]"
