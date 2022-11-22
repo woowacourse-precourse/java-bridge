@@ -29,7 +29,14 @@
    3. 총 시도한 횟수를 출력한다.
       1. 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
+## BridgeGame
+    1. List<String> bridge : 다리 생성 저장
+    2. List<Boolean> userMove : 사용자 입력값에 대한 결과를 저장
+    3. tryTimes : 시도 횟수 저장
 
 ## 에러처리
   - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+    - IllegalArgumentException : 호출자가 인수로 부적절한 값을 넘길 때 던지는 예외처리
+    - IllegalStateException : 대상 객체의 상태가 호출된 메서드를 수행하기에 적합하지 않을 때 주로 던진다.
+    - IndexOutOfBoundsException : 어떤 시퀀스의 허용 범위를 넘는 값을 건널 때
