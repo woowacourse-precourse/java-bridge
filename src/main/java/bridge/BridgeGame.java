@@ -86,4 +86,32 @@ public class BridgeGame {
         }
         return retry(retryOrQuit);
     }
+
+    /**
+     * bridge의 현재 상태 출력에 필요한 출력 형식을 반환하는 메소드
+     *
+     * @return bridgeFormat
+     */
+    public List<List<String>> getBridgeFormat() { return bridgeFormat; }
+
+    /**
+     * 게임의 총 시도 횟수를 반환하는 메소드
+     *
+     * @return tryCount
+     */
+    public int getTryCount() { return tryCount; }
+
+    /**
+     * 게임의 지속 가능 여부를 반환하는 메소드
+     *
+     * @return keepGoing
+     */
+    public boolean isKeepGoing() { return keepGoing; }
+
+    /**
+     * 생성된 bridge의 크기를 반환하는 메소드
+     *
+     * @return
+     */
+    public int getBridgeSize() { return bridge.size(); }
 }
