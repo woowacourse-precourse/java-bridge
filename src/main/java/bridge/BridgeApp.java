@@ -27,4 +27,10 @@ public class BridgeApp {
         }
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize), bridgeSize);
     }
+
+    public void moveOnBridge() {
+        do {
+            move = inputView.readMoving();
+        } while (move.equals("[ERROR]"));
+    }
 }
