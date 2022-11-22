@@ -34,4 +34,12 @@ class CheckExceptionTest {
             assertThat(outputStreamCaptor.toString()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 재시작입력_예외처리(){
+        assertSimpleTest(() -> {
+            checkException.checkInputRetryChoice("ㅇ");
+            assertThat(outputStreamCaptor.toString()).contains(ERROR_MESSAGE);
+        });
+    }
 }
