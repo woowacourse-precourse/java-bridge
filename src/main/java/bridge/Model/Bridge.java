@@ -10,11 +10,11 @@ public class Bridge {
         this.bridgeAnswer = bridgeAnswer;
     }
 
-    public int getBridgeSize() {
-        return this.bridgeAnswer.size();
-    }
-
     public boolean checkAnswer(String movement, int movementCount) {
         return this.bridgeAnswer.get(movementCount).equals(movement);
+    }
+
+    public int getBridgeSize() {
+        return this.bridgeAnswer.size();
     }
 }
