@@ -7,7 +7,6 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class Game {
-    private static final String DIVIDE_LETTER = "|";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -45,6 +44,12 @@ public class Game {
      */
     private void playBridgeGame() {
         initGame();
+        crossBridge();
+        result = Result.SUCCESS.getLabel();
+        finishGame();
+    }
+
+    private void crossBridge() {
         while (position < bridge.getBridge().size()) {
             String direction = inputView.readMoving();
             if (bridge.canMove(direction, position)) {
@@ -55,8 +60,6 @@ public class Game {
             stopGame(direction);
             return;
         }
-        result = Result.SUCCESS.getLabel();
-        finishGame();
     }
 
     /**
@@ -109,9 +112,9 @@ public class Game {
      * @param bridges
      */
     private void prepareGame(List<Bridge> bridges) {
-        for (int i = 0; i < bridges.size(); i++) {
-            bridges.get(i).getBridge().remove(bridges.get(i).getBridge().size() - 1);
-            bridges.get(i).getBridge().add(DIVIDE_LETTER);
+        for (Bridge value : bridges) {
+            value.getBridge().remove(value.getBridge().size() - 1);
+            value.getBridge().add(BridgeDraw.DIVIDE.getLetter());
         }
     }
 }
