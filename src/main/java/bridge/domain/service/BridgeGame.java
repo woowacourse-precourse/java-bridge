@@ -67,7 +67,11 @@ public class BridgeGame {
     }
 
     public void retry() {
-
+        scoreMap.clear();
+        step = 0;
+        tryCount++;
+        isGameOver = false;
+        status = PROGRESS_STATUS;
     }
 
     private boolean isSuccess() {
