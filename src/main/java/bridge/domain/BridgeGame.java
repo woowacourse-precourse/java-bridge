@@ -7,7 +7,6 @@ public class BridgeGame {
     private final BridgeGameAnswer gameAnswer;
     private BridgeGameStatus gameStatus;
 
-
     public BridgeGame(BridgeGameAnswer gameAnswer) {
         this.gameAnswer = gameAnswer;
         gameStatus = BridgeGameStatus.gameStart();
@@ -39,11 +38,7 @@ public class BridgeGame {
         this.gameStatus = BridgeGameStatus.gameRestart();
     }
 
-    public boolean isRunning() {
-        return gameStatus.isRunning();
-    }
-
-    public boolean isGameOver() {
-        return gameStatus.isGameOver();
+    public boolean isPlaying() {
+        return gameStatus.isPlayStatus();
     }
 }

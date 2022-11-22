@@ -49,7 +49,7 @@ public class BridgeGameService {
     }
 
     public boolean isPlaying() {
-        return bridgeGame.isPlayStatus();
+        return bridgeGame.isPlaying();
     }
 
     /**
