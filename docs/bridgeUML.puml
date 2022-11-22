@@ -39,10 +39,9 @@ class Application{
 class BridgeGame{
     - bridge
     - step
-    - play
+    - playTime
     + history()
-    + step()
-    + play()
+    + playTime()
     + move()
     + retry()
     + buildBridge()
@@ -53,21 +52,22 @@ class BridgeController{
     - bridgeGame
     - bridgeView
 
+    - getSize()
+    - getMove()
+    - getCommand()
+    - quitGame()
+    - retryGame()
+    - dead()
+    # makeBridge()
     + initGame()
-    + makeBridge()
-    + moveTo()
-    + judge()
-    + quitGame()
-    + retryGame()
-    + dead()
-    + clear()
+    + playGame()
     + BridgeController()
 }
 
 class BridgeMaker{
     - bridgeNumberGenerator
-    + makeBridge()
-    + BridgeMaker()
+    # makeBridge()
+    # BridgeMaker()
 }
 
 interface BridgeNumberGenerator <<interface>>{
@@ -83,43 +83,33 @@ class BridgeRandomNumberGenerator{
 class BridgeView{
     - inputView
     - outputView
-    + readBridgeSize()
-    + readMoving()
-    + readGameCommand()
+    + sizeIO()
+    + moveIO()
+    + commandIO()
     + printMap()
+    + printStartMessage()
     + printResult()
     + printErrorMessage()
 }
 
 class InputView{
-    - {static} START_MESSAGE
-    - {static} MOVE_MESSAGE
-    - {static} COMMAND_MESSAGE
-
     + readBridgeSize()
     + readMoving()
     + readGameCommand()
 }
 
 class OutputView{
-    - {static} EMPTY
-    - {static} RESULT_MESSAGE
-    - {static} BRIDGE_MESSAGE
     + printMap()
     + printResult()
     + printErrorMessage()
-    + getState()
-    + getDirection()
+    + isLastState()
+    + isLastGlass()
     + updateMap()
     + drawMap()
     + drawResult()
 }
 
 class ExceptionHandler{
-    - {static} ERROR_HEAD
-    - {static} ERROR_SIZE
-    - {static} ERROR_MOVE
-    - {static} ERROR_COMMAND
     + validBridgeSize()
     + validMoving()
     + validGameCommand()
