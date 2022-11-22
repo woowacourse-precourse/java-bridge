@@ -3,6 +3,8 @@ package bridge;
 import java.util.regex.Pattern;
 
 public class ValidateInput {
+
+    static final String errorPrefix = "[ERROR] ";
     private enum regexPatterns{
         ONLY_DIGIT("^[0-9]+$"),
         U_OR_D("^[UD]$"),
@@ -16,10 +18,10 @@ public class ValidateInput {
     }
 
     private enum ErrorMassage{
-        DIGIT_ONLY("숫자로만 구성되어야 합니다."),
-        NOT_IN_RANGE("3이상 20이하이어야 합니다."),
-        NOT_U_OR_D("이동은 U 또는 D만 가능합니다."),
-        NOT_R_OR_Q("게임 재시작은 R, 종료는 Q를 입력해주세요.");
+        DIGIT_ONLY(errorPrefix + "숫자로만 구성되어야 합니다."),
+        NOT_IN_RANGE(errorPrefix + "3이상 20이하이어야 합니다."),
+        NOT_U_OR_D(errorPrefix + "이동은 U 또는 D만 가능합니다."),
+        NOT_R_OR_Q(errorPrefix + "게임 재시작은 R, 종료는 Q를 입력해주세요.");
 
         final String line;
 

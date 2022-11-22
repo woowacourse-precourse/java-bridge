@@ -46,7 +46,7 @@ public class InputView {
             try {
                 return ValidateInput.isAllDigit(input) && ValidateInput.isInRange(input);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
                 return false;
             }
         };
@@ -64,7 +64,7 @@ public class InputView {
             try {
                 return ValidateInput.isUorD(input);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
                 return false;
             }
         };
@@ -82,7 +82,7 @@ public class InputView {
             try {
                 return ValidateInput.isRorQ(input);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
                 return false;
             }
         };
