@@ -36,11 +36,7 @@ public class BridgeController {
                 gameEndCheck = true;
             }
         }
-        outputView.printResult();
-        System.out.println(outputView.printMap(bridgeGame.currentBridge()));
-        System.out.println(outputView.printSuccessCheck(gameEndCheck));
-
-        outputView.printGameTotalTry(bridgeGame.getNumberOfTry());
+        outputView.printResult(bridgeGame.currentBridge(),gameEndCheck,bridgeGame.getNumberOfTry());
     }
 
     private static BridgeGame createBridgeGame(InputView inputView) {

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeEnum;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -8,7 +9,6 @@ import java.util.StringJoiner;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-
     public static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     public static final String DELIMITER = " | ";
     public static final String JOIN_LIST_FORMAT = "[ %s ]";
@@ -50,19 +50,23 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<BridgeEnum> bridgeLocations,boolean gameEndCheck,int count) {
         System.out.println(GAME_FINAL_RESULT);
+        StringJoiner resultJoiner = new StringJoiner("\n");
+        resultJoiner.add(printMap(bridgeLocations));
+        resultJoiner.add(printSuccessCheck(gameEndCheck));
+        resultJoiner.add(printGameTotalTry(count));
+        System.out.println(resultJoiner);
     }
 
-    public void printSuccessCheck(boolean gameEndCheck) {
-        if (gameEndCheck == true) {
-            System.out.println(String.format(GAME_SUCCESS_CHECK, GAME_SUCCESS));
+    public String printSuccessCheck(boolean gameEndCheck) {
+        if (gameEndCheck) {
+            return String.format(GAME_SUCCESS_CHECK, GAME_SUCCESS);
         }
-        System.out.println(String.format(GAME_SUCCESS_CHECK, GAME_FAIL));;
+        return String.format(GAME_SUCCESS_CHECK,GAME_FAIL);
     }
 
-    public void printGameTotalTry(int count) {
-        String gameTotalTry = String.format(GAME_TOTAL_TRY, count);
-        System.out.println(gameTotalTry);
+    public String printGameTotalTry(int count) {
+        return String.format(GAME_TOTAL_TRY, count);
     }
 }
