@@ -26,6 +26,7 @@ public class OutputView {
 
     public void printGameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     public void printError(String msg) {
@@ -35,6 +36,7 @@ public class OutputView {
     public void printMap(List<MoveRecord> records) {
         System.out.println(printFormattedLine(records, BRIDGE_UPPER));
         System.out.println(printFormattedLine(records, BRIDGE_LOWER));
+        System.out.println();
     }
 
     private String printFormattedLine(List<MoveRecord> records, String direction) {
