@@ -7,11 +7,11 @@ import bridge.view.OutputView;
 
 public class BridgeProgram {
 
-    private BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame;
 
-    private InputView inputView;
+    private final InputView inputView;
 
-    private OutputView outputView;
+    private final OutputView outputView;
 
     public BridgeProgram() {
         this.bridgeGame = new BridgeGame();
