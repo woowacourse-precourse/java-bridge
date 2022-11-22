@@ -24,19 +24,33 @@ public class BridgeGameController {
     private void moveAndCheck(Bridge bridge) {
         for (int i = 0; i < bridge.getBridge().size(); i++) {
             moveUser(bridge); // 사용자 이동
-            if (bridge.isFalseInResults()) { // False가 발생했다면
-                String gameCommand = inputGameCommand(); // 게임 재시도 여부 입력받기
-                if (gameCommand.equals("R")) {
-                    bridgeGame.retry(bridge);
-                    i = -1;
-                }
-                if (gameCommand.equals("Q")) { // 게임 종료(Q)를 입력받았다면
-                    result(bridge, "실패"); // 최종 결과 출력하고
-                    return;
-                }
+            String examineResult = examineBridge(bridge);
+            if (examineResult.equals("R")) {
+                i = -1;
+            }
+            if (examineResult.equals("Q")) {
+                return;
             }
         }
         checkSuccess(bridge);
+    }
+
+    private String examineBridge(Bridge bridge) {
+        if (bridge.isFalseInResults()) { // False가 발생했다면
+             return checkRestartOrQuit(bridge);
+        }
+        return "";
+    }
+
+    private String checkRestartOrQuit(Bridge bridge) {
+        String gameCommand = inputGameCommand(); // 게임 재시도 여부 입력받기
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry(bridge);
+        }
+        if (gameCommand.equals("Q")) { // 게임 종료(Q)를 입력받았다면
+            result(bridge, "실패"); // 최종 결과 출력하고
+        }
+        return gameCommand;
     }
 
     private void moveUser(Bridge bridge) {
@@ -57,7 +71,7 @@ public class BridgeGameController {
     }
 
     private void result(Bridge bridge, String whetherSuccess) {
-        System.out.println("최종 게임 결과");
+        System.out.println("최종 게임 결과"); // 이거 바꿔야 된다!!
         outputView.printResult(bridge);
         System.out.println("게임 성공 여부: " + whetherSuccess);
         System.out.println("총 시도한 횟수: " + bridge.getTryCount());
