@@ -51,6 +51,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand= Console.readLine();
+        if(gameCommand.length()!=1){
+            throw new IllegalArgumentException("[ERROR] 이동은 R, 또는 Q로 입력하셔야 합니다.");
+        }
+        if(!gameCommand.equals("Q")||!gameCommand.equals("R")){
+            throw new IllegalArgumentException("[ERROR] 이동은 R, 또는 Q로 입력하셔야 합니다.");
+        }
+        return gameCommand;
     }
 }
