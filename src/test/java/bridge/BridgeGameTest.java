@@ -36,7 +36,7 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("U");
 
-        bridgeGame.retry(bridgeMaker);
+        bridgeGame.retry();
 
         assertThat(bridgeGame.attemptCount()).isEqualTo(2);
     }
@@ -47,7 +47,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker, 3);
         bridgeGame.move("U");
 
-        assertThatThrownBy(() -> bridgeGame.retry(bridgeMaker))
+        assertThatThrownBy(bridgeGame::retry)
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -59,7 +59,7 @@ class BridgeGameTest {
         bridgeGame.move("D");
         bridgeGame.move("D");
 
-        assertThatThrownBy(() -> bridgeGame.retry(bridgeMaker))
+        assertThatThrownBy(bridgeGame::retry)
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -128,7 +128,7 @@ class BridgeGameTest {
         bridgeGame.move("D");
         int count = bridgeGame.attemptCount();
 
-        bridgeGame.retry(bridgeMaker);
+        bridgeGame.retry();
 
         assertAll(
                 () -> assertThat(count).isEqualTo(1),

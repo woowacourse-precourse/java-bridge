@@ -42,6 +42,11 @@ public class NormalBlock implements Block {
     }
 
     @Override
+    public void reset() {
+        this.blockStatus = NOT_VISITED;
+    }
+
+    @Override
     public Block next() {
         return next;
     }

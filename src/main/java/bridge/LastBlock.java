@@ -1,7 +1,6 @@
 package bridge;
 
-import static bridge.BlockStatus.FAIL;
-import static bridge.BlockStatus.SUCCESS;
+import static bridge.BlockStatus.*;
 
 public class LastBlock implements Block {
     private final BlockPosition position;
@@ -24,6 +23,11 @@ public class LastBlock implements Block {
             return;
         }
         blockStatus = FAIL;
+    }
+
+    @Override
+    public void reset() {
+        this.blockStatus = NOT_VISITED;
     }
 
     @Override

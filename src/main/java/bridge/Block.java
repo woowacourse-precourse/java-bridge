@@ -3,6 +3,8 @@ package bridge;
 public interface Block {
     void visit(BlockPosition position);
 
+    void reset();
+
     Block next();
 
     BlockPosition position();

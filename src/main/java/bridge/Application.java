@@ -30,7 +30,7 @@ public class Application {
     private static void decideReGame(BridgeGame bridgeGame) {
         String command = inputView.readGameCommand();
         if (command.equals(RE_GAME)) {
-            bridgeGame.retry(bridgeMaker);
+            bridgeGame.retry();
             play(bridgeGame);
             return;
         }

@@ -28,7 +28,7 @@ public class BridgeGame {
         throw new IllegalStateException("[ERROR] 게임이 종료되었습니다.");
     }
 
-    public void retry(BridgeMaker bridgeMaker) {
+    public void retry() {
         if (inProgress()) {
             throw new IllegalStateException("[ERROR] 게임이 진행중입니다.");
         }
@@ -37,7 +37,7 @@ public class BridgeGame {
             throw new IllegalStateException("[ERROR] 이미 성공했습니다.");
         }
 
-        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        bridge.reset();
         attemptCount++;
     }
 

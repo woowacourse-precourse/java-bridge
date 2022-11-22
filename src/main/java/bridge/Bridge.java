@@ -33,6 +33,11 @@ public class Bridge {
         visitMiddleBlock(type);
     }
 
+    public void reset() {
+        blocks.forEach(Block::reset);
+        current = blocks.get(0);
+    }
+
     public boolean isArrived() {
         return current.isLastBlock() && current.isPassed();
     }
