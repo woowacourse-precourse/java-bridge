@@ -24,7 +24,7 @@ public class BridgeGame {
 
     public List<List<String>> move(List<String> madeBridge, String userDirection) {
         List<List<String>> userBridge = new ArrayList<>();
-        BridgeJudge.getInstance.judgeInput(userDirection, madeBridge.get(index), Bridge.bridge);
+        BridgeJudge.getInstance.judgeReflect(userDirection, madeBridge.get(index), Bridge.bridge);
 
         userBridge.add(BridgeJudge.getBridgeMapUp(Bridge.bridge.getUp(), count));
         userBridge.add(BridgeJudge.getBridgeMapDown(Bridge.bridge.getDown(), count));

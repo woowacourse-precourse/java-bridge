@@ -16,7 +16,7 @@ public class BridgeJudgeTest {
         String userInput = "U";
         String madeBridge = "U";
         Bridge bridge = new Bridge();
-        bridgeJudge.judgeInput(userInput, madeBridge, bridge);
+        bridgeJudge.judgeReflect(userInput, madeBridge, bridge);
         assertThat(bridge.getUp().get(0)).isEqualTo("O");
     }
 }

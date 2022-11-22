@@ -11,7 +11,7 @@ public class BridgeJudge {
     private static List<String> bridgeMapDown = new ArrayList<>();
 
     // userInput 과 madeBridge 를 비교하여 결과를 bridge 에 저장하는 함수
-    public void judgeInput(String userInput, String madeBridge, Bridge bridge) {
+    public void judgeReflect(String userInput, String madeBridge, Bridge bridge) {
         if (userInput.equals(madeBridge)) {
             resultEqual(userInput, bridge);
             return;
