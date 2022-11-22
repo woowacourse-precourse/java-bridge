@@ -27,7 +27,7 @@ public class BridgeGame {
             String userMove = inputView.readMoving();
             userMoveHistory.add(userMove);
             outputView.printMap(userMoveHistory, bridge, bridgeSize);
-            if(!bridge.get(i).equals(userMove)) {
+            if (!bridge.get(i).equals(userMove)) {
                 retry(inputView.readGameCommand(), trial, userMoveHistory);
                 return;
             }
@@ -43,10 +43,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String gameCommand, int trial, List<String> userMoveHistory) {
-        if(gameCommand.equals("R")) {
+        if (gameCommand.equals("R")) {
             move(trial + 1);
         }
-        if(gameCommand.equals("Q")) {
+        if (gameCommand.equals("Q")) {
             System.out.println("최종 게임 결과");
             outputView.printMap(userMoveHistory, bridge, bridgeSize);
             outputView.printResult("실패", trial);

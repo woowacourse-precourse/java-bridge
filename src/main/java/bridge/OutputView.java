@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    public void printMapLine(List<String> userMovement, List<String> bridge, int bridgeSize, String target) {
+    public void printMapLine(List<String> userMovement, List<String> bridge, String target) {
         System.out.print("[ ");
         printOX(userMovement.get(0), bridge.get(0), target);
         for (int i = 1; i < userMovement.size(); i++) {
@@ -16,14 +16,15 @@ public class OutputView {
         }
         System.out.println(" ]");
     }
+
     public void printOX(String userChoice, String bridgeStatus, String target) {
-        if(userChoice.equals(target) && bridgeStatus.equals(target)) {
+        if (userChoice.equals(target) && bridgeStatus.equals(target)) {
             System.out.print("O");
         }
-        if(userChoice.equals(target) && !bridgeStatus.equals(target)) {
+        if (userChoice.equals(target) && !bridgeStatus.equals(target)) {
             System.out.print("X");
         }
-        if(!userChoice.equals(target)) {
+        if (!userChoice.equals(target)) {
             System.out.print(" ");
         }
     }
@@ -34,8 +35,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> userMovement, List<String> bridge, int bridgeSize) {
-        printMapLine(userMovement, bridge, bridgeSize, "U");
-        printMapLine(userMovement, bridge, bridgeSize, "D");
+        printMapLine(userMovement, bridge, "U");
+        printMapLine(userMovement, bridge, "D");
     }
 
     /**
@@ -44,6 +45,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String success, int trials) {
+        System.out.println("최종 게임 결과");
+
         System.out.println("게임 성공 여부: " + success);
         System.out.println("총 시도한 횟수: " + trials);
     }
