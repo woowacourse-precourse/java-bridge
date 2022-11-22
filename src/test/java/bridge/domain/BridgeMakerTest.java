@@ -20,7 +20,7 @@ class BridgeMakerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("다리 생성 시 U, D 값만 포함되어 있는지 확인한다.")
+    @DisplayName("다리 생성 시 U, D 값만 포함되어 있을 때 에러가 발생하지 않는다.")
     @Test
     void createRandomBridge() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();

@@ -28,9 +28,7 @@ public class BridgeGame {
         return bridgeGame.get(index).equals(moveSide);
     }
 
-    public boolean retry() {
-        OutputView.printRetryMessage();
-        String command = InputView.inputGameCommand();
+    public boolean retry(String command) {
         if (command.equals("R")) return true;
         if (command.equals("Q")) return false;
         throw new IllegalArgumentException(RETRY_COMMAND_INPUT);

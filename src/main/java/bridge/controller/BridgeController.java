@@ -55,7 +55,9 @@ public class BridgeController {
 
     private static boolean checkMoveSide(BridgeGame bridgeGame, int bridgeIndex, String moveSide) {
         if (isMoveSuccessfulOrNot(bridgeGame, bridgeIndex, moveSide)) return true;
-        gameProcessStatus = bridgeGame.retry();
+        OutputView.printRetryMessage();
+        String command = InputView.inputGameCommand();
+        gameProcessStatus = bridgeGame.retry(command);
         return false;
     }
 
