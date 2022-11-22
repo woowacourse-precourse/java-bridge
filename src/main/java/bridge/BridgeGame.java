@@ -12,6 +12,12 @@ public class BridgeGame {
     private static List<String> resultBridge = new ArrayList<>();
     private static Integer bridgeMovingCount = 0;
 
+    public static Integer getBridgeGamePlayCount() {
+        return bridgeGamePlayCount;
+    }
+
+    private static Integer bridgeGamePlayCount = 1;
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -38,6 +44,7 @@ public class BridgeGame {
         if (retryCharacter.equals(BridgeGameRule.RETRY)) {
             this.resultBridge.clear();
             bridgeMovingCount = 0;
+            ++bridgeGamePlayCount;
             return true;
         }
         return false;

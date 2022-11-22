@@ -17,6 +17,8 @@ public class BridgeGameInputService {
     private BridgeGame bridgeGame;
     private Boolean isPassedMoving;
 
+    private List<String> movedBridge;
+
     public BridgeGameInputService() {
         this.bridgeGameInputView = new InputView();
         this.bridgeGameOutputView = new OutputView();
@@ -62,15 +64,22 @@ public class BridgeGameInputService {
     }
 
     public void moveBridge() {
-        List<String> movedBridge = bridgeGame.move(bridge.getBridge(), readMoving());
+        this.movedBridge = bridgeGame.move(bridge.getBridge(), readMoving());
         bridgeGameOutputView.printMap(bridge.getBridge(), movedBridge);
         isPassedMoving = !(movedBridge.contains(UIMessage.INFO_BRIDGE_MOVE_FAILED.getValue()));
         if (isPassedMoving && bridge.getBridge().size() != movedBridge.size()) {
             moveBridge();
         }
+        bridgeGameRetry(isPassedMoving);
+    }
+
+    private void bridgeGameRetry(Boolean isPassedMoving) {
         if ((!isPassedMoving) && bridgeGame.retry(readGameCommand())) {
             moveBridge();
         }
+    }
+
+    public void printResult() {
         bridgeGameOutputView.printResult(bridge.getBridge(), movedBridge, isPassedMoving);
     }
 }
