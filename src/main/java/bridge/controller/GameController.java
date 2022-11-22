@@ -56,10 +56,10 @@ public class GameController {
     }
 
     private void playUntilEnd(Player player) {
-        do {
+        while (isContinueGame(player)) {
             playOneTurn(player);
             outputView.printMap(bridgeGame, player);
-        } while (isContinueGame(player));
+        }
     }
 
     private void playOneTurn(Player player) {
@@ -73,10 +73,10 @@ public class GameController {
         if (player.isAlive()) {
             return !bridgeGame.isWin(player);
         }
-        return askForTryAgain(player);
+        return decideTryAgainOrNot(player);
     }
 
-    private boolean askForTryAgain(Player player) {
+    private boolean decideTryAgainOrNot(Player player) {
         String input = RepeatValidator.readUntilValidate(() ->
                 inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT));
 

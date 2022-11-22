@@ -36,7 +36,7 @@ public class BridgeGame {
      * 게임 성공 여부 (다리를 끝까지 건넜나) 확인
      *
      * @param player 승리를 확인할 플래이어 입력
-     * @return 다리 건너기 성공시 true, 실패시 false
+     * @return 다리 건너기 성공시 true, 그외 false
      */
     public boolean isWin(Player player) {
         return player.isCurrentPosition(bridge.size() - 1) && player.isAlive();
