@@ -29,4 +29,8 @@ public class ViewController {
 		String move = in.readMoving();
 		return move;
 	}
+
+	public void mapView(String map) {
+		out.printMap(map);
+	}
 }
