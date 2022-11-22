@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 public enum InputMessage {
     READ_BRIDGE_SIZE("다리의 길이를 입력해주세요."),

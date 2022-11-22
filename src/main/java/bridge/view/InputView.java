@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
