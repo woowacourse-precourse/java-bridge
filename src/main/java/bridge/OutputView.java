@@ -18,38 +18,34 @@ public class OutputView {
         List<String> upperList = new ArrayList<>();
 
         for (int i = 0; i < playerList.size(); i++) {
-            if (BRIDGEANSWER.get(i).equals(playerList.get(i))) {
-                if (BRIDGEANSWER.get(i).equals("D")) {
-                    lowerList.add(" O ");
-                    upperList.add("   ");
-                }
-                if (BRIDGEANSWER.get(i).equals("U")) {
-                    lowerList.add("   ");
+            if (playerList.get(i).equals(BRIDGEANSWER.get(i))) {
+                if (playerList.get(i).equals("U")) {
                     upperList.add(" O ");
+                    lowerList.add("   ");
+                }
+                if (playerList.get(i).equals("D")) {
+                    upperList.add("   ");
+                    lowerList.add(" O ");
                 }
             }
-            if (!BRIDGEANSWER.get(i).equals(playerList.get(i))) {
-                if (playerList.get(i).equals("D")) {
-                    lowerList.add(" X ");
-                    upperList.add("   ");
-                }
+            if (!playerList.get(i).equals(BRIDGEANSWER.get(i))) {
                 if (playerList.get(i).equals("U")) {
-                    lowerList.add("   ");
                     upperList.add(" X ");
+                    lowerList.add("   ");
+                }
+                if (playerList.get(i).equals("D")) {
+                    upperList.add("   ");
+                    lowerList.add(" X ");
                 }
             }
         }
 
-        StringBuffer upperString = new StringBuffer(upperList.toString().replace(",", "|"));
-        upperString.insert(0, "[");
-        upperString.insert(-1, "]");
+        StringBuffer upperString = new StringBuffer(upperList.toString().replace(", ", "|"));
 
-        StringBuffer lowerString = new StringBuffer(upperList.toString().replace(",", "|"));
-        lowerString.insert(0, "[");
-        lowerString.insert(-1, "]");
+        StringBuffer lowerString = new StringBuffer(lowerList.toString().replace(", ", "|"));
 
-        System.out.println(upperList);
-        System.out.println(lowerList);
+        String(upperString.toString());
+        String(lowerString.toString());
     }
 
     /**
@@ -59,9 +55,9 @@ public class OutputView {
      */
     public static void printResult(Boolean success, Integer tryCount) {
         String result = Success(success);
-        System.out.println("최종 게임 결과");
-        System.out.println("게임 성공 여부: "+result);
-        System.out.println("총 시도한 횟수: "+tryCount);
+        String("최종 게임 결과");
+        String("게임 성공 여부: "+result);
+        String("총 시도한 횟수: "+tryCount);
     }
 
     public static void String(String message) {

@@ -20,9 +20,17 @@ public class BridgeGame {
         this.BRIDGE_ANSWER = BRIDGE_ANSWER;
 
         Boolean keepPlay = true;
-        while (keepPlay) {
-            keepPlay = Play();
+        Boolean retry = true;
+        while (retry) {
+            while (keepPlay) {
+                keepPlay = Play();
+            }
+            if (count.equals(BRIDGE_ANSWER.size())) {
+                break;
+            }
+            retry = retry();
         }
+
         printResult(success, tryCount);
         printMap(playerList, BRIDGE_ANSWER);
     }
@@ -31,30 +39,30 @@ public class BridgeGame {
         count = 0;
         Boolean repeat = true;
 
-        while (repeat) {
+        while (repeat && (count < BRIDGE_ANSWER.size())) {
             repeat = Proceed();
         }
+        if (count.equals(BRIDGE_ANSWER.size())) {
+            success = true;
+        }
         tryCount ++;
-        return retry();
+        return false;
     }
 
     private Boolean Proceed() {
-        try {
-            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-            String playerInput = InputView.readMoving();
-            if (BRIDGE_ANSWER.get(count).equals(playerList.get(count))) {
-                move(playerInput);
-                count ++;
-                return true;
-            }
-            if (!BRIDGE_ANSWER.get(count).equals(playerList.get(count))) {
-                move(playerInput);
-                return false;
-            }
-            return false;
-        } catch (IllegalArgumentException e) {
+        String("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String playerInput = InputView.readMoving();
+        if (BRIDGE_ANSWER.get(count).equals(playerInput)) {
+            move(playerInput);
+            count ++;
             return true;
         }
+        if (!BRIDGE_ANSWER.get(count).equals(playerInput)) {
+            move(playerInput);
+            count ++;
+            return false;
+        }
+        return false;
     }
 
     /**
@@ -64,7 +72,7 @@ public class BridgeGame {
      */
     public void move(String playerInput) {
         playerList.add(playerInput);
-        System.out.println(playerInput);
+        String(playerInput);
         printMap(playerList, BRIDGE_ANSWER);
     }
 
@@ -74,7 +82,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public Boolean retry() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return readGameCommand();
     }
 }
