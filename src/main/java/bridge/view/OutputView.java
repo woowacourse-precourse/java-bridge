@@ -13,6 +13,7 @@ public class OutputView {
 
     public void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     public void printMap(List<String> bridge, List<Boolean> gameResult) {
@@ -20,6 +21,7 @@ public class OutputView {
         convertBridge(bridge, gameResult);
         printBridge(upBridge);
         printBridge(downBridge);
+        System.out.println();
     }
 
     private void initBridge() {
