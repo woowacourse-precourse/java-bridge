@@ -2,6 +2,7 @@ package bridge.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -13,20 +14,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> upResults, List<String> downResults, int index) {
+    public void printMap(Map<String, List<String>> results) {
+        printUpMap(results.get("up"));
+        printDownMap(results.get("down"));
+        System.out.println();
+    }
+
+    public void printUpMap(List<String> upResults) {
         System.out.print("[ ");
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < upResults.size(); i++) {
             System.out.print(upResults.get(i));
-            if (i < index) {
+            if (i < upResults.size() - 1) {
                 System.out.print(" | ");
             }
         }
         System.out.println(" ]");
+    }
 
+    public void printDownMap(List<String> downResults) {
         System.out.print("[ ");
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < downResults.size(); i++) {
             System.out.print(downResults.get(i));
-            if (i < index) {
+            if (i < downResults.size() - 1) {
                 System.out.print(" | ");
             }
         }
@@ -38,16 +47,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean isWinning, int count, int bridgeSize) {
-        String message = "게임 성공 여부: ";
+    public void printResult(boolean isWinning, int count, Map<String, List<String>> results) {
+        System.out.println("최종 게임 결과");
+        printMap(results);
+        printWinningResult(isWinning);
+        printCount(count);
+    }
+
+    public void printWinningResult(boolean isWinning) {
         if (isWinning) {
-            message += "성공\n";
-        } else {
-            message += "실패\n";
+            System.out.println("게임 성공 여부: 성공");
+            return;
         }
+        System.out.println("게임 성공 여부: 실패");
+    }
 
-        message += "총 시도한 횟수: " + count;
+    public void printCount(int count) {
+        System.out.println("총 시도한 횟수: " + count);
+    }
 
-        System.out.print(message);
+    public void printStartMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
 }

@@ -1,11 +1,14 @@
 package bridge.controller;
 
+import bridge.model.constant.GameResult;
 import bridge.model.service.BridgeGame;
+import bridge.model.service.MapMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class BridgeGameController {
     private final InputView INPUT_VIEW;
@@ -20,6 +23,7 @@ public class BridgeGameController {
     }
 
     public void startGame() {
+        OUTPUT_VIEW.printStartMessage();
         int bridgeSize = INPUT_VIEW.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
 
@@ -27,43 +31,30 @@ public class BridgeGameController {
     }
 
     private void doGame(int bridgeSize) {
-        List<String> upResults = new ArrayList<>();
-        List<String> downResults = new ArrayList<>();
-
         for (int i = 0; i < bridgeSize; i++) {
             String moveAnswer = INPUT_VIEW.readMoving();
+            boolean isWinning = bridgeGame.move(moveAnswer, i);
 
-            if (moveAnswer.equals("U")) {
-                upResults.add(bridgeGame.move(moveAnswer, i));
-                downResults.add(" ");
-            } else {
-                downResults.add(bridgeGame.move(moveAnswer, i));
-                upResults.add(" ");
-            }
+            OUTPUT_VIEW.printMap(bridgeGame.getMapMaker().getResults());
 
-            OUTPUT_VIEW.printMap(upResults, downResults, i);
-
-            if (upResults.get(i).equals("X") || downResults.get(i).equals("X")) {  // 모델에서 처리
+            if (!isWinning) {
                 count++;
                 String retryAnswer = INPUT_VIEW.readGameCommand();
 
-                if (retryAnswer.equals("R")) {
+                if (bridgeGame.retry(retryAnswer)) {
                     doGame(bridgeSize);
-                } else {
-                    endGame(false, bridgeSize, upResults, downResults);
+                    return;
                 }
 
+                endGame(false, bridgeSize, bridgeGame.getMapMaker().getResults());
                 return;
             }
         }
-
         count++;
-        endGame(true, bridgeSize, upResults, downResults);
+        endGame(true, bridgeSize, bridgeGame.getMapMaker().getResults());
     }
 
-    private void endGame(boolean isWinning, int bridgeSize, List<String> upResults, List<String> downResults) {
-        System.out.println("최종 게임 결과");
-        OUTPUT_VIEW.printMap(upResults, downResults, bridgeSize - 1);
-        OUTPUT_VIEW.printResult(isWinning, count, bridgeSize);
+    private void endGame(boolean isWinning, int bridgeSize, Map<String, List<String>> results) {
+        OUTPUT_VIEW.printResult(isWinning, count, results);
     }
 }
