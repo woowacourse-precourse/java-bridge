@@ -20,6 +20,7 @@ public class InputView {
         System.out.println(READ_BRIDGE_MESSAGE);
 
         String bridgeSize = Console.readLine();
+        System.out.println();
         BridgeSizeVerifier bridgeSizeVerifier = new BridgeSizeVerifier();
         bridgeSizeVerifier.check(bridgeSize);
         return Integer.parseInt(bridgeSize);

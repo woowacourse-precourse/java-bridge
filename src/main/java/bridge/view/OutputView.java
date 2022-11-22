@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap(gameStatus);
         System.out.println(WHETHER_GAME_SUCCESS_MESSAGE + gameStatus.getMessage());
-        System.out.println(TOTAL_TRY_MESSAGE + gameStatus.getCount());
+        System.out.print(TOTAL_TRY_MESSAGE + gameStatus.getCount());
     }
 
     public void printMap(GameStatus gameStatus) {
