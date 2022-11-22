@@ -15,8 +15,22 @@ public class OutputView {
     public void printMap(List<String> bridge, boolean gameResult) {
         String correctMove = bridge.get(bridge.size() - 1);
         bridge = bridge.subList(0, bridge.size() - 1);
-        List<String> bridgeMap;
+        List<String> bridgeMap = this.maskLastMove(bridge, correctMove, gameResult);
     }
+
+
+    // formats last step of bridge to reflect player's move
+    public List<String> maskLastMove(List<String> bridge, String correctMove, boolean gameResult) {
+        if (gameResult) {
+            bridge.add(correctMove);
+        } else if (correctMove.equals("U")) {
+            bridge.add("0");
+        } else if (correctMove.equals("D")) {
+            bridge.add("1");
+        }
+        return bridge;
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
