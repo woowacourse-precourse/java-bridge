@@ -28,13 +28,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int move(int round, String moveKey) {
+    public boolean move(int round, String moveKey) {
         String crossablePosition = bridge.get(round);
         if (moveKey == "U" && Integer.parseInt(crossablePosition) == 0)
-            return round + 1;
+            return true;
         if (moveKey == "D" && Integer.parseInt(crossablePosition) == 1)
-            return round + 1;
-        return -1;
+            return true;
+        return false;
     }
 
     /**
@@ -54,7 +54,11 @@ public class BridgeGame {
     public void moveBridge() {
         int round = 0;
         while (round != -1) {
-            round = move(round, readBridgeMove());
+            attemptCount++;
+            boolean isCross = move(round, readBridgeMove());
+            // printMap(round);
+            // round = nextRound;
+
             // 지도 출력해주기.
         }
     }
