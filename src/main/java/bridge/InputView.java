@@ -36,10 +36,6 @@ public class InputView {
         }
 
         char inputMove = userInputMove.charAt(0);
-        System.out.println(inputMove);
-        if(userInputMove.length() != 1) {
-            throw new IllegalArgumentException("[ERROR] U 나 D를 입력해주세요.");
-        }
         if(inputMove != 'U' && inputMove != 'D') {
             throw new IllegalArgumentException("[ERROR] U 나 D를 입력해주세요.");
         }
