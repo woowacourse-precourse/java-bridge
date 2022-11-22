@@ -1,23 +1,34 @@
 package bridge;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap() {
+    static String result;
+    static Integer count = 1;
+    static String successOrFail;
+
+    public void printMap(String[] bridgeMap) {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        System.out.println("[ " + bridgeMap[0] + " ]");
+        System.out.println("[ " + bridgeMap[1] + " ]");
+        result = "[ " + bridgeMap[0] + " ]\n" + "[ " + bridgeMap[1] + " ]";
+        successOrFail = "성공";
+        if (bridgeMap[0].contains("X") || bridgeMap[1].contains("X")) {
+            count ++;
+            successOrFail = "실패";
+            bridgeGame.retry();
+        }
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printResult() {
+        System.out.println("최종 게임 결과");
+        System.out.println(result);
+        System.out.println("게임 성공 여부: " + successOrFail);
+        if(successOrFail.equals("성공")){
+            System.out.println("총 시도한 횟수: " + count);
+        }
+        if(successOrFail.equals("실패")){
+            System.out.println("총 시도한 횟수: " + (count-1));
+        }
     }
 }
