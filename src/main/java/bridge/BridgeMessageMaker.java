@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.List;
 
+import constants.*;
+
 public class BridgeMessageMaker {
     BridgeMessage bridgeMessage;
     List<String> bridge;
@@ -20,7 +22,7 @@ public class BridgeMessageMaker {
     }
 
     private void handlePreviousBridge(String currentBridgeStatus) {
-        if (currentBridgeStatus.equals("U")) {
+        if (currentBridgeStatus.equals(Constants.UP)) {
             bridgeMessage.add(" O |", "   |");
             return;
         }
@@ -29,7 +31,7 @@ public class BridgeMessageMaker {
 
     private void handleNewBridge(String moving, String movingChecker) {
         String result = checkMoving(moving, movingChecker);
-        if (moving.equals("U")) {
+        if (moving.equals(Constants.UP)) {
             bridgeMessage.add(result, "   ]");
             return;
         }

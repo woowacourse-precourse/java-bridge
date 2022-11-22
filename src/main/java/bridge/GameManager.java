@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.List;
 
+import constants.*;
+
 public class GameManager {
 
     BridgeGame bridgeGame;
@@ -13,7 +15,7 @@ public class GameManager {
     }
 
     private void gameStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(Messages.BRIDGE_GAME_START);
         initGameSource();
     }
 
@@ -39,11 +41,11 @@ public class GameManager {
     }
 
     private void checkProgress() {
-        if (gameInfo.getGameRound().equals("Retry")) {
+        if (gameInfo.getGameRound().equals(Constants.RETRY)) {
             String gameCommand = new InputView().readGameCommand();
             bridgeGame.retry(gameCommand);
         }
-        if (gameInfo.getGameRound().equals("GameOver"))
+        if (gameInfo.getGameRound().equals(Constants.GAMEOVER))
             return;
         moveStart();
     }

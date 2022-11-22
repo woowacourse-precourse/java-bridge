@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import constants.*;
+
 public class BridgeGameTest {
     private static BridgeGame bridgeGame;
     private static GameInfo gameInfo;
@@ -37,7 +39,7 @@ public class BridgeGameTest {
     public void checkRetryMessage() {
         bridgeGame.checkSuccessOrFail("D");
         bridgeGame.move();
-        assertThat(gameInfo.getGameRound()).isEqualTo("Retry");
+        assertThat(gameInfo.getGameRound()).isEqualTo(Constants.RETRY);
     }
 
     @DisplayName("게임 종료 메시지 반환 통과 테스트")
@@ -49,6 +51,6 @@ public class BridgeGameTest {
         bridgeGame.move();
         bridgeGame.checkSuccessOrFail("U");
         bridgeGame.move();
-        assertThat(gameInfo.getGameRound()).isEqualTo("GameOver");
+        assertThat(gameInfo.getGameRound()).isEqualTo(Constants.GAMEOVER);
     }
 }
