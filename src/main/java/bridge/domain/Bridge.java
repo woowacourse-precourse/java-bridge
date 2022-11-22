@@ -20,6 +20,10 @@ public class Bridge {
         return createErasedShapeBridge(BridgeShape.DOWN.getShape());
     }
 
+    public Bridge getDownBridge() {
+        return createErasedShapeBridge(BridgeShape.UP.getShape());
+    }
+
     private Bridge createErasedShapeBridge(String shapeToErase) {
         List<String> removedBridge = new ArrayList<>(bridge);
         removedBridge.replaceAll(bridgeShape -> bridgeShape.replace(shapeToErase, " "));
