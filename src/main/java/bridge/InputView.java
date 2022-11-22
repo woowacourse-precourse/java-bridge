@@ -82,16 +82,18 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String retryQuit = readLine();
+        retryQuit=validateGameCommand(retryQuit);
         return retryQuit;
     }
 
-    private void validateGameCommand(String retryQuit){
+    private String validateGameCommand(String retryQuit){
         try {
             checkGameCommand(retryQuit);
         }catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] ");
-            readGameCommand();
+            System.out.println("[ERROR] R,Q 둘 중 하나를 입력하세요.");
+            return readGameCommand();
         }
+        return retryQuit;
     }
 
     private void checkGameCommand(String retryQuit) {
