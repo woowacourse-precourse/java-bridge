@@ -75,7 +75,7 @@ public class BridgeGame {
         return this.needRestart;
     }
 
-    public void clearBridge() {
+    public void clearBridge() { //재시도시 리스트 초기화
         this.upBridge.clear();
         this.downBridge.clear();
     }
