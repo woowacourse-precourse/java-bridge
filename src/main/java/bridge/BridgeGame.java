@@ -44,6 +44,7 @@ public class BridgeGame {
                 correctCase();
             }
         }
+        OutputView.printResult(up, down, true, tryCount);
     }
 
     /**
