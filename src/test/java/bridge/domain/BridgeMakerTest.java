@@ -21,6 +21,7 @@ class BridgeMakerTest {
 
     }
 
+    @Test
     void 요소값_테스트() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int size = 20;
@@ -28,7 +29,8 @@ class BridgeMakerTest {
 
         List<String> test = bridgeMaker.makeBridge(size);
 
-        assertThat(test).isIn(compareValue);
-
+        for(String value : test){
+            assertThat(value).isIn(compareValue);
+        }
     }
 }
