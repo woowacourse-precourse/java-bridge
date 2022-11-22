@@ -3,8 +3,13 @@ package bridge.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -30,5 +35,38 @@ class BridgePositionTest {
             assertThatThrownBy(() -> BridgePosition.from(number))
                     .isInstanceOf(IllegalStateException.class);
         }
+    }
+
+    @DisplayName("성공적으로 움직였는지 확인한다.")
+    @ParameterizedTest
+    @MethodSource("initSuccessMethodTest")
+    void returnTrueIfContainsO(final List<String> moveResult, final boolean result) {
+        assertThat(BridgePosition.isSuccess(moveResult)).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> initSuccessMethodTest() {
+        return Stream.of(
+                Arguments.of(List.of("O", " "), true),
+                Arguments.of(List.of(" ", "O"), true),
+                Arguments.of(List.of("X", " "), false),
+                Arguments.of(List.of(" ", "X"), false)
+        );
+    }
+
+
+    @DisplayName("성공적으로 움직였는지 확인한다.")
+    @ParameterizedTest
+    @MethodSource("initCompareCommandData")
+    void returnResultWhenCompareCommand(final String nextCommand, final String command, final List<String> result) {
+        assertThat(BridgePosition.compare(nextCommand, command)).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> initCompareCommandData() {
+        return Stream.of(
+                Arguments.of("U", "U", List.of("O", " ")),
+                Arguments.of("U", "D", List.of(" ", "X")),
+                Arguments.of("D", "D", List.of(" ", "O")),
+                Arguments.of("D", "U", List.of("X", " "))
+        );
     }
 }
