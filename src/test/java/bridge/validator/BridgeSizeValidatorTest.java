@@ -36,4 +36,5 @@ class BridgeSizeValidatorTest {
     void inputBridgeSizeSuccessTest(String size) {
         assertDoesNotThrow(() -> BridgeSizeValidator.validate(size));
     }
+
 }
