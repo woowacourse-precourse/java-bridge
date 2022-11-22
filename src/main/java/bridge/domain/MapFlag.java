@@ -6,7 +6,7 @@ public enum MapFlag {
     JOIN(" | "),
     MOVE_SUCCESS("O"),
     MOVE_FAIL("X"),
-    MOVE_EMPTY(" "),;
+    MOVE_EMPTY(" ");
 
     private final String code;
 
