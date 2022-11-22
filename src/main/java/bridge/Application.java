@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -46,22 +45,22 @@ public class Application {
         return isRightDirection;
     }
 
-    static private void printDownBridge() {
+    private static void printDownBridge() {
         List<String> downBridge = bridgeGame.getDownBridge();
         outputView.printMap(downBridge);
     }
 
-    static private void printUpBridge() {
+    private static void printUpBridge() {
         List<String> upBridge = bridgeGame.getUpBridge();
         outputView.printMap(upBridge);
     }
 
-    static private boolean retry(){
+    private static boolean retry(){
         String select = inputView.readGameCommand();
         return bridgeGame.retry(select);
     }
 
-    static private void printGameResult(){
+    private static void printGameResult(){
         outputView.printEnding();
         printUpBridge();
         printDownBridge();
