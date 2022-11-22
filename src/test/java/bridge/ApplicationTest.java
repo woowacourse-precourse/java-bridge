@@ -191,40 +191,4 @@ class ApplicationTest extends NsTest {
             }, 1, 0, 1, 0, 0, 0);
         }
     }
-
-    @Nested
-    @DisplayName("이동 테스트")
-    class MoveTest {
-        @Test
-        @DisplayName("이동 실패")
-        void moveFail() {
-            assertRandomNumberInRangeTest(() -> {
-                run("5", "D", "Q");
-                assertThat(output()).contains(
-                        "최종 게임 결과",
-                        "[   ]",
-                        "[ X ]",
-                        "게임 성공 여부: 실패",
-                        "총 시도한 횟수: 1"
-                );
-
-            }, 1, 1, 1, 1, 1);
-        }
-
-        @Test
-        @DisplayName("이동 성공")
-        void moveSuccess() {
-            assertRandomNumberInRangeTest(() -> {
-                run("5", "D", "D", "D", "D", "D");
-                assertThat(output()).contains(
-                        "최종 게임 결과",
-                        "[   |   |   |   |   ]",
-                        "[ O | O | O | O | O ]",
-                        "게임 성공 여부: 성공",
-                        "총 시도한 횟수: 1"
-                );
-
-            }, 0, 0, 0, 0, 0);
-        }
-    }
 }
