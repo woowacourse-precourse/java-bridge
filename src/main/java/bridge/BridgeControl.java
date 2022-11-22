@@ -20,22 +20,25 @@ public class BridgeControl {
         //게임 시작 메시지 출력
         outputView.printGameStart();
 
-        //다리 길이 입력받기 및 다리생성
         try {
+            //다리 길이 입력받기 및 다리생성
             getBridgeSize();
+            //게임 시작
+            do{
+                bridgeGame.retry();
+                play();
+            }while (isRetry());
+
+            //결과 출력
+            outputView.printResult(bridgeGame);
+
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            getBridgeSize();
+            //getBridgeSize();
+            return;
         }
+        return;
 
-        //게임 시작
-        do{
-            bridgeGame.retry();
-            play();
-        }while (isRetry());
-
-        //결과 출력
-        outputView.printResult(bridgeGame);
     }
 
     private void getBridgeSize(){
@@ -47,7 +50,7 @@ public class BridgeControl {
         }
         catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-
+            return;
         }
     }
 
