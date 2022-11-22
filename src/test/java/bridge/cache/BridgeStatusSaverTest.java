@@ -15,7 +15,5 @@ class BridgeStatusSaverTest {
 
         // expect
         assertThatThrownBy(bridgeStatusSaver::getBridgeStatus).isInstanceOf(IllegalStateException.class);
-
-
     }
 }
