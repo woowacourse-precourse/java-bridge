@@ -26,7 +26,7 @@ public class Validation {
         } catch (NullPointerException e) {
             throw new IllegalArgumentException(e.getMessage());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(String.format(ASK_INPUT_CHARACTER_U_OR_D, ERROR_HEAD_MESSAGE));
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
@@ -54,7 +54,12 @@ public class Validation {
 
     public String validGameCommand(String gameCommand) throws IllegalArgumentException {
         try {
+            if (Strings.isNullOrEmpty(gameCommand)) {
+                throw new NullPointerException(String.format(ASK_INPUT_CHARACTER_R_OR_Q, ERROR_HEAD_MESSAGE));
+            }
             return validIsRegameOrQuitCharacter(gameCommand);
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException(e.getMessage());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
