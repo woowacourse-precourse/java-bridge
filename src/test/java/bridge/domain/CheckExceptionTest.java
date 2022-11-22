@@ -23,7 +23,7 @@ class CheckExceptionTest {
     @Test
     void 다리길이_예외처리() {
         assertSimpleTest(() -> {
-            checkException.checkBridgeSize(1);
+            checkException.checkBridgeSize("1");
             assertThat(outputStreamCaptor.toString()).contains(ERROR_MESSAGE);
         });
     }
