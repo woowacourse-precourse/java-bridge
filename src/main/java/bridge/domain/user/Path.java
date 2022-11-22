@@ -11,7 +11,7 @@ public class Path {
 
     private final List<String> paths = new ArrayList<>();
 
-    Path() {
+    public Path() {
     }
 
     public void addPath(boolean isCorrect) {
