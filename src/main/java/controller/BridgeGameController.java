@@ -1,6 +1,7 @@
 package controller;
 
 import bridge.BridgeGame;
+import constants.Message;
 import view.InputView;
 import view.OutputView;
 

@@ -1,6 +1,6 @@
 package repository;
 
-import bridge.BridgeForm;
+import constants.BridgeForm;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,7 +1,8 @@
 package view;
 
-import bridge.BridgeForm;
-import controller.Message;
+import constants.BridgeForm;
+import constants.Message;
+import constants.Text;
 
 import java.util.List;
 import java.util.Map;
