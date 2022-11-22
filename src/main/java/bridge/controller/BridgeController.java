@@ -8,11 +8,9 @@ import bridge.view.OutputView;
 public class BridgeController {
 
     private final BridgeGame bridgeGame;
-    private final Player player;
 
     public BridgeController() {
         bridgeGame = makeSizedBridge();
-        player = bridgeGame.getPlayer();
     }
 
     public void run() {
@@ -28,6 +26,7 @@ public class BridgeController {
     }
 
     private void playUntilFailure() {
+        Player player = bridgeGame.getPlayer();
         do {
             move();
             OutputView.printMap(bridgeGame);
