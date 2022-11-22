@@ -8,8 +8,8 @@ import java.util.List;
 
 import static bridge.model.value.BridgeIngredient.*;
 import static bridge.model.value.MatchMessage.*;
-import static bridge.model.value.RetryMessage.Quit;
-import static bridge.model.value.RetryMessage.Retry;
+import static bridge.model.value.PlayerMessage.QUIT;
+import static bridge.model.value.PlayerMessage.RETRY;
 
 public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한다.
 
@@ -90,12 +90,12 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
 
     public Boolean keepGoingGame() {
 
-        return player.getAnswer().equals(Retry);
+        return player.getAnswer().equals(RETRY);
     }
 
     public String success(){
         if(bridgeMap.getUpMap().size() == bridge.getAnswer().size() && checkResult()){
-            player.setAnswer(Quit);
+            player.setAnswer(QUIT);
             return Sucees;
         }
         return Fail;
@@ -106,7 +106,7 @@ public class BridgeGame { // TODO: 다시 시도한 횟수를 저장해야 한�
     }
 
     public void checkRetry(String retry) {
-        if(Quit.equals(retry)){
+        if(QUIT.equals(retry)){
             player.setAnswer(retry);
             return;
         }
