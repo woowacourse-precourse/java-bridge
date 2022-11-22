@@ -20,14 +20,20 @@ public class GameManager {
     private void initGameSource() {
         int bridgeSize = new InputView().readBridgeSize();
         List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+
         gameInfo = new GameInfo();
         bridgeGame = new BridgeGame(bridge, gameInfo);
+
         moveStart();
     }
 
     private void moveStart() {
         String moving = new InputView().readMoving();
-        bridgeGame.move(moving);
+
+        bridgeGame.makeBridgeMessage(moving);
+        bridgeGame.checkSuccessOrFail(moving);
+        bridgeGame.move();
+
         new OutputView().printMap(bridgeGame.getBridgeMessage());
         checkProgress();
     }

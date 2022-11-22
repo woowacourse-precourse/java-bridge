@@ -3,7 +3,7 @@ package bridge;
 import java.util.List;
 
 /**
- * 이동, 재시작, 정답 유무 시 실행 동작 관리
+ * 이동, 재시작, 정답 유무 확인 등의 실행 방법 정의
  */
 public class BridgeGame {
     private final List<String> bridge;
@@ -17,9 +17,15 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public void move(String moving) {
+    public void makeBridgeMessage(String moving) {
         bridgeMessage = bridgeMessageMaker.makeBridgeMessage(moving, gameInfo.getCurrentPosition());
+    }
+
+    public void checkSuccessOrFail(String moving) {
         gameInfo.setSuccessOrFail(checkMoving(moving));
+    }
+
+    public void move() {
         if (!gameInfo.getSuccessOrFail()) {
             gameInfo.setGameRound("Retry");
             return;
