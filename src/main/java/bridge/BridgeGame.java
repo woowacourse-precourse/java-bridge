@@ -8,10 +8,10 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    public int playedCount = 1;
-    public String GAME_STATE = "성공";
-    public StringBuilder FIRST_LINE_DATA = new StringBuilder();
-    public StringBuilder SECOND_LINE_DATA = new StringBuilder();
+    private int playedCount = 1;
+    private String GAME_STATE = "성공";
+    private StringBuilder FIRST_LINE_DATA = new StringBuilder();
+    private StringBuilder SECOND_LINE_DATA = new StringBuilder();
 
     private static final InputView iv = new InputView();
 
@@ -108,6 +108,22 @@ public class BridgeGame {
         }
         makeResultWhenFirstTime(inputMoving);
         return List.of(FIRST_LINE_DATA, SECOND_LINE_DATA);
+    }
+
+    public StringBuilder getFIRST_LINE_DATA() {
+        return FIRST_LINE_DATA;
+    }
+
+    public StringBuilder getSECOND_LINE_DATA() {
+        return SECOND_LINE_DATA;
+    }
+
+    public String getGAME_STATE() {
+        return GAME_STATE;
+    }
+
+    public int getPlayedCount() {
+        return playedCount;
     }
 
     /**

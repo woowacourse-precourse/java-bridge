@@ -35,8 +35,8 @@ public class BridgeGameTest {
 
         bridgeGame.move(bridgeData,inputMoving);
 
-        assertThat(bridgeGame.playedCount).isEqualTo(1);
-        assertThat(bridgeGame.GAME_STATE).isEqualTo("성공");
+        assertThat(bridgeGame.getPlayedCount()).isEqualTo(1);
+        assertThat(bridgeGame.getGAME_STATE()).isEqualTo("성공");
     }
 
     @Test
@@ -47,7 +47,7 @@ public class BridgeGameTest {
 
         bridgeGame.move(bridgeData,inputMoving);
 
-        assertThat(bridgeGame.playedCount).isEqualTo(2);
-        assertThat(bridgeGame.GAME_STATE).isEqualTo("실패");
+        assertThat(bridgeGame.getPlayedCount()).isEqualTo(2);
+        assertThat(bridgeGame.getGAME_STATE()).isEqualTo("실패");
     }
 }

@@ -13,9 +13,12 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        ov.printGuide();
         int bridgeSize = iv.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         playGame(bridge);
+        System.out.println();
+        ov.printResult();
     }
 
     public static void playGame(List<String> bridge) {
@@ -28,7 +31,6 @@ public class Application {
             }
             ov.printMap(inputMoving);
         }
-        ov.printResult();
     }
 
     public static void doIfNowResultIsNotNull(String nowResult, List<String> bridge, String inputMoving) {

@@ -13,6 +13,7 @@ public class OutputView {
     private final String ABOUT_RESULT = "최종 게임 결과";
     private final String ABOUT_GAME_STATE = "게임 성공 여부: ";
     private final String ABOUT_PLAYED_COUNT = "총 시도한 횟수: ";
+    private final String GUIDE = "다리 건너기 게임을 시작합니다.";
 
 
 
@@ -20,6 +21,9 @@ public class OutputView {
         this.bridgeGame = bridgeGame;
     }
 
+    public void printGuide() {
+        System.out.println(GUIDE);
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -50,9 +54,9 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(ABOUT_RESULT);
-        System.out.println(LEFT_CONTAINER + bridgeGame.FIRST_LINE_DATA + RIGHT_CONTAINER);
-        System.out.println(LEFT_CONTAINER + bridgeGame.SECOND_LINE_DATA + RIGHT_CONTAINER);
-        System.out.println(ABOUT_GAME_STATE + bridgeGame.GAME_STATE);
-        System.out.println(ABOUT_PLAYED_COUNT + bridgeGame.playedCount);
+        System.out.println(LEFT_CONTAINER + bridgeGame.getFIRST_LINE_DATA() + RIGHT_CONTAINER);
+        System.out.println(LEFT_CONTAINER + bridgeGame.getSECOND_LINE_DATA() + RIGHT_CONTAINER);
+        System.out.println(ABOUT_GAME_STATE + bridgeGame.getGAME_STATE());
+        System.out.println(ABOUT_PLAYED_COUNT + bridgeGame.getPlayedCount());
     }
 }
