@@ -4,7 +4,13 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    private final List<String> bridge = new ArrayList<>();
+    private final List<String> upBridge  = new ArrayList<>(); //
+    private final List<String> downBridge = new ArrayList<>();
+    private final List<String> moveUser = new ArrayList<>();
+    private final List<String> restart = new ArrayList<>();
+    private int cnt = 1; // 게임 횟수
+    private int bridge_create = 0;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
