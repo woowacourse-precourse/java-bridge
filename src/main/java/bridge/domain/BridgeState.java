@@ -28,7 +28,7 @@ public class BridgeState {
     }
 
     // 첫 번째 라운드 결과
-    public void convertResultFirstRound(String userInput, List<String> bridge) {
+    private void convertResultFirstRound(String userInput, List<String> bridge) {
         if (compareBridgeRootToUserInput(userInput, bridge)) {
             convertCorrectResultFirstRound(userInput);
         } else if (!compareBridgeRootToUserInput(userInput, bridge)) {
@@ -37,7 +37,7 @@ public class BridgeState {
     }
 
     // 첫 라운드 이후의 결과
-    public void convertResultAfterFirstRound(String userInput, List<String> bridge) {
+    private void convertResultAfterFirstRound(String userInput, List<String> bridge) {
         if (compareBridgeRootToUserInput(userInput, bridge)) {
             convertCorrectResultAfterFirstRound(userInput);
         } else if (!compareBridgeRootToUserInput(userInput, bridge)) {
@@ -46,7 +46,7 @@ public class BridgeState {
     }
 
     // 첫 라운드 이후에 사용자가 맞춘 경우
-    public void convertCorrectResultAfterFirstRound(String userInput) {
+    private void convertCorrectResultAfterFirstRound(String userInput) {
         if (LocationCommand.isUpDirection(userInput)) {
             map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, OTHER_ROUND_CORRECT));
             map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, OTHER_ROUND_END));
@@ -57,7 +57,7 @@ public class BridgeState {
     }
 
     // 첫 라운드 이후에 사용자가 틀린 경우
-    public void convertWrongResultAfterFirstRound(String userInput) {
+    private void convertWrongResultAfterFirstRound(String userInput) {
         if (LocationCommand.isUpDirection(userInput)) {
             map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, OTHER_ROUND_WRONG));
             map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, OTHER_ROUND_END));
@@ -68,7 +68,7 @@ public class BridgeState {
     }
 
     // 첫 라운드에 사용자가 맞춘 경우
-    public void convertCorrectResultFirstRound(String userInput) {
+    private void convertCorrectResultFirstRound(String userInput) {
         if (LocationCommand.isUpDirection(userInput)) {
             map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(BLANK, FIRST_ROUND_CORRECT));
             map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, FIRST_ROUND_END));
@@ -79,7 +79,7 @@ public class BridgeState {
     }
 
     // 첫 라운드에 사용자가 틀린 경우
-    public void convertWrongResultFirstRound(String userInput) {
+    private void convertWrongResultFirstRound(String userInput) {
         if (LocationCommand.isUpDirection(userInput)) {
             map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(BLANK, FIRST_ROUND_WRONG));
             map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, FIRST_ROUND_END));
@@ -90,7 +90,7 @@ public class BridgeState {
     }
 
     // 사용자의 입력값과 다리의 건널 수 있는 위치의 일치 여부
-    public boolean compareBridgeRootToUserInput(String userInput, List<String> bridge) {
+    private boolean compareBridgeRootToUserInput(String userInput, List<String> bridge) {
         return userInput.equals(bridge.get(round.getRound()));
     }
 
