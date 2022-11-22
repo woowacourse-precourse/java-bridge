@@ -69,6 +69,4 @@ public class BridgeCommandController {
 		outputView.checkResetOutput(gameCommand);
 		return gameCommand;
 	}
-
-
 }

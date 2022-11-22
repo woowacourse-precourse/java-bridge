@@ -51,8 +51,12 @@ public class OutputView {
 
 	public void checkResetOutput(String gameCommand) {
 		if (CommandChecker.isEqualToRetry(gameCommand)) {
-			resetOutputView();
+			clearOutputView();
 		}
+	}
+
+	public void clearOutputView() {
+		moveHistory.clear();
 	}
 
 	@Override public String toString() {
@@ -159,9 +163,5 @@ public class OutputView {
 
 		totalTry.append(OutputMessages.TOTAL_TRY);
 		return totalTry.append(gameResult.getTotalTry()).append("\n");
-	}
-
-	private void resetOutputView() {
-		moveHistory.clear();
 	}
 }

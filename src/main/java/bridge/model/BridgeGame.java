@@ -2,6 +2,7 @@ package bridge.model;
 
 import bridge.dto.GameResultDto;
 import bridge.dto.MoveCommandDto;
+import bridge.utils.CommandChecker;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class BridgeGame {
 	public void retry(String endCommand) {
 		checkEndCommandError(endCommand);
 
-		if (endCommand.equals("R")) {
+		if (CommandChecker.isEqualToRetry(endCommand)) {
 			currentStep = GameSetting.FIRST_STEP;
 			totalTry++;
 		}
@@ -52,19 +53,19 @@ public class BridgeGame {
 	public GameResultDto sendGameResult() {
 		return new GameResultDto(totalTry, gameClear);
 	}
-
+	public void clearGameData() {
+		bridge.clear();
+		currentStep = 0;
+		totalTry = 0;
+		gameClear = false;
+	}
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder();
-
 		sb.append("다리의 정보 : ");
-		for (String bridgeUnit : bridge) {
-			sb.append(bridgeUnit).append(" ");
-		}
-		sb.append("\n");
-		sb.append("다리의 길이 : ").append(bridge.size()).append("\n");
-
-		sb.append("현재 다리에서의 위치 : ").append(currentStep).append(" \n총 시도횟수 : ").append(totalTry);
-		sb.append("\n게임을 성공했습니까? : ").append(gameClear).append("\n");
+		bridge.forEach(sb::append);
+		sb.append("\n").append("다리의 길이 : ").append(bridge.size()).append("\n")
+			.append("현재 다리에서의 위치 : ").append(currentStep).append(" \n총 시도횟수 : ").append(totalTry)
+			.append("\n게임을 성공했습니까? : ").append(gameClear).append("\n");
 		return sb.toString();
 	}
 

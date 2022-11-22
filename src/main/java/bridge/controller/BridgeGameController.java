@@ -23,4 +23,9 @@ public class BridgeGameController {
 		bridgeMoveController.processBridgeMove(bridgeCommandController);
 		outputView.printResultMessage();
 	}
+
+	public void clearRunning() {
+		outputView.clearOutputView();
+		bridgeGame.clearGameData();
+	}
 }
