@@ -11,6 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         String inputsize = Console.readLine();
         //예외처리(inputsize); //숫자 이외의 입력이 들어왔을 때.
         int size = Integer.parseInt(inputsize);
@@ -27,7 +28,12 @@ public class InputView {
         System.out.println(moving);
         return moving;
     }
-
+    public String readRetry(){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String retry = Console.readLine();
+        System.out.println(retry);
+        return retry;
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
