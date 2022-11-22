@@ -24,17 +24,17 @@ public class PlayGame {
     public void playGame() {
         int turn = 0;
         int tryCount = 1;
-        while(turn < endTurn) {
+        while (turn < endTurn) {
             String move = inputView.readMoving();
             Boolean matchResult = bridgeGame.move(crossAble, turn, move);
-            if(!matchResult) {
+            if (!matchResult) {
                 String gameCommand = inputView.setGameCommand();
                 Boolean isRetry = bridgeGame.retry(gameCommand);
                 tryCount++;
-                if(isRetry){
+                if (isRetry) {
                     continue;
                 }
-                endTurn = turn+1;
+                endTurn = turn + 1;
                 break;
             }
             turn++;
@@ -42,7 +42,7 @@ public class PlayGame {
         }
     }
 
-    private void printResult(int tryCount){
+    private void printResult(int tryCount) {
         List<HashMap> bridge = List.of(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
         System.out.println(OutputStatic.END_GAME_TITLE.getOutputPrint());
         outputView.printMap(endTurn, bridge);

@@ -90,7 +90,7 @@ public class InputView {
         try {
             gameCommand = checkGameCommand(gameCommand);
             return gameCommand;
-        } catch (NullPointerException NPE){
+        } catch (NullPointerException NPE) {
             System.out.println("[ERROR] 값을 입력해주세요");
         } catch (IllegalArgumentException IAE) {
             System.out.println("[ERROR] R(재시작) 또는 Q(종료)를 입력해주세요");
@@ -99,10 +99,10 @@ public class InputView {
     }
 
     public String checkGameCommand(String gameCommand) {
-        if(exception.isEmpty(gameCommand)){
+        if (exception.isEmpty(gameCommand)) {
             throw new NullPointerException("NPE");
         }
-        if(!exception.isRorQ(gameCommand)) {
+        if (!exception.isRorQ(gameCommand)) {
             throw new IllegalArgumentException("IAE");
         }
         return gameCommand;

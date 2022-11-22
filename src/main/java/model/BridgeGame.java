@@ -21,7 +21,7 @@ public class BridgeGame {
      */
     public Boolean move(List<String> crossAble, int turn, String move) {
         Boolean matchResult = crossAble.get(turn).equals(move);
-        if(move.equals(BRIDGE_CHECK)){
+        if (move.equals(BRIDGE_CHECK)) {
             upBridgeStore(matchResult, turn);
             return matchResult;
         }
