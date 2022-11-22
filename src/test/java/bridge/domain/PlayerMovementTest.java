@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,13 +33,13 @@ class PlayerMovementTest {
     @DisplayName("playerMovement 값 가져오기")
     @Test
     void getMovementTest() {
-        assertThat(playerMovement.getMovement()).isEqualTo(playerMoves);
+        assertThat(playerMovement.getMovement()).isEqualTo(Arrays.asList("U", "D", "D", "U"));
     }
 
     @DisplayName("getMovement 크기 가져오기")
     @Test
     void getMovementCountTest() {
-        assertThat(playerMovement.getMovementCount()).isEqualTo(playerMoves.size());
+        assertThat(playerMovement.getMovementCount()).isEqualTo(4);
     }
 
     @DisplayName("addMovement 테스트 - 정상 데이터 추가")
