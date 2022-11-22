@@ -32,9 +32,16 @@ public class Validator {
         return true;
     }
 
-    public void isRestartOrQuit(String input){
+    public boolean isRestartOrQuit(String input){
         if(!input.equals("R")&&!input.equals("Q")){
-            throw new IllegalArgumentException(ERROR_MESSAGE+RQ_MESSAGE);
+            System.out.println(ERROR_MESSAGE+RQ_MESSAGE);
+            try {
+                throw new IllegalArgumentException(ERROR_MESSAGE+RQ_MESSAGE);
+            }
+            catch (IllegalArgumentException error){
+                return false;
+            }
         }
+        return true;
     }
 }

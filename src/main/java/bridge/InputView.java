@@ -68,9 +68,13 @@ public class InputView {
      */
     public String readGameCommand() {
         String restartOrQuit;
-        printCommand.getRestart();
-        restartOrQuit=Console.readLine();
-        validate.isRestartOrQuit(restartOrQuit);
+        while(true){
+            printCommand.getRestart();
+            restartOrQuit=Console.readLine();
+            if(validate.isRestartOrQuit(restartOrQuit)){
+                break;
+            }
+        }
         return restartOrQuit;
     }
 }

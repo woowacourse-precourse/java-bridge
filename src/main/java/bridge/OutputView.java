@@ -33,6 +33,7 @@ public class OutputView {
     public void printMap(int step, List<String> answer, List<String> submitted) {
         printUpperBridge(step, answer, submitted);
         printLowerBridge(step, answer, submitted);
+        System.out.println();
     }
 
     /**
@@ -40,10 +41,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int length, List<String> answer, List<String> submitted) {
+    public void printResult(int howFar, List<String> answer, List<String> submitted) {
         System.out.println(RESULT_MESSAGE);
-        printUpperBridge(length - 1, answer, submitted);
-        printLowerBridge(length - 1, answer, submitted);
+        printMap(howFar, answer, submitted);
     }
 
     public void printUpperBridge(int step, List<String> answer, List<String> submitted) {

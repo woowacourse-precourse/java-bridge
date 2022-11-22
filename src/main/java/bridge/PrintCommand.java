@@ -9,6 +9,7 @@ public class PrintCommand {
         System.out.println(GAME_START_MESSAGE);
     }
     public void getBridgeLength(){
+        System.out.println();
         System.out.println(GET_BRIDGE_LENGTH_MESSAGE);
     }
     public void getMovement(){

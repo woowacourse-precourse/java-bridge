@@ -22,7 +22,7 @@ public class Application {
 
     public static void totalResult(BridgeGame game){
         OutputView output = new OutputView();
-        output.printResult(game.bridgeLength,game.bridgeRoute, game.myRoute);
+        output.printResult(game.howFar,game.bridgeRoute, game.myRoute);
         output.printSuccessOrFail(game);
         output.printTrialCount(game);
     }
@@ -38,14 +38,16 @@ public class Application {
     }
 
     public static void gamePlay(BridgeGame game) {
-        game.trialCount += 1;
         while (true) {
+            game.trialCount += 1;
             if (gameMove(game)) {
                 game.isSuccess=true;
                 break;
             }
             Boolean isQuit = game.retry(new InputView().readGameCommand());
-            if (isQuit) break;
+            if (isQuit) {
+                break;
+            }
         }
     }
 }

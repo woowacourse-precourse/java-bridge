@@ -13,6 +13,7 @@ public class BridgeGame {
     List<String> bridgeRoute;
     List<String> myRoute = new ArrayList<>();
     int step = 0;
+    int howFar=0;
     OutputView output = new OutputView();
 
     /**
@@ -32,10 +33,12 @@ public class BridgeGame {
 
     public void wrongAnswer() {
         output.printMap(step, bridgeRoute, myRoute);
+        howFar=step;
         step = 0;
     }
     public void rightAnswer() {
         output.printMap(step, bridgeRoute, myRoute);
+        howFar=step;
         step++;
     }
 
