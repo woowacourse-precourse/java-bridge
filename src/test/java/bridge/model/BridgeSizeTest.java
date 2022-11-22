@@ -39,6 +39,15 @@ public class BridgeSizeTest {
                 .hasMessage(ErrorMessage.SIZE_TYPE.getMessage());
     }
 
+    @DisplayName("다리 길이가 음수일 경우 에러가 발생한다.")
+    @ValueSource(strings = {"-3", "-30", "-100"})
+    @ParameterizedTest
+    void createBridgeSizeMinus(String size) {
+        assertThatThrownBy(() -> new BridgeSize(size))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.SIZE_TYPE.getMessage());
+    }
+
     @DisplayName("다리 길이가 3 미만일 경우 에러가 발생한다.")
     @ValueSource(strings = {"2", "1", "0"})
     @ParameterizedTest
