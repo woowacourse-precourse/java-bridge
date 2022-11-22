@@ -44,7 +44,7 @@ public class BridgeController {
 		do {
 			bridgeGame.move(inputDirection());
 			OutputView.printMap(bridgeGame);
-		} while (BridgeGameCheck.isMatchDirection(bridgeGame) && BridgeGameCheck.isNotFinish(bridgeGame));
+		} while (BridgeGameCheck.isMatchingDirection(bridgeGame) && BridgeGameCheck.isNotFinish(bridgeGame));
 	}
 
 	private String inputDirection() {

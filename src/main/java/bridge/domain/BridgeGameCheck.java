@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class BridgeGameCheck {
-	public static boolean isMatchDirection(BridgeGame bridgeGame) {
+	public static boolean isMatchingDirection(BridgeGame bridgeGame) {
 		int size = bridgeGame.getPlayerDirections().size();
 		List<String> subAnswerBridge = bridgeGame.getAnswerDirections().subList(0, size);
 		return subAnswerBridge.equals(bridgeGame.getPlayerDirections());

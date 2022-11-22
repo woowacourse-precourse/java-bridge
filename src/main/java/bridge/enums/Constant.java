@@ -1,8 +1,5 @@
 package bridge.enums;
 
-import java.util.Arrays;
-import java.util.List;
-
 public enum Constant {
 	SUCCESS("성공"),
 	FAIL("실패"),
