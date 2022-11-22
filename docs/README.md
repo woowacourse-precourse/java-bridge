@@ -38,6 +38,7 @@
 <br/>
 
 ### :file_folder: domain
+
 #### BridgeNumberGenerator
 - int를 반환하는 함수형 인터페이스
 #### BridgeRandomNumberGenerator
@@ -47,6 +48,9 @@
 - 입력받은 길이 만큼의 다리를 생성하는 역할
 - BridgeRandomNumberGenerator에서 받은 0과 1을 'U'와 'D' 형태로 변환
 - 'U'와 'D'로 이루어진 Bridge(List)를 반환하는 역할
+
+#### :boom: BridgeNumberGenerator, BridgeRandomGenerator, BridgeMaker 클래스는 domain 패키지 밖에 위치, 기존 위치에서 이동 할 시 홈페이지 예제테스트에서 예기치 못한 오류 출력하기 때문
+
 #### BridgeJudge
 - BridgeMaker에서 생성한 Bridge를 갖는 클래스
 - 이동 경로 정보인 MoveHistory를 Bridge와 비교하여 이동 성공여부를 판단하는 역할
