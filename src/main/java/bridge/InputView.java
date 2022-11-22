@@ -3,6 +3,7 @@ package bridge;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import static bridge.ExceptionMessage.BRIDGE_LENGTH_ERROR_MESSAGE;
+import static bridge.ExceptionMessage.INVALID_MOVING_ERROR_MESSAGE;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -32,7 +33,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String userInput = readLine();
+        if ("U".equals(userInput) || "D".equals(userInput))
+            return (userInput);
+        throw (new IllegalArgumentException(INVALID_MOVING_ERROR_MESSAGE.toString()));
     }
 
     /**
