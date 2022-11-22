@@ -87,7 +87,7 @@ public class InputViewTest {
         @MethodSource("PassingTestParams")
         void PassingTest(String input) {
             System.setIn(new ByteArrayInputStream(input.getBytes()));
-            inputView.readMoving();
+            inputView.readInGameCommand();
         }
 
         private Stream<String> PassingTestParams() {
@@ -129,7 +129,7 @@ public class InputViewTest {
         @MethodSource("PassingTestParams")
         void PassingTest(String input) {
             System.setIn(new ByteArrayInputStream(input.getBytes()));
-            inputView.readGameCommand();
+            inputView.readFailMenuCommand();
         }
 
         private Stream<String> PassingTestParams() {
@@ -144,7 +144,7 @@ public class InputViewTest {
         @MethodSource("commandFailTestParams")
         void commandFailTest(String input) {
             System.setIn(new ByteArrayInputStream(input.getBytes()));
-            assertThatThrownBy(inputView::readGameCommand)
+            assertThatThrownBy(inputView::readFailMenuCommand)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageStartingWith(ERROR_HEAD);
         }
