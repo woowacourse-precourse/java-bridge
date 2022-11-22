@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.constant;
 
 public enum ExceptionMessage {
     INPUT_WRONG_BRIDGE_LENGTH_MESSAGE("다리 길이는 3부터 20 사이의 숫자여야 합니다."),

@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.*;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.ExceptionMessage;
+import bridge.constant.ExceptionMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

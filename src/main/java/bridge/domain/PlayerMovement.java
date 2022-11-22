@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.constant.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
