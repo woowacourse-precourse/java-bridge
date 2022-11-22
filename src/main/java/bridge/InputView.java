@@ -33,11 +33,9 @@ public class InputView {
         try{
             bridgeLength = Integer.valueOf(Console.readLine());
         }catch (NumberFormatException e){
-            bridgeLength=showError();
-            return bridgeLength;
+            return showError();
         }
-        bridgeLength=validate.bridgeLengthRange(bridgeLength);
-        return bridgeLength;
+        return validate.bridgeLengthRange(bridgeLength);
     }
     public int showError(){
         System.out.println(ERROR_MESSAGE+FORMAT_MESSAGE);
