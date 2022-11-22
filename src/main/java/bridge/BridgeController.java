@@ -23,18 +23,24 @@ public class BridgeController {
     }
 
     private void loop() {
-        while (true) {
+        boolean isContinue = true;
+        while (isContinue) {
             GameSymbol gameSymbol = moveBridge();
-            if (gameSymbol == GameSymbol.QUIT) {
-                break;
-            }
             if (gameSymbol == GameSymbol.RETRY) {
                 bridgeGame.retry();
             }
-            if (bridgeGame.allTry()) {
-                break;
-            }
+            isContinue = isGameContinue(gameSymbol);
         }
+    }
+
+    private boolean isGameContinue(GameSymbol gameSymbol) {
+        if (gameSymbol == GameSymbol.QUIT) {
+            return false;
+        }
+        if (bridgeGame.allTry()) {
+            return false;
+        }
+        return true;
     }
 
     private GameSymbol moveBridge() {
