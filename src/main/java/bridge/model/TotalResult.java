@@ -16,8 +16,8 @@ public class TotalResult {
         return playerMap;
     }
 
-    public boolean win() {
-        return !playerMap.isFailure();
+    public boolean loseGame() {
+        return playerMap.isFailure();
     }
 
     public boolean winGame() {

@@ -30,7 +30,7 @@ public class BridgeGameController {
     private TotalResult progressByDistance(int distance) {
         TotalResult result = selectBridgeSideAndMove(distance);
 
-        if (!result.win()) {
+        if (result.loseGame()) {
             return restartOrQuit(result);
         }
         if (result.winGame()) {
