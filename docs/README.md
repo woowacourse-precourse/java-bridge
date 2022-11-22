@@ -1,0 +1,57 @@
+# 기능 목록
+
+- [x] 다리 길이 입력 받기
+    - [x] 입력 문구 출력하기
+    - [x] 입력 유효성 검증
+        - [x] View에서 유효성 검증
+        - [x] domain에서 다리 길이 Wrapping Class 생성
+            - [x] domain 유효성 검증
+- [x] 다리 생성 하기
+    - [x] 이동할 칸에 해당하는 `enum` 생성
+    - [x] `BridgeMaker`의 `makeBridge()` 구현
+    - [x] `Bridge` 클래스
+- [x] 유저의 다리 건너기 구현
+    - [x] 이동할 곳 입력 받기
+        - [x] 입력 문구 출력하기
+        - [x] 입력 유효성 검증
+    - [x] 유저 선택을 다리에 반영
+        - [x] 유저가 선택한 곳이 갈 수 있는 곳인지 체크
+        - [x] 유저의 선택 결과 화면 출력
+            - [x] 출력 형식 요소들에 대한 `enum` 생성
+                - [x] 다리의 스타일 요소에 대한 `enum` 생성
+                - [x] 유저의 선택 결과를 나타내는 요소에 대한 `enum` 생성
+            - [x] 칸의 들어갈 요소로 다리의 스타일을 적용한 문자열 반환 
+            - [x] 선택 결과 출력 기능
+    - [x] BridgeGame 구현
+        - [x] 필드 및 생성자 구현
+        - [x] move 메서드 구현
+        - [x] retry 메서드 구현
+        - [x] 게임 진행 상황을 List로 반환
+- [x] 재시작 옵션 입력 받기
+    - [x] 재시작 옵션들에 대한 enum 생성
+    - [x] 입력 문구 출력하기
+    - [x] 입력 유효성 검증
+- [x] 게임 결과 출력
+    - [x] 종료 출력 문구에 대한 enum 생성
+    - [x] 게임의 성공 여부에 대한 enum 생성
+    - [x] 최종 게임 결과 출력
+    - [x] 게임 성공 여부 출력
+    - [x] 시도 횟수 출력
+- [x] 게임 Controller 구현
+    - [x] 게임 생성
+    - [x] 게임 진행
+    - [x] 게임 재시작
+    - [x] 게임 종료
+- [x] Application main 메서드 구현
+
+# 리팩토링 목록
+- [x] BridgeGame 클래스를 Service화 시키기
+    - [x] BridgeGame의 필드와 관련 메서드를 User 클래스로 분리하기
+        - [x] User 클래스 생성
+        - [x] BridgeGame의 User 요소 삭제
+    - [x] BridgeGame의 비지니스 로직을 담당하는 메서드는 user를 파라미터로 받도록 수정
+    - [x] BridgeGame 에서 bridge 필드 제거
+    - [x] BridgeGame 싱글톤으로 구현
+- [x] BridgeService 생성
+    - [x] 게임 진행이 될 다리 생성
+- [x] GameController create 메서드에서 다리를 생성하도록 수정
