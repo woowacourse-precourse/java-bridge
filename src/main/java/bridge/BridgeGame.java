@@ -50,7 +50,7 @@ public class BridgeGame {
         return playerPath;
     }
 
-    public boolean getIsSuccess(){
+    public boolean isSuccess(){
         return bridge.isCompletedWith(playerPath);
     }
 

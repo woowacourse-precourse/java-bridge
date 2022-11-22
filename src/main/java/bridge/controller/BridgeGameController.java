@@ -55,7 +55,7 @@ public class BridgeGameController {
     }
 
     public void playGame() throws IllegalAccessException {
-        while (!bridgeGame.getIsSuccess() && !bridgeGame.isGameOver()) {
+        while (!bridgeGame.isSuccess() && !bridgeGame.isGameOver()) {
             retryWhenExceptionOrTryOnce(outputView, () -> {
                 String rawDirection = inputView.readMoving();
                 Direction direction = Direction.parseDirection(rawDirection);
@@ -79,14 +79,14 @@ public class BridgeGameController {
     }
 
     public boolean isSuccess() {
-        return bridgeGame.getIsSuccess();
+        return bridgeGame.isSuccess();
     }
 
     public void end() {
         outputView.printResult(
                 bridgeGame.getPlayerPath(),
                 bridgeGame.getCountAttempt(),
-                bridgeGame.getIsSuccess()
+                bridgeGame.isSuccess()
         );
     }
 }

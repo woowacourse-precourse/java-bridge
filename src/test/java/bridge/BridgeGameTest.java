@@ -50,13 +50,13 @@ class BridgeGameTest {
             game.move(Direction.UP);
             game.move(Direction.DOWN);
             game.move(Direction.UP);
-            assertThat(game.getIsSuccess()).isTrue();
+            assertThat(game.isSuccess()).isTrue();
         }
         @Test
         void 사용자경로길이가_다리_안전경로보다_짧으면_완전일치가_아니다(){
             game.move(Direction.UP);
             game.move(Direction.DOWN);
-            assertThat(game.getIsSuccess()).isFalse();
+            assertThat(game.isSuccess()).isFalse();
         }
 
         @Test
@@ -64,7 +64,7 @@ class BridgeGameTest {
             game.move(Direction.DOWN);
             game.move(Direction.DOWN);
             game.move(Direction.UP);
-            assertThat(game.getIsSuccess()).isFalse();
+            assertThat(game.isSuccess()).isFalse();
         }
 
         @Test
@@ -72,7 +72,7 @@ class BridgeGameTest {
             game.move(Direction.UP);
             game.move(Direction.UP);
             game.move(Direction.UP);
-            assertThat(game.getIsSuccess()).isFalse();
+            assertThat(game.isSuccess()).isFalse();
         }
 
         @Test
@@ -80,7 +80,7 @@ class BridgeGameTest {
             game.move(Direction.UP);
             game.move(Direction.DOWN);
             game.move(Direction.DOWN);
-            assertThat(game.getIsSuccess()).isFalse();
+            assertThat(game.isSuccess()).isFalse();
         }
     }
 
