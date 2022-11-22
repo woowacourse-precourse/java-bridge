@@ -1,9 +1,7 @@
 package bridge;
 
 import java.util.List;
-import java.util.SplittableRandom;
 
-import static bridge.OutputView.*;
 public class Application {
 
     public static void main(String[] args) {
@@ -15,7 +13,7 @@ public class Application {
 
         phase1_gameInitialize(outputView, bridgeGame);
         phase2_setBridge(inputView,bridgeMaker,bridgeGame);
-
+        phase3_getMoving(outputView, inputView, bridgeGame);
     }
 
     public static void phase1_gameInitialize(OutputView outputView,
@@ -25,33 +23,49 @@ public class Application {
         outputView.printGetBridgeLength();
     }
 
-    public static List<String> phase2_setBridge(InputView inputView,
-                                                BridgeMaker bridgeMaker,
-                                                BridgeGame bridgeGame){
+    public static void phase2_setBridge(InputView inputView,
+                                        BridgeMaker bridgeMaker,
+                                        BridgeGame bridgeGame){
         int bridgeLength = inputView.readBridgeSize();
         List<String> bridgeAnswer = bridgeMaker.makeBridge(bridgeLength);
         bridgeGame.setBridgeAnswer(bridgeAnswer);
-        return bridgeAnswer;
     }
 
-    public static Boolean phase3_getMoving(OutputView outputView,
-                                                InputView inputView,
-                                                BridgeGame bridgeGame){
+    public static void phase3_getMoving(OutputView outputView, InputView inputView, BridgeGame bridgeGame){
+        Boolean canSuccess = checkIsSuccess(outputView, inputView, bridgeGame);
+        List<String> tmpBridge = bridgeGame.move(canSuccess);
+        Boolean finish = bridgeGame.checkFinish();
+        outputView.printMap(tmpBridge);
+        if (canSuccess == false) retry(outputView, inputView, bridgeGame, tmpBridge);
+        if (canSuccess == true && finish == true) {
+            end(outputView, tmpBridge, "성공");
+            printTryCount(bridgeGame, outputView);
+        }
+        if (canSuccess == true && finish == false) phase3_getMoving(outputView, inputView, bridgeGame);}
+    public static Boolean checkIsSuccess(OutputView outputView, InputView inputView, BridgeGame bridgeGame){
         outputView.printGetSpaceToMove();
         String nextMove = inputView.readMoving();
-        Boolean canSuccess = bridgeGame.checkCanSuccess(nextMove);
-        List<String> tmpBridge = bridgeGame.move(canSuccess);
-        outputView.printMap(tmpBridge);
-
-        return canSuccess;
+        return bridgeGame.checkCanSuccess(nextMove);
     }
-    public static Boolean phase4_whatIsNextAction(Boolean canSuccess,
-                                                  OutputView outputView,
-                                                  InputView inputView){
-        if (canSuccess == false){
-            outputView.printGetTryAgain();
-            String tryAgain = inputView.readGameCommand();
-            if (tryAgain=="Q")
+    public static void retry(OutputView outputView, InputView inputView, BridgeGame bridgeGame, List<String> tmpBridge){
+        outputView.printGetTryAgain();
+        String tryAgain = inputView.readGameCommand();
+        if (tryAgain=="Q") {
+            end(outputView, tmpBridge, "실패");
+            printTryCount(bridgeGame, outputView);
         }
+        if (tryAgain=="R"){
+            bridgeGame.retry();
+            phase3_getMoving(outputView, inputView, bridgeGame);
+        }
+    }
+    public static void end(OutputView outputView, List<String> tmpBridge, String result){
+        outputView.printFinalResult();
+        outputView.printMap(tmpBridge);
+        outputView.printIsSuccessful(result);
+    }
+    public static void printTryCount(BridgeGame bridgeGame, OutputView outputView){
+        int gameCount = bridgeGame.getGameCount();
+        outputView.printTryCount(gameCount);
     }
 }

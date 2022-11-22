@@ -25,6 +25,16 @@ public class OutputView {
         System.out.println();
         System.out.println(GET_TRY_AGAIN.getMessage());
     }
+    public void printFinalResult(){
+        System.out.println(RETURN_FINAL_RESULT.getMessage());
+    }
+    public void printIsSuccessful(String result){
+        System.out.println();
+        System.out.println(RETURN_IS_SUCCESSFUL.getMessage() + result);
+    }
+    public void printTryCount(int count){
+        System.out.println(RETURN_TRY_COUNT.getMessage() + String.valueOf(count));
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
