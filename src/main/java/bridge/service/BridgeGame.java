@@ -56,6 +56,7 @@ public class BridgeGame {
      */
     public void retry() {
         status = GameStatus.PLAYING;
+        increaseAttemptCount();
         decreaseOrder();
     }
 
