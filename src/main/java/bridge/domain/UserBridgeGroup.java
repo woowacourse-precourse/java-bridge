@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +46,8 @@ public class UserBridgeGroup {
 	}
 
 	public void clearStatus() {
-		for (UserBridge value : UserBridge.values()) {
-			userBridgeStatus.get(value).clear();
-		}
+		Arrays.stream(UserBridge.values())
+			.forEach(userBridge -> userBridgeStatus.get(userBridge).clear());
 	}
 
 }
