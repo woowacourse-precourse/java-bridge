@@ -2,8 +2,8 @@ package bridge.Controller;
 
 import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
-import bridge.Domain.BridgeNumberGenerator;
-import bridge.Domain.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
