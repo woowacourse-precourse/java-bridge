@@ -11,8 +11,6 @@ import java.util.stream.IntStream;
  */
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final int START_RANGE = 3;
-    private final int END_RANGE = 20;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -34,6 +32,8 @@ public class BridgeMaker {
     }
 
     private void isCorrectRange(int size) {
+        final int START_RANGE = 3;
+        final int END_RANGE = 20;
         if (size < START_RANGE || size > END_RANGE) {
             throw new IllegalArgumentException("It is out of range");
         }
