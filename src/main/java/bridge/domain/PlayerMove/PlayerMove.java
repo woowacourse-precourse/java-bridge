@@ -7,6 +7,12 @@ public class PlayerMove {
         InputView inputView = new InputView();
         String movingPosition = inputView.readMoving();
 
-        return movingPosition;
+        try {
+            PlayerMoveValidator.validate(movingPosition);
+            return movingPosition;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return takeMovingPosition();
+        }
     }
 }
