@@ -135,3 +135,10 @@
     - 다리 건너기 성공 여부 출력 메세지
   - printNumberOfAttempts
     - 게임 시도 횟수 출력 메세지
+
+- Enum Class
+  - Direction
+    - 랜덤으로 생성된 0과 1을 "D" 와 "U" 로 매치하기 위해 필요한 클래스
+  - MoveResult
+    - upBridge, downBridge 출력 결과 변수를 담고 있는 클래스
+    - 사용자의 입력에 따라 upBridge, downBridge 에 저장할 내용을 결정하는 함수를 담은 클래스
