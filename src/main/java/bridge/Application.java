@@ -6,6 +6,14 @@ public class Application {
     static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public static void main(String[] args) {
+        try {
+            playGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void playGame() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         while (tryOnce(bridgeGame)) {
