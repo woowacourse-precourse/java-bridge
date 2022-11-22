@@ -5,12 +5,12 @@ import java.util.Arrays;
 public enum BridgeMoveCommand {
 	UP("U", 1),
 	DOWN("D", 0);
-	private String column;
+	private String command;
 	private int number;
 
 
-	BridgeMoveCommand(String column, int number) {
-		this.column = column;
+	BridgeMoveCommand(String command, int number) {
+		this.command = command;
 		this.number = number;
 	}
 
@@ -19,10 +19,10 @@ public enum BridgeMoveCommand {
 				.filter(bridgeColumn -> bridgeColumn.number == number)
 				.findAny()
 				.orElseThrow(IllegalArgumentException::new)
-				.getColumn();
+				.getCommand();
 	}
 
-	public String getColumn() {
-		return column;
+	public String getCommand() {
+		return command;
 	}
 }
