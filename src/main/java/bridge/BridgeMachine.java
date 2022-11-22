@@ -77,4 +77,12 @@ public class BridgeMachine {
         }
         OutputView.printTotalTry(totalTry);
     }
+    private void printGameResult() {
+        if (success == GameResult.FAILED.getTrueOrFalse()) {
+            OutputView.printResult(GameResult.FAILED);
+        }
+        if(success == GameResult.PASSED.getTrueOrFalse()) {
+            OutputView.printResult(GameResult.PASSED);
+        }
+    }
 }
