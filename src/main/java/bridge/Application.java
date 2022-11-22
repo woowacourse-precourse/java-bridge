@@ -1,12 +1,13 @@
 package bridge;
 
+import bridge.controller.AppController;
 import bridge.controller.BridgeGame;
 
 public class Application {
     public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame();
+        AppController appController = new AppController();
         try {
-            bridgeGame.start();
+            appController.run();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

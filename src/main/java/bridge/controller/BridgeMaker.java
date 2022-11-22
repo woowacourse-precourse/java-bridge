@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.util.BridgeNumberGenerator;
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
