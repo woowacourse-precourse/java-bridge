@@ -9,7 +9,7 @@ import java.util.Objects;
 public class BridgeGame {
 
     private List<String> bridge;
-    private int times = 0;
+    private int times = 1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -22,10 +22,9 @@ public class BridgeGame {
      */
     public boolean move(Player player) {
         if (isWrongDir(player)) {
-            player.reset();
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean isWrongDir(Player player) {
@@ -40,9 +39,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String input) {
-        Validator.validateUserInput(input);
-        boolean retry = UserInput.valueOf(input).getRetry();
+    public boolean retry(String commend) {
+        Validator.validateCommend(commend);
+        boolean retry = Command.valueOf(commend).getRetry();
         if (retry) {
             times++;
         }

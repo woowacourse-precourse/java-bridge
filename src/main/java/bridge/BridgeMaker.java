@@ -29,8 +29,8 @@ public class BridgeMaker {
         List<Direction> dir = List.of(D, U);
 
         return IntStream.range(0, size)
-                .mapToObj(i -> dir.get(bridgeNumberGenerator.generate()))
-                .map(Enum::toString)
-                .collect(Collectors.toList());
+            .mapToObj(i -> dir.get(bridgeNumberGenerator.generate()))
+            .map(Enum::toString)
+            .collect(Collectors.toList());
     }
 }
