@@ -4,30 +4,20 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final static String STEP_EMPTY = " ";
-    private final static String STEP_CORRECT = "O";
     private final static String STEP_WRONG = "X";
     private final Bridge answerMove;
     private List<String> playerMove;
-    private GameStatus status;
 
     public BridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.answerMove = new Bridge(bridgeMaker.makeBridge(size));
         this.playerMove = new ArrayList<>();
-        this.status = GameStatus.SUCCESS;
-    }
-
-    public GameStatus getStatus() {
-        return this.status;
     }
 
     public boolean isEnd() {
@@ -52,7 +42,6 @@ public class BridgeGame {
      */
     public void retry() {
         this.playerMove = new ArrayList<>();
-        this.status = GameStatus.SUCCESS;
     }
 
     /**
@@ -61,33 +50,16 @@ public class BridgeGame {
      * 각 다리의 생성 순서는 Move enum의 상수 순서이다.
      */
     public List<List<String>> getGameMap() {
-        return Arrays.stream(Move.values())
-                .map(move -> makeEachBridge(move.getCommand()))
-                .collect(Collectors.toList());
+        answerMove.makeAllMap(playerMove);
+        return answerMove.getBridgeMap();
     }
 
-    private List<String> makeEachBridge(String way) {
-        List<String> result = new ArrayList<>();
-
-        for (int index = 0; index < playerMove.size(); index++) {
-            String resultStep = checkStep(way, playerMove.get(index), answerMove.getBridge().get(index));
-            result.add(resultStep);
+    public GameStatus getStatus() {
+        if (answerMove.getBridgeMap()
+                .stream()
+                .anyMatch(map -> map.contains(STEP_WRONG))) {
+            return GameStatus.FAIL;
         }
-        return result;
-    }
-
-    private String checkStep(String way, String playerStep, String answerStep) {
-        if (!way.equals(playerStep)) {
-            return STEP_EMPTY;
-        }
-        return checkSameStep(playerStep, answerStep);
-    }
-
-    private String checkSameStep(String playerStep, String answerStep) {
-        if (!answerStep.equals(playerStep)) {
-            this.status = GameStatus.FAIL;
-            return STEP_WRONG;
-        }
-        return STEP_CORRECT;
+        return GameStatus.SUCCESS;
     }
 }
