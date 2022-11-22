@@ -77,6 +77,19 @@ class PlayerTest {
         이동_결과와_마지막_결과_비교(movingResult);
     }
 
+    @Test
+    void 게임_시도_횟수_반환_테스트() {
+        int gameAttempts;
+
+        player.retry();
+        gameAttempts = player.getGameAttempts();
+        assertThat(gameAttempts).isEqualTo(2);
+
+        player.retry();
+        gameAttempts = player.getGameAttempts();
+        assertThat(gameAttempts).isEqualTo(3);
+    }
+
     private void 이동_결과와_마지막_결과_비교(String movingResult) {
         player.move(movingResult);
         String lastMovedResult = player.getLastMovedResult();
