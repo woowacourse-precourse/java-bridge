@@ -5,13 +5,14 @@ import java.util.List;
 
 public class Player {
 
+    private static final int INIT_TRY_COUNT = 1;
     private List<String> choices;
     private int tryCount;
     private boolean isSuccess;
 
     public Player() {
         this.choices = new ArrayList<>();
-        tryCount = 1;
+        tryCount = INIT_TRY_COUNT;
         isSuccess = false;
     }
 
