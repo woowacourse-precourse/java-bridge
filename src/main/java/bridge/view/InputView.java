@@ -3,6 +3,7 @@ package bridge.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.validator.BridgeSizeValidator.validateBridgeSize;
+import static bridge.validator.MovingValidator.validateMoving;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -24,7 +25,7 @@ public class InputView {
      */
     public String readMoving() {
         String movingInput = Console.readLine();
-        //예외 처리
+        validateMoving(movingInput);
         return movingInput;
     }
 
