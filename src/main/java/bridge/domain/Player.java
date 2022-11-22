@@ -3,11 +3,12 @@ package bridge.domain;
 import static bridge.util.constants.ErrorMessage.MOVE_INVALID_ERROR;
 
 public class Player {
+    private final int INITIAL_PLAYER_LOCATION_INDEX = 0;
     private int currentSpaceIndex;
     private boolean alive;
 
     public Player() {
-        currentSpaceIndex = 0;
+        currentSpaceIndex = INITIAL_PLAYER_LOCATION_INDEX;
         alive = true;
     }
 
@@ -38,7 +39,7 @@ public class Player {
     }
 
     public void reVive() {
-        currentSpaceIndex = 0;
+        currentSpaceIndex = INITIAL_PLAYER_LOCATION_INDEX;
         alive = true;
     }
 }
