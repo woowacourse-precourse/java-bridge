@@ -116,7 +116,7 @@
 ---
 
 ## Test
-- [x] UI 로직을 제외한 단위 테스트 작성 완료
+- [x] 도메인 로직 단위 테스트 작성 완료
 ![](test-coverage.png)
 >- BridgeController의 단위 테스트는 Application의 통합 테스트로 대체했습니다.
 >  - --> BridgeController의 유일한 public 메서드가 Application에서 호출됩니다.
