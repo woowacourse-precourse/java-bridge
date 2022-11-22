@@ -21,23 +21,25 @@ public class Bridge {
     }
 
     public GameStatus updateUserRoute(String direction) {
-        userRoute.add(direction);
+        userRoute.add(direction); // 유저가 입력한 방향을 유저 이동 경로에 추가
         int currentRound = userRoute.size() - 1;
 
-        if (userRoute.get(currentRound).equals(bridge.get(currentRound)) == false) {
-            return GameStatus.FAIL;
+        String currentUserPosition = userRoute.get(currentRound);
+        String availableBridge = bridge.get(currentRound);
 
-        } if (userRoute.get(currentRound).equals(bridge.get(currentRound)) == true) {
-            if ((userRoute.size() == bridge.size())) {
-                return GameStatus.SUCCESS;
-            }
-            return GameStatus.CONTINUE;
-        }
-        return GameStatus.CONTINUE;
+        GameStatus currentGameStatus = getCurrentGameStatus(currentUserPosition, availableBridge);
+        return currentGameStatus;
     }
 
-    public List<String> getUserRoute() {
-        return this.userRoute;
+    public GameStatus getCurrentGameStatus(String userPosition, String availableBridge) {
+        if (userPosition.equals(availableBridge) == false) { // 현재 건널 수 없는 칸에 위치한 경우 실패
+            return GameStatus.FAIL;
+        } if (userPosition.equals(availableBridge) == true) { // 현재 건널 수 있는 칸에 위치한 경우
+            if ((userRoute.size() == bridge.size())) {
+                return GameStatus.SUCCESS; // 마지막 칸까지 다리를 모두 건넌 경우 성공
+            }
+        }
+        return GameStatus.CONTINUE; // 아직 실패나 성공을 하지 않았고, 다리를 아직 다 건너지 않았을 경우 게임 계속 진행
     }
 
     /**
