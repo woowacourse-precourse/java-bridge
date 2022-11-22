@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.enumeration.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 
@@ -36,8 +37,8 @@ public class InputView {
     }
 
     private void validMoving(String inputMoving) {
-        // TODO: U, O를 상수로 관리
-        if (!inputMoving.contains("U") && !inputMoving.contains("D")) {
+        if (!inputMoving.contains(GameCommand.UP.getCommand()) && !inputMoving.contains(
+            GameCommand.DOWN.getCommand())) {
             throw new IllegalArgumentException();
         }
         if (inputMoving.length() != 1) {
@@ -55,8 +56,8 @@ public class InputView {
     }
 
     private void validGameCommand(String inputGameCommand) {
-        // TODO: R, Q를 상수로 관리
-        if (!inputGameCommand.contains("R") && !inputGameCommand.contains("Q")) {
+        if (!inputGameCommand.contains(GameCommand.RESTART.getCommand())
+            && !inputGameCommand.contains(GameCommand.QUIT.getCommand())) {
             throw new IllegalArgumentException();
         }
         if (inputGameCommand.length() != 1) {
