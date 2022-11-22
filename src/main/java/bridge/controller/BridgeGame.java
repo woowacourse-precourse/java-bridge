@@ -19,11 +19,7 @@ public class BridgeGame {
     private Player player;
     private Bridge bridge;
 
-    private int bridgeSize;
-    private String playerMove;
-    private String gameCommand;
     private int totalGameCount;
-
     private boolean isRoundOver;
     private boolean isGameOver;
     private boolean isSuccess;
@@ -51,7 +47,8 @@ public class BridgeGame {
      */
     public boolean move() {
         while(!isRoundOver) {
-            setPlayerMove();
+            inputView.readMoving();
+            player.setCurrentMove(inputView.getPlayerMove());
             isRoundOver = !eachMove();
             outputView.printMap(player);
             if(isGameSuccess()) {
@@ -84,7 +81,9 @@ public class BridgeGame {
 
     public void initGame() {
         outputView.printGameStartInfo();
-        setBridgeSize();
+        inputView.readBridgeSize();
+        int bridgeSize = inputView.getBridgeSize();
+        //setBridgeSize();
         setBridge(bridgeSize);
     }
 
@@ -95,8 +94,8 @@ public class BridgeGame {
                 isSuccess = true;
                 return;
             }
-            setGameStatus();
-            isGameOver = isQuit();
+            inputView.readGameCommand();
+            isGameOver = isQuit(inputView.getGameCommand());
         }
     }
 
@@ -106,7 +105,7 @@ public class BridgeGame {
         outputView.printResult(isSuccess, totalGameCount);
     }
 
-    public boolean isQuit() {
+    public boolean isQuit(String gameCommand) {
         return gameCommand.equals(BridgeGameStatus.QUIT.getGameStatus());
     }
 
@@ -118,44 +117,4 @@ public class BridgeGame {
         return bridgeService.isSuccess(bridge.getBridgeSize(), player.getCurrentLocation()) && !isRoundOver;
     }
 
-    /**
-     * 입력받는 다리의 사이즈 확인 후 예외 발생 시 다시 입력 받는 함수
-     */
-    public void setBridgeSize() {
-        try {
-            outputView.printInfo(OutputPharses.BRIDGE_LENGTH_MSG.getMsg());
-            bridgeSize = inputView.readBridgeSize();
-            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
-        } catch (IllegalArgumentException exception) {
-            outputView.printInfo(exception.getMessage());
-            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
-            setBridgeSize();
-        }
-    }
-
-    /**
-     * 입력받는 플레이어의 이동 확인 후 예외 발생 시 다시 입력 받는 함수
-     */
-    public void setPlayerMove() {
-        try{
-            outputView.printInfo(OutputPharses.MOVE_MSG.getMsg());
-            playerMove = inputView.readMoving();
-            player.setCurrentMove(playerMove);
-        } catch (IllegalArgumentException exception) {
-            outputView.printInfo(exception.getMessage());
-            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
-            setPlayerMove();
-        }
-    }
-
-    public void setGameStatus() {
-        try {
-            outputView.printInfo(OutputPharses.RESTART_MSG.getMsg());
-            gameCommand = inputView.readGameCommand();
-        } catch (IllegalArgumentException exception) {
-            outputView.printInfo(exception.getMessage());
-            outputView.printInfo(OutputPharses.EMPTY_LINE.getMsg());
-            setGameStatus();
-        }
-    }
 }
