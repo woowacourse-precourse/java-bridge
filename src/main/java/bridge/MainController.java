@@ -13,13 +13,19 @@ public class MainController {
      * 게임 시도 횟수 에러
      */
     public void run() {
+        int size = setSize();
+        Bridge bridge = new Bridge(size);
+        BridgeGame game = new BridgeGame(bridge);
+        mainGame(bridge, game);
+        output.printResult(game, game.getGameCount());
+    }
+
+    private int setSize() {
         try {
-            Bridge bridge = new Bridge(input.readBridgeSize());
-            BridgeGame game = new BridgeGame(bridge);
-            mainGame(bridge, game);
-            output.printResult(game, game.getGameCount());
-        } catch (IllegalArgumentException e) {
+            return input.readBridgeSize();
+        } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+            return setSize();
         }
     }
 
@@ -27,11 +33,20 @@ public class MainController {
         for(int count = 0; count < bridge.size(); count++) {
             moving(game, count);
             if(game.isWrong()) {
-                if(!game.retry(input.readGameCommand())){
+                if(!game.retry(getGameCommand())){
                     break;
                 }
                 count = retrySetting(game);
             }
+        }
+    }
+
+    private String getGameCommand() {
+        try {
+            return input.readGameCommand();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getGameCommand();
         }
     }
 
@@ -41,8 +56,14 @@ public class MainController {
     }
 
     private void moving(BridgeGame game, int count) {
-        game.move(count, input.readMoving());
-        output.printMap(game);
+        try {
+            String command = input.readMoving();
+            game.move(count, command);
+            output.printMap(game);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            moving(game, count);
+        }
     }
 
 }
