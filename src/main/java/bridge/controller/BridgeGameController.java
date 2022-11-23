@@ -10,7 +10,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
-    public static final String START = "다리 건너기 게임을 시작합니다.";
+    public static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final InputView inputView;
     private final OutputView outputView;
     private final ExceptionHandler exceptionHandler;
@@ -32,7 +32,7 @@ public class BridgeGameController {
     }
 
     private static void printStartMessage() {
-        System.out.println(START);
+        System.out.println(START_MESSAGE);
         System.out.println();
     }
 
@@ -49,7 +49,7 @@ public class BridgeGameController {
         }
 
         if (bridgeGame.isGameOver()) {
-            RetryOrQuit(bridgeGame);
+            retryOrQuit(bridgeGame);
         }
     }
 
@@ -58,7 +58,7 @@ public class BridgeGameController {
         outputView.printMap(bridgeGame);
     }
 
-    private void RetryOrQuit(BridgeGame bridgeGame) {
+    private void retryOrQuit(BridgeGame bridgeGame) {
         GameCommand gameCommand = exceptionHandler.handleAndRetry(inputView::readGameCommand);
         if (gameCommand == GameCommand.RETRY) {
             bridgeGame.retry();
