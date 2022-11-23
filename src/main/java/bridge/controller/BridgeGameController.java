@@ -5,6 +5,7 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeSize;
 import bridge.GameCommand;
 import bridge.Moving;
 import bridge.MovingHistory;

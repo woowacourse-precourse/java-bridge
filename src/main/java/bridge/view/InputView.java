@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.constant.ErrorMessage;
+import bridge.BridgeSize;
 import bridge.constant.GuidanceMessage;
 import bridge.GameCommand;
 import bridge.Moving;
@@ -16,27 +16,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(GuidanceMessage.INPUT_BRIDGE_SIZE);
-        String bridgeSize = Console.readLine();
-        validateNonBlank(bridgeSize);
-        validateNumeric(bridgeSize);
 
-        return Integer.parseInt(bridgeSize);
-    }
-
-    private void validateNonBlank(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BLANK_INPUT);
-        }
-    }
-
-    private void validateNumeric(String input) {
-        if (isNonNumeric(input)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NON_NUMERIC_INPUT);
-        }
-    }
-
-    private boolean isNonNumeric(String input) {
-        return !input.chars().allMatch(Character::isDigit);
+        return BridgeSize.of(Console.readLine()).getSize();
     }
 
     /**
