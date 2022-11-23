@@ -5,7 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewTest {
 
@@ -18,9 +19,9 @@ class InputViewTest {
         System.setOut(new PrintStream(byteArrayOutputStream));
     }
 
-    @Test
-    void 다리의_길이_입력이_정상인경우() {
-        String normalInput = "3";
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "20"})
+    void 다리의_길이_입력이_정상인경우(String normalInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -30,9 +31,9 @@ class InputViewTest {
                 .doesNotContain("[ERROR]");
     }
 
-    @Test
-    void 다리의_길이_입력이_숫자가_아닌_경우() {
-        String nonNumericInput = "a\n3";
+    @ParameterizedTest
+    @ValueSource(strings = {"a\n3", "3a\n3"})
+    void 다리의_길이_입력이_숫자가_아닌_경우(String nonNumericInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(nonNumericInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -42,9 +43,9 @@ class InputViewTest {
                 .contains("[ERROR]");
     }
 
-    @Test
-    void 다리의_길이_입력이_공백인_경우() {
-        String emptyInput = "\n3";
+    @ParameterizedTest
+    @ValueSource(strings = {"\n\n3", " \n3", "\n3"})
+    void 다리의_길이_입력이_공백인_경우(String emptyInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(emptyInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -54,9 +55,9 @@ class InputViewTest {
                 .contains("[ERROR]");
     }
 
-    @Test
-    void 다리의_길이_입력이_3미만인_경우() {
-        String wrongRangeInput = "2\n3";
+    @ParameterizedTest
+    @ValueSource(strings = {"-1\n3", " 0\n3", "2\n3"})
+    void 다리의_길이_입력이_3미만인_경우(String wrongRangeInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongRangeInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -66,9 +67,9 @@ class InputViewTest {
                 .contains("[ERROR]");
     }
 
-    @Test
-    void 다리의_길이_입력이_20초과인_경우() {
-        String wrongRangeInput = "21\n3";
+    @ParameterizedTest
+    @ValueSource(strings = {"21\n3", "999999999999999999999999\n3"})
+    void 다리의_길이_입력이_20초과인_경우(String wrongRangeInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongRangeInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -78,9 +79,9 @@ class InputViewTest {
                 .contains("[ERROR]");
     }
 
-    @Test
-    void 사용자가_이동할_다리_입력이_U인_경우() {
-        String normalInput = "U";
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void 사용자가_이동할_다리_입력이_U또는_D인_경우(String normalInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -90,21 +91,9 @@ class InputViewTest {
                 .doesNotContain("[ERROR]");
     }
 
-    @Test
-    void 사용자가_이동할_다리_입력이_D인_경우() {
-        String normalInput = "D";
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
-        System.setIn(byteArrayInputStream);
-
-        inputView.readMoving();
-
-        Assertions.assertThat(byteArrayOutputStream.toString())
-                .doesNotContain("[ERROR]");
-    }
-
-    @Test
-    void 사용자가_이동할_다리_입력이_U_또는_D가_아닌_경우() {
-        String wrongInput = "UU\nU";
+    @ParameterizedTest
+    @ValueSource(strings = {"UU\nU", "DD\nU", "3\nU"})
+    void 사용자가_이동할_다리_입력이_U_또는_D가_아닌_경우(String wrongInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -114,9 +103,9 @@ class InputViewTest {
                 .contains("[ERROR]");
     }
 
-    @Test
-    void 사용자가_이동할_다리_입력이_공백인_경우() {
-        String wrongInput = "\n\nU";
+    @ParameterizedTest
+    @ValueSource(strings = {"\nU", " \nU", "\n\nU"})
+    void 사용자가_이동할_다리_입력이_공백인_경우(String wrongInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -126,9 +115,9 @@ class InputViewTest {
                 .contains("[ERROR]");
     }
 
-    @Test
-    void 게임을_다시_시도할지의_입력이_R인_경우() {
-        String normalInput = "R";
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void 게임을_다시_시도할지의_입력이_R또는_Q인_경우(String normalInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -138,21 +127,9 @@ class InputViewTest {
                 .doesNotContain("[ERROR]");
     }
 
-    @Test
-    void 게임을_다시_시도할지의_입력이_Q인_경우() {
-        String normalInput = "Q";
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(normalInput.getBytes());
-        System.setIn(byteArrayInputStream);
-
-        inputView.readGameCommand();
-
-        Assertions.assertThat(byteArrayOutputStream.toString())
-                .doesNotContain("[ERROR]");
-    }
-
-    @Test
-    void 게임을_다시_시도할지의_입력이_공백인_경우() {
-        String wrongInput = "\n\nQ";
+    @ParameterizedTest
+    @ValueSource(strings = {"\n\nQ", "\nQ", " \nQ"})
+    void 게임을_다시_시도할지의_입력이_공백인_경우(String wrongInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
         System.setIn(byteArrayInputStream);
 
@@ -162,9 +139,9 @@ class InputViewTest {
                 .contains("[ERROR]");
     }
 
-    @Test
-    void 게임을_다시_시도할지의_입력이_R_또는_Q가_아닌_경우() {
-        String wrongInput = "RR\nQ";
+    @ParameterizedTest
+    @ValueSource(strings = {"RR\nQ", "QQ\nQ", " 3\nQ"})
+    void 게임을_다시_시도할지의_입력이_R_또는_Q가_아닌_경우(String wrongInput) {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(wrongInput.getBytes());
         System.setIn(byteArrayInputStream);
 
