@@ -11,13 +11,15 @@ public class StageTest {
     @Test
     void returnPlayResultFAIL() {
         Stage stage = new Stage("U");
-        assertThat(stage.choose(Direction.DOWN)).isEqualTo(CompareResult.FAIL);
+        PlayResult playResult = stage.choose(Direction.DOWN);
+        assertThat(playResult.isFail()).isTrue();
     }
 
     @DisplayName("매 라운드마다 게임의 결과를 구할 수 있다. - PASS")
     @Test
     void returnPlayResultPASS() {
         Stage stage = new Stage("U");
-        assertThat(stage.choose(Direction.UP)).isEqualTo(CompareResult.PASS);
+        PlayResult playResult = stage.choose(Direction.UP);
+        assertThat(playResult.isPass()).isTrue();
     }
 }

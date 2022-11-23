@@ -4,13 +4,13 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.Direction;
-import bridge.domain.GameResult;
+import bridge.domain.PlayResult;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameService {
 
-    private final List<GameResult> results;
+    private final List<PlayResult> results;
 
     private final BridgeGame game;
 
@@ -30,18 +30,18 @@ public class BridgeGameService {
 
     private boolean isAllPass() {
         return results.stream()
-            .allMatch(GameResult::isPass);
+            .allMatch(PlayResult::isPass);
     }
 
-    public GameResult move(final Direction direction) {
-        GameResult gameResult = game.move(direction);
-        results.add(gameResult);
-        return gameResult;
+    public PlayResult move(final Direction direction) {
+        PlayResult playResult = game.move(direction);
+        results.add(playResult);
+        return playResult;
     }
 
     public boolean isOver() {
         return results.size() != 0
-            && results.stream().anyMatch(GameResult::isFail);
+            && results.stream().anyMatch(PlayResult::isFail);
     }
 
     public int getAttempts() {

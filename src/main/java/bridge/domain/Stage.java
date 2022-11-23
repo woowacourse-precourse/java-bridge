@@ -20,12 +20,7 @@ public class Stage {
         return tiles;
     }
 
-    public CompareResult choose(final Direction direction) {
-        Tile status = tiles.getOrDefault(direction, Tile.NO_PASS);
-
-        if (status.isPassable()){
-            return CompareResult.PASS;
-        }
-        return CompareResult.FAIL;
+    public PlayResult choose(final Direction direction) {
+        return new PlayResult(direction, tiles.getOrDefault(direction, Tile.NO_PASS));
     }
 }
