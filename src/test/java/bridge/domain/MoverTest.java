@@ -18,12 +18,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MoverTest {
 
     private Mover mover;
-    private final List<String> arr = new ArrayList<>(List.of("U", "D", "U"));
+    private final List<String> bridge = new ArrayList<>(List.of("U", "D", "U"));
 
 
     @BeforeEach
     void setup() {
-        mover = Mover.from(Bridge.from(arr));
+        mover = Mover.from(Bridge.from(bridge));
     }
 
     @DisplayName("정답을 맞춘경우, 맞추지 못한 경우 그에 맞는 결과를 반환한다.")
@@ -48,8 +48,8 @@ class MoverTest {
 
     private GameResult moveUntilWin(Mover mover) {
         boolean isMatch = true;
-        for (String position : arr) {
-            isMatch = mover.move(position);
+        for (String positionOfBridge : bridge) {
+            isMatch = mover.move(positionOfBridge);
         }
         return mover.resultOfMove(isMatch);
     }
