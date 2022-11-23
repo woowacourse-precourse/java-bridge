@@ -15,16 +15,6 @@ public class BridgeGameController {
         this.bridgeGame = new BridgeGame(bridge, player);
     }
 
-    private Bridge getBridge(BridgeMaker bridgeMaker) {
-        int bridgeSize = inputView.readBridgeSize();
-        try {
-            return new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e);
-            return getBridge(bridgeMaker);
-        }
-    }
-
     public void playBridgeGame() {
         boolean gameContinueFlag = true;
         while (gameContinueFlag) {
@@ -36,6 +26,16 @@ public class BridgeGameController {
             }
         }
         outputView.printResult(bridgeGame.getPlayer(), bridgeGame.getBridge());
+    }
+
+    private Bridge getBridge(BridgeMaker bridgeMaker) {
+        int bridgeSize = inputView.readBridgeSize();
+        try {
+            return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return getBridge(bridgeMaker);
+        }
     }
 
     private boolean playGame() {
