@@ -46,15 +46,12 @@ public class BridgeGameController {
     }
 
     private int readBridgeSize() {
-        int bridgeSize;
-
         try {
-            bridgeSize = inputView.readBridgeSize();
+            return inputView.readBridgeSize();
         } catch (IllegalArgumentException error) {
             outputView.printError(error);
             return readBridgeSize();
         }
-        return bridgeSize;
     }
 
     private List<String> makeDirections(int bridgeSize) {
@@ -88,15 +85,12 @@ public class BridgeGameController {
     }
 
     private Moving readMoving() {
-        Moving moving;
-
         try {
-            moving = inputView.readMoving();
+            return inputView.readMoving();
         } catch (IllegalArgumentException error) {
             outputView.printError(error);
             return readMoving();
         }
-        return moving;
     }
 
     private boolean updateGameStatus(MovingResult movingResult) {
