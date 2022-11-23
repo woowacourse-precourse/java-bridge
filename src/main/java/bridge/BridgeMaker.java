@@ -2,15 +2,15 @@ package bridge;
 
 import bridge.constant.ErrorMessage;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
 
-    private static final int STARTING_INDEX = 0;
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
 
@@ -26,13 +26,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validate(size);
-        List<String> bridge = new ArrayList<>();
 
-        for (int index = STARTING_INDEX; index < size; index++) {
-            int command = bridgeNumberGenerator.generate();
-            bridge.add(convertToDirection(command));
-        }
-        return bridge;
+        return Stream.generate(bridgeNumberGenerator::generate)
+                .limit(size)
+                .map(Moving::convertToDirection)
+                .collect(Collectors.toList());
     }
 
     private void validate(int size) {
@@ -43,9 +41,5 @@ public class BridgeMaker {
 
     private static boolean isInvalidRange(int size) {
         return size < MIN_SIZE || size > MAX_SIZE;
-    }
-
-    private String convertToDirection(int command) {
-        return Moving.convertToDirection(command);
     }
 }
