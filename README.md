@@ -352,7 +352,7 @@ int number = bridgeNumberGenerator.generate();
 ### BridgeGameController
   bridge 패키지에 있는 기능을 모으고 인풋을 받아 아웃풋을 출력해주는 기능  
   
-  인스턴스변수: InputView, OutputView, InputValidator, Bridge, BridgeGame
+  인스턴스변수: InputView, OutputView, BridgeGame
   #### 기능목록
   - [x] 플레이어가 정답을 틀리면 재시작 여부(R, Q)를 물어보는 기능
   - [x] R을 입력할 경우 게임 재시작
