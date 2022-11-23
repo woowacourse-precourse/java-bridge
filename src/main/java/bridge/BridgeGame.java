@@ -1,23 +1,59 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import bridge.constant.Constant;
+import bridge.domain.*;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+import java.util.List;
+
+public class BridgeGame {
+    private final Bridge bridge;
+    private BridgeMap bridgeMap = new BridgeMap();
+    private Movement movement = new Movement();
+    private int tryCount = Constant.INITIAL_COUNT;
+
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void move(Moving moving) {
+        movement.saveMoving(moving);
+        bridgeMap.addMap(moving, canMove());
+    }
+
+    public boolean retry(Command command) {
+        if (command.equals(Constant.RETRY)) {
+            tryCount++;
+            clearGame();
+            return true;
+        }
+        return false;
+    }
+
+    private void clearGame() {
+        movement = new Movement();
+        bridgeMap = new BridgeMap();
+    }
+
+    public boolean canMove() {
+        return bridge.canMove(movement);
+    }
+
+    public boolean isFinish() {
+        return bridge.isFinish(movement);
+    }
+
+    public String isSuccess() {
+        if (isFinish() && canMove()) {
+            return Constant.SUCCESS;
+        }
+        return Constant.FAILURE;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public List<List<String>> getMap() {
+        return bridgeMap.getMap();
     }
 }
