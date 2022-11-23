@@ -3,6 +3,8 @@ package bridge.view;
 import camp.nextstep.edu.missionutils.Console;
 import bridge.Exception;
 
+import java.util.NoSuchElementException;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -25,7 +27,12 @@ public class InputView {
     public static String readMoving() {
         System.out.println(CHOOSE_MOVING_BRIDGE_MESSAGE);
         String moveCommand = Console.readLine();
-        Exception.moveBridgeException(moveCommand);
+
+        try {
+            Exception.moveBridgeException(moveCommand);
+        } catch (NoSuchElementException moveCommandException) {
+            readMoving();
+        }
 
         return moveCommand;
     }
@@ -36,7 +43,12 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println(RESTART_MESSAGE);
         String retryCommand = Console.readLine();
-        Exception.retryException(retryCommand);
+
+        try {
+            Exception.retryException(retryCommand);
+        } catch (NoSuchElementException retryCommandException) {
+            readGameCommand();
+        }
 
         return retryCommand;
     }
