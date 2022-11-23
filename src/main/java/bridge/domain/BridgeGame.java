@@ -32,11 +32,11 @@ public class BridgeGame {
     }
 
     private void writeMoveLog(String userMove, ResultType resultType) {
-        if (userMove.equals(BridgeType.UP.getStringCode())) {
+        if (userMove.equals(BridgeType.UP.getCode())) {
             moveLog.updateMoveLog(BridgeType.UP, resultType.getShape());
             moveLog.updateMoveLog(BridgeType.DOWN, ResultType.BLANK.getShape());
         }
-        if (userMove.equals(BridgeType.DOWN.getStringCode())) {
+        if (userMove.equals(BridgeType.DOWN.getCode())) {
             moveLog.updateMoveLog(BridgeType.UP, ResultType.BLANK.getShape());
             moveLog.updateMoveLog(BridgeType.DOWN, resultType.getShape());
         }

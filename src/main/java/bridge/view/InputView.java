@@ -40,7 +40,7 @@ public class InputView {
     public String readMoving() {
         outputView.printMessage(Message.MOVING_CHOOSE);
         String userMove = Console.readLine();
-        if (!(userMove.equals(BridgeType.UP.getStringCode()) || userMove.equals(BridgeType.DOWN.getStringCode()))) {
+        if (!(userMove.equals(BridgeType.UP.getCode()) || userMove.equals(BridgeType.DOWN.getCode()))) {
             throw new IllegalArgumentException(Message.ERROR_MOVE.getMessage());
         }
         return userMove;

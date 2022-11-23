@@ -31,11 +31,11 @@ public class BridgeMaker {
     }
 
     private List<String> addStringByBridgeNumber(List<String> bridge, int bridgeNumber) {
-        if (bridgeNumber == BridgeType.UP.getIntCode()) {
-            bridge.add(BridgeType.UP.getStringCode());
+        if (bridgeNumber == BridgeType.UP.getNumberCode()) {
+            bridge.add(BridgeType.UP.getCode());
         }
-        if (bridgeNumber == BridgeType.DOWN.getIntCode()) {
-            bridge.add(BridgeType.DOWN.getStringCode());
+        if (bridgeNumber == BridgeType.DOWN.getNumberCode()) {
+            bridge.add(BridgeType.DOWN.getCode());
         }
         return bridge;
     }

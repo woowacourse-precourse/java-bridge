@@ -4,20 +4,20 @@ public enum BridgeType {
     UP("U", 1),
     DOWN("D", 0);
 
-    private final String stringCode;
-    private final int intCode;
+    private final String code;
+    private final int numberCode;
 
-    BridgeType(String stringCode, int intCode) {
-        this.stringCode = stringCode;
-        this.intCode = intCode;
+    BridgeType(String code, int numberCode) {
+        this.code = code;
+        this.numberCode = numberCode;
     }
 
-    public String getStringCode() {
-        return stringCode;
+    public String getCode() {
+        return code;
     }
 
-    public int getIntCode() {
-        return intCode;
+    public int getNumberCode() {
+        return numberCode;
     }
 
 }
