@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.BridgeMove;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,14 +12,19 @@ public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
+        if (bridgeNumberGenerator == null) {
+            throw new NullPointerException("BridgeNumberGenerator는 Null이 될 수 없습니다.t ");
+        }
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> moves = new ArrayList<>();
+        for (int count = 1; count <= size; count++) {
+            int number = bridgeNumberGenerator.generate();
+            String move = BridgeMove.getBridgeMoveByMoveCode(number).getMoveCommand();
+            moves.add(move);
+        }
+        return moves;
     }
 }
