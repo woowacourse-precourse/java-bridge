@@ -10,7 +10,7 @@ public enum Node {
             "다리의 위치는 " + UP_POSITION_COORDINATE + " 또는 " + DOWN_POSITION_COORDINATE + "이어야합니다.";
 
     private static final String INVALID_POSITION_FOR_BRIDGE_NODE =
-            "다리의 위치는" + UP.position + " 또는 " + DOWN.position + "이어야 합니다.";
+            "다리의 위치는 " + UP.position + " 또는 " + DOWN.position + " 이어야 합니다.";
 
     public String position;
 
