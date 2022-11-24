@@ -48,7 +48,7 @@ public class GameController {
     }
 
     private static void readInputAndMove() {
-        Node to = input.readMoving();
+        Node to = Node.of(input.readMoving());
         game.move(to);
     }
 

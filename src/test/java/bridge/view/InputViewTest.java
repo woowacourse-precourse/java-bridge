@@ -30,12 +30,10 @@ class InputViewTest {
         @ParameterizedTest
         @ValueSource(strings = {"2", "21", "0", "30"})
         public void throwExceptionWhenInvalidBridgeSize(String bridgeSize) {
-            String exceptionMessage = "다리 길이는 " + Bridge.MIN_SIZE + "부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야 합니다.";
+            String exceptionMessage = "다리 길이는 " + Bridge.MIN_SIZE + " 부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야합니다.";
             assertSimpleTest(() -> {
                 run(bridgeSize, "3");
-                assertThat(
-                        output().contains(exceptionMessage)
-                );
+                assertThat(output()).contains(exceptionMessage);
             });
         }
 
@@ -43,12 +41,10 @@ class InputViewTest {
         @ParameterizedTest
         @ValueSource(strings = {"s", "apple", " ", ";;"})
         public void throwExceptionWhenInvalidString(String bridgeSize) {
-            String exceptionMessage = "다리 길이는 " + Bridge.MIN_SIZE + "부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야 합니다.";
+            String exceptionMessage = "다리 길이는 " + Bridge.MIN_SIZE + " 부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야합니다.";
             assertSimpleTest(() -> {
                 run(bridgeSize, "3");
-                assertThat(
-                        output().contains(exceptionMessage)
-                );
+                assertThat(output()).contains(exceptionMessage);
             });
         }
 
@@ -74,8 +70,8 @@ class InputViewTest {
 
             @Override
             protected void runMain() {
-                Node result = inputView.readMoving();
-                assertThat(result).isEqualTo(Node.UP);
+                String result = inputView.readMoving();
+                assertThat(result).isEqualTo(Node.UP.position);
             }
         }
 
@@ -92,8 +88,8 @@ class InputViewTest {
 
             @Override
             protected void runMain() {
-                Node result = inputView.readMoving();
-                assertThat(result).isEqualTo(Node.DOWN);
+                String result = inputView.readMoving();
+                assertThat(result).isEqualTo(Node.DOWN.position);
             }
         }
 
@@ -104,12 +100,10 @@ class InputViewTest {
             @ValueSource(strings = {"s", "u", "d", "1", " ", " :"})
             @DisplayName("예외메시지를 출력한다.")
             public void printExceptionMessage(String arg) {
-                String exceptionMessage = "다리의 위치는" + Node.UP.position + " 또는 " + Node.DOWN.position + "이어야 합니다.";
+                String exceptionMessage = "입력값이 올바르지 않습니다.";
                 assertSimpleTest(() -> {
                     run(arg, "U");
-                    assertThat(
-                            output().contains(exceptionMessage)
-                    );
+                    assertThat(output()).contains(exceptionMessage);
                 });
             }
 
@@ -170,7 +164,7 @@ class InputViewTest {
             @DisplayName("예외 메시지를 출력한다.")
             public void printErrorMessage(String arg) {
                 String exceptionMessage = "게임 재시도 여부가 올바르지 않습니다.";
-                assertSimpleTest(()-> {
+                assertSimpleTest(() -> {
                     run(arg, "R");
                     assertThat(output()).contains(exceptionMessage);
                 });
