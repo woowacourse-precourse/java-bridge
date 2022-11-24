@@ -32,7 +32,7 @@ class PlayerStepsTest {
 
         @Test
         @DisplayName("브릿지와 마지막 노드의 위치가 일치하지 않는 경우 false를 반환한다.")
-        public void returnFalseWhenTheNodeDoesNotMatche() {
+        public void returnFalseWhenTheNodeDoesNotMatches() {
             Bridge mockBridge = Bridge.of(List.of("D", "U"));
             PlayerSteps steps = new PlayerSteps(2);
             steps.add(Node.DOWN);

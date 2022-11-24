@@ -71,7 +71,7 @@ class InputViewTest {
             @Override
             protected void runMain() {
                 String result = inputView.readMoving();
-                assertThat(result).isEqualTo(Node.UP.position);
+                assertThat(result).isEqualTo("U");
             }
         }
 
@@ -132,7 +132,7 @@ class InputViewTest {
             @Override
             protected void runMain() {
                 String command = inputView.readGameCommand();
-                assertThat(command).isEqualTo(GameCommand.QUIT.command);
+                assertThat(command).isEqualTo("Q");
             }
         }
 
@@ -151,7 +151,7 @@ class InputViewTest {
             @Override
             protected void runMain() {
                 String command = inputView.readGameCommand();
-                assertThat(command).isEqualTo(GameCommand.REPLAY.command);
+                assertThat(command).isEqualTo("R");
             }
         }
 

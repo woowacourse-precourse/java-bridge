@@ -17,8 +17,7 @@ class NodeTest {
         public void throwExceptionForInvalidArgument(String arg) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> Node.of(arg))
-                    .withMessageStartingWith("다리의 위치는" + Node.UP.position + " 또는 " + Node.DOWN.position + "이어야 합니다.");
-
+                    .withMessageStartingWith("다리의 위치는 U 또는 D 이어야 합니다.");
         }
 
         @ParameterizedTest
