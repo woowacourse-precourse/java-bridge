@@ -1,12 +1,12 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.GameResult;
+import bridge.model.gameResult.GameResult;
 import bridge.model.bridge.Node;
+import bridge.model.gameResult.GameResultDTO;
 import bridge.view.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class GameController {
     private static BridgeGame game;
@@ -63,7 +63,7 @@ public class GameController {
 
     private static void printResultAfterEndGame() {
         GameResult result = game.makeResult();
-        output.printResult(result);
+        output.printResult(GameResultDTO.of(result));
     }
 
 

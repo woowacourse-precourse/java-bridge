@@ -1,14 +1,12 @@
-package bridge.model;
-
-import java.util.List;
+package bridge.model.gameResult;
 
 /**
  * 게임 결과를 저장하는 클래스
  */
 public class GameResult {
-    public String map;
-    public boolean succeed;
-    public int numberOfAttempts;
+    protected String map;
+    protected boolean succeed;
+    protected int numberOfAttempts;
 
     public GameResult(String map, boolean succeed, int numberOfAttempts) {
         this.map = map;

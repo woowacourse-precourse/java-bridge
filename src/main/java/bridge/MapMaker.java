@@ -5,7 +5,6 @@ import bridge.model.bridge.Bridge;
 import bridge.model.bridge.Node;
 import bridge.model.map.Column;
 import bridge.model.map.Columns;
-import java.util.List;
 
 public class MapMaker {
     private static final String CORRECT_NODE = "O";

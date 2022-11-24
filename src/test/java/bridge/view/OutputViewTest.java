@@ -3,7 +3,8 @@ package bridge.view;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.model.GameResult;
+import bridge.model.gameResult.GameResult;
+import bridge.model.gameResult.GameResultDTO;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -114,17 +115,13 @@ class OutputViewTest {
         }
 
         private void prepareGameResultFor(int attempts) {
-            Map<Boolean, String> lastStep = Map.of(
-                    true, "O",
-                    false, "X"
-            );
             String map = "[   | O |   | O |   ]\n[ O |   | O |   | X ]";
             gameResult = new GameResult(map, true, attempts);
         }
 
         @Override
         protected void runMain() {
-            outputView.printResult(gameResult);
+            outputView.printResult(GameResultDTO.of(gameResult));
         }
     }
 }

@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.MapMaker;
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.Node;
+import bridge.model.gameResult.GameResult;
 import java.util.List;
 
 /**
