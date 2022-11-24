@@ -12,16 +12,13 @@ public class MapMaker {
     private static final String INCORRECT_NODE = "X";
     private static final String EMPTY = " ";
 
-    public static List<String> make(Bridge bridge, PlayerSteps steps) {
+    public static String make(Bridge bridge, PlayerSteps steps) {
         Columns columnsWithoutLastColumn = makeMapWithoutLastColumn(steps);
         Column lastColumn = makeLastColumnByComparison(bridge, steps);
 
         Columns completeColumns = columnsWithoutLastColumn.add(lastColumn);
 
-        String up = completeColumns.upperRow();
-        String down = completeColumns.lowerRow();
-
-        return List.of(up, down);
+        return completeColumns.toString();
     }
 
     private static Column makeLastColumnByComparison(Bridge bridge, PlayerSteps steps) {

@@ -22,8 +22,7 @@ class MapMakerTest {
         }
 
         steps.add(Node.of(nodePositions.get(3)));
-        List<String> result = MapMaker.make(bridge, steps);
-        assertEquals(result.get(0), "O OO");
-        assertEquals(result.get(1), " O  ");
+        String result = MapMaker.make(bridge, steps);
+        assertEquals(result, "[ O |   | O | O ]\n[   | O |   |   ]");
     }
 }

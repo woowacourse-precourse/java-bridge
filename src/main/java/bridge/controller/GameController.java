@@ -34,7 +34,7 @@ public class GameController {
     }
 
     private static void printMap() {
-        List<String> result = game.makeMap();
+        String result = game.makeMap();
         output.printMap(result);
     }
 

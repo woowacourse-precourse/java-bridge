@@ -61,7 +61,7 @@ public class BridgeGame {
         steps.clearSteps();
     }
 
-    public List<String> makeMap() {
+    public String makeMap() {
         return MapMaker.make(bridge, steps);
     }
 

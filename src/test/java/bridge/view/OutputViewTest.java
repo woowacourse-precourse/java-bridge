@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.model.GameResult;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,11 +23,11 @@ class OutputViewTest {
 
     @Nested
     class PrintMapTest extends NsTest {
-        List<String> inputMap;
+        String inputMap;
 
         @Test
         public void printMap() {
-            inputMap = List.of("OO X", "  O ");
+            inputMap = "[ O | O |   | X ]\n[   |   | O |   ]";
             assertSimpleTest(() -> {
                         run();
                         assertThat(output()).contains(
@@ -59,7 +58,7 @@ class OutputViewTest {
         @Test
         @DisplayName("지도와 일치한다.")
         public void printResult() {
-            List<String> map = List.of(" O O ", "O O X");
+            String map = "[   | O |   | O |   ]\n[ O |   | O |   | X ]";
             gameResult = new GameResult(map, false, 1);
 
             assertSimpleTest(() -> {
@@ -96,7 +95,7 @@ class OutputViewTest {
                     true, "O",
                     false, "X"
             );
-            List<String> map = List.of(" O O ", "O O " + lastStep.get(success));
+            String map = "[   | O |   | O |   ]\n[ O |   | O |   | " + lastStep.get(success) + " ]";
 
             gameResult = new GameResult(map, success, 1);
         }
@@ -119,8 +118,7 @@ class OutputViewTest {
                     true, "O",
                     false, "X"
             );
-            List<String> map = List.of(" O O ", "O O X");
-
+            String map = "[   | O |   | O |   ]\n[ O |   | O |   | X ]";
             gameResult = new GameResult(map, true, attempts);
         }
 

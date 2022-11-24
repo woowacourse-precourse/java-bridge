@@ -13,8 +13,6 @@ public class OutputView {
     private static final String FAIL = "실패";
     private static final String GAME_SUCCESS_MESSAGE_FORMAT = "게임 성공 여부: %s\n";
     private static final String NUMBER_OF_ATTEMPTS_FORMAT = "총 시도한 횟수: %d\n";
-    public static final String START_OF_ROW = "[ ";
-    public static final String END_OF_ROW = " ]";
     private static final String EXCEPTION_PREFIX = "[ERROR] ";
 
     public void printStart() {
@@ -38,33 +36,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> currentPath) {
-        for (int i = 0; i < 2; i++) {
-            printOneRow(currentPath.get(i));
-        }
-        System.out.println();
-    }
-
-    private void printOneRow(String rowOfBridge) {
-        printStartOfRow();
-        printNodesWithSeparator(rowOfBridge);
-        printEndOfRow();
-    }
-
-    private void printNodesWithSeparator(String rowOfBridge) {
-        char[] row = rowOfBridge.toCharArray();
-        System.out.print(row[0]);
-        for (int j = 1; j < row.length; j++) {
-            System.out.printf(" | %c", row[j]);
-        }
-    }
-
-    private void printEndOfRow() {
-        System.out.println(END_OF_ROW);
-    }
-
-    private void printStartOfRow() {
-        System.out.print(START_OF_ROW);
+    public void printMap(String map) {
+        System.out.println(map);
     }
 
     /**
@@ -75,12 +48,12 @@ public class OutputView {
     public void printResult(GameResult result) {
         printTitle();
         printMap(result.map);
-        printEndMessage(result);
+        printEndMessage(result.succeed);
         printNumberOfAttempts(result.numberOfAttempts);
     }
 
-    private void printEndMessage(GameResult result) {
-        if (result.succeed) {
+    private void printEndMessage(boolean succeed) {
+        if (succeed) {
             printEndMessageForSuccess();
             return;
         }
