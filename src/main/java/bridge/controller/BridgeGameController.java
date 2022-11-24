@@ -70,7 +70,8 @@ public class BridgeGameController {
         if (inputRestart.equals(Message.RESTART.getMessage())) {
             new BridgeGameController();
             count++;
-        } else if (inputRestart.equals(Message.QUIT.getMessage())) {
+        }
+        if (inputRestart.equals(Message.QUIT.getMessage())) {
             status = false;
         }
     }
