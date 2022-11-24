@@ -22,7 +22,7 @@ public class OutputView {
      */
     public void printMap(String inputDirection, String moveResult) {
         makeUpDownBridge(inputDirection, moveResult);
-        printProgress();
+        printMoveProgress();
         System.out.println();
     }
 
@@ -33,11 +33,12 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(Message.GAME_RESULT.getMessage());
-        printProgress();
+        printMoveProgress();
         System.out.println();
         printSuccessOrFailure();
         printTotalCount(getCount());
     }
+
     /**
      * 게임 시작 후 출력할 메시지를 가지는 메서드들
      */
@@ -52,19 +53,26 @@ public class OutputView {
     public void printInputDirection() {
         System.out.println(Message.SELECT_DIRECTION.getMessage());
     }
+
     public void printInputRestart() {
         System.out.println(Message.ASK_RESTART.getMessage());
     }
 
-    private static void printProgress() {
-        System.out.println(
-                Message.LEFT_BAR.getMessage() + printCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
-        System.out.println(
-                Message.LEFT_BAR.getMessage() + printCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
+    private static void printMoveProgress() {
+        printUpBridge(joinCenterBar(getUpBridge()));
+        printDownBridge(joinCenterBar(getDownBridge()));
     }
 
-    private static String printCenterBar(List<String> toAddBridge) {
-        return String.join(Message.CENTER_BAR.getMessage(), toAddBridge);
+    private static void printUpBridge(String upBridge) {
+        System.out.println(Message.LEFT_BAR.getMessage() + upBridge + Message.RIGHT_BAR.getMessage());
+    }
+
+    private static void printDownBridge(String downBridge) {
+        System.out.println(Message.LEFT_BAR.getMessage() + downBridge + Message.RIGHT_BAR.getMessage());
+    }
+
+    private static String joinCenterBar(List<String> bridge) {
+        return String.join(Message.CENTER_BAR.getMessage(), bridge);
     }
 
     private static void printSuccessOrFailure() {
