@@ -1,6 +1,5 @@
 package bridge.view.inputCallback;
 
-import bridge.model.bridge.Node;
 import camp.nextstep.edu.missionutils.Console;
 
 public class ReadPositionToMoveCallback implements ReadLineCallback<String> {
@@ -16,7 +15,7 @@ public class ReadPositionToMoveCallback implements ReadLineCallback<String> {
     }
 
     private void validate(String position) {
-        if (!position.equals(Node.UP.position) && !position.equals(Node.DOWN.position)) {
+        if (!position.equals("U") && !position.equals("D")) {
             throw new IllegalArgumentException(INVALID_INPUT);
         }
     }

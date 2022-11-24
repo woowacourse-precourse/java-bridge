@@ -53,7 +53,7 @@ public class GameController {
     }
 
     private static void quitOrRetry() {
-        GameCommand command = input.readGameCommand();
+        GameCommand command = GameCommand.of(input.readGameCommand());
         if (wantToQuit(command)) {
             game.quit();
             return;

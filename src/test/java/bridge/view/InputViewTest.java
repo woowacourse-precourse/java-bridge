@@ -131,8 +131,8 @@ class InputViewTest {
 
             @Override
             protected void runMain() {
-                GameCommand command = inputView.readGameCommand();
-                assertThat(command).isEqualTo(GameCommand.QUIT);
+                String command = inputView.readGameCommand();
+                assertThat(command).isEqualTo(GameCommand.QUIT.command);
             }
         }
 
@@ -150,8 +150,8 @@ class InputViewTest {
 
             @Override
             protected void runMain() {
-                GameCommand command = inputView.readGameCommand();
-                assertThat(command).isEqualTo(GameCommand.REPLAY);
+                String command = inputView.readGameCommand();
+                assertThat(command).isEqualTo(GameCommand.REPLAY.command);
             }
         }
 

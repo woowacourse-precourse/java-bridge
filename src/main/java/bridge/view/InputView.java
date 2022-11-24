@@ -30,8 +30,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public GameCommand readGameCommand() {
-        ReadLineTemplate<GameCommand> readGameCommand = new ReadLineTemplate() {
+    public String readGameCommand() {
+        ReadLineTemplate<String> readGameCommand = new ReadLineTemplate() {
         };
         return readGameCommand.repeatToReadWhileValid(new ReadGameCommandCallback());
     }
