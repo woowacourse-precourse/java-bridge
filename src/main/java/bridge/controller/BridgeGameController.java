@@ -30,8 +30,8 @@ public class BridgeGameController {
     }
 
     public void start() {
-        System.out.println(Message.START_GAME.getMessage());
-        System.out.println(Message.INPUT_SIZE.getMessage());
+        outputView.printStartGame();
+        outputView.printInputSize();
         inputSize = inputView.inputBridgeSize();
         bridges = bridgeMaker.makeBridge(inputSize);
         runGame();
@@ -48,7 +48,7 @@ public class BridgeGameController {
 
     private static void runGame() {
         while (status && bridgeLocation < inputSize) {
-            System.out.println(Message.SELECT_DIRECTION.getMessage());
+            outputView.printInputDirection();
             String inputDirection = inputView.inputMovingDirection();
             String moveResult = bridgeGame.move(bridges.get(bridgeLocation), inputDirection);
             bridgeGame.retry(moveResult);
@@ -60,7 +60,7 @@ public class BridgeGameController {
 
     private static void askRestartGame(String moveResult) {
         if (moveResult.equals(Message.MOVE_FAIL.getMessage())) {
-            System.out.println(Message.ASK_RESTART.getMessage());
+            outputView.printInputRestart();
             String inputRestart = inputView.inputGameRestart();
             selectRestartAndQuit(inputRestart);
         }

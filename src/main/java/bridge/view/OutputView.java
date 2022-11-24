@@ -38,6 +38,23 @@ public class OutputView {
         printSuccessOrFailure();
         printTotalCount(getCount());
     }
+    /**
+     * 게임 시작 후 출력할 메시지를 가지는 메서드들
+     */
+    public void printStartGame() {
+        System.out.println(Message.START_GAME.getMessage());
+    }
+
+    public void printInputSize() {
+        System.out.println(Message.INPUT_SIZE.getMessage());
+    }
+
+    public void printInputDirection() {
+        System.out.println(Message.SELECT_DIRECTION.getMessage());
+    }
+    public void printInputRestart() {
+        System.out.println(Message.ASK_RESTART.getMessage());
+    }
 
     private static void printProgress() {
         System.out.println(
