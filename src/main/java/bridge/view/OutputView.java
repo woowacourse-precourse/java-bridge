@@ -70,7 +70,8 @@ public class OutputView {
     private static void printSuccessOrFailure() {
         if (getStatus()) {
             System.out.println(Message.GAME_SUCCESS.getMessage());
-        } else if (!getStatus()) {
+        }
+        if (!getStatus()) {
             System.out.println(Message.GAME_FAILURE.getMessage());
         }
     }
