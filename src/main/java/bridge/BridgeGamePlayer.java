@@ -47,15 +47,15 @@ public class BridgeGamePlayer {
 
     private static void gameStart(List<String> bridge){
 
-        BridgeGame game = new BridgeGame();
+        BridgeGame game = new BridgeGame(bridge);
 
-        while(!game.gameFinish(bridge)){
-            if(game.compare(bridge,getChoiceMove())){
+        while(!game.gameFinish()){
+            if(game.compare(getChoiceMove())){
                 outputView.printMap(game.showCurrentBoard());
                 continue;
             }
             outputView.showMessage(RETRY_OR_QUIT.getMessage());
-            gameSuccess=game.retry(bridge,inputView.readGameCommand());
+            gameSuccess=game.retry(inputView.readGameCommand());
         }
         outputView.printResult(convertBool(gameSuccess),game.getChance(),game.showCurrentBoard());
     }

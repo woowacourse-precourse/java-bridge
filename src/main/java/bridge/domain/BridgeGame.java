@@ -8,12 +8,15 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private final List<String> bridge;
     private BridgeBoard bridgeBoard;
     private int current;
     private int chance=1;
 
-    public BridgeGame(){
-       init();
+    public BridgeGame(List<String>bridge)
+    {
+        this.bridge =bridge;
+        init();
     }
 
     public void init(){
@@ -22,7 +25,7 @@ public class BridgeGame {
     }
 
 
-    public boolean compare(List<String> bridge,String userInput){
+    public boolean compare(String userInput){
         System.out.println(userInput);
         if(bridge.get(current).equals(userInput)){
            move(userInput,"O");
@@ -59,7 +62,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(List<String> bridge,String command) {
+    public boolean retry(String command) {
         if(command=="R"){
             chance+=1;
             init();
@@ -69,7 +72,7 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean gameFinish(List<String> bridge){
+    public boolean gameFinish(){
         if(current==bridge.size()){
             return true;
         }
