@@ -30,16 +30,22 @@ public class GameView {
         while (status == ViewStatus.DETERMINE_MOVE) {
             GameResult gameResult = inputView.move();
             status = gameResult.getNextViewStatus();
+
             printMapIfMoveInputValid(gameResult);
+            setStatusToInputMoveAgainIfInputInvalid(gameResult);
         }
     }
 
     private void printMapIfMoveInputValid(GameResult gameResult) {
-        if (gameResult.getNextViewStatus() == ViewStatus.INVALID_MOVE_INPUT) {
-            status = ViewStatus.DETERMINE_MOVE;
-            return;
+        if (gameResult.getNextViewStatus() != ViewStatus.INVALID_MOVE_INPUT) {
+            outputView.printMap(gameResult);
         }
-        outputView.printMap(gameResult);
+    }
+
+    private void setStatusToInputMoveAgainIfInputInvalid(GameResult gameResult) {
+        if(gameResult.getNextViewStatus() == ViewStatus.INVALID_MOVE_INPUT) {
+            status = ViewStatus.DETERMINE_MOVE;
+        }
     }
 
     public void retry() {
