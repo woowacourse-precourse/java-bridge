@@ -14,10 +14,8 @@ public class MoveRecord {
     private final Map<MoveType, List<String>> record;
 
     public MoveRecord() {
-        record = new HashMap<>();
-        Arrays.stream(MoveType.values()).forEach(bridgeLine -> {
-            record.put(bridgeLine, new ArrayList<>());
-        });
+        record = Arrays.stream(MoveType.values()).collect(HashMap::new, (map, moveType) ->
+                map.put(moveType, new ArrayList<>()), HashMap::putAll);
     }
 
     private void recordOneLine(MoveType moveType, String bridgePieceState) {
