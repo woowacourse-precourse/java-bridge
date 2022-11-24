@@ -11,6 +11,9 @@ import java.util.function.Supplier;
  */
 public class InputView {
 
+    public static final String QUIT_COMMAND = "Q";
+    public static final String RETRY_COMMAND = "R";
+
     private final InputValidator validator;
     private final InputParser parser;
 
@@ -67,10 +70,7 @@ public class InputView {
     }
 
     private String inputGameCommand() {
-        final String QUIT = "Q";
-        final String RETRY = "R";
-
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RETRY, QUIT);
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RETRY_COMMAND, QUIT_COMMAND);
 
         String gameCommand = readLine();
         validator.validateGameCommand(gameCommand);

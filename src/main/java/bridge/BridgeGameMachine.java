@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.view.InputView.QUIT_COMMAND;
+import static bridge.view.InputView.RETRY_COMMAND;
+
 import bridge.domain.BridgeGame;
 import bridge.domain.MovingMap;
 import bridge.service.BridgeGameService;
@@ -48,22 +51,22 @@ public class BridgeGameMachine {
 
     private void checkRetry(BridgeGame bridgeGame) {
         String gameCommand = inputGameCommand();
-        if ("R".equals(gameCommand)) {
+        if (RETRY_COMMAND.equals(gameCommand)) {
             bridgeGame.retry();
         }
-        if ("Q".equals(gameCommand)) {
+        if (QUIT_COMMAND.equals(gameCommand)) {
             bridgeGame.finishGame();
         }
     }
 
     private void printStartGame() {
         outputView.printStartGame();
-        outputView.println();
+        outputView.printEmptyLine();
     }
 
     private int inputBridgeSize() {
         int bridgeSize = inputView.readBridgeSize();
-        outputView.println();
+        outputView.printEmptyLine();
         return bridgeSize;
     }
 
@@ -74,7 +77,7 @@ public class BridgeGameMachine {
     private void printMovingMap(BridgeGame bridgeGame) {
         MovingMap movingMap = bridgeGame.getMovingMap();
         outputView.printMap(movingMap);
-        outputView.println();
+        outputView.printEmptyLine();
     }
 
     private String inputGameCommand() {

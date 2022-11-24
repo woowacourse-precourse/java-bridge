@@ -17,7 +17,7 @@ public class OutputView {
         System.out.printf(format + "\n", args);
     }
 
-    public void println() {
+    public void printEmptyLine() {
         println("");
     }
 
@@ -56,7 +56,7 @@ public class OutputView {
     public void printResult(MovingMap movingMap, boolean isClear, int tryCount) {
         println("최종 게임 결과");
         printMap(movingMap);
-        println();
+        printEmptyLine();
         printIsClear(isClear);
         printTryCount(tryCount);
     }

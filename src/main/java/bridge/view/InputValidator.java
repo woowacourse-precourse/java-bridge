@@ -2,6 +2,7 @@ package bridge.view;
 
 import static bridge.domain.BridgeGame.DOWN_BRIDGE;
 import static bridge.domain.BridgeGame.UP_BRIDGE;
+import static bridge.view.InputView.*;
 
 import java.util.List;
 
@@ -21,16 +22,17 @@ public class InputValidator {
 
     void validateMoving(String moving) {
         if (!List.of(UP_BRIDGE, DOWN_BRIDGE).contains(moving)) {
-            throw new IllegalArgumentException("이동할 칸은 U(위), D(아래) 중 하나여야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format("이동할 칸은 %s(위), %s(아래) 중 하나여야 합니다.",
+                            UP_BRIDGE, DOWN_BRIDGE));
         }
     }
 
     void validateGameCommand(String gameCommand) {
-        final String QUIT = "Q";
-        final String RETRY = "R";
-
-        if (!List.of(QUIT, RETRY).contains(gameCommand)) {
-            throw new IllegalArgumentException("게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나여야 합니다.");
+        if (!List.of(RETRY_COMMAND, QUIT_COMMAND).contains(gameCommand)) {
+            throw new IllegalArgumentException(
+                    String.format("게임 재시작/종료 여부는 %s(재시작)과 %s(종료) 중 하나여야 합니다.",
+                            RETRY_COMMAND, QUIT_COMMAND));
         }
     }
 }
