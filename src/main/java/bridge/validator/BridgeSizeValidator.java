@@ -1,32 +1,53 @@
 package bridge.validator;
 
 public class BridgeSizeValidator implements SizeValidator, NumberValidator {
-    static final int minLength = 3;
-    static final int maxLength = 20;
+    static final int MIN_LENGTH = 3;
+    static final int MAX_LENGTH = 20;
 
 
     @Override
     public boolean isSmallerThanMin(int target) {
-        return target < minLength;
+        return target < MIN_LENGTH;
     }
 
     @Override
     public boolean isBiggerThanMax(int target) {
-        return target > maxLength;
+        return target > MAX_LENGTH;
     }
 
-    public int convertTarget(String target) {
+    private boolean isConvertible(String target){
+        int bridgeSize;
+        try{
+            bridgeSize = convertTarget(target);
+        } catch (NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
+
+    private int convertTarget(String target) throws NumberFormatException{
         return Integer.parseInt(target);
     }
 
-    public int getValidBridgeSize(String target) {
+    private void checkNumeric(String target){
         if (!isNumeric(target)) {
             throw new IllegalArgumentException("[ERROR] 다리 사이즈는 숫자만 입력할 수 있습니다.");
         }
-        int bridgeSize = convertTarget(target);
-        if (isSmallerThanMin(bridgeSize) || isBiggerThanMax(bridgeSize)) {
-            throw new IllegalArgumentException(String.format("[ERROR] 다리 사이즈는 %d이상 %d이하의 수여야합니다.", minLength, maxLength));
+    }
+
+    private boolean isValidRange(int bridgeSize){
+        if(isSmallerThanMin(bridgeSize) || isBiggerThanMax(bridgeSize)){
+            return false;
         }
-        return bridgeSize;
+        return true;
+    }
+
+    public int getValidBridgeSize(String target) {
+        checkNumeric(target);
+        if (!isConvertible(target) || !isValidRange(convertTarget(target))) {
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 다리 사이즈는 %d이상 %d이하의 수여야합니다.", MIN_LENGTH, MAX_LENGTH));
+        }
+        return convertTarget(target);
     }
 }

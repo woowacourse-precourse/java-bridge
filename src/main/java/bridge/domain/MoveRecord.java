@@ -6,11 +6,11 @@ import bridge.domain.type.MoveType;
 import java.util.*;
 
 public class MoveRecord {
-    final static String NOT_CROSSED = " ";
-    final static String BRIDGE_PIECE_SEPARATOR = " | ";
-    final static String RECORD_START_BRACKET = "[ ";
-    final static String RECORD_END_BRACKET = " ]";
-    final static String RECORD_SEPARATOR = "\n";
+    static final String NOT_CROSSED = " ";
+    static final String BRIDGE_PIECE_SEPARATOR = " | ";
+    static final String RECORD_START_BRACKET = "[ ";
+    static final String RECORD_END_BRACKET = " ]";
+    static final String RECORD_SEPARATOR = "\n";
     private final Map<MoveType, List<String>> record;
 
     public MoveRecord() {

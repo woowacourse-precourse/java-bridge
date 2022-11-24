@@ -1,12 +1,13 @@
 package bridge.validator;
 
+import java.util.stream.Stream;
+
 public interface NumberValidator {
     default boolean isNumeric(String target) {
-        try {
-            Integer.parseInt(target);
-        } catch (NumberFormatException e) {
-            return false;
+        boolean numeric = target.chars().allMatch(Character::isDigit);
+        if(numeric){
+            return true;
         }
-        return true;
+        return false;
     }
 }
