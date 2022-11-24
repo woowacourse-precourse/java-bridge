@@ -32,12 +32,12 @@ public class BridgeMaker {
         validateSize(size);
 
         return Stream.generate(bridgeNumberGenerator::generate)
-                .map(this::turnBridgeNumberToBridgeSymbol)
+                .map(this::changeBridgeNumberToBridgeSymbol)
                 .limit(size)
                 .collect(Collectors.toList());
     }
 
-    private String turnBridgeNumberToBridgeSymbol(int bridgeNumber) {
+    private String changeBridgeNumberToBridgeSymbol(int bridgeNumber) {
         if (bridgeNumber == UP_BRIDGE_NUMBER) {
             return UP_BRIDGE;
         }
