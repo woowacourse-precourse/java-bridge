@@ -48,7 +48,7 @@ public class BridgeGame {
         }
         return bridgeLine;
     }
-    
+
     public String getResult(int i, String direction, boolean rightDirection) {
         String result = "O";
         if (!rightDirection) {
