@@ -4,7 +4,7 @@ public class Validate {
     private final String ERROR_MESSAGE = "[ERROR]";
 
     public void validateNumberRange(String input, int min, int max) {
-        if (!input.matches("[0-9]")) {
+        if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 숫자만 입력 가능합니다.");
         }
         int num = Integer.parseInt(input);
