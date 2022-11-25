@@ -39,25 +39,16 @@ public class BridgeGame {
 
     }
 
-    public List<String> getUpBridge() {
-        List<String> upBridge = new ArrayList<>();
+    public List<String> getBridgeLine(String direction) {
+        List<String> bridgeLine = new ArrayList<>();
         for (int i = 0; i < visited.size(); i++) {
             boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = getResult(i, "U", rightDirection);
-            upBridge.add(result);
+            String result = getResult(i, direction, rightDirection);
+            bridgeLine.add(result);
         }
-        return upBridge;
+        return bridgeLine;
     }
-
-    public List<String> getDownBridge() {
-        List<String> downBridge = new ArrayList<>();
-        for (int i = 0; i < visited.size(); i++) {
-            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = getResult(i, "D", rightDirection);
-            downBridge.add(result);
-        }
-        return downBridge;
-    }
+    
     public String getResult(int i, String direction, boolean rightDirection) {
         String result = "O";
         if (!rightDirection) {
