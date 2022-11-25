@@ -1,8 +1,115 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
+    private static final InputView receiver = new InputView();
+    private static final BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(generator);
+    private static final String BROKEN = "X";
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        System.out.printf(Constants.Messages.START.getMessage());
+        BridgeGame bridgeGame = createBridge();
+        OutputView printer = bridgeGameUI(bridgeGame);
+        printer = retryProcess(printer, bridgeGame);
+        String result = quitProcess(printer);
+        endUI(result, bridgeGame, printer);
+    }
+
+    // 다리를 생성
+    private static BridgeGame createBridge() {
+        int size = bridgeSizeUI();
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        return bridgeGame;
+    }
+
+    // 다리 생성 UI : 부적절한 문자가 입력될 시, 다시 입력을 받을 준비
+    private static int bridgeSizeUI() {
+        System.out.printf(Constants.Messages.BRIDGE.getMessage());
+        while (true) {
+            try {
+                return receiver.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    // 이동 선택 UI : 부적절한 문자가 입력될 시, 다시 입력을 받을 준비
+    private static String moveChoiceUI() {
+        System.out.printf(Constants.Messages.MOVE.getMessage());
+        while (true) {
+            try {
+                return receiver.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    // 다리 게임 한판
+    private static OutputView bridgeGameUI(BridgeGame bridgeGame) {
+        OutputView printer = new OutputView();
+        for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
+            if (!bridgeGame.move(moveChoiceUI(), i)) {
+                printer.printBadMove(bridgeGame.getBridge(), i);
+                break;
+            }
+            printer.printGoodMove(bridgeGame.getBridge(), i);
+        }
+        return printer;
+    }
+
+    private static String retryChoiceUI() {
+        System.out.printf(Constants.Messages.RESTART_OR_END.getMessage());
+        while (true) {
+            try {
+                return receiver.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    private static OutputView retryProcess(OutputView printer, BridgeGame bridgeGame) {
+        if (printer.getResult().contains(BROKEN)) {
+            printer = repeatUntilQuit(printer, bridgeGame);
+        }
+
+        return printer;
+    }
+
+    private static OutputView repeatUntilQuit(OutputView printer, BridgeGame bridgeGame) {
+        while (true) {
+            if (!printer.getResult().contains(BROKEN)
+                    || retryChoiceUI().equals(InputView.FailChoice.QUIT.getKeyword())) {
+                break;
+            }
+            bridgeGame.retry();
+            printer = bridgeGameUI(bridgeGame);
+        }
+        return printer;
+    }
+
+    private static String quitProcess(OutputView printer) {
+        String result = "";
+        if (printer.getResult().contains(BROKEN)) {
+            result = Constants.Messages.FAIL.getMessage();
+        }
+
+        if (!printer.getResult().contains(BROKEN)) {
+            result = Constants.Messages.SUCCESS.getMessage();
+        }
+        return result;
+    }
+
+    private static void endUI(String result, BridgeGame bridgeGame, OutputView printer) {
+        System.out.printf(Constants.Messages.RESULT.getMessage());
+        printer.printResult();
+        System.out.printf(Constants.Messages.SUCCESS_OR_FAIL.getMessage() + result);
+        System.out.printf(Constants.Messages.TRIAL.getMessage() + bridgeGame.getTrial());
     }
 }
