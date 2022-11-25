@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
 

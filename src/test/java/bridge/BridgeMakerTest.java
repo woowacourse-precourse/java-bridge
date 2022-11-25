@@ -1,7 +1,6 @@
 package bridge;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,9 +18,5 @@ class BridgeMakerTest {
     void makeBridge(int size) {
         List<String> bridge = bridgeMaker.makeBridge(size);
         assertEquals(bridge.size(), size);
-    }
-
-    @Test
-    void name() {
     }
 }
