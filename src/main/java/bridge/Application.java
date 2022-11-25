@@ -3,6 +3,9 @@ package bridge;
 import java.util.List;
 
 public class Application {
+
+    static final String UP = "U";
+    static final String DOWN = "D";
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
     private static BridgeGame bridgeGame = new BridgeGame();
@@ -46,8 +49,8 @@ public class Application {
     }
 
     private static void printBridge() {
-        List<String> upBridge = bridgeGame.getBridgeLine("U");
-        List<String> downBridge = bridgeGame.getBridgeLine("D");
+        List<String> upBridge = bridgeGame.getBridgeLine(UP);
+        List<String> downBridge = bridgeGame.getBridgeLine(DOWN);
 
         outputView.printMap(upBridge);
         outputView.printMap(downBridge);
