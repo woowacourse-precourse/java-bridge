@@ -5,7 +5,7 @@ import java.util.List;
 public class Application {
 
     private static final String UP = "U";
-    private final String DOWN = "D";
+    private static final String DOWN = "D";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final BridgeGame bridgeGame = new BridgeGame();
@@ -30,11 +30,11 @@ public class Application {
 
     private static void gameStart() {
         while (true) {
-            boolean keep = move();
             if (bridgeGame.isGameCompleted()) {
+                outputView.enter();
                 break;
             }
-            if (!keep && !retry()) {
+            if (!move() && !retry()) {
                 break;
             }
         }
