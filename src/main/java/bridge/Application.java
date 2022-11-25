@@ -1,8 +1,18 @@
 package bridge;
 
+import controller.UserConsole;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        UserConsole userConsole = new UserConsole();
+        try {
+            userConsole.initGame();
+            userConsole.startGame();
+            userConsole.endGame();
+        }catch (IllegalArgumentException e)
+        {
+            System.out.println(e);
+        }
     }
 }
