@@ -55,22 +55,12 @@ public class Application {
         OutputView printer = new OutputView();
         for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
             if (!bridgeGame.move(moveChoiceUI(), i)) {
-                printBadMove(bridgeGame.getBridge(), i, printer);
+                printer.printBadMove(bridgeGame.getBridge(), i);
                 break;
             }
-            printGoodMove(bridgeGame.getBridge(), i, printer);
+            printer.printGoodMove(bridgeGame.getBridge(), i);
         }
         return printer;
-    }
-
-    private static void printBadMove(List<String> bridge, int index, OutputView printer) {
-        printer.mapBuilder(false, index, bridge);
-        printer.printMap();
-    }
-
-    private static void printGoodMove(List<String> bridge, int index, OutputView printer) {
-        printer.mapBuilder(true, index, bridge);
-        printer.printMap();
     }
 
     private static String retryChoiceUI() {
