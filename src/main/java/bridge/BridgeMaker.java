@@ -40,8 +40,7 @@ public class BridgeMaker {
     }
 
     private String checkUpOrDown() {
-        int number;
-        number = bridgeNumberGenerator.generate();
+        int number = bridgeNumberGenerator.generate();
         if (number == Direction.UP.num) {
             return Direction.UP.word;
         }
