@@ -18,7 +18,7 @@ class BridgeGameTest {
     void NumberRange3over20under(String input) {
         Assertions.assertThatThrownBy(()->
                         bridgeGame.init(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력 받은 이동 방향이 \"U\" 와 \"D\" 둘 중 하나가 아니면 오류 ")
@@ -27,6 +27,15 @@ class BridgeGameTest {
     void moveDirection(String direction) {
         Assertions.assertThatThrownBy(()->
                 bridgeGame.move(direction))
+                    .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 이동 방향이 \"R\"와 \"D\" 둘 중 하나가 아니면 오류")
+    @ParameterizedTest
+    @ValueSource(strings = {"A","RR", "12", "QQQ", "abc", "a", "RQ"})
+    void retryOptionInput(String select) {
+        Assertions.assertThatThrownBy(()->
+                bridgeGame.retry(select))
                     .isInstanceOf(IllegalArgumentException.class);
     }
 
