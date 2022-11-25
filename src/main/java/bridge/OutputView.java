@@ -61,7 +61,17 @@ public class OutputView {
         return this.result;
     }
 
-    public void mapBuilder(boolean move, int index, List<String> bridge) {
+    public void printBadMove(List<String> bridge, int index) {
+        mapBuilder(false, index, bridge);
+        printMap();
+    }
+
+    public void printGoodMove(List<String> bridge, int index) {
+        mapBuilder(true, index, bridge);
+        printMap();
+    }
+
+    private void mapBuilder(boolean move, int index, List<String> bridge) {
         firstCorrect(move, index, bridge);
         firstWrong(move, index, bridge);
         latterCorrect(move, index, bridge);
