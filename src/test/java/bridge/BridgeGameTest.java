@@ -55,4 +55,11 @@ class BridgeGameTest {
                     .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력 받은 이동 방향이 \"R\" 와 \"Q\" 둘 중 하나")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void retryOptionInputOK(String select) {
+        assertDoesNotThrow(()->
+                bridgeGame.retry(select));
+    }
 }
