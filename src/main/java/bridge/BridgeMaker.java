@@ -1,10 +1,11 @@
 package bridge;
 
+import bridge.domain.bridge.Bridge;
+import bridge.domain.direction.Direction;
+
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -18,6 +19,29 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        validateSize(size);
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int number = bridgeNumberGenerator.generate();
+            bridge.add(mapToDirection(number));
+        }
+        return bridge;
+    }
+
+    private void validateSize(int size) {
+        if (isOutOfRange(size)) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private boolean isOutOfRange(int size) {
+        return size < Bridge.MINIMUM_SIZE || size > Bridge.MAXIMUM_SIZE;
+    }
+
+    private String mapToDirection(int number) {
+        if (number == Direction.DOWNWARD_NUMBER) {
+            return Direction.DOWNWARD_DIRECTION;
+        }
+        return Direction.UPWARD_DIRECTION;
     }
 }
