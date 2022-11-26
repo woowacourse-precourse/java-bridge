@@ -1,7 +1,9 @@
-package bridge.model;
+package bridge.service;
 
 import bridge.constant.Score;
+import bridge.model.Bridge;
 import bridge.model.GameResult.Result;
+import bridge.model.Move;
 
 import java.util.List;
 
