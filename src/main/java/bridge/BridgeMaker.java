@@ -13,7 +13,7 @@ public class BridgeMaker {
 		this.bridgeNumberGenerator = bridgeNumberGenerator;
 	}
 
-	public List<String> makeBridge(int size) {
+	public List<String> makeBridge(Integer size) {
 		List<String> bridge = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
 			addBridgeAnswer(bridge);
@@ -28,4 +28,5 @@ public class BridgeMaker {
 		}
 		bridge.add(GameConst.MOVING_DOWN);
 	}
+
 }

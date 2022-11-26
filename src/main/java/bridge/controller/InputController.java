@@ -16,10 +16,6 @@ public class InputController {
 		this.outputView = outputView;
 	}
 
-	public void startGame() {
-		outputView.printGameStart();
-	}
-
 	public Integer getBridgeSize() {
 		try {
 			return inputValidService.validBridgeSize(inputView.readBridgeSize());

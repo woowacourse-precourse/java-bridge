@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.service.BridgeGame;
-import bridge.util.GameConst;
 import bridge.view.OutputView;
 
 public class GameController {
@@ -17,54 +16,41 @@ public class GameController {
 	}
 
 	public void startApplication() {
-		Integer bridgeSize = getBridgeSize();
-		bridgeGame.makeBridge(bridgeSize);
-		startGame(bridgeSize);
+		setGame();
+		startGame();
 	}
 
-	private Integer getBridgeSize() {
-		inputController.startGame();
+	private void setGame() {
+		outputView.printGameStart();
 		Integer bridgeSize = inputController.getBridgeSize();
-		return bridgeSize;
+		bridgeGame.makeBridge(bridgeSize);
 	}
 
-	private void startGame(Integer bridgeSize) {
-		Integer attemptCount = 0;
-		String userResult;
+	private void startGame() {
 		do {
-			attemptCount++;
-			userResult = startMove(bridgeSize);
-		} while (restartGame(userResult));
-		printResult(attemptCount, userResult);
+			bridgeGame.attemptCountPlusOne();
+			startMove();
+		} while (restartGame());
+		printResult();
 	}
 
-	private String startMove(Integer bridgeSize) {
-		Integer currentLocation = 0;
-		boolean validMove;
+	private void startMove() {
 		do {
-			validMove = bridgeGame.move(inputController.getUserMoving(), currentLocation);
+			bridgeGame.move(inputController.getUserMoving());
 			outputView.printMap(bridgeGame.getUserBridgeStatus());
-			currentLocation++;
-		} while (validMove && !currentLocation.equals(bridgeSize));
-		return getResult(validMove);
+		} while (bridgeGame.checkIsEndSituation());
+		bridgeGame.organizeResult();
 	}
 
-	private String getResult(boolean validMove) {
-		if (!validMove) {
-			return GameConst.FAIL;
-		}
-		return GameConst.SUCCESS;
-	}
-
-	private void printResult(Integer attemptCount, String userResult) {
+	private void printResult() {
 		outputView.printFinalResultPhrase();
 		outputView.printMap(bridgeGame.getUserBridgeStatus());
-		outputView.printResult(userResult, attemptCount);
+		outputView.printResult(bridgeGame.findFinalResultToString());
 	}
 
-	private boolean restartGame(String userResult) {
-		return userResult.equals(GameConst.FAIL) &&
-			bridgeGame.retry(inputController.getUserRestartCommand());
+	private boolean restartGame() {
+		return bridgeGame.isFail() && bridgeGame.retry(inputController.getUserRestartCommand());
+		//여기서 만약 isFail 이 false 면, retry() 함수 호출하지도 않고 나감
 	}
 
 }

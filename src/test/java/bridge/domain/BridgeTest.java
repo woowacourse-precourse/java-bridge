@@ -17,7 +17,7 @@ class BridgeTest {
 	void checkValidSpace(String userSpace, Integer currentSpace, boolean isValid) {
 		List<String> bridgeTest = List.of("U", "D", "U", "U");
 
-		bridge.initBridge(bridgeTest);
+		bridge.initBridge(bridgeTest, 4);
 		boolean isValidTest = bridge.checkValidSpace(userSpace, currentSpace);
 
 		Assertions.assertThat(isValid).isEqualTo(isValidTest);

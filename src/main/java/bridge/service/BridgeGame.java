@@ -4,49 +4,72 @@ import java.util.List;
 
 import bridge.BridgeMaker;
 import bridge.domain.Bridge;
+import bridge.domain.Result;
 import bridge.repository.UserBridgeRepository;
 import bridge.util.GameConst;
 
 public class BridgeGame {
 	private final BridgeMaker bridgeMaker;
-	private final Bridge bridge;
 	private final UserBridgeRepository userBridgeRepository;
+	private final Result result;
+	private final Bridge bridge;
 
-	public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge,
-		UserBridgeRepository userBridgeRepository) {
+	public BridgeGame(BridgeMaker bridgeMaker, UserBridgeRepository userBridgeRepository, Bridge bridge) {
 		this.bridgeMaker = bridgeMaker;
-		this.bridge = bridge;
 		this.userBridgeRepository = userBridgeRepository;
+		this.bridge = bridge;
+		this.result = new Result();
 	}
 
-	public List<String> makeBridge(Integer bridgeSize) {
-		List<String> bridgeFromBridgeMaker = bridgeMaker.makeBridge(bridgeSize);
-		bridge.initBridge(bridgeFromBridgeMaker);
-		return bridgeFromBridgeMaker;
+	public List<String> makeBridge(Integer size) {
+		List<String> newBridge = bridgeMaker.makeBridge(size);
+		bridge.initBridge(newBridge, size);
+		return newBridge;
+	}
+
+	public void attemptCountPlusOne() {
+		result.attemptCountPlusOne();
 	}
 
 	public String getUserBridgeStatus() {
 		return userBridgeRepository.findUserBridgeStatus();
 	}
 
-	public boolean move(String userLocation, Integer currentLocation) {
-		if (!bridge.checkValidSpace(userLocation, currentLocation)) {
+	public void move(String userLocation) {
+		Integer userCurrentIndex = findUserLocation();
+		if (!bridge.checkValidSpace(userLocation, userCurrentIndex)) {
 			userBridgeRepository.saveUserWrongSpace(userLocation);
-			return false;
+			return;
 		}
 		userBridgeRepository.saveUserCorrectSpace(userLocation);
-		return true;
+	}
+
+	public boolean checkIsEndSituation() {
+		return userBridgeRepository.checkIsValidUserMove()
+			&& !bridge.checkEndLocation(userBridgeRepository.findUserCurrentIndex());
+	}
+
+	public void organizeResult() {
+		result.organizeResult(userBridgeRepository.checkIsValidUserMove());
+	}
+
+	public String findFinalResultToString() {
+		return result.findFinalResultToString();
+	}
+
+	public Integer findUserLocation() {
+		return userBridgeRepository.findUserCurrentIndex();
 	}
 
 	public boolean retry(String userRestartCommand) {
 		if (userRestartCommand.equals(GameConst.QUIT)) {
 			return false;
 		}
-		clearBridgeGame();
+		userBridgeRepository.clear();
 		return true;
 	}
 
-	private void clearBridgeGame() {
-		userBridgeRepository.clear();
+	public boolean isFail() {
+		return result.isFail();
 	}
 }

@@ -62,8 +62,8 @@ class OutputViewTest {
 		String userTryCountPhrase = OutputView.USER_TRY_COUNT_PHRASE;
 		String result = "성공";
 		Integer count = 1000;
-
-		outputView.printResult(result, count);
+		String finalResult = userFinalResult + result + "\n" + userTryCountPhrase + count;
+		outputView.printResult(finalResult);
 
 		Assertions.assertThat(outContent.toString()).contains(userFinalResult, userTryCountPhrase);
 	}

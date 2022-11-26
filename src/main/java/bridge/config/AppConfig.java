@@ -16,7 +16,7 @@ public class AppConfig {
 		OutputView outputView = new OutputView();
 		InputController inputController = new InputController(new InputView(), new InputValidService(), outputView);
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		BridgeGame bridgeGame = new BridgeGame(bridgeMaker, new Bridge(), new UserBridgeRepository());
+		BridgeGame bridgeGame = new BridgeGame(bridgeMaker, new UserBridgeRepository(), new Bridge());
 		return new GameController(bridgeGame, outputView, inputController);
 	}
 }

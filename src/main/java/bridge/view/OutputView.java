@@ -19,9 +19,8 @@ public class OutputView {
 		System.out.println(userBridgeStatus);
 	}
 
-	public void printResult(String result, Integer count) {
-		System.out.println(USER_FINAL_RESULT + result);
-		System.out.println(USER_TRY_COUNT_PHRASE + String.format("%d", count));
+	public void printResult(String result) {
+		System.out.println(result);
 	}
 
 	public void printError(String errorMessage) {

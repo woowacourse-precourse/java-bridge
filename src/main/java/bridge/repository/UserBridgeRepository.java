@@ -6,33 +6,44 @@ import bridge.util.GameConst;
 public class UserBridgeRepository {
 
 	private UserBridgeGroup userBridgeGroup;
-	private Integer userCurrentLocation;
+	private Integer userCurrentIndex;
+	private boolean userResult;
 
 	public UserBridgeRepository() {
 		userBridgeGroup = new UserBridgeGroup();
-		this.userCurrentLocation = 0;
+		this.userCurrentIndex = 0;
 	}
 
 	public void saveUserCorrectSpace(String location) {
 		saveUserSpace(location, GameConst.USER_CORRECT_SPACE);
+		userResult = true;
 	}
 
 	public void saveUserWrongSpace(String location) {
 		saveUserSpace(location, GameConst.USER_WRONG_SPACE);
+		userResult = false;
+	}
+
+	public boolean checkIsValidUserMove() {
+		return userResult;
+	}
+
+	public Integer findUserCurrentIndex() {
+		return userCurrentIndex;
 	}
 
 	private void saveUserSpace(String location, String userCurrentTrace) {
-		userCurrentLocation++;
+		userCurrentIndex++;
 		userBridgeGroup.updateStatus(location, userCurrentTrace);
 	}
 
 	public String findUserBridgeStatus() {
-		return userBridgeGroup.statusToString(GameConst.MOVING_UP, userCurrentLocation) + "\n"
-			+ userBridgeGroup.statusToString(GameConst.MOVING_DOWN, userCurrentLocation);
+		return userBridgeGroup.statusToString(GameConst.MOVING_UP, userCurrentIndex) + "\n"
+			+ userBridgeGroup.statusToString(GameConst.MOVING_DOWN, userCurrentIndex);
 	}
 
 	public void clear() {
 		userBridgeGroup.clearStatus();
-		userCurrentLocation = 0;
+		userCurrentIndex = 0;
 	}
 }

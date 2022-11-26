@@ -31,7 +31,7 @@ class BridgeGameTest {
 		bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 		bridge = new Bridge();
 		userBridgeRepository = new UserBridgeRepository();
-		bridgeGame = new BridgeGame(bridgeMaker, bridge, userBridgeRepository);
+		bridgeGame = new BridgeGame(bridgeMaker, userBridgeRepository, bridge);
 	}
 
 	@AfterEach
@@ -40,14 +40,15 @@ class BridgeGameTest {
 	}
 
 	@ParameterizedTest(name = "bridgeGame 의 move 메서드 - 사용자 입력을 정답값과 비교해서 확인하는 테스트")
-	@CsvSource(value = {"U, 0, true", "U, 1, false"})
+	@CsvSource(value = {"U, 0, true"})
 	void move(String userMove, Integer index, boolean valid) {
 		List<String> bridgeTest = List.of(GameConst.MOVING_UP, GameConst.MOVING_DOWN);
-		bridge.initBridge(bridgeTest);
+		bridge.initBridge(bridgeTest, 2);
 
-		boolean move = bridgeGame.move(userMove, index);
+		bridgeGame.move(userMove);
 
-		Assertions.assertThat(move).isEqualTo(valid);
+		String userBridgeStatus = bridgeGame.getUserBridgeStatus();
+		Assertions.assertThat(userBridgeStatus).isEqualTo("[ O ]" + "\n" + "[   ]");
 	}
 
 	@ParameterizedTest(name = "bridgeGame 의 retry 메서드 - 재시도 요청에서 사용자 입력값에 따라 boolean 이 잘 나오는지 확인하는 테스트")
