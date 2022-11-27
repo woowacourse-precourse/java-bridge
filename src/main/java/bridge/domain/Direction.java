@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public enum Direction {
     U(1), D(0);
+    
     private int directionCode;
 
     Direction(int directionCode) {
@@ -20,10 +21,10 @@ public enum Direction {
     }
 
     public static boolean isUp(Direction now) {
-        return now.equals(U);
+        return now == U;
     }
 
     public static boolean isDown(Direction now) {
-        return now.equals(D);
+        return now == D;
     }
 }

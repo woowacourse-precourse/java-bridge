@@ -14,14 +14,14 @@ public enum GameCommand {
     }
 
     public static boolean isRetry(String command) {
-        if (R.equals(GameCommand.valueOf(command))) {
+        if (R == GameCommand.valueOf(command)) {
             return true;
         }
         return false;
     }
 
     public static boolean isQuit(String command) {
-        if (Q.equals(GameCommand.valueOf(command))) {
+        if (Q == GameCommand.valueOf(command)) {
             return true;
         }
         return false;

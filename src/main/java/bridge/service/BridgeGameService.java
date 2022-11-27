@@ -38,7 +38,7 @@ public class BridgeGameService {
         Direction direction = findDirection(bridge, bridgeGameManager);
         Direction now = Direction.valueOf(moving);
 
-        if (!direction.equals(now)) {
+        if (!(direction == now)) {
             bridgeGameManager.gameFail();
             return true;
         }
