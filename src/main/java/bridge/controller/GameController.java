@@ -28,6 +28,8 @@ public class GameController {
             runGame();
         } catch (IllegalArgumentException e) {
             System.out.println( ERROR + e.getMessage());
+            startBridgeGame();
+            printGameResult();
         }
     }
 
