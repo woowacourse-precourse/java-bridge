@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.domain.util.Rules;
+import bridge.dto.UserBridgeDto;
 import java.util.ArrayList;
 import java.util.List;
 

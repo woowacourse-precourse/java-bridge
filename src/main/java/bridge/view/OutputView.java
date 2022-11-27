@@ -13,6 +13,7 @@ import static bridge.domain.util.Rules.END;
 import static bridge.domain.util.Rules.START;
 
 import bridge.domain.UserBridge;
+import bridge.dto.UserBridgeDto;
 import bridge.service.BridgeGameService;
 import java.util.List;
 
@@ -20,8 +21,9 @@ import java.util.List;
 public class OutputView {
 
     public void printMap(UserBridge userBridge) {
-        printBridge(userBridge.getUpBridge());
-        printBridge(userBridge.getDownBridge());
+        UserBridgeDto userBridgeDto = UserBridgeDto.from(userBridge);
+        printBridge(userBridgeDto.getUpBridge());
+        printBridge(userBridgeDto.getDownBridge());
         System.out.println();
     }
 
