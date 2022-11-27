@@ -34,15 +34,9 @@ public class Bridge {
     }
 
     public Boolean isFinalRoundPass(String moveDirection) {
-        return isFinalRound() && isPass(moveDirection);
-    }
-
-    public Boolean isFinalRound() {
-        return bridge.size() == currentRoundNumber;
-    }
-
-    public Boolean isPass(String moveDirection) {
-        return !isFail(moveDirection);
+        Boolean isFinalRound = bridge.size() == currentRoundNumber;
+        Boolean isPass = !isFail(moveDirection);
+        return isFinalRound && isPass;
     }
 
     public Boolean isGameRestart(String input) {
