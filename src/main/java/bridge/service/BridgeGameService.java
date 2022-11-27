@@ -23,8 +23,12 @@ public class BridgeGameService {
     }
 
     private static Direction findDirection(List<String> bridge, BridgeGameManager bridgeGameManager) {
-        String now = bridge.get(bridgeGameManager.getStep());
+        String now = getNow(bridge, bridgeGameManager);
         return Direction.from(now);
+    }
+
+    private static String getNow(List<String> bridge, BridgeGameManager bridgeGameManager) {
+        return bridge.get(bridgeGameManager.getStep());
     }
 
     public UserBridge move(String moving) {
