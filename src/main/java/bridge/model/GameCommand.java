@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.model;
 
 public enum GameCommand {
     QUIT("Q"),

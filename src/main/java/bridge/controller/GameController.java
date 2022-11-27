@@ -1,10 +1,10 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.gameResult.GameResult;
 import bridge.model.bridge.Node;
+import bridge.model.gameResult.GameResult;
 import bridge.model.gameResult.GameResultDTO;
-import bridge.view.GameCommand;
+import bridge.model.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -24,7 +24,8 @@ public class GameController {
 
     private static void startGameAndBuildBridge() {
         output.printStart();
-        int bridgeSize = input.readBridgeSize();
+        TryCatchTemplate<Integer> bridgeBuildTemplate = new TryCatchTemplate<>() {};
+        int bridgeSize = bridgeBuildTemplate.repeatToRunWhileValid(input::readBridgeSize);
         game = new BridgeGame(bridgeSize);
     }
 
@@ -48,12 +49,17 @@ public class GameController {
     }
 
     private static void readInputAndMove() {
-        Node to = Node.of(input.readMoving());
+        TryCatchTemplate<Node> readNextPositionTemplate = new TryCatchTemplate<>() {
+        };
+        Node to = readNextPositionTemplate.repeatToRunWhileValid(() -> Node.of(input.readMoving()));
         game.move(to);
     }
 
     private static void quitOrRetry() {
-        GameCommand command = GameCommand.of(input.readGameCommand());
+        TryCatchTemplate<GameCommand> readGameCommandTemplate = new TryCatchTemplate<>() {
+        };
+
+        GameCommand command = readGameCommandTemplate.repeatToRunWhileValid(() -> GameCommand.of(input.readGameCommand()));
         if (wantToQuit(command)) {
             game.quit();
             return;

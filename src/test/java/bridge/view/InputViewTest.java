@@ -2,6 +2,7 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.Node;
@@ -25,26 +26,14 @@ class InputViewTest {
     @DisplayName("브릿지 사이즈 입력테스트")
     class ReadBridgeSizeTest extends NsTest {
 
-
-        @DisplayName("유효하지 않은 길이로 입력이 들어올 경우 예외메시지를 출력한다.")
-        @ParameterizedTest
-        @ValueSource(strings = {"2", "21", "0", "30"})
-        public void throwExceptionWhenInvalidBridgeSize(String bridgeSize) {
-            String exceptionMessage = "다리 길이는 " + Bridge.MIN_SIZE + " 부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야합니다.";
-            assertSimpleTest(() -> {
-                run(bridgeSize, "3");
-                assertThat(output()).contains(exceptionMessage);
-            });
-        }
-
-        @DisplayName("숫자가 아닌 입력이 들어올 경우 예외메시지를 출력한다.")
+        @DisplayName("숫자가 아닌 입력이 들어올 경우 예외를 던진다.")
         @ParameterizedTest
         @ValueSource(strings = {"s", "apple", " ", ";;"})
         public void throwExceptionWhenInvalidString(String bridgeSize) {
             String exceptionMessage = "다리 길이는 " + Bridge.MIN_SIZE + " 부터 " + Bridge.MAX_SIZE + " 사이의 숫자여야합니다.";
             assertSimpleTest(() -> {
-                run(bridgeSize, "3");
-                assertThat(output()).contains(exceptionMessage);
+                assertThatIllegalArgumentException().isThrownBy(() -> run(bridgeSize))
+                        .withMessageStartingWith(exceptionMessage);
             });
         }
 
@@ -98,12 +87,12 @@ class InputViewTest {
         class InvalidInputTest extends NsTest {
             @ParameterizedTest
             @ValueSource(strings = {"s", "u", "d", "1", " ", " :"})
-            @DisplayName("예외메시지를 출력한다.")
+            @DisplayName("예외를 던진다")
             public void printExceptionMessage(String arg) {
-                String exceptionMessage = "입력값이 올바르지 않습니다.";
+                String exceptionMessage = "대문자를 입력해주세요.";
                 assertSimpleTest(() -> {
-                    run(arg, "U");
-                    assertThat(output()).contains(exceptionMessage);
+                    assertThatIllegalArgumentException().isThrownBy(() -> run(arg))
+                            .withMessageStartingWith(exceptionMessage);
                 });
             }
 
@@ -160,13 +149,13 @@ class InputViewTest {
         class InvalidInputTest extends NsTest {
 
             @ParameterizedTest
-            @ValueSource(strings = {"U", "D", "1", "a", "ㄱ", " "})
-            @DisplayName("예외 메시지를 출력한다.")
+            @ValueSource(strings = {"1", "a", "ㄱ", " "})
+            @DisplayName("예외를 던진다.")
             public void printErrorMessage(String arg) {
-                String exceptionMessage = "게임 재시도 여부가 올바르지 않습니다.";
+                String exceptionMessage = "대문자를 입력해주세요.";
                 assertSimpleTest(() -> {
-                    run(arg, "R");
-                    assertThat(output()).contains(exceptionMessage);
+                    assertThatIllegalArgumentException().isThrownBy(() -> run(arg))
+                            .withMessageStartingWith(exceptionMessage);
                 });
             }
 
