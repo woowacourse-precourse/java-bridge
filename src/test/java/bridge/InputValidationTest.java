@@ -8,7 +8,7 @@ import java.text.NumberFormat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ValidationTest {
+class InputValidationTest {
 
 
     @Test
@@ -79,7 +79,7 @@ class ValidationTest {
     }
 
     @Test
-    @DisplayName(" 게임 다시 시도 여부 입력 Validation - R 또는 Q인 경우")
+    @DisplayName(" 게임 다시 시도 여부 입력 InputValidation - R 또는 Q인 경우")
     public void retry_성공_케이스() throws Exception{
         Assertions.assertThatCode(()->retryCommand("R"))
                 .doesNotThrowAnyException();
@@ -89,7 +89,7 @@ class ValidationTest {
 
     }
     @Test
-    @DisplayName(" 게임 다시 시도 여부 입력 Validation - R 또는 Q가 아닌 경우")
+    @DisplayName(" 게임 다시 시도 여부 입력 InputValidation - R 또는 Q가 아닌 경우")
     public void retry_실패_케이스() throws Exception{
         Assertions.assertThatThrownBy(()->retryCommand("U"))
                 .isInstanceOf(IllegalArgumentException.class);

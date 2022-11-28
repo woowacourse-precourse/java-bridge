@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.BridgeConst;
+import bridge.domain.BridgeConst;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,12 +10,12 @@ import java.util.List;
 
 class InputViewTest {
 
-    private Validation validation =  new Validation();
+    private InputValidation inputValidation =  new InputValidation();
     @Test
     @DisplayName("다리 길이에 대한 입력 Integer 변환 - 성공")
     public void Convert_Success() throws Exception{
         String bridgeSize = "4";
-        validation.bridgeLen(bridgeSize);
+        inputValidation.bridgeLen(bridgeSize);
         Integer len = Integer.parseInt(bridgeSize);
         Assertions.assertThat(len).isEqualTo(4);
     }
@@ -25,7 +25,7 @@ class InputViewTest {
     public void Convert_fail_NotNumber() throws Exception{
         String bridgeSize = "hi";
         Assertions.assertThatThrownBy(()->
-            validation.bridgeLen(bridgeSize))
+            inputValidation.bridgeLen(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
@@ -34,12 +34,12 @@ class InputViewTest {
     public void Convert_fail_Range() throws Exception{
         String bridgeSizeThan = "21";
         Assertions.assertThatThrownBy(()->
-            validation.bridgeLen(bridgeSizeThan))
+            inputValidation.bridgeLen(bridgeSizeThan))
                 .isInstanceOf(IllegalArgumentException.class);
 
         String bridgeSizeLess = "2";
         Assertions.assertThatThrownBy(()->
-                        validation.bridgeLen(bridgeSizeLess))
+                        inputValidation.bridgeLen(bridgeSizeLess))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
@@ -48,10 +48,10 @@ class InputViewTest {
     @DisplayName("이동할 칸에 대한 입력 - 성공")
     public void move_success() throws Exception{
         String command = "U";
-        validation.moveCommand(command);
+        inputValidation.moveCommand(command);
         Assertions.assertThat(command).isEqualTo(BridgeConst.UP);
         command = "D";
-        validation.moveCommand(command);
+        inputValidation.moveCommand(command);
         Assertions.assertThat(command).isEqualTo(BridgeConst.DOWN);
 
     }
@@ -64,7 +64,7 @@ class InputViewTest {
                         "L","M","N","O","P","Q","R","S","T","u","V","W","X","Y","Z"));
         command.stream()
                 .forEach(element->{
-                    Assertions.assertThatThrownBy(()->validation.moveCommand(element))
+                    Assertions.assertThatThrownBy(()-> inputValidation.moveCommand(element))
                             .isInstanceOf(IllegalArgumentException.class);
                 });
     }
@@ -73,10 +73,10 @@ class InputViewTest {
     @DisplayName("게임 다시 시도 여부 입력 - 성공")
     public void retry_success() throws Exception{
         String command = "R";
-        validation.retryCommand(command);
+        inputValidation.retryCommand(command);
         Assertions.assertThat(command).isEqualTo(BridgeConst.RETRY);
         command = "Q";
-        validation.retryCommand(command);
+        inputValidation.retryCommand(command);
         Assertions.assertThat(command).isEqualTo(BridgeConst.QUIT);
 
     }
@@ -89,7 +89,7 @@ class InputViewTest {
                         "L","M","N","O","P","q","r","S","T","u","V","W","X","Y","Z"));
         command.stream()
                 .forEach(element->{
-                    Assertions.assertThatThrownBy(()->validation.moveCommand(element))
+                    Assertions.assertThatThrownBy(()-> inputValidation.moveCommand(element))
                             .isInstanceOf(IllegalArgumentException.class);
                 });
     }

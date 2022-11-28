@@ -1,8 +1,8 @@
-package bridge.controller;
+package bridge.domain;
 
-import bridge.model.Bridge;
-import bridge.model.BridgeStatus;
-import bridge.model.CurrentBridge;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeStatus;
+import bridge.domain.CurrentBridge;
 
 import java.util.ArrayList;
 
