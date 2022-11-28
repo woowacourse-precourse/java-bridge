@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.Validation;
 
 public class ProxyInputView implements Input{
     private final Input input;

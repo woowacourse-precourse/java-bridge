@@ -1,13 +1,14 @@
 package bridge;
 
+import bridge.model.Bridge;
+import bridge.model.BridgeStatus;
+import bridge.model.CurrentBridge;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
@@ -118,7 +119,7 @@ class BridgeGameTest {
      @DisplayName("다리 이동 상태 출력 테스트")
      public void printV6() throws Exception{
           Bridge bridge = new Bridge(List.of("U","D","D"));
-          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"U", BridgeStatus.SUCCESS);
           unit(bridge,"D",BridgeStatus.SUCCESS);
           unit(bridge,"D",BridgeStatus.COMPLETE);
           Assertions.assertThat(currentBridge.toString())

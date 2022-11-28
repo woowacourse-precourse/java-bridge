@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 public abstract class BridgeConst {
     public static final String UP = "U";

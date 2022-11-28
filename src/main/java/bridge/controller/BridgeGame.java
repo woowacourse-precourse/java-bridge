@@ -1,4 +1,8 @@
-package bridge;
+package bridge.controller;
+
+import bridge.model.Bridge;
+import bridge.model.BridgeStatus;
+import bridge.model.CurrentBridge;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,14 @@
 package bridge;
 
+import bridge.controller.BridgeGame;
+import bridge.model.Bridge;
+import bridge.model.BridgeConst;
+import bridge.model.BridgeMaker;
+import bridge.model.BridgeRandomNumberGenerator;
+import bridge.view.Input;
+import bridge.view.OutputView;
+import bridge.view.ProxyInputView;
+
 public class Application {
     private static Input inputView = new ProxyInputView(new Validation());
     private static OutputView outputView = new OutputView();
