@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameManager;
 import bridge.domain.Direction;
@@ -13,7 +14,7 @@ public class BridgeGameService {
     private UserBridge userBridge;
     private BridgeGame bridgeGame;
     private BridgeMaker bridgeMaker;
-    private List<String> bridge;
+    private Bridge bridge;
 
     public BridgeGameService(BridgeGameManager bridgeGameManager, UserBridge userBridge) {
         this.bridgeGameManager = bridgeGameManager;
@@ -22,13 +23,9 @@ public class BridgeGameService {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    private static Direction findDirection(List<String> bridge, BridgeGameManager bridgeGameManager) {
-        String now = getNow(bridge, bridgeGameManager);
+    private static Direction findDirection(Bridge bridge, BridgeGameManager bridgeGameManager) {
+        String now = bridge.getNow(bridgeGameManager);
         return Direction.from(now);
-    }
-
-    private static String getNow(List<String> bridge, BridgeGameManager bridgeGameManager) {
-        return bridge.get(bridgeGameManager.getStep());
     }
 
     public UserBridge move(String moving) {
@@ -50,7 +47,7 @@ public class BridgeGameService {
     }
 
     public boolean play() {
-        return userBridge.size() < bridge.size();
+        return userBridge.size() < bridge.getSize();
     }
 
     public boolean isQuit(String retry) {
@@ -70,6 +67,6 @@ public class BridgeGameService {
     }
 
     public void makeBridge(int suggestBridgeSize) {
-        this.bridge = bridgeMaker.makeBridge(suggestBridgeSize);
+        bridge = new Bridge(bridgeMaker.makeBridge(suggestBridgeSize));
     }
 }
