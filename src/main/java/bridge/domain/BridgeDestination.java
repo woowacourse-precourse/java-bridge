@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.constant.GameState;
+import bridge.util.Validate;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,6 +11,7 @@ public class BridgeDestination {
     private static final Boolean RESTART = true;
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
+    private Validate validate = new Validate();
 
     public boolean isReachFinal(int bridgeSize, int gameCount, BridgePrinting bridgePrinting) {
         if (!BridgePrinting.isMoveStop()) {
@@ -30,7 +32,7 @@ public class BridgeDestination {
 
 
     public boolean judgeRestartOrOver() {
-        String destination = inputView.readGameCommand();
+        String destination = inputView.readGameCommand(validate);
         if (destination.equals(GameState.QUIT)) {
             return GAME_OVER;
         }

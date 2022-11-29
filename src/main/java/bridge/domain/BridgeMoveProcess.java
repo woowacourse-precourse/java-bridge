@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.constant.GameState;
+import bridge.util.Validate;
 import bridge.view.InputView;
 
 import java.util.ArrayList;
@@ -12,13 +13,14 @@ public class BridgeMoveProcess {
     private List<Boolean> upState = new ArrayList<>();
     private List<Boolean> downState = new ArrayList<>();
     private InputView inputView = new InputView();
+    private Validate validate = new Validate();
     private int idx = 0;
 
 
     public BridgePrinting moveProcess(List<String> bridgeState, int bridgeSize) {
         clearInfo();
         while (idx < bridgeSize && !BridgePrinting.isMoveStop()) {
-            moving.add(inputView.readMoving());
+            moving.add(inputView.readMoving(validate));
             setPrintState(upState, downState, convertNowIndex(bridgeState.get(idx)));
             makeUserBridge(upState, downState, moving.get(idx));
             idx++;
