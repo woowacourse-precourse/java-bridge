@@ -5,6 +5,7 @@ import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BridgePrinting {
 
@@ -44,16 +45,14 @@ public class BridgePrinting {
     }
 
     public void makeUpUserBridge() {
-        String upStateBridge = GameState.startBridge;
+        String upStateBridge = "";
         upStateBridge = upStateBridge + addBridge(upState, GameState.UP_STATEMENT);
-        upStateBridge = upStateBridge + GameState.endBridge;
         outputView.printMap(upStateBridge);
     }
 
     public void makeDownUserBridge() {
-        String downStateBridge = GameState.startBridge;
+        String downStateBridge = "";
         downStateBridge = downStateBridge + addBridge(downState, GameState.DOWN_STATEMENT);
-        downStateBridge = downStateBridge + GameState.endBridge;
         outputView.printMap(downStateBridge);
     }
 
@@ -61,17 +60,14 @@ public class BridgePrinting {
         String setBridge = "";
         for (int index = 0; index < bridgeState.size(); index++) {
             setBridge = setBridge + getState(bridgeState, index, upDown);
-            if (isIndexBetweenSpace(index, bridgeState.size() - 1)) {
-                continue;
-            }
-            setBridge = setBridge + GameState.betweenBridge;
         }
+        setBridge = setBridge.chars().boxed().map(Character::toString)
+            .collect(Collectors.joining(" | ", "[ ", " ]")); // 새롭게 수정한 부분 Collectors.joining 활용하여 리팩토링
+
+
         return setBridge;
     }
 
-    public boolean isIndexBetweenSpace(int index, int bridgeStateSize) {
-        return index == bridgeStateSize;
-    }
 
     public String getState(List<Boolean> bridgeState, int nowIndex, int nowState) {
         if (isRightStep(bridgeState, nowIndex, nowState)) {
