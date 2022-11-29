@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.constant.ShowPrint;
+import bridge.constant.Output;
 import bridge.domain.BridgePrinting;
 import bridge.util.Validate;
 
@@ -25,11 +25,11 @@ public class OutputView {
      */
     public void printResult(int count, boolean isSuccess, BridgePrinting bridgePrinting) {
         Validate validate = new Validate();
-        System.out.println(ShowPrint.RESULT.getPrint());
+        System.out.println(Output.RESULT.getPrint());
         bridgePrinting.makeBridge();
         System.out.println(
-            ShowPrint.RESULT_IS_SUCCESS.getPrint() + validate.validateFinalSuccess(isSuccess));
-        System.out.println(ShowPrint.RESULT_GAME_COUNT.getPrint() + count);
+            Output.RESULT_IS_SUCCESS.getPrint() + validate.validateFinalSuccess(isSuccess));
+        System.out.println(Output.RESULT_GAME_COUNT.getPrint() + count);
     }
 
     public void printException(IllegalArgumentException e) {
@@ -37,19 +37,19 @@ public class OutputView {
     }
 
     public void printSetSize() {
-        System.out.println(ShowPrint.SET_SIZE.getPrint());
+        System.out.println(Output.SET_SIZE.getPrint());
     }
 
     public void printStart() {
-        System.out.println(ShowPrint.INIT_START.getPrint());
+        System.out.println(Output.INIT_START.getPrint());
     }
 
     public void printMove() {
-        System.out.println(ShowPrint.MOVE.getPrint());
+        System.out.println(Output.MOVE.getPrint());
     }
 
     public void printRestart() {
-        System.out.println(ShowPrint.RESTART.getPrint());
+        System.out.println(Output.RESTART.getPrint());
     }
 
 

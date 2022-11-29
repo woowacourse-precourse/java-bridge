@@ -34,7 +34,7 @@ public class BridgeMoveProcess {
         downState.clear();
         idx = 0;
         BridgePrinting.resetAfterOneGame();
-        BridgePrinting.clearUpDownLocation();
+        BridgePrinting.clear();
     }
 
 

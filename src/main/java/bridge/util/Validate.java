@@ -11,7 +11,7 @@ public class Validate {
             int sizeInt = Integer.parseInt(size);
             isSizeInRange(sizeInt);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ERROR.sizeException.getException());
+            throw new IllegalArgumentException(ERROR.SIZE_Exception.getException());
         }
     }
 
@@ -27,7 +27,7 @@ public class Validate {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ERROR.moveException.getException());
+            throw new IllegalArgumentException(ERROR.MOVE_Exception.getException());
         }
     }
 

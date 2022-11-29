@@ -25,7 +25,7 @@ public class BridgePrinting {
         return stop;
     }
 
-    public static void clearUpDownLocation() {
+    public static void clear() {
         traceLocation.clear();
     }
 
