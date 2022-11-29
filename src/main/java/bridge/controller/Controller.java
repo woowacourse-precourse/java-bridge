@@ -6,12 +6,14 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.util.Validate;
 import bridge.view.InputView;
 
+import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
 
-    private InputView inputView = new InputView();
+    private InputView inputView;
+    private OutputView outputView;
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private List<String> bridgeState = new ArrayList<>();
@@ -19,7 +21,9 @@ public class Controller {
     private int size = 0;
 
 
-    public Controller() {
+    public Controller(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView =outputView;
         setBridge();
     }
 

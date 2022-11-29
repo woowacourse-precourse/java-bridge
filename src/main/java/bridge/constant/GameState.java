@@ -40,7 +40,7 @@ public final class GameState {
 
     private static String putToBridge(BridgeNumberGenerator bridgeNumberGenerator) {
         int generate = bridgeNumberGenerator.generate();
-        if (generate == 0) {
+        if (generate == DOWN_STATEMENT) {
             return GameState.DOWN;
         }
         return GameState.UP;

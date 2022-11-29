@@ -16,14 +16,18 @@ public class Validate {
     }
 
     private void isSizeInRange(int sizeInt) {
-        if (!(sizeInt >= GameState.MIN_RANGE && sizeInt <= GameState.MAX_RANGE)) {
+        if (isWrongSize(sizeInt)) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void validateMoving(String size) {
+    private static boolean isWrongSize(int sizeInt) {
+        return !(sizeInt >= GameState.MIN_RANGE && sizeInt <= GameState.MAX_RANGE);
+    }
+
+    public void validateMoving(String move) {
         try {
-            if (!size.equals(GameState.DOWN) && !size.equals(GameState.UP)) {
+            if (isWrongMove(move)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -31,14 +35,22 @@ public class Validate {
         }
     }
 
+    private static boolean isWrongMove(String move) {
+        return !move.equals(GameState.DOWN) && !move.equals(GameState.UP);
+    }
+
     public void validateGameDefinition(String definition) {
         try {
-            if (!definition.equals(GameState.QUIT) && !definition.equals(GameState.RETRY)) {
+            if (isWrongDefinition(definition)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ERROR.DEFINITION_EXCEPTION.getException());
         }
+    }
+
+    private static boolean isWrongDefinition(String definition) {
+        return !definition.equals(GameState.QUIT) && !definition.equals(GameState.RETRY);
     }
 
     public String validateFinalSuccess(Boolean isSuccess) {
