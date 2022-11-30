@@ -5,9 +5,15 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.controller.InputController;
+import bridge.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 
 class ApplicationTest extends NsTest {
 
@@ -47,13 +53,48 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("입력 예외 테스트")
+    class ExceptionTest {
+        @ParameterizedTest
+        @DisplayName("- 다리길이 예외 발생.")
+        @ValueSource(strings = {"1","22",""})
+        void wrongBridgeLengthInput(String input) {
+            assertSimpleTest(() -> {
+                new InputController().init();
+                runException(input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @ParameterizedTest
+        @DisplayName("- 방향 입력 예외 발생.")
+        @ValueSource(strings = {"1","H",""})
+        void wrongInput(String input) {
+            assertSimpleTest(() -> {
+                new InputController().init();
+                runException("3", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @ParameterizedTest
+        @DisplayName("- 재시작 입력 예외 발생.")
+        @ValueSource(strings = {"1","H",""})
+        void wrongRestartInput(String input) {
+            assertRandomNumberInRangeTest(() -> {
+                new InputController().init();
+                runException("D","U","D", input);
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }, 0,1,1);
+        }
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
-
         private final List<Integer> numbers;
 
         TestNumberGenerator(List<Integer> numbers) {
