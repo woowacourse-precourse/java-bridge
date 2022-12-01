@@ -50,16 +50,21 @@ public class BridgeController {
     }
 
     private void checkCorrectChoice() {
-        if (!isCorrectChoice()) {
-            System.out.println(Message.INPUT_RETRY_COMMAND);
-            String retryCommand = inputView.readRetryCommand();
-            if (isRestart(retryCommand)) {
-                bridgeGame.retry(player);
-                return;
-            }
-
-            playing = false;
+        if (isCorrectChoice()) {
+            return;
         }
+        readRetry();
+    }
+
+    private void readRetry() {
+        System.out.println(Message.INPUT_RETRY_COMMAND);
+        String retryCommand = inputView.readRetryCommand();
+
+        if (isRestart(retryCommand)) {
+            bridgeGame.retry(player);
+            return;
+        }
+        playing = false;
     }
 
     private boolean isCorrectChoice() {
