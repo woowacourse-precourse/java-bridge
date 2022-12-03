@@ -36,7 +36,7 @@
 #### START_GAME
 
 - [x] 이동할 칸 입력
-- [ ] 예외) U, D 외의 입력
+- [x] 예외) U, D 외의 입력
 - [x] 매 이동 시 Map 출력
 
 - [x] 칸 이동 성공 시, 다음 칸 입력 `ROUND_SUCCESS`
@@ -45,7 +45,7 @@
 
 #### 게임 재시작 (ROUND에서 실패한 경우)
 
-- [ ] 게임 재시작 / 종료 여부 입력 `RECEIVE_GAME_COMMAND`
+- [x] 게임 재시작 / 종료 여부 입력 `RECEIVE_GAME_COMMAND`
 - [ ] 예외) R, Q 외의 입력
 
 #### 게임 재시작 (R 입력) `RESTART_GAME`

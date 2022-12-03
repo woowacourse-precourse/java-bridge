@@ -40,14 +40,27 @@ public class GameController {
 
             Iterator<BridgeDirection> bridgeSignIterator = bridge.getBridgeIterator();
             while (gameStatus.isContinueGame()) {
-                RoundStatus roundStatus = bridgeGame.move(bridgeSignIterator.next(), BridgeDirection.from(inputView.readMoving()));
+                RoundStatus roundStatus = bridgeGame.move(bridgeSignIterator.next(),
+                        BridgeDirection.from(inputView.readMoving()));
                 updateGameStatus(roundStatus);
                 outputView.printMap(gameVariable.getMaps());
+
+                if (!bridgeSignIterator.hasNext()) {
+                    updateGameStatusToGameSuccess();
+                }
+
+                if(gameStatus == GameStatus.ROUND_FAIL) {
+                    String gameCommand = inputView.readGameCommand();
+                }
             }
 
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
         }
+    }
+
+    private void updateGameStatusToGameSuccess() {
+        gameStatus = GameStatus.GAME_SUCCESS;
     }
 
     private void updateGameStatus(RoundStatus roundStatus) {
