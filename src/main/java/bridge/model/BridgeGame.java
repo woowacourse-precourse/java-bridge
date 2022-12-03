@@ -1,16 +1,26 @@
-package bridge;
+package bridge.model;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final Bridge bridge;
+    private final Result result;
+
+    public BridgeGame(Bridge bridge, Result result) {
+        this.bridge = bridge;
+        this.result = result;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public SurviveAndDie move(int index, Position position) {
+        SurviveAndDie surviveAndDie = SurviveAndDie.from(bridge.isSamePosition(index, position));
+        result.updateDiagrams(position, surviveAndDie);
+        return surviveAndDie;
     }
 
     /**
@@ -19,5 +29,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        result.initializeDiagrams();
+        result.addAttempts();
+    }
+
+    public int getBridgeSize() {
+        return bridge.size();
     }
 }
