@@ -1,9 +1,18 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private enum ConsoleMessage {
+        INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요.");
+
+        private final String message;
+
+        ConsoleMessage(String message) {
+            this.message = message;
+        }
+    }
 
     /**
      * 다리의 길이를 입력받는다.
