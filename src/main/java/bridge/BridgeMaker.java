@@ -1,11 +1,16 @@
 package bridge;
 
+import bridge.constant.ExceptionMessage;
+
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
+    private static final int MINIMUM_VALUE_OF_SIZE = 3;
+    private static final int MAXIMUM_VALUE_OF_SIZE = 20;
+    private static final int ANSWER_UP_BRIDGE_INT = 1;
+    private static final String ANSWER_UP_BRIDGE_STRING = "U";
+    private static final String ANSWER_DOWN_BRIDGE_STRING = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -13,11 +18,34 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-        return null;
+        validate(size);
+        return makeBridgeAnswers(size);
+    }
+
+    private void validate(int size) {
+        if (MINIMUM_VALUE_OF_SIZE > size || size > MAXIMUM_VALUE_OF_SIZE) {
+            ExceptionMessage.INPUT_WRONG_BRIDGE_LENGTH_MESSAGE.throwException();
+        }
+    }
+
+    private List<String> makeBridgeAnswers(int size) {
+        List<String> bridgeAnswers = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            bridgeAnswers.add(generateAnswer());
+        }
+
+        return bridgeAnswers;
+    }
+
+    private String generateAnswer() {
+        int answer = bridgeNumberGenerator.generate();
+
+        if (answer == ANSWER_UP_BRIDGE_INT) {
+            return ANSWER_UP_BRIDGE_STRING;
+        }
+
+        return ANSWER_DOWN_BRIDGE_STRING;
     }
 }
