@@ -1,8 +1,15 @@
 package bridge;
 
+import bridge.controller.BridgeGameController;
+import bridge.domain.util.AppConfig;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        AppConfig appConfig = new AppConfig();
+        BridgeGameController bridgeGameController = appConfig.bridgeGameController();
+
+        bridgeGameController.makeBridge();
+        bridgeGameController.playGame();
     }
 }
