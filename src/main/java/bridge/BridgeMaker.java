@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.bridge.BridgeSign;
+import bridge.model.bridge.BridgeDirection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -24,7 +24,7 @@ public class BridgeMaker {
         return IntStream
                 .generate(bridgeNumberGenerator::generate)
                 .limit(size)
-                .mapToObj(BridgeSign::from)
+                .mapToObj(BridgeDirection::from)
                 .map(sign -> sign.getSign())
                 .collect(Collectors.toList());
     }

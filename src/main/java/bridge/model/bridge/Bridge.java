@@ -17,12 +17,12 @@ public class Bridge {
         return new Bridge(bridge);
     }
 
-    public Iterator<BridgeSign> getBridgeIterator() {
+    public Iterator<BridgeDirection> getBridgeIterator() {
         return toBridgeSign(bridge).listIterator();
     }
 
-    private List<BridgeSign> toBridgeSign(List<String> bridge) {
-        return bridge.stream().map(BridgeSign::from).collect(Collectors.toList());
+    private List<BridgeDirection> toBridgeSign(List<String> bridge) {
+        return bridge.stream().map(BridgeDirection::from).collect(Collectors.toList());
     }
 
 }

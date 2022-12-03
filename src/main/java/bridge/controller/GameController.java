@@ -5,7 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.model.GameStatus;
 import bridge.model.GameVariable;
 import bridge.model.bridge.Bridge;
-import bridge.model.bridge.BridgeSign;
+import bridge.model.bridge.BridgeDirection;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.Iterator;
@@ -34,10 +34,10 @@ public class GameController {
             GameVariable gameVariable = GameVariable.byInitialValue();
 
             // START_GAME
-            Iterator<BridgeSign> bridgeSignIterator = bridge.getBridgeIterator();
+            Iterator<BridgeDirection> bridgeSignIterator = bridge.getBridgeIterator();
             while (bridgeSignIterator.hasNext()) {
-                BridgeSign movingDirection = BridgeSign.from(inputView.readMoving());
-                boolean isRoundSuccess = BridgeSign.isSame(bridgeSignIterator.next(), movingDirection);
+                BridgeDirection movingDirection = BridgeDirection.from(inputView.readMoving());
+                boolean isRoundSuccess = BridgeDirection.isSame(bridgeSignIterator.next(), movingDirection);
             }
 
         } catch (IllegalArgumentException exception) {
