@@ -1,5 +1,11 @@
 package bridge;
 
+import static bridge.Constant.*;
+
+import bridge.BridgeGame.MoveResult;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +16,50 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(MoveResult moveResult) {
+        System.out.println(constructBridgeShape(moveResult.flag, moveResult.nowBridge));
+    }
+
+    public String constructBridgeShape(int flag, List<String> bridge) {
+        List<String> up = upBridge(bridge, new ArrayList<>());
+        List<String> down = downBridge(bridge, new ArrayList<>());
+        if (flag == MOVERESULT_FLAG_INVALID) {
+            checkInvalidBlock(up, down);
+        }
+        return MESSAGE_LEFT_BRACKET + String.join(MESSAGE_SEPARATOR, up) + MESSAGE_RIGHT_BRACKET
+                + "\n" +
+                MESSAGE_LEFT_BRACKET + String.join(MESSAGE_SEPARATOR, down) + MESSAGE_RIGHT_BRACKET + "\n";
+    }
+
+    public void checkInvalidBlock(List<String> up, List<String> down) {
+        if (up.get(up.size() - 1).equals(MESSAGE_VALID_BLOCK)) {
+            up.set(up.size() - 1, MESSAGE_INVALID_BLOCK);
+        }
+        if (down.get(down.size() - 1).equals(MESSAGE_VALID_BLOCK)) {
+            down.set(down.size() - 1, MESSAGE_INVALID_BLOCK);
+        }
+    }
+
+    public List<String> upBridge (List<String> bridge, List<String> upper) {
+        for (String item : bridge) {
+            if (item.equals(MOVE_UP)) {
+                upper.add(MESSAGE_VALID_BLOCK);
+                continue;
+            }
+            upper.add(MESSAGE_BLANK_BLOCK);
+        }
+        return upper;
+    }
+
+    public List<String> downBridge (List<String> bridge, List<String> down) {
+        for (String item : bridge) {
+            if (item.equals(MOVE_DOWN)) {
+                down.add(MESSAGE_VALID_BLOCK);
+                continue;
+            }
+            down.add(MESSAGE_BLANK_BLOCK);
+        }
+        return down;
     }
 
     /**
@@ -18,6 +67,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int count, MoveResult gameResult) {
+        System.out.println(MESSAGE_RESULT);
+        System.out.println(constructBridgeShape(gameResult.flag, gameResult.nowBridge));
+        System.out.print(MESSAGE_IS_SUCCESS);
+        printWhetherSuccessOrNot(gameResult.flag, count);
+    }
+
+    public void printWhetherSuccessOrNot(int flag, int count) {
+        if (flag == MOVERESULT_FLAG_FULL) {
+            System.out.println(MESSAGE_SUCCESS);
+        }
+        if (flag == MOVERESULT_FLAG_INVALID) {
+            System.out.println(MESSAGE_FAILURE);
+        }
+        System.out.println(MESSAGE_TOTAL_TRIAL + count);
     }
 }
