@@ -27,11 +27,11 @@
 
 - [x] 무작위 값을 다리 길이만큼 만들고, 0 - 아래칸 - D / 1 - 위 칸 - U 로 다리 만들기 `BridgeSign`
 
-#### 게임 결과 변수 초기화 `GameVariable` `INITIALIZING_GAME_VARIABLE
+#### 게임 결과 변수 초기화 `GameVariable` `INITIALIZING_GAME_VARIABLE`
 
 - [x] 총 시도 회수 => 0
 - [x] 게임 성공 여부 => `false`
-- [ ] `Map` 초기화
+- [x] `Map` 초기화
 
 #### START_GAME
 

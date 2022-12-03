@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.BridgeSign;
+import bridge.model.bridge.BridgeSign;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
