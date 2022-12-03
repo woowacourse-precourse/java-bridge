@@ -39,8 +39,8 @@
 - [ ] 예외) U, D 외의 입력
 - [x] 매 이동 시 Map 출력
 
-- [ ] 칸 이동 성공 시, 다음 칸 입력 `ROUND_SUCCESS`
-- [ ] 칸 이동 실패 시, ROUND 실패 및 종료 `ROUND_FAIL`
+- [x] 칸 이동 성공 시, 다음 칸 입력 `ROUND_SUCCESS`
+- [x] 칸 이동 실패 시, ROUND 실패 및 종료 `ROUND_FAIL`
 - [ ] 다리를 끝까지 이동한 경우 게임 성공 및 종료
 
 #### 게임 재시작 (ROUND에서 실패한 경우)

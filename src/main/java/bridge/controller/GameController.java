@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeGame;
 import bridge.model.GameStatus;
 import bridge.model.GameVariable;
 import bridge.model.RoundStatus;
@@ -35,12 +36,12 @@ public class GameController {
             GameVariable gameVariable = GameVariable.byInitialValue();
 
             // START_GAME
+            BridgeGame bridgeGame = new BridgeGame(gameVariable);
+
             Iterator<BridgeDirection> bridgeSignIterator = bridge.getBridgeIterator();
-            while (bridgeSignIterator.hasNext()) {
-                BridgeDirection movingDirection = BridgeDirection.from(inputView.readMoving());
-                boolean isRoundSuccess = BridgeDirection.isSame(bridgeSignIterator.next(), movingDirection);
-                RoundStatus roundStatus = RoundStatus.from(isRoundSuccess);
-                gameVariable.updateMaps(movingDirection,roundStatus);
+            while (gameStatus.isContinueGame()) {
+                RoundStatus roundStatus = bridgeGame.move(bridgeSignIterator.next(), BridgeDirection.from(inputView.readMoving()));
+                updateGameStatus(roundStatus);
                 outputView.printMap(gameVariable.getMaps());
             }
 
@@ -48,4 +49,9 @@ public class GameController {
             outputView.printExceptionMessage(exception);
         }
     }
+
+    private void updateGameStatus(RoundStatus roundStatus) {
+        gameStatus = GameStatus.findGameStatus(roundStatus);
+    }
+
 }
