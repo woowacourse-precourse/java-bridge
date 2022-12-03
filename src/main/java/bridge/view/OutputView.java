@@ -7,7 +7,9 @@ public class OutputView {
     private final String START = "[";
     private final String DEL ="|";
     private final String END = "]";
-
+    public void startGame(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
     public String printMap(String map) {
         StringBuffer builder = new StringBuffer();
         int len = map.length();
