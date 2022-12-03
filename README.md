@@ -3,7 +3,7 @@
 ```mermaid
 graph TD
 A[SETTING_GAME] --> B[게임 변수 초기화]
-B --> C[START_ROUND]
+B --> C[START_GAME]
 C --> D{이동할 칸 입력}
 D --> |ROUND 성공| E{마지막 칸?}
 E --> |NO| D

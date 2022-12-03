@@ -28,4 +28,5 @@ public class BridgeMaker {
                 .map(sign -> sign.getSign())
                 .collect(Collectors.toList());
     }
+
 }

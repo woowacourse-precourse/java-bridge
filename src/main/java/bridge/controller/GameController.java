@@ -1,8 +1,9 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.Bridge;
+import bridge.model.GameVariable;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -19,8 +20,11 @@ public class GameController {
         try {
             outputView.printStartGame();
             int bridgeSize = inputView.readBridgeSize();
+
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            bridgeMaker.makeBridge(bridgeSize);
+            Bridge bridge = Bridge.from(bridgeMaker.makeBridge(bridgeSize));
+
+            GameVariable gameVariable = GameVariable.byInitialValue();
 
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);

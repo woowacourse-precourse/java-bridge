@@ -1,0 +1,16 @@
+package bridge.model;
+
+public enum GameStatus {
+
+    SETTING_GAME,
+    CREATING_BRIDGE,
+    INITIALIZING_GAME_VARIABLE,
+    START_GAME,
+    ROUND_SUCCESS,
+    ROUND_FAIL,
+    RECEIVE_GAME_COMMAND,
+    RESTART_GAME,
+    QUIT_GAME,
+    PRINT_RESULT;
+
+}
