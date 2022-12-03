@@ -47,6 +47,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_3에서_20_밖의_숫자() {
+        assertSimpleTest(() -> {
+            runException("25");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
