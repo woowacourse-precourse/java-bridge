@@ -13,12 +13,12 @@ import java.util.Iterator;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final GameStatus gameStatus;
+    private GameStatus gameStatus;
 
-    public GameController(InputView inputView, OutputView outputView, GameStatus gameStatus) {
+    public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.gameStatus = gameStatus;
+        this.gameStatus = GameStatus.SETTING_GAME;
     }
 
     public void play() {
