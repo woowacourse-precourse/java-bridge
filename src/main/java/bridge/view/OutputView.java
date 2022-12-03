@@ -2,6 +2,7 @@ package bridge.view;
 
 import static bridge.domain.util.Message.BRIDGE_SIZE_MESSAGE;
 import static bridge.domain.util.Message.COUNT_MESSAGE;
+import static bridge.domain.util.Message.ERROR_MESSAGE;
 import static bridge.domain.util.Message.FAIL_MESSAGE;
 import static bridge.domain.util.Message.MOVE_MESSAGE;
 import static bridge.domain.util.Message.RESULT_MESSAGE;
@@ -63,5 +64,9 @@ public class OutputView {
 
     public void printRetry() {
         System.out.println(RETRY_MESSAGE);
+    }
+
+    public void printError(IllegalArgumentException e) {
+        System.out.println(ERROR_MESSAGE + e.getMessage());
     }
 }

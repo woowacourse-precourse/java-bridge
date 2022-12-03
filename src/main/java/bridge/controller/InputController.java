@@ -1,19 +1,16 @@
 package bridge.controller;
 
 import bridge.domain.Validator;
-import bridge.view.ErrorOutputView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class InputController {
     private InputView inputView;
     private OutputView outputView;
-    private ErrorOutputView errorOutputView;
 
     public InputController() {
         inputView = new InputView(new Validator());
         outputView = new OutputView();
-        errorOutputView = new ErrorOutputView();
     }
 
     public int suggestBridgeSize() {
@@ -22,7 +19,7 @@ public class InputController {
                 outputView.printBridgeSize();
                 return inputView.readBridgeSize();
             } catch (IllegalArgumentException e) {
-                errorOutputView.printBridSizeError();
+                outputView.printError(e);
             }
         }
     }
@@ -33,7 +30,7 @@ public class InputController {
                 outputView.printMove();
                 return inputView.readMoving();
             } catch (IllegalArgumentException e) {
-                errorOutputView.printMoveError();
+                outputView.printError(e);
             }
         }
     }
@@ -44,7 +41,7 @@ public class InputController {
                 outputView.printRetry();
                 return inputView.readGameCommand();
             } catch (IllegalArgumentException e) {
-                errorOutputView.printRetryError();
+                outputView.printError(e);
             }
         }
     }
