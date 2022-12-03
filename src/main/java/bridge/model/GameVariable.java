@@ -4,9 +4,9 @@ import bridge.model.bridge.BridgeDirection;
 import bridge.model.map.Maps;
 
 public class GameVariable {
-    private final int numberOfAttempts;
-    private final boolean gameSuccess;
-    private final Maps maps;
+    private int numberOfAttempts;
+    private boolean gameSuccess;
+    private Maps maps;
 
     private GameVariable(int numberOfAttempts, boolean gameSuccess, Maps maps) {
         this.numberOfAttempts = numberOfAttempts;
@@ -27,4 +27,11 @@ public class GameVariable {
         return maps;
     }
 
+    public void addAttempts() {
+        numberOfAttempts++;
+    }
+
+    public void initializeMaps() {
+        this.maps = Maps.byInitialState();
+    }
 }

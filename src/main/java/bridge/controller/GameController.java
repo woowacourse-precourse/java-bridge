@@ -8,14 +8,17 @@ import bridge.model.GameVariable;
 import bridge.model.RoundStatus;
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.BridgeDirection;
+import bridge.model.command.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.Iterator;
+import java.util.List;
 
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private GameStatus gameStatus;
+    private BridgeGame bridgeGame;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -30,13 +33,15 @@ public class GameController {
 
             // CREATING_BRIDGE
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            Bridge bridge = Bridge.from(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            List<String> bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
+            System.out.println(bridgeList);
+            Bridge bridge = Bridge.from(bridgeList);
 
             // INITIALIZING_GAME_VARIABLE
             GameVariable gameVariable = GameVariable.byInitialValue();
 
             // START_GAME
-            BridgeGame bridgeGame = new BridgeGame(gameVariable);
+            bridgeGame = new BridgeGame(gameVariable);
 
             Iterator<BridgeDirection> bridgeSignIterator = bridge.getBridgeIterator();
             while (gameStatus.isContinueGame()) {
@@ -49,8 +54,8 @@ public class GameController {
                     updateGameStatusToGameSuccess();
                 }
 
-                if(gameStatus == GameStatus.ROUND_FAIL) {
-                    String gameCommand = inputView.readGameCommand();
+                if (gameStatus == GameStatus.ROUND_FAIL) {
+                    handleGameCommand(GameCommand.from(inputView.readGameCommand()));
                 }
             }
 
@@ -64,7 +69,14 @@ public class GameController {
     }
 
     private void updateGameStatus(RoundStatus roundStatus) {
-        gameStatus = GameStatus.findGameStatus(roundStatus);
+        gameStatus = GameStatus.fromRoundStatus(roundStatus);
+    }
+
+    private void handleGameCommand(GameCommand gameCommand) {
+        gameStatus = GameStatus.fromGameCommand(gameCommand);
+        if(gameStatus == GameStatus.RETRY_GAME) {
+            bridgeGame.retry();
+        }
     }
 
 }
