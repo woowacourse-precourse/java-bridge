@@ -1,8 +1,11 @@
 package bridge;
 
-public class Application {
+import bridge.utils.Controller.GameController;
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-    }
+public class Application {
+	private static GameController gameController = new GameController();
+
+	public static void main(String[] args) {
+		gameController.start();
+	}
 }
