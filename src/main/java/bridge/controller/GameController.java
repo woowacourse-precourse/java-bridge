@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.GameStatus;
 import bridge.model.GameVariable;
+import bridge.model.RoundStatus;
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.BridgeDirection;
 import bridge.view.InputView;
@@ -38,6 +39,9 @@ public class GameController {
             while (bridgeSignIterator.hasNext()) {
                 BridgeDirection movingDirection = BridgeDirection.from(inputView.readMoving());
                 boolean isRoundSuccess = BridgeDirection.isSame(bridgeSignIterator.next(), movingDirection);
+                RoundStatus roundStatus = RoundStatus.from(isRoundSuccess);
+                gameVariable.updateMaps(movingDirection,roundStatus);
+                outputView.printMap(gameVariable.getMaps());
             }
 
         } catch (IllegalArgumentException exception) {
