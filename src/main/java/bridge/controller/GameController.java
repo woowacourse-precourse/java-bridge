@@ -21,6 +21,7 @@ public class GameController {
             int bridgeSize = inputView.readBridgeSize();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             bridgeMaker.makeBridge(bridgeSize);
+
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
         }
