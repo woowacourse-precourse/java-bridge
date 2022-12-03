@@ -6,6 +6,7 @@ import static bridge.util.Constants.BRIDGE_START;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Diagram {
 
@@ -18,7 +19,9 @@ public class Diagram {
     }
 
     private String formatDiagram(List<String> diagram) {
-        return BRIDGE_START + String.join(BRIDGE_SEPARATER, diagram) + BRIDGE_END;
+        StringJoiner result = new StringJoiner(BRIDGE_SEPARATER, BRIDGE_START, BRIDGE_END);
+        diagram.stream().forEach(element -> result.add(element));
+        return result.toString();
     }
 
     public List<String> getFormattedDiagrams() {

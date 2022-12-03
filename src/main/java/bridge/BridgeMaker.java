@@ -8,6 +8,7 @@ import static bridge.util.ErrorMessage.ERROR_BRIDGE_SIZE_RANGE;
 import static bridge.util.ErrorMessage.ERROR_BRIDGE_SIZE_TYPE;
 
 import bridge.model.Position;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -31,7 +32,7 @@ public class BridgeMaker {
         return IntStream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
                 .mapToObj(Position::getAbbreviation)
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public static void validateBridgeSizeType(String input) {
