@@ -16,6 +16,11 @@ public class GameController {
         outputView.printResult(finalGameStatus);
     }
 
+    private void initializeGame() {
+        int size = inputController.readBridgeSizeUntilSucceed();
+        bridgeGame.initAnswerBridge(size);
+    }
+
     private GameStatus getFinalGameResult() {
         GameStatus finalGameResult;
         do {
@@ -46,10 +51,5 @@ public class GameController {
         }
         bridgeGame.retry();
         return false;
-    }
-
-    private void initializeGame() {
-        int size = inputController.readBridgeSizeUntilSucceed();
-        bridgeGame.initAnswerBridge(size);
     }
 }
