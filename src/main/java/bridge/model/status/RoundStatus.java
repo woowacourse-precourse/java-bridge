@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.status;
 
 import bridge.util.ExceptionMessage;
 import java.util.Arrays;

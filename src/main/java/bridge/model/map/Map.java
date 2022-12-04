@@ -1,6 +1,6 @@
 package bridge.model.map;
 
-import bridge.model.RoundStatus;
+import bridge.model.status.RoundStatus;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;

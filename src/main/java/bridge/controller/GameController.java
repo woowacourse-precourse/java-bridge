@@ -3,10 +3,10 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeGame;
-import bridge.model.GameStatus;
-import bridge.model.GameVariable;
-import bridge.model.RoundStatus;
+import bridge.model.game.BridgeGame;
+import bridge.model.status.GameStatus;
+import bridge.model.game.GameVariable;
+import bridge.model.status.RoundStatus;
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.BridgeDirection;
 import bridge.model.command.GameCommand;

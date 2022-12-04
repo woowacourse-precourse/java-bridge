@@ -1,7 +1,9 @@
-package bridge.model;
+package bridge.model.game;
 
 import bridge.model.bridge.BridgeDirection;
 import bridge.model.map.Maps;
+import bridge.model.status.GameStatus;
+import bridge.model.status.RoundStatus;
 
 public class GameVariable {
     private int numberOfAttempts;

@@ -1,6 +1,6 @@
 package bridge.model.map;
 
-import bridge.model.RoundStatus;
+import bridge.model.status.RoundStatus;
 import bridge.model.bridge.BridgeDirection;
 
 public class Maps {

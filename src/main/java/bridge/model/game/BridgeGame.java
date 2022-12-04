@@ -1,5 +1,6 @@
-package bridge.model;
+package bridge.model.game;
 
+import bridge.model.status.RoundStatus;
 import bridge.model.bridge.BridgeDirection;
 
 /**

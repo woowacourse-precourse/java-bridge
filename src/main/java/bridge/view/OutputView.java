@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.model.GameVariable;
+import bridge.model.game.GameVariable;
 import bridge.model.map.Maps;
 
 /**
