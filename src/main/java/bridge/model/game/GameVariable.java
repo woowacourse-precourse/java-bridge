@@ -67,9 +67,9 @@ public class GameVariable {
     }
 
     public String getGameSuccessDisplay() {
-        if (gameStatus.isGameFail()) {
-            return GameSuccessDisplay.GAME_FAIL.display;
+        if (gameStatus.isGameSuccess()) {
+            return GameSuccessDisplay.GAME_SUCCESS.display;
         }
-        return GameSuccessDisplay.GAME_SUCCESS.display;
+        return GameSuccessDisplay.GAME_FAIL.display;
     }
 }
