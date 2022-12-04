@@ -25,7 +25,7 @@ public class BridgeMaker {
                 .generate(bridgeNumberGenerator::generate)
                 .limit(size)
                 .mapToObj(BridgeDirection::from)
-                .map(sign -> sign.getSign())
+                .map(BridgeDirection::getSign)
                 .collect(Collectors.toList());
     }
 

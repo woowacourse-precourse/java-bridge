@@ -6,21 +6,18 @@ import java.util.stream.Collectors;
 
 public class Bridge {
 
-    private final List<String> bridge;
+    private final List<BridgeDirection> bridge;
 
     private Bridge(List<String> bridge) {
-        this.bridge = bridge;
+        this.bridge = toBridgeSign(bridge);
     }
 
     public static Bridge from(List<String> bridge) {
         return new Bridge(bridge);
     }
 
-    public Iterator<BridgeDirection> getBridgeIterator() {
-        return toBridgeSign(bridge).listIterator();
-    }
     public BridgeDirection getBridgeDirection(int index) {
-        return toBridgeSign(bridge).get(index);
+        return bridge.get(index);
     }
 
     private List<BridgeDirection> toBridgeSign(List<String> bridge) {
@@ -32,7 +29,7 @@ public class Bridge {
     }
 
     public boolean isEndOfBridge(int index) {
-        return index == bridge.size() -1;
+        return index == bridge.size() - 1;
     }
 
 }
