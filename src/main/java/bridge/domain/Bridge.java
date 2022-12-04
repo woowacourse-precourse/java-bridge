@@ -40,11 +40,11 @@ public class Bridge {
     }
 
     private void validate(List<String> target) {
-        int invalidCount = (int) target.stream()
-                .filter(block -> !block.equals(GameMoving.UP.toString()))
-                .filter(block -> !block.equals(GameMoving.DOWN.toString()))
-                .count();
-        if (invalidCount != 0) {
+        boolean isValidBridge = target.stream()
+                .allMatch(block -> block.equals(GameMoving.UP.toString()) ||
+                        block.equals(GameMoving.DOWN.toString()));
+
+        if (!isValidBridge) {
             throw new IllegalArgumentException(ExceptionMessage.BRIDGE_ELEMENT_INVALID);
         }
     }
