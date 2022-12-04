@@ -20,7 +20,7 @@ public class GameController {
         GameStatus finalGameResult;
         do {
             finalGameResult = getOneGameResult();
-        } while (!finalGameResult.isClear() && !needExit());
+        } while (!isGameOver(finalGameResult));
 
         return finalGameResult;
     }
@@ -33,6 +33,10 @@ public class GameController {
             outputView.printMap(gameStatus);
         } while (gameStatus.isPlaying());
         return gameStatus;
+    }
+
+    private boolean isGameOver(GameStatus gameStatus) {
+        return gameStatus.isClear() || needExit();
     }
 
     private boolean needExit() {
