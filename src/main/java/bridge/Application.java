@@ -6,7 +6,7 @@ import java.util.List;
 import static bridge.util.Constant.*;
 
 public class Application {
-    static int count = 1;
+    static int tryCount = 1;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -25,8 +25,11 @@ public class Application {
 
     public static int moveUser(List<String> bridge) {
         List<String> result = new ArrayList<>();
-        outputView.printClearResult(moveDetail(result, bridge));
-        return count;
+        List<String> moveResult = moveDetail(result, bridge);
+        if (!moveResult.isEmpty()) {
+            outputView.printClearResult(moveResult);
+        }
+        return tryCount;
     }
 
     public static List<String> moveDetail(List<String> result, List<String> bridge) {
@@ -35,7 +38,7 @@ public class Application {
             if (!bridgeGame.move(moving, bridge.get(i))) {
                 outputView.printMap(addFalseResult(i, moving, result));
                 i = restartGame(result, bridge);
-                result = new ArrayList<>();
+                result.clear();
                 continue;
             }
             outputView.printMap(addTrueResult(i, moving, result));
@@ -55,7 +58,7 @@ public class Application {
 
     public static int restartGameDetail(String readGameCommand, List<String> result, List<String> bridge) {
         if (readGameCommand.equals("R")) {
-            count++;
+            tryCount++;
             return -1;
         }
         if (readGameCommand.equals("Q")) {
