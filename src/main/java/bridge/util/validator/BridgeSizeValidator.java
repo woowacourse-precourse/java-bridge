@@ -40,7 +40,7 @@ public class BridgeSizeValidator extends Validator {
 
     private void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
-        if (number < Range.MIN_RANGE.value || number > Range.MIN_RANGE.value) {
+        if (number < Range.MIN_RANGE.value || number > Range.MAX_RANGE.value) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NOT_IN_RANGE.getMessage());
         }
     }
