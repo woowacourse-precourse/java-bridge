@@ -15,11 +15,11 @@ public enum GameMoving {
     }
 
     public static String getMovingFromNumber(int number) {
-        return Arrays.stream(values())
+        GameMoving moving = Arrays.stream(values())
                 .filter(value -> value.number == number)
                 .findFirst()
-                .get()
-                .message;
+                .orElseThrow(RuntimeException::new);
+        return moving.message;
     }
 
     public static boolean isDown(String target) {
