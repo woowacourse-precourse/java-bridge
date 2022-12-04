@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.util.ExceptionMessage;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Nested;
@@ -78,6 +79,25 @@ class ApplicationTest extends NsTest {
                         "총 시도한 횟수: 2"
                 );
             }, 0, 0, 1);
+        }
+
+        @Test
+        void 예외_재입력_후_실패_테스트() {
+            assertRandomNumberInRangeTest(() -> {
+                run("   d", "   12345678   ", "22222222222222222222", "    3   ", "k", "U", "D", "q", "Q");
+                assertThat(output()).contains(
+                        ExceptionMessage.INVALID_NOT_NUMERIC.getMessage(),
+                        ExceptionMessage.INVALID_NOT_IN_RANGE.getMessage(),
+                        ExceptionMessage.OUT_OF_INT_RANGE.getMessage(),
+                        ExceptionMessage.NO_BRIDGE_DIRECTION_SIGN.getMessage(),
+                        ExceptionMessage.INVALID_GAME_COMMAND.getMessage(),
+                        "최종 게임 결과",
+                        "[ O |   ]",
+                        "[   | X ]",
+                        "게임 성공 여부: 실패",
+                        "총 시도한 횟수: 1"
+                );
+            }, 1, 1, 1);
         }
     }
 
