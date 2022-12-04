@@ -71,10 +71,9 @@ public class Application {
     public static List<String> addTrueResult(int count, String moving, List<String> result) {
         if (count == 0) {
             addTrueResultCountZero(moving, result);
+            return result;
         }
-        if (count != 0) {
-            addTrueResultCountNoZero(count, moving, result);
-        }
+        addTrueResultCountNoZero(count, moving, result);
         return result;
     }
 
@@ -103,10 +102,9 @@ public class Application {
     public static List<String> addFalseResult(int count, String moving, List<String> result) {
         if (count == 0) {
             addFalseResultCountZero(moving, result);
+            return result;
         }
-        if (count != 0) {
-            addFalseResultCountNoZero(count, moving, result);
-        }
+        addFalseResultCountNoZero(count, moving, result);
         return result;
     }
 
