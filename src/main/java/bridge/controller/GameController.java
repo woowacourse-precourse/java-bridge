@@ -81,17 +81,12 @@ public class GameController {
 
     private RoundStatus moveOneRound(Bridge bridge, int index) {
         RoundStatus roundStatus = bridgeGame.move(bridge.getBridgeDirection(index), inputView.readMoving());
-        updateRoundStatus(roundStatus);
         outputView.printMap(gameVariable.getMaps());
         return roundStatus;
     }
 
     private void updateGameStatus(GameStatus gameStatus) {
         gameVariable.updateGameStatus(gameStatus);
-    }
-
-    private void updateRoundStatus(RoundStatus roundStatus) {
-        gameVariable.updateRoundStatus(roundStatus);
     }
 
     private void handleGameCommand(GameCommand gameCommand) {

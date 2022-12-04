@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.BridgeDirection;
 import bridge.model.command.GameCommand;
+import bridge.util.validator.BridgeSizeValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -28,9 +29,10 @@ public class InputView {
         try {
             System.out.println(ConsoleMessage.INPUT_BRIDGE_SIZE.message);
             String input = Console.readLine();
-            // validation
+            new BridgeSizeValidator().validate(input);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
             return readBridgeSize();
         }
     }
@@ -44,6 +46,7 @@ public class InputView {
             String movingDirection = Console.readLine();
             return BridgeDirection.from(movingDirection);
         } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
             return readMoving();
         }
     }
@@ -57,6 +60,7 @@ public class InputView {
             String gameCommand = Console.readLine();
             return GameCommand.from(gameCommand);
         } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
             return readGameCommand();
         }
     }

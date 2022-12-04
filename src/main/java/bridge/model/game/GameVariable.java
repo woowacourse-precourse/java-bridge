@@ -6,17 +6,24 @@ import bridge.model.status.GameStatus;
 import bridge.model.status.RoundStatus;
 
 public class GameVariable {
+
+    private enum GameSuccessDisplay {
+        GAME_SUCCESS("성공"), GAME_FAIL("실패");
+        private final String display;
+
+        GameSuccessDisplay(String display) {
+            this.display = display;
+        }
+    }
+
     private int numberOfAttempts;
     private Maps maps;
-
     private GameStatus gameStatus;
-    private RoundStatus roundStatus;
 
     private GameVariable(int numberOfAttempts, Maps maps) {
         this.numberOfAttempts = numberOfAttempts;
         this.maps = maps;
         this.gameStatus = GameStatus.SETTING_GAME;
-        this.roundStatus = RoundStatus.ROUND_FAIL;
     }
 
     public static GameVariable byInitialValue() {
@@ -47,17 +54,22 @@ public class GameVariable {
         this.gameStatus = gameStatus;
     }
 
-    public void updateRoundStatus(RoundStatus roundStatus) {
-        this.roundStatus = roundStatus;
-    }
-
     public boolean isGameFail() {
         return this.gameStatus.isGameFail();
     }
+
     public boolean isExitGame() {
         return this.gameStatus.isExitGame();
     }
+
     public boolean isRetryGame() {
         return this.gameStatus.isRetryGame();
+    }
+
+    public String getGameSuccessDisplay() {
+        if (gameStatus.isGameFail()) {
+            return GameSuccessDisplay.GAME_FAIL.display;
+        }
+        return GameSuccessDisplay.GAME_SUCCESS.display;
     }
 }

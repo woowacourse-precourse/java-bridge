@@ -17,7 +17,7 @@ public class BridgeSizeValidator extends Validator {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[0-9]*$");
 
     @Override
-    void validate(String input) throws IllegalArgumentException {
+    public void validate(String input) throws IllegalArgumentException {
         String bridgeSize = removeSpace(input);
         validateNumber(bridgeSize);
         validateInputRange(bridgeSize);

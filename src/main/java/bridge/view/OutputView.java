@@ -37,7 +37,8 @@ public class OutputView {
     public void printResult(GameVariable gameVariable) {
         System.out.println(ConsoleMessage.FINAL_RESULT.message);
         printMap(gameVariable.getMaps());
-        // System.out.println(String.format(ConsoleMessage.PRINT_IS_SUCCESS.message, gameVariable.getGameSuccess()));
+        System.out.println(
+                String.format(ConsoleMessage.PRINT_IS_SUCCESS.message, gameVariable.getGameSuccessDisplay()));
         System.out.println(
                 String.format(ConsoleMessage.PRINT_NUMBER_OF_ATTEMPTS.message, gameVariable.getNumberOfAttempts()));
     }
