@@ -24,11 +24,11 @@ class BridgeGameTest {
             assertRandomNumberInRangeTest(() -> {
                 BridgeGame bridgeGame = new BridgeGame();
                 bridgeGame.initAnswerBridge(moveInfo.size());
-                GameStatus gameStatus = null;
+                GameStatusDTO gameStatusDTO = null;
                 for (String move : moveInfo) {
-                    gameStatus = bridgeGame.getMovingResult(move);
+                    gameStatusDTO = bridgeGame.getMovingResult(move);
                 }
-                assertThat(gameStatus.isClear()).isTrue();
+                assertThat(gameStatusDTO.isClear()).isTrue();
             }, randomValue, randomValues.toArray(new Integer[0]));
         }
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
-class GameStatusTest {
+class GameStatusDTOTest {
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("getGameHistory 메소드 테스트")
@@ -24,8 +24,8 @@ class GameStatusTest {
             GameUser gameUser = new GameUser();
             moveList.forEach(gameUser::move);
 
-            GameStatus gameStatus = new GameStatus(gameUser);
-            assertThat(gameStatus.getGameHistory()).isEqualTo(expected);
+            GameStatusDTO gameStatusDTO = new GameStatusDTO(gameUser);
+            assertThat(gameStatusDTO.getGameHistory()).isEqualTo(expected);
         }
 
         private Stream<Arguments> parameterProvider() {

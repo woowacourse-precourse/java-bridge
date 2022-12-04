@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.GameMoving;
-import bridge.domain.GameStatus;
+import bridge.domain.GameStatusDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,24 +21,24 @@ public class OutputView {
     private final String FORMAT_PREFIX = "[ ";
     private final String FORMAT_SUFFIX = " ]";
 
-    public void printResult(GameStatus gameStatus) {
+    public void printResult(GameStatusDTO gameStatusDTO) {
         System.out.println(GAME_RESULT_MESSAGE);
-        printMap(gameStatus);
-        System.out.println(WHETHER_GAME_SUCCESS_MESSAGE + gameStatus.getMessage());
-        System.out.print(TOTAL_TRY_MESSAGE + gameStatus.getCount());
+        printMap(gameStatusDTO);
+        System.out.println(WHETHER_GAME_SUCCESS_MESSAGE + gameStatusDTO.getMessage());
+        System.out.print(TOTAL_TRY_MESSAGE + gameStatusDTO.getCount());
     }
 
-    public void printMap(GameStatus gameStatus) {
-        String result = makeFormattedResult(gameStatus);
+    public void printMap(GameStatusDTO gameStatusDTO) {
+        String result = makeFormattedResult(gameStatusDTO);
         System.out.println(result);
     }
 
-    private String makeFormattedResult(GameStatus gameStatus) {
-        String normalizedGameHistory = normalize(gameStatus.getGameHistory());
+    private String makeFormattedResult(GameStatusDTO gameStatusDTO) {
+        String normalizedGameHistory = normalize(gameStatusDTO.getGameHistory());
         List<String> upperLine = makeUpperLine(normalizedGameHistory);
         List<String> lowerLine = makeLowerLine(normalizedGameHistory);
 
-        if (gameStatus.isFail()) {
+        if (gameStatusDTO.isFail()) {
             addFailSymbol(upperLine, lowerLine);
         }
         return formatLine(upperLine) + NEW_LINE + formatLine(lowerLine) + NEW_LINE;

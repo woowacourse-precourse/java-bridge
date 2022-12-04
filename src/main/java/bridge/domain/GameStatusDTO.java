@@ -1,11 +1,11 @@
 package bridge.domain;
 
-public class GameStatus {
+public class GameStatusDTO {
     private final String gameHistory;
     private GameFlag flag;
     private int count;
 
-    public GameStatus(GameUser gameUser) {
+    public GameStatusDTO(GameUser gameUser) {
         this.flag = GameFlag.PLAYING;
         this.gameHistory = gameUser.toString();
     }

@@ -15,15 +15,15 @@ public class BridgeGame {
         answerBridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
-    public GameStatus getMovingResult(String moving) {
+    public GameStatusDTO getMovingResult(String moving) {
         move(moving);
 
-        GameStatus gameStatus = new GameStatus(gameUser);
+        GameStatusDTO gameStatusDTO = new GameStatusDTO(gameUser);
         if (isGameOver()) {
-            gameStatus.setCount(retryCounter.getCount());
-            gameStatus.setFlag(GameFlag.getGameFlagWhenGameOver(gameUser, answerBridge));
+            gameStatusDTO.setCount(retryCounter.getCount());
+            gameStatusDTO.setFlag(GameFlag.getGameFlagWhenGameOver(gameUser, answerBridge));
         }
-        return gameStatus;
+        return gameStatusDTO;
     }
 
     public void retry() {

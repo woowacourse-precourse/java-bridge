@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.GameControl;
-import bridge.domain.GameStatus;
+import bridge.domain.GameStatusDTO;
 import bridge.view.OutputView;
 
 public class GameController {
@@ -12,8 +12,8 @@ public class GameController {
 
     public void run() {
         initializeGame();
-        GameStatus finalGameStatus = getFinalGameResult();
-        outputView.printResult(finalGameStatus);
+        GameStatusDTO finalGameStatusDTO = getFinalGameResult();
+        outputView.printResult(finalGameStatusDTO);
     }
 
     private void initializeGame() {
@@ -21,8 +21,8 @@ public class GameController {
         bridgeGame.initAnswerBridge(size);
     }
 
-    private GameStatus getFinalGameResult() {
-        GameStatus finalGameResult;
+    private GameStatusDTO getFinalGameResult() {
+        GameStatusDTO finalGameResult;
         do {
             finalGameResult = getOneGameResult();
         } while (!isGameOver(finalGameResult));
@@ -30,18 +30,18 @@ public class GameController {
         return finalGameResult;
     }
 
-    private GameStatus getOneGameResult() {
-        GameStatus gameStatus;
+    private GameStatusDTO getOneGameResult() {
+        GameStatusDTO gameStatusDTO;
         do {
             String moving = inputController.readMovingUntilSucceed();
-            gameStatus = bridgeGame.getMovingResult(moving);
-            outputView.printMap(gameStatus);
-        } while (gameStatus.isPlaying());
-        return gameStatus;
+            gameStatusDTO = bridgeGame.getMovingResult(moving);
+            outputView.printMap(gameStatusDTO);
+        } while (gameStatusDTO.isPlaying());
+        return gameStatusDTO;
     }
 
-    private boolean isGameOver(GameStatus gameStatus) {
-        return gameStatus.isClear() || needExit();
+    private boolean isGameOver(GameStatusDTO gameStatusDTO) {
+        return gameStatusDTO.isClear() || needExit();
     }
 
     private boolean needExit() {
