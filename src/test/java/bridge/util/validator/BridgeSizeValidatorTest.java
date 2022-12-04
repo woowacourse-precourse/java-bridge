@@ -20,7 +20,7 @@ class BridgeSizeValidatorTest {
     }
 
     @Nested
-    class invalidInput {
+    class invalidInputTest {
 
         @DisplayName("자연수가 아닌 입력")
         @ParameterizedTest
