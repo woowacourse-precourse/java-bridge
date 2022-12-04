@@ -11,6 +11,13 @@ public enum GameFlag {
         this.message = message;
     }
 
+    public static GameFlag getGameFlagWhenGameOver(GameUser gameUser, Bridge answerBridge) {
+        if (gameUser.isGetOutFrom(answerBridge)) {
+            return FAIL;
+        }
+        return CLEAR;
+    }
+
     public String getMessage() {
         return this.message;
     }

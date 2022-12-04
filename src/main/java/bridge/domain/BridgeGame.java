@@ -17,10 +17,11 @@ public class BridgeGame {
 
     public GameStatus getMovingResult(String moving) {
         move(moving);
+
         GameStatus gameStatus = new GameStatus(gameUser);
         if (isGameOver()) {
-            gameStatus.setFlag(gameUser, answerBridge);
             gameStatus.setCount(retryCounter.getCount());
+            gameStatus.setFlag(GameFlag.getGameFlagWhenGameOver(gameUser, answerBridge));
         }
         return gameStatus;
     }

@@ -2,19 +2,16 @@ package bridge.domain;
 
 public class GameStatus {
     private final String gameHistory;
-    private GameFlag flag = GameFlag.PLAYING;
+    private GameFlag flag;
     private int count;
 
     public GameStatus(GameUser gameUser) {
+        this.flag = GameFlag.PLAYING;
         this.gameHistory = gameUser.toString();
     }
 
-    public void setFlag(GameUser gameUser, Bridge answerBridge) {
-        if (gameUser.isGetOutFrom(answerBridge)) {
-            flag = GameFlag.FAIL;
-            return;
-        }
-        flag = GameFlag.CLEAR;
+    public void setFlag(GameFlag flag) {
+        this.flag = flag;
     }
 
     public void setCount(int count) {
