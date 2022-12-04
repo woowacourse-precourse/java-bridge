@@ -5,7 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
     private final GameUser gameUser = new GameUser();
-    private final Counter gameCounter = new Counter();
+    private final Counter retryCounter = new Counter();
     private Bridge answerBridge;
 
     public void initAnswerBridge(int size) {
@@ -20,13 +20,13 @@ public class BridgeGame {
         GameStatus gameStatus = new GameStatus(gameUser);
         if (isGameOver()) {
             gameStatus.setFlag(gameUser, answerBridge);
-            gameStatus.setCount(gameCounter.getCount());
+            gameStatus.setCount(retryCounter.getCount());
         }
         return gameStatus;
     }
 
     public void retry() {
-        gameCounter.addCount();
+        retryCounter.addCount();
         gameUser.reset();
     }
 
