@@ -27,12 +27,11 @@ public enum RoundStatus {
     public String getDisplay() {
         return display;
     }
-
+    public boolean isRoundSuccess() {
+        return isSuccess;
+    }
     public boolean isRoundFail() {
         return !isSuccess;
     }
 
-    public boolean isRoundSuccess() {
-        return isSuccess;
-    }
 }

@@ -17,16 +17,14 @@ import java.util.List;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private GameStatus gameStatus;
-    private RoundStatus roundStatus;
+
     private BridgeGame bridgeGame;
     private GameVariable gameVariable;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.gameStatus = GameStatus.SETTING_GAME;
-        this.roundStatus = RoundStatus.ROUND_FAIL;
+
     }
 
     public void play() {
@@ -48,12 +46,12 @@ public class GameController {
                 // START_GAME
                 moveRounds(bridge);
 
-                if (gameStatus == GameStatus.GAME_FAIL) {
+                if (gameVariable.isGameFail()) {
                     // RETRY_GAME or QUIT_GAME
                     handleGameCommand(GameCommand.from(inputView.readGameCommand()));
                 }
 
-                if (gameStatus.isExitGame()) {
+                if (gameVariable.isExitGame()) {
                     break;
                 }
 
@@ -69,7 +67,7 @@ public class GameController {
 
     private void moveRounds(Bridge bridge) {
         for (int index = 0; index < bridge.getBridgeSize(); index++) {
-            moveOneRound(bridge, index);
+            RoundStatus roundStatus = moveOneRound(bridge, index);
 
             if (roundStatus.isRoundFail()) {
                 updateGameStatus(GameStatus.GAME_FAIL);
@@ -81,24 +79,25 @@ public class GameController {
         }
     }
 
-    private void moveOneRound(Bridge bridge, int index) {
+    private RoundStatus moveOneRound(Bridge bridge, int index) {
         RoundStatus roundStatus = bridgeGame.move(bridge.getBridgeDirection(index),
                 BridgeDirection.from(inputView.readMoving()));
         updateRoundStatus(roundStatus);
         outputView.printMap(gameVariable.getMaps());
+        return roundStatus;
     }
 
     private void updateGameStatus(GameStatus gameStatus) {
-        this.gameStatus = gameStatus;
+        gameVariable.updateGameStatus(gameStatus);
     }
 
     private void updateRoundStatus(RoundStatus roundStatus) {
-        this.roundStatus = roundStatus;
+        gameVariable.updateRoundStatus(roundStatus);
     }
 
     private void handleGameCommand(GameCommand gameCommand) {
-        gameStatus = GameStatus.fromGameCommand(gameCommand);
-        if (gameStatus == GameStatus.RETRY_GAME) {
+        updateGameStatus(GameStatus.fromGameCommand(gameCommand));
+        if (gameVariable.isRetryGame()) {
             bridgeGame.retry();
         }
     }

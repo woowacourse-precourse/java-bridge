@@ -26,5 +26,13 @@ public enum GameStatus {
         return this == QUIT_GAME || this == GAME_SUCCESS;
     }
 
+   public boolean isRetryGame() {
+        return this == RETRY_GAME;
+    }
+
+    public boolean isGameFail() {
+        return this == GAME_FAIL;
+    }
+
 
 }
