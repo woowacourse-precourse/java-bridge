@@ -1,5 +1,6 @@
 package bridge.controller;
 
+
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
@@ -17,6 +18,7 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private GameStatus gameStatus;
+    private RoundStatus roundStatus;
     private BridgeGame bridgeGame;
     private GameVariable gameVariable;
 
@@ -24,6 +26,7 @@ public class GameController {
         this.inputView = inputView;
         this.outputView = outputView;
         this.gameStatus = GameStatus.SETTING_GAME;
+        this.roundStatus = RoundStatus.ROUND_FAIL;
     }
 
     public void play() {
@@ -42,29 +45,15 @@ public class GameController {
             bridgeGame = new BridgeGame(gameVariable);
 
             while (true) {
-
                 // START_GAME
-                for (int index = 0; index < bridge.getBridgeSize(); index++) {
-                    RoundStatus roundStatus = bridgeGame.move(bridge.getBridgeDirection(index),
-                            BridgeDirection.from(inputView.readMoving()));
-                    updateGameStatus(roundStatus);
-                    outputView.printMap(gameVariable.getMaps());
+                moveRounds(bridge);
 
-                    if (!gameStatus.isContinueRounds()) {
-                        break;
-                    }
-
-                    if (bridge.isEndOfBridge(index) && gameStatus == GameStatus.ROUND_SUCCESS) {
-                        updateGameStatusToGameSuccess();
-                    }
-
-                }
-
-                if (gameStatus == GameStatus.ROUND_FAIL) {
+                if (gameStatus == GameStatus.GAME_FAIL) {
+                    // RETRY_GAME or QUIT_GAME
                     handleGameCommand(GameCommand.from(inputView.readGameCommand()));
                 }
 
-                if (!gameStatus.isContinueGame()) {
+                if (gameStatus.isExitGame()) {
                     break;
                 }
 
@@ -78,12 +67,33 @@ public class GameController {
         }
     }
 
-    private void updateGameStatusToGameSuccess() {
-        gameStatus = GameStatus.GAME_SUCCESS;
+    private void moveRounds(Bridge bridge) {
+        for (int index = 0; index < bridge.getBridgeSize(); index++) {
+            moveOneRound(bridge, index);
+
+            if (roundStatus.isRoundFail()) {
+                updateGameStatus(GameStatus.GAME_FAIL);
+                break;
+            }
+            if (bridge.isEndOfBridge(index) && roundStatus.isRoundSuccess()) {
+                updateGameStatus(GameStatus.GAME_SUCCESS);
+            }
+        }
     }
 
-    private void updateGameStatus(RoundStatus roundStatus) {
-        gameStatus = GameStatus.fromRoundStatus(roundStatus);
+    private void moveOneRound(Bridge bridge, int index) {
+        RoundStatus roundStatus = bridgeGame.move(bridge.getBridgeDirection(index),
+                BridgeDirection.from(inputView.readMoving()));
+        updateRoundStatus(roundStatus);
+        outputView.printMap(gameVariable.getMaps());
+    }
+
+    private void updateGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
+    }
+
+    private void updateRoundStatus(RoundStatus roundStatus) {
+        this.roundStatus = roundStatus;
     }
 
     private void handleGameCommand(GameCommand gameCommand) {

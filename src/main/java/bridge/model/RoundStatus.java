@@ -5,14 +5,16 @@ import java.util.Arrays;
 
 public enum RoundStatus {
 
-    ROUND_SUCCESS("O", true), ROUND_FAIL("X", false), ROUND_NONE(" ", false);
+    ROUND_SUCCESS("O", true),
+    ROUND_FAIL("X", false),
+    ROUND_NONE(" ", false);
 
     private final String display;
     private final boolean isSuccess;
 
-    RoundStatus(String display, boolean isSuccess) {
+    RoundStatus(String display, boolean isRoundSuccess) {
         this.display = display;
-        this.isSuccess = isSuccess;
+        this.isSuccess = isRoundSuccess;
     }
 
     public static RoundStatus from(boolean isSuccess) {
@@ -24,5 +26,13 @@ public enum RoundStatus {
 
     public String getDisplay() {
         return display;
+    }
+
+    public boolean isRoundFail() {
+        return !isSuccess;
+    }
+
+    public boolean isRoundSuccess() {
+        return isSuccess;
     }
 }
