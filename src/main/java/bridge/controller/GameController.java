@@ -11,7 +11,6 @@ import bridge.model.bridge.BridgeDirection;
 import bridge.model.command.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.Iterator;
 import java.util.List;
 
 public class GameController {
@@ -19,6 +18,7 @@ public class GameController {
     private final OutputView outputView;
     private GameStatus gameStatus;
     private BridgeGame bridgeGame;
+    private GameVariable gameVariable;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -38,26 +38,40 @@ public class GameController {
             Bridge bridge = Bridge.from(bridgeList);
 
             // INITIALIZING_GAME_VARIABLE
-            GameVariable gameVariable = GameVariable.byInitialValue();
-
-            // START_GAME
+            gameVariable = GameVariable.byInitialValue();
             bridgeGame = new BridgeGame(gameVariable);
 
-            Iterator<BridgeDirection> bridgeSignIterator = bridge.getBridgeIterator();
-            while (gameStatus.isContinueGame()) {
-                RoundStatus roundStatus = bridgeGame.move(bridgeSignIterator.next(),
-                        BridgeDirection.from(inputView.readMoving()));
-                updateGameStatus(roundStatus);
-                outputView.printMap(gameVariable.getMaps());
+            while (true) {
 
-                if (!bridgeSignIterator.hasNext()) {
-                    updateGameStatusToGameSuccess();
+                // START_GAME
+                for (int index = 0; index < bridge.getBridgeSize(); index++) {
+                    RoundStatus roundStatus = bridgeGame.move(bridge.getBridgeDirection(index),
+                            BridgeDirection.from(inputView.readMoving()));
+                    updateGameStatus(roundStatus);
+                    outputView.printMap(gameVariable.getMaps());
+
+                    if (!gameStatus.isContinueRounds()) {
+                        break;
+                    }
+
+                    if (bridge.isEndOfBridge(index) && gameStatus == GameStatus.ROUND_SUCCESS) {
+                        updateGameStatusToGameSuccess();
+                    }
+
                 }
 
                 if (gameStatus == GameStatus.ROUND_FAIL) {
                     handleGameCommand(GameCommand.from(inputView.readGameCommand()));
                 }
+
+                if (!gameStatus.isContinueGame()) {
+                    break;
+                }
+
             }
+
+            // PRINT_RESULT
+            outputView.printResult(gameVariable);
 
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
@@ -74,7 +88,7 @@ public class GameController {
 
     private void handleGameCommand(GameCommand gameCommand) {
         gameStatus = GameStatus.fromGameCommand(gameCommand);
-        if(gameStatus == GameStatus.RETRY_GAME) {
+        if (gameStatus == GameStatus.RETRY_GAME) {
             bridgeGame.retry();
         }
     }

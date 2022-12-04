@@ -32,6 +32,11 @@ public enum GameStatus {
     }
 
     public boolean isContinueGame() {
-        return (this != ROUND_FAIL && this != GAME_SUCCESS) || this == RETRY_GAME;
+        return this == RETRY_GAME;
     }
+
+    public boolean isContinueRounds() {
+        return this != GAME_SUCCESS && this != ROUND_FAIL;
+    }
+
 }

@@ -10,7 +10,6 @@ public class Bridge {
 
     private Bridge(List<String> bridge) {
         this.bridge = bridge;
-        System.out.println(bridge);
     }
 
     public static Bridge from(List<String> bridge) {
@@ -20,9 +19,20 @@ public class Bridge {
     public Iterator<BridgeDirection> getBridgeIterator() {
         return toBridgeSign(bridge).listIterator();
     }
+    public BridgeDirection getBridgeDirection(int index) {
+        return toBridgeSign(bridge).get(index);
+    }
 
     private List<BridgeDirection> toBridgeSign(List<String> bridge) {
         return bridge.stream().map(BridgeDirection::from).collect(Collectors.toList());
+    }
+
+    public int getBridgeSize() {
+        return bridge.size();
+    }
+
+    public boolean isEndOfBridge(int index) {
+        return index == bridge.size() -1;
     }
 
 }

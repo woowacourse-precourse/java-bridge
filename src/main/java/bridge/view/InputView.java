@@ -7,7 +7,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private enum ConsoleMessage {
-        INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요.");
+        INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
+        INPUT_MOVING_DIRECTION("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
+        INPUT_GAME_COMMAND("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
 
         private final String message;
 
@@ -30,6 +32,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(ConsoleMessage.INPUT_MOVING_DIRECTION.message);
         String movingDirection = Console.readLine();
         return movingDirection;
     }
@@ -38,6 +41,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        System.out.println(ConsoleMessage.INPUT_GAME_COMMAND.message);
         String gameCommand = Console.readLine();
         return gameCommand;
     }

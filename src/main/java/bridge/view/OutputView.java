@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.GameVariable;
 import bridge.model.map.Maps;
 
 /**
@@ -7,7 +8,10 @@ import bridge.model.map.Maps;
  */
 public class OutputView {
     private enum ConsoleMessage {
-        START_GAME("다리 건너기 게임을 시작합니다.");
+        START_GAME("다리 건너기 게임을 시작합니다."),
+        FINAL_RESULT("최종 게임 결과"),
+        PRINT_IS_SUCCESS("게임 성공 여부: %s"),
+        PRINT_NUMBER_OF_ATTEMPTS("총 시도한 횟수: %d");
 
         private final String message;
 
@@ -30,7 +34,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameVariable gameVariable) {
+        System.out.println(ConsoleMessage.FINAL_RESULT.message);
+        printMap(gameVariable.getMaps());
+        System.out.println(String.format(ConsoleMessage.PRINT_IS_SUCCESS.message, gameVariable.getGameSuccess()));
+        System.out.println(
+                String.format(ConsoleMessage.PRINT_NUMBER_OF_ATTEMPTS.message, gameVariable.getNumberOfAttempts()));
     }
 
     public void printExceptionMessage(Exception exception) {
