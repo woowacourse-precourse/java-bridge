@@ -48,7 +48,7 @@ public class GameController {
 
                 if (gameVariable.isGameFail()) {
                     // RETRY_GAME or QUIT_GAME
-                    handleGameCommand(GameCommand.from(inputView.readGameCommand()));
+                    handleGameCommand(inputView.readGameCommand());
                 }
 
                 if (gameVariable.isExitGame()) {
@@ -80,8 +80,7 @@ public class GameController {
     }
 
     private RoundStatus moveOneRound(Bridge bridge, int index) {
-        RoundStatus roundStatus = bridgeGame.move(bridge.getBridgeDirection(index),
-                BridgeDirection.from(inputView.readMoving()));
+        RoundStatus roundStatus = bridgeGame.move(bridge.getBridgeDirection(index), inputView.readMoving());
         updateRoundStatus(roundStatus);
         outputView.printMap(gameVariable.getMaps());
         return roundStatus;

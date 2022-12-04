@@ -52,13 +52,13 @@
 
 - [x] 총 시도 회수 1 추가 (게임 재정비)
 - [x] `Map` 초기화
-- [ ] START_GAME 실행
+- [x] START_GAME 실행
 
 #### 게임 종료 (Q 입력) `QUIT_GAME`
 
-- [ ] 최종 게임 결과 출력 `PRINT_RESULT`
+- [x] 최종 게임 결과 출력 `PRINT_RESULT`
 
 #### 게임에서 성공한 경우
 
-- [ ] 게임 성공 여부 => `true`
-- [ ] 최종 게임 결과 출력 `PRINT_RESULT`
+- [x] 게임 성공 여부 => `true`
+- [x] 최종 게임 결과 출력 `PRINT_RESULT`

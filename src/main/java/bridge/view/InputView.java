@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.model.bridge.Bridge;
+import bridge.model.bridge.BridgeDirection;
+import bridge.model.command.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -22,27 +25,39 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(ConsoleMessage.INPUT_BRIDGE_SIZE.message);
-        String input = Console.readLine();
-        // validation
-        return Integer.parseInt(input);
+        try {
+            System.out.println(ConsoleMessage.INPUT_BRIDGE_SIZE.message);
+            String input = Console.readLine();
+            // validation
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException exception) {
+            return readBridgeSize();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        System.out.println(ConsoleMessage.INPUT_MOVING_DIRECTION.message);
-        String movingDirection = Console.readLine();
-        return movingDirection;
+    public BridgeDirection readMoving() {
+        try {
+            System.out.println(ConsoleMessage.INPUT_MOVING_DIRECTION.message);
+            String movingDirection = Console.readLine();
+            return BridgeDirection.from(movingDirection);
+        } catch (IllegalArgumentException exception) {
+            return readMoving();
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        System.out.println(ConsoleMessage.INPUT_GAME_COMMAND.message);
-        String gameCommand = Console.readLine();
-        return gameCommand;
+    public GameCommand readGameCommand() {
+        try {
+            System.out.println(ConsoleMessage.INPUT_GAME_COMMAND.message);
+            String gameCommand = Console.readLine();
+            return GameCommand.from(gameCommand);
+        } catch (IllegalArgumentException exception) {
+            return readGameCommand();
+        }
     }
 }
