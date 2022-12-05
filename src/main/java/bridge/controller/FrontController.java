@@ -25,9 +25,11 @@ public class FrontController {
         }while (isRetry());
         finalResult();
     }
+
     private void finalResult( ){
         outputView.printResult(bridgeGame.returnMap(),bridgeGame.getCount());
     }
+
     private boolean isRetry(){
         if(bridgeGame.isComplete())return false;
         String command = inputView.readGameCommand();
@@ -35,6 +37,7 @@ public class FrontController {
         bridgeGame.retry();
         return true;
     }
+
     private void playingGame( ){
         while(bridgeGame.isContinue()) {
             String moving = inputView.readMoving();
@@ -44,10 +47,12 @@ public class FrontController {
             outputView.printMap(map);
         }
     }
+
     private void startGame(){
         outputView.startGame();
         this.bridgeGame = new BridgeGame(makeBridge());
     }
+
     private Bridge makeBridge(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int size = inputView.readBridgeSize();

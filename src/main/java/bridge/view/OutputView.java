@@ -1,15 +1,15 @@
 package bridge.view;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+
 public class OutputView {
     private final String START = "[";
     private final String DEL ="|";
     private final String END = "]";
+
     public void startGame(){
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
+
     public String printMap(String map) {
         StringBuffer builder = new StringBuffer();
         int len = map.length();
@@ -18,6 +18,7 @@ public class OutputView {
         System.out.println(builder);
         return builder.toString();
     }
+
     private String printMap(String map,int s,int e){
         StringBuffer builder = new StringBuffer();
         builder.append(START);
@@ -29,6 +30,7 @@ public class OutputView {
         builder.append(END);
         return builder.toString();
     }
+
     public void printResult(String map , Integer count) {
         StringBuffer builder = new StringBuffer();
         builder.append("최종 게임 결과\n");
@@ -39,6 +41,7 @@ public class OutputView {
         builder.append(count + "\n");
         System.out.println(builder);
     }
+
     private String isSuccess(String map){
         if(map.contains("X"))return "실패";
         return "성공";

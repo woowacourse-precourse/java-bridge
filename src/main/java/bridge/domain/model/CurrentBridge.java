@@ -73,7 +73,3 @@ public class CurrentBridge extends Bridge{
     }
 
 }
-/**
- * [ O | X ]
- * [   |   ]
- */
