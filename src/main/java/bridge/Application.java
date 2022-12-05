@@ -2,7 +2,7 @@ package bridge;
 
 import bridge.controller.FrontController;
 import bridge.view.OutputView;
-import bridge.view.ProxyInputView;
+import bridge.view.exception.ProxyInputView;
 import bridge.view.validation.InputValidation;
 
 public class Application {

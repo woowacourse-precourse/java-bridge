@@ -1,8 +1,10 @@
-package bridge.view;
+package bridge.view.exception;
 
+import bridge.view.Input;
+import bridge.view.InputView;
 import bridge.view.validation.InputValidation;
 
-public class ProxyInputView implements Input{
+public class ProxyInputView implements Input {
     private final Input input;
 
     public ProxyInputView(InputValidation inputValidation) {
