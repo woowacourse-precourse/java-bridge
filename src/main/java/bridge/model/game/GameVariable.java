@@ -23,7 +23,7 @@ public class GameVariable {
     private GameVariable(int numberOfAttempts, Maps maps) {
         this.numberOfAttempts = numberOfAttempts;
         this.maps = maps;
-        this.gameStatus = GameStatus.SETTING_GAME;
+        this.gameStatus = GameStatus.START_GAME;
     }
 
     public static GameVariable byInitialValue() {
