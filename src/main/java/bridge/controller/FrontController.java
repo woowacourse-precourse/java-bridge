@@ -2,13 +2,11 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.InputValidation;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeConst;
 import bridge.domain.BridgeGame;
 import bridge.view.Input;
 import bridge.view.OutputView;
-import bridge.view.ProxyInputView;
 
 public class FrontController {
     private final Input inputView;

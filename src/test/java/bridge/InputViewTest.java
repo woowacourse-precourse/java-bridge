@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.BridgeConst;
+import bridge.view.validation.InputValidation;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

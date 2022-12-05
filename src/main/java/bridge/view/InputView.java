@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.InputValidation;
+import bridge.view.validation.InputValidation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

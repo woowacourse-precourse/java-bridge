@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view.validation;
 
 import bridge.domain.BridgeConst;
 

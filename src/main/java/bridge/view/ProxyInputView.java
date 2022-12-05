@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.InputValidation;
+import bridge.view.validation.InputValidation;
 
 public class ProxyInputView implements Input{
     private final Input input;
