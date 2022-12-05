@@ -1,8 +1,8 @@
 package bridge;
 
-import bridge.domain.Bridge;
+import bridge.domain.model.Bridge;
 import bridge.domain.BridgeStatus;
-import bridge.domain.CurrentBridge;
+import bridge.domain.model.CurrentBridge;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

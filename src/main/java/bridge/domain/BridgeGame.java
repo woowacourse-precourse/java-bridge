@@ -1,8 +1,7 @@
 package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeStatus;
-import bridge.domain.CurrentBridge;
+import bridge.domain.model.Bridge;
+import bridge.domain.model.CurrentBridge;
 
 import java.util.ArrayList;
 

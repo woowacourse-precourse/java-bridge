@@ -1,4 +1,7 @@
-package bridge.domain;
+package bridge.domain.model;
+
+import bridge.domain.BridgeConst;
+import bridge.domain.BridgeStatus;
 
 import java.util.List;
 
