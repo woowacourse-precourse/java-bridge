@@ -27,7 +27,7 @@ public class OutputView {
             makeUpSide(movingChoices.get(index), moveResults.get(index));
             makeDownSide(movingChoices.get(index), moveResults.get(index));
         }
-        printWithDivision(upSide, downSide);
+        printWithDivision();
     }
 
     public void makeUpSide(String moving, boolean moveResult) {
@@ -64,7 +64,7 @@ public class OutputView {
         }
     }
 
-    public void printWithDivision(StringBuilder upSide, StringBuilder downSide) {
+    public void printWithDivision() {
         insertDivision(upSide);
         insertDivision(downSide);
         System.out.println(upSide);
