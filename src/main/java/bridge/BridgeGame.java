@@ -39,8 +39,7 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(size);
         return bridge;
     }
-
-
+    
     private void playGame(List<String> bridge) {
         int attempt = 0;
         List<String> player;
