@@ -1,42 +1,36 @@
 package bridge.domain;
 
-import bridge.domain.value.BridgeSize;
-import bridge.domain.value.MovingShape;
-
 public class BridgeMoving {
-    private static final String SUCCESS_MOVING = "O";
-    private static final String FAIL_MOVING = "X";
     private final Bridge bridge;
+    private final BridgeSize bridgeSize;
     private final BridgeIndex bridgeIndex;
 
-    public BridgeMoving(Bridge bridge, BridgeIndex bridgeIndex) {
+    public BridgeMoving(Bridge bridge, BridgeSize bridgeSize, BridgeIndex bridgeIndex) {
         this.bridge = bridge;
+        this.bridgeSize = bridgeSize;
         this.bridgeIndex = bridgeIndex;
     }
 
-    public String move(MovingShape movingShape) {
-        String movingResult = getMovingResult(movingShape);
+    public MovingResult move(Direction direction) {
+        MovingResult movingResult = getMovingResult(direction);
         bridgeIndex.increase();
         return movingResult;
     }
 
-    private String getMovingResult(MovingShape movingShape) {
-        if (isMove(movingShape)) {
-            return SUCCESS_MOVING;
-        }
-        return FAIL_MOVING;
+    private MovingResult getMovingResult(Direction direction) {
+        return MovingResult.of(isMove(direction));
     }
 
-    private boolean isMove (MovingShape movingShape) {
-        String shape = bridge.getShape(bridgeIndex);
-        return movingShape.isEqual(shape);
-    }
-
-    public boolean isFail (String shape) {
-        return shape.equals(FAIL_MOVING);
+    private boolean isMove (Direction direction) {
+        Direction validDirection = bridge.getDirection(bridgeIndex);
+        return validDirection == direction;
     }
 
     public boolean isComplete() {
-        return bridgeIndex.isGreaterThan(bridge.getSize());
+        return bridgeIndex.isGreaterThan(bridgeSize);
+    }
+
+    public void reset() {
+        bridgeIndex.reset();
     }
 }

@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeGameCount;
 import bridge.domain.BridgeGameResult;
-import bridge.domain.value.GameStatus;
+import bridge.domain.GameStatus;
 
 import java.util.List;
 
@@ -56,5 +56,9 @@ public class OutputView {
 
     public static void printNewLine() {
         System.out.println();
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }

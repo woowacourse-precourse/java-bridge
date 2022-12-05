@@ -1,8 +1,4 @@
-package bridge.domain.value;
-
-import bridge.domain.BridgeMoving;
-
-import java.util.List;
+package bridge.domain;
 
 public enum GameStatus {
     FAIL("실패"),
@@ -15,8 +11,8 @@ public enum GameStatus {
         this.status = status;
     }
 
-    public static GameStatus of(BridgeMoving bridgeMoving, String movingResult) {
-        if (bridgeMoving.isFail(movingResult)) {
+    public static GameStatus of(BridgeMoving bridgeMoving, MovingResult movingResult) {
+        if (movingResult.isFail()) {
             return FAIL;
         }
         if (bridgeMoving.isComplete()) {
@@ -26,11 +22,11 @@ public enum GameStatus {
     }
 
     public boolean isRunning() {
-        return this.equals(RUNNING);
+        return this == RUNNING;
     }
 
     public boolean isFail() {
-        return this.equals(FAIL);
+        return this == FAIL;
     }
 
     public String getStatus() {

@@ -1,30 +1,30 @@
 package bridge.view;
 
-import bridge.domain.value.BridgeSize;
-import bridge.domain.value.GameCommand;
-import bridge.domain.value.MovingShape;
-import bridge.view.input.BridgeSizeInput;
-import bridge.view.input.GameCommandInput;
-import bridge.view.input.MovingShapeInput;
-import bridge.view.input.RepeatInput;
+import bridge.domain.BridgeSize;
+import bridge.domain.Direction;
+import bridge.domain.GameCommand;
+import bridge.utils.IntegerConvertor;
+import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import static bridge.utils.ViewMessages.*;
+import static bridge.view.OutputView.printNewLine;
+
 public class InputView {
 
-    public BridgeSize readBridgeSize() {
-        RepeatInput<BridgeSize> repeatInput = new RepeatInput<>();
-        return repeatInput.read(new BridgeSizeInput());
+    public int readBridgeSize() {
+        System.out.println(BRIDGE_SIZE);
+        String bridgeSize = Console.readLine();
+        printNewLine();
+        return IntegerConvertor.toInteger(bridgeSize);
     }
 
-    public MovingShape readMovingShape() {
-        RepeatInput<MovingShape> repeatInput = new RepeatInput<>();
-        return repeatInput.read(new MovingShapeInput());
+    public String readMovingDirection() {
+        System.out.println(MOVING);
+        return Console.readLine();
     }
 
-    public GameCommand readGameCommand() {
-        RepeatInput<GameCommand> repeatInput = new RepeatInput<>();
-        return repeatInput.read(new GameCommandInput());
+    public String readGameCommand() {
+        System.out.println(GAME_COMMAND);
+        return Console.readLine();
     }
 }

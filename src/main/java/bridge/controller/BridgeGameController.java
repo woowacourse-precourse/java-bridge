@@ -1,11 +1,13 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.value.BridgeSize;
-import bridge.domain.value.GameCommand;
-import bridge.domain.value.MovingShape;
+import bridge.domain.BridgeSize;
+import bridge.domain.Direction;
+import bridge.domain.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.function.Supplier;
 
 public class BridgeGameController {
     private final InputView inputView;
@@ -18,8 +20,9 @@ public class BridgeGameController {
 
     public void GameRun() {
         outputView.printGameStart();
-        BridgeGame bridgeGame = play(inputView.readBridgeSize());
-        outputView.printResult(bridgeGame.getBridgeGameResult(), bridgeGame.getGameStatus(), bridgeGame.getBridgeGameCount());
+        int bridgeSize = read(inputView::readBridgeSize);
+        BridgeGame bridgeGame = play(new BridgeSize(bridgeSize));
+        outputView.printResult(bridgeGame.getGameResultDto());
     }
 
     private BridgeGame play(BridgeSize bridgeSize) {
@@ -32,21 +35,30 @@ public class BridgeGameController {
     }
 
     private void move(BridgeGame bridgeGame) {
-        MovingShape movingShape = inputView.readMovingShape();
-        bridgeGame.move(movingShape);
-        outputView.printMap(bridgeGame.getBridgeGameResult());
+        String direction = read(inputView::readMovingDirection);
+        bridgeGame.move(Direction.of(direction));
+        outputView.printMap(bridgeGame.getMovingResultsDto());
     }
 
     private void retryOrQuit(BridgeGame bridgeGame) {
         if (bridgeGame.isRetryOrQuit()) {
-            GameCommand gameCommand = inputView.readGameCommand();
-            isRetry(bridgeGame, gameCommand);
+            String gameCommand = read(inputView::readGameCommand);
+            isRetry(bridgeGame, GameCommand.of(gameCommand));
         }
     }
 
     private void isRetry(BridgeGame bridgeGame, GameCommand gameCommand) {
         if (gameCommand.isRetry()) {
             bridgeGame.retry();
+        }
+    }
+
+    private <T> T read(Supplier<T> input) {
+        try {
+            return input.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return read(input);
         }
     }
 }

@@ -3,17 +3,13 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
-    private final List<String> bridge;
+    private final List<Direction> bridge;
 
-    public Bridge(List<String> bridge) {
+    public Bridge(List<Direction> bridge) {
         this.bridge = bridge;
     }
 
-    public String getShape(BridgeIndex bridgeIndex) {
+    public Direction getDirection(BridgeIndex bridgeIndex) {
         return bridge.get(bridgeIndex.getIndex());
-    }
-
-    public int getSize() {
-        return bridge.size();
     }
 }

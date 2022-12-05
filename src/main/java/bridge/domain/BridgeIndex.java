@@ -15,8 +15,8 @@ public class BridgeIndex {
         index = 0;
     }
 
-    public boolean isGreaterThan(int bridgeSize) {
-        return index >= bridgeSize;
+    public boolean isGreaterThan(BridgeSize bridgeSize) {
+        return index >= bridgeSize.getSize();
     }
 
     public int getIndex() {

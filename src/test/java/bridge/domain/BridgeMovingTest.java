@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.value.MovingShape;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
