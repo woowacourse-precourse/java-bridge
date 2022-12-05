@@ -1,13 +1,13 @@
 package bridge;
 
-import controller.Controller;
+import controller.BridgeGameController;
 import view.InputView;
 import view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        Controller controller = new Controller(new OutputView(), new InputView());
-        controller.startGame(new BridgeGame());
+        BridgeGameController bridgeGameController = new BridgeGameController(new OutputView(), new InputView());
+        bridgeGameController.startGame(new BridgeGame());
     }
 }

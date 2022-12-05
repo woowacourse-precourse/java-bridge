@@ -9,7 +9,7 @@ import view.OutputView;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class ControllerTest extends NsTest {
+class BridgeGameControllerTest extends NsTest {
 
     @Test
     void 컨트롤러_게임_진행_테스트() {
@@ -49,7 +49,7 @@ class ControllerTest extends NsTest {
 
     @Override
     protected void runMain() {
-        Controller controller = new Controller(new OutputView(), new InputView());
-        controller.startGame(new BridgeGame());
+        BridgeGameController bridgeGameController = new BridgeGameController(new OutputView(), new InputView());
+        bridgeGameController.startGame(new BridgeGame());
     }
 }

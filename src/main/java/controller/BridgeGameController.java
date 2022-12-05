@@ -5,11 +5,11 @@ import enumCollections.GameStatus;
 import view.InputView;
 import view.OutputView;
 
-public class Controller {
+public class BridgeGameController {
     private final OutputView outputView;
     private final InputView inputView;
 
-    public Controller(final OutputView outputView, final InputView inputView) {
+    public BridgeGameController(final OutputView outputView, final InputView inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
     }
