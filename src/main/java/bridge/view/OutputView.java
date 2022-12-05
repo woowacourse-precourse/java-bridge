@@ -20,7 +20,6 @@ public class OutputView {
      */
     public void printMap(Player player) {
         printInfo(makePrintMapMsg(player));
-        printInfo(OutputPharses.EMPTY_LINE.getMsg());
     }
 
     /**
@@ -45,19 +44,15 @@ public class OutputView {
     }
 
     /**
-     * 게임 시작시 출력하는 메세지
-     */
-    public void printGameStartInfo() {
-        printInfo(OutputPharses.START_MSG.getMsg());
-        printInfo(OutputPharses.EMPTY_LINE.getMsg());
-    }
-
-    /**
      * 기본 메세지 출력용 함수
      * @param msg
      */
     public void printInfo(String msg) {
         System.out.println(msg);
+    }
+
+    public void printEmptyLn(){
+        printInfo(OutputPharses.EMPTY_LINE.getMsg());
     }
 
     /**
@@ -76,52 +71,17 @@ public class OutputView {
      * @return
      */
     public String makePrintMapMsg(Player player) {
-        StringJoiner upLine = getLineJoiner();
-        StringJoiner downLine = getLineJoiner();
+        String upLine = getMapString(player.getUpMoveMap());
+        String downLine = getMapString(player.getDownMoveMap());
 
-        for(List<String> playerMove : player.getPlayerMoveMap()) {
-            List<String> msgList = setEachMsg(playerMove, upLine, downLine);
-            upLine.add(msgList.get(MoveMapIndex.UP_INDEX.getMoveMapIndex()));
-            downLine.add(msgList.get(MoveMapIndex.DOWN_INDEX.getMoveMapIndex()));
+        return getMapPrintJoiner().add (upLine).add(downLine).toString();
+    }
+
+    public String getMapString(List<String> moveMap) {
+        StringJoiner line = getLineJoiner();
+        for (String move : moveMap) {
+            line.add(move);
         }
-        return getMapPrintJoiner().add(upLine.toString()).add(downLine.toString()).toString();
+        return line.toString();
     }
-
-    /**
-     * 각 사용자의 이동 ["U"|"D", "O"|"X"] 에서 U인지 D인지 확인하는 함수
-     * @param playerMove
-     * @return
-     */
-    public boolean isUpLine(List<String> playerMove) {
-        int shapeIndex = MoveMapIndex.BRIDGE_SHAPE_INDEX.getMoveMapIndex();
-        if (BridgeShapeInfo.UP.getBridgeShape().equals(playerMove.get(shapeIndex))) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 각 출력 라인에 넣을 값 설정하는 함수
-     * @param playerMove
-     * @param upLine
-     * @param downLine
-     * @return [UP_LINE 문자열, DOWN_LINE 문자열]
-     */
-    public List<String> setEachMsg(List<String> playerMove, StringJoiner upLine, StringJoiner downLine) {
-        String bridgeShape = getCorrectShape(playerMove);
-        return getEachMsg(isUpLine(playerMove), bridgeShape);
-    }
-
-    public String getCorrectShape(List<String> playerMove) {
-        return playerMove.get(MoveMapIndex.CORRECT_INDEX.getMoveMapIndex());
-    }
-
-    public List<String> getEachMsg(boolean isUp, String bridgeShape) {
-        if (isUp) {
-            return List.of(bridgeShape, BridgeGameStatus.SPACEBAR.getGameStatus());
-        }
-
-        return List.of(BridgeGameStatus.SPACEBAR.getGameStatus(), bridgeShape);
-    }
-
 }

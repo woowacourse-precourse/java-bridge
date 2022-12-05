@@ -18,4 +18,8 @@ public class Bridge {
     public int getBridgeSize() {
         return bridgeSize;
     }
+
+    public String getBridgeMove(int bridgeIndex) {
+        return bridge.get(bridgeIndex);
+    }
 }

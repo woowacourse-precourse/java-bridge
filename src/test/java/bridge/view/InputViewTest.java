@@ -16,7 +16,7 @@ public class InputViewTest {
 
     @BeforeAll
     static void setInputViewTest() {
-        inputView = new InputView(new OutputView());
+        inputView = new InputView();
     }
 
     @DisplayName("아무것도 입력 안했을때 확인")

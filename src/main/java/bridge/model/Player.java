@@ -1,40 +1,62 @@
 package bridge.model;
 
+import bridge.util.BridgeGameStatus;
+import bridge.util.BridgeShapeInfo;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Player {
-    private String currentMove;
     private int currentLocation;
-    private List<List<String>> playerMoveMap;
+    private List<String> upMoveMap;
+    private List<String> downMoveMap;
 
     public Player() {
-        playerMoveMap = new ArrayList<>();
-    }
-    public String getCurrentMove() {
-        return currentMove;
+        upMoveMap = new ArrayList<>();
+        downMoveMap = new ArrayList<>();
     }
 
-    public void setCurrentMove(String currentMove) {
-        this.currentMove = currentMove;
+    public static Player of() {
+        return new Player();
     }
+
+    public void move(String userMove, String status) {
+        if (userMove.equals(BridgeShapeInfo.UP.getBridgeShape())) {
+            addUpMove(status);
+            return;
+        }
+
+        addDownMove(status);
+    }
+    public void addUpMove(String status) {
+        addMoveMap(status, BridgeGameStatus.SPACEBAR.getGameStatus());
+    }
+
+    public void addDownMove(String status) {
+        addMoveMap(BridgeGameStatus.SPACEBAR.getGameStatus(), status);
+    }
+
+    public void addMoveMap(String upMove, String downMove) {
+        upMoveMap.add(upMove);
+        downMoveMap.add(downMove);
+        addCurrentLocation();
+    }
+
+
 
     public int getCurrentLocation() {
         return currentLocation;
     }
 
-    public List<List<String>> getPlayerMoveMap() {
-        return playerMoveMap;
-    }
-
-    public void addPlayerMove(String move) {
-        playerMoveMap.add(List.of(currentMove, move));
-        addCurrentLocation();
-    }
-
     public void addCurrentLocation() {
         currentLocation++;
+    }
+
+    public List<String> getUpMoveMap() {
+        return upMoveMap;
+    }
+
+    public List<String> getDownMoveMap() {
+        return downMoveMap;
     }
 }
