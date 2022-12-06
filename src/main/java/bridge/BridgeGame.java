@@ -1,23 +1,78 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-public class BridgeGame {
+import enumCollections.AvailableInput;
+import enumCollections.GameStatus;
+import enumCollections.Side;
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+import java.util.ArrayList;
+import java.util.List;
+
+public class BridgeGame {
+    private final int INITIALIZED_TRIAL = 1;
+    private final Player player = new Player(new ArrayList<>());
+    private final Map map = new Map();
+    private Bridge bridge;
+    private int trial;
+
+    public BridgeGame() {
+        this.trial = INITIALIZED_TRIAL;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public void generateBridge(final int bridgeSize) {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    public void move(final String sideToMove) {
+        this.player.move(sideToMove);
+        updateMap();
+    }
+
+    public boolean isPlayerInMovableSide() {
+        return this.bridge.isMovableSide(
+                this.player.getLastMoving(),
+                this.player.getCurrentPosition()
+        );
+    }
+
+    public boolean retry(final String gameCommand) {
+        if (gameCommand.equals(AvailableInput.RETRY_COMMAND.getUserInput())) {
+            initialize_game();
+            addTrial();
+            return true;
+        }
+        return false;
+    }
+
+    public GameStatus isGameFinished() {
+        if (this.bridge.isLastPosition(this.player.getCurrentPosition())) {
+            return GameStatus.SUCCESS;
+        }
+        return GameStatus.CONTINUE;
+    }
+
+    public String getTrial() {
+        return Integer.toString(this.trial);
+    }
+
+    public List<List<String>> getMap() {
+        return this.map.get();
+    }
+
+    private void initialize_game() {
+        this.player.initializePosition();
+        this.map.initialize();
+    }
+
+    private void updateMap() {
+        this.map.add(
+                Side.get(player.getLastMoving()),
+                isPlayerInMovableSide()
+        );
+    }
+
+    private void addTrial() {
+        this.trial++;
     }
 }
