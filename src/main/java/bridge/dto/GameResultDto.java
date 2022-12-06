@@ -5,8 +5,8 @@ import bridge.domain.GameStatus;
 
 public class GameResultDto {
     private final MovingResultsDto movingResultsDto;
-    private final GameStatus gameStatus;
-    private final BridgeGameCount bridgeGameCount;
+    private final String gameStatus;
+    private final int bridgeGameCount;
 
     public GameResultDto(
             MovingResultsDto movingResultsDto,
@@ -14,11 +14,11 @@ public class GameResultDto {
             BridgeGameCount bridgeGameCount
     ) {
         this.movingResultsDto = movingResultsDto;
-        this.gameStatus = gameStatus;
-        this.bridgeGameCount = bridgeGameCount;
+        this.gameStatus = gameStatus.getStatus();
+        this.bridgeGameCount = bridgeGameCount.getCount();
     }
 
-    public GameStatus getGameStatus() {
+    public String getGameStatus() {
         return gameStatus;
     }
 
@@ -26,9 +26,7 @@ public class GameResultDto {
         return movingResultsDto;
     }
 
-    public BridgeGameCount getBridgeGameCount() {
+    public int getBridgeGameCount() {
         return bridgeGameCount;
     }
-
-
 }

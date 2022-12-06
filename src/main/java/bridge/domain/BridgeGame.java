@@ -69,7 +69,7 @@ public class BridgeGame {
 
     public MovingResultsDto getMovingResultsDto() {
         MovingResults upBridge = bridgeGameResult.getMovingResultByDirection(Direction.UP);
-        MovingResults downBridge = bridgeGameResult.getMovingResultByDirection(Direction.DOWN)
+        MovingResults downBridge = bridgeGameResult.getMovingResultByDirection(Direction.DOWN);
         return new MovingResultsDto(upBridge, downBridge);
     }
 

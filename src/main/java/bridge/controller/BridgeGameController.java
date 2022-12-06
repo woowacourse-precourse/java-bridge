@@ -7,6 +7,7 @@ import bridge.domain.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class BridgeGameController {
@@ -20,8 +21,8 @@ public class BridgeGameController {
 
     public void GameRun() {
         outputView.printGameStart();
-        int bridgeSize = read(inputView::readBridgeSize);
-        BridgeGame bridgeGame = play(new BridgeSize(bridgeSize));
+        BridgeSize bridgeSize = read(BridgeSize::new, inputView::readBridgeSize);
+        BridgeGame bridgeGame = play(bridgeSize);
         outputView.printResult(bridgeGame.getGameResultDto());
     }
 
@@ -35,15 +36,15 @@ public class BridgeGameController {
     }
 
     private void move(BridgeGame bridgeGame) {
-        String direction = read(inputView::readMovingDirection);
-        bridgeGame.move(Direction.of(direction));
+        Direction direction = read(Direction::of, inputView::readMovingDirection);
+        bridgeGame.move(direction);
         outputView.printMap(bridgeGame.getMovingResultsDto());
     }
 
     private void retryOrQuit(BridgeGame bridgeGame) {
         if (bridgeGame.isRetryOrQuit()) {
-            String gameCommand = read(inputView::readGameCommand);
-            isRetry(bridgeGame, GameCommand.of(gameCommand));
+            GameCommand gameCommand = read(GameCommand::of, inputView::readGameCommand);
+            isRetry(bridgeGame, gameCommand);
         }
     }
 
@@ -53,12 +54,13 @@ public class BridgeGameController {
         }
     }
 
-    private <T> T read(Supplier<T> input) {
-        try {
-            return input.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return read(input);
+    private <T, R> R read(Function<T, R> object, Supplier<T> input) {
+        while(true) {
+            try {
+                return object.apply(input.get());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 }

@@ -25,14 +25,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(MovingResultsDto movingResultsDto) {
-        for (MovingResults movingResults: movingResultsDto.get()) {
+        for (List<MovingResult> movingResults : movingResultsDto.getResult()) {
             System.out.println(getBridgeMap(movingResults));
         }
         printNewLine();
     }
 
-    private String getBridgeMap(MovingResults movingResults) {
-        return movingResults.get().stream()
+    private String getBridgeMap(List<MovingResult> movingResults) {
+        return movingResults.stream()
             .map(MovingResult::getResult)
             .collect(Collectors.joining(BRIDGE_SPACE_DIVISION, BRIDGE_START, BRIDGE_END));
     }
