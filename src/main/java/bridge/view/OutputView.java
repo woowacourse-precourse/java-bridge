@@ -1,10 +1,11 @@
 package bridge.view;
 
-import bridge.domain.BridgeGameCount;
-import bridge.domain.BridgeGameResult;
-import bridge.domain.GameStatus;
+import bridge.domain.*;
+import bridge.dto.GameResultDto;
+import bridge.dto.MovingResultsDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static bridge.utils.MessageFormat.*;
 import static bridge.utils.ViewMessages.*;
@@ -13,9 +14,6 @@ import static bridge.utils.ViewMessages.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String BRIDGE_UP_SIDE_SHAPE = "U";
-    private static final String BRIDGE_DOWN_SIDE_SHAPE = "D";
-
     public void printGameStart() {
         System.out.println(GAME_START);
         printNewLine();
@@ -26,16 +24,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGameResult bridgeGameResult) {
-        System.out.println(printBridgeByShape(bridgeGameResult, BRIDGE_UP_SIDE_SHAPE));
-        System.out.println(printBridgeByShape(bridgeGameResult, BRIDGE_DOWN_SIDE_SHAPE));
+    public void printMap(MovingResultsDto movingResultsDto) {
+        for (MovingResults movingResults: movingResultsDto.get()) {
+            System.out.println(getBridgeMap(movingResults));
+        }
         printNewLine();
     }
 
-    private String printBridgeByShape(BridgeGameResult bridgeGameResult, String shape) {
-        List<String> bridge = bridgeGameResult.getBridgeByShape(shape);
-        String bridgeElements = String.join(BRIDGE_SPACE_DIVISION, bridge);
-        return BRIDGE_START +  bridgeElements + BRIDGE_END;
+    private String getBridgeMap(MovingResults movingResults) {
+        return movingResults.get().stream()
+            .map(MovingResult::getResult)
+            .collect(Collectors.joining(BRIDGE_SPACE_DIVISION, BRIDGE_START, BRIDGE_END));
     }
 
     /**
@@ -43,15 +42,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(
-            BridgeGameResult bridgeGameResult,
-            GameStatus gameStatus,
-            BridgeGameCount bridgeGameCount
-    ) {
+    // TODO: GameStatus, GameCount enum의 값 뽑아서 출력해야됨
+    public void printResult(GameResultDto gameResultDto) {
         System.out.println(GAME_RESULT);
-        printMap(bridgeGameResult);
-        System.out.println(GAME_SUCCESS_OR_FAIL + gameStatus.getStatus());
-        System.out.println(GAME_COUNT + bridgeGameCount.getCount());
+        printMap(gameResultDto.getMovingResultsDto());
+        System.out.println(GAME_SUCCESS_OR_FAIL + gameResultDto.getGameStatus());
+        System.out.println(GAME_COUNT + gameResultDto.getBridgeGameCount());
     }
 
     public static void printNewLine() {

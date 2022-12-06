@@ -17,4 +17,8 @@ public class MovingResults {
     public void add(MovingResult movingResult) {
         movingResults.add(movingResult);
     }
+
+    public List<MovingResult> get() {
+        return movingResults;
+    }
 }

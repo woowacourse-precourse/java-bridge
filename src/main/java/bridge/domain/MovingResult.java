@@ -32,4 +32,8 @@ public enum MovingResult {
     public boolean isFail() {
         return this == FAIL;
     }
+
+    public String getResult() {
+        return this.result;
+    }
 }

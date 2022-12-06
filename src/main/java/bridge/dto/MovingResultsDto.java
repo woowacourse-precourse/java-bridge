@@ -4,7 +4,6 @@ package bridge.dto;
 import bridge.domain.MovingResults;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class MovingResultsDto {
     private final MovingResults upBridge;
@@ -15,7 +14,7 @@ public class MovingResultsDto {
         this.downBridge = downBridge;
     }
 
-    public List<MovingResults> getMovingResults() {
+    public List<MovingResults> get() {
         return List.of(upBridge, downBridge);
     }
 }
