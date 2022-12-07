@@ -55,7 +55,7 @@ public class GameController {
         do {
             playEachRound();
             if (isFail()) break;
-        } while (isFinalRound());
+        } while (isRoundLeft());
     }
 
     private void playEachRound() {
@@ -80,7 +80,7 @@ public class GameController {
         }
     }
 
-    private boolean isFinalRound() {
+    private boolean isRoundLeft() {
         return bridgeGame.isRoundLeft();
     }
 
