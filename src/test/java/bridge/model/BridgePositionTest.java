@@ -12,17 +12,18 @@ import static bridge.constant.Score.FAIL;
 import static bridge.constant.Score.PASS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BridgeTest {
+class BridgePositionTest {
 
-    Bridge bridgeFirst;
-    Bridge bridgeSecond;
-    Bridge bridgeFinal;
+    BridgePosition bridgeFirst;
+    BridgePosition bridgeSecond;
+    BridgePosition bridgeFinal;
 
     @BeforeEach
     void setUp() {
-        bridgeFirst = new Bridge(List.of("U", "D", "U"));
-        bridgeSecond = new Bridge(List.of("U", "D", "U"));
-        bridgeFinal = new Bridge(List.of("U", "D", "U"));
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        bridgeFirst = new BridgePosition(bridge);
+        bridgeSecond = new BridgePosition(bridge);
+        bridgeFinal = new BridgePosition(bridge);
 
         bridgeFirst.addCurrentRoundNumber();
         bridgeSecond.addCurrentRoundNumber();
@@ -56,15 +57,5 @@ class BridgeTest {
 
         assertThat(isRecordFirstFail).isTrue();
         assertThat(isRecordSecondFail).isFalse();
-    }
-
-    @DisplayName("다리의 마지막 라운드가 통과했는지 확인한다.")
-    @Test
-    void isFinalRoundPassTest() {
-        Boolean finalPass = bridgeFinal.isFinalRoundPass("U");
-        Boolean finalNotPass = bridgeFinal.isFinalRoundPass("D");
-
-        assertThat(finalPass).isTrue();
-        assertThat(finalNotPass).isFalse();
     }
 }
