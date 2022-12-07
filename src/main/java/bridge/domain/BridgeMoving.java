@@ -22,8 +22,7 @@ public class BridgeMoving {
     }
 
     private boolean isMove (Direction direction) {
-        Direction validDirection = bridge.getDirection(bridgeIndex);
-        return validDirection == direction;
+        return bridge.isMove(bridgeIndex, direction);
     }
 
     public boolean isComplete() {

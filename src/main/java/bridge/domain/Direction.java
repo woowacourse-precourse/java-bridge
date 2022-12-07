@@ -6,8 +6,8 @@ import static bridge.utils.ErrorMessages.ERROR_INVALID_BRIDGE_NUMBER;
 import static bridge.utils.ErrorMessages.ERROR_INVALID_MOVING;
 
 public enum Direction {
-    UP("U", 0),
-    DOWN("D", 1);
+    UP("U", 1),
+    DOWN("D", 0);
 
     private final String shape;
     private final int shapeNumber;
@@ -29,5 +29,9 @@ public enum Direction {
                 .filter(shape -> shape.shapeNumber == shapeNumber)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_BRIDGE_NUMBER));
+    }
+
+    public String getValue() {
+        return this.shape;
     }
 }

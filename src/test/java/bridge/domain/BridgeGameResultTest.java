@@ -8,7 +8,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,8 +18,6 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.junit.jupiter.api.Assumptions.*;
 
 public class BridgeGameResultTest {
-    private static final String UP_SIDE_SHAPE = "U";
-    private static final String DOWN_SIDE_SHAPE = "D";
     private GameResult gameResult;
 
     @BeforeEach
@@ -29,31 +29,41 @@ public class BridgeGameResultTest {
     @DisplayName("다리 칸 이동 결과를 저장한다.")
     @ParameterizedTest
     @CsvSource({"D,O", "U,O", "D,X", "U,X"})
-    void putMovingResult(String shape, String movingResult) {
-        gameResult.putMovingResult(shape, movingResult);
-        assumingThat(shape.equals(UP_SIDE_SHAPE), () -> {
-            assertThat(gameResult.getBridgeByShape(shape))
-                    .containsExactly("O", "O", " ", " ", " ", movingResult);
+    void putMovingResult(String shape, String upResult) {
+        Direction direction = Direction.of(shape);
+        MovingResult movingResult = MovingResultTest.of(upResult);
+
+        gameResult.putMovingResult(direction, movingResult);
+        assumingThat(direction == Direction.UP, () -> {
+            assertThat(getResult(direction))
+                    .containsExactly("O", "O", " ", movingResult.getResult());
         });
-        assumingThat(shape.equals(DOWN_SIDE_SHAPE), () -> {
-            assertThat(gameResult.getBridgeByShape(shape))
-                    .containsExactly(" ", " ", "O", "O", "O",  movingResult);
+        assumingThat(direction == Direction.DOWN, () -> {
+            assertThat(getResult(direction))
+                    .containsExactly(" ", " ", "O",  movingResult.getResult());
         });
+    }
+
+    private List<String> getResult(Direction direction) {
+        return gameResult.getMovingResultByDirection(direction).getResults()
+            .stream()
+            .map(MovingResult::getResult)
+            .collect(Collectors.toList());
     }
 
     @DisplayName("다리 건너기 결과를 반환한다.")
     @ParameterizedTest
     @MethodSource("generateResultByShape")
     void getBridgeResultByShape(String shape, List<String> expected) {
-        assertThat(gameResult.getBridgeByShape(shape))
+        assertThat(getResult(Direction.of(shape)))
                 .usingRecursiveComparison()
                 .isEqualTo(expected);
     }
 
     static Stream<Arguments> generateResultByShape() {
         return Stream.of(
-                arguments("U", List.of("O", "O", " ", " ", " ")),
-                arguments("D", List.of(" ", " ", "O", "O", "O"))
+                arguments("U", List.of("O", "O", " ")),
+                arguments("D", List.of(" ", " ", "O"))
         );
     }
 
@@ -61,14 +71,25 @@ public class BridgeGameResultTest {
     @Test
     void clearBridgeResult() {
         gameResult.clearResult();
-        assertThat(gameResult.getBridgeByShape(UP_SIDE_SHAPE)).isEmpty();
-        assertThat(gameResult.getBridgeByShape(DOWN_SIDE_SHAPE)).isEmpty();
+        assertThat(gameResult.getMovingResultByDirection(Direction.UP).getResults()).isEmpty();
+        assertThat(gameResult.getMovingResultByDirection(Direction.DOWN).getResults()).isEmpty();
     }
 
     static class GameResult extends BridgeGameResult {
         public void putMovingResult() {
-            super.getBridgeByShape(UP_SIDE_SHAPE).addAll(List.of("O", "O", " ", " ", " "));
-            super.getBridgeByShape(DOWN_SIDE_SHAPE).addAll(List.of(" ", " ", "O", "O", "O"));
+            super.getMovingResultByDirection(Direction.UP).getResults()
+                .addAll(List.of(MovingResult.SUCCESS, MovingResult.SUCCESS, MovingResult.NOTTING));
+            super.getMovingResultByDirection(Direction.DOWN).getResults()
+                .addAll(List.of(MovingResult.NOTTING, MovingResult.NOTTING, MovingResult.SUCCESS));
+        }
+    }
+
+    static class MovingResultTest {
+        public static MovingResult of(String result) {
+            return Arrays.stream(MovingResult.values())
+                .filter(movingResult -> movingResult.getResult().equals(result))
+                .findFirst()
+                .get();
         }
     }
 }

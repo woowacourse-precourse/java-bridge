@@ -32,7 +32,7 @@ public class BridgeGame {
 
     private Bridge makeBridge(BridgeSize bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<Direction> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
         return new Bridge(bridge);
     }
 
