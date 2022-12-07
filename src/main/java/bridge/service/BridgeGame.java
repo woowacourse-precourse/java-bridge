@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private Bridge bridge;
     private BridgePosition bridgePosition;
     private final Move move;
     private final Result result;
@@ -24,7 +23,7 @@ public class BridgeGame {
     }
 
     public void createBridge(List<String> bridgeInput) {
-        bridge = new Bridge(bridgeInput);
+        Bridge bridge = new Bridge(bridgeInput);
         bridgePosition = new BridgePosition(bridge);
     }
 
