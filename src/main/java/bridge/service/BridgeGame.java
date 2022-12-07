@@ -35,19 +35,13 @@ public class BridgeGame {
      */
     public void move(String moveDirection) {
         move.setMoveDirection(moveDirection);
-    }
-
-    public void judgeMove(String moveDirection) {
         bridgePosition.addCurrentRoundNumber();
-        Score score = bridgePosition.judgeMove(moveDirection);
-
-        move.setScore(score);
-        result.updateBridgeRecord(score, moveDirection);
     }
 
     public List<List<String>> judgeResultByMove(String moveDirection) {
-        move(moveDirection);
-        judgeMove(moveDirection);
+        Score score = move.judge(bridgePosition);
+
+        result.updateBridgeRecord(score, moveDirection);
         return result.getBridgeRecord();
     }
 

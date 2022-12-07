@@ -2,6 +2,9 @@ package bridge.model;
 
 import bridge.constant.Score;
 
+import static bridge.constant.Score.FAIL;
+import static bridge.constant.Score.PASS;
+
 public class Move {
 
     private String moveDirection;
@@ -15,8 +18,13 @@ public class Move {
         return moveDirection;
     }
 
-    public void setScore(Score score) {
-        this.score = score;
+    public Score judge(BridgePosition bridgePosition) {
+        if (bridgePosition.isFail(moveDirection)) {
+            this.score = FAIL;
+            return score;
+        }
+        this.score = PASS;
+        return score;
     }
 
     public String getScoreMessage() {

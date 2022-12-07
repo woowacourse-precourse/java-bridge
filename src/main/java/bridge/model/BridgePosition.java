@@ -1,10 +1,5 @@
 package bridge.model;
 
-import bridge.constant.Score;
-
-import static bridge.constant.Score.FAIL;
-import static bridge.constant.Score.PASS;
-
 public class BridgePosition {
 
     private final Bridge bridge;
@@ -13,13 +8,6 @@ public class BridgePosition {
     public BridgePosition (Bridge bridge) {
         this.bridge = bridge;
         currentRoundNumber = 0;
-    }
-
-    public Score judgeMove(String moveDirection) {
-        if (isFail(moveDirection)) {
-            return FAIL;
-        }
-        return PASS;
     }
 
     public Boolean isFail(String moveDirection) {
