@@ -29,4 +29,8 @@ public enum GameOption {
         return Stream.of(values())
                 .anyMatch(value -> gameOption.equals(value.message));
     }
+
+    public static Boolean isGameRestart(String userChoice) {
+        return userChoice.equals(RESTART.message);
+    }
 }

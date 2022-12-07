@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.GameOption;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -73,7 +74,7 @@ public class GameController {
 
     private void isRestartOrQuit() {
         String gameCommand = inputView.readGameCommand();
-        if (bridgeGame.isGameRestart(gameCommand)) {
+        if (GameOption.isGameRestart(gameCommand)) {
             bridgeGame.retry();
             startBridgeGame();
         }

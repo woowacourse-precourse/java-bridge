@@ -39,11 +39,6 @@ public class Bridge {
         return isFinalRound && isPass;
     }
 
-    public Boolean isGameRestart(String input) {
-        GameOption gameOption = GameOption.getGameOptionByMessage(input);
-        return gameOption == GameOption.RESTART;
-    }
-
     public void addCurrentRoundNumber() {
         currentRoundNumber +=1 ;
     }

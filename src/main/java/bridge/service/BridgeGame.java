@@ -73,10 +73,6 @@ public class BridgeGame {
         return bridge.isRoundLeft(currentRoundNumber);
     }
 
-    public Boolean isGameRestart(String userChoice) {
-        return bridge.isGameRestart(userChoice);
-    }
-
     public List<List<String>> getBridgeRecord() {
         return result.getBridgeRecord();
     }
