@@ -20,7 +20,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public RoundStatus move(BridgeDirection bridgeDirection, BridgeDirection playerDirection) {
-        boolean isRoundSuccess = BridgeDirection.isSame(bridgeDirection, playerDirection);
+        boolean isRoundSuccess = bridgeDirection.isSame(playerDirection);
         RoundStatus roundStatus = RoundStatus.from(isRoundSuccess);
         gameVariable.updateMaps(playerDirection, roundStatus);
         return roundStatus;

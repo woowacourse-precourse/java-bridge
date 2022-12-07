@@ -19,20 +19,23 @@ public enum BridgeDirection {
         return Arrays.stream(BridgeDirection.values())
                 .filter(element -> element.number == number)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NO_BRIDGE_DIRECTION_NUMBER.getMessage()));
+                .orElseThrow(
+                        () -> new IllegalArgumentException(ExceptionMessage.NO_BRIDGE_DIRECTION_NUMBER.getMessage()));
     }
 
     public static BridgeDirection from(String sign) {
         return Arrays.stream(BridgeDirection.values())
                 .filter(element -> element.sign.equals(sign))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NO_BRIDGE_DIRECTION_SIGN.getMessage()));
+                .orElseThrow(
+                        () -> new IllegalArgumentException(ExceptionMessage.NO_BRIDGE_DIRECTION_SIGN.getMessage()));
     }
+
     public String getSign() {
         return sign;
     }
 
-    public static boolean isSame(BridgeDirection sign1, BridgeDirection sign2){
-        return sign1 == sign2;
+    public boolean isSame(BridgeDirection direction) {
+        return this == direction;
     }
 }
