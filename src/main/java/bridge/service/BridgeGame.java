@@ -69,8 +69,7 @@ public class BridgeGame {
     }
 
     public Boolean isRoundLeft() {
-        int currentRoundNumber = bridge.getCurrentRoundNumber();
-        return bridge.isRoundLeft(currentRoundNumber);
+        return bridge.isRoundLeft();
     }
 
     public List<List<String>> getBridgeRecord() {

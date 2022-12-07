@@ -47,15 +47,12 @@ public class Bridge {
         currentRoundNumber = 0;
     }
 
-    public int getCurrentRoundNumber() {
-        return currentRoundNumber;
-    }
 
     public List<String> getBridge () {
         return Collections.unmodifiableList(bridge);
     }
 
-    public Boolean isRoundLeft(int currentRoundNumber) {
+    public Boolean isRoundLeft() {
         int finalRound = bridge.size();
         return currentRoundNumber < finalRound;
     }
