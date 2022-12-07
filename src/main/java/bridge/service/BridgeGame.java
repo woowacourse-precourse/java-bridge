@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.constant.Score;
 import bridge.model.Bridge;
+import bridge.model.BridgePosition;
 import bridge.model.GameResult.Result;
 import bridge.model.Move;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class BridgeGame {
 
     private Bridge bridge;
+    private BridgePosition bridgePosition;
     private final Move move;
     private final Result result;
 
@@ -23,6 +25,7 @@ public class BridgeGame {
 
     public void createBridge(List<String> bridgeInput) {
         bridge = new Bridge(bridgeInput);
+        bridgePosition = new BridgePosition(bridge);
     }
 
     /**
@@ -35,8 +38,8 @@ public class BridgeGame {
     }
 
     public void judgeMove(String moveDirection) {
-        bridge.addCurrentRoundNumber();
-        Score score = bridge.judgeMove(moveDirection);
+        bridgePosition.addCurrentRoundNumber();
+        Score score = bridgePosition.judgeMove(moveDirection);
 
         move.setScore(score);
         result.updateBridgeRecord(score, moveDirection);
@@ -55,21 +58,21 @@ public class BridgeGame {
      */
     public void retry() {
         result.addTryCount();
-        bridge.resetCurrentRoundNumber();
+        bridgePosition.resetCurrentRoundNumber();
         result.deleteBridgeRecord();
     }
 
     public Boolean isFail() {
         String moveDirection = move.getMoveDirection();
-        Boolean isFail = bridge.isFail(moveDirection);
+        Boolean isFail = bridgePosition.isFail(moveDirection);
         if (isFail) {
-            bridge.resetCurrentRoundNumber();
+            bridgePosition.resetCurrentRoundNumber();
         }
         return isFail;
     }
 
     public Boolean isRoundLeft() {
-        return bridge.isRoundLeft();
+        return bridgePosition.isRoundLeft();
     }
 
     public List<List<String>> getBridgeRecord() {
