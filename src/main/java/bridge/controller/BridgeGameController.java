@@ -1,8 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -13,14 +11,15 @@ import static bridge.validator.NumberValidator.validateNonNumeric;
 import static bridge.validator.NumberValidator.validateRange;
 
 public class BridgeGameController {
-    private static List<String> bridge;
+    private static Bridge correctBridge;
     List<Boolean> currentBridge = new ArrayList<>();
     private static int retryCount = 0;
 
     public void gameStart() {
+        int size = initBridgeSize();
+        initBridge(size);
         BridgeGame bridgeGame = new BridgeGame();
         boolean gameResult;
-        gameSetUp();
         do {
             gameResult = oneGame();
             retryCount++;
@@ -33,28 +32,6 @@ public class BridgeGameController {
         OutputView.printMapResult(currentBridge, bridge);
         OutputView.printResult(gameResult);
         OutputView.printTotalCountResult(retryCount);
-    }
-
-    private void gameSetUp() {
-        OutputView.printGameStartMessage();
-        int size = initBridgeSize();
-
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        bridge = bridgeMaker.makeBridge(size);
-    }
-
-    private int initBridgeSize() {
-        String bridgeSize;
-        try {
-            bridgeSize = InputView.readBridgeSize();
-            validateNonNumeric(bridgeSize);
-            validateRange(bridgeSize);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
-            return initBridgeSize();
-        }
-        return Integer.parseInt(bridgeSize);
     }
 
     private String initMoving() {
@@ -96,5 +73,24 @@ public class BridgeGameController {
 
         String moveCommand = initMoving();
         return bridgeGame.move(moveCommand, bridge.get(idx));
+    }
+
+    private void initBridge(int size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        correctBridge = new Bridge(bridgeMaker.makeBridge(size));
+    }
+
+    private int initBridgeSize() {
+        String bridgeSize;
+        try {
+            bridgeSize = InputView.readBridgeSize();
+            validateNonNumeric(bridgeSize);
+            validateRange(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return initBridgeSize();
+        }
+        return Integer.parseInt(bridgeSize);
     }
 }
