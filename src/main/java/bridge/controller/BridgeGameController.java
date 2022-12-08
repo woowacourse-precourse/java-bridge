@@ -15,8 +15,6 @@ import static bridge.validator.NumberValidator.validateRange;
 public class BridgeGameController {
     private final static String RETRY = "R";
     private static Bridge correctBridge;
-    List<Boolean> currentBridge = new ArrayList<>();
-    private static int retryCount = 0;
 
     public void gameStart() {
         int size = initBridgeSize();
