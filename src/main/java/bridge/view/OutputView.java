@@ -17,6 +17,8 @@ public class OutputView {
     private final static String GAME_ENDING_MESSAGE = "최종 게임 결과";
     private final static String GAME_RESULT_MESSAGE = "게임 성공 여부: %s";
     private final static String TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
+    private final static String SUCCESS = "성공";
+    private final static String FAIL = "실패";
 
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -64,20 +66,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-
-    public static void printMapResult(List<Boolean> currentBridge, List<String> bridge) {
+    public static void printResultMessage() {
         System.out.println(GAME_ENDING_MESSAGE);
-        printTopMap(currentBridge, bridge);
-        printBottomMap(currentBridge, bridge);
     }
 
-    public static void printResult(boolean gameResult) {
-        String result = GameResult.OVER.getMessage();
-        if (gameResult) result = GameResult.WIN.getMessage();
-        System.out.printf(GAME_RESULT_MESSAGE + "%n", result);
-    }
+    public static void printResult(BridgeGame bridgeGame, boolean isSuccess) {
+        String result = FAIL;
+        if (isSuccess) result = SUCCESS;
 
-    public static void printTotalCountResult(int retryCount) {
-        System.out.printf(TRY_COUNT_MESSAGE + "%n", retryCount);
+        System.out.printf((GAME_RESULT_MESSAGE) + "%n", result);
+        System.out.printf((TRY_COUNT_MESSAGE) + "%n", bridgeGame.getTryCount());
     }
 }

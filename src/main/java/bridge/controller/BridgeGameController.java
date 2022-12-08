@@ -22,17 +22,17 @@ public class BridgeGameController {
         BridgeGame bridgeGame = new BridgeGame();
         boolean gameResult;
         do {
-            gameResult = oneGame();
-            retryCount++;
+            gameResult = oneGame(bridgeGame, size);
             if (gameResult) break;
         } while (initRetryCommand());
-        printGameResult(gameResult);
+        
+        printGameResult(bridgeGame, gameResult);
     }
 
-    private void printGameResult(boolean gameResult) {
-        OutputView.printMapResult(currentBridge, bridge);
-        OutputView.printResult(gameResult);
-        OutputView.printTotalCountResult(retryCount);
+    private void printGameResult(BridgeGame bridgeGame, boolean isSuccess) {
+        OutputView.printResultMessage();
+        OutputView.printMap(bridgeGame);
+        OutputView.printResult(bridgeGame, isSuccess);
     }
 
     private boolean oneGame(BridgeGame bridgeGame, int size) {
