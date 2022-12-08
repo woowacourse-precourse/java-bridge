@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.validator.CommandValidator.validateInvalidRetryType;
+import static bridge.validator.CommandValidator.validateInvalidType;
 import static bridge.validator.NumberValidator.validateNonNumeric;
 import static bridge.validator.NumberValidator.validateRange;
 
@@ -36,17 +37,6 @@ public class BridgeGameController {
         OutputView.printTotalCountResult(retryCount);
     }
 
-    private String initMoving() {
-        String moveCommand;
-        try {
-            moveCommand = InputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
-            return initMoving();
-        }
-        return moveCommand;
-    }
-
     private boolean oneGame() {
         currentBridge.clear();
         for (int idx = 0; idx < bridge.size(); idx++) {
@@ -62,7 +52,7 @@ public class BridgeGameController {
     private boolean moveBridge(int idx) {
         BridgeGame bridgeGame = new BridgeGame();
 
-        String moveCommand = initMoving();
+        String moveCommand = initMoveCommand();
         return bridgeGame.move(moveCommand, bridge.get(idx));
     }
 
@@ -76,6 +66,18 @@ public class BridgeGameController {
             return initRetryCommand();
         }
         return retryCommand.equals(RETRY);
+    }
+
+    private String initMoveCommand() {
+        String moveCommand;
+        try {
+            moveCommand = InputView.readMoving();
+            validateInvalidType(moveCommand);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return initMoveCommand();
+        }
+        return moveCommand;
     }
 
     private void initBridge(int size) {

@@ -2,11 +2,6 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.validator.CommandValidator.validateInvalidRetryType;
-import static bridge.validator.CommandValidator.validateInvalidType;
-import static bridge.validator.NumberValidator.validateNonNumeric;
-import static bridge.validator.NumberValidator.validateRange;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -29,7 +24,6 @@ public class InputView {
         OutputView.printSelectToMovePlayerMessage();
         String moveCommand = Console.readLine();
 
-        validateInvalidType(moveCommand);
         return moveCommand;
     }
 
