@@ -9,6 +9,9 @@ import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.validator.NumberValidator.validateNonNumeric;
+import static bridge.validator.NumberValidator.validateRange;
+
 public class BridgeGameController {
     private static List<String> bridge;
     List<Boolean> currentBridge = new ArrayList<>();
@@ -34,20 +37,22 @@ public class BridgeGameController {
 
     private void gameSetUp() {
         OutputView.printGameStartMessage();
-        int size = initSize();
+        int size = initBridgeSize();
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridge = bridgeMaker.makeBridge(size);
     }
 
-    private int initSize() {
-        String bridgeSize = "";
+    private int initBridgeSize() {
+        String bridgeSize;
         try {
             bridgeSize = InputView.readBridgeSize();
+            validateNonNumeric(bridgeSize);
+            validateRange(bridgeSize);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return initSize();
+            return initBridgeSize();
         }
         return Integer.parseInt(bridgeSize);
     }

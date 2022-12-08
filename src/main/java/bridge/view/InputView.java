@@ -19,8 +19,6 @@ public class InputView {
         OutputView.printBridgeLengthInputMessage();
         String bridgeSize = Console.readLine();
 
-        validateNonNumeric(bridgeSize);
-        validateRange(bridgeSize);
         return bridgeSize;
     }
 
