@@ -35,14 +35,13 @@ public class BridgeGameController {
         OutputView.printTotalCountResult(retryCount);
     }
 
-    private boolean oneGame(BridgeGame bridgeGame) {
+    private boolean oneGame(BridgeGame bridgeGame, int size) {
         bridgeGame.retry();
-        for (int idx = 0; idx < bridge.size(); idx++) {
-            boolean result = moveBridge(idx);
-            currentBridge.add(result);
+        for (int idx = 0; idx < size; idx++) {
+            boolean moveSuccess = bridgeGame.move(correctBridge, initMoveCommand());
             OutputView.printTopMap(currentBridge, bridge);
             OutputView.printBottomMap(currentBridge, bridge);
-            if (!result) return false;
+            if (!moveSuccess) return false;
         }
         return true;
     }
