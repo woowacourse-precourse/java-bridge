@@ -45,17 +45,6 @@ public class BridgeGameController {
         return moveCommand;
     }
 
-    private String initGameCommand() {
-        String moveCommand;
-        try {
-            moveCommand = InputView.readGameCommand();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
-            return initGameCommand();
-        }
-        return moveCommand;
-    }
-
     private boolean oneGame() {
         currentBridge.clear();
         for (int idx = 0; idx < bridge.size(); idx++) {
@@ -73,6 +62,17 @@ public class BridgeGameController {
 
         String moveCommand = initMoving();
         return bridgeGame.move(moveCommand, bridge.get(idx));
+    }
+
+    private String initMoveCommand() {
+        String moveCommand;
+        try {
+            moveCommand = InputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return initMoveCommand();
+        }
+        return moveCommand;
     }
 
     private void initBridge(int size) {
