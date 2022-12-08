@@ -40,7 +40,6 @@ public class InputView {
         OutputView.printAskRetryMessage();
         String retry = Console.readLine();
 
-        validateInvalidRetryType(retry);
         return retry;
     }
 }

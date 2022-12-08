@@ -7,6 +7,7 @@ import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.validator.CommandValidator.validateInvalidRetryType;
 import static bridge.validator.NumberValidator.validateNonNumeric;
 import static bridge.validator.NumberValidator.validateRange;
 
@@ -24,7 +25,7 @@ public class BridgeGameController {
             gameResult = oneGame();
             retryCount++;
             if (gameResult) break;
-        } while (bridgeGame.retry(initGameCommand()));
+        } while (bridgeGame.retry(initRetryCommand()));
         printGameResult(gameResult);
     }
 
@@ -64,15 +65,16 @@ public class BridgeGameController {
         return bridgeGame.move(moveCommand, bridge.get(idx));
     }
 
-    private String initMoveCommand() {
-        String moveCommand;
+    private String initRetryCommand() {
+        String retryCommand;
         try {
-            moveCommand = InputView.readGameCommand();
+            retryCommand = InputView.readGameCommand();
+            validateInvalidRetryType(retryCommand);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return initMoveCommand();
+            return initRetryCommand();
         }
-        return moveCommand;
+        return retryCommand;
     }
 
     private void initBridge(int size) {
