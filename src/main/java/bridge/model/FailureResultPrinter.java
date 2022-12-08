@@ -30,7 +30,11 @@ public class FailureResultPrinter extends ResultPrinter {
     }
 
     private Position getEndPosition() {
-        return this.passingRout.get(this.getEndIndex(passingRout.size()));
+        return this.passingRout.get(getEndIndex());
+    }
+
+    private int getEndIndex() {
+        return this.getEndIndex(passingRout.size());
     }
 
     private String replaceSignOToX(String result) {
