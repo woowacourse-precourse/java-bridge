@@ -2,8 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.validator.BlockValidator.validateInvalidRetryType;
-import static bridge.validator.BlockValidator.validateInvalidType;
+import static bridge.validator.CommandValidator.validateInvalidRetryType;
+import static bridge.validator.CommandValidator.validateInvalidType;
 import static bridge.validator.NumberValidator.validateNonNumeric;
 import static bridge.validator.NumberValidator.validateRange;
 
