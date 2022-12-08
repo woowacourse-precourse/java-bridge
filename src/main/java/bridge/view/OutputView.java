@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.BridgeGame;
-import bridge.domain.GameResult;
 
 import java.util.List;
 import java.util.StringJoiner;
