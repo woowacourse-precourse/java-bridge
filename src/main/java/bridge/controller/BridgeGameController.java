@@ -12,6 +12,7 @@ import static bridge.validator.NumberValidator.validateNonNumeric;
 import static bridge.validator.NumberValidator.validateRange;
 
 public class BridgeGameController {
+    private final static String RETRY = "R";
     private static Bridge correctBridge;
     List<Boolean> currentBridge = new ArrayList<>();
     private static int retryCount = 0;
@@ -25,7 +26,7 @@ public class BridgeGameController {
             gameResult = oneGame();
             retryCount++;
             if (gameResult) break;
-        } while (bridgeGame.retry(initRetryCommand()));
+        } while (initRetryCommand());
         printGameResult(gameResult);
     }
 
@@ -65,7 +66,7 @@ public class BridgeGameController {
         return bridgeGame.move(moveCommand, bridge.get(idx));
     }
 
-    private String initRetryCommand() {
+    private boolean initRetryCommand() {
         String retryCommand;
         try {
             retryCommand = InputView.readGameCommand();
@@ -74,7 +75,7 @@ public class BridgeGameController {
             OutputView.printErrorMessage(e);
             return initRetryCommand();
         }
-        return retryCommand;
+        return retryCommand.equals(RETRY);
     }
 
     private void initBridge(int size) {
