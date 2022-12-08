@@ -35,8 +35,8 @@ public class BridgeGameController {
         OutputView.printTotalCountResult(retryCount);
     }
 
-    private boolean oneGame() {
-        currentBridge.clear();
+    private boolean oneGame(BridgeGame bridgeGame) {
+        bridgeGame.retry();
         for (int idx = 0; idx < bridge.size(); idx++) {
             boolean result = moveBridge(idx);
             currentBridge.add(result);

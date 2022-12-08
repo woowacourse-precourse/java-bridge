@@ -12,20 +12,26 @@ import static bridge.validator.CommandValidator.validateInvalidType;
 public class BridgeGame {
     private final List<String> currentTopBridge = new ArrayList<>();
     private final List<String> currentBottomBridge = new ArrayList<>();
-    private int tryCount = 1;
+    private int tryCount = 0;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String command, String bridge) {
-        validateInvalidType(command);
-
-        if (command.equals(bridge)) {
-            return true;
+    public boolean move(Bridge correctBridge, String command) {
+        boolean result = correctBridge.isCorrect(currentTopBridge.size(), command);
+        String sign = "X";
+        if (result) sign = "O";
+        if (command.equals(MoveCommand.TOP.getMoveCommand())) {
+            currentTopBridge.add(sign);
+            currentBottomBridge.add(" ");
         }
-        return false;
+        if (command.equals(MoveCommand.BOTTOM.getMoveCommand())) {
+            currentTopBridge.add(" ");
+            currentBottomBridge.add(sign);
+        }
+        return result;
     }
 
     /**
@@ -33,10 +39,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(String input) {
-        validateInvalidRetryType(input);
-
-        if (input.equals("R")) return true;
-        return false;
+    public void retry() {
+        tryCount++;
+        currentTopBridge.clear();
+        currentBottomBridge.clear();
     }
 }
