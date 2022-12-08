@@ -21,7 +21,7 @@ public class BridgeGameController {
         do {
             isSuccess = oneGame(bridgeGame, size);
             if (isSuccess) break;
-        } while (!initRetryCommand());
+        } while (initRetryCommand());
 
         printFinalResult(bridgeGame, isSuccess);
     }
