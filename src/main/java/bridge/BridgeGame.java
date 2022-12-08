@@ -44,4 +44,17 @@ public class BridgeGame {
         currentTopBridge.clear();
         currentBottomBridge.clear();
     }
+
+    // 반드시 OutputView에서만 사용하자
+    public List<String> getCurrentTopBridge() {
+        return currentTopBridge;
+    }
+
+    public List<String> getCurrentBottomBridge() {
+        return currentBottomBridge;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }

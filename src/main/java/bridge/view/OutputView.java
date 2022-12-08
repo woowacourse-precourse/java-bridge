@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.BridgeGame;
 import bridge.domain.GameResult;
 
 import java.util.List;
@@ -43,36 +44,19 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    public static void printTopMap(List<Boolean> currentBridge, List<String> bridge) {
-        int index = -1;
-        StringJoiner topLayer = new StringJoiner(" | ", "[ ", " ]");
-        for (boolean current : currentBridge) {
-            index++;
-            topLayer.add(compareToTopBridge(current, bridge, index));
+    public static void printMap(BridgeGame bridgeGame) {
+        List<String> topBridge = bridgeGame.getCurrentTopBridge();
+        List<String> bottomBridge = bridgeGame.getCurrentBottomBridge();
+        System.out.println(changeMap(topBridge));
+        System.out.println(changeMap(bottomBridge));
+    }
+
+    private static String changeMap(List<String> bridge) {
+        StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
+        for (String map : bridge) {
+            sj.add(map);
         }
-        System.out.println(topLayer.toString());
-    }
-
-    private static String compareToTopBridge(boolean current, List<String> bridge, int index) {
-        if (current && "U".equals(bridge.get(index))) return "O";
-        else if (!current && "D".equals(bridge.get(index))) return "X";
-        return " ";
-    }
-
-    public static void printBottomMap(List<Boolean> currentBridge, List<String> bridge) {
-        int index = -1;
-        StringJoiner bottomLayer = new StringJoiner(" | ", "[ ", " ]");
-        for (boolean current : currentBridge) {
-            index++;
-            bottomLayer.add(compareToBottomBridge(current, bridge, index));
-        }
-        System.out.println(bottomLayer.toString());
-    }
-
-    private static String compareToBottomBridge(boolean current, List<String> bridge, int index) {
-        if (current && "D".equals(bridge.get(index))) return "O";
-        else if (!current && "U".equals(bridge.get(index))) return "X";
-        return " ";
+        return sj.toString();
     }
 
     /**

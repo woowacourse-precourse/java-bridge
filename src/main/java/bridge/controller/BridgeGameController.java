@@ -39,8 +39,7 @@ public class BridgeGameController {
         bridgeGame.retry();
         for (int idx = 0; idx < size; idx++) {
             boolean moveSuccess = bridgeGame.move(correctBridge, initMoveCommand());
-            OutputView.printTopMap(currentBridge, bridge);
-            OutputView.printBottomMap(currentBridge, bridge);
+            OutputView.printMap(bridgeGame);
             if (!moveSuccess) return false;
         }
         return true;
