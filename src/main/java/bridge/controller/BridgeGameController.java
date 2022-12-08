@@ -4,9 +4,6 @@ import bridge.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static bridge.validator.CommandValidator.validateInvalidRetryType;
 import static bridge.validator.CommandValidator.validateInvalidType;
 import static bridge.validator.NumberValidator.validateNonNumeric;
@@ -20,13 +17,13 @@ public class BridgeGameController {
         int size = initBridgeSize();
         initBridge(size);
         BridgeGame bridgeGame = new BridgeGame();
-        boolean gameResult;
+        boolean isSuccess;
         do {
-            gameResult = oneGame(bridgeGame, size);
-            if (gameResult) break;
-        } while (initRetryCommand());
+            isSuccess = oneGame(bridgeGame, size);
+            if (isSuccess) break;
+        } while (!initRetryCommand());
 
-        printFinalResult(bridgeGame, gameResult);
+        printFinalResult(bridgeGame, isSuccess);
     }
 
     private void printFinalResult(BridgeGame bridgeGame, boolean isSuccess) {
@@ -43,13 +40,6 @@ public class BridgeGameController {
             if (!moveSuccess) return false;
         }
         return true;
-    }
-
-    private boolean moveBridge(int idx) {
-        BridgeGame bridgeGame = new BridgeGame();
-
-        String moveCommand = initMoveCommand();
-        return bridgeGame.move(moveCommand, bridge.get(idx));
     }
 
     private boolean initRetryCommand() {
