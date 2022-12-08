@@ -25,11 +25,11 @@ public class BridgeGameController {
             gameResult = oneGame(bridgeGame, size);
             if (gameResult) break;
         } while (initRetryCommand());
-        
-        printGameResult(bridgeGame, gameResult);
+
+        printFinalResult(bridgeGame, gameResult);
     }
 
-    private void printGameResult(BridgeGame bridgeGame, boolean isSuccess) {
+    private void printFinalResult(BridgeGame bridgeGame, boolean isSuccess) {
         OutputView.printResultMessage();
         OutputView.printMap(bridgeGame);
         OutputView.printResult(bridgeGame, isSuccess);
