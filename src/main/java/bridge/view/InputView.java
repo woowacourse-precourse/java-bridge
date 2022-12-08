@@ -16,6 +16,7 @@ public class InputView {
     public static final String INPUT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private final Logger logger = Logger.getLogger(InputView.class.getName());
+    private final InputValidator inputValidator = new InputValidator();
 
     /**
      * 다리의 길이를 입력받는다.
@@ -27,7 +28,7 @@ public class InputView {
 
     private int validateSize(String input) {
         try {
-            InputValidator.isValidSize(input);
+            inputValidator.isValidSize(input);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             this.logger.warning(getErrorSupplier(e));
@@ -46,7 +47,7 @@ public class InputView {
 
     private String validateMoving(String inputMoving) {
         try {
-            InputValidator.isValidMoving(inputMoving);
+            inputValidator.isValidMoving(inputMoving);
             return inputMoving;
         } catch (IllegalArgumentException e) {
             this.logger.warning(getErrorSupplier(e));
@@ -64,7 +65,7 @@ public class InputView {
 
     private String validateGameCommand(String inputRetry) {
         try {
-            InputValidator.isValidRetry(inputRetry);
+            inputValidator.isValidRetry(inputRetry);
             return inputRetry;
         } catch (IllegalArgumentException e) {
             this.logger.warning(getErrorSupplier(e));
