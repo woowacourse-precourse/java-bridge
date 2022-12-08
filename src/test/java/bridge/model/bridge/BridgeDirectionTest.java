@@ -3,7 +3,6 @@ package bridge.model.bridge;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import bridge.model.command.GameCommand;
 import bridge.util.ExceptionMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

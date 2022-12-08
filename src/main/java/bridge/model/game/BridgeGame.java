@@ -1,7 +1,7 @@
 package bridge.model.game;
 
-import bridge.model.status.RoundStatus;
 import bridge.model.bridge.BridgeDirection;
+import bridge.model.status.RoundStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

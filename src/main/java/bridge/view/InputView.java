@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.model.bridge.Bridge;
 import bridge.model.bridge.BridgeDirection;
 import bridge.model.command.GameCommand;
 import bridge.util.validator.BridgeSizeValidator;

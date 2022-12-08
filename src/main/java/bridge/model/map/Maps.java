@@ -1,7 +1,7 @@
 package bridge.model.map;
 
-import bridge.model.status.RoundStatus;
 import bridge.model.bridge.BridgeDirection;
+import bridge.model.status.RoundStatus;
 
 public class Maps {
 
@@ -19,11 +19,11 @@ public class Maps {
     }
 
     public void updateMaps(BridgeDirection bridgeDirection, RoundStatus roundStatus) {
-        if (bridgeDirection == BridgeDirection.UP) {
+        if (bridgeDirection.isSame(BridgeDirection.UP)) {
             upMap.updateMap(roundStatus);
             downMap.updateMap(RoundStatus.ROUND_NONE);
         }
-        if (bridgeDirection == BridgeDirection.DOWN) {
+        if (bridgeDirection.isSame(BridgeDirection.DOWN)) {
             upMap.updateMap(RoundStatus.ROUND_NONE);
             downMap.updateMap(roundStatus);
         }
