@@ -75,24 +75,24 @@
 │  └─java
 │      └─bridge
 │          │  Application.java
+│          │  Bridge.java
 │          │  BridgeGame.java
 │          │  BridgeMaker.java
 │          │  BridgeNumberGenerator.java
 │          │  BridgeRandomNumberGenerator.java
+│          │  MoveCommand.java
 │          │
 │          ├─controller
 │          │      BridgeGameController.java
 │          │
-│          ├─domain
-│          │      GameResult.java
-│          │
 │          ├─validator
-│          │      BlockValidator.java
+│          │      CommandValidator.java
 │          │      NumberValidator.java
 │          │
 │          └─view
 │                  InputView.java
 │                  OutputView.java
+│
 └─test
     └─java
         └─bridge
