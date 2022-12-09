@@ -24,11 +24,7 @@ public class BridgeMaker {
     public Bridge makeBridge(int size) {
         final List<String> bridge = new ArrayList<String>(size);
         while (bridge.size() < size) {
-            if (bridgeNumberGenerator.generate() == Moving.UP.getNumber()) {
-                bridge.add(Moving.UP.getValue());
-                continue;
-            }
-            bridge.add(Moving.DOWN.getValue());
+            bridge.add(Moving.findBy(bridgeNumberGenerator.generate()));
         }
         return new Bridge(bridge);
     }
