@@ -20,7 +20,7 @@ public class BridgeGameTest {
     @BeforeEach
     void setup() {
         final List<String> bridge = List.of("U", "U");
-        bridgeGame = new BridgeGame(bridge);
+        bridgeGame = new BridgeGame(new Bridge(bridge));
     }
 
     @Test

@@ -1,7 +1,7 @@
 package bridge.domain.game;
 
-import bridge.constant.Bridge;
-import bridge.constant.Bridge.GameConstants;
+import bridge.constant.Game;
+import bridge.constant.Game.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridge;
+    private final Bridge bridge;
     private final List<String> movings;
     private int numberOfAttempts;
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.movings = new ArrayList<>(bridge.size());
-        this.numberOfAttempts = Bridge.GameConstants.INITIAL_VALUE_OF_ATTEMPTS_NUMBER;
+        this.numberOfAttempts = Game.GameConstants.INITIAL_VALUE_OF_ATTEMPTS_NUMBER;
     }
 
     public int getNumberOfAttempts() {

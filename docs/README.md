@@ -40,6 +40,17 @@
   
 ---
 
+## 객체지향적 프로그래밍 체크
+
+- [] DTO
+- [] Entity
+- [] VO
+  - 기존 BridgeMaker가 만드는 bridge의 자료형 List<String>을 Bridge로 수정
+- [] 일급 컬렉션
+  - BridgeMap은 List<List<String>> 자료형인 bridgeMap을 필드멤버로 갖는 일급 컬렉션이다.
+  - BridgeGame이 List<List<String>> bridgeMap을 필드멤버로 갖는다면 BridgeGame이 많이 책임을 갖게 된다(단일책임원칙위배).
+---
+
 ## 테스트 구현 기능 목록
 
 ### Class BridgeChecker

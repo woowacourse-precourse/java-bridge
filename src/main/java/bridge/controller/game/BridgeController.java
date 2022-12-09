@@ -1,6 +1,6 @@
 package bridge.controller.game;
 
-import bridge.constant.Bridge;
+import bridge.constant.Game;
 import bridge.constant.Message.LogicExceptionMessage;
 import bridge.controller.service.BridgeCommunication;
 import bridge.domain.game.BridgeGame;
@@ -50,8 +50,8 @@ public class BridgeController {
             throw new IllegalStateException(LogicExceptionMessage.WRONG_USE_SUCCESS_OR_NOT);
         }
         if (game.success()) {
-            return Bridge.GameConstants.GAME_SUCCESS;
+            return Game.GameConstants.GAME_SUCCESS;
         }
-        return Bridge.GameConstants.GAME_FAILURE;
+        return Game.GameConstants.GAME_FAILURE;
     }
 }

@@ -18,6 +18,7 @@ public final class Message {
 
     public static final class LogicExceptionMessage {
 
+        public static final String WRONG_BRIDGE_DIRECTION = "[ERROR] 다리 방향은 'U' 또는 'D'로 표현해야 합니다";
         public static final String WRONG_USE_SUCCESS_OR_NOT = "[ERROR] 게임이 아직 진행 중입니다.";
 
         private LogicExceptionMessage() {}

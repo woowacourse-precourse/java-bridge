@@ -2,7 +2,7 @@ package bridge.controller.service;
 
 import bridge.domain.service.BridgeChecker;
 import bridge.view.InputView;
-import bridge.constant.Bridge.GameConstants;
+import bridge.constant.Game.GameConstants;
 
 public class BridgeCommunication {
 

@@ -1,6 +1,9 @@
 package bridge.constant;
 
-public final class Bridge {
+import java.util.List;
+
+public final class Game {
+
     public static final class GameConstants {
 
         public static final String GAME_SUCCESS = "성공";

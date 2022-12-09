@@ -2,8 +2,8 @@ package bridge.domain.service;
 
 import bridge.constant.enums.Moving;
 import bridge.constant.Message.InputExceptionMessage;
-import bridge.constant.Bridge.GameConstants;
-import bridge.constant.Bridge.Checker;
+import bridge.constant.Game.GameConstants;
+import bridge.constant.Game.Checker;
 
 public class BridgeChecker {
     private static final BridgeChecker checker = new BridgeChecker();

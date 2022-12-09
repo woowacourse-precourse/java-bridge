@@ -1,6 +1,6 @@
 package bridge.domain.game;
 
-import bridge.constant.Bridge;
+import bridge.constant.Game;
 import bridge.constant.Message;
 import bridge.constant.enums.Moving;
 import java.util.ArrayList;
@@ -37,27 +37,27 @@ public class BridgeMap {
     }
 
     void clear() {
-        bridgeMap.get(Bridge.MapConstants.UP_SIDE_INDEX).clear();
-        bridgeMap.get(Bridge.MapConstants.DOWN_SIDE_INDEX).clear();
+        bridgeMap.get(Game.MapConstants.UP_SIDE_INDEX).clear();
+        bridgeMap.get(Game.MapConstants.DOWN_SIDE_INDEX).clear();
     }
 
     private void markFailedMove(final String direction) {
         if (direction.equals(Moving.UP.getValue())) {
-            bridgeMap.get(Bridge.MapConstants.UP_SIDE_INDEX).add(Bridge.MapConstants.FAILED_MOVE_MARK);
-            bridgeMap.get(Bridge.MapConstants.DOWN_SIDE_INDEX).add(Bridge.MapConstants.NEVER_STEPPED_MARK);
+            bridgeMap.get(Game.MapConstants.UP_SIDE_INDEX).add(Game.MapConstants.FAILED_MOVE_MARK);
+            bridgeMap.get(Game.MapConstants.DOWN_SIDE_INDEX).add(Game.MapConstants.NEVER_STEPPED_MARK);
             return;
         }
-        bridgeMap.get(Bridge.MapConstants.UP_SIDE_INDEX).add(Bridge.MapConstants.NEVER_STEPPED_MARK);
-        bridgeMap.get(Bridge.MapConstants.DOWN_SIDE_INDEX).add(Bridge.MapConstants.FAILED_MOVE_MARK);
+        bridgeMap.get(Game.MapConstants.UP_SIDE_INDEX).add(Game.MapConstants.NEVER_STEPPED_MARK);
+        bridgeMap.get(Game.MapConstants.DOWN_SIDE_INDEX).add(Game.MapConstants.FAILED_MOVE_MARK);
     }
 
     private void markSuccessfulMove(final String direction) {
         if (direction.equals(Moving.UP.getValue())) {
-            bridgeMap.get(Bridge.MapConstants.UP_SIDE_INDEX).add(Bridge.MapConstants.SUCCESSFUL_MOVE_FORMAT);
-            bridgeMap.get(Bridge.MapConstants.DOWN_SIDE_INDEX).add(Bridge.MapConstants.NEVER_STEPPED_MARK);
+            bridgeMap.get(Game.MapConstants.UP_SIDE_INDEX).add(Game.MapConstants.SUCCESSFUL_MOVE_FORMAT);
+            bridgeMap.get(Game.MapConstants.DOWN_SIDE_INDEX).add(Game.MapConstants.NEVER_STEPPED_MARK);
             return;
         }
-        bridgeMap.get(Bridge.MapConstants.UP_SIDE_INDEX).add(Bridge.MapConstants.NEVER_STEPPED_MARK);
-        bridgeMap.get(Bridge.MapConstants.DOWN_SIDE_INDEX).add(Bridge.MapConstants.SUCCESSFUL_MOVE_FORMAT);
+        bridgeMap.get(Game.MapConstants.UP_SIDE_INDEX).add(Game.MapConstants.NEVER_STEPPED_MARK);
+        bridgeMap.get(Game.MapConstants.DOWN_SIDE_INDEX).add(Game.MapConstants.SUCCESSFUL_MOVE_FORMAT);
     }
 }
