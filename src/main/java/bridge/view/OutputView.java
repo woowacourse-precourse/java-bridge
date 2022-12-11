@@ -12,10 +12,6 @@ import static bridge.util.Constant.EXCEPTIONS;
  */
 public class OutputView {
 
-    public OutputView() {
-        super();
-    }
-
     public void printGameStartPhrase() {
         System.out.println(ConstantMessage.GAME_START_PHRASE);
     }
