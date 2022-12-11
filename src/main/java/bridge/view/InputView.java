@@ -2,7 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.util.Constant.outputView;
+import static bridge.util.Constant.OUTPUT_VIEW;
+
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -20,7 +21,7 @@ public class InputView {
         String readLine;
         do {
             readLine = Console.readLine();
-        } while (!readLine.equals(outputView.printBridgeLengthInputErrorMessage(readLine)));
+        } while (!readLine.equals(OUTPUT_VIEW.printBridgeLengthInputErrorMessage(readLine)));
         return Integer.parseInt(readLine);
     }
 
@@ -31,7 +32,7 @@ public class InputView {
         String readLine;
         do {
             readLine = Console.readLine();
-        } while (!readLine.equals(outputView.printMovingBlockInputErrorMessage(readLine)));
+        } while (!readLine.equals(OUTPUT_VIEW.printMovingBlockInputErrorMessage(readLine)));
         return readLine;
     }
 
@@ -42,7 +43,7 @@ public class InputView {
         String readLine;
         do {
             readLine = Console.readLine();
-        } while (!readLine.equals(outputView.printRestartInputErrorMessage(readLine)));
+        } while (!readLine.equals(OUTPUT_VIEW.printRestartInputErrorMessage(readLine)));
         return readLine;
     }
 }
