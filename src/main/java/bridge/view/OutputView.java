@@ -4,7 +4,8 @@ import bridge.util.ConstantMessage;
 
 import java.util.List;
 
-import static bridge.util.Constant.exceptions;
+import static bridge.util.Constant.EXCEPTIONS;
+
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -25,7 +26,7 @@ public class OutputView {
 
     public String printBridgeLengthInputErrorMessage(String readLine) {
         String result;
-        result = exceptions.validateBridgeLength(readLine);
+        result = EXCEPTIONS.validateBridgeLength(readLine);
         if (!result.equals(ConstantMessage.BRIDGE_LENGTH_ERROR_MESSAGE)) {
             return result;
         }
@@ -39,7 +40,7 @@ public class OutputView {
 
     public String printMovingBlockInputErrorMessage(String readLine) {
         String result;
-        result = exceptions.validateMovingBlock(readLine);
+        result = EXCEPTIONS.validateMovingBlock(readLine);
         if (!result.equals(ConstantMessage.MOVING_BLOCK_ERROR_MESSAGE)) {
             return result;
         }
@@ -53,7 +54,7 @@ public class OutputView {
 
     public String printRestartInputErrorMessage(String readLine) {
         String result;
-        result = exceptions.validateRestartGame(readLine);
+        result = EXCEPTIONS.validateRestartGame(readLine);
         if (!result.equals(ConstantMessage.RESTART_GAME_ERROR_MESSAGE)) {
             return result;
         }

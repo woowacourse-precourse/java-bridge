@@ -15,19 +15,19 @@ public class Application {
     }
 
     public static void gameStart() {
-        outputView.printGameStartPhrase();
+        OUTPUT_VIEW.printGameStartPhrase();
     }
 
     public static List<String> makeBridge() {
-        outputView.printBridgeLengthInputPhrase();
-        return bridgeMaker.makeBridge(inputView.readBridgeSize());
+        OUTPUT_VIEW.printBridgeLengthInputPhrase();
+        return BRIDGE_MAKER.makeBridge(INPUT_VIEW.readBridgeSize());
     }
 
     public static int moveUser(List<String> bridge) {
         List<String> result = new ArrayList<>();
         List<String> moveResult = moveDetail(result, bridge);
         if (!moveResult.isEmpty()) {
-            outputView.printClearResult(moveResult);
+            OUTPUT_VIEW.printClearResult(moveResult);
         }
         return tryCount;
     }
@@ -35,25 +35,25 @@ public class Application {
     public static List<String> moveDetail(List<String> result, List<String> bridge) {
         for (int i = 0; i < bridge.size(); i++) {
             String moving = inputUpDown();
-            if (!bridgeGame.move(moving, bridge.get(i))) {
-                outputView.printMap(addFalseResult(i, moving, result));
+            if (!BRIDGE_GAME.move(moving, bridge.get(i))) {
+                OUTPUT_VIEW.printMap(addFalseResult(i, moving, result));
                 i = restartGame(result, bridge);
                 result.clear();
                 continue;
             }
-            outputView.printMap(addTrueResult(i, moving, result));
+            OUTPUT_VIEW.printMap(addTrueResult(i, moving, result));
         }
         return result;
     }
 
     public static String inputUpDown() {
-        outputView.printMovingBlockInputPhrase();
-        return inputView.readMoving();
+        OUTPUT_VIEW.printMovingBlockInputPhrase();
+        return INPUT_VIEW.readMoving();
     }
 
     public static int restartGame(List<String> result, List<String> bridge) {
-        outputView.printRestartMessage();
-        return restartGameDetail(inputView.readGameCommand(), result, bridge);
+        OUTPUT_VIEW.printRestartMessage();
+        return restartGameDetail(INPUT_VIEW.readGameCommand(), result, bridge);
     }
 
     public static int restartGameDetail(String readGameCommand, List<String> result, List<String> bridge) {
@@ -68,7 +68,7 @@ public class Application {
     }
 
     public static void endGame(List<String> result) {
-        outputView.printFailResult(result);
+        OUTPUT_VIEW.printFailResult(result);
     }
 
     public static List<String> addTrueResult(int count, String moving, List<String> result) {
