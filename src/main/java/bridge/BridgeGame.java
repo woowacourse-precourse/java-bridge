@@ -1,23 +1,37 @@
 package bridge;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+import bridge.command.Movement;
+import bridge.path.Path;
+
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final Bridge bridge;
+    private Actor actor = new Actor();
+    private int numTry = 1;
+
+    private BridgeGame(final Bridge bridge) {
+        this.bridge = bridge;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public static BridgeGame of(final Bridge bridge) {
+        return new BridgeGame(bridge);
+    }
+
+    public Path onMove(final Movement movement) {
+        actor.addMovement(movement);
+        return actor.move(bridge);
+    }
+
+    public void onRetry() {
+        actor = new Actor();
+        numTry++;
+    }
+
+    public boolean completes() {
+        return bridge.getPossibleMovements().size() == actor.numMoves();
+    }
+
+    public int getNumTry() {
+        return numTry;
     }
 }
