@@ -22,7 +22,7 @@ class BridgeGameRepositoryTest {
         Blocks blocks = new Blocks(List.of(UP, DOWN, UP, UP));
         CrossStatuses crossStatuses = new CrossStatuses(CrossStatus.createInitializationStatuses(4));
 
-        // whaen
+        // when
         Bridge bridge = new Bridge(blocks, crossStatuses);
         bridgeGameRepository.storeBridge(bridge);
         Bridge findBridge = bridgeGameRepository.findBridge();

@@ -20,11 +20,11 @@ public class BridgeGameController {
     private void requestGenerateBridge() {
         try {
             bridgeGameService.generateRandomBridge(requestBridgeSize());
+            requestBlock();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             requestGenerateBridge();
         }
-        requestBlock();
     }
 
     private String requestBridgeSize() {
