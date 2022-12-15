@@ -20,10 +20,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> answerBridge = new ArrayList<>();
-        chcekNumbers(answerBridge,size);
+        checkNumbers(answerBridge,size);
         return answerBridge;
     }
-    public void chcekNumbers(List<String> answerBridge,int size){
+    public void checkNumbers(List<String> answerBridge,int size){
         for (int i = 0; i < size; i++) {
             answerBridge.add(getUpOrDown(bridgeNumberGenerator.generate()));
         }
