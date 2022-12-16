@@ -3,9 +3,6 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.validator.CommandValidator.validateInvalidRetryType;
-import static bridge.validator.CommandValidator.validateInvalidType;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
