@@ -1,28 +1,47 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import static message.ErrorMessage.*;
+import static message.PrintMessage.MOVE_D_COMMAND;
+import static message.PrintMessage.RETRY_R_COMMAND;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private BridgeGame bridgeGame;
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+
     public int readBridgeSize() {
-        return 0;
+        try {
+            this.bridgeGame = new BridgeGame(Integer.parseInt(Console.readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(BRIDGE_LENGTH_ERROR.getStatus());
+            this.readBridgeSize();
+        }
+        return bridgeGame.getSize();
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+
     public String readMoving() {
-        return null;
+        try {
+            this.bridgeGame = new BridgeGame(Console.readLine(),RETRY_R_COMMAND.getStatus());
+        } catch (IllegalArgumentException e) {
+            System.out.println(MOVE_COMMAND_ERROR.getStatus());
+            this.readMoving();
+        }
+        return bridgeGame.getReadMoving();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
+
     public String readGameCommand() {
-        return null;
+        try {
+            this.bridgeGame = new BridgeGame(MOVE_D_COMMAND.getStatus(), Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(RETRY_COMMAND_ERROR.getStatus());
+            this.readGameCommand();
+        }
+        return bridgeGame.getGameCommand();
     }
 }
